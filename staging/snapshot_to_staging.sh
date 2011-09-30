@@ -18,7 +18,7 @@ $drush variable-set preprocess_css 0
 $drush variable-set preprocess_js 0
 
 # Un-sanitize the user table for bakery
-mysql -uredesign_ro -p${redesign_ro_pass} -h db2-main-vip.drupal.org drupal --batch -e "SELECT concat('UPDATE users SET mail = \"', mail, '\" WHERE name = ', name, ';') AS '' FROM users" | $drush sql-cli
+ssh util zcat /var/dumps/mysql/drupal_snapshot_emails.sql.gz | $drush sql-cli
 
 # Prime caches
 wget -O /dev/null http://drupal:drupal@${domain}
