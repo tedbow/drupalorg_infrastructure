@@ -10,18 +10,6 @@ UPDATE users_access SET access = 280299600;
 TRUNCATE `access`;
 TRUNCATE accesslog;
 TRUNCATE authmap;
-TRUNCATE cache;
-TRUNCATE cache_apachesolr;
-TRUNCATE cache_block;
-TRUNCATE cache_content;
-TRUNCATE cache_filter;
-TRUNCATE cache_form;
-TRUNCATE cache_menu;
-TRUNCATE cache_mollom;
-TRUNCATE cache_page;
-TRUNCATE cache_update;
-TRUNCATE cache_views;
-TRUNCATE cache_views_data;
 TRUNCATE devel_queries;
 TRUNCATE devel_times;
 TRUNCATE flood;
@@ -39,7 +27,6 @@ TRUNCATE watchdog;
 
 -- We don't publicly share who has voted on what, if someone needs votes for theming they can do some votes.
 TRUNCATE votingapi_vote;
-TRUNCATE votingapi_cache;
 TRUNCATE poll_votes;
 
 -- Remove sensitive variables
