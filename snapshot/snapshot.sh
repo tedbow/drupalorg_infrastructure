@@ -34,79 +34,79 @@ case "$1" in
     db_name=drupal
     db_host=db2-main-vip.drupal.org
     tmp_db=drupal_sanitize
-    sane_sql=drupal-sanitize-dump.sql
+    sane_sql=drupal.sql
     ;;
   drupal_git_dev)
     db_name=drupal
     db_host=db2-main-vip.drupal.org
     tmp_db=drupal_sanitize
-    sane_sql=git-dev-sanitize-dump.sql
+    sane_sql=git-dev.sql
     ;;
   drupal_association)
     db_name=drupal_association
     db_host=db3-vip.drupal.org
     tmp_db=association_sanitize
-    sane_sql=association-sanitize-dump.sql
+    sane_sql=association.sql
     ;;
   drupal_atrium)
     db_name=drupal_atrium
     db_host=db3-vip.drupal.org
     tmp_db=atrium_sanitize
-    sane_sql=atrium-sanitize-dump.sql
+    sane_sql=atrium.sql
     ;;
   drupal_groups)
     db_name=drupal_groups
     db_host=db3-vip.drupal.org
     tmp_db=groups_sanitize
-    sane_sql=groups-sanitize-dump.sql
+    sane_sql=groups.sql
     ;;
   drupal_redesign)
     db_name=drupal_redesign
     db_host=db3-vip.drupal.org
     tmp_db=drupal_sanitize
-    sane_sql=drupal-sanitize-dump.sql
+    sane_sql=drupal.sql
     ;;
   drupal_security)
     db_name=drupal_security
     db_host=db3-vip.drupal.org
     tmp_db=security_sanitize
-    sane_sql=security-sanitize-dump.sql
+    sane_sql=security.sql
     ;;
   chicago2011)
     db_name=chicago2011
     db_host=db3-vip.drupal.org
     tmp_db=chicago2011_sanitize
-    sane_sql=chicago-sanitize-dump.sql
+    sane_sql=chicago.sql
     ;;
   chicago2011_scratch)
     db_name=chicago2011_scratch
     db_host=db3-vip.drupal.org
     tmp_db=chicago2011_sanitize
-    sane_sql=chicago-sanitize-dump.sql
+    sane_sql=chicago.sql
     ;;
   london2011)
     db_name=london2011
     db_host=db3-vip.drupal.org
     tmp_db=london2011_sanitize
-    sane_sql=cod-sanitize-dump.sql
+    sane_sql=cod.sql
     ;;
   denver2012)
     db_name=denver2012
     db_host=db3-vip.drupal.org
     tmp_db=denver2012_sanitize
-    sane_sql=cod-7-sanitize-dump.sql
+    sane_sql=cod-7.sql
     ;;
   munich2012)
     db_name=munich2012
     db_host=db3-vip.drupal.org
     tmp_db=munich_sanitize
-    sane_sql=cod-7-sanitize-dump.sql
+    sane_sql=cod-7.sql
     ;;
   localize)
     db_name=drupal_localize
     db_host=db3-vip.drupal.org
     tmp_db=drupal_sanitize
-    sane_sql=localize-sanitize-dump.sql
+    sane_sql=localize.sql
     ;;
   *)
     echo $"Usage: $0 db_name db_user db_pass db_host tmp_pass [export_path]"
