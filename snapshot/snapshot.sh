@@ -27,6 +27,7 @@ if [ $5 ]; then
 else
   export_path=/var/dumps/mysql
 fi
+ln -sf /var/dumps $WORKSPACE/dumps
 
 # Configure variables used in the sanitization based on $db_name
 case "$1" in
