@@ -18,6 +18,7 @@ fi
 db_user=$2
 db_pass=$3
 
+tmp_db=drupal_sanitize
 tmp_user=sanitize_rw
 tmp_pass=$4
 tmp_host=db4-static.drupal.org
@@ -34,19 +35,16 @@ case "$1" in
   drupal)
     db_name=drupal
     db_host=db2-main-vip.drupal.org
-    tmp_db=drupal_sanitize
     sane_sql=drupal.sql
     ;;
   drupal_git_dev)
     db_name=drupal
     db_host=db2-main-vip.drupal.org
-    tmp_db=drupal_sanitize
     sane_sql=git-dev.sql
     ;;
   drupal_association)
     db_name=drupal_association
     db_host=db3-vip.drupal.org
-    tmp_db=association_sanitize
     sane_sql=association.sql
     ;;
   drupal_atrium)
@@ -64,7 +62,6 @@ case "$1" in
   drupal_redesign)
     db_name=drupal_redesign
     db_host=db3-vip.drupal.org
-    tmp_db=drupal_sanitize
     sane_sql=drupal.sql
     ;;
   drupal_security)
@@ -106,7 +103,6 @@ case "$1" in
   localize)
     db_name=drupal_localize
     db_host=db3-vip.drupal.org
-    tmp_db=drupal_sanitize
     sane_sql=localize.sql
     ;;
   *)
@@ -123,14 +119,14 @@ mysqldump -h$db_host -u$db_user -p$db_pass --single-transaction $db_name 2> mysq
 [ -s mysqldump-errors.txt ] && exit 1
 
 echo "Sanitizing temporary database"
-cat scripts/$sane_sql | mysql -o ${tmp_args} || exit 1
+cat sanitize/$sane_sql | mysql -o ${tmp_args} || exit 1
 
 echo "Clearing cache tables"
 echo "SHOW TABLES LIKE '%cache%';" | mysql -o ${tmp_args} | tail -n +2 | sed -e "s/^\(.*\)$/TRUNCATE \1;/" | mysql -o ${tmp_args}
 
 if [ $db_name == "drupal_redesign" ]; then
   echo "Reducing DB size"
-  cat scripts/drupal-reduce-dump.sql | mysql -o ${tmp_args}
+  cat sanitize/drupal-reduce-dump.sql | mysql -o ${tmp_args}
 fi
 
 echo "Creating $db_name database dump"
