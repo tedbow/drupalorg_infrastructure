@@ -50,7 +50,6 @@ case "$1" in
   drupal_groups)
     db_name=drupal_groups
     db_host=db3-vip.drupal.org
-    tmp_db=groups_sanitize
     sane_sql=groups.sql
     ;;
   drupal_redesign)
@@ -66,7 +65,6 @@ case "$1" in
   chicago2011)
     db_name=chicago2011
     db_host=db3-vip.drupal.org
-    tmp_db=chicago2011_sanitize
     sane_sql=chicago.sql
     ;;
   london2011)
