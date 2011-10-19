@@ -4,7 +4,7 @@
 # Make sure we have required db info
 if [ $# -lt 4 ]; then
   echo "Usage: $0 db_name db_user db_pass tmp_pass [export_path]"
-  echo "Where db_name is drupal, drupal_association, drupal_atrium, drupal_groups, drupal_redesign or drupal_security."
+  echo "Where db_name is drupal, drupal_association, drupal_groups, drupal_redesign, or drupal_security."
   exit 1
 fi
 
@@ -47,12 +47,6 @@ case "$1" in
     db_host=db3-vip.drupal.org
     sane_sql=association.sql
     ;;
-  drupal_atrium)
-    db_name=drupal_atrium
-    db_host=db3-vip.drupal.org
-    tmp_db=atrium_sanitize
-    sane_sql=atrium.sql
-    ;;
   drupal_groups)
     db_name=drupal_groups
     db_host=db3-vip.drupal.org
@@ -72,12 +66,6 @@ case "$1" in
     ;;
   chicago2011)
     db_name=chicago2011
-    db_host=db3-vip.drupal.org
-    tmp_db=chicago2011_sanitize
-    sane_sql=chicago.sql
-    ;;
-  chicago2011_scratch)
-    db_name=chicago2011_scratch
     db_host=db3-vip.drupal.org
     tmp_db=chicago2011_sanitize
     sane_sql=chicago.sql
@@ -107,7 +95,7 @@ case "$1" in
     ;;
   *)
     echo $"Usage: $0 db_name db_user db_pass db_host tmp_pass [export_path]"
-    echo "Where db_name is drupal, drupal_association, drupal_groups, drupal_redesign or drupal_security."
+    echo "Where db_name is drupal, drupal_association, drupal_groups, drupal_redesign, or drupal_security."
     exit 1
 esac
 
