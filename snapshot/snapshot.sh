@@ -119,14 +119,14 @@ mysqldump -h$db_host -u$db_user -p$db_pass --single-transaction $db_name 2> mysq
 [ -s mysqldump-errors.txt ] && exit 1
 
 echo "Sanitizing temporary database"
-cat sanitize/$sane_sql | mysql -o ${tmp_args} || exit 1
+cat snapshot/$sane_sql | mysql -o ${tmp_args} || exit 1
 
 echo "Clearing cache tables"
 echo "SHOW TABLES LIKE '%cache%';" | mysql -o ${tmp_args} | tail -n +2 | sed -e "s/^\(.*\)$/TRUNCATE \1;/" | mysql -o ${tmp_args}
 
 if [ $db_name == "drupal_redesign" ]; then
   echo "Reducing DB size"
-  cat sanitize/drupal-reduce-dump.sql | mysql -o ${tmp_args}
+  cat snapshot/drupal-reduce-dump.sql | mysql -o ${tmp_args}
 fi
 
 echo "Creating $db_name database dump"
