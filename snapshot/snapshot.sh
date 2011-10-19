@@ -61,7 +61,6 @@ case "$1" in
   drupal_security)
     db_name=drupal_security
     db_host=db3-vip.drupal.org
-    tmp_db=security_sanitize
     sane_sql=security.sql
     ;;
   chicago2011)
@@ -73,19 +72,16 @@ case "$1" in
   london2011)
     db_name=london2011
     db_host=db3-vip.drupal.org
-    tmp_db=london2011_sanitize
     sane_sql=cod.sql
     ;;
   denver2012)
     db_name=denver2012
     db_host=db3-vip.drupal.org
-    tmp_db=denver2012_sanitize
     sane_sql=cod-7.sql
     ;;
   munich2012)
     db_name=munich2012
     db_host=db3-vip.drupal.org
-    tmp_db=munich_sanitize
     sane_sql=cod-7.sql
     ;;
   localize)
