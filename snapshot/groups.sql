@@ -60,7 +60,6 @@ DELETE FROM comment_upload WHERE cid NOT IN (SELECT cid FROM comments);
 DELETE FROM apachesolr_search_node WHERE nid NOT IN (SELECT nid FROM node);
 DELETE FROM content_field_organizers WHERE vid NOT IN (SELECT vid FROM node);
 DELETE FROM content_field_type WHERE vid NOT IN (SELECT vid FROM node);
-DELETE FROM content_type_account_synch WHERE vid NOT IN (SELECT vid FROM node);
 DELETE FROM content_type_event WHERE vid NOT IN (SELECT vid FROM node);
 DELETE FROM content_type_image WHERE vid NOT IN (SELECT vid FROM node);
 DELETE FROM content_type_job WHERE vid NOT IN (SELECT vid FROM node);
