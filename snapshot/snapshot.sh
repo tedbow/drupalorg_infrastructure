@@ -36,53 +36,38 @@ ln -sf /var/dumps $WORKSPACE/dumps
 case "$1" in
   drupal)
     db_host=db2-main-vip.drupal.org
-    sane_sql=drupal.sql
     ;;
   drupal_git_dev)
     db_name=drupal
     db_host=db2-main-vip.drupal.org
-    sane_sql=git-dev.sql
     ;;
   drupal_association)
     db_host=db3-vip.drupal.org
-    sane_sql=association.sql
     ;;
   drupal_groups)
     db_host=db3-vip.drupal.org
-    sane_sql=groups.sql
     ;;
   drupal_redesign)
     db_host=db3-vip.drupal.org
-    sane_sql=drupal.sql
     ;;
   drupal_security)
     db_host=db3-vip.drupal.org
-    sane_sql=security.sql
     ;;
   chicago2011)
     db_host=db3-vip.drupal.org
-    sane_sql=chicago.sql
     ;;
   london2011)
     db_host=db3-vip.drupal.org
-    sane_sql=cod.sql
     ;;
   denver2012)
     db_host=db3-vip.drupal.org
-    sane_sql=cod-7.sql
     ;;
   munich2012)
     db_host=db3-vip.drupal.org
-    sane_sql=cod-7.sql
     ;;
   drupal_localize)
     db_host=db3-vip.drupal.org
-    sane_sql=localize.sql
     ;;
-  *)
-    echo $"Usage: $0 db_name db_user db_pass db_host tmp_pass [export_path]"
-    echo "Where db_name is drupal, drupal_association, drupal_groups, drupal_redesign, or drupal_security."
-    exit 1
 esac
 
 # Since we've made it here, we can start sanitizing the db
@@ -94,7 +79,7 @@ echo "Clearing cache tables"
 echo "SHOW TABLES LIKE '%cache%';" | mysql -o ${tmp_args} | tail -n +2 | sed -e "s/^\(.*\)$/TRUNCATE \1;/" | mysql -o ${tmp_args}
 
 echo "Sanitizing temporary database"
-mysql -o ${tmp_args} < snapshot/$sane_sql || exit 1
+mysql -o ${tmp_args} < snapshot/${1}.sql || exit 1
 
 if [ $db_name == "drupal_redesign" ]; then
   echo "Reducing DB size"
