@@ -15,6 +15,7 @@ if [ ! $JOB_NAME ] || [ ! $BUILD_TAG ]; then
 fi
 
 # Configure credentials
+db_name=$1
 db_user=$2
 db_pass=$3
 
@@ -22,6 +23,7 @@ tmp_db=drupal_sanitize
 tmp_user=sanitize_rw
 tmp_pass=$4
 tmp_host=db4-static.drupal.org
+tmp_args="-h${tmp_host} -u${tmp_user} -p${tmp_pass} ${tmp_db}"
 
 if [ $5 ]; then
   export_path=$(echo $5 | sed -e "s/\/*$//")
@@ -33,7 +35,6 @@ ln -sf /var/dumps $WORKSPACE/dumps
 # Configure variables used in the sanitization based on $db_name
 case "$1" in
   drupal)
-    db_name=drupal
     db_host=db2-main-vip.drupal.org
     sane_sql=drupal.sql
     ;;
@@ -43,47 +44,38 @@ case "$1" in
     sane_sql=git-dev.sql
     ;;
   drupal_association)
-    db_name=drupal_association
     db_host=db3-vip.drupal.org
     sane_sql=association.sql
     ;;
   drupal_groups)
-    db_name=drupal_groups
     db_host=db3-vip.drupal.org
     sane_sql=groups.sql
     ;;
   drupal_redesign)
-    db_name=drupal_redesign
     db_host=db3-vip.drupal.org
     sane_sql=drupal.sql
     ;;
   drupal_security)
-    db_name=drupal_security
     db_host=db3-vip.drupal.org
     sane_sql=security.sql
     ;;
   chicago2011)
-    db_name=chicago2011
     db_host=db3-vip.drupal.org
     sane_sql=chicago.sql
     ;;
   london2011)
-    db_name=london2011
     db_host=db3-vip.drupal.org
     sane_sql=cod.sql
     ;;
   denver2012)
-    db_name=denver2012
     db_host=db3-vip.drupal.org
     sane_sql=cod-7.sql
     ;;
   munich2012)
-    db_name=munich2012
     db_host=db3-vip.drupal.org
     sane_sql=cod-7.sql
     ;;
-  localize)
-    db_name=drupal_localize
+  drupal_localize)
     db_host=db3-vip.drupal.org
     sane_sql=localize.sql
     ;;
@@ -93,22 +85,20 @@ case "$1" in
     exit 1
 esac
 
-tmp_args="-h${tmp_host} -u${tmp_user} -p${tmp_pass} ${tmp_db}"
-
 # Since we've made it here, we can start sanitizing the db
 echo "Creating temporary database"
 mysqldump -h$db_host -u$db_user -p$db_pass --single-transaction $db_name 2> mysqldump-errors.txt | mysql -o ${tmp_args}
 [ -s mysqldump-errors.txt ] && exit 1
 
-echo "Sanitizing temporary database"
-cat snapshot/$sane_sql | mysql -o ${tmp_args} || exit 1
-
 echo "Clearing cache tables"
 echo "SHOW TABLES LIKE '%cache%';" | mysql -o ${tmp_args} | tail -n +2 | sed -e "s/^\(.*\)$/TRUNCATE \1;/" | mysql -o ${tmp_args}
 
+echo "Sanitizing temporary database"
+mysql -o ${tmp_args} < snapshot/$sane_sql || exit 1
+
 if [ $db_name == "drupal_redesign" ]; then
   echo "Reducing DB size"
-  cat snapshot/drupal-reduce-dump.sql | mysql -o ${tmp_args}
+  mysql -o ${tmp_args} < snapshot/drupal-reduce-dump.sql
 fi
 
 echo "Creating $db_name database dump"
