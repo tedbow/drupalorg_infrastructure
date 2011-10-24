@@ -7,12 +7,12 @@ function snapshot {
   mysql -o ${tmp_args} < "snapshot/${db_name}${suffix}.sql" || exit 1
 
   echo "Creating database dump"
-  mysqldump --single-transaction ${tmp_args} | gzip > "dumps/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.gz" || exit 1
-  mv "dumps/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.gz" "dumps/${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.gz"
-  ln -sf "dumps/${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.gz" "dumps/${JOB_NAME}${suffix}-current.sql.gz"
+  mysqldump --single-transaction ${tmp_args} | gzip > "dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.gz" || exit 1
+  mv -v "dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.gz" "dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.gz"
+  ln -sfv "dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.gz" "dumps/${JOB_NAME}${suffix}-current.sql.gz"
 
   echo "Removing old database dump"
-  rm $(ls -t "dumps/${JOB_NAME}${suffix}-*.sql.gz" | tail -n +3)
+  rm -v $(ls -t "dumps/${JOB_NAME}${suffix}-*.sql.gz" | tail -n +3)
 }
 
 # Make sure we have required db info
@@ -41,7 +41,7 @@ tmp_pass=$4
 tmp_host=db4-static.drupal.org
 tmp_args="-h${tmp_host} -u${tmp_user} -p${tmp_pass} ${tmp_db}"
 
-ln -sf /var/dumps/mysql $WORKSPACE/dumps
+ln -sf /var/dumps $WORKSPACE/dumps
 
 echo "Creating temporary database"
 mysqldump -h$db_host -u$db_user -p$db_pass --single-transaction $db_name 2> mysqldump-errors.txt | mysql -o ${tmp_args}
