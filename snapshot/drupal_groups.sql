@@ -7,7 +7,7 @@ UPDATE users_access SET access = 280299600;
 
 
 -- Get rid of irrelevant data.
-TRUNCATE `access`;
+TRUNCATE access;
 TRUNCATE accesslog;
 TRUNCATE authmap;
 TRUNCATE devel_queries;
