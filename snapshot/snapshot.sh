@@ -12,7 +12,7 @@ function snapshot {
   ln -sfv "/var/dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.gz" "/var/dumps/mysql/${JOB_NAME}${suffix}-current.sql.gz"
 
   echo "Removing old database dump"
-  rm -v $(ls -t "/var/dumps/mysql/${JOB_NAME}${suffix}-*.sql.gz" | tail -n +3)
+  rm -v $(ls -t /var/dumps/mysql/${JOB_NAME}${suffix}-*([0-9]).sql.gz | tail -n +3)
 }
 
 # Make sure we have required db info
