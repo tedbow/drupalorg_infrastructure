@@ -7,12 +7,12 @@ function snapshot {
   mysql -o ${tmp_args} < "snapshot/${db_name}${suffix}.sql" || exit 1
 
   echo "Creating database dump"
-  mysqldump --single-transaction ${tmp_args} | gzip > "dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.gz" || exit 1
-  mv -v "dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.gz" "dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.gz"
-  ln -sfv "dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.gz" "dumps/${JOB_NAME}${suffix}-current.sql.gz"
+  mysqldump --single-transaction ${tmp_args} | gzip > "/var/dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.gz" || exit 1
+  mv -v "/var/dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.gz" "/var/dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.gz"
+  ln -sfv "/var/dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.gz" "/var/dumps/mysql/${JOB_NAME}${suffix}-current.sql.gz"
 
   echo "Removing old database dump"
-  rm -v $(ls -t "dumps/${JOB_NAME}${suffix}-*.sql.gz" | tail -n +3)
+  rm -v $(ls -t "/var/dumps/mysql/${JOB_NAME}${suffix}-*.sql.gz" | tail -n +3)
 }
 
 # Make sure we have required db info
