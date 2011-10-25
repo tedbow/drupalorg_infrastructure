@@ -12,4 +12,3 @@ TRUNCATE node_counter;
 DELETE comments FROM comments LEFT JOIN node ON node.nid = comments.nid WHERE node.nid IS NULL;
 DELETE tracker2_user FROM tracker2_user LEFT JOIN node ON tracker2_user.nid = node.nid WHERE node.nid IS NULL;
 DELETE forum2_index FROM forum2_index LEFT JOIN node ON forum2_index.nid = node.nid WHERE node.nid IS NULL;
-TRUNCATE client;
