@@ -9,3 +9,6 @@ bzr update
 [ "$cc_theme" = "true" ] && drush cc "theme registry"
 [ "$cc_cssjs" = "true" ] && drush cc "css+js"
 [ "$cc_all" = "true" ] && drush cc "all"
+
+# We do not want to exit withe the last test status.
+exit 0
