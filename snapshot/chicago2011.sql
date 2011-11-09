@@ -9,14 +9,10 @@ UPDATE users SET access = 280299600;
 -- Get rid of irrelevant data.
 TRUNCATE devel_queries;
 TRUNCATE devel_times;
-TRUNCATE flood;
-TRUNCATE history;
 TRUNCATE search_dataset;
 TRUNCATE search_index;
 TRUNCATE search_node_links;
 TRUNCATE search_total;
-TRUNCATE sessions;
-TRUNCATE watchdog;
 TRUNCATE access;
 
 -- Remove sensitive variables and profile data

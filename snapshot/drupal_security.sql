@@ -8,13 +8,9 @@ UPDATE comments SET mail = CONCAT(name, '@localhost');
 TRUNCATE accesslog;
 TRUNCATE devel_queries;
 TRUNCATE devel_times;
-TRUNCATE flood;
-TRUNCATE history;
 TRUNCATE search_dataset;
 TRUNCATE search_index;
 TRUNCATE search_total;
-TRUNCATE sessions;
-TRUNCATE watchdog;
 
 -- Remove sensitive variables
 DELETE FROM variable WHERE name = 'drupal_private_key';

@@ -9,14 +9,10 @@ UPDATE authmap SET authname = CONCAT(aid, '@localhost');
 UPDATE users SET access = 280299600;
 
 -- Get rid of irrelevant data.
-TRUNCATE flood;
-TRUNCATE history;
 TRUNCATE search_dataset;
 TRUNCATE search_index;
 TRUNCATE search_node_links;
 TRUNCATE search_total;
-TRUNCATE sessions;
-TRUNCATE watchdog;
 
 -- Remove sensitive variables and profile data
 DELETE FROM variable WHERE name = 'drupal_private_key';

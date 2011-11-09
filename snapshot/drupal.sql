@@ -16,15 +16,11 @@ UPDATE cvs_accounts SET pass = '';
 TRUNCATE accesslog;
 TRUNCATE devel_queries;
 TRUNCATE devel_times;
-TRUNCATE flood;
-TRUNCATE history;
 TRUNCATE mailhandler;
 TRUNCATE search_dataset;
 TRUNCATE search_index;
 TRUNCATE search_total;
 TRUNCATE search_node_links;
-TRUNCATE sessions;
-TRUNCATE watchdog;
 TRUNCATE access;
 
 -- Remove sensitive variables and profile data

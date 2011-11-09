@@ -11,15 +11,11 @@ UPDATE content_type_association_membership_benefit SET field_assoc_benefit_code_
 -- Get rid of irrelevant data.
 TRUNCATE devel_queries;
 TRUNCATE devel_times;
-TRUNCATE flood;
 TRUNCATE batch;
 TRUNCATE semaphore;
-TRUNCATE history;
 TRUNCATE search_dataset;
 TRUNCATE search_index;
 TRUNCATE search_total;
-TRUNCATE sessions;
-TRUNCATE watchdog;
 TRUNCATE access;
 TRUNCATE mollom;
 

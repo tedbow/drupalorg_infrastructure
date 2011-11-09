@@ -8,12 +8,8 @@ UPDATE users_access SET access = 280299600;
 
 
 -- Get rid of irrelevant data.
-TRUNCATE flood;
 TRUNCATE batch;
 TRUNCATE semaphore;
-TRUNCATE history;
-TRUNCATE sessions;
-TRUNCATE watchdog;
 TRUNCATE access;
 TRUNCATE og_notifications;
 
