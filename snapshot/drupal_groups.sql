@@ -12,6 +12,8 @@ TRUNCATE accesslog;
 TRUNCATE authmap;
 TRUNCATE devel_queries;
 TRUNCATE devel_times;
+TRUNCATE flood;
+TRUNCATE history;
 TRUNCATE modr8_log;
 TRUNCATE mollom;
 TRUNCATE role_activity;
@@ -19,6 +21,9 @@ TRUNCATE search_dataset;
 TRUNCATE search_index;
 TRUNCATE search_total;
 TRUNCATE search_node_links;
+TRUNCATE sessions;
+TRUNCATE watchdog;
+
 
 -- We don't publicly share who has voted on what, if someone needs votes for theming they can do some votes.
 TRUNCATE votingapi_vote;
