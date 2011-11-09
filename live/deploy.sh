@@ -4,18 +4,8 @@ umask 0002
 cd /var/www/$1/htdocs
 bzr update
 
-if [ "$updatedb" = "true" ]; then
-  drush updatedb -y
-fi
-if [ "$civi_updatedb" = "true" ]; then
-  drush civicrm-upgrade-db -y
-fi
-if [ "$cache_clear_theme" = "true" ]; then
-  drush cc theme
-fi
-if [ "$cache_clear_cssjs" = "true" ]; then
-  drush cc css+js
-fi
-if [ "$cache_clear" = "true" ]; then
-  drush cc all
-fi
+[ "$updatedb" = "true" ] && drush updatedb -y
+[ "$civicrm_upgrade_db" = "true" ] && drush civicrm-upgrade-db -y
+[ "$cc_theme" = "true" ] && drush cc "theme registry"
+[ "$cc_cssjs" = "true" ] && drush cc "css+js"
+[ "$cc_all" = "true" ] && drush cc "all"
