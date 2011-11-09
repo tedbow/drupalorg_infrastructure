@@ -1,19 +1,15 @@
 -- CAUTION: DO NOT RUN THIS ON DATABASE WHERE YOU CARE ABOUT THE INFORMATION!!!
 
 -- Munge emails for security.
-UPDATE users SET mail = CONCAT(name, '@localhost'), init = CONCAT(name, '@localhost'), pass = MD5(CONCAT('groups', name)), data = '';
+UPDATE users SET pass = MD5(CONCAT('groups', name)), data = '';
 UPDATE comments SET mail = CONCAT(name, '@localhost') where mail != '';
 UPDATE users_access SET access = 280299600;
-
 
 -- Get rid of irrelevant data.
 TRUNCATE access;
 TRUNCATE accesslog;
-TRUNCATE authmap;
 TRUNCATE devel_queries;
 TRUNCATE devel_times;
-TRUNCATE flood;
-TRUNCATE history;
 TRUNCATE modr8_log;
 TRUNCATE mollom;
 TRUNCATE role_activity;
@@ -21,9 +17,6 @@ TRUNCATE search_dataset;
 TRUNCATE search_index;
 TRUNCATE search_total;
 TRUNCATE search_node_links;
-TRUNCATE sessions;
-TRUNCATE watchdog;
-
 
 -- We don't publicly share who has voted on what, if someone needs votes for theming they can do some votes.
 TRUNCATE votingapi_vote;

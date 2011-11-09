@@ -1,30 +1,18 @@
 -- CAUTION: DO NOT RUN THIS ON DATABASE WHERE YOU CARE ABOUT THE INFORMATION!!!
 
--- Munge emails for security.
-UPDATE users SET mail = CONCAT(name, '@localhost'), init = CONCAT('http://drupal.org/user/', uid, '/edit'), pass = MD5(CONCAT('drupal', name));
-UPDATE comments SET mail = CONCAT(name, '@localhost');
-UPDATE authmap SET authname = CONCAT(aid, '@localhost');
-UPDATE project_issue_projects SET mail_digest = 'foo@localhost', mail_copy = 'foo@localhost';
-UPDATE projects SET mail = CONCAT("empty", '@localhost');
-UPDATE simplenews_subscriptions SET mail = CONCAT(snid, '@localhost');
+UPDATE users SET pass = MD5(CONCAT('drupal', name));
 UPDATE users_access SET access = 280299600;
-UPDATE multiple_email me INNER JOIN users u ON u.uid = me.uid SET me.email = concat(me.eid, '.', u.mail);
-
 UPDATE cvs_accounts SET pass = '';
 
 -- Get rid of irrelevant data.
 TRUNCATE accesslog;
 TRUNCATE devel_queries;
 TRUNCATE devel_times;
-TRUNCATE flood;
-TRUNCATE history;
 TRUNCATE mailhandler;
 TRUNCATE search_dataset;
 TRUNCATE search_index;
 TRUNCATE search_total;
 TRUNCATE search_node_links;
-TRUNCATE sessions;
-TRUNCATE watchdog;
 TRUNCATE access;
 
 -- Remove sensitive variables and profile data

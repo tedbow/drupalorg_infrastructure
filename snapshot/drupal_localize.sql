@@ -1,19 +1,14 @@
 -- CAUTION: DO NOT RUN THIS ON DATABASE WHERE YOU CARE ABOUT THE INFORMATION!!!
 
 -- Munge emails for security.
-UPDATE users SET mail = CONCAT(name, '@localhost'), init = CONCAT('http://drupal.org/user/', uid, '/edit'), pass = MD5(CONCAT('drupal', name)), data = '';
+UPDATE users SET pass = MD5(CONCAT('drupal', name));
 UPDATE comments SET mail = CONCAT(name, '@localhost');
-UPDATE authmap SET authname = CONCAT(aid, '@localhost');
 UPDATE users_access SET access = 280299600;
 
 
 -- Get rid of irrelevant data.
-TRUNCATE flood;
 TRUNCATE batch;
 TRUNCATE semaphore;
-TRUNCATE history;
-TRUNCATE sessions;
-TRUNCATE watchdog;
 TRUNCATE access;
 TRUNCATE og_notifications;
 

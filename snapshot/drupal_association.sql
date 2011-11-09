@@ -1,9 +1,8 @@
 -- CAUTION: DO NOT RUN THIS ON DATABASE WHERE YOU CARE ABOUT THE INFORMATION!!!
 
 -- Munge emails for security.
-UPDATE users SET mail = CONCAT(name, '@localhost'), init = CONCAT(name, '@localhost'), pass = MD5(CONCAT('association', name)), data = '';
+UPDATE users SET pass = MD5(CONCAT('association', name)), data = '';
 UPDATE comments SET mail = CONCAT(name, '@localhost');
-UPDATE authmap SET authname = CONCAT(aid, '@localhost');
 UPDATE donations SET mail = CONCAT(did, '@localhost');
 UPDATE contact SET recipients = 'noreply@localhost';
 UPDATE content_type_association_membership_benefit SET field_assoc_benefit_code_value = 'DrupalDrupalDrupal', field_assoc_benefit_link_url = 'http://example.com/';
@@ -11,15 +10,11 @@ UPDATE content_type_association_membership_benefit SET field_assoc_benefit_code_
 -- Get rid of irrelevant data.
 TRUNCATE devel_queries;
 TRUNCATE devel_times;
-TRUNCATE flood;
 TRUNCATE batch;
 TRUNCATE semaphore;
-TRUNCATE history;
 TRUNCATE search_dataset;
 TRUNCATE search_index;
 TRUNCATE search_total;
-TRUNCATE sessions;
-TRUNCATE watchdog;
 TRUNCATE access;
 TRUNCATE mollom;
 

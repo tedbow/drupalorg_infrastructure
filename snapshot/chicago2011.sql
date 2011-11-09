@@ -1,22 +1,16 @@
 -- CAUTION: DO NOT RUN THIS ON DATABASE WHERE YOU CARE ABOUT THE INFORMATION!!!
 
--- Munge emails for security.
-UPDATE users SET mail = CONCAT(name, '@localhost'), init = CONCAT('http://drupal.org/user/', uid, '/edit'), pass = MD5(CONCAT('drupal', name));
+UPDATE users SET pass = MD5(CONCAT('drupal', name));
 UPDATE comments SET mail = CONCAT(name, '@localhost');
-UPDATE authmap SET authname = CONCAT(aid, '@localhost');
 UPDATE users SET access = 280299600;
 
 -- Get rid of irrelevant data.
 TRUNCATE devel_queries;
 TRUNCATE devel_times;
-TRUNCATE flood;
-TRUNCATE history;
 TRUNCATE search_dataset;
 TRUNCATE search_index;
 TRUNCATE search_node_links;
 TRUNCATE search_total;
-TRUNCATE sessions;
-TRUNCATE watchdog;
 TRUNCATE access;
 
 -- Remove sensitive variables and profile data
@@ -40,4 +34,3 @@ DELETE comments FROM comments LEFT JOIN comments c2 ON comments.pid = c2.cid WHE
 DELETE comments FROM comments LEFT JOIN comments c2 ON comments.pid = c2.cid WHERE c2.cid IS NULL AND comments.pid <> 0;
 DELETE files FROM files LEFT JOIN users ON files.uid = users.uid WHERE users.uid IS NULL;
 DELETE users_roles FROM users_roles LEFT JOIN users ON users_roles.uid = users.uid WHERE users.uid IS NULL;
-

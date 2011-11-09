@@ -1,9 +1,13 @@
 #!/bin/bash
 
 function snapshot {
-  [ ! -f "snapshot/${db_name}${suffix}.sql" ] && return
+  if [ -f "snapshot/common${suffix}.sql" ]; then
+    echo "Running common SQL for ${suffix} snapshot"
+    mysql -o ${tmp_args} < "snapshot/common${suffix}.sql" || exit 1
+  fi
 
-  echo "Running SQL for ${suffix} snapshot"
+  [ ! -f "snapshot/${db_name}${suffix}.sql" ] && return
+  echo "Running ${db_name} SQL for ${suffix} snapshot"
   mysql -o ${tmp_args} < "snapshot/${db_name}${suffix}.sql" || exit 1
 
   echo "Creating database dump"
@@ -50,6 +54,8 @@ mysqldump -h$db_host -u$db_user -p$db_pass --single-transaction $db_name 2> mysq
 echo "Clearing cache tables"
 echo "SHOW TABLES LIKE '%cache%';" | mysql -o ${tmp_args} | tail -n +2 | sed -e "s/^\(.*\)$/TRUNCATE \1;/" | mysql -o ${tmp_args}
 
+suffix=.staging
+snapshot
 suffix=
 snapshot
 suffix=.reduce

@@ -3,20 +3,15 @@
 -- cod as in Conference Organizing Distribution.
 
 -- Munge emails for security.
-UPDATE users SET mail = CONCAT(name, '@localhost'), init = CONCAT('http://drupal.org/user/', uid, '/edit'), pass = MD5(CONCAT('drupal', name));
+UPDATE users SET pass = MD5(CONCAT('drupal', name));
 UPDATE comment SET mail = CONCAT(name, '@localhost');
-UPDATE authmap SET authname = CONCAT(aid, '@localhost');
 UPDATE users SET access = 280299600;
 
 -- Get rid of irrelevant data.
-TRUNCATE flood;
-TRUNCATE history;
 TRUNCATE search_dataset;
 TRUNCATE search_index;
 TRUNCATE search_node_links;
 TRUNCATE search_total;
-TRUNCATE sessions;
-TRUNCATE watchdog;
 
 -- Remove sensitive variables and profile data
 DELETE FROM variable WHERE name = 'drupal_private_key';
