@@ -39,8 +39,6 @@ TRUNCATE uc_coupons;
 TRUNCATE uc_coupons_orders;
 
 -- Remove sensitive variables
-DELETE FROM variable WHERE name = 'drupal_private_key';
-DELETE FROM variable WHERE name LIKE '%key%';
 DELETE FROM variable WHERE name LIKE '%authnet%';
 DELETE FROM variable WHERE name LIKE '%dfp_api%';
 DELETE FROM profile_values WHERE fid IN (select fid from profile_fields where visibility in (1, 4));

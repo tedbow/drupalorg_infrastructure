@@ -14,8 +14,6 @@ TRUNCATE search_total;
 TRUNCATE access;
 
 -- Remove sensitive variables and profile data
-DELETE FROM variable WHERE name = 'drupal_private_key';
-DELETE FROM variable WHERE name LIKE '%key%';
 DELETE FROM variable WHERE name = 'regonline_account_password';
 -- 1 is private, 4 is hidden
 DELETE FROM profile_values WHERE fid IN (select fid from profile_fields where visibility in (1, 4));

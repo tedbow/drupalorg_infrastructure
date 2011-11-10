@@ -13,10 +13,6 @@ TRUNCATE search_index;
 TRUNCATE search_node_links;
 TRUNCATE search_total;
 
--- Remove sensitive variables and profile data
-DELETE FROM variable WHERE name = 'drupal_private_key';
-DELETE FROM variable WHERE name LIKE '%key%';
-
 -- Get rid of unpublished/blocked nodes, users, comments and related data in other tables.
 DELETE FROM node WHERE status <> 1;
 DELETE FROM comment WHERE status <> 0;
