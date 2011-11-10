@@ -13,4 +13,4 @@ $drush pm-disable bakery
 
 # Prime caches
 $drush cc all
-wget -O /dev/null http://drupal:drupal@${domain}
+wget -O /dev/null http://${domain} --user=drupal --password=drupal
