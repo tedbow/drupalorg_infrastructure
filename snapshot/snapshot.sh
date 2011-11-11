@@ -16,7 +16,12 @@ function snapshot {
   ln -sfv "/var/dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.gz" "/var/dumps/mysql/${JOB_NAME}${suffix}-current.sql.gz"
 
   echo "Removing old database dump"
-  rm -v $(ls -t /var/dumps/mysql/${JOB_NAME}${suffix}-[0-9]*.sql.gz | tail -n +3)
+  rm -v $(ls -t /var/dumps/mysql/${JOB_NAME}${suffix}-[0-9]*.sql.gz | tail -n +2)
+}
+
+function clear_tmp {
+  echo "Clearing out temporary database"
+  echo "DROP DATABASE ${tmp_db}; CREATE DATABASE ${tmp_db};" | mysql ${tmp_args}
 }
 
 # Make sure we have required db info
@@ -47,6 +52,8 @@ tmp_args="-h${tmp_host} -u${tmp_user} -p${tmp_pass} ${tmp_db}"
 
 ln -sf /var/dumps $WORKSPACE/dumps
 
+clear_tmp
+
 echo "Creating temporary database"
 mysqldump -h$db_host -u$db_user -p$db_pass --single-transaction $db_name 2> mysqldump-errors.txt | mysql -o ${tmp_args}
 [ -s mysqldump-errors.txt ] && exit 1
@@ -61,5 +68,4 @@ snapshot
 suffix=.reduce
 snapshot
 
-echo "Clearing out temporary database"
-echo "DROP DATABASE ${tmp_db}; CREATE DATABASE ${tmp_db};" | mysql ${tmp_args}
+clear_tmp
