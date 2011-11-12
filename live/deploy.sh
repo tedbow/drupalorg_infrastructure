@@ -1,7 +1,10 @@
 # Set the umask to 0002 so that files are added with 664/-rw-rw-r-- perms
 # umask on www1 is defaulting to 0077 for some reason (even though the default is 0022)
 umask 0002
-cd /var/www/$(echo ${JOB_NAME} | sed -e 's/^deploy_//' -e 's/--/\//')/htdocs
+cd /var/www/$(echo ${JOB_NAME} | sed -e 's/^deploy_//' -e 's/--.*$//')/htdocs || exit 1
+if echo ${JOB_NAME} | grep -q '\--'; then # deploy_association.drupal.org--intranet -> deploy_association.drupal.org/htdocs/intranet
+  cd $(echo ${JOB_NAME} | sed -e 's/^.*--//') || exit 1
+fi
 bzr update
 
 [ "$updatedb" = "true" ] && drush updatedb -y
