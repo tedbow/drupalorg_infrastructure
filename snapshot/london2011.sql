@@ -2,10 +2,7 @@
 
 -- cod as in Conference Organizing Distribution.
 
--- Munge emails for security.
-UPDATE users SET pass = MD5(CONCAT('drupal', name));
-UPDATE comments SET mail = CONCAT(name, '@localhost');
-UPDATE users SET access = 280299600;
+UPDATE users SET pass = MD5(CONCAT('drupal', name)), access = 280299600;
 
 -- Get rid of irrelevant data.
 TRUNCATE devel_queries;
@@ -17,7 +14,6 @@ TRUNCATE search_total;
 TRUNCATE access;
 
 -- Remove sensitive variables and profile data
-DELETE FROM variable WHERE name = 'regonline_account_password';
 -- 1 is private, 4 is hidden
 DELETE FROM profile_values WHERE fid IN (select fid from profile_fields where visibility in (1, 4));
 
