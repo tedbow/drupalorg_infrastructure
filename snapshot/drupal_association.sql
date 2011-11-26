@@ -44,7 +44,7 @@ DELETE FROM variable WHERE name LIKE '%dfp_api%';
 DELETE FROM profile_values WHERE fid IN (select fid from profile_fields where visibility in (1, 4));
 
 -- Unpublished content
-DELETE FROM node WHERE status <> 1 AND type <> 'product';
+DELETE FROM node WHERE status <> 1 AND type NOT IN ('product', 'association_training');
 DELETE FROM comments WHERE status <> 0;
 DELETE FROM users WHERE status <> 1 AND uid <> 0;
 
