@@ -9,6 +9,8 @@ TRUNCATE search_dataset;
 TRUNCATE search_index;
 TRUNCATE search_node_links;
 TRUNCATE search_total;
+TRUNCATE votingapi_cache;
+TRUNCATE votingapi_vote;
 
 -- Get rid of unpublished/blocked nodes, users, comments and related data in other tables.
 DELETE FROM node WHERE status <> 1;
