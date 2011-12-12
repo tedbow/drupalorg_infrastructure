@@ -6,7 +6,7 @@
 set -uex
 
 # Handle drupal.org vs. sub-domain's properly
-if [ $1 == "drupal.org" ]; then
+if [ ${site} == "drupal.org" ]; then
   site="drupal"
   fqdn="drupal.org"
   db_site="drupal_redesign"
