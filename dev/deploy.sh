@@ -2,6 +2,9 @@
 
 # Create a development environment for a given "name" on stagingvm/stagingdb
 
+# Exit immediately on uninitialized variable or error, and print each command.
+set -uex
+
 # Handle drupal.org vs. sub-domains properly
 if [ ${site} == "drupal" ]; then
   site="drupal"
@@ -101,8 +104,5 @@ else
   fi
 fi
 
-# Set base domain for this vhost
-${drush} vset drupalorg_base_domain ${vhost} -y
-
 # Prime any big caches
-wget -O /dev/null http://${vhost} --user=drupal --password=drupal
+wget -O /dev/null http://${name}-${site}.redesign.devdrupal.org --user=drupal --password=drupal

@@ -2,6 +2,9 @@
 
 # Remove a development environment for a given "name" on stagingvm/stagingdb
 
+# Exit immediately on uninitialized variable or error, and print each command.
+set -uex
+
 # Handle drupal.org vs. sub-domain's properly
 if [ $1 == "drupal.org" ]; then
   site="drupal"
