@@ -19,7 +19,7 @@ after=$(bzr version-info | grep "^revno: ")
 
 # If an update happened, try updatedb, clear and prime caches.
 if [ "${before}" != "${after}" ]; then
-  $drush updatedb
-  $drush cc all
+  ${drush} updatedb
+  ${drush} cc all
   wget -O /dev/null http://${domain} --user=drupal --password=drupal
 fi
