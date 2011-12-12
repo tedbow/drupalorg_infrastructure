@@ -21,7 +21,6 @@ DELETE FROM profile_values WHERE fid IN (select fid from profile_fields where vi
 -- Get rid of unpublished/blocked nodes, users, comments and related data in other tables.
 DELETE FROM node WHERE status <> 1;
 DELETE FROM comments WHERE status <> 0;
-DELETE FROM users WHERE status <> 1 AND uid <> 0;
 DELETE node FROM node LEFT JOIN users ON node.uid = users.uid WHERE users.uid IS NULL;
 DELETE node_revisions FROM node_revisions LEFT JOIN node ON node.nid = node_revisions.nid WHERE node.nid IS NULL;
 DELETE comments FROM comments LEFT JOIN node ON node.nid = comments.nid WHERE node.nid IS NULL;

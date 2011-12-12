@@ -46,7 +46,6 @@ DELETE FROM profile_values WHERE fid IN (select fid from profile_fields where vi
 -- Unpublished content
 DELETE FROM node WHERE status <> 1 AND type NOT IN ('product', 'association_training');
 DELETE FROM comments WHERE status <> 0;
-DELETE FROM users WHERE status <> 1 AND uid <> 0;
 
 -- Depending tables
 DELETE node FROM node LEFT JOIN users ON node.uid = users.uid WHERE users.uid IS NULL;

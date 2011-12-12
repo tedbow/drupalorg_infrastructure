@@ -37,7 +37,6 @@ TRUNCATE messaging_message_parts;
 
 -- Remove unpublished/blocked core data
 DELETE FROM node WHERE status = 0;
-DELETE FROM users WHERE status = 0;
 DELETE FROM comments WHERE status = 1;
 DELETE FROM comments WHERE nid NOT IN (SELECT nid FROM node);
 DELETE FROM comments WHERE uid NOT IN (SELECT uid FROM users);
