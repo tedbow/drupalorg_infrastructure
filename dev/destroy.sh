@@ -2,20 +2,6 @@
 
 # Remove a development environment for a given "name" on stagingvm/stagingdb
 
-# Make sure we have required db info
-if [ $# -lt 2 ]; then
-  echo "Usage: $0 site name"
-  exit 1
-fi
-
-# Make sure these exist, otherwise bad things (may) happen
-if [ ! $JOB_NAME ] || [ ! $BUILD_TAG ]; then
-  echo "\$JOB_NAME or \$BUILD_TAG not defined, make sure to export these variables"
-  exit 1
-fi
-
-site=$1
-name=$2
 # Handle drupal.org vs. sub-domain's properly
 if [ $1 == "drupal.org" ]; then
   site="drupal"

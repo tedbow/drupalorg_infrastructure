@@ -2,15 +2,7 @@
 
 # Create a development environment for a given "name" on stagingvm/stagingdb
 
-# Make sure we have required db info
-if [ $# -lt 2 ]; then
-  echo "Usage: $0 site name"
-  exit 1
-fi
-
-site=$1
-name=$2
-# Handle drupal.org vs. sub-domain's properly
+# Handle drupal.org vs. sub-domains properly
 if [ ${site} == "drupal" ]; then
   site="drupal"
   fqdn="drupal.org"
@@ -22,11 +14,14 @@ fi
 vhost_path="/etc/apache2/vhosts.d/automated-hudson"
 template="template-generic"
 web_path="/var/www/dev/${name}-${site}.redesign.devdrupal.org"
+export TERM=dumb
 drush="/usr/local/bin/drush -r ${web_path}/htdocs -l ${fqdn}"
 db_name=$(echo ${name}_${site} | sed -e "s/-/_/g" -e "s/\./_/g" | sed -e 's/^\(.\{16\}\).*/\1/') # Truncate to 16 chars
 db_pass=$(pwgen -s 16 1)
 settings_template="/var/www/dev/settings.local.template-generic"
 user_passwd=$(pwgen -s 16 1)
+
+[ -e "${web_path}" ] && echo "Project webroot already exists!" && exit 1
 
 # Create the webroot and add comment file
 echo "Creating webroot and comment file"
@@ -105,3 +100,9 @@ else
     ${drush} pm-disable bakery -y
   fi
 fi
+
+# Set base domain for this vhost
+${drush} vset drupalorg_base_domain ${vhost} -y
+
+# Prime any big caches
+wget -O /dev/null http://${vhost} --user=drupal --password=drupal
