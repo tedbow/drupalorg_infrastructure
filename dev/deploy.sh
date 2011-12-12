@@ -84,6 +84,8 @@ ${drush} vdel preprocess_js -y
 ${drush} pm-enable -y views_ui
 ${drush} pm-enable -y imagecache_ui
 
+${drush} updatedb
+
 # Set up for potential bakery testing
 ${drush} vdel bakery_slaves -y
 ${drush} vset bakery_domain ".redesign.devdrupal.org" -y
