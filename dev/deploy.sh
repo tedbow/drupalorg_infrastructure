@@ -92,7 +92,7 @@ if [ "${site}" == "drupal" ]; then
   ${drush} vset bakery_master "${name}-${site}.redesign.devdrupal.org" -y
   ${drush} vset bakery_key "$(pwgen -s 32 1)" -y
 else
-  if [ "${bakery_master}" ]; then
+  if [ "${bakery_master-}" ]; then
     # Hook up to a Drupal.org
     ${drush} vset bakery_master "http://${bakery_master}-drupal.redesign.devdrupal.org/" -y
     drush_master="/usr/local/bin/drush -r /var/www/dev/${bakery_master}-drupal.redesign.devdrupal.org/htdocs -l ${bakery_master}-drupal.redesign.devdrupal.org"
