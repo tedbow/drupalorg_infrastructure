@@ -8,11 +8,6 @@ set -uex
 # Handle drupal.org vs. sub-domain's properly
 if [ ${site} == "drupal.org" ]; then
   site="drupal"
-  fqdn="drupal.org"
-  db_site="drupal_redesign"
-else
-  fqdn="${site}.drupal.org"
-  db_site="${site}"
 fi
 vhost_path="/etc/apache2/vhosts.d/automated-hudson"
 web_path="/var/www/dev/${name}-${site}.redesign.devdrupal.org"
@@ -24,18 +19,14 @@ if [ ! -e ${web_path} ] || [ ! -e ${vhost_path}/${name}-${site}.conf ]; then
 fi
 
 # Delete the webroot
-echo "Deleting webroot: ${web_path}"
 rm -rf ${web_path}
 
 # Delete the vhost
-echo "Deleting vhost: ${vhost_path}/${name}-${site}.conf"
 rm -f ${vhost_path}/${name}-${site}.conf
 
 # Drop the database and user
-echo "Dropping database and associated user: ${db_name}"
 mysql -e "drop database ${db_name};"
 mysql -e "revoke all on ${db_name}.* from '${db_name}'@'stagingvm.drupal.org';"
 
 # Restart apache
-echo "Restarting Apache"
 sudo /etc/init.d/apache2 restart
