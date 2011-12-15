@@ -134,6 +134,7 @@ _d_o_passthru('bzr commit -m"Import from tarball: ' . $tarball_name .'"');
  */
 function _d_o_passthru($cmd) {
   $rval = 0;
+  echo '+ ' . $cmd . "\n";
   passthru($cmd, $rval);
   if ($rval != 0) {
     exit($rval);
