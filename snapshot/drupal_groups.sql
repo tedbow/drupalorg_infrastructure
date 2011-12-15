@@ -1,8 +1,6 @@
 -- CAUTION: DO NOT RUN THIS ON DATABASE WHERE YOU CARE ABOUT THE INFORMATION!!!
 
 -- Munge emails for security.
-UPDATE users SET pass = MD5(CONCAT('groups', name)), data = '';
-UPDATE comments SET mail = CONCAT(name, '@localhost') where mail != '';
 UPDATE users_access SET access = 280299600;
 
 -- Get rid of irrelevant data.
@@ -64,6 +62,5 @@ DELETE FROM content_type_wikipage WHERE vid NOT IN (SELECT vid FROM node);
 DROP TABLE node_counter;
 
 -- Remove some data that's just not necessary
-UPDATE signup set forwarding_email = concat(nid, '@localhost'), confirmation_email = '', reminder_email = '';
 UPDATE signup set confirmation_email = '';
 UPDATE signup_log SET form_data = 'a:0:{}';
