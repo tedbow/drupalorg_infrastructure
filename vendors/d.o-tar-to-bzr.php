@@ -109,6 +109,7 @@ $bzr_url = isset($bzr_root) ? $bzr_root : '';
 $bzr_url .= "/srv/bzr/vendor/$bzr_root/$project/$major_id";
 
 passthru("bzr init --create-prefix $bzr_url");
+_d_o_passthru("rm -rf bzr-vendor");
 _d_o_passthru("bzr checkout $bzr_url bzr-vendor");
 
 // Check for differences
