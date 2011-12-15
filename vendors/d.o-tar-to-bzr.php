@@ -89,6 +89,7 @@ if (!$have_tarball) {
 }
 
 // Extract the tarball.
+_d_o_passthru('rm -rf ' . $project);
 _d_o_passthru("tar -zxvf $tarball_path");
 // Contrib tarballs should always extract into a directory named via the
 // project shortname, so make sure that's there.
