@@ -7,7 +7,6 @@ set -uex
 
 # Handle drupal.org vs. sub-domains properly
 if [ ${site} == "drupal" ]; then
-  site="drupal"
   fqdn="drupal.org"
   snapshot="/var/dumps/mysql/drupal_database_snapshot.reduce-current.sql.gz"
 else

@@ -5,10 +5,6 @@
 # Exit immediately on uninitialized variable or error, and print each command.
 set -uex
 
-# Handle drupal.org vs. sub-domain's properly
-if [ ${site} == "drupal.org" ]; then
-  site="drupal"
-fi
 vhost_path="/etc/apache2/vhosts.d/automated-hudson"
 web_path="/var/www/dev/${name}-${site}.redesign.devdrupal.org"
 db_name=$(echo ${name}_${site} | sed -e "s/-/_/g" -e "s/\./_/g" | sed -e 's/^\(.\{16\}\).*/\1/') # Truncate to 16 chars
