@@ -120,9 +120,8 @@ if ($rval == 0) {
   exit(0);
 }
 
+_d_o_passthru("bzr import $project bzr-vendor");
 chdir('bzr-vendor');
-_d_o_passthru('rm -r *');
-_d_o_passthru('bzr import ../' . $project);
 _d_o_passthru('bzr commit -m"Import from tarball: ' . $tarball_name .'"');
 
 // ------------------------------------------------------------
