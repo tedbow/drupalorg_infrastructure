@@ -1,0 +1,29 @@
+<?php
+// Drupal 6
+$db_url = 'mysql://DB_NAME:DB_PASS@stagingdb.drupal.org/DB_NAME';
+// Drupal 7
+$databases['default']['default'] = array(
+  'driver' => 'mysql',
+  'database' => 'DB_NAME',
+  'username' => 'DB_NAME',
+  'password' => 'DB_PASS',
+  'host' => 'stagingdb.drupal.org',
+  'collation' => 'utf8_general_ci',
+);
+
+$cookie_domain = 'redesign.devdrupal.org';
+
+$conf += array(
+  'apachesolr_read_only' => 1,  // read-only Solr access
+  'apachesolr_host' => 'stagingsolr.drupal.org',
+  'apachesolr_port' => '8080',
+  'apachesolr_path' => '/solr',
+);
+
+$conf['drupalorg_site_status'] = 'This is a <a href="http://drupal.org/node/1018084">development site</a>.';
+
+$conf['simpletest_verbose'] = 1;
+$conf['simpletest_username'] = 'drupal';
+$conf['simpletest_password'] = 'drupal';
+
+$conf['site_name'] = 'NAME SITE dev';
