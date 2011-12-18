@@ -1,6 +1,5 @@
 #!/usr/bin/env php
 <?php
-// $Id$
 
 /**
  * @file
@@ -11,7 +10,6 @@
  * Requirements: bzr
  * 
  * @author Derek Wright (http://drupal.org/user/46549)
- *
  */
 
 // ------------------------------------------------------------
