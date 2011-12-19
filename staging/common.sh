@@ -5,7 +5,7 @@ set -uex
 umask g+w
 
 # Get the domain name by stripping the prefix from the job name.
-domain=$(echo ${JOB_NAME} | sed -e 's/^${1}_//')
+domain=$(echo ${JOB_NAME} | sed -e "s/^${1}_//")
 
 # For easily executing Drush.
 export TERM=dumb
