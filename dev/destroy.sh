@@ -15,7 +15,7 @@ if [ ! -e ${web_path} ] || [ ! -e ${vhost_path}/${name}-${site}.conf ]; then
 fi
 
 # Delete the webroot
-rm -rf ${web_path}
+sudo rm -rf ${web_path}
 
 # Delete the vhost
 rm -f ${vhost_path}/${name}-${site}.conf
