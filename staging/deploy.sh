@@ -1,15 +1,5 @@
-# Exit immediately on uninitialized variable or error, and print each command.
-set -uex
-
-# Allow group-writable files.
-umask g+w
-
-# Get the domain name by stripping deploy_ from front of the job name.
-domain=$(echo ${JOB_NAME} | sed -e 's/^deploy_//')
-
-# For easily executing Drush.
-export TERM=dumb
-drush="drush -r /var/www/${domain}/htdocs -l ${domain} -y"
+# Include common staging script.
+. staging/common.sh 'deploy'
 
 # Update code and keep track of versions.
 cd /var/www/${domain}/htdocs
