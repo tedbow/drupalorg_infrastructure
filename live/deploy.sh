@@ -4,18 +4,18 @@
 cd ${webroot}
 bzr update
 
-if [ "${updatedb-}" = "true" ];
+if [ "${updatedb-}" = "true" ]; then
   ${drush} updatedb
 fi
-if [ "${civicrm_upgrade_db-}" = "true" ];
+if [ "${civicrm_upgrade_db-}" = "true" ]; then
   ${drush} civicrm-upgrade-db
 fi
-if [ "${cc_theme-}" = "true" ];
+if [ "${cc_theme-}" = "true" ]; then
   ${drush} cc "theme registry"
 fi
-if [ "${cc_cssjs-}" = "true" ];
+if [ "${cc_cssjs-}" = "true" ]; then
   ${drush} cc "css+js"
 fi
-if [ "${cc_all-}" = "true" ];
+if [ "${cc_all-}" = "true" ]; then
   ${drush} cc "all"
 fi
