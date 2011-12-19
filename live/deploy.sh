@@ -1,17 +1,21 @@
-# Set the umask to 0002 so that files are added with 664/-rw-rw-r-- perms
-# umask on www1 is defaulting to 0077 for some reason (even though the default is 0022)
-umask 0002
-cd /var/www/$(echo ${JOB_NAME} | sed -e 's/^deploy_//' -e 's/--.*$//')/htdocs || exit 1
-if echo ${JOB_NAME} | grep -q '\--'; then # deploy_association.drupal.org--intranet -> deploy_association.drupal.org/htdocs/intranet
-  cd $(echo ${JOB_NAME} | sed -e 's/^.*--//') || exit 1
-fi
+# Include common live script.
+. live/common.sh 'deploy'
+
+cd ${webroot}
 bzr update
 
-[ "$updatedb" = "true" ] && drush updatedb -y
-[ "$civicrm_upgrade_db" = "true" ] && drush civicrm-upgrade-db -y
-[ "$cc_theme" = "true" ] && drush cc "theme registry"
-[ "$cc_cssjs" = "true" ] && drush cc "css+js"
-[ "$cc_all" = "true" ] && drush cc "all"
-
-# We do not want to exit withe the last test status.
-exit 0
+if [ "${updatedb-}" = "true" ];
+  ${drush} updatedb
+fi
+if [ "${civicrm_upgrade_db-}" = "true" ];
+  ${drush} civicrm-upgrade-db
+fi
+if [ "${cc_theme-}" = "true" ];
+  ${drush} cc "theme registry"
+fi
+if [ "${cc_cssjs-}" = "true" ];
+  ${drush} cc "css+js"
+fi
+if [ "${cc_all-}" = "true" ];
+  ${drush} cc "all"
+fi
