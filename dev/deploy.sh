@@ -76,6 +76,10 @@ ${drush} pm-enable -y imagecache_ui
 
 ${drush} updatedb
 
+# Enable UC test gateway
+${drush} en test_gateway
+${drush} vset uc_payment_credit_gateway test_gateway
+
 # Set up for potential bakery testing
 ${drush} vdel bakery_slaves -y
 ${drush} vset bakery_domain ".redesign.devdrupal.org" -y
