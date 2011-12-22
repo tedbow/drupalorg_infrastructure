@@ -58,8 +58,8 @@ DELETE FROM content_type_proposal WHERE vid NOT IN (SELECT vid FROM node);
 DELETE FROM content_type_story WHERE vid NOT IN (SELECT vid FROM node);
 DELETE FROM content_type_wikipage WHERE vid NOT IN (SELECT vid FROM node);
 
--- Remove unnecessary tables
-DROP TABLE node_counter;
+-- Get rid of more irrelvant data.
+TRUNCATE node_counter;
 
 -- Remove some data that's just not necessary
 UPDATE signup set confirmation_email = '';
