@@ -10,6 +10,9 @@ fi
 if [ "${civicrm_upgrade_db-}" = "true" ]; then
   ${drush} civicrm-upgrade-db
 fi
+if [ "${cc_menu-}" = "true" ]; then
+  ${drush} cc "menu"
+fi
 if [ "${cc_theme-}" = "true" ]; then
   ${drush} cc "theme registry"
 fi
