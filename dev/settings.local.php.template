@@ -11,6 +11,7 @@ $databases['default']['default'] = array(
   'collation' => 'utf8_general_ci',
 );
 
+$base_url = 'http://NAME-SITE.redesign.devdrupal.org';
 $cookie_domain = 'redesign.devdrupal.org';
 
 $conf += array(
