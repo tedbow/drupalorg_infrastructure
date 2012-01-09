@@ -1,7 +1,7 @@
 # Exit immediately on uninitialized variable or error, and print each command.
 set -uex
 
-function restart-apache {
+function restart_apache {
   sudo /etc/init.d/apache2 restart
 }
 

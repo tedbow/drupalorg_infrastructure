@@ -18,4 +18,4 @@ rm -f "${vhost_path}"
 mysql -e "DROP DATABASE ${db_name};"
 mysql -e "REVOKE ALL ON ${db_name}.* FROM '${db_name}'@'stagingvm.drupal.org';"
 
-restart-apache
+restart_apache

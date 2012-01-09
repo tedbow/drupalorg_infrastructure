@@ -3,8 +3,8 @@
 # Include common dev script.
 . dev/common.sh
 
-# Usage: write-template "template" "path/to/destination"
-function write-template {
+# Usage: write_template "template" "path/to/destination"
+function write_template {
   sed -e "s/DB_NAME/${db_name}/g;s/NAME/${name}/g;s/SITE/${site}/g;s/DB_PASS/${db_pass}/g" "dev/${1}" > "${2}"
 }
 
@@ -28,7 +28,7 @@ chown -R bender:developers "${web_path}"
 echo "${COMMENT}" > "${web_path}/comment"
 
 # Create the vhost config
-write-template "vhost.conf.template" "${vhost_path}"
+write_template "vhost.conf.template" "${vhost_path}"
 
 # Configure the database
 mysql -e "CREATE DATABASE ${db_name};"
@@ -39,7 +39,7 @@ echo "Populating development environment with bzr checkout"
 bzr checkout bzr+ssh://util.drupal.org/bzr/${fqdn} "${web_path}/htdocs"
 
 # Add settings.local.php
-write-template "settings.local.php.template" "${web_path}/htdocs/sites/default/settings.local.php"
+write_template "settings.local.php.template" "${web_path}/htdocs/sites/default/settings.local.php"
 
 # Strongarm the permissions
 echo "Forcing proper permissions on ${web_path}"
@@ -58,7 +58,7 @@ ${drush} pm-disable civicrm -y
 ln -s /media/${fqdn} "${web_path}/htdocs/$(${drush} status | sed -ne 's/^ *File directory path *: *//p')"
 
 # Reload apache with new vhost
-restart-apache
+restart_apache
 
 # Get ready for development
 echo 1 | ${drush} vdel cache
