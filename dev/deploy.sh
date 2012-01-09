@@ -1,9 +1,7 @@
-#!/bin/bash
-
 # Create a development environment for a given "name" on stagingvm/stagingdb
 
-# Exit immediately on uninitialized variable or error, and print each command.
-set -uex
+# Include common dev script.
+. dev/common.sh
 
 # Usage: write-template "template" "path/to/destination"
 function write-template {
@@ -18,54 +16,49 @@ else
   fqdn="${site}.drupal.org"
   snapshot="/var/dumps/mysql/${site}_database_snapshot-current.sql.gz"
 fi
-vhost_path="/etc/apache2/vhosts.d/automated-hudson"
-web_path="/var/www/dev/${name}-${site}.redesign.devdrupal.org"
 export TERM=dumb
 drush="/usr/local/bin/drush -r ${web_path}/htdocs -l ${fqdn}"
-db_name=$(echo ${name}_${site} | sed -e "s/-/_/g" -e "s/\./_/g" | sed -e 's/^\(.\{16\}\).*/\1/') # Truncate to 16 chars
 db_pass=$(pwgen -s 16 1)
 
 [ -e "${web_path}" ] && echo "Project webroot already exists!" && exit 1
 
 # Create the webroot and add comment file
-mkdir -p ${web_path}/htdocs
-chown -R bender:developers ${web_path}
-echo "${COMMENT}" > ${web_path}/comment
+mkdir -p "${web_path}/htdocs"
+chown -R bender:developers "${web_path}"
+echo "${COMMENT}" > "${web_path}/comment"
 
 # Create the vhost config
-write-template "vhost.conf.template" "${vhost_path}/${name}-${site}.conf"
+write-template "vhost.conf.template" "${vhost_path}"
 
 # Configure the database
-echo "Configuring the database"
-mysql -e "create database ${db_name};"
-mysql -e "grant all on ${db_name}.* to '${db_name}'@'stagingvm.drupal.org' identified by '${db_pass}';"
+mysql -e "CREATE DATABASE ${db_name};"
+mysql -e "GRANT ALL ON ${db_name}.* TO '${db_name}'@'stagingvm.drupal.org' IDENTIFIED BY '${db_pass}';"
 
 # Checkout webroot 
 echo "Populating development environment with bzr checkout"
-bzr checkout bzr+ssh://util.drupal.org/bzr/${fqdn} ${web_path}/htdocs
+bzr checkout bzr+ssh://util.drupal.org/bzr/${fqdn} "${web_path}/htdocs"
 
 # Add settings.local.php
 write-template "settings.local.php.template" "${web_path}/htdocs/sites/default/settings.local.php"
 
 # Strongarm the permissions
 echo "Forcing proper permissions on ${web_path}"
-find ${web_path} -type d -exec chmod g+rwx {} +
-find ${web_path} -type f -exec chmod g+rw {} +
-chgrp -R developers ${web_path}
+find "${web_path}" -type d -exec chmod g+rwx {} +
+find "${web_path}" -type f -exec chmod g+rw {} +
+chgrp -R developers "${web_path}"
 
 # Import database
-ssh util zcat ${snapshot} | mysql ${db_name}
+ssh util zcat "${snapshot}" | mysql "${db_name}"
 
 # Disable modules that don't work well in development (yet)
 ${drush} pm-disable paranoia -y
 ${drush} pm-disable civicrm -y
 
 # Link up the files directory
-ln -s /media/${fqdn} ${web_path}/htdocs/$(${drush} status | sed -ne 's/^ *File directory path *: *//p')
+ln -s /media/${fqdn} "${web_path}/htdocs/$(${drush} status | sed -ne 's/^ *File directory path *: *//p')"
 
 # Reload apache with new vhost
-echo "Restarting Apache"
-sudo /etc/init.d/apache2 restart
+restart-apache
 
 # Get ready for development
 echo 1 | ${drush} vdel cache
