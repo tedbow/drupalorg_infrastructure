@@ -12,9 +12,9 @@ cd ${branch}
 
 if [ -d ${location} ]; then
   bzr merge ${vendor}
-  bzr commit -m "Automatic merge from ${module} ${vendor_version}."
+  bzr commit -m "Automatic merge from ${module} ${vendor_version}. ${message-}"
 else
   bzr checkout ${vendor} ${location}
   bzr join ${location}
-  bzr commit -m "Automatic join from ${module} ${vendor_version}."
+  bzr commit -m "Automatic join from ${module} ${vendor_version}. ${message-}"
 fi
