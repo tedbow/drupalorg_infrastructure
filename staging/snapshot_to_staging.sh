@@ -3,8 +3,12 @@
 
 # Repopulate DB
 db=$($drush sql-conf | sed -ne 's/^\s*\[database\] => //p')
+snapshot=$(echo $domain | sed -e 's/\..*$//')
+if [ "${domain}" = "staging.devdrupal.org" ]; then
+  snapshot="drupal"
+fi
 echo "DROP DATABASE ${db}; CREATE DATABASE ${db};" | $drush sql-cli
-ssh util zcat /var/dumps/mysql/$(echo $domain | sed -e 's/\..*$//')_database_snapshot.staging-current.sql.gz | $drush sql-cli
+ssh util zcat "/var/dumps/mysql/${snapshot}_database_snapshot.staging-current.sql.gz" | $drush sql-cli
 
 # todo configure bakery to use staging.drupal.org as a master site
 $drush pm-disable bakery
