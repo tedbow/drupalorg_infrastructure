@@ -1,8 +1,5 @@
 -- CAUTION: DO NOT RUN THIS ON DATABASE WHERE YOU CARE ABOUT THE INFORMATION!!!
 
--- Munge emails for security.
-UPDATE comments SET mail = CONCAT(name, '@localhost');
-
 -- Get rid of irrelevant data.
 TRUNCATE accesslog;
 TRUNCATE devel_queries;
