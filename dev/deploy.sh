@@ -93,5 +93,8 @@ else
   fi
 fi
 
+# Set up test user
+drush upwd bacon --password=bacon
+
 # Prime any big caches
 wget -O /dev/null http://${name}-${site}.redesign.devdrupal.org --user=drupal --password=drupal
