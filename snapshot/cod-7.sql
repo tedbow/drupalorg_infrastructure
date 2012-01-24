@@ -2,7 +2,7 @@
 
 -- cod as in Conference Organizing Distribution.
 
-UPDATE users SET pass = MD5(CONCAT('drupal', name)), access = 280299600;
+UPDATE users SET access = 280299600;
 
 -- Get rid of irrelevant data.
 TRUNCATE search_dataset;

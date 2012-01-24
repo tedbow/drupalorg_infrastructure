@@ -1,6 +1,5 @@
 -- CAUTION: DO NOT RUN THIS ON DATABASE WHERE YOU CARE ABOUT THE INFORMATION!!!
 
-UPDATE users SET pass = MD5(CONCAT('drupal', name));
 UPDATE users_access SET access = 280299600;
 UPDATE cvs_accounts SET pass = '';
 

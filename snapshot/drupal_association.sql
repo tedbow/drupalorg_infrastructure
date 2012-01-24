@@ -1,7 +1,6 @@
 -- CAUTION: DO NOT RUN THIS ON DATABASE WHERE YOU CARE ABOUT THE INFORMATION!!!
 
 -- Munge emails for security.
-UPDATE users SET pass = MD5(CONCAT('association', name)), data = '';
 UPDATE comments SET mail = CONCAT(name, '@localhost');
 UPDATE donations SET mail = CONCAT(did, '@localhost');
 UPDATE contact SET recipients = 'noreply@localhost';
