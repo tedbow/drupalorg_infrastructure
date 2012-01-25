@@ -15,9 +15,9 @@ if [ -d sites/all/*/${project} ]; then
 else
   bzr checkout ${vendor} tmp
   if grep -q "^engine" tmp/*.info; then
-    location="sites/all/modules/${project}"
-  else
     location="sites/all/themes/${project}"
+  else
+    location="sites/all/modules/${project}"
   fi
   mv tmp ${location}
   bzr join ${location}
