@@ -10,9 +10,6 @@ fi
 echo "DROP DATABASE ${db}; CREATE DATABASE ${db};" | ${drush} sql-cli
 ssh util zcat "/var/dumps/mysql/${snapshot}_database_snapshot.staging-current.sql.gz" | ${drush} sql-cli
 
-# todo configure bakery to use staging.drupal.org as a master site
-${drush} pm-disable bakery
-
 # Try updatedb, clear and prime caches
 ${drush} updatedb
 ${drush} cc all
