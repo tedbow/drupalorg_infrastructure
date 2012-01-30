@@ -9,7 +9,7 @@ rm -rf ${branch}
 bzr co /srv/bzr/${branch}/
 cd ${branch}
 
-if [ -d sites/all/*/${project} ]; then
+if [ -d sites/all/{modules,themes}/${project} ]; then
   bzr merge ${vendor}
   bzr commit -m "Automatic merge from ${project} ${vendor_version}. ${message-}"
 else
