@@ -61,7 +61,7 @@ ln -s /media/${fqdn} "${web_path}/htdocs/$(${drush} status | sed -ne 's/^ *File 
 restart_apache
 
 # Get ready for development
-echo 1 | ${drush} vdel cache
+${drush} vset cache 0
 ${drush} vdel preprocess_css
 ${drush} vdel preprocess_js
 ${drush} pm-enable views_ui
