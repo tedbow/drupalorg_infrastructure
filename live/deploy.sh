@@ -2,6 +2,8 @@
 . live/common.sh 'deploy'
 
 cd ${webroot}
+# Added by bdragon for debugging qa.drupal.org misdeploy.
+bzr missing
 bzr update
 
 if [ "${updatedb-}" = "true" ]; then
