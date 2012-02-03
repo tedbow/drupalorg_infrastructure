@@ -3,7 +3,7 @@
 
 cd ${webroot}
 # Added by bdragon for debugging qa.drupal.org misdeploy.
-bzr status
+bzr pull
 bzr update
 
 if [ "${updatedb-}" = "true" ]; then
