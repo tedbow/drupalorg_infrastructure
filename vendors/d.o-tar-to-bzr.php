@@ -88,7 +88,11 @@ if (!$have_tarball) {
 
 // Extract the tarball.
 _d_o_passthru('rm -rf ' . $project);
-_d_o_passthru("tar -zxvf $tarball_path");
+_d_o_passthru('tar -zxvf ' . $tarball_path);
+if (file_exists($project . '-' . $version)) {
+  // Core extracts with the vserion string.
+  _d_o_passthru('mv ' . $project . '-' . $version . ' ' . $project);
+}
 // Contrib tarballs should always extract into a directory named via the
 // project shortname, so make sure that's there.
 if (!file_exists($project)) {
