@@ -100,9 +100,6 @@ if (!file_exists($project)) {
   exit(5);
 }
 
-// Prune the LICENSE.txt file
-@unlink("$project/LICENSE.txt");
-
 // Grab the first 5 chars of the version so we've got "6.x-2" for the vendor
 // branch name.
 $major_id = substr($version, 0, 5);
