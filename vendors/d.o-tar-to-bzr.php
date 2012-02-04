@@ -102,7 +102,7 @@ if (!file_exists($project)) {
 
 // Grab the first 5 chars of the version so we've got "6.x-2" for the vendor
 // branch name.
-$major_id = substr($version, 0, 5);
+$major_id = substr($version, 0, strrpos($version, '.'));
 
 // bzr+ssh://util.drupal.org/srv/bzr/vendor/views/6.x-2
 $bzr_url = isset($bzr_root) ? $bzr_root : '';
