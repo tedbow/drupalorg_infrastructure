@@ -8,6 +8,9 @@ function write_template {
   sed -e "s/DB_NAME/${db_name}/g;s/NAME/${name}/g;s/SITE/${site}/g;s/DB_PASS/${db_pass}/g" "dev/${1}" > "${2}"
 }
 
+# Fail early if comment is omitted.
+[ -z "${COMMENT-}" ] && echo "Comment is required." && exit 1
+
 # Handle drupal.org vs. sub-domains properly
 if [ ${site} == "drupal" ]; then
   fqdn="drupal.org"
