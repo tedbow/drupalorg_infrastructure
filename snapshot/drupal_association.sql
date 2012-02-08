@@ -1,9 +1,5 @@
 -- CAUTION: DO NOT RUN THIS ON DATABASE WHERE YOU CARE ABOUT THE INFORMATION!!!
 
--- Munge emails for security.
-UPDATE comments SET mail = CONCAT(name, '@localhost');
-UPDATE donations SET mail = CONCAT(did, '@localhost');
-UPDATE contact SET recipients = 'noreply@localhost';
 UPDATE content_type_association_membership_benefit SET field_assoc_benefit_code_value = 'DrupalDrupalDrupal', field_assoc_benefit_link_url = 'http://example.com/';
 
 -- Get rid of irrelevant data.
