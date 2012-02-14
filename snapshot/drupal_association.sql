@@ -30,7 +30,7 @@ TRUNCATE uc_payment_check;
 TRUNCATE uc_payment_cod;
 TRUNCATE uc_payment_other;
 TRUNCATE uc_payment_receipts;
-DELETE FROM uc_coupons WHERE status <> 1;
+DELETE FROM uc_coupons WHERE status <> 0;
 TRUNCATE uc_coupons_orders;
 
 -- Remove sensitive variables
