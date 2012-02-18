@@ -4,9 +4,6 @@ UPDATE users_access SET access = 280299600;
 UPDATE cvs_accounts SET pass = '';
 
 -- Get rid of irrelevant data.
-TRUNCATE accesslog;
-TRUNCATE devel_queries;
-TRUNCATE devel_times;
 TRUNCATE mailhandler;
 TRUNCATE search_dataset;
 TRUNCATE search_index;
