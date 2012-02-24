@@ -32,9 +32,9 @@ DELETE og_users_roles_group FROM og_users_roles_group LEFT JOIN node ON node.nid
 
 -- Get rid of the most of the l10n_server projects to reduce data size.
 DELETE FROM l10n_server_project WHERE weight > -40000;
-DELETE l10n_server_release FROM l10n_server_release LEFT JOIN l10n_server_project ON l10n_server_project.sid = l10n_server_release.pid WHERE l10n_server_project.pid IS NULL;
-DELETE l10n_server_line FROM l10n_server_line LEFT JOIN l10n_server_project ON l10n_server_project.sid = l10n_server_line.pid WHERE l10n_server_project.pid IS NULL;
-DELETE l10n_server_file FROM l10n_server_file LEFT JOIN l10n_server_project ON l10n_server_project.sid = l10n_server_file.pid WHERE l10n_server_project.pid IS NULL;
+DELETE l10n_server_release FROM l10n_server_release LEFT JOIN l10n_server_project ON l10n_server_project.pid = l10n_server_release.pid WHERE l10n_server_project.pid IS NULL;
+DELETE l10n_server_line FROM l10n_server_line LEFT JOIN l10n_server_project ON l10n_server_project.pid = l10n_server_line.pid WHERE l10n_server_project.pid IS NULL;
+DELETE l10n_server_file FROM l10n_server_file LEFT JOIN l10n_server_project ON l10n_server_project.pid = l10n_server_file.pid WHERE l10n_server_project.pid IS NULL;
 DELETE l10n_server_string FROM l10n_server_string LEFT JOIN l10n_server_line ON l10n_server_string.sid = l10n_server_line.sid WHERE l10n_server_line.sid IS NULL;
 DELETE l10n_server_status_flag FROM l10n_server_status_flag LEFT JOIN l10n_server_string ON l10n_server_status_flag.sid = l10n_server_string.sid WHERE l10n_server_string.sid IS NULL;
 DELETE l10n_server_translation FROM l10n_server_translation LEFT JOIN l10n_server_string ON l10n_server_translation.sid = l10n_server_string.sid WHERE l10n_server_string.sid IS NULL;
