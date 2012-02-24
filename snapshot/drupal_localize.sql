@@ -29,3 +29,13 @@ DELETE og_ancestry FROM og_ancestry LEFT JOIN node ON node.nid = og_ancestry.gro
 DELETE og_uid FROM og_uid LEFT JOIN node ON node.nid = og_uid.nid WHERE node.nid IS NULL;
 DELETE og_uid FROM og_uid LEFT JOIN users ON og_uid.uid = users.uid WHERE users.uid IS NULL;
 DELETE og_users_roles_group FROM og_users_roles_group LEFT JOIN node ON node.nid = og_users_roles_group.gid WHERE node.nid IS NULL;
+
+-- Get rid of the most of the l10n_server projects to reduce data size.
+DELETE FROM l10n_server_project WHERE weight > -40000;
+DELETE l10n_server_release FROM l10n_server_release LEFT JOIN l10n_server_project ON l10n_server_project.sid = l10n_server_release.pid WHERE l10n_server_project.pid IS NULL;
+DELETE l10n_server_line FROM l10n_server_line LEFT JOIN l10n_server_project ON l10n_server_project.sid = l10n_server_line.pid WHERE l10n_server_project.pid IS NULL;
+DELETE l10n_server_file FROM l10n_server_file LEFT JOIN l10n_server_project ON l10n_server_project.sid = l10n_server_file.pid WHERE l10n_server_project.pid IS NULL;
+DELETE l10n_server_string FROM l10n_server_string LEFT JOIN l10n_server_line ON l10n_server_string.sid = l10n_server_line.sid WHERE l10n_server_line.sid IS NULL;
+DELETE l10n_server_status_flag FROM l10n_server_status_flag LEFT JOIN l10n_server_string ON l10n_server_status_flag.sid = l10n_server_string.sid WHERE l10n_server_string.sid IS NULL;
+DELETE l10n_server_translation FROM l10n_server_translation LEFT JOIN l10n_server_string ON l10n_server_translation.sid = l10n_server_string.sid WHERE l10n_server_string.sid IS NULL;
+DELETE l10n_server_translation_history FROM l10n_server_translation_history LEFT JOIN l10n_server_translation ON l10n_server_translation_history.tid = l10n_server_translation.tid WHERE l10n_server_translation.tid IS NULL;
