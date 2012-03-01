@@ -14,7 +14,9 @@ function snapshot {
   ln -sfv "/var/dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.gz" "/var/dumps/mysql/${JOB_NAME}${suffix}-current.sql.gz"
 
   old_snapshots=$(ls -t /var/dumps/mysql/${JOB_NAME}${suffix}-[0-9]*.sql.gz | tail -n +2)
-  [ -n "${old_snapshots}" ] && rm -v ${old_snapshots}
+  if [ -n "${old_snapshots}" ]; then
+    rm -v ${old_snapshots}
+  fi
 }
 
 function clear_tmp {
