@@ -1,9 +1,4 @@
--- CAUTION: DO NOT RUN THIS ON DATABASE WHERE YOU CARE ABOUT THE INFORMATION!!!
-
--- Munge emails for security.
-UPDATE comments SET mail = CONCAT(name, '@localhost');
 UPDATE users_access SET access = 280299600;
-
 
 -- Get rid of irrelevant data.
 TRUNCATE batch;
