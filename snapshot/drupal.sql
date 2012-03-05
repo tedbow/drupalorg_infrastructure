@@ -5,11 +5,6 @@ UPDATE cvs_accounts SET pass = '';
 
 -- Get rid of irrelevant data.
 TRUNCATE mailhandler;
-TRUNCATE search_dataset;
-TRUNCATE search_index;
-TRUNCATE search_total;
-TRUNCATE search_node_links;
-TRUNCATE access;
 
 -- Remove sensitive variables and profile data
 DELETE FROM profile_values WHERE fid IN (select fid from profile_fields where visibility in (1, 4));

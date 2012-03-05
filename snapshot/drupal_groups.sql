@@ -4,20 +4,10 @@
 UPDATE users_access SET access = 280299600;
 
 -- Get rid of irrelevant data.
-TRUNCATE access;
-TRUNCATE accesslog;
-TRUNCATE devel_queries;
-TRUNCATE devel_times;
 TRUNCATE modr8_log;
-TRUNCATE mollom;
 TRUNCATE role_activity;
-TRUNCATE search_dataset;
-TRUNCATE search_index;
-TRUNCATE search_total;
-TRUNCATE search_node_links;
 
 -- We don't publicly share who has voted on what, if someone needs votes for theming they can do some votes.
-TRUNCATE votingapi_vote;
 TRUNCATE poll_votes;
 
 -- Remove sensitive variables

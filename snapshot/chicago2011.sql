@@ -3,15 +3,6 @@
 UPDATE comments SET mail = CONCAT(name, '@localhost');
 UPDATE users SET access = 280299600;
 
--- Get rid of irrelevant data.
-TRUNCATE devel_queries;
-TRUNCATE devel_times;
-TRUNCATE search_dataset;
-TRUNCATE search_index;
-TRUNCATE search_node_links;
-TRUNCATE search_total;
-TRUNCATE access;
-
 -- Remove sensitive variables and profile data
 DELETE FROM variable WHERE name = 'regonline_account_password';
 -- 1 is private, 4 is hidden

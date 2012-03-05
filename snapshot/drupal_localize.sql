@@ -1,9 +1,6 @@
 UPDATE users_access SET access = 280299600;
 
 -- Get rid of irrelevant data.
-TRUNCATE batch;
-TRUNCATE semaphore;
-TRUNCATE access;
 TRUNCATE og_notifications;
 
 -- Get rid of unpublished/blocked nodes, users, comments and related data in other tables.

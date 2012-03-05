@@ -5,6 +5,7 @@ set -uex
 
 function snapshot {
   [ -f "snapshot/common${suffix}.sql" ] && mysql -o ${tmp_args} < "snapshot/common${suffix}.sql"
+  [ -f "snapshot/common-force${suffix}.sql" ] && mysql -f -o ${tmp_args} < "snapshot/common-force${suffix}.sql"
 
   [ ! -f "snapshot/${db_name}${suffix}.sql" ] && return
   mysql -o ${tmp_args} < "snapshot/${db_name}${suffix}.sql"

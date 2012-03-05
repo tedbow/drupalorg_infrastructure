@@ -2,19 +2,7 @@
 
 UPDATE content_type_association_membership_benefit SET field_assoc_benefit_code_value = 'DrupalDrupalDrupal', field_assoc_benefit_link_url = 'http://example.com/';
 
--- Get rid of irrelevant data.
-TRUNCATE devel_queries;
-TRUNCATE devel_times;
-TRUNCATE batch;
-TRUNCATE semaphore;
-TRUNCATE search_dataset;
-TRUNCATE search_index;
-TRUNCATE search_total;
-TRUNCATE access;
-TRUNCATE mollom;
-
 TRUNCATE civicrm_drupal_username_sync;
-TRUNCATE votingapi_vote;
 TRUNCATE webform_emails;
 TRUNCATE webform_submissions;
 TRUNCATE webform_submitted_data;
