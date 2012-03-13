@@ -1,4 +1,6 @@
 # We don't actually want or need anything from common.sh so don't source it.
+# However, at least printing what we're running is a help.
+set -x
 
 # Currently, www4 doesn't exist.
 webnodes=(1 2 3 5 6 7)
