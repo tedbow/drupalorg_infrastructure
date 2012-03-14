@@ -5,5 +5,5 @@ set -x
 . live/webnodes.sh
 
 for i in ${webnodes[@]}; do
-  ssh bender@www$i.drupal.org "varnishadm -T localhost:8181 'purge.url ^.*$'"
+  ssh bender@www$i.drupal.org "echo 'purge.url ^.*$' | nc localhost 8181"
 done
