@@ -2,8 +2,7 @@
 # However, at least printing what we're running is a help.
 set -x
 
-# Currently, www4 doesn't exist.
-webnodes=(1 2 3 5 6 7)
+. live/webnodes.sh
 
 for i in ${webnodes[@]}; do
   ssh bender@www$i.drupal.org "varnishadm -T localhost:8181 'purge.url ^.*$'"
