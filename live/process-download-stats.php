@@ -1,7 +1,5 @@
 #!/usr/bin/php
 <?php
-// $Id$
-
 /**
  * @file
  * Generate drupal.org download stats.
