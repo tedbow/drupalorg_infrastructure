@@ -4,7 +4,7 @@
 # Repopulate DB
 db=$(${drush} sql-conf | sed -ne 's/^\s*\[database\] => //p')
 snapshot=$(echo ${domain} | sed -e 's/\..*$//')
-if [ "${domain}" = "staging.devdrupal.org" ]; then
+if [ "${domain}" = "staging.devdrupal.org" ] || [ "${domain}" = "7.devdrupal.org" ]; then
   snapshot="drupal"
 fi
 echo "DROP DATABASE ${db}; CREATE DATABASE ${db};" | ${drush} sql-cli
