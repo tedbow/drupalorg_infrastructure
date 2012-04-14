@@ -11,6 +11,6 @@ echo "DROP DATABASE ${db}; CREATE DATABASE ${db};" | ${drush} sql-cli
 ssh util zcat "/var/dumps/mysql/${snapshot}_database_snapshot.staging-current.sql.gz" | ${drush} sql-cli
 
 # Try updatedb, clear and prime caches
-${drush} updatedb
+${drush} updatedb -v
 ${drush} cc all
 wget -O /dev/null http://${domain} --user=drupal --password=drupal
