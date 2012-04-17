@@ -10,6 +10,9 @@ fi
 echo "DROP DATABASE ${db}; CREATE DATABASE ${db};" | ${drush} sql-cli
 ssh util zcat "/var/dumps/mysql/${snapshot}_database_snapshot.staging-current.sql.gz" | ${drush} sql-cli
 
+# Log time spent in DB population.
+date
+
 # Try updatedb, clear and prime caches
 ${drush} updatedb -v
 ${drush} cc all
