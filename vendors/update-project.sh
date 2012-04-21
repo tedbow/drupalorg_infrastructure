@@ -3,6 +3,7 @@ set -uex
 
 branch="${site}.drupal.org"
 [ ${site} = "drupal.org" ] && branch="drupal.org"
+[ ${site} = "drupal.org-7" ] && branch="drupal.org-7"
 vendor="/srv/bzr/vendor/${project}/${vendor_version}"
 
 rm -rf ${branch}
