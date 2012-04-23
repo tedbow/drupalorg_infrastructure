@@ -34,7 +34,7 @@ db_pass=$3
 tmp_db=drupal_sanitize
 tmp_user=sanitize_rw
 tmp_pass=$4
-tmp_host=db4-static.drupal.org
+tmp_host=db3-vip.drupal.org
 tmp_args="-h${tmp_host} -u${tmp_user} -p${tmp_pass} ${tmp_db}"
 
 ln -sf /var/dumps $WORKSPACE/dumps
