@@ -30,7 +30,6 @@ db_user=$2
 db_pass=$3
 [ "${sanitization-}" ] || sanitization=${db_name}
 [ "${db_host-}" ] || db_host=db3-vip.drupal.org
-[ "${db_name}" == "drupal" ] && db_host=db2-main-vip.drupal.org
 
 tmp_db=drupal_sanitize
 tmp_user=sanitize_rw
