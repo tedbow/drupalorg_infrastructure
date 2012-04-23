@@ -4,7 +4,7 @@ UPDATE users SET access = 280299600;
 TRUNCATE mailhandler;
 
 -- Remove sensitive variables and profile data
-DELETE FROM profile_value WHERE fid IN (select fid FROM profile_fields WHERE visibility in (1, 4));
+DELETE FROM profile_value WHERE fid IN (select fid FROM profile_field WHERE visibility in (1, 4));
 
 -- Get rid of unpublished/blocked nodes, users, comments and related data in other tables.
 DELETE FROM node WHERE status <> 1;
