@@ -20,4 +20,3 @@ DELETE comments FROM comments LEFT JOIN comments c2 ON comments.pid = c2.cid WHE
 DELETE comments FROM comments LEFT JOIN comments c2 ON comments.pid = c2.cid WHERE c2.cid IS NULL AND comments.pid <> 0;
 DELETE comments FROM comments LEFT JOIN comments c2 ON comments.pid = c2.cid WHERE c2.cid IS NULL AND comments.pid <> 0;
 DELETE files FROM files LEFT JOIN users ON files.uid = users.uid WHERE users.uid IS NULL;
-DELETE users_roles FROM users_roles LEFT JOIN users ON users_roles.uid = users.uid WHERE users.uid IS NULL;

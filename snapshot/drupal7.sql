@@ -1,7 +1,4 @@
--- CAUTION: DO NOT RUN THIS ON DATABASE WHERE YOU CARE ABOUT THE INFORMATION!!!
-
-UPDATE users_access SET access = 280299600;
-UPDATE cvs_accounts SET pass = '';
+UPDATE users SET access = 280299600;
 
 -- Get rid of irrelevant data.
 TRUNCATE mailhandler;
@@ -27,7 +24,8 @@ DELETE comment_upload FROM comment_upload LEFT JOIN comments ON comments.cid = c
 DELETE image FROM image LEFT JOIN node ON image.nid = node.nid WHERE node.nid IS NULL;
 DELETE image_attach FROM image_attach LEFT JOIN node ON image_attach.nid = node.nid WHERE node.nid IS NULL;
 
-DELETE tracker2_node FROM tracker2_node LEFT JOIN node ON node.nid = tracker2_node.nid WHERE node.nid IS NULL;
-DELETE tracker2_user FROM tracker2_user LEFT JOIN node ON node.nid = tracker2_user.nid WHERE node.nid IS NULL;
-DELETE tracker2_user FROM tracker2_user LEFT JOIN users ON users.uid = tracker2_user.uid WHERE users.uid IS NULL;
-DELETE forum2_index FROM forum2_index LEFT JOIN node ON forum2_index.nid = node.nid WHERE node.nid IS NULL;
+-- Tables that should be removed.
+DROP TABLE tracker2_node; -- Not used in D7.
+DROP TABLE tracker2_user;
+DROP TABLE forum2_index;
+DROP TABLE cvs_accounts; -- http://drupal.org/node/1543548

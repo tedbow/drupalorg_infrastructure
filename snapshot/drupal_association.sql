@@ -42,4 +42,3 @@ DELETE comments FROM comments LEFT JOIN comments c2 ON comments.pid = c2.cid WHE
 DELETE files FROM files LEFT JOIN users ON files.uid = users.uid WHERE users.uid IS NULL;
 DELETE files FROM files INNER JOIN upload ON files.fid = upload.fid LEFT JOIN node ON upload.nid = node.nid WHERE upload.fid IS NULL;
 DELETE upload FROM upload LEFT JOIN node ON upload.nid = node.nid WHERE node.nid IS NULL;
-DELETE users_roles FROM users_roles LEFT JOIN users ON users_roles.uid = users.uid WHERE users.uid IS NULL;
