@@ -28,7 +28,7 @@ function clear_tmp {
 db_name=$1
 db_user=$2
 db_pass=$3
-db_host=db3-vip.drupal.org
+[ "${db_host-}" ] || db_host=db3-vip.drupal.org
 [ "${db_name}" == "drupal" ] && db_host=db2-main-vip.drupal.org
 
 tmp_db=drupal_sanitize
