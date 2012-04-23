@@ -7,8 +7,8 @@ function snapshot {
   [ -f "snapshot/common${suffix}.sql" ] && mysql -o ${tmp_args} < "snapshot/common${suffix}.sql"
   [ -f "snapshot/common-force${suffix}.sql" ] && mysql -f -o ${tmp_args} < "snapshot/common-force${suffix}.sql"
 
-  [ ! -f "snapshot/${db_name}${suffix}.sql" ] && return
-  mysql -o ${tmp_args} < "snapshot/${db_name}${suffix}.sql"
+  [ ! -f "snapshot/${sanitization}${suffix}.sql" ] && return
+  mysql -o ${tmp_args} < "snapshot/${sanitization}${suffix}.sql"
 
   mysqldump --single-transaction ${tmp_args} | gzip > "/var/dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.gz"
   mv -v "/var/dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.gz" "/var/dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.gz"
@@ -28,6 +28,7 @@ function clear_tmp {
 db_name=$1
 db_user=$2
 db_pass=$3
+[ "${sanitization-}" ] || sanitization=${db_name}
 [ "${db_host-}" ] || db_host=db3-vip.drupal.org
 [ "${db_name}" == "drupal" ] && db_host=db2-main-vip.drupal.org
 
