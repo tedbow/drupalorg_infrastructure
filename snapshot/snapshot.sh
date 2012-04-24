@@ -50,7 +50,7 @@ suffix=.raw
 snapshot
 suffix=.staging
 snapshot
-suffix=
+suffix=.dev
 snapshot
 suffix=.reduce
 snapshot
