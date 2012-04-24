@@ -8,7 +8,7 @@ if [ "${domain}" = "staging.devdrupal.org" ] || [ "${domain}" = "7.devdrupal.org
   snapshot="drupal"
 fi
 echo "DROP DATABASE ${db}; CREATE DATABASE ${db};" | ${drush} sql-cli
-ssh util zcat "/var/dumps/mysql/${snapshot}_database_snapshot.staging-current.sql.gz" | ${drush} sql-cli
+ssh util zcat "/var/dumps/mysql/${snapshot}_database_snapshot.staging-current.sql.bz2" | ${drush} sql-cli
 
 # Extra preparation for D7.
 if [ "${domain}" = "7.devdrupal.org" ]; then

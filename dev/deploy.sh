@@ -14,10 +14,10 @@ function write_template {
 # Handle drupal.org vs. sub-domains properly
 if [ ${site} == "drupal" ]; then
   fqdn="drupal.org"
-  snapshot="/var/dumps/mysql/drupal_database_snapshot.reduce-current.sql.gz"
+  snapshot="/var/dumps/mysql/drupal_database_snapshot.reduce-current.sql.bz2"
 else
   fqdn="${site}.drupal.org"
-  snapshot="/var/dumps/mysql/${site}_database_snapshot-current.sql.gz"
+  snapshot="/var/dumps/mysql/${site}_database_snapshot-current.sql.bz2"
 fi
 export TERM=dumb
 drush="/usr/local/bin/drush -r ${web_path}/htdocs -y"
