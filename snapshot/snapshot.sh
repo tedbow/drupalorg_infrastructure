@@ -10,11 +10,11 @@ function snapshot {
   [ ! -f "snapshot/${sanitization}${suffix}.sql" ] && return
   mysql -o ${tmp_args} < "snapshot/${sanitization}${suffix}.sql"
 
-  mysqldump --single-transaction ${tmp_args} | gzip > "/var/dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.gz"
-  mv -v "/var/dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.gz" "/var/dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.gz"
-  ln -sfv "/var/dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.gz" "/var/dumps/mysql/${JOB_NAME}${suffix}-current.sql.gz"
+  mysqldump --single-transaction ${tmp_args} | bzip2 > "/var/dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2"
+  mv -v "/var/dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2" "/var/dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.bz2"
+  ln -sfv "/var/dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.bz2" "/var/dumps/mysql/${JOB_NAME}${suffix}-current.sql.bz2"
 
-  old_snapshots=$(ls -t /var/dumps/mysql/${JOB_NAME}${suffix}-[0-9]*.sql.gz | tail -n +2)
+  old_snapshots=$(ls -t /var/dumps/mysql/${JOB_NAME}${suffix}-[0-9]*.sql.{bz2,gz} | tail -n +2)
   if [ -n "${old_snapshots}" ]; then
     rm -v ${old_snapshots}
   fi
