@@ -8,7 +8,7 @@ if [ "${domain}" = "staging.devdrupal.org" ] || [ "${domain}" = "7.devdrupal.org
   snapshot="drupal"
 fi
 echo "DROP DATABASE ${db}; CREATE DATABASE ${db};" | ${drush} sql-cli
-ssh util zcat "/var/dumps/mysql/${snapshot}_database_snapshot.staging-current.sql.bz2" | ${drush} sql-cli
+ssh util bzcat "/var/dumps/mysql/${snapshot}_database_snapshot.staging-current.sql.bz2" | ${drush} sql-cli
 
 # Extra preparation for D7.
 if [ "${domain}" = "7.devdrupal.org" ]; then
@@ -20,6 +20,6 @@ fi
 date
 
 # Try updatedb, clear and prime caches
-${drush} updatedb -v
+${drush} updatedb -vd
 ${drush} cc all
 wget -O /dev/null http://${domain} --user=drupal --password=drupal
