@@ -31,7 +31,6 @@ UPDATE comment SET hostname = "127.0.0.1";
 UPDATE drop_me_aug182011_client SET mail = "nobody@nomail.invalid";
 UPDATE drop_me_aug182011_directory SET mail = "nobody@nomail.invalid";
 UPDATE drop_me_aug182011_donations SET mail = CONCAT(did, "@nomail.invalid"), amount = 42;
-UPDATE multiple_email SET email =  CONCAT(eid, "@nomail.invalid");
 UPDATE role_activity SET ip = "127.0.0.1";
 UPDATE sshkey SET title = "nobody@nomail.invalid";
 
