@@ -2,6 +2,7 @@ UPDATE users SET access = 280299600;
 
 -- Get rid of irrelevant data.
 TRUNCATE mailhandler;
+TRUNCATE blocked_ips;
 
 -- Remove sensitive variables and profile data
 DELETE FROM profile_value WHERE fid IN (select fid FROM profile_field WHERE visibility in (1, 4));

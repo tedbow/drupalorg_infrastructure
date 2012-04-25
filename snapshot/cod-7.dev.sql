@@ -3,6 +3,7 @@
 -- cod as in Conference Organizing Distribution.
 
 UPDATE users SET access = 280299600;
+TRUNCATE blocked_ips;
 
 -- Get rid of unpublished/blocked nodes, users, comments and related data in other tables.
 DELETE FROM node WHERE status <> 1;
