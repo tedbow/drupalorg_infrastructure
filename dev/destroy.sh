@@ -1,4 +1,4 @@
-# Remove a development environment for a given "name" on stagingvm/stagingdb
+# Remove a development environment for a given "name" on devwww/devdb
 
 # Include common dev script.
 . dev/common.sh

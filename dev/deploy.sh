@@ -1,4 +1,4 @@
-# Create a development environment for a given "name" on stagingvm/stagingdb
+# Create a development environment for a given "name" on devwww/devdb
 
 # Include common dev script.
 . dev/common.sh

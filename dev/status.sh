@@ -13,7 +13,7 @@ drush="/usr/local/bin/drush"
   echo
 
   echo "Database"
-  ssh stagingdb.drupal.org df -h /
+  ssh devdb.drupal.org df -h /
   echo
 
   for domain in $(ls "/var/www/dev"); do
