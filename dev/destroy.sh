@@ -16,6 +16,6 @@ rm -f "${vhost_path}"
 
 # Drop the database and user
 mysql -e "DROP DATABASE ${db_name};"
-mysql -e "REVOKE ALL ON ${db_name}.* FROM '${db_name}'@'stagingvm.drupal.org';"
+mysql -e "REVOKE ALL ON ${db_name}.* FROM '${db_name}'@'devwww.drupal.org';"
 
 restart_apache
