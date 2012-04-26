@@ -1,4 +1,4 @@
-<VirtualHost *:80>
+<VirtualHost *:8080>
   ServerName NAME-SITE.redesign.devdrupal.org
 
   DocumentRoot /var/www/dev/NAME-SITE.redesign.devdrupal.org/htdocs
