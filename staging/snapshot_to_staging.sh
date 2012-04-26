@@ -14,6 +14,7 @@ ssh util bzcat "/var/dumps/mysql/${snapshot}_database_snapshot.staging-current.s
 if [ "${domain}" = "7.devdrupal.org" ]; then
   # apachesolr causes _node_types_build() to be called before node_update_7000().
   echo "UPDATE system SET status = 0 WHERE name = 'apachesolr';" | ${drush} sql-cli
+  echo "UPDATE system SET status = 0 WHERE name = 'apachesolr_search';" | ${drush} sql-cli
 fi
 
 # Log time spent in DB population.
