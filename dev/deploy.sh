@@ -87,7 +87,7 @@ else
   if [ "${bakery_master-}" ]; then
     # Hook up to a Drupal.org
     ${drush} vset bakery_master "http://${bakery_master}-drupal.redesign.devdrupal.org/"
-    drush_master="/usr/local/bin/drush -r /var/www/dev/${bakery_master}-drupal.redesign.devdrupal.org/htdocs -l ${bakery_master}-drupal.redesign.devdrupal.org -y"
+    drush_master="drush -r /var/www/dev/${bakery_master}-drupal.redesign.devdrupal.org/htdocs -l ${bakery_master}-drupal.redesign.devdrupal.org -y"
     ${drush} vset bakery_key $(${drush_master} vget bakery_key | sed -ne 's/^.*"\(.*\)"/\1/p')
     ${drush_master} bakery-add-slave "http://${name}-${site}.redesign.devdrupal.org/"
   else
