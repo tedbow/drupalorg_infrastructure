@@ -20,7 +20,7 @@ else
   snapshot="/var/dumps/mysql/${site}_database_snapshot.dev-current.sql.bz2"
 fi
 export TERM=dumb
-drush="/usr/local/bin/drush -r ${web_path}/htdocs -y"
+drush="drush -r ${web_path}/htdocs -y"
 db_pass=$(pwgen -s 16 1)
 
 [ -e "${web_path}" ] && echo "Project webroot already exists!" && exit 1
