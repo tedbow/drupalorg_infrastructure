@@ -17,7 +17,7 @@ if [ ${site} == "drupal" ]; then
   snapshot="/var/dumps/mysql/drupal_database_snapshot.reduce-current.sql.bz2"
 elif [ ${site} == "drupal_7" ]; then
   fqdn="drupal.org"
-  # snapshot="/var/dumps/mysql/drupal_database_snapshot.reduce-current.sql.bz2"
+  snapshot="/var/dumps/mysql/drupal_7_database_snapshot.reduce-current.sql.bz2"
 else
   fqdn="${site}.drupal.org"
   snapshot="/var/dumps/mysql/${site}_database_snapshot.dev-current.sql.bz2"
