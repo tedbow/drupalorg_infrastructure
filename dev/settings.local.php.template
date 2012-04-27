@@ -1,13 +1,13 @@
 <?php
 // Drupal 6
-$db_url = 'mysql://DB_NAME:DB_PASS@stagingdb.drupal.org/DB_NAME';
+$db_url = 'mysql://DB_NAME:DB_PASS@devdb.drupal.org/DB_NAME';
 // Drupal 7
 $databases['default']['default'] = array(
   'driver' => 'mysql',
   'database' => 'DB_NAME',
   'username' => 'DB_NAME',
   'password' => 'DB_PASS',
-  'host' => 'stagingdb.drupal.org',
+  'host' => 'devdb.drupal.org',
   'collation' => 'utf8_general_ci',
 );
 
