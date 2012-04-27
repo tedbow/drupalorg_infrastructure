@@ -1,6 +1,6 @@
 -- CAUTION: DO NOT RUN THIS ON DATABASE WHERE YOU CARE ABOUT THE INFORMATION!!!
 
-UPDATE comments SET mail = CONCAT(name, '@localhost');
+UPDATE comments SET mail = CONCAT(name, '@sanitized.invalid');
 UPDATE users SET access = 280299600;
 
 -- Remove sensitive variables and profile data

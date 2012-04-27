@@ -1,3 +1,3 @@
-UPDATE comments SET mail = CONCAT(name, '@localhost');
-UPDATE donations SET mail = CONCAT(did, '@localhost');
-UPDATE contact SET recipients = 'noreply@localhost';
+UPDATE comments SET mail = CONCAT(name, '@sanitized.invalid');
+UPDATE donations SET mail = CONCAT(did, '@sanitized.invalid');
+UPDATE contact SET recipients = 'noreply@sanitized.invalid';

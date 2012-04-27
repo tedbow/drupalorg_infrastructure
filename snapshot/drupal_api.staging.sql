@@ -1,1 +1,1 @@
-UPDATE comments SET mail = CONCAT(name, '@localhost');
+UPDATE comments SET mail = CONCAT(name, '@sanitized.invalid');
