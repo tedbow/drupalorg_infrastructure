@@ -14,12 +14,15 @@ function write_template {
 # Handle drupal.org vs. sub-domains properly
 if [ ${site} == "drupal" ]; then
   fqdn="drupal.org"
+  repository="drupal.org"
   snapshot="/var/dumps/mysql/drupal_database_snapshot.reduce-current.sql.bz2"
 elif [ ${site} == "drupal_7" ]; then
   fqdn="drupal.org"
+  repository="drupal.org-7"
   snapshot="/var/dumps/mysql/drupal_7_database_snapshot.dev-current.sql.bz2"
 else
   fqdn="${site}.drupal.org"
+  repository="${site}.drupal.org"
   snapshot="/var/dumps/mysql/${site}_database_snapshot.dev-current.sql.bz2"
 fi
 export TERM=dumb
@@ -42,7 +45,7 @@ mysql -e "GRANT ALL ON ${db_name}.* TO '${db_name}'@'devwww.drupal.org' IDENTIFI
 
 # Checkout webroot 
 echo "Populating development environment with bzr checkout"
-bzr checkout bzr+ssh://util.drupal.org/bzr/${fqdn} "${web_path}/htdocs"
+bzr checkout bzr+ssh://util.drupal.org/bzr/${repository} "${web_path}/htdocs"
 
 # Add settings.local.php
 write_template "settings.local.php.template" "${web_path}/htdocs/sites/default/settings.local.php"
