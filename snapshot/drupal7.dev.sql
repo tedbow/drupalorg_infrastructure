@@ -14,7 +14,7 @@ DELETE f FROM field_data_comment_body AS f INNER JOIN node n ON (f.entity_id = n
 DELETE f FROM field_revision_comment_body AS f INNER JOIN node n ON (f.entity_id = n.nid AND f.entity_type = 'node' AND n.status <> 1);
 
 DELETE FROM node WHERE status <> 1;
-DELETE FROM comment WHERE status <> 0;
+DELETE FROM comment WHERE status <> 1;
 DELETE node FROM node LEFT JOIN users ON node.uid = users.uid WHERE users.uid IS NULL;
 DELETE node_revision FROM node_revision LEFT JOIN node ON node.nid = node_revision.nid WHERE node.nid IS NULL;
 DELETE comment FROM comment LEFT JOIN node ON node.nid = comment.nid WHERE node.nid IS NULL;
