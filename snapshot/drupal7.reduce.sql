@@ -7,6 +7,8 @@ DELETE node_revision FROM node_revision LEFT JOIN node ON node.nid = node_revisi
 DELETE node_revision FROM node_revision LEFT JOIN node ON node.nid = node_revision.nid AND node.vid = node_revision.vid WHERE node.nid IS NULL AND node_revision.timestamp < (unix_timestamp() - 60*24*60*60);
 DELETE node_comment_statistics FROM node_comment_statistics LEFT JOIN node ON node.nid = node_comment_statistics.nid WHERE node.nid IS NULL;
 DELETE comment FROM comment LEFT JOIN node ON node.nid = comment.nid WHERE node.nid IS NULL;
+DELETE project_issue_comments FROM project_issue_comments LEFT JOIN node ON node.nid = project_issue_comments.nid WHERE node.nid IS NULL;
+DELETE project_issue_comments FROM project_issue_comments LEFT JOIN comment ON comment.cid = project_issue_comments.cid WHERE comment.cid IS NULL;
 
 DELETE field_data_body FROM field_data_body LEFT JOIN node_revision ON node_revision.vid = field_data_body.revision_id WHERE node_revision.vid IS NULL;
 DELETE field_revision_body FROM field_revision_body LEFT JOIN node_revision ON node_revision.vid = field_revision_body.revision_id WHERE node_revision.vid IS NULL;
