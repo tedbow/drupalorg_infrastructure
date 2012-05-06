@@ -6,10 +6,14 @@ set -uex
 # Run a snapshot phase. See below for how it is called. ${suffix} is the phase
 # and used in filenames.
 function snapshot {
-  # Execute common SQL commands.
-  [ -f "snapshot/common${suffix}.sql" ] && mysql -o ${tmp_args} < "snapshot/common${suffix}.sql"
-  # Execute common SQL commands, but don't exit if they fail.
-  [ -f "snapshot/common-force${suffix}.sql" ] && mysql -f -o ${tmp_args} < "snapshot/common-force${suffix}.sql"
+  # Allow skipping common sanitization. For CiviCRM and anything else
+  # non-Drupal.
+  if [ ! "${skip_common-}" ]; then
+    # Execute common SQL commands.
+    [ -f "snapshot/common${suffix}.sql" ] && mysql -o ${tmp_args} < "snapshot/common${suffix}.sql"
+    # Execute common SQL commands, but don't exit if they fail.
+    [ -f "snapshot/common-force${suffix}.sql" ] && mysql -f -o ${tmp_args} < "snapshot/common-force${suffix}.sql"
+  fi
 
   # Skip if this sanitization and phase does not exit.
   [ ! -f "snapshot/${sanitization}${suffix}.sql" ] && return
