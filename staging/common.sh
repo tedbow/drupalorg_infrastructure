@@ -17,7 +17,7 @@ if echo ${JOB_NAME} | grep -q '\--'; then
   # CiviCRM is a special case. We distinguish it with a suffix, but it does not
   # have a separate uri or webroot.
   if [ "${suffix}" = "civicrm" ]; then
-    type="civicrm"
+    type="civicrm-"
   else
     webroot="${webroot}/${suffix}"
     uri="${uri}/${suffix}"
