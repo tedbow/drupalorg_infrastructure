@@ -1,16 +1,18 @@
 # Include common staging script.
 . staging/common.sh 'snapshot_to'
 
-# Clear out DB
+# Get the DB name from drush
 db=$(${drush} ${type}sql-conf | sed -ne 's/^\s*\[database\] => //p')
-echo "DROP DATABASE ${db}; CREATE DATABASE ${db};" | ${drush} ${type}sql-cli
 
 # If a snapshot has not been already set in $snapshot, get it from $uri,
 # everything before the first '.'
 [ "${snapshot-}" ] || snapshot=$(echo ${uri} | sed -e 's/\..*$//')
 
-# Import the snapshot to the DB.
-ssh util bzcat "/var/dumps/mysql/${snapshot}_database_snapshot.staging-current.sql.bz2" | ${drush} ${type}sql-cli
+# Clear out the DB and import a snapshot.
+(
+  echo "DROP DATABASE ${db}; CREATE DATABASE ${db};"
+  ssh util bzcat "/var/dumps/mysql/${snapshot}_database_snapshot.staging-current.sql.bz2"
+) | ${drush} ${type}sql-cli
 
 # Extra preparation for D7.
 if [ "${uri}" = "7.devdrupal.org" ]; then
