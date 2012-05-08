@@ -10,7 +10,9 @@ db=$(${drush} ${type}sql-conf | sed -ne 's/^\s*\[database\] => //p')
 
 # Clear out the DB and import a snapshot.
 (
-  echo "DROP DATABASE ${db}; CREATE DATABASE ${db};"
+  echo "DROP DATABASE ${db};"
+  echo "CREATE DATABASE ${db};"
+  echo "USE ${db};"
   ssh util bzcat "/var/dumps/mysql/${snapshot}_database_snapshot.staging-current.sql.bz2"
 ) | ${drush} ${type}sql-cli
 
