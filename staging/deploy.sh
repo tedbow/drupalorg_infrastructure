@@ -2,10 +2,10 @@
 . staging/common.sh 'deploy'
 
 # Update code.
-cd /var/www/${domain}/htdocs
+cd ${webroot}
 bzr up
 
 # updatedb, clear and prime caches.
 ${drush} updatedb -vd
 ${drush} cc all
-wget -O /dev/null http://${domain} --user=drupal --password=drupal
+wget -O /dev/null http://${uri} --user=drupal --password=drupal

@@ -1,7 +1,7 @@
 # Include common staging script.
 . staging/common.sh 'verify'
 
-cd /var/www/${domain}/htdocs
+cd ${webroot}
 bzr log -r-1 -n0 > ${WORKSPACE}/version.txt
 bzr status > ${WORKSPACE}/status.txt
 bzr diff > ${WORKSPACE}/diff.txt
