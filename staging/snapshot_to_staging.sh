@@ -28,6 +28,8 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   ) | ${drush} sql-cli
   # Project Issue is not ready yet
   ${drush} pm-disable project_issue
+  # Versioncontrol is not ready yet
+  ${drush} pm-disable versioncontrol
 fi
 
 # Log time spent in DB population.
