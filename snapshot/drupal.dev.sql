@@ -2,9 +2,6 @@
 
 UPDATE users_access SET access = 280299600;
 
--- Get rid of irrelevant data.
-TRUNCATE mailhandler;
-
 -- Remove sensitive variables and profile data
 DELETE FROM profile_values WHERE fid IN (select fid from profile_fields where visibility in (1, 4));
 

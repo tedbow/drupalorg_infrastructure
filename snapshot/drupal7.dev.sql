@@ -1,7 +1,6 @@
 UPDATE users SET access = 280299600;
 
 -- Get rid of irrelevant data.
-TRUNCATE mailhandler;
 TRUNCATE blocked_ips;
 
 -- Remove sensitive variables and profile data
