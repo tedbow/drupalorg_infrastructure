@@ -23,9 +23,11 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
     echo "UPDATE system SET status = 0 WHERE name IN ('apachesolr', 'apachesolr_search', 'apachesolr_multisitesearch');"
     # Forcefully remove duplicate files entries. Remove with #1542666.
     echo -e 'SELECT concat("DELETE FROM files WHERE fid <> ", f.fid, " AND filepath = \047", f.filepath, "\047;") AS \047\047 FROM files f GROUP BY cast(f.filepath AS BINARY) HAVING count(DISTINCT f.fid) > 1;' | ${drush} sql-cli
-    # Bypass versioncontrol updates. Remove with #1568176.
+    # Bypass 6.x versioncontrol updates. Remove with #1568176.
     echo "UPDATE system SET schema_version = 6322 WHERE name = 'versioncontrol';"
   ) | ${drush} sql-cli
+  # Project Issue is not ready yet
+  ${drush} pm-disable project_issue
 fi
 
 # Log time spent in DB population.
