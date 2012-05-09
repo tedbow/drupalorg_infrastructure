@@ -35,4 +35,3 @@ UPDATE sshkey SET title = "nobody@nomail.invalid";
 DROP TABLE tracker2_node; -- Not used in D7.
 DROP TABLE tracker2_user;
 DROP TABLE forum2_index;
-DROP TABLE cvs_accounts; -- http://drupal.org/node/1543548
