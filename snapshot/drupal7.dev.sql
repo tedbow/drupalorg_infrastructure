@@ -23,7 +23,6 @@ DELETE project_issue_comments FROM project_issue_comments LEFT JOIN node ON node
 DELETE project_issue_comments FROM project_issue_comments LEFT JOIN comment ON comment.cid = project_issue_comments.cid WHERE comment.cid IS NULL;
 DELETE files FROM files LEFT JOIN users ON files.uid = users.uid WHERE users.uid IS NULL;
 DELETE image FROM image LEFT JOIN node ON image.nid = node.nid WHERE node.nid IS NULL;
-DELETE image_attach FROM image_attach LEFT JOIN node ON image_attach.nid = node.nid WHERE node.nid IS NULL;
 
 -- Remove assorted IP / email data
 UPDATE comment SET hostname = "127.0.0.1";

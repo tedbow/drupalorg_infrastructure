@@ -21,7 +21,6 @@ DELETE upload FROM upload LEFT JOIN node ON upload.nid = node.nid WHERE node.nid
 DELETE files FROM files INNER JOIN comment_upload ON files.fid = comment_upload.fid LEFT JOIN comments ON comments.cid = comment_upload.cid WHERE comments.cid IS NULL;
 DELETE comment_upload FROM comment_upload LEFT JOIN comments ON comments.cid = comment_upload.cid WHERE comments.cid IS NULL;
 DELETE image FROM image LEFT JOIN node ON image.nid = node.nid WHERE node.nid IS NULL;
-DELETE image_attach FROM image_attach LEFT JOIN node ON image_attach.nid = node.nid WHERE node.nid IS NULL;
 
 DELETE tracker2_node FROM tracker2_node LEFT JOIN node ON node.nid = tracker2_node.nid WHERE node.nid IS NULL;
 DELETE tracker2_user FROM tracker2_user LEFT JOIN node ON node.nid = tracker2_user.nid WHERE node.nid IS NULL;
