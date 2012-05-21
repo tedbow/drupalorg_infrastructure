@@ -1,2 +1,3 @@
-UPDATE users SET mail = CONCAT(name, '@sanitized.invalid'), init = CONCAT('http://drupal.org/user/', uid, '/edit');
-UPDATE authmap SET authname = CONCAT(aid, '@sanitized.invalid');
+UPDATE users SET mail = concat(name, '@sanitized.invalid');
+UPDATE users SET init = if(init LIKE 'drupal.org/user/%/edit', concat('staging.dev', init), mail);
+UPDATE authmap SET authname = concat(aid, '@sanitized.invalid');
