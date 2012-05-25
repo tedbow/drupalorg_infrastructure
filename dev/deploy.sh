@@ -88,7 +88,7 @@ ${drush} vdel bakery_slaves
 ${drush} vset bakery_domain ".redesign.devdrupal.org"
 if [ "${site}" == "drupal" ]; then
   # Drupal.org sites are masters
-  ${drush} vset bakery_master "${name}-${site}.redesign.devdrupal.org"
+  ${drush} vset bakery_master "http://${name}-${site}.redesign.devdrupal.org/"
   ${drush} vset bakery_key "$(pwgen -s 32 1)"
 else
   if [ "${bakery_master-}" ]; then
