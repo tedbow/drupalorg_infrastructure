@@ -20,6 +20,9 @@ function snapshot {
   # Execute SQL for this sanitization and phase.
   mysql -o ${tmp_args} < "snapshot/${sanitization}${suffix}.sql"
 
+  # Show tables for debugging.
+  echo "SHOW TABLES;" | mysql -o ${tmp_args}
+
   # Save the DB dump.
   mysqldump --single-transaction ${tmp_args} | sed -e 's/^) ENGINE=[^ ]*/)/' | bzip2 > "/var/dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2"
   mv -v "/var/dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2" "/var/dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.bz2"
