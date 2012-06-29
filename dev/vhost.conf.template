@@ -16,7 +16,7 @@
     Require valid-user
 
     Order Allow,Deny
-    Allow from 140.211.166 140.211.10
+    Allow from 140.211.166 140.211.10 127.0.0.1
     Satisfy any
   </Directory>
 
