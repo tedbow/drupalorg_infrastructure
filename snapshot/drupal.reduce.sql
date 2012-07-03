@@ -13,6 +13,6 @@ DELETE comments FROM comments LEFT JOIN node ON node.nid = comments.nid WHERE no
 DELETE tracker2_user FROM tracker2_user LEFT JOIN node ON tracker2_user.nid = node.nid WHERE node.nid IS NULL;
 DELETE forum2_index FROM forum2_index LEFT JOIN node ON forum2_index.nid = node.nid WHERE node.nid IS NULL;
 
-DELETE FROM versioncontrol_operations WHERE date < (unix_timestamp() - 60*24*60*60);
+DELETE FROM versioncontrol_operations WHERE committer_date < (unix_timestamp() - 60*24*60*60);
 DELETE versioncontrol_item_revisions FROM versioncontrol_item_revisions LEFT JOIN versioncontrol_operations ON versioncontrol_item_revisions.vc_op_id = versioncontrol_operations.vc_op_id WHERE versioncontrol_operations.vc_op_id IS NULL;
 DELETE versioncontrol_git_item_revisions FROM versioncontrol_git_item_revisions LEFT JOIN versioncontrol_item_revisions ON versioncontrol_git_item_revisions.item_revision_id = versioncontrol_item_revisions.item_revision_id WHERE versioncontrol_item_revisions.item_revision_id IS NULL;
