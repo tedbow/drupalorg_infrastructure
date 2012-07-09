@@ -1,14 +1,11 @@
 # Exit immediately on uninitialized variable or error, and print each command.
 set -uex
 
-branch="${site}.drupal.org"
-[ ${site} = "drupal.org" ] && branch="drupal.org"
-[ ${site} = "drupal.org-7" ] && branch="drupal.org-7"
 vendor="/srv/bzr/vendor/${project}/${vendor_version}"
 
-rm -rf ${branch}
-bzr co /srv/bzr/${branch}/
-cd ${branch}
+rm -rf ${site}
+bzr co /srv/bzr/${site}/
+cd ${site}
 
 if [ $(ls -d sites/all/{modules,themes}/${project} 2> /dev/null | wc -l) = 1 ]; then
   bzr merge ${vendor}
