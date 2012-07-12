@@ -57,7 +57,7 @@ find "${web_path}" -type f -exec chmod g+rw {} +
 chgrp -R developers "${web_path}"
 
 # Import database
-ssh util bzcat "${snapshot}" | mysql "${db_name}"
+ssh util cat "${snapshot}" | bunzip2 | mysql "${db_name}"
 
 # Disable modules that don't work well in development (yet)
 ${drush} pm-disable paranoia

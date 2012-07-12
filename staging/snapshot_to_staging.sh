@@ -13,7 +13,7 @@ db=$(${drush} ${type}sql-conf | sed -ne 's/^\s*\[database\] => //p')
   echo "DROP DATABASE ${db};"
   echo "CREATE DATABASE ${db};"
   echo "USE ${db};"
-  ssh util bzcat "/var/dumps/mysql/${snapshot}_database_snapshot.staging-current.sql.bz2"
+  ssh util cat "/var/dumps/mysql/${snapshot}_database_snapshot.staging-current.sql.bz2" | bunzip2
 ) | ${drush} ${type}sql-cli
 
 # Extra preparation for D7.
