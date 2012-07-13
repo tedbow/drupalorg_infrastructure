@@ -9,6 +9,3 @@ bzr up
 ${drush} updatedb -vd
 ${drush} cc all
 wget -O /dev/null http://${uri} --user=drupal --password=drupal
-
-# Save BZR revision number for build name.
-bzr_revno=$(bzr version-info | sed -ne 's/^revno: //p')
