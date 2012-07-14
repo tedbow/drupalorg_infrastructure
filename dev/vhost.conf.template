@@ -7,17 +7,7 @@
   Header add Vary "Accept-Encoding"
 
   <Directory "/var/www/dev/NAME-SITE.redesign.devdrupal.org/htdocs">
-    Options FollowSymLinks
-    AllowOverride All
-
-    AuthType Basic
-    AuthName "Drupal Dev - use drupal/drupal"
-    AuthUserFile /var/www/htpass
-    Require valid-user
-
-    Order Allow,Deny
-    Allow from 140.211.166 140.211.10 127.0.0.1
-    Satisfy any
+    Include vhosts.d/development.inc
   </Directory>
 
   ErrorLog "|/usr/sbin/cronolog /var/www/dev/NAME-SITE.redesign.devdrupal.org/logs/error/%Y%m%d.log"
