@@ -1,4 +1,4 @@
-UPDATE users.access SET access = 280299600;
+UPDATE users SET access = 280299600;
 
 -- Get rid of unpublished/blocked nodes, users, comments and related data in other tables.
 DELETE FROM node WHERE status <> 1;
