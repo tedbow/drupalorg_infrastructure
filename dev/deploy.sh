@@ -21,8 +21,12 @@ elif [ ${site} == "drupal_7" ]; then
   repository="drupal.org-7"
   snapshot="/var/dumps/mysql/drupal_7_database_snapshot.reduce-current.sql.bz2"
 else
-  fqdn="${site}.drupal.org"
-  repository="${site}.drupal.org"
+  # Strip any _ and following characters from ${site}, and add .drupal.org.
+  # Such as 'qa_7' -> 'qa.drupal.org'
+  fqdn="$(echo "${site}" | sed -e 's/_.*//').drupal.org"
+  # If ${site} has an underscore, use the following characters. Such as
+  # 'qa_7' -> 'qa.drupal.org-7'
+  repository="${fqdn}$(echo ${site} | sed -e 's/.*_/-/')"
   snapshot="/var/dumps/mysql/${site}_database_snapshot.dev-current.sql.bz2"
 fi
 export TERM=dumb
