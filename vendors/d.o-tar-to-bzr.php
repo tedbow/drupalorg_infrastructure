@@ -39,11 +39,11 @@ if (empty($project) || empty($version)) {
   exit(1);
 }
 
-if (empty($_ENV['WORKSPACE'])) {
+if (getenv('WORKSPACE') === FALSE) {
   $tmp_dir .= "-$project-$now";
 }
 else {
-  $tmp_dir = $_ENV['WORKSPACE'];
+  $tmp_dir = getenv('WORKSPACE');
 }
 
 if (!is_dir($tmp_dir) && !mkdir($tmp_dir, 0777, TRUE)) {
