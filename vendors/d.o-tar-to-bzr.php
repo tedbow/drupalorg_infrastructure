@@ -5,7 +5,7 @@
  * @file
  * Script to take a d.o release tarball and import into bzr vendor.
  *
- * Usage: d.o-tar-to-bzr.php [project_shortname] [version] [working_dir]
+ * Usage: d.o-tar-to-bzr.php [project_shortname] [version]
  *
  * Requirements: bzr
  * 
@@ -31,32 +31,20 @@ $package_root = '/var/www/drupal.org/htdocs/files/projects';
 
 $project = $argv[1];
 $version = $argv[2];
-if (!empty($argv[3])) {
-  $cwd = $argv[3];
-}
 
 $now = gmdate('YmdHi');
 
 if (empty($project) || empty($version)) {
-  echo "Usage: $argv[0] [project_name] [version] [working_dir]\n";
+  echo "Usage: $argv[0] [project_name] [version]\n";
   exit(1);
 }
 
-$release_type = preg_match('/^.*\d.x-dev.*$/', $version) ? 'branch' : 'tag';
-echo "Starting to import $project from $release_type: $version\n";
-
-if ($release_type == 'tag') {
-  $vendor_tag = $version;
+if (empty($_ENV['WORKSPACE'])) {
+  $tmp_dir .= "-$project-$now";
 }
 else {
-  // They specified a branch, so we append a UTC timestamp to the end to
-  // ensure uniqueness.
-  $vendor_tag = $version . '-' . $now;
+  $tmp_dir = $_ENV['WORKSPACE'];
 }
-
-echo "Using vendor_tag: $vendor_tag for $project\n";
-
-empty($cwd) ? $tmp_dir .= "-$project-$now" : $tmp_dir = $cwd;
 
 if (!is_dir($tmp_dir) && !mkdir($tmp_dir, 0777, TRUE)) {
   echo "ERROR: temp directory $tmp_dir does not exist and can't created.\n";
@@ -67,6 +55,9 @@ if (!chdir($tmp_dir)) {
   echo "ERROR: Can not chdir($tmp_dir).\n";
   exit(3);
 }
+
+$release_type = preg_match('/^.*\d.x-dev.*$/', $version) ? 'branch' : 'tag';
+echo "Starting to import $project from $release_type: $version (using $tmp_dir)\n";
 
 // ------------------------------------------------------------
 // Real work
@@ -90,7 +81,7 @@ if (!$have_tarball) {
 _d_o_passthru('rm -rf ' . $project);
 _d_o_passthru('tar -zxvf ' . $tarball_path);
 if (file_exists($project . '-' . $version)) {
-  // Core extracts with the vserion string.
+  // Core extracts with the version string.
   _d_o_passthru('mv ' . $project . '-' . $version . ' ' . $project);
 }
 // Contrib tarballs should always extract into a directory named via the
