@@ -24,7 +24,7 @@ export TERM=dumb
     else
       echo "SELECT from_unixtime(max(access)) AS 'Last access' FROM users;" | drush sql-cli | xargs echo
     fi
-    bzr status
+    bzr status || echo "BZR status failed!"
     echo
   done
 } > "/var/www/dev-status.txt"
