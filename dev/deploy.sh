@@ -29,6 +29,12 @@ else
   repository="${fqdn}$(echo ${site} | sed -ne 's/.*_/-/p')"
   snapshot="/var/dumps/mysql/${site}_database_snapshot.dev-current.sql.bz2"
 fi
+
+# DrupalCon São Paulo 2012 and later have a common BZR repository.
+if [ "${site}" == "saopaulo2012" -o "${site}" == "sydney2013" -o "${site}" == "portland2013" -o "${site}" == "europe2014" -o "${site}" == "northamerica2014" ]; then
+  repository="drupalcon-7"
+fi
+
 export TERM=dumb
 drush="drush -r ${web_path}/htdocs -y"
 db_pass=$(pwgen -s 16 1)
