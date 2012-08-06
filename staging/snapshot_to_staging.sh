@@ -25,6 +25,11 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
     # Bypass 6.x versioncontrol updates. Remove with #1568176.
     echo "UPDATE system SET schema_version = 6322 WHERE name = 'versioncontrol';"
   ) | ${drush} sql-cli
+elif [ "${uri}" = "localize.7.devdrupal.org" ]; then
+  (
+    # OG needs new entity module.
+    echo "UPDATE system SET status = 0 WHERE name IN ('og');"
+  ) | ${drush} sql-cli
 fi
 
 # Log time spent in DB population.
