@@ -35,7 +35,16 @@ fi
 # Log time spent in DB population.
 date
 
-# Try updatedb, clear and prime caches
+# Try updatedb, clear caches.
 ${drush} updatedb -vd
 ${drush} cc all
+
+if [ "${uri}" = "localize.7.devdrupal.org" ]; then
+    # OG needs to migrate data.
+    ${drush} en og_migrate
+    ${drush} og-migrate
+    ${drush} dis og_migrate
+fi
+
+# Prime caches for home page and make sure site is basically working.
 wget -O /dev/null http://${uri} --user=drupal --password=drupal
