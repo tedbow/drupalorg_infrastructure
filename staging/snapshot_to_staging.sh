@@ -44,9 +44,6 @@ if [ "${uri}" = "localize.7.devdrupal.org" ]; then
   ${drush} en og_migrate
   ${drush} og-migrate
   ${drush} dis og_migrate
-elif [ "${uri}" = "security.7.devdrupal.org" ]; then
-  # Until node access works, shut off the whole site.
-  ${drush} vset maintenance_mode 1
 fi
 
 # Prime caches for home page and make sure site is basically working.
