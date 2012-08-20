@@ -40,10 +40,10 @@ ${drush} updatedb -vd
 ${drush} cc all
 
 if [ "${uri}" = "localize.7.devdrupal.org" ]; then
-    # OG needs to migrate data.
-    ${drush} en og_migrate
-    ${drush} og-migrate
-    ${drush} dis og_migrate
+  # OG needs to migrate data.
+  ${drush} en og_migrate
+  ${drush} og-migrate
+  ${drush} dis og_migrate
 elif [ "${uri}" = "security.7.devdrupal.org" ]; then
   # Until node access works, shut off the whole site.
   ${drush} vset maintenance_mode 1
