@@ -36,7 +36,7 @@ fi
 date
 
 # Try updatedb, clear caches.
-${drush} updatedb -vd
+${drush} updatedb
 ${drush} cc all
 
 if [ "${uri}" = "localize.7.devdrupal.org" ]; then
