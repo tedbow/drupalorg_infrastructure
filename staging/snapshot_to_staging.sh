@@ -35,8 +35,8 @@ fi
 # Log time spent in DB population.
 date
 
-# Try updatedb, clear caches. Piping to cat tries to force interactive output.
-${drush} updatedb | cat
+# Try updatedb, clear caches.
+${drush} -ia updatedb
 ${drush} cc all
 
 if [ "${uri}" = "localize.7.devdrupal.org" ]; then
