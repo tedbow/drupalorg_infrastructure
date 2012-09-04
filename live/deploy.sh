@@ -22,3 +22,6 @@ fi
 if [ "${cc_all-}" = "true" ]; then
   ${drush} cc "all"
 fi
+if [ "${civicrm_cache_clear-}" = "true" ]; then
+  ${drush} civicrm-cache-clear
+fi
