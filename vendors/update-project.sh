@@ -12,7 +12,7 @@ vendor="/srv/bzr/vendor/${project}/${vendor_version}"
 ./vendors/d.o-tar-to-bzr.php "${project}" "${version}"
 
 # Optionally merge to a site.
-if [ "${site}" ]; then
+if [ "${site}" != "- do not merge to a site -" ]; then
   # Clear out any old checkout and make a fresh one.
   rm -rf ${site}
   bzr co /srv/bzr/${site}/
