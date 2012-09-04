@@ -18,7 +18,7 @@ if [ "${site}" ]; then
   bzr co /srv/bzr/${site}/
   cd ${site}
 
-  if [ $(ls -d sites/all/{modules,themes}/${project} 2> /dev/null | wc -l) = 1 ]; then
+  if [ $(ls -d sites/all/{modules,themes,libraries}/${project} 2> /dev/null | wc -l) = 1 ]; then
     # If the project already exists, merge in the update.
     bzr merge ${vendor}
     bzr commit -m "Automatic merge from ${project} ${vendor_version}. ${message-}"
