@@ -21,9 +21,7 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   (
     # Apache Solr causes _node_types_build() to be called before node_update_7000().
     # Project Issue and Versioncontrol are not ready yet
-    echo "UPDATE system SET status = 0 WHERE name IN ('apachesolr', 'apachesolr_search', 'apachesolr_multisitesearch', 'project_issue', 'versioncontrol');"
-    # Bypass 6.x versioncontrol updates. Remove with #1568176.
-    echo "UPDATE system SET schema_version = 6322 WHERE name = 'versioncontrol';"
+    echo "UPDATE system SET status = 0 WHERE name IN ('apachesolr', 'apachesolr_search', 'apachesolr_multisitesearch');"
   ) | ${drush} sql-cli
 elif [ "${uri}" = "localize.7.devdrupal.org" ]; then
   (
