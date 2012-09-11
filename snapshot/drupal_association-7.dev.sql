@@ -4,7 +4,7 @@ TRUNCATE civicrm_drupal_username_sync;
 TRUNCATE webform_emails;
 TRUNCATE webform_submissions;
 TRUNCATE webform_submitted_data;
-
+TRUNCATE association_drupalorg_2012_at_large_voters;
 TRUNCATE uc_cart_products;
 TRUNCATE uc_orders;
 TRUNCATE uc_order_admin_comments;
@@ -16,6 +16,7 @@ TRUNCATE uc_payment_check;
 TRUNCATE uc_payment_cod;
 TRUNCATE uc_payment_other;
 TRUNCATE uc_payment_receipts;
+TRUNCATE uc_payment_paypal_ipn;
 DELETE FROM uc_coupons WHERE status <> 0;
 TRUNCATE uc_coupons_orders;
 TRUNCATE donations;
