@@ -27,7 +27,10 @@ DELETE FROM profile_value WHERE fid IN (select fid from profile_field where visi
 
 -- Unpublished content
 DELETE FROM node WHERE status <> 1 AND type NOT IN ('product', 'association_training');
-DELETE FROM comment WHERE status <> 0;
+
+-- Comments
+DELETE FROM comment WHERE status <> 1;
+UPDATE comment SET hostname = '127.0.0.1';
 
 -- Depending tables
 DELETE node FROM node LEFT JOIN users ON node.uid = users.uid WHERE users.uid IS NULL;
@@ -44,7 +47,7 @@ DELETE upload FROM field_data_upload upload LEFT JOIN node ON upload.entity_id =
 DELETE file_managed FROM file_managed LEFT JOIN users ON file_managed.uid = users.uid WHERE users.uid IS NULL;
 
 -- Get rid of unpublished/blocked nodes, users, comments and related data in other tables.
-DELETE f FROM field_revision_comment_body AS f INNER JOIN node n ON (f.entity_id = n.nid AND f.entity_type = 'node' AND n.status <> 1);
-DELETE f FROM field_data_comment_body AS f INNER JOIN node n ON (f.entity_id = n.nid AND f.entity_type = 'node' AND n.status <> 1);
-DELETE f FROM field_revision_body AS f INNER JOIN node n ON (f.entity_id = n.nid AND f.entity_type = 'node' AND n.status <> 1);
-DELETE f FROM field_data_body AS f INNER JOIN node n ON (f.entity_id = n.nid AND f.entity_type = 'node' AND n.status <> 1);
+DELETE f FROM field_revision_comment_body AS f LEFT JOIN node n ON (f.entity_id = n.nid AND f.entity_type = 'node' AND n.nid IS NULL);
+DELETE f FROM field_data_comment_body AS f LEFT JOIN node n ON (f.entity_id = n.nid AND f.entity_type = 'node' AND n.nid IS NULL);
+DELETE f FROM field_revision_body AS f LEFT JOIN node n ON (f.entity_id = n.nid AND f.entity_type = 'node' AND n.nid IS NULL);
+DELETE f FROM field_data_body AS f LEFT JOIN node n ON (f.entity_id = n.nid AND f.entity_type = 'node' AND n.nid IS NULL);
