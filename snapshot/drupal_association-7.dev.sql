@@ -20,6 +20,7 @@ TRUNCATE uc_payment_paypal_ipn;
 DELETE FROM uc_coupons WHERE status <> 0;
 TRUNCATE uc_coupons_orders;
 TRUNCATE donations;
+TRUNCATE votingapi_vote;
 
 -- Remove sensitive variables
 DELETE FROM variable WHERE name LIKE '%authnet%';
