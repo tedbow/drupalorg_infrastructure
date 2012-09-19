@@ -38,9 +38,10 @@ ${drush} -v updatedb --interactive
 ${drush} cc all
 
 # Do cck fields migration. (Fieldgroups, etc.)
-${drush} en content_migrate
 ${drush} en field_group
-${drush} content_migrate_fields
+${drush} en content_migrate
+${drush} cc drush
+${drush} content-migrate-fields
 ${drush} dis content_migrate
 ${drush} cc all
 
