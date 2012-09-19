@@ -37,6 +37,16 @@ date
 ${drush} -v updatedb --interactive
 ${drush} cc all
 
+# Do cck fields migration. (Fieldgroups, etc.)
+${drush} en content_migrate
+${drush} en field_group
+${drush} content_migrate_fields
+${drush} dis content_migrate
+${drush} cc all
+
+# Revert features. (disabled until the features are converted to D7.)
+# ${drush} fra
+
 if [ "${uri}" = "localize.7.devdrupal.org" ]; then
   # OG needs to migrate data.
   ${drush} en og_migrate
