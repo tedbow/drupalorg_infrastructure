@@ -23,6 +23,13 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
     # Project Issue and Versioncontrol are not ready yet
     echo "UPDATE system SET status = 0 WHERE name IN ('apachesolr', 'apachesolr_search', 'apachesolr_multisitesearch');"
   ) | ${drush} sql-cli
+
+  # Apply additional speed hacks.
+  patch -d ${webroot} -p0 < staging/drupal7.speedhacks.patch
+
+  # Use a 10x larger batch size for upload update.
+  ${drush} vset upload_update_batch_size 1000
+
 elif [ "${uri}" = "localize.7.devdrupal.org" ]; then
   (
     # OG needs new entity module.
@@ -37,18 +44,27 @@ date
 ${drush} -v updatedb --interactive
 ${drush} cc all
 
-# Do cck fields migration. (Fieldgroups, etc.)
-${drush} en field_group
-${drush} en content_migrate
-${drush} cc drush
-${drush} content-migrate-fields
-${drush} dis content_migrate
-${drush} cc all
 
-# Revert features. (disabled until the features are converted to D7.)
-# ${drush} fra
+if [ "${uri}" = "7.devdrupal.org" ]; then
+  # Roll back the update hacks we applied previously.
+  patch -d ${webroot} -p0 -R < staging/drupal7.speedhacks.patch
 
-if [ "${uri}" = "localize.7.devdrupal.org" ]; then
+  ${drush} vdel upload_update_batch_size
+
+  # Do cck fields migration. (Fieldgroups, etc.)
+  ${drush} en field_group
+  ${drush} en content_migrate
+  # When prod is on 5.4 drush we can use this instead of all.
+  #${drush} cc drush
+  ${drush} cc all
+  ${drush} content-migrate-fields
+  ${drush} dis content_migrate
+  ${drush} cc all
+
+  # Revert features. (disabled until the features are converted to D7.)
+  # ${drush} fra
+
+elif [ "${uri}" = "localize.7.devdrupal.org" ]; then
   # OG needs to migrate data.
   ${drush} en og_migrate
   ${drush} og-migrate
