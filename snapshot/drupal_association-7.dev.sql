@@ -21,6 +21,8 @@ DELETE FROM uc_coupons WHERE status <> 0;
 TRUNCATE uc_coupons_orders;
 TRUNCATE donations;
 TRUNCATE votingapi_vote;
+TRUNCATE profile_value;
+TRUNCATE uc_coupon_purchase_users;
 
 -- Remove sensitive variables
 DELETE FROM variable WHERE name LIKE '%authnet%';
