@@ -23,10 +23,6 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
     # Ported features containing fields that content_migrate touch need to be migrated with the feature disabled to
     # prevent data from going missing. (Presumably.)
     echo "UPDATE system SET status = 0 WHERE name IN ('apachesolr', 'apachesolr_search', 'apachesolr_multisitesearch', 'drupalorg_change_notice');"
-    # Use a 10x larger batch size for upload update.
-    echo "DELETE FROM variable WHERE name = 'upload_update_batch_size';"
-    echo "INSERT INTO variable (name, value) VALUES ('upload_update_batch_size', 'i:1000;');"
-    echo "DELETE FROM cache WHERE cid = 'variables';"
   ) | ${drush} sql-cli
 
 
