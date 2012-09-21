@@ -37,9 +37,6 @@ elif [ "${uri}" = "localize.7.devdrupal.org" ]; then
   ) | ${drush} sql-cli
 fi
 
-# Log time spent in DB population.
-date
-
 # Try updatedb, clear caches.
 ${drush} -v updatedb --interactive
 ${drush} cc all
