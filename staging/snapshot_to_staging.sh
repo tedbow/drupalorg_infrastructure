@@ -26,11 +26,9 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
     # Use a 10x larger batch size for upload update.
     echo "DELETE FROM variable WHERE name = 'upload_update_batch_size';"
     echo "INSERT INTO variable (name, value) VALUES ('upload_update_batch_size', 'i:1000;');"
-    echo "DELETE FROM cache_bootstrap WHERE cid = 'variables';"
+    echo "DELETE FROM cache WHERE cid = 'variables';"
   ) | ${drush} sql-cli
 
-  # Apply additional speed hacks.
-  patch -d ${webroot} -p0 < staging/drupal7.speedhacks.patch
 
 elif [ "${uri}" = "localize.7.devdrupal.org" ]; then
   (
@@ -48,9 +46,6 @@ ${drush} cc all
 
 
 if [ "${uri}" = "7.devdrupal.org" ]; then
-  # Roll back the update hacks we applied previously.
-  patch -d ${webroot} -p0 -R < staging/drupal7.speedhacks.patch
-
   ${drush} vdel upload_update_batch_size
 
   # Do cck fields migration. (Fieldgroups, etc.)
