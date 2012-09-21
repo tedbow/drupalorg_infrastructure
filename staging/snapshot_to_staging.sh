@@ -20,15 +20,17 @@ db=$(${drush} ${type}sql-conf | sed -ne 's/^\s*\[database\] => //p')
 if [ "${uri}" = "7.devdrupal.org" ]; then
   (
     # Apache Solr causes _node_types_build() to be called before node_update_7000().
-    # Project Issue and Versioncontrol are not ready yet
-    echo "UPDATE system SET status = 0 WHERE name IN ('apachesolr', 'apachesolr_search', 'apachesolr_multisitesearch');"
+    # Ported features containing fields that content_migrate touch need to be migrated with the feature disabled to
+    # prevent data from going missing. (Presumably.)
+    echo "UPDATE system SET status = 0 WHERE name IN ('apachesolr', 'apachesolr_search', 'apachesolr_multisitesearch', 'drupalorg_change_notice');"
+    # Use a 10x larger batch size for upload update.
+    echo "DELETE FROM variable WHERE name = 'upload_update_batch_size';"
+    echo "INSERT INTO variable (name, value) VALUES ('upload_update_batch_size', 'i:1000;');"
+    echo "DELETE FROM cache_bootstrap WHERE cid = 'variables';"
   ) | ${drush} sql-cli
 
   # Apply additional speed hacks.
   patch -d ${webroot} -p0 < staging/drupal7.speedhacks.patch
-
-  # Use a 10x larger batch size for upload update.
-  ${drush} vset upload_update_batch_size 1000
 
 elif [ "${uri}" = "localize.7.devdrupal.org" ]; then
   (
@@ -54,12 +56,16 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   # Do cck fields migration. (Fieldgroups, etc.)
   ${drush} en field_group
   ${drush} en content_migrate
+  # Hack to try and convince drush to recognize the new commands.
+  ${drush} dis content_migrate
+  ${drush} en content_migrate
   # When prod is on 5.4 drush we can use this instead of all.
   #${drush} cc drush
   ${drush} cc all
   ${drush} content-migrate-fields
   ${drush} dis content_migrate
   ${drush} cc all
+  ${drush} en drupalorg_change_notice
 
   # Revert features. (disabled until the features are converted to D7.)
   # ${drush} fra
