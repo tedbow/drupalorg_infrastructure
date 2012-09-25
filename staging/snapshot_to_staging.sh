@@ -50,9 +50,10 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   ${drush} content-migrate-fields
   ${drush} dis content_migrate
   ${drush} cc all
-  ${drush} en drupalorg_change_notice
 
-  # Revert features. (disabled until the features are converted to D7.)
+  # Re-enable & revert features. (disabled until the features are converted to
+  # D7.)
+  # ${drush} en drupalorg_change_notice
   # ${drush} fra
 
 elif [ "${uri}" = "localize.7.devdrupal.org" ]; then
