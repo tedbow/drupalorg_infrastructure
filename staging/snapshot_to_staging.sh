@@ -37,10 +37,7 @@ fi
 ${drush} -v updatedb --interactive
 ${drush} cc all
 
-
 if [ "${uri}" = "7.devdrupal.org" ]; then
-  ${drush} vdel upload_update_batch_size
-
   # Do cck fields migration. (Fieldgroups, etc.)
   ${drush} en field_group
   ${drush} en content_migrate
