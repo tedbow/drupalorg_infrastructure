@@ -51,10 +51,26 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   ${drush} dis content_migrate
   ${drush} cc all
 
+  # Enable features for reverting
+  ${drush} fr drupalorg_change_notice
+  ${drush} cc all
+  # Do another updb to run the updates in the features.
+  # This is mainly to fixup nodereference fields, etc.
+  ${drush} -v updatedb --interactive
+
   # Re-enable & revert features. (disabled until the features are converted to
   # D7.)
   # ${drush} en drupalorg_change_notice
   # ${drush} fra
+
+  # Do project issue import
+  ${drush} mi ProjectIssueFixInitFiles
+  ${drush} mi ProjectIssueRethreadIssueFollowups
+  ${drush} mi ProjectIssueFixGenericCorruption
+  ${drush} mi ProjectIssueTimelinePhaseOne
+  ${drush} mi ProjectIssueTimelinePhaseTwo
+  ${drush} mi ProjectIssueTimelinePhaseThree
+  ${drush} mi ProjectIssuePhaseTwo
 
 elif [ "${uri}" = "localize.7.devdrupal.org" ]; then
   # OG needs to migrate data.
