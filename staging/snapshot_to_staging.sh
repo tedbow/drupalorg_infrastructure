@@ -22,7 +22,7 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
     # Apache Solr causes _node_types_build() to be called before node_update_7000().
     # Ported features containing fields that content_migrate touch need to be migrated with the feature disabled to
     # prevent data from going missing. (Presumably.)
-    echo "UPDATE system SET status = 0 WHERE name IN ('apachesolr', 'apachesolr_search', 'apachesolr_multisitesearch', 'drupalorg_change_notice');"
+    echo "UPDATE system SET status = 0 WHERE name IN ('apachesolr', 'apachesolr_search', 'apachesolr_multisitesearch');"
     # Officially associate the "Projects" vocabulary with projects -- it was being altered in in a hacky way, and taxonomy upgrade
     # thought it was unused.
     echo "INSERT IGNORE INTO vocabulary_node_types (vid, type) VALUES (3, 'project_project');"
@@ -53,13 +53,6 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   ${drush} content-migrate-fields
   ${drush} dis content_migrate
   ${drush} cc all
-
-  # Enable features for reverting
-  ${drush} fr drupalorg_change_notice
-  ${drush} cc all
-  # Do another updb to run the updates in the features.
-  # This is mainly to fixup nodereference fields, etc.
-  ${drush} -v updatedb --interactive
 
   # Re-enable & revert features. (disabled until the features are converted to
   # D7.)
