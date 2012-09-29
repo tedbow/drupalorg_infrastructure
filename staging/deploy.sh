@@ -6,6 +6,6 @@ cd ${webroot}
 bzr up
 
 # updatedb, clear and prime caches.
-${drush} updatedb --interactive
+${drush} -v updatedb --interactive
 ${drush} cc all
 wget -O /dev/null http://${uri} --user=drupal --password=drupal
