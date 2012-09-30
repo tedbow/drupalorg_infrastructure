@@ -52,7 +52,6 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   #${drush} cc drush
   ${drush} cc all
   ${drush} content-migrate-fields
-  ${drush} dis content_migrate
   ${drush} cc all
 
   # Re-enable & revert features. (disabled until the features are converted to
@@ -68,6 +67,8 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   ${drush} mi ProjectIssueTimelinePhaseTwo
   ${drush} mi ProjectIssueTimelinePhaseThree
   ${drush} mi ProjectIssuePhaseTwo
+
+  ${drush} dis content_migrate
 
 elif [ "${uri}" = "localize.7.devdrupal.org" ]; then
   # OG needs to migrate data.
