@@ -60,6 +60,9 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   # ${drush} fra
 
   # Do project issue import
+  ${drush} en migrate_ui
+  ${drush} cc all
+  ${drush} ms
   ${drush} mi ProjectIssueFixInitFiles
   ${drush} mi ProjectIssueRethreadIssueFollowups
   ${drush} mi ProjectIssueFixGenericCorruption
