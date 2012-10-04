@@ -65,11 +65,11 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   ${drush} ms
   ${drush} mi ProjectIssueFixInitFiles
   ${drush} mi ProjectIssueRethreadIssueFollowups
-  ${drush} mi ProjectIssueFixGenericCorruption
   ${drush} mi ProjectIssueTimelinePhaseOne
   ${drush} mi ProjectIssueTimelinePhaseTwo
   ${drush} mi ProjectIssueTimelinePhaseThree
   ${drush} mi ProjectIssuePhaseTwo
+  ${drush} mi ProjectIssueFixGenericCorruption
 
   ${drush} dis content_migrate
 
