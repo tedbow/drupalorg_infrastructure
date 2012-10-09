@@ -70,7 +70,11 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   ${drush} mi ProjectIssueTimelinePhaseOne
   ${drush} mi ProjectIssueTimelinePhaseTwo
   ${drush} mi ProjectIssueTimelinePhaseThree
-  ${drush} mi ProjectIssuePhaseTwo
+  ${drush} mi ProjectIssueAllocateVidsMigration
+  ${drush} mi ProjectIssueAllocateCidsMigration
+  ${drush} mi ProjectIssueRebuildCommentFieldsMigration
+  ${drush} mi ProjectIssueRebuildNodeFieldsMigration
+  #${drush} mi ProjectIssuePhaseTwo
   ${drush} mi ProjectIssueFixGenericCorruption
 
   ${drush} dis content_migrate
