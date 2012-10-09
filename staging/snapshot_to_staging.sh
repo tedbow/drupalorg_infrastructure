@@ -37,8 +37,8 @@ elif [ "${uri}" = "localize.7.devdrupal.org" ]; then
 fi
 
 # Try updatedb, clear caches.
-#${drush} -v updatedb --interactive
-${drush} -v updatedb --interactive || echo "SOME UPDATES FAILED BUT CONTINUING ANYWAY!!!!!!"
+${drush} -v updatedb --interactive
+#${drush} -v updatedb --interactive || echo "SOME UPDATES FAILED BUT CONTINUING ANYWAY!!!!!!"
 ${drush} cc all
 
 if [ "${uri}" = "7.devdrupal.org" ]; then
