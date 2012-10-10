@@ -70,10 +70,10 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   ${drush} mi ProjectIssueTimelinePhaseOne
   ${drush} mi ProjectIssueTimelinePhaseTwo
   ${drush} mi ProjectIssueTimelinePhaseThree
-  ${drush} mi ProjectIssueAllocateVidsMigration
-  ${drush} mi ProjectIssueAllocateCidsMigration
-  ${drush} mi ProjectIssueRebuildCommentFieldsMigration
-  ${drush} mi ProjectIssueRebuildNodeFieldsMigration
+  ${drush} mi ProjectIssueAllocateVids
+  ${drush} mi ProjectIssueAllocateCids
+  ${drush} mi ProjectIssueRebuildCommentFields
+  ${drush} mi ProjectIssueRebuildNodeFields
   #${drush} mi ProjectIssuePhaseTwo
   ${drush} mi ProjectIssueFixGenericCorruption
 
