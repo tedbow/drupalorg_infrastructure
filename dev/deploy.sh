@@ -35,6 +35,11 @@ if [ "${site}" == "saopaulo2012" -o "${site}" == "sydney2013" -o "${site}" == "p
   repository="drupalcon-7"
 fi
 
+# Sites migrated to D7.
+if [ "${site}" == "association" ]; then
+  repository="${repository}-7"
+fi
+
 export TERM=dumb
 drush="drush -r ${web_path}/htdocs -y"
 db_pass=$(pwgen -s 16 1)
