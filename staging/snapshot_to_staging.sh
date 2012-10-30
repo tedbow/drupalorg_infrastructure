@@ -27,6 +27,10 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
     # Ported features containing fields that content_migrate touch need to be migrated with the feature disabled to
     # prevent data from going missing. (Presumably.)
     echo "UPDATE system SET status = 0 WHERE name IN ('apachesolr', 'apachesolr_search', 'apachesolr_multisitesearch', 'features');"
+    # Apachesolr 6.x-3.x doesn't need updates through 7015 since they have
+    # already been done. Remove when http://drupal.org/node/1827320 lands in
+    # BZR.
+    echo "UPDATE system SET schema_version = 7015 WHERE name = 'apachesolr';"
     # Officially associate the "Projects" vocabulary with projects -- it was being altered in in a hacky way, and taxonomy upgrade
     # thought it was unused.
     echo "INSERT IGNORE INTO vocabulary_node_types (vid, type) VALUES (3, 'project_project');"
