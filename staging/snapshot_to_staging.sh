@@ -9,15 +9,15 @@ db=$(${drush} ${type}sql-conf | sed -ne 's/^\s*\[database\] => //p')
 [ "${snapshot-}" ] || snapshot=$(echo ${uri} | sed -e 's/\..*$//')
 
 # If a snapshot type has been designated, use that. Otherwise, default to
-# the 'current' snapshot.
-[ "${snaptype-}" ] || snaptype=current
+# the 'staging' snapshot.
+[ "${snaptype-}" ] || snaptype=staging
 
 # Clear out the DB and import a snapshot.
 (
   echo "DROP DATABASE ${db};"
   echo "CREATE DATABASE ${db};"
   echo "USE ${db};"
-  ssh util cat "/var/dumps/mysql/${snapshot}_database_snapshot.staging-${snaptype}.sql.bz2" | bunzip2
+  ssh util cat "/var/dumps/mysql/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2" | bunzip2
 ) | ${drush} ${type}sql-cli
 
 # Extra preparation for D7.
