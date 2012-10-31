@@ -25,7 +25,7 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   (
     # Ported features containing fields that content_migrate touch need to be migrated with the feature disabled to
     # prevent data from going missing. (Presumably.)
-    echo "UPDATE system SET status = 0 WHERE name = 'features';"
+    echo "UPDATE system SET status = 0 WHERE name IN ('project_solr', 'drupalorg_search', 'features');"
     # Apachesolr 6.x-3.x doesn't need updates through 7015 since they have
     # already been done. Remove when http://drupal.org/node/1827320 lands in
     # BZR.
