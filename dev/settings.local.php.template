@@ -14,12 +14,8 @@ $databases['default']['default'] = array(
 $base_url = 'http://NAME-SITE.redesign.devdrupal.org';
 $cookie_domain = 'redesign.devdrupal.org';
 
-$conf += array(
-  'apachesolr_read_only' => 1,  // read-only Solr access
-  'apachesolr_host' => 'stagingsolr.drupal.org',
-  'apachesolr_port' => '8080',
-  'apachesolr_path' => '/solr',
-);
+$conf['apachesolr_read_only'] = 1;
+$conf['apachesolr_environments']['solr']['url'] = 'http://stagingsolr.drupal.org:8112/solr/do-staging';
 
 $conf['drupalorg_site_status'] = 'This is a <a href="http://drupal.org/node/1018084">development site</a>.';
 
