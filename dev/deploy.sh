@@ -73,6 +73,8 @@ chgrp -R developers "${web_path}"
 
 # Import database
 ssh util cat "${snapshot}" | bunzip2 | mysql "${db_name}"
+# InnoDB handles the url alias table much faster.
+echo "ALTER TABLE url_alias ENGINE InnoDB;" | ${drush} sql-cli
 
 # Disable modules that don't work well in development (yet)
 ${drush} pm-disable paranoia
