@@ -23,10 +23,9 @@ db=$(${drush} ${type}sql-conf | sed -ne 's/^\s*\[database\] => //p')
 # Extra preparation for D7.
 if [ "${uri}" = "7.devdrupal.org" ]; then
   (
-    # Apache Solr causes _node_types_build() to be called before node_update_7000().
     # Ported features containing fields that content_migrate touch need to be migrated with the feature disabled to
     # prevent data from going missing. (Presumably.)
-    echo "UPDATE system SET status = 0 WHERE name IN ('apachesolr', 'apachesolr_search', 'apachesolr_multisitesearch', 'features');"
+    echo "UPDATE system SET status = 0 WHERE name = 'features';"
     # Apachesolr 6.x-3.x doesn't need updates through 7015 since they have
     # already been done. Remove when http://drupal.org/node/1827320 lands in
     # BZR.
