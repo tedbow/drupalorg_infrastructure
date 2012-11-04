@@ -61,7 +61,7 @@ clear_tmp
 
 # Copy live to tmp.
 mysqldump -h$db_host -u$db_user -p$db_pass --single-transaction $db_name 2> mysqldump-errors.txt | mysql -o ${tmp_args}
-[ -s mysqldump-errors.txt ] && cat mysql-errors.txt && exit 1
+[ -s mysqldump-errors.txt ] && cat mysqldump-errors.txt && exit 1
 
 # Truncate all tables with cache in the name.
 echo "SHOW TABLES LIKE '%cache%';" | mysql -o ${tmp_args} | tail -n +2 | sed -e "s/^\(.*\)$/TRUNCATE \1;/" | mysql -o ${tmp_args}
