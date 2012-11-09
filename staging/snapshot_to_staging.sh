@@ -82,6 +82,9 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
 
   ${drush} dis content_migrate
 
+  # https://drupal.org/node/1830028
+  ${drush} association-members || echo "Association members failed but continuing anyway!"
+
 elif [ "${uri}" = "localize.7.devdrupal.org" ]; then
   # OG needs to migrate data.
   ${drush} en og_migrate
