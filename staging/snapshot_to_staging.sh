@@ -83,6 +83,8 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
 
   ${drush} dis content_migrate
 
+  ${drush} en conflict
+
   # https://drupal.org/node/1830028
   ${drush} association-members || echo "Association members failed but continuing anyway!"
 
