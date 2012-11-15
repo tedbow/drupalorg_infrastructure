@@ -15,7 +15,13 @@ $base_url = 'http://NAME-SITE.redesign.devdrupal.org';
 $cookie_domain = 'redesign.devdrupal.org';
 
 $conf['apachesolr_read_only'] = 1;
-$conf['apachesolr_environments']['solr']['url'] = 'http://stagingsolr.drupal.org:8112/solr/do-staging';
+// Switch solr location based on core version.
+if (version_compare(VERSION, '7.0', '>=')) {
+  $conf['apachesolr_environments']['solr']['url'] = 'http://stagingsolr.drupal.org:8112/solr/do-staging-7';
+}
+else {
+  $conf['apachesolr_environments']['solr']['url'] = 'http://stagingsolr.drupal.org:8112/solr/do-staging';
+}
 
 $conf['drupalorg_site_status'] = 'This is a <a href="http://drupal.org/node/1018084">development site</a>.';
 
