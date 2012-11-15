@@ -90,6 +90,11 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   # https://drupal.org/node/1830028
   ${drush} association-members || echo "Association members failed but continuing anyway!"
 
+  # Reenable drupal.org search.
+  ${drush} en drupalorg_search
+  # Force the system to notice the facets.
+  ${drush} cc all
+
 elif [ "${uri}" = "localize.7.devdrupal.org" ]; then
   # OG needs to migrate data.
   ${drush} en og_migrate
