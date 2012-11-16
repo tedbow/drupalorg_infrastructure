@@ -30,8 +30,6 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
     # Officially associate the "Projects" vocabulary with projects -- it was being altered in in a hacky way, and taxonomy upgrade
     # thought it was unused.
     echo "INSERT IGNORE INTO vocabulary_node_types (vid, type) VALUES (3, 'project_project');"
-    # We've got a weird duplicate file error; manually dropping it here so we don't have to wait for a new snapshot. (TEMPORARY)
-    echo "DELETE FROM files WHERE fid in (4331766, 4331764);"
   ) | ${drush} sql-cli
 
 
