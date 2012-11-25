@@ -35,3 +35,6 @@ if [ "${site}" != "- do not merge to a site -" ]; then
     bzr commit -m "Automatic join from ${project} ${vendor_version}. ${message-}"
   fi
 fi
+
+# Clean up workspace
+rm -rfv *
