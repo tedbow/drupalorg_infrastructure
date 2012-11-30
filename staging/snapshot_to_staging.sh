@@ -55,6 +55,11 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   # When prod is on 5.4 drush we can use this instead of all.
   #${drush} cc drush
   ${drush} cc all
+
+  # Show current status for debugging purposes.
+  ${drush} content-migrate-status
+
+  # Migrate all fields.
   ${drush} content-migrate-fields
   ${drush} cc all
 
