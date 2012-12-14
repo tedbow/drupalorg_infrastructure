@@ -17,7 +17,7 @@ if [ "${cc_theme-}" = "true" ]; then
   ${drush} cc "theme registry"
 fi
 if [ "${cc_cssjs-}" = "true" ]; then
-  ${drush} cc "css+js"
+  ${drush} cc "css-js"
 fi
 if [ "${cc_all-}" = "true" ]; then
   ${drush} cc "all"
