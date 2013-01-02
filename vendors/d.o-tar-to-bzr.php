@@ -111,16 +111,19 @@ if ($rval == 0) {
   exit(0);
 }
 
+// Import to vendor checkout.
 _d_o_passthru("bzr import $project bzr-vendor");
 chdir('bzr-vendor');
 _d_o_passthru('bzr commit -m"Import from tarball: ' . $tarball_name .'"');
+chdir('..');
 
-// ------------------------------------------------------------
-// Helper functions
-// ------------------------------------------------------------
+// Clean up workspace.
+_d_o_passthru('rm -rf ' . $project);
+_d_o_passthru('rm -rf bzr-vendor');
+
 
 /**
- * 
+ * Helper function for outputting command and output, and exiting on failiure.
  */
 function _d_o_passthru($cmd) {
   $rval = 0;

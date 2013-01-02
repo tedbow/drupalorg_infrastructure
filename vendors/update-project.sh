@@ -14,7 +14,7 @@ vendor="/srv/bzr/vendor/${project}/${vendor_version}"
 # Optionally merge to a site.
 if [ "${site}" != "- do not merge to a site -" ]; then
   # Clear out any old checkout and make a fresh one.
-  rm -rf ${site}
+  rm -rf "${site}"
   bzr co /srv/bzr/${site}/
   cd ${site}
 
@@ -37,7 +37,5 @@ if [ "${site}" != "- do not merge to a site -" ]; then
 
   # Clean up workspace
   cd ..
-  rm -rfv "${site}"
+  rm -rf "${site}"
 fi
-
-rm -rfv "${project}"
