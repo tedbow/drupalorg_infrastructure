@@ -77,7 +77,7 @@ if (!$have_tarball) {
   }
 }
 
-_d_o_cleanup();
+_d_o_cleanup($project);
 
 // Extract the tarball.
 _d_o_passthru('tar -zxvf ' . $tarball_path);
@@ -108,7 +108,7 @@ $rval = 0;
 passthru("diff -rqI'^\(datestamp = \|; Information added by d.o-cvs-to-bzr\)' -x .bzr bzr-vendor $project", $rval);
 if ($rval == 0) {
   print "No changes, exiting.\n";
-  _d_o_cleanup();
+  _d_o_cleanup($project);
   exit(0);
 }
 
@@ -118,13 +118,13 @@ chdir('bzr-vendor');
 _d_o_passthru('bzr commit -m"Import from tarball: ' . $tarball_name .'"');
 chdir('..');
 
-_d_o_cleanup();
+_d_o_cleanup($project);
 
 
 /**
  * Clean up workspace.
  */
-function _d_o_cleanup() {
+function _d_o_cleanup($project) {
   _d_o_passthru('rm -rf bzr-vendor ' . $project);
 }
 
