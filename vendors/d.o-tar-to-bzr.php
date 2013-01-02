@@ -77,8 +77,9 @@ if (!$have_tarball) {
   }
 }
 
+_d_o_cleanup();
+
 // Extract the tarball.
-_d_o_passthru('rm -rf ' . $project);
 _d_o_passthru('tar -zxvf ' . $tarball_path);
 if (file_exists($project . '-' . $version)) {
   // Core extracts with the version string.
@@ -100,7 +101,6 @@ $bzr_url = isset($bzr_root) ? $bzr_root : '';
 $bzr_url .= "/srv/bzr/vendor/$bzr_root/$project/$major_id";
 
 passthru("bzr init --create-prefix $bzr_url");
-_d_o_passthru("rm -rf bzr-vendor");
 _d_o_passthru("bzr checkout $bzr_url bzr-vendor");
 
 // Check for differences
@@ -108,6 +108,7 @@ $rval = 0;
 passthru("diff -rqI'^\(datestamp = \|; Information added by d.o-cvs-to-bzr\)' -x .bzr bzr-vendor $project", $rval);
 if ($rval == 0) {
   print "No changes, exiting.\n";
+  _d_o_cleanup();
   exit(0);
 }
 
@@ -117,10 +118,15 @@ chdir('bzr-vendor');
 _d_o_passthru('bzr commit -m"Import from tarball: ' . $tarball_name .'"');
 chdir('..');
 
-// Clean up workspace.
-_d_o_passthru('rm -rf ' . $project);
-_d_o_passthru('rm -rf bzr-vendor');
+_d_o_cleanup();
 
+
+/**
+ * Clean up workspace.
+ */
+function _d_o_cleanup() {
+  _d_o_passthru('rm -rf bzr-vendor ' . $project);
+}
 
 /**
  * Helper function for outputting command and output, and exiting on failiure.
