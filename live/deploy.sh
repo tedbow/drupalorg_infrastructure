@@ -14,7 +14,7 @@ if [ "${cc_menu-}" = "true" ]; then
   ${drush} cc "menu"
 fi
 if [ "${cc_theme-}" = "true" ]; then
-  ${drush} cc "theme registry"
+  ${drush} cc "theme-registry"
 fi
 if [ "${cc_cssjs-}" = "true" ]; then
   ${drush} cc "css-js"
