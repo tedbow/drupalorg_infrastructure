@@ -40,6 +40,9 @@ elif [ "${uri}" = "localize.7.devdrupal.org" ]; then
   ) | ${drush} sql-cli
 fi
 
+# We do not have https on staging.
+${drush} pm-disable securepages
+
 # Try updatedb, clear caches.
 ${drush} -v updatedb --interactive
 #${drush} -v updatedb --interactive || echo "SOME UPDATES FAILED BUT CONTINUING ANYWAY!!!!!!"
