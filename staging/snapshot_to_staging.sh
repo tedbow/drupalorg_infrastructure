@@ -40,9 +40,6 @@ elif [ "${uri}" = "localize.7.devdrupal.org" ]; then
   ) | ${drush} sql-cli
 fi
 
-# We do not have https on staging.
-${drush} pm-disable securepages
-
 # Try updatedb, clear caches.
 ${drush} -v updatedb --interactive
 #${drush} -v updatedb --interactive || echo "SOME UPDATES FAILED BUT CONTINUING ANYWAY!!!!!!"
@@ -161,6 +158,9 @@ elif [ "${uri}" = "localize.7.devdrupal.org" ]; then
   ${drush} og-migrate
   ${drush} dis og_migrate
 fi
+
+# We do not have https on staging.
+${drush} pm-disable securepages
 
 # Prime caches for home page and make sure site is basically working.
 wget -O /dev/null http://${uri} --user=drupal --password=drupal
