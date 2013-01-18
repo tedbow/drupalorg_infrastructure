@@ -79,6 +79,7 @@ echo "ALTER TABLE url_alias ENGINE InnoDB;" | ${drush} sql-cli
 # Disable modules that don't work well in development (yet)
 ${drush} pm-disable paranoia
 ${drush} pm-disable civicrm
+${drush} pm-disable securepages
 
 # Link up the files directory
 ln -s /media/${fqdn} "${web_path}/htdocs/$(${drush} status | sed -ne 's/^ *File directory path *: *\([^ ]*\).*$/\1/p')"
