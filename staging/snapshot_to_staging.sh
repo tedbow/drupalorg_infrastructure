@@ -154,7 +154,7 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
 
 elif [ "${uri}" = "localize.7.devdrupal.org" ]; then
   # OG needs to migrate data.
-  ${drush} en og_migrate
+  ${drush} en og_ui og_migrate
   ${drush} og-migrate
   ${drush} dis og_migrate
 fi
