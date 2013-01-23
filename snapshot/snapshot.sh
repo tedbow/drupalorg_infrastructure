@@ -60,6 +60,9 @@ clear_tmp
 mysqldump -h$db_host -u$db_user -p$db_pass --single-transaction --quick $db_name 2> mysqldump-errors.txt | mysql -o ${tmp_args}
 [ -s mysqldump-errors.txt ] && cat mysqldump-errors.txt && exit 1
 
+# Save a copy of the schema.
+mysqldump --single-transaction --quick ${tmp_args} -d --compact --skip-opt > "schema.mysql"
+
 # Truncate all tables with cache in the name.
 echo "SHOW TABLES LIKE '%cache%';" | mysql -o ${tmp_args} | tail -n +2 | sed -e "s/^\(.*\)$/TRUNCATE \1;/" | mysql -o ${tmp_args}
 echo "SHOW TABLES LIKE 'civicrm_export_temp%';" | mysql -o ${tmp_args} | tail -n +2 | sed -e "s/^\(.*\)$/TRUNCATE \1;/" | mysql -o ${tmp_args}
