@@ -61,7 +61,7 @@ mysqldump -h$db_host -u$db_user -p$db_pass --single-transaction --quick $db_name
 [ -s mysqldump-errors.txt ] && cat mysqldump-errors.txt && exit 1
 
 # Save a copy of the schema.
-mysqldump --single-transaction --quick ${tmp_args} -d --compact --skip-opt > "schema.mysql"
+mysqldump --single-transaction --quick ${tmp_args} -d --compact --skip-opt > "${WORKSPACE}/schema.mysql"
 
 # Truncate all tables with cache in the name.
 echo "SHOW TABLES LIKE '%cache%';" | mysql -o ${tmp_args} | tail -n +2 | sed -e "s/^\(.*\)$/TRUNCATE \1;/" | mysql -o ${tmp_args}
