@@ -20,7 +20,7 @@ DELETE og_membership FROM og_membership LEFT JOIN node ON node.nid = og_membersh
 DELETE og_membership FROM og_membership LEFT JOIN users ON og_membership.etid = users.uid AND og_membership.entity_type = 'user' WHERE users.uid IS NULL;
 DELETE og_users_roles FROM og_users_roles LEFT JOIN og ON og.gid = og_users_roles.gid WHERE og.gid IS NULL;
 DELETE og_users_roles_group FROM og_users_roles_group LEFT JOIN og ON og.gid = og_users_roles_group.gid WHERE og.gid IS NULL;
-DELETE d6_og FROM d6_og LEFT JOIN node ON node.nid = d6_og.etid AND d6_og.entity_type = 'node' WHERE node.nid IS NULL;
+DELETE d6_og FROM d6_og LEFT JOIN node ON node.nid = d6_og.nid WHERE node.nid IS NULL;
 DELETE d6_og_users_roles FROM d6_og_users_roles LEFT JOIN og ON og.gid = d6_og_users_roles.gid WHERE og.gid IS NULL;
 
 -- Get rid of the most of the l10n_server projects to reduce data size.
