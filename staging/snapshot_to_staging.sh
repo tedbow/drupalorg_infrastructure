@@ -153,10 +153,18 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   ${drush} cc all
 
 elif [ "${uri}" = "localize.7.devdrupal.org" ]; then
-  # OG needs to migrate data.
-  ${drush} en og_context og_ui og_migrate
-  ${drush} og-migrate
-  ${drush} dis og_migrate
+  # Enable required modules.
+  ${drush} en og_context og_ui migrate
+
+  # Display a birdview of OG migration and migrate data.
+  ${drush} ms
+  ${drush} mi --all
+
+  # Revert view og_members_ldo.
+  ${drush} views-revert og_members_ldo
+
+  # Disable Migrate once migration is done.
+  ${drush} dis migrate
 fi
 
 # We do not have https on staging.
