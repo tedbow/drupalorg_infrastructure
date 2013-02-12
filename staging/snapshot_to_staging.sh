@@ -163,4 +163,4 @@ fi
 ${drush} pm-disable securepages
 
 # Prime caches for home page and make sure site is basically working.
-wget -O /dev/null http://${uri} --user=drupal --password=drupal
+test_site
