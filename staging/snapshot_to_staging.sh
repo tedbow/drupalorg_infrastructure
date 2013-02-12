@@ -167,8 +167,5 @@ elif [ "${uri}" = "localize.7.devdrupal.org" ]; then
   ${drush} dis migrate
 fi
 
-# We do not have https on staging.
-${drush} pm-disable securepages
-
 # Prime caches for home page and make sure site is basically working.
 test_site
