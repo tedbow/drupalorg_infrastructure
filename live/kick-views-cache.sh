@@ -10,7 +10,10 @@
 # Check if the hosting page returns an error. This is the
 # most-frequently-noticed problem page. We are assuming this will catch
 # problems with other pages.
-if ! curl -f 'http://drupal.org/hosting' > /dev/null; then
+if ! (
+  curl --fail 'http://drupal.org/hosting' &&
+  curl --fail 'http://drupal.org/packaging-whitelist/json'
+) > /dev/null; then
   # Clear views cache
   ${drush} cc views
   # Exit with an error so Jenkins can keep a record of problems.
