@@ -9,8 +9,9 @@ set -uex
 # when this happens.
 status=24
 while [ ${status} = 24 ]; do
-  rsync -av --exclude=tmp/ /var/www/drupal.org/htdocs/files/ /var/www/staging.devdrupal.org/htdocs/files/
-  status=$?
+  # Reset status and use || to catch failure before set -e.
+  status=0
+  rsync -av --exclude=tmp/ /var/www/drupal.org/htdocs/files/ /var/www/staging.devdrupal.org/htdocs/files/ || status=$?
 done
 
 exit ${status}
