@@ -16,8 +16,8 @@ DELETE comment FROM comment LEFT JOIN node ON node.nid = comment.nid WHERE node.
 DELETE comment FROM comment LEFT JOIN users ON comment.uid = users.uid WHERE users.uid IS NULL;
 DELETE comment FROM comment LEFT JOIN comment c2 ON comment.pid = c2.cid WHERE c2.cid IS NULL AND comment.pid <> 0;
 DELETE og FROM og LEFT JOIN node ON node.nid = og.etid AND og.entity_type = 'node' WHERE node.nid IS NULL;
-DELETE og_membership FROM og_membership LEFT JOIN node ON node.nid = og_membership.etid AND og_membership.group_type = 'node' WHERE node.nid IS NULL;
-DELETE og_membership FROM og_membership LEFT JOIN users ON og_membership.etid = users.uid AND og_membership.entity_type = 'user' WHERE users.uid IS NULL;
+DELETE og_membership FROM og_membership LEFT JOIN node ON node.nid = og_membership.gid AND og_membership.group_type = 'node' WHERE node.nid IS NULL;
+DELETE og_membership FROM og_membership LEFT JOIN users ON users.uid = og_membership.etid AND og_membership.entity_type = 'user' WHERE users.uid IS NULL;
 DELETE og_users_roles FROM og_users_roles LEFT JOIN og ON og.gid = og_users_roles.gid WHERE og.gid IS NULL;
 DELETE og_users_roles_group FROM og_users_roles_group LEFT JOIN og ON og.gid = og_users_roles_group.gid WHERE og.gid IS NULL;
 DELETE d6_og FROM d6_og LEFT JOIN node ON node.nid = d6_og.nid WHERE node.nid IS NULL;
