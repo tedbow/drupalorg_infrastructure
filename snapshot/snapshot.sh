@@ -52,13 +52,19 @@ tmp_pass=$4
 tmp_host=db3-vip.drupal.org
 tmp_args="-h${tmp_host} -u${tmp_user} -p${tmp_pass} ${tmp_db}"
 
-ln -sf /var/dumps $WORKSPACE/dumps
-
 clear_tmp
 
-# Copy live to tmp.
-mysqldump -h$db_host -u$db_user -p$db_pass --single-transaction --quick $db_name 2> mysqldump-errors.txt | mysql -o ${tmp_args}
-[ -s mysqldump-errors.txt ] && cat mysqldump-errors.txt && exit 1
+# Make a copy of live.
+mysqldump -h$db_host -u$db_user -p$db_pass --single-transaction --quick $db_name 2> "${WORKSPACE}/mysqldump-errors.txt" | gzip > "${WORKSPACE}/tmp.mysql.gz"
+# Check for errors.
+if [ -s "${WORKSPACE}/mysqldump-errors.txt" ]; then
+  rm "${WORKSPACE}/tmp.mysql.gz"
+  cat "${WORKSPACE}/mysqldump-errors.txt"
+  exit 1
+fi
+# Copy live to tmp database.
+gunzip < "${WORKSPACE}/tmp.mysql.gz" | mysql -o ${tmp_args}
+rm "${WORKSPACE}/tmp.mysql.gz"
 
 # Save a copy of the schema.
 mysqldump --single-transaction --quick ${tmp_args} -d --compact --skip-opt > "${WORKSPACE}/schema.mysql"
