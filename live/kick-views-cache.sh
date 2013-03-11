@@ -12,6 +12,7 @@
 # problems with other pages.
 if ! (
   curl --fail 'http://drupal.org/hosting' &&
+  curl --fail 'http://drupal.org/documentation/manage' &&
   curl --fail 'http://drupal.org/packaging-whitelist/json'
 ) > /dev/null; then
   # Clear views cache
