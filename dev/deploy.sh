@@ -36,7 +36,7 @@ if [ "${site}" == "saopaulo2012" -o "${site}" == "sydney2013" -o "${site}" == "p
 fi
 
 # Sites migrated to D7.
-if [ "${site}" == "association" ]; then
+if [ "${site}" == "association" -o "${site}" == "api" ]; then
   repository="${repository}-7"
 fi
 
