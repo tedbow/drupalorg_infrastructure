@@ -165,6 +165,10 @@ elif [ "${uri}" = "localize.7.devdrupal.org" ]; then
 
   # Disable Migrate once migration is done.
   ${drush} dis migrate
+
+elif echo "${uri}" | grep -q ".civicrm.devdrupal.org$"; then
+  # CiviCRM dev sites do not have bakery set up.
+  ${drush} pm-disable bakery
 fi
 
 # Prime caches for home page and make sure site is basically working.
