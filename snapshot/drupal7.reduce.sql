@@ -54,8 +54,8 @@ DELETE project_issue_comments FROM project_issue_comments LEFT JOIN comment ON c
 DELETE field_data_body FROM field_data_body LEFT JOIN node_revision ON node_revision.vid = field_data_body.revision_id WHERE node_revision.vid IS NULL;
 DELETE field_revision_body FROM field_revision_body LEFT JOIN node_revision ON node_revision.vid = field_revision_body.revision_id WHERE node_revision.vid IS NULL;
 DELETE field_data_comment_body FROM field_data_comment_body LEFT JOIN comment ON comment.cid = field_data_comment_body.entity_id WHERE comment.cid IS NULL;
-DELETE field_data_field_issue_changes FROM field_data_field_issue_changes LEFT JOIN node_revision ON node_revision.vid = field_data_field_issue_changes.revision_id WHERE node_revision.vid IS NULL;
-DELETE field_revision_field_issue_changes FROM field_revision_field_issue_changes LEFT JOIN node_revision ON node_revision.vid = field_revision_field_issue_changes.revision_id WHERE node_revision.vid IS NULL;
+DELETE field_data_field_issue_changes FROM field_data_field_issue_changes LEFT JOIN comment ON comment.cid = field_data_field_issue_changes.entity_id WHERE comment.cid IS NULL;
+DELETE field_revision_field_issue_changes FROM field_revision_field_issue_changes LEFT JOIN field_data_field_issue_changes ON field_data_field_issue_changes.entity_id = field_revision_field_issue_changes.entity_id WHERE field_data_field_issue_changes.entity_id IS NULL;
 DELETE field_revision_field_issue_files FROM field_revision_field_issue_files LEFT JOIN node_revision ON node_revision.vid = field_revision_field_issue_files.revision_id WHERE node_revision.vid IS NULL;
 
 DELETE FROM versioncontrol_operations WHERE author_date < (unix_timestamp() - 60*24*60*60);
