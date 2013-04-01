@@ -18,7 +18,7 @@ drush -r /var/www/drupal.org/htdocs -l drupal.org sql-cli > /var/www/association
   FROM node n
   INNER JOIN term_node tn ON tn.vid = n.vid INNER JOIN term_data td ON td.tid = tn.tid AND td.name = 'Drupal.org D7'
   INNER JOIN project_issues pi ON pi.nid = n.nid
-  INNER JOIN project_issue_state pis ON pis.sid = pi.sid AND pis.default_query = 1
+  INNER JOIN project_issue_state pis ON pis.sid = pi.sid AND (pis.default_query = 1 OR pis.name = 'closed (fixed)')
   INNER JOIN project_issue_priority pip ON pip.priority = pi.priority
   INNER JOIN users u ON u.uid = pi.assigned
   INNER JOIN node n_p ON n_p.nid = pi.pid
