@@ -25,5 +25,5 @@ drush -r /var/www/drupal.org/htdocs -l drupal.org sql-cli > /var/www/association
   LEFT JOIN term_node tn_h ON tn_h.vid = n.vid LEFT JOIN term_data td_h ON td_h.tid = tn_h.tid AND td_h.name LIKE '%hr'
   LEFT JOIN term_node tn_p ON tn_p.vid = n.vid LEFT JOIN term_data td_p ON td_p.tid = tn_p.tid AND td_p.name IN ('project', 'git', 'solr', 'bluecheese', 'porting', 'cleanup', 'infrastructure')
   GROUP BY n.nid
-  ORDER BY Sections DESC, pip.weight, pis.weight, Hours DESC;
+  ORDER BY pis.name = 'closed (fixed)', pis.name = 'fixed', Sections DESC, pip.weight, pis.weight, Hours DESC;
 end
