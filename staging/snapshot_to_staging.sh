@@ -77,7 +77,7 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   ${drush} content-migrate-field-data field_developed_org || true
   ${drush} content-migrate-field-data field_images || true
   ${drush} content-migrate-field-data field_link || true
-  ${drush} content-migrate-field-data field_main_image || true
+  ${drush} content-migrate-field-data field_mainimage
   ${drush} content-migrate-field-data field_module || true
   ${drush} content-migrate-field-data field_module_selection || true
   ${drush} content-migrate-field-data field_overview || true
@@ -101,6 +101,7 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   ${drush} content-migrate-field-data field_budget || true
   ${drush} content-migrate-field-data field_contributions || true
   ${drush} content-migrate-field-data field_logo || true
+  ${drush} content-migrate-field-data field_organization_list_rule
   ${drush} content-migrate-field-data field_organization_headquarters || true
   ${drush} content-migrate-field-data field_organization_hosting_categ || true
   ${drush} content-migrate-field-data field_organization_hosting_level || true
@@ -112,6 +113,7 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   ${drush} content-migrate-field-data field_org_marketplace_request || true
   ${drush} content-migrate-field-data field_organization_issue || true
   ${drush} content-migrate-field-data field_org_training_issue || true
+  ${drush} content-migrate-field-data field_org_training_request
 
   # Migrate all fields.
   ${drush} content-migrate-fields
