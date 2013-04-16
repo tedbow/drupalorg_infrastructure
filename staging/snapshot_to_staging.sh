@@ -60,59 +60,59 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   ${drush} content-migrate-status
 
   # Manual migration for data. Blame features.
-  ${drush} content-migrate-field-data field_book_description || true
-  ${drush} content-migrate-field-data field_book_isbn_10 || true
-  ${drush} content-migrate-field-data field_book_isbn_13 || true
-  ${drush} content-migrate-field-data field_book_listing_authors || true
-  ${drush} content-migrate-field-data field_book_listing_date || true
-  ${drush} content-migrate-field-data field_book_page_count || true
-  ${drush} content-migrate-field-data field_book_purchase_link || true
-  ${drush} content-migrate-field-data field_book_subtitle || true
-  ${drush} content-migrate-field-data field_cover_image || true
-  ${drush} content-migrate-field-data field_official_website || true
-  ${drush} content-migrate-field-data field_publisher || true
-  ${drush} content-migrate-field-data field_community || true
-  ${drush} content-migrate-field-data field_goals || true
-  ${drush} content-migrate-field-data field_developed || true
-  ${drush} content-migrate-field-data field_developed_org || true
-  ${drush} content-migrate-field-data field_images || true
-  ${drush} content-migrate-field-data field_link || true
+  ${drush} content-migrate-field-data field_book_description
+  ${drush} content-migrate-field-data field_book_isbn_10
+  ${drush} content-migrate-field-data field_book_isbn_13
+  ${drush} content-migrate-field-data field_book_listing_authors
+  ${drush} content-migrate-field-data field_book_listing_date
+  ${drush} content-migrate-field-data field_book_page_count
+  ${drush} content-migrate-field-data field_book_purchase_link
+  ${drush} content-migrate-field-data field_book_subtitle
+  ${drush} content-migrate-field-data field_cover_image
+  ${drush} content-migrate-field-data field_official_website
+  ${drush} content-migrate-field-data field_publisher
+  ${drush} content-migrate-field-data field_community
+  ${drush} content-migrate-field-data field_goals
+  ${drush} content-migrate-field-data field_developed
+  ${drush} content-migrate-field-data field_developed_org
+  ${drush} content-migrate-field-data field_images
+  ${drush} content-migrate-field-data field_link
   ${drush} content-migrate-field-data field_mainimage
-  ${drush} content-migrate-field-data field_module || true
-  ${drush} content-migrate-field-data field_module_selection || true
-  ${drush} content-migrate-field-data field_overview || true
-  ${drush} content-migrate-field-data field_profiles || true
-  ${drush} content-migrate-field-data field_status || true
-  ${drush} content-migrate-field-data field_coder_recorded || true
-  ${drush} content-migrate-field-data field_coder_update_recorded || true
-  ${drush} content-migrate-field-data field_examples_recorded || true
-  ${drush} content-migrate-field-data field_change_to || true
-  ${drush} content-migrate-field-data field_change_to_branch || true
-  ${drush} content-migrate-field-data field_description || true
-  ${drush} content-migrate-field-data field_impacts || true
-  ${drush} content-migrate-field-data field_issues || true
-  ${drush} content-migrate-field-data field_module_recorded || true
-  ${drush} content-migrate-field-data field_online_recorded || true
-  ${drush} content-migrate-field-data field_other_details || true
-  ${drush} content-migrate-field-data field_other_recorded || true
-  ${drush} content-migrate-field-data field_project || true
-  ${drush} content-migrate-field-data field_theme_recorded || true
-  ${drush} content-migrate-field-data field_update_progress || true
-  ${drush} content-migrate-field-data field_budget || true
-  ${drush} content-migrate-field-data field_contributions || true
-  ${drush} content-migrate-field-data field_logo || true
+  ${drush} content-migrate-field-data field_module
+  ${drush} content-migrate-field-data field_module_selection
+  ${drush} content-migrate-field-data field_overview
+  ${drush} content-migrate-field-data field_profiles
+  ${drush} content-migrate-field-data field_status
+  ${drush} content-migrate-field-data field_coder_recorded
+  ${drush} content-migrate-field-data field_coder_update_recorded
+  ${drush} content-migrate-field-data field_examples_recorded
+  ${drush} content-migrate-field-data field_change_to
+  ${drush} content-migrate-field-data field_change_to_branch
+  ${drush} content-migrate-field-data field_description
+  ${drush} content-migrate-field-data field_impacts
+  ${drush} content-migrate-field-data field_issues
+  ${drush} content-migrate-field-data field_module_recorded
+  ${drush} content-migrate-field-data field_online_recorded
+  ${drush} content-migrate-field-data field_other_details
+  ${drush} content-migrate-field-data field_other_recorded
+  ${drush} content-migrate-field-data field_project
+  ${drush} content-migrate-field-data field_theme_recorded
+  ${drush} content-migrate-field-data field_update_progress
+  ${drush} content-migrate-field-data field_budget
+  ${drush} content-migrate-field-data field_contributions
+  ${drush} content-migrate-field-data field_logo
   ${drush} content-migrate-field-data field_organization_list_rule
-  ${drush} content-migrate-field-data field_organization_headquarters || true
-  ${drush} content-migrate-field-data field_organization_hosting_categ || true
-  ${drush} content-migrate-field-data field_organization_hosting_level || true
-  ${drush} content-migrate-field-data field_organization_hosting_url || true
-  ${drush} content-migrate-field-data field_organization_marketplace || true
-  ${drush} content-migrate-field-data field_organization_training_desc || true
-  ${drush} content-migrate-field-data field_organization_training_list || true
-  ${drush} content-migrate-field-data field_organization_training_url || true
-  ${drush} content-migrate-field-data field_org_marketplace_request || true
-  ${drush} content-migrate-field-data field_organization_issue || true
-  ${drush} content-migrate-field-data field_org_training_issue || true
+  ${drush} content-migrate-field-data field_organization_headquarters
+  ${drush} content-migrate-field-data field_organization_hosting_categ
+  ${drush} content-migrate-field-data field_organization_hosting_level
+  ${drush} content-migrate-field-data field_organization_hosting_url
+  ${drush} content-migrate-field-data field_organization_marketplace
+  ${drush} content-migrate-field-data field_organization_training_desc
+  ${drush} content-migrate-field-data field_organization_training_list
+  ${drush} content-migrate-field-data field_organization_training_url
+  ${drush} content-migrate-field-data field_org_marketplace_request
+  ${drush} content-migrate-field-data field_organization_issue
+  ${drush} content-migrate-field-data field_org_training_issue
   ${drush} content-migrate-field-data field_org_training_request
 
   # Migrate all fields.
