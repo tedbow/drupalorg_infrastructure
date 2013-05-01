@@ -80,6 +80,7 @@ echo "ALTER TABLE url_alias ENGINE InnoDB;" | ${drush} sql-cli
 ${drush} pm-disable paranoia
 ${drush} pm-disable civicrm
 ${drush} pm-disable securepages
+${drush} pm-disable beanstalkd
 
 # Link up the files directory
 ln -s /media/${fqdn} "${web_path}/htdocs/$(${drush} status | sed -ne 's/^ *File directory path *: *\([^ ]*\).*$/\1/p')"
