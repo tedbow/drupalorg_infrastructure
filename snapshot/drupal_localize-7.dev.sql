@@ -1,5 +1,4 @@
 -- Sanitize information
-UPDATE users_access_old SET access = 280299600;
 UPDATE users SET access = 280299600;
 TRUNCATE blocked_ips;
 UPDATE comment SET mail = CONCAT(name, '@sanitized.invalid'), hostname = "127.0.0.1";

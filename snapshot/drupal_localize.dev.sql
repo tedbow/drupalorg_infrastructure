@@ -1,4 +1,3 @@
-UPDATE users_access_old SET access = 280299600;
 UPDATE users SET access = 280299600;
 
 -- Get rid of irrelevant data.
