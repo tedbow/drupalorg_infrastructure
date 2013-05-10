@@ -1,6 +1,5 @@
--- CAUTION: DO NOT RUN THIS ON DATABASE WHERE YOU CARE ABOUT THE INFORMATION!!!
-
 UPDATE users_access SET access = 280299600;
+UPDATE users SET access = 280299600;
 
 -- Remove sensitive variables and profile data
 DELETE FROM profile_values WHERE fid IN (select fid from profile_fields where visibility in (1, 4));
