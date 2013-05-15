@@ -42,6 +42,8 @@ DROP TABLE forum2_index;
 DELETE FROM node WHERE type IN ('forum','project_issue') AND created < (unix_timestamp() - 60*24*60*60);
 DELETE node, project_issues FROM node INNER JOIN project_issues WHERE node.nid = project_issues.nid AND project_issues.sid IN (7,14,2);
 DELETE node FROM node LEFT JOIN comment ON node.nid = comment.nid WHERE node.type = 'forum' AND comment.nid IS NULL;
+DELETE tracker_user FROM tracker_user LEFT JOIN node ON tracker_user.nid = node.nid WHERE node.nid IS NULL;
+DELETE tracker_user FROM tracker_user LEFT JOIN users ON tracker_user.uid = users.uid WHERE users.uid IS NULL;
 DELETE node_revision FROM node_revision LEFT JOIN node ON node.nid = node_revision.nid WHERE node.nid IS NULL;
 DELETE node_revision FROM node_revision LEFT JOIN node ON node.nid = node_revision.nid AND node.vid = node_revision.vid WHERE node.nid IS NULL AND node_revision.timestamp < (unix_timestamp() - 60*24*60*60);
 DELETE node_comment_statistics FROM node_comment_statistics LEFT JOIN node ON node.nid = node_comment_statistics.nid WHERE node.nid IS NULL;
