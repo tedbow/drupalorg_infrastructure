@@ -8,7 +8,7 @@ TRUNCATE modr8_log;
 TRUNCATE role_activity;
 
 -- We don't publicly share who has voted on what, if someone needs votes for theming they can do some votes.
-TRUNCATE poll_votes;
+TRUNCATE poll_vote;
 
 -- Remove sensitive variables
 DELETE FROM profile_values WHERE fid IN (select fid from profile_fields where visibility in (1, 4));
@@ -25,12 +25,11 @@ TRUNCATE messaging_message_parts;
 
 -- Remove unpublished/blocked core data
 DELETE FROM node WHERE status = 0;
-DELETE FROM comments WHERE status = 1;
-DELETE FROM comments WHERE nid NOT IN (SELECT nid FROM node);
-DELETE FROM comments WHERE uid NOT IN (SELECT uid FROM users);
+DELETE FROM comment WHERE status = 1;
+DELETE FROM comment WHERE nid NOT IN (SELECT nid FROM node);
+DELETE FROM comment WHERE uid NOT IN (SELECT uid FROM users);
 DELETE FROM node_comment_statistics WHERE nid NOT IN (SELECT nid FROM node);
 DELETE FROM node_revisions WHERE nid NOT IN (SELECT nid FROM node);
-DELETE FROM node_counter WHERE nid NOT IN (SELECT nid FROM node);
 DELETE FROM book WHERE nid NOT IN (SELECT nid FROM node);
 
 -- Remove orphaned related data from contribs
