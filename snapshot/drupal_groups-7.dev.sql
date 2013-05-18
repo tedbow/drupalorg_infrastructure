@@ -33,7 +33,7 @@ DELETE FROM node_revision WHERE nid NOT IN (SELECT nid FROM node);
 DELETE FROM book WHERE nid NOT IN (SELECT nid FROM node);
 
 -- Remove orphaned related data from contribs
-DELETE FROM comment_upload WHERE cid NOT IN (SELECT cid FROM comments);
+DELETE FROM comment_upload WHERE cid NOT IN (SELECT cid FROM comment);
 DELETE FROM content_field_organizers WHERE vid NOT IN (SELECT vid FROM node);
 DELETE FROM content_field_type WHERE vid NOT IN (SELECT vid FROM node);
 DELETE FROM content_type_event WHERE vid NOT IN (SELECT vid FROM node);
