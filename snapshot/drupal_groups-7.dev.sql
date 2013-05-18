@@ -11,7 +11,7 @@ TRUNCATE role_activity;
 TRUNCATE poll_vote;
 
 -- Remove sensitive variables
-DELETE FROM profile_values WHERE fid IN (select fid from profile_fields where visibility in (1, 4));
+DELETE FROM profile_value WHERE fid IN (select fid from profile_field where visibility in (1, 4));
 
 -- Remove notifications FUN
 TRUNCATE notifications_queue;
@@ -29,7 +29,7 @@ DELETE FROM comment WHERE status = 1;
 DELETE FROM comment WHERE nid NOT IN (SELECT nid FROM node);
 DELETE FROM comment WHERE uid NOT IN (SELECT uid FROM users);
 DELETE FROM node_comment_statistics WHERE nid NOT IN (SELECT nid FROM node);
-DELETE FROM node_revisions WHERE nid NOT IN (SELECT nid FROM node);
+DELETE FROM node_revision WHERE nid NOT IN (SELECT nid FROM node);
 DELETE FROM book WHERE nid NOT IN (SELECT nid FROM node);
 
 -- Remove orphaned related data from contribs
