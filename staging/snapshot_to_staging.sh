@@ -169,6 +169,10 @@ elif [ "${uri}" = "localize.7.devdrupal.org" ]; then
   # Disable Migrate once migration is done.
   ${drush} dis migrate
 
+elif [ "${uri}" = "groups.7.devdrupal.org" ]; then
+  # todo remove when the existing front page, "frontpage", does not 404.
+  ${drush} variable-set site_frontpage "node"
+
 elif echo "${uri}" | grep -q ".civicrm.devdrupal.org$"; then
   # CiviCRM dev sites do not have bakery set up.
   ${drush} pm-disable bakery
