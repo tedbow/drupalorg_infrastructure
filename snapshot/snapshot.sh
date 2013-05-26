@@ -20,13 +20,19 @@ function snapshot {
   # Execute SQL for this sanitization and phase.
   mysql -o ${tmp_args} < "snapshot/${sanitization}${suffix}.sql"
 
+  # Remove initial '.'
+  subdir=$(echo "${suffix}" | sed -e 's/^\.//')
+  # Store reduce with dev, they are the same level of sanitization.
+  if [ "${subdir}" = 'reduce' ]; then
+    subdir='dev'
+  fi
   # Save the DB dump.
-  mysqldump --single-transaction --quick ${tmp_args} | sed -e 's/^) ENGINE=[^ ]*/)/' | bzip2 > "/var/dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2"
-  mv -v "/var/dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2" "/var/dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.bz2"
-  ln -sfv "/var/dumps/mysql/${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.bz2" "/var/dumps/mysql/${JOB_NAME}${suffix}-current.sql.bz2"
+  mysqldump --single-transaction --quick ${tmp_args} | sed -e 's/^) ENGINE=[^ ]*/)/' | bzip2 > "/var/dumps/${subdir}/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2"
+  mv -v "/var/dumps/${subdir}/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2" "/var/dumps/${subdir}/${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.bz2"
+  ln -sfv "/var/dumps/${subdir}/${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.bz2" "/var/dumps/${subdir}/${JOB_NAME}${suffix}-current.sql.bz2"
 
   # Remove old snapshots.
-  old_snapshots=$(ls -t /var/dumps/mysql/${JOB_NAME}${suffix}-[0-9]*.sql.{bz2,gz} | tail -n +2)
+  old_snapshots=$(ls -t /var/dumps/${subdir}/${JOB_NAME}${suffix}-[0-9]*.sql.{bz2,gz} | tail -n +2)
   if [ -n "${old_snapshots}" ]; then
     rm -v ${old_snapshots}
   fi
