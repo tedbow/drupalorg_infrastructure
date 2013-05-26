@@ -2,7 +2,7 @@
 webnodes=()
 deadcount=0
 i=1
-while [[ deadcount -lt 3 ]]; do
+while [[ deadcount -lt 5 ]]; do
   # only send 1 ping, and wait a maximum of 1 second for the answer
   if ping -c 1 -W 1 "www$i.drupal.org" ; then
     webnodes+=($i)
