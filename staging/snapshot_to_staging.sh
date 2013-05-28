@@ -12,12 +12,15 @@ db=$(${drush} ${type}sql-conf | sed -ne 's/^\s*\[database\] => //p')
 # the 'staging' snapshot.
 [ "${snaptype-}" ] || snaptype=staging
 
+# Copy snapshot.
+rsync -v --copy-links --password-file "~/util.rsync.pass" "rsync://stagingmysql@util.drupal.org/mysql-${snaptype}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2" "${WORKSPACE}"
+
 # Clear out the DB and import a snapshot.
 (
   echo "DROP DATABASE ${db};"
   echo "CREATE DATABASE ${db};"
   echo "USE ${db};"
-  ssh util cat "/var/dumps/mysql/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2" | bunzip2
+  bunzip2 < "${WORKSPACE}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2"
 ) | ${drush} ${type}sql-cli
 
 # Extra preparation for D7.
