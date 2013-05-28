@@ -13,7 +13,7 @@ db=$(${drush} ${type}sql-conf | sed -ne 's/^\s*\[database\] => //p')
 [ "${snaptype-}" ] || snaptype=staging
 
 # Copy snapshot.
-rsync -v --copy-links --password-file "~/util.rsync.pass" "rsync://stagingmysql@util.drupal.org/mysql-${snaptype}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2" "${WORKSPACE}"
+rsync -v --copy-links --password-file ~/util.rsync.pass "rsync://stagingmysql@util.drupal.org/mysql-${snaptype}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2" "${WORKSPACE}"
 
 # Clear out the DB and import a snapshot.
 (
