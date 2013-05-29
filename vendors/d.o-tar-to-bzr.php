@@ -92,6 +92,10 @@ if (!file_exists($project)) {
   exit(5);
 }
 
+if ($project === 'drupal') {
+  _d_o_passthru('rm -rf ' . $project . '/modules/php');
+}
+
 // Grab the first 5 chars of the version so we've got "6.x-2" for the vendor
 // branch name.
 $major_id = substr($version, 0, strrpos($version, '.'));
