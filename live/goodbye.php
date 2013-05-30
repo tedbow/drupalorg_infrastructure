@@ -21,18 +21,20 @@ foreach (file('php://stdin') as $mail) {
     print $mail . ' was "' . $account->name . '" ' . url('user/' . $account->uid, array('absolute' => TRUE)) . "\n";
 
     // Update username to 'no longer here UID' init, mail, status
-    $account->name = 'no longer here ' . $account->uid;
-    $account->init = 'deletion-requested@' . $account->uid . '.invalid';
-    $account->mail = 'deletion-requested@' . $account->uid . '.invalid';
-    $account->status = 0;
+    $array = array(
+      'name' => 'no longer here ' . $account->uid,
+      'init' => 'deletion-requested@' . $account->uid . '.invalid',
+      'mail' => 'deletion-requested@' . $account->uid . '.invalid',
+      'status' => 0,
+    );
     // Remove data.
     $data = unserialize($account->data);
     if (is_array($data)) {
       foreach (array_keys($data) as $key) {
-        $account->$key = NULL;
+        $data[$key] = NULL;
       }
     }
-    user_save($account);
+    user_save($account, $array);
 
     // Remove profile & multiple_email data.
     db_query('DELETE FROM {profile_values} WHERE uid = %d', $account->uid);
