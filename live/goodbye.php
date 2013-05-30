@@ -4,7 +4,10 @@
 $sites = array();
 foreach (variable_get('bakery_slaves', array()) as $slave) {
   $url = parse_url($slave);
-  $sites[$url['host']] = array('root' => '/var/www/' . $url['host'] . '/htdocs');
+  // Localize does not have profile_values.
+  if ($url['host'] !== 'localize.drupal.org') {
+    $sites[$url['host']] = array('root' => '/var/www/' . $url['host'] . '/htdocs');
+  }
 }
 
 // Read emails from stdin.
