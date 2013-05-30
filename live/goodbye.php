@@ -4,7 +4,6 @@
 $sites = array();
 foreach (variable_get('bakery_slaves', array()) as $slave) {
   $url = parse_url($slave);
-  $slaves[] = 'drush -r /var/www/' . $url['host'] . '/htdocs -l ' . $url['host'] . ' sql-cli';
   $sites[$url['host']] = array('root' => '/var/www/' . $url['host'] . '/htdocs');
 }
 
