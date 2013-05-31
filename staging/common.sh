@@ -12,15 +12,11 @@ webroot="/var/www/${uri}/htdocs"
 type=""
 
 if echo ${JOB_NAME} | grep -q '\--'; then
-  # deploy_association.drupal.org--intranet -> intranet
   suffix=$(echo ${JOB_NAME} | sed -e 's/^.*--//')
   # CiviCRM is a special case. We distinguish it with a suffix, but it does not
   # have a separate uri or webroot.
   if [ "${suffix}" = "civicrm" ]; then
     type="civicrm-"
-  else
-    webroot="${webroot}/${suffix}"
-    uri="${uri}/${suffix}"
   fi
 fi
 

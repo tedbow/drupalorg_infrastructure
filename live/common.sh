@@ -8,13 +8,6 @@ umask g+w
 uri=$(echo ${JOB_NAME} | sed -e "s/^${1}_//;s/--.*$//")
 webroot="/var/www/${uri}/htdocs"
 
-if echo ${JOB_NAME} | grep -q '\--'; then
-  # deploy_association.drupal.org--intranet -> intranet
-  suffix=$(echo ${JOB_NAME} | sed -e 's/^.*--//')
-  webroot="${webroot}/${suffix}"
-  uri="${uri}/${suffix}"
-fi
-
 # For easily executing Drush.
 export TERM=dumb
 drush="drush -r ${webroot} -l ${uri} -y"
