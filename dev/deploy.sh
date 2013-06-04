@@ -73,7 +73,7 @@ chgrp -R developers "${web_path}"
 
 # Import database
 rsync -v --copy-links --password-file ~/util.rsync.pass "rsync://devmysql@util.drupal.org/mysql-dev/${snapshot}" "${WORKSPACE}"
-bunzip2 "${WORKSPACE}/${snapshot}" | mysql "${db_name}"
+bunzip2 < "${WORKSPACE}/${snapshot}" | mysql "${db_name}"
 # InnoDB handles the url alias table much faster.
 echo "ALTER TABLE url_alias ENGINE InnoDB;" | ${drush} sql-cli
 
