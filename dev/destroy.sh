@@ -15,7 +15,10 @@ sudo rm -rf "${web_path}"
 rm -f "${vhost_path}"
 
 # Drop the database and user
-mysql -e "DROP DATABASE ${db_name};"
-mysql -e "REVOKE ALL ON ${db_name}.* FROM '${db_name}'@'devwww.drupal.org';"
+mysql <<end
+  DROP DATABASE ${db_name};
+  REVOKE ALL ON ${db_name}.* FROM '${db_name}'@'devwww.drupal.org';
+  DROP USER '${db_name}'@'devwww.drupal.org';
+end
 
 restart_apache
