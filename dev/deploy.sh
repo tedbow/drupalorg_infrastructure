@@ -60,7 +60,7 @@ mysql -e "GRANT ALL ON ${db_name}.* TO '${db_name}'@'devwww.drupal.org' IDENTIFI
 
 # Checkout webroot 
 echo "Populating development environment with bzr checkout"
-bzr checkout bzr+ssh://bender-deploy@util.drupal.org/bzr/${repository} "${web_path}/htdocs"
+bzr checkout bzr+ssh://bender-deploy@util.drupal.org/${repository} "${web_path}/htdocs"
 
 # Add settings.local.php
 write_template "settings.local.php.template" "${web_path}/htdocs/sites/default/settings.local.php"
