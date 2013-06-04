@@ -15,11 +15,11 @@ function write_template {
 if [ ${site} == "drupal" ]; then
   fqdn="drupal.org"
   repository="drupal.org"
-  snapshot="/var/dumps/mysql/drupal_database_snapshot.reduce-current.sql.bz2"
+  snapshot="drupal_database_snapshot.reduce-current.sql.bz2"
 elif [ ${site} == "drupal_7" ]; then
   fqdn="drupal.org"
   repository="drupal.org-7"
-  snapshot="/var/dumps/mysql/drupal_7_database_snapshot.reduce-current.sql.bz2"
+  snapshot="drupal_7_database_snapshot.reduce-current.sql.bz2"
 else
   # Strip any _ and following characters from ${site}, and add .drupal.org.
   # Such as 'qa_7' -> 'qa.drupal.org'
@@ -27,7 +27,7 @@ else
   # If ${site} has an underscore, use the following characters. Such as
   # 'qa_7' -> 'qa.drupal.org-7'
   repository="${fqdn}$(echo ${site} | sed -ne 's/.*_/-/p')"
-  snapshot="/var/dumps/mysql/${site}_database_snapshot.dev-current.sql.bz2"
+  snapshot="${site}_database_snapshot.dev-current.sql.bz2"
 fi
 
 # DrupalCon São Paulo 2012 and later have a common BZR repository.
@@ -60,7 +60,7 @@ mysql -e "GRANT ALL ON ${db_name}.* TO '${db_name}'@'devwww.drupal.org' IDENTIFI
 
 # Checkout webroot 
 echo "Populating development environment with bzr checkout"
-bzr checkout bzr+ssh://util.drupal.org/bzr/${repository} "${web_path}/htdocs"
+bzr checkout bzr+ssh://bender-deploy@util.drupal.org/bzr/${repository} "${web_path}/htdocs"
 
 # Add settings.local.php
 write_template "settings.local.php.template" "${web_path}/htdocs/sites/default/settings.local.php"
@@ -72,14 +72,14 @@ find "${web_path}" -type f -exec chmod g+rw {} +
 chgrp -R developers "${web_path}"
 
 # Import database
-ssh util cat "${snapshot}" | bunzip2 | mysql "${db_name}"
+rsync -v --copy-links --password-file ~/util.rsync.pass "rsync://devmysql@util.drupal.org/mysql-dev/${snapshot}" "${WORKSPACE}"
+bunzip2 "${WORKSPACE}/${snapshot}" | mysql "${db_name}"
 # InnoDB handles the url alias table much faster.
 echo "ALTER TABLE url_alias ENGINE InnoDB;" | ${drush} sql-cli
 
 # Disable modules that don't work well in development (yet)
 ${drush} pm-disable paranoia
 ${drush} pm-disable civicrm
-${drush} pm-disable securepages
 ${drush} pm-disable beanstalkd
 
 # Link up the files directory
