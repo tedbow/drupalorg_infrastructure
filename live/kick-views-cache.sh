@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/env bash
 
 # We've been experiencing views cache trouble, 404 instead of content, see
 # http://drupal.org/node/1770434. Since we are on old versions, work around

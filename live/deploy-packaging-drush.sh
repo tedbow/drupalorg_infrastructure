@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/env bash
 
 # Deploy a new version of drush for use by drush make during distribution
 # packaging.
