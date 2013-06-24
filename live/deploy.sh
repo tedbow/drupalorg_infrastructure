@@ -24,4 +24,5 @@ if [ "${cc_all-}" = "true" ]; then
 fi
 if [ "${civicrm_cache_clear-}" = "true" ]; then
   ${drush} civicrm-cache-clear
+  ${drush} compile-templates
 fi
