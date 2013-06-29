@@ -146,6 +146,9 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   #${drush} mi ProjectIssuePhaseTwo
   ${drush} mi ProjectIssueFixGenericCorruption
 
+  # Do PIFT import
+  ${drush} mi ProjectIssueFileTest
+
   ${drush} dis content_migrate
 
   ${drush} en conflict
