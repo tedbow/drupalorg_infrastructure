@@ -50,7 +50,6 @@ ${drush} cc all
 
 if [ "${uri}" = "7.devdrupal.org" ]; then
   # Do cck fields migration. (Fieldgroups, etc.)
-  ${drush} en field_group
   ${drush} en content_migrate
   # Hack to try and convince drush to recognize the new commands.
   ${drush} dis content_migrate
