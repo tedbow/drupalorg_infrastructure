@@ -78,8 +78,8 @@ bunzip2 < "${WORKSPACE}/${snapshot}" | mysql "${db_name}"
 echo "ALTER TABLE url_alias ENGINE InnoDB;" | ${drush} sql-cli
 
 # Disable modules that don't work well in development (yet)
-${drush} pm-disable paranoia
 ${drush} pm-disable civicrm
+${drush} pm-disable paranoia
 ${drush} pm-disable beanstalkd
 
 # Link up the files directory
