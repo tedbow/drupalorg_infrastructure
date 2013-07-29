@@ -105,10 +105,6 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   ${drush} content-migrate-field-data field_logo
   ${drush} content-migrate-field-data field_organization_list_rule
   ${drush} content-migrate-field-data field_organization_headquarters
-  ${drush} content-migrate-field-data field_organization_hosting_categ
-  ${drush} content-migrate-field-data field_organization_hosting_level
-  ${drush} content-migrate-field-data field_organization_hosting_url
-  ${drush} content-migrate-field-data field_organization_marketplace
   ${drush} content-migrate-field-data field_organization_training_desc
   ${drush} content-migrate-field-data field_organization_training_list
   ${drush} content-migrate-field-data field_organization_training_url
@@ -117,6 +113,12 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   ${drush} content-migrate-field-data field_org_training_issue
   ${drush} content-migrate-field-data field_org_training_request
   ${drush} content-migrate-field-data field_organization_security
+
+  # Remove deprcated marketplace hosting fields.
+  ${drush} field-delete field_organization_hosting_categ
+  ${drush} field-delete field_organization_hosting_level
+  ${drush} field-delete field_organization_hosting_url
+  ${drush} field-delete field_organization_marketplace
 
   # Migrate all fields.
   ${drush} content-migrate-fields
