@@ -114,14 +114,15 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   ${drush} content-migrate-field-data field_org_training_request
   ${drush} content-migrate-field-data field_organization_security
 
+  # Migrate all fields.
+  ${drush} content-migrate-fields
+
   # Remove deprcated marketplace hosting fields.
   ${drush} field-delete field_organization_hosting_categ
   ${drush} field-delete field_organization_hosting_level
   ${drush} field-delete field_organization_hosting_url
   ${drush} field-delete field_organization_marketplace
 
-  # Migrate all fields.
-  ${drush} content-migrate-fields
   ${drush} cc all
 
   ${drush} en features
