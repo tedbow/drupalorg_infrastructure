@@ -14,9 +14,9 @@ vendor="/srv/bzr/vendor/${project}/${vendor_version}"
 # Optionally merge to a site.
 if [ "${site}" != "- do not merge to a site -" ]; then
   # Clear out any old checkout and make a fresh one.
-  rm -rf "${site}"
-  bzr co /srv/bzr/${site}/
-  cd ${site}
+  rm -rf "${WORKSPACE}/${site}"
+  bzr co "/srv/bzr/${site}/" "${WORKSPACE}/${site}"
+  cd "${WORKSPACE}/${site}"
 
   if [ $(ls -d sites/all/{modules,themes,libraries}/${project} 2> /dev/null | wc -l) = 1 ] || [ "${project}" = "drupal" ]; then
     # If the project already exists, merge in the update.
@@ -36,6 +36,5 @@ if [ "${site}" != "- do not merge to a site -" ]; then
   fi
 
   # Clean up workspace
-  cd ..
-  rm -rf "${site}"
+  rm -rf "${WORKSPACE}/${site}"
 fi
