@@ -6,8 +6,8 @@ bzr log -r-1 -n0 > ${WORKSPACE}/version.txt
 bzr status > ${WORKSPACE}/status.txt
 bzr diff > ${WORKSPACE}/diff.txt
 
-# Make sure Devel and Views UI are not enabled.
-if ${drush} pm-list --status=enabled --pipe | grep --quiet '^\(devel\|views_ui\)$'; then
+# Make sure Devel is not enabled.
+if ${drush} pm-list --status=enabled --pipe | grep --quiet '^\(devel\)$'; then
   exit 1
 fi
 
