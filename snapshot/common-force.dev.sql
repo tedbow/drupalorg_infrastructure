@@ -7,6 +7,8 @@ TRUNCATE devel_times;
 TRUNCATE mollom;
 TRUNCATE semaphore;
 TRUNCATE votingapi_vote;
+TRUNCATE election_vote;
+TRUNCATE election_ballot;
 TRUNCATE field_data_commerce_customer_address;
 TRUNCATE field_revision_commerce_customer_address;
 TRUNCATE commerce_payment_transaction;

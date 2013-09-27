@@ -5,7 +5,7 @@ cd ${webroot}
 bzr update
 
 if [ "${updatedb-}" = "true" ]; then
-  ${drush} updatedb --interactive
+  ${drush} -v updatedb --interactive
 fi
 if [ "${civicrm_upgrade_db-}" = "true" ]; then
   ${drush} civicrm-upgrade-db

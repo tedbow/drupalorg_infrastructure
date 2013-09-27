@@ -27,5 +27,7 @@ drush="drush -r ${webroot} -l ${uri} -y"
 # Test that the site is functional enough to return a non-error response. Also
 # primes caches.
 function test_site {
-  wget -O /dev/null "https://${uri}" --user=drupal --password=drupal --no-check-certificate
+  wget -O /dev/null "https://${uri}" --user=drupal --password=drupal --no-check-certificate ||
+  sleep 5 && wget -O /dev/null "https://${uri}" --user=drupal --password=drupal --no-check-certificate ||
+  sleep 5 && wget -O /dev/null "https://${uri}" --user=drupal --password=drupal --no-check-certificate
 }

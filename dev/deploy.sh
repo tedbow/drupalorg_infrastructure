@@ -31,7 +31,7 @@ else
 fi
 
 # DrupalCon São Paulo 2012 and later have a common BZR repository.
-if [ "${site}" == "portland2013" -o "${site}" == "prague2013" -o "${site}" == "northamerica2014" ]; then
+if [ "${site}" == "sydney2013" -o "${site}" == "portland2013" -o "${site}" == "prague2013" -o "${site}" == "northamerica2014" ]; then
   repository="drupalcon-7"
 fi
 
@@ -74,12 +74,15 @@ chgrp -R developers "${web_path}"
 # Import database
 rsync -v --copy-links --password-file ~/util.rsync.pass "rsync://devmysql@util.drupal.org/mysql-dev/${snapshot}" "${WORKSPACE}"
 bunzip2 < "${WORKSPACE}/${snapshot}" | mysql "${db_name}"
-# InnoDB handles the url alias table much faster.
-echo "ALTER TABLE url_alias ENGINE InnoDB;" | ${drush} sql-cli
+${drush} sql-cli <<END
+  -- InnoDB handles the url alias table much faster.
+  ALTER TABLE url_alias ENGINE InnoDB;
+  -- CiviCRM is needy.
+  UPDATE system SET status = 0 WHERE name = 'civicrm';
+END
 
 # Disable modules that don't work well in development (yet)
 ${drush} pm-disable paranoia
-${drush} pm-disable civicrm
 ${drush} pm-disable beanstalkd
 
 # Link up the files directory
@@ -97,10 +100,6 @@ ${drush} pm-enable views_ui
 ${drush} pm-enable imagecache_ui
 
 ${drush} updatedb
-
-# Enable UC test gateway
-${drush} en test_gateway
-${drush} vset uc_payment_credit_gateway test_gateway
 
 # Set up for potential bakery testing
 ${drush} vdel bakery_slaves

@@ -105,10 +105,6 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   ${drush} content-migrate-field-data field_logo
   ${drush} content-migrate-field-data field_organization_list_rule
   ${drush} content-migrate-field-data field_organization_headquarters
-  ${drush} content-migrate-field-data field_organization_hosting_categ
-  ${drush} content-migrate-field-data field_organization_hosting_level
-  ${drush} content-migrate-field-data field_organization_hosting_url
-  ${drush} content-migrate-field-data field_organization_marketplace
   ${drush} content-migrate-field-data field_organization_training_desc
   ${drush} content-migrate-field-data field_organization_training_list
   ${drush} content-migrate-field-data field_organization_training_url
@@ -120,6 +116,13 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
 
   # Migrate all fields.
   ${drush} content-migrate-fields
+
+  # Remove deprcated marketplace hosting fields.
+  ${drush} field-delete field_organization_hosting_categ
+  ${drush} field-delete field_organization_hosting_level
+  ${drush} field-delete field_organization_hosting_url
+  ${drush} field-delete field_organization_marketplace
+
   ${drush} cc all
 
   ${drush} en features
@@ -172,9 +175,15 @@ elif [ "${uri}" = "localize.7.devdrupal.org" ]; then
   # Disable Migrate once migration is done.
   ${drush} dis migrate
 
+  # Disable bakery for *.7.devdrupal.org sites.
+  ${drush} pm-disable bakery
+
 elif [ "${uri}" = "groups.7.devdrupal.org" ]; then
   # todo remove when the existing front page, "frontpage", does not 404.
   ${drush} variable-set site_frontpage "node"
+
+  # Disable bakery for *.7.devdrupal.org sites.
+  ${drush} pm-disable bakery
 
 elif echo "${uri}" | grep -q ".civicrm.devdrupal.org$"; then
   # CiviCRM dev sites do not have bakery set up.
