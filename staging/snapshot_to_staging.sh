@@ -162,6 +162,9 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   ${drush} cc all
 
 elif [ "${uri}" = "localize.7.devdrupal.org" ]; then
+  # Set the flag for OG to have global group roles
+  ${drush} variable-set og_7000_access_field_default_value 0
+
   # Enable required modules.
   ${drush} en og_context og_ui migrate
 
