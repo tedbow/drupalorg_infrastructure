@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 # Exit immediately on uninitialized variable or error, and print each command.
 #set -uex
@@ -17,7 +17,8 @@
 ###########################
 
 if [[ "$1" == "" ]]; then
-   echo -e "Usage:\nstaticalize_site.sh {domain}"
+   echo -e "Usage:\nstaticalize_site.sh {domain} {wget/httrack}"
+   echo -e "\nwget is the default option"
    exit 1
 else
     SITE=$1 
@@ -25,12 +26,17 @@ fi
 
 echo "This script will create a tgz version of ${SITE} on ~/static/${SITE}/"
 
-cd ~/static
-#rm -rf ~/static/${SITE}
+rm -rf ~/static/${SITE} ~/static/index.html ~/static/hts* ~/static/*.gif
 mkdir -p ~/static/${SITE}/
+cd ~/static
 
-wget -m -U Mozilla --page-requisites --retry-connrefused --limit-rate=5000k --convert-links --restrict-file-names=windows --domains ${SITE}  --no-parent http://${SITE}/
-wget -m -U Mozilla --page-requisites --retry-connrefused --limit-rate=5000k --convert-links --html-extension --restrict-file-names=windows --domains ${SITE}  --no-parent http://${SITE}/
+echo "Crawling..."
+
+if [[ "$2" == "httrack" ]]; then 
+   httrack http://${SITE}  -w -O . -%v --robots=0 -c1 -%e0
+   else
+   wget --mirror -p --html-extension -e robots=off --base=./ -k -P ./ http://${SITE}
+fi
 
 echo "Going to tgz ~/static/${SITE}/"
 sleep 5
