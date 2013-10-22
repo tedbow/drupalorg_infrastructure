@@ -45,7 +45,6 @@ fi
 
 # Try updatedb, clear caches.
 ${drush} -v updatedb --interactive
-#${drush} -v updatedb --interactive || echo "SOME UPDATES FAILED BUT CONTINUING ANYWAY!!!!!!"
 ${drush} cc all
 
 if [ "${uri}" = "7.devdrupal.org" ]; then
@@ -55,7 +54,6 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   ${drush} dis content_migrate
   ${drush} en content_migrate
   # When prod is on 5.4 drush we can use this instead of all.
-  #${drush} cc drush
   ${drush} cc all
 
   # Show current status for debugging purposes.
@@ -127,10 +125,6 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
 
   ${drush} en features
   ${drush} fra
-  # Re-enable & revert features. (disabled until the features are converted to
-  # D7.)
-  # ${drush} en drupalorg_change_notice
-  # ${drush} fra
 
   # Do project issue import
   ${drush} en migrate_ui
@@ -145,7 +139,6 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   ${drush} mi ProjectIssueAllocateCids
   ${drush} mi ProjectIssueRebuildCommentFields
   ${drush} mi ProjectIssueRebuildNodeFields
-  #${drush} mi ProjectIssuePhaseTwo
   ${drush} mi ProjectIssueFixGenericCorruption
 
   # Do PIFT import
