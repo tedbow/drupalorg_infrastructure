@@ -144,6 +144,9 @@ if [ "${uri}" = "7.devdrupal.org" ]; then
   # Do PIFT import
   ${drush} mi ProjectIssueFileTest
 
+  # Prepopulate SearchAPI project issues index
+  ${drush} mi DrupalorgProjectSearchApi
+
   ${drush} dis content_migrate
 
   ${drush} en conflict
