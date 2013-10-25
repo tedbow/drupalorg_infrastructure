@@ -2,9 +2,6 @@ UPDATE users SET access = 280299600;
 UPDATE content_type_association_membership_benefit SET field_assoc_benefit_code_value = 'DrupalDrupalDrupal', field_assoc_benefit_link_url = 'http://example.com/';
 
 TRUNCATE civicrm_drupal_username_sync;
-TRUNCATE webform_emails;
-TRUNCATE webform_submissions;
-TRUNCATE webform_submitted_data;
 TRUNCATE association_drupalorg_2012_at_large_voters;
 TRUNCATE uc_cart_products;
 TRUNCATE uc_orders;

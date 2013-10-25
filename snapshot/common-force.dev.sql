@@ -13,3 +13,6 @@ TRUNCATE field_data_commerce_customer_address;
 TRUNCATE field_revision_commerce_customer_address;
 TRUNCATE commerce_payment_transaction;
 TRUNCATE commerce_payment_transaction_revision;
+TRUNCATE webform_emails;
+TRUNCATE webform_submissions;
+TRUNCATE webform_submitted_data;
