@@ -27,6 +27,8 @@ if [ "${site}" != "- do not merge to a site -" ]; then
     bzr checkout ${vendor} tmp
     if grep -q "^engine" tmp/*.info; then
       location="sites/all/themes/${project}"
+    elif grep -q "^engine" $(find tmp -name '*.info' | head -n 1); then
+      location="sites/all/themes/${project}"
     else
       location="sites/all/modules/${project}"
     fi
