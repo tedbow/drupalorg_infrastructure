@@ -18,7 +18,7 @@
 
 $tmp_dir = '/tmp/tarball-import';
 
-$package_release_nodes = '/bin/nice -n 10 /usr/bin/php /var/www/drupal.org/project/scripts/package-release-nodes.php';
+$package_release_nodes = 'drush -v -r /var/www/drupal.org/htdocs release-package';
 
 $package_root = '/var/www/drupal.org/htdocs/files/projects';
 
