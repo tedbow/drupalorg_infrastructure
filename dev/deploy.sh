@@ -14,12 +14,8 @@ function write_template {
 # Handle drupal.org vs. sub-domains properly
 if [ ${site} == "drupal" ]; then
   fqdn="drupal.org"
-  repository="drupal.org"
-  snapshot="drupal_database_snapshot.reduce-current.sql.bz2"
-elif [ ${site} == "drupal_7" ]; then
-  fqdn="drupal.org"
   repository="drupal.org-7"
-  snapshot="drupal_7_database_snapshot.reduce-current.sql.bz2"
+  snapshot="drupal_database_snapshot.reduce-current.sql.bz2"
 else
   # Strip any _ and following characters from ${site}, and add .drupal.org.
   # Such as 'qa_7' -> 'qa.drupal.org'

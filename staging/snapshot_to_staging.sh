@@ -24,19 +24,7 @@ rsync -v --copy-links --password-file ~/util.rsync.pass "rsync://stagingmysql@ut
 ) | ${drush} ${type}sql-cli
 
 # Extra preparation for D7.
-if [ "${uri}" = "7.devdrupal.org" ]; then
-  (
-    # Ported features containing fields that content_migrate touch need to be migrated with the feature disabled to
-    # prevent data from going missing. (Presumably.)
-    #echo "UPDATE system SET status = 0 WHERE name IN ('project_solr', 'drupalorg_search', 'features');"
-    echo "UPDATE system SET status = 0 WHERE name = 'features';"
-    # Officially associate the "Projects" vocabulary with projects -- it was being altered in in a hacky way, and taxonomy upgrade
-    # thought it was unused.
-    echo "INSERT IGNORE INTO vocabulary_node_types (vid, type) VALUES (3, 'project_project');"
-  ) | ${drush} sql-cli
-
-
-elif [ "${uri}" = "localize.7.devdrupal.org" ]; then
+if [ "${uri}" = "localize.7.devdrupal.org" ]; then
   (
     # OG needs new entity module.
     echo "UPDATE system SET status = 0 WHERE name IN ('og');"
@@ -47,117 +35,7 @@ fi
 ${drush} -v updatedb --interactive
 ${drush} cc all
 
-if [ "${uri}" = "7.devdrupal.org" ]; then
-  # Do cck fields migration. (Fieldgroups, etc.)
-  ${drush} en content_migrate
-  # Hack to try and convince drush to recognize the new commands.
-  ${drush} dis content_migrate
-  ${drush} en content_migrate
-  # When prod is on 5.4 drush we can use this instead of all.
-  ${drush} cc all
-
-  # Show current status for debugging purposes.
-  ${drush} content-migrate-status
-
-  # Manual migration for data. Blame features.
-  ${drush} content-migrate-field-data field_book_description
-  ${drush} content-migrate-field-data field_book_isbn_10
-  ${drush} content-migrate-field-data field_book_isbn_13
-  ${drush} content-migrate-field-data field_book_listing_authors
-  ${drush} content-migrate-field-data field_book_listing_date
-  ${drush} content-migrate-field-data field_book_page_count
-  ${drush} content-migrate-field-data field_book_purchase_link
-  ${drush} content-migrate-field-data field_book_subtitle
-  ${drush} content-migrate-field-data field_cover_image
-  ${drush} content-migrate-field-data field_official_website
-  ${drush} content-migrate-field-data field_publisher
-  ${drush} content-migrate-field-data field_community
-  ${drush} content-migrate-field-data field_goals
-  ${drush} content-migrate-field-data field_developed
-  ${drush} content-migrate-field-data field_developed_org
-  ${drush} content-migrate-field-data field_images
-  ${drush} content-migrate-field-data field_link
-  ${drush} content-migrate-field-data field_mainimage
-  ${drush} content-migrate-field-data field_module
-  ${drush} content-migrate-field-data field_module_selection
-  ${drush} content-migrate-field-data field_overview
-  ${drush} content-migrate-field-data field_profiles
-  ${drush} content-migrate-field-data field_status
-  ${drush} content-migrate-field-data field_coder_recorded
-  ${drush} content-migrate-field-data field_coder_update_recorded
-  ${drush} content-migrate-field-data field_examples_recorded
-  ${drush} content-migrate-field-data field_change_to
-  ${drush} content-migrate-field-data field_change_to_branch
-  ${drush} content-migrate-field-data field_description
-  ${drush} content-migrate-field-data field_impacts
-  ${drush} content-migrate-field-data field_issues
-  ${drush} content-migrate-field-data field_module_recorded
-  ${drush} content-migrate-field-data field_online_recorded
-  ${drush} content-migrate-field-data field_other_details
-  ${drush} content-migrate-field-data field_other_recorded
-  ${drush} content-migrate-field-data field_project
-  ${drush} content-migrate-field-data field_theme_recorded
-  ${drush} content-migrate-field-data field_update_progress
-  ${drush} content-migrate-field-data field_budget
-  ${drush} content-migrate-field-data field_contributions
-  ${drush} content-migrate-field-data field_logo
-  ${drush} content-migrate-field-data field_organization_list_rule
-  ${drush} content-migrate-field-data field_organization_headquarters
-  ${drush} content-migrate-field-data field_organization_training_desc
-  ${drush} content-migrate-field-data field_organization_training_list
-  ${drush} content-migrate-field-data field_organization_training_url
-  ${drush} content-migrate-field-data field_org_marketplace_request
-  ${drush} content-migrate-field-data field_organization_issue
-  ${drush} content-migrate-field-data field_org_training_issue
-  ${drush} content-migrate-field-data field_org_training_request
-  ${drush} content-migrate-field-data field_organization_security
-
-  # Migrate all fields.
-  ${drush} content-migrate-fields
-
-  # Remove deprcated marketplace hosting fields.
-  ${drush} field-delete field_organization_hosting_categ
-  ${drush} field-delete field_organization_hosting_level
-  ${drush} field-delete field_organization_hosting_url
-  ${drush} field-delete field_organization_marketplace
-
-  ${drush} cc all
-
-  ${drush} en features
-  ${drush} fra
-
-  # Do project issue import
-  ${drush} en migrate_ui
-  ${drush} cc all
-  ${drush} ms
-  ${drush} mi ProjectIssueFixInitFiles
-  ${drush} mi ProjectIssueRethreadIssueFollowups
-  ${drush} mi ProjectIssueTimelinePhaseOne
-  ${drush} mi ProjectIssueTimelinePhaseTwo
-  ${drush} mi ProjectIssueTimelinePhaseThree
-  ${drush} mi ProjectIssueAllocateVids
-  ${drush} mi ProjectIssueAllocateCids
-  ${drush} mi ProjectIssueRebuildCommentFields
-  ${drush} mi ProjectIssueRebuildNodeFields
-  ${drush} mi ProjectIssueFixGenericCorruption
-
-  # Do PIFT import
-  ${drush} mi ProjectIssueFileTest
-
-  # Prepopulate SearchAPI project issues index
-  ${drush} mi DrupalorgProjectSearchApi
-
-  ${drush} dis content_migrate
-
-  ${drush} en conflict
-
-  # https://drupal.org/node/1830028
-  ${drush} association-members || echo "Association members failed but continuing anyway!"
-
-  # Sure, let's clear the cache some more.
-  ${drush} cc all
-
-elif [ "${uri}" = "localize.7.devdrupal.org" ]; then
+if [ "${uri}" = "localize.7.devdrupal.org" ]; then
   # Set the flag for OG to have global group roles
   ${drush} variable-set og_7000_access_field_default_value 0
 
