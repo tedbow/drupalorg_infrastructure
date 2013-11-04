@@ -16,6 +16,8 @@ TRUNCATE tracker2_node;
 TRUNCATE tracker2_user;
 TRUNCATE forum2_index;
 TRUNCATE comment_alter_taxonomy;
+TRUNCATE mv_drupalorg_node_by_term;
+TRUNCATE mv_drupalorg_node_by_vocabulary;
 
 -- Empty out often-bulky search indexes
 TRUNCATE search_dataset;
