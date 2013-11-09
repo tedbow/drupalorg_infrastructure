@@ -1,8 +1,54 @@
+import table_customizations
+
 class Whitelist:
     def __init__(self):
-        self.list = dict()
+        self.tabledata = dict()
+
     def add(self, table, columns):
-        self.list[table] = columns
+        self.tabledata[table] = columns
+
+    def known_columns(self, table):
+        known_plain = list()
+        columns = self.tabledata[table]
+        for column in columns:
+            if column[0] == '_' and ':' in column:
+                function, name = column.split(':', 1)
+                known_plain.append(name)
+            else:
+                known_plain.append(column)
+        return known_plain
+
+    def plain_columns(self, table):
+        known_plain = list()
+        columns = self.tabledata[table]
+        for column in columns:
+            if column[0] == '_' and ':' in column:
+                continue
+            known_plain.append(column)
+        return known_plain
+
+    def process(self, c, destdb, sourcedb, table):
+        known_columns = list()
+        columns = self.tabledata[table]
+        for column in columns:
+            if column[0] == '_' and ':' in column:
+                function, name = column.split(':', 1)
+                function = function.lstrip('_')
+                known_columns.append((function, name))
+            else:
+                known_columns.append((None, column))
+            handler = getattr(table_customizations, table)
+        return handler(known_columns, c, destdb, sourcedb)
+
+    def get_tables(self):
+        return ['access', 'users']
+        return self.tabledata.keys()
+
+    def table(self, table):
+        if self.tabledata.has_key(table):
+            return self.tabledata[table]
+        else:
+            return False
 
 whitelist = Whitelist()
 
@@ -5912,7 +5958,7 @@ whitelist.add(
         "uid",
         "name",
         "pass",
-        "mail",
+        "_sanitize:mail",
         "theme",
         "signature",
         "status",
@@ -6195,3 +6241,5 @@ whitelist.add(
         "machinename",
     ])
 
+if __name__ == "__main__":
+    print(whitelist.list)

@@ -1,7 +1,16 @@
+#!/bin/env python
 from MySQLdb import *
-import whitelist, password
+from whitelist import whitelist
+import password
 
-def generate_base_whitelist():
+sourcedb = 'drupal_sanitize'
+destdb = 'drupal_2'
+
+db=connect(user=password.user, passwd=password.password)
+c = db.cursor()
+
+
+def generate_base_whitelist(table):
     query = "DESCRIBE `{source}`.`{table}`".format(table=table, source=sourcedb)
     c.execute(query)
     column_names = [e[0] for e in c.fetchall()]
@@ -13,29 +22,43 @@ def generate_base_whitelist():
     ])
 """.format(table, columns2)
 
-sourcedb = 'drupal_sanitize'
-destdb = 'drupal_2'
+def check_schema():
+    c.execute('SHOW TABLES IN `{0}`'.format(sourcedb))
+    tables = [e[0] for e in c.fetchall()]
+    for table in tables:
+        if not whitelist.table(table):
+            print("Table '{table}' not presant in whitelist.py base config is:\n".format(table=table))
+            generate_base_whitelist(table)
+            continue
+        query = "DESCRIBE `{source}`.`{table}`".format(table=table, source=sourcedb)
+        c.execute(query)
+        known_columns = whitelist.known_columns(table)
+        unknown_columns = [e[0] for e in c.fetchall() if e[0] not in known_columns]
+        if unknown_columns:
+            print("Unknown column(s) {columns} found in table '{table}' fresh base config for whitelist.py is below. This needs to be merged with with current configuration.\n".format(columns=unknown_columns, table=table))
+            generate_base_whitelist(table)
 
-db=connect(user=password.user, passwd=password.password)
-c = db.cursor()
+def run():
+    c.execute('DROP DATABASE IF EXISTS `{0}`'.format(destdb))
+    c.execute('CREATE DATABASE `{0}`'.format(destdb))
+    check_schema()
 
-c.execute('DROP DATABASE IF EXISTS `{0}`'.format(destdb))
-c.execute('CREATE DATABASE `{0}`'.format(destdb))
+    for table in whitelist.get_tables():
+        query = "CREATE TABLE `{dest}`.`{table}` LIKE `{source}`.`{table}`".format(table=table, dest=destdb, source=sourcedb)
+        print query
+        c.execute(query)
 
-c.execute('SHOW TABLES IN `{0}`'.format(sourcedb))
-tables = [e[0] for e in c.fetchall()]
-for table in tables:
-    query = "CREATE TABLE `{dest}`.`{table}` LIKE `{source}`.`{table}`".format(table=table, dest=destdb, source=sourcedb)
-#    c.execute(query)
-    generate_base_whitelist()
-    continue
-    query = "DESCRIBE `{source}`.`{table}`".format(table=table, source=sourcedb)
-    c.execute(query)
-    column_names = [e[0] for e in c.fetchall()]
-    columns = (', ').join(column_names)
-    query = "INSERT INTO `{dest}`.`{table}` ({columns}) SELECT {columns} FROM `{source}`.`{table}` LIMIT 100".format(table=table, dest=destdb, source=sourcedb, columns=columns)
-    c.execute(query)
+    for table in whitelist.get_tables():
+        column_names = whitelist.process(c, destdb, sourcedb, table)
+        columns = (', ').join(column_names)
+        query = "INSERT INTO `{dest}`.`{table}` ({columns}) SELECT {columns} FROM `{source}`.`{table}` LIMIT 100".format(table=table, dest=destdb, source=sourcedb, columns=columns)
+        print query
+        c.execute(query)
+        c.fetchall()
 
 
 
-
+if __name__ == "__main__":
+    run()
+    c.execute('COMMIT')
+    c.close()
