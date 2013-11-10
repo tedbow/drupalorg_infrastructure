@@ -2,6 +2,8 @@
 from MySQLdb import *
 from whitelist import whitelist
 import password
+import table_customizations
+
 
 sourcedb = 'drupal_sanitize'
 destdb = 'drupal_2'
@@ -26,6 +28,12 @@ def check_schema():
     c.execute('SHOW TABLES IN `{0}`'.format(sourcedb))
     tables = [e[0] for e in c.fetchall()]
     for table in tables:
+        if whitelist.table("_ignore:" + table):
+            print("Table '{table}' ignored".format(table=table))
+            continue
+        if whitelist.table("_nodata:" + table):
+            print("Table '{table}' ignored".format(table=table))
+            continue
         if not whitelist.table(table):
             print("Table '{table}' not presant in whitelist.py base config is:\n".format(table=table))
             generate_base_whitelist(table)
@@ -49,10 +57,9 @@ def run():
         c.execute(query)
 
     for table in whitelist.get_tables():
-        column_names = whitelist.process(c, destdb, sourcedb, table)
-        columns = (', ').join(column_names)
-        query = "INSERT INTO `{dest}`.`{table}` ({columns}) SELECT {columns} FROM `{source}`.`{table}` LIMIT 100".format(table=table, dest=destdb, source=sourcedb, columns=columns)
-        print query
+        column_names = whitelist.process(table)
+        handler = table_customizations.get_handler(table, sourcedb, destdb)
+        query = handler.get_sql(column_names)
         c.execute(query)
         c.fetchall()
 
