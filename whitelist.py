@@ -130,7 +130,9 @@ whitelist.add(
     columns=[
         "env_id",
         "name",
-        "url",
+        # UPDATE apachesolr_environment SET url = 'http://not.indexed.invalid';
+        # http://drupalcode.org/project/infrastructure.git/blob/HEAD:/snapshot/drupal.raw.sql#l2
+        "_setenv:url",
         "service_class",
     ])
 
@@ -185,7 +187,9 @@ whitelist.add(
 whitelist.add(
     table="authmap", 
     columns=[
-        "aid",
+        # UPDATE authmap SET authname = concat(aid, '@sanitized.invalid');
+        # http://drupalcode.org/project/infrastructure.git/blob/HEAD:/snapshot/common.staging.sql#l3
+        "_sanitize:aid",
         "uid",
         "authname",
         "module",
@@ -217,7 +221,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="batch", 
+    table="_nodata:batch", 
     columns=[
         "bid",
         "token",
@@ -576,14 +580,16 @@ whitelist.add(
         "status",
         "thread",
         "name",
-        "mail",
+        # UPDATE comment SET mail = CONCAT(name, '@sanitized.invalid');
+        # http://drupalcode.org/project/infrastructure.git/blob/HEAD:/snapshot/drupal.staging.sql#l1
+        "_sanitize:mail",
         "homepage",
         "language",
         "created",
     ])
 
 whitelist.add(
-    table="comment_alter_taxonomy", 
+    table="_ignore:comment_alter_taxonomy", 
     columns=[
         "nid",
         "cid",
@@ -591,7 +597,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="comment_upload", 
+    table="_ignore:comment_upload", 
     columns=[
         "fid",
         "nid",
@@ -867,7 +873,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cvs", 
+    table="_ignore:cvs", 
     columns=[
         "user",
         "files",
@@ -877,7 +883,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cvs_accounts", 
+    table="_ignore:cvs_accounts", 
     columns=[
         "uid",
         "cvs_user",
@@ -887,14 +893,14 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cvs_cache_block", 
+    table="_ignore:cvs_cache_block", 
     columns=[
         "cid",
         "data",
     ])
 
 whitelist.add(
-    table="cvs_files", 
+    table="_ignore:cvs_files", 
     columns=[
         "cid",
         "rid",
@@ -908,7 +914,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cvs_files_attic", 
+    table="_ignore:cvs_files_attic", 
     columns=[
         "cid",
         "rid",
@@ -922,7 +928,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cvs_messages", 
+    table="_ignore:cvs_messages", 
     columns=[
         "cid",
         "rid",
@@ -933,7 +939,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cvs_messages_attic", 
+    table="_ignore:cvs_messages_attic", 
     columns=[
         "cid",
         "rid",
@@ -944,7 +950,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cvs_migration", 
+    table="_ignore:cvsmigration", 
     columns=[
         "uid",
         "cvs_user",
@@ -953,14 +959,14 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cvs_project_maintainers", 
+    table="_ignore:cvs_project_maintainers", 
     columns=[
         "nid",
         "uid",
     ])
 
 whitelist.add(
-    table="cvs_projects", 
+    table="_ignore:cvs_projects", 
     columns=[
         "nid",
         "rid",
@@ -982,7 +988,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cvs_tags", 
+    table="_ignore:cvs_tags", 
     columns=[
         "nid",
         "tag",
@@ -991,7 +997,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cvs_tags_attic", 
+    table="_ignore:cvs_tags_attic", 
     columns=[
         "nid",
         "tag",
@@ -999,7 +1005,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="d6_upgrade_filter", 
+    table="_ignore:d6_upgrade_filter", 
     columns=[
         "module",
         "weight",
@@ -4502,7 +4508,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="flood", 
+    table="_nodata:flood", 
     columns=[
         "event",
         "identifier",
@@ -4520,7 +4526,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="forum2_index", 
+    table="_ignore:forum2_index", 
     columns=[
         "nid",
         "title",
@@ -4776,7 +4782,9 @@ whitelist.add(
     columns=[
         "eid",
         "uid",
-        "email",
+        # UPDATE multiple_email me INNER JOIN users u ON u.uid = me.uid SET me.email = concat(me.eid, '.', u.mail);
+        # http://drupalcode.org/project/infrastructure.git/blob/HEAD:/snapshot/drupal.staging.sql#l3
+        "_sanitize:email",
         "time_registered",
         "confirmed",
         "confirm_code",
@@ -4785,7 +4793,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="mv_drupalorg_node_by_term", 
+    table="_ignore:mv_drupalorg_node_by_term", 
     columns=[
         "entity_type",
         "entity_id",
@@ -4797,7 +4805,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="mv_drupalorg_node_by_vocabulary", 
+    table="_ignore:mv_drupalorg_node_by_vocabulary", 
     columns=[
         "entity_type",
         "entity_id",
@@ -4993,7 +5001,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="project_issue_comments", 
+    table="_ignore:project_issue_comments", 
     columns=[
         "nid",
         "cid",
@@ -5010,7 +5018,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="project_issue_migration_original_issue_data", 
+    table="_ignore:project_issue_migration_original_issue_data", 
     columns=[
         "nid",
         "orig_vid",
@@ -5026,14 +5034,14 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="project_issue_migration_original_thread", 
+    table="_ignore:project_issue_migration_original_thread", 
     columns=[
         "cid",
         "thread",
     ])
 
 whitelist.add(
-    table="project_issue_migration_timeline", 
+    table="_ignore:project_issue_migration_timeline", 
     columns=[
         "nid",
         "prev_nid",
@@ -5080,7 +5088,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="project_issue_migration_timeline_init", 
+    table="_ignore:project_issue_migration_timeline_init", 
     columns=[
         "nid",
         "prev_nid",
@@ -5161,7 +5169,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="project_issue_projects", 
+    table="_ignore:project_issue_projects", 
     columns=[
         "nid",
         "issues",
@@ -5186,7 +5194,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="project_issues", 
+    table="_ignore:project_issues", 
     columns=[
         "nid",
         "pid",
@@ -5399,7 +5407,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="projects", 
+    table="_ignore:projects", 
     columns=[
         "pid",
         "name",
@@ -5670,7 +5678,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="search_dataset", 
+    table="_ignore:search_dataset", 
     columns=[
         "sid",
         "type",
@@ -5679,7 +5687,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="search_index", 
+    table="_ignore:search_index", 
     columns=[
         "word",
         "sid",
@@ -5688,7 +5696,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="search_index_d6", 
+    table="_ignore:search_index_d6", 
     columns=[
         "word",
         "sid",
@@ -5697,7 +5705,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="search_node_links", 
+    table="_ignore:search_node_links", 
     columns=[
         "sid",
         "type",
@@ -5706,14 +5714,14 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="search_total", 
+    table="_ignore:search_total", 
     columns=[
         "word",
         "count",
     ])
 
 whitelist.add(
-    table="search_total_d6", 
+    table="_ignore:search_total_d6", 
     columns=[
         "word",
         "count",
@@ -5742,7 +5750,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="semaphore", 
+    table="_nodata:semaphore", 
     columns=[
         "name",
         "value",
@@ -5756,7 +5764,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="sessions", 
+    table="_nodata:sessions", 
     columns=[
         "uid",
         "sid",
@@ -5792,7 +5800,9 @@ whitelist.add(
         "snid",
         "a_status",
         "s_status",
-        "mail",
+        # UPDATE simplenews_subscriptions SET mail = CONCAT(snid, '@sanitized.invalid');
+        # http://drupalcode.org/project/infrastructure.git/blob/HEAD:/snapshot/drupal.staging.sql#l2
+        "_sanitize:mail",
         "uid",
     ])
 
@@ -5899,7 +5909,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="tracker2_node", 
+    table="_ignore:tracker2_node", 
     columns=[
         "nid",
         "published",
@@ -5907,7 +5917,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="tracker2_user", 
+    table="_ignore:tracker2_user", 
     columns=[
         "nid",
         "published",
@@ -5958,6 +5968,8 @@ whitelist.add(
         "uid",
         "name",
         "pass",
+        # UPDATE users SET mail = concat(name, '@sanitized.invalid');
+        # http://drupalcode.org/project/infrastructure.git/blob/HEAD:/snapshot/common.staging.sql#l1
         "_sanitize:mail",
         "theme",
         "signature",
@@ -5965,7 +5977,9 @@ whitelist.add(
         "timezone",
         "rating",
         "language",
-        "init",
+        # UPDATE users SET init = if(init LIKE 'drupal.org/user/%/edit', concat('staging.dev', init), mail); 
+        # http://drupalcode.org/project/infrastructure.git/blob/HEAD:/snapshot/common.staging.sql#l2 
+        "_sanitize:init",
         "data",
         "created",
         "login",
@@ -5992,8 +6006,9 @@ whitelist.add(
         "rid",
     ])
 
+# DELETE FROM variable WHERE name LIKE '%key%'; http://drupalcode.org/project/infrastructure.git/blob/HEAD:/snapshot/common.raw.sql#l3
 whitelist.add(
-    table="variable", 
+    table="_trimkeys:variable", 
     columns=[
         "name",
         "value",
