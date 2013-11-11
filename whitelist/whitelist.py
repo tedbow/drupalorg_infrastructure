@@ -139,11 +139,10 @@ whitelist.add(
 whitelist.add(
     table="authmap", 
     columns=[
-        # UPDATE authmap SET authname = concat(aid, '@sanitized.invalid');
         # http://drupalcode.org/project/infrastructure.git/blob/HEAD:/snapshot/common.staging.sql#l3
-        "_sanitize:aid",
+        "aid",
         "uid",
-        "authname",
+        "_sanitize:authname",
         "module",
     ])
 
@@ -532,7 +531,6 @@ whitelist.add(
         "status",
         "thread",
         "name",
-        # UPDATE comment SET mail = CONCAT(name, '@sanitized.invalid');
         # http://drupalcode.org/project/infrastructure.git/blob/HEAD:/snapshot/drupal.staging.sql#l1
         "_sanitize:mail",
         "homepage",

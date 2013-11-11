@@ -58,6 +58,9 @@ def run():
 
     for table in whitelist.get_tables():
         column_names = whitelist.process(table)
+        if not column_names:
+            #skip data for this table
+            continue
         handler = table_customizations.get_handler(table, sourcedb, destdb)
         query = handler.get_sql(column_names)
         c.execute(query)

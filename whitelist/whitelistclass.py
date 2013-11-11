@@ -18,7 +18,10 @@ class Whitelist:
 
     def process(self, table):
         known_columns = list()
-        columns = self.tabledata[table]
+        columns = self.table(table)
+        print self.tabledef(table)
+        if '_nodata:' in self.tabledef(table):
+            return
         for column in columns:
             if column[0] == '_' and ':' in column:
                 function, name = column.split(':', 1)
@@ -29,7 +32,7 @@ class Whitelist:
         return known_columns
 
     def get_tables(self):
-        return ['users', 'access']
+        #return ['multiple_email', 'flood', 'comment', 'authmap', 'users', 'access', 'variable', 'apachesolr_environment']
         return [self.name_only(e) for e in self.tabledata.keys() if '_ignore:' not in e]
 
     def name_only(self, id):
@@ -50,6 +53,16 @@ class Whitelist:
         mapped_tables = dict(zip(plain_tables, known_tables))
         if table in plain_tables:
             return self.tabledata[mapped_tables[table]]
+
+        else:
+            return False
+
+    def tabledef(self, table):
+        known_tables = self.tabledata.keys()
+        plain_tables = map(self.name_only, known_tables)
+        mapped_tables = dict(zip(plain_tables, known_tables))
+        if table in plain_tables:
+            return mapped_tables[table]
 
         else:
             return False
