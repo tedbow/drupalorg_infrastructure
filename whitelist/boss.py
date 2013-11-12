@@ -14,9 +14,29 @@ It is suitable for testing of:
    and will not match the e-mail address used in the Git repository.
 """
 
-# Add back the data for these, which we're now removing in whitelist
+# Undo the whitelist sanitization for these fields
 
-  UPDATE users SET data = '', pass = 'nope'; #reset passwords and remove some profile data TODO: Is this valid for D7?
-  UPDATE comment SET hostname = "127.0.0.1";
-  UPDATE role_activity SET ip = "127.0.0.1";
-  UPDATE sshkey SET title = "nobody@nomail.invalid";
+whitelist.update(
+    table="users",
+    columns=[
+        "pass",
+        "data",
+    ])
+
+whitelist.update(
+    table="comment",
+    columns=[
+        "hostname",
+    ])
+
+whitelist.update(
+    table="role_activity",
+    columns=[
+        "ip",
+    ])
+
+whitelist.update(
+    table="sshkey",
+    columns=[
+        "title",
+    ])
