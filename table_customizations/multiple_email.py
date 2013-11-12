@@ -9,6 +9,6 @@ class Multiple_Email(table_customizations.TableHandler):
         for column in [e[1] for e in column_names if e[0]]:
             columns += ', ' + column
             srccolumns += ", CONCAT(`multiple_email`.`eid`, '.', `users`.`name`, '@sanitized.invalid')"
-        query = "INSERT INTO `{dest}`.`{table}` ({columns}) SELECT {srccolumns} FROM `{source}`.`{table}` LEFT JOIN `{source}`.`users` ON (`multiple_email`.`uid` = `users`.`uid`)  LIMIT 100".format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns)
+        query = "INSERT INTO `{dest}`.`{table}` ({columns}) SELECT {srccolumns} FROM `{source}`.`{table}` LEFT JOIN `{source}`.`users` ON (`multiple_email`.`uid` = `users`.`uid`)  {limit}".format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
         print query
         return query

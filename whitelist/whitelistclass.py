@@ -67,3 +67,19 @@ class Whitelist:
         else:
             return False
 
+    def columnmap(self, columns):
+        plain_columns = map(self.name_only, columns)
+        mapped_columns = dict(zip(plain_columns, columns))
+        return mapped_columns
+
+    def update(self, table, columns):
+        table_desc = self.table(self.name_only(table)) #Store the current def
+        print table_desc
+        old_key = self.tabledef(table)
+        del(self.tabledata[old_key])
+        old_columns = self.columnmap(table_desc)
+        new_columns = self.columnmap(columns)
+        for column, value in new_columns.items():
+            old_columns[column] = value
+        self.tabledata[table] = old_columns.values()
+        print self.tabledata[table] 

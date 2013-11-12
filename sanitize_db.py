@@ -1,12 +1,22 @@
 #!/bin/env python
 from MySQLdb import *
-from whitelist import whitelist
+from whitelist import whitelist 
+whitelist = whitelist.whitelist
 import password
 import table_customizations
+from optparse import OptionParser
 
-
+parser = OptionParser()
+parser.add_option('-d', '--dataset', dest="dataset", help="Pick the dataset whitelist overlay. (boss or skeleton)")
+(options, args) = parser.parse_args()
+print whitelist
+if options.dataset == 'boss':
+    import whitelist.boss
+    print "Like a boss."
+    whitelist = whitelist.whitelist.whitelist
+print whitelist
 sourcedb = 'drupal_sanitize'
-destdb = 'drupal_2'
+destdb = 'drupal_3'
 
 db=connect(user=password.user, passwd=password.password)
 c = db.cursor()
