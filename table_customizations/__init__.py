@@ -1,3 +1,7 @@
+"""@init docstring
+On Bakery slave sites, the init column is almost a URI. It should match the master site's TLD
+"""
+
 import importlib
 
 class TableHandler(object):
