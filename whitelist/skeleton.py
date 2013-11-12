@@ -25,7 +25,6 @@ It is NOT suitable for work on:
 # http://drupalcode.org/project/infrastructure.git/blob/HEAD:/snapshot/common.dev.sql
 
   DELETE FROM users WHERE status <> 1 AND uid <> 0 AND name <> 'bacon'; #delete blocked users
-  UPDATE users SET data = '', pass = 'nope'; #reset passwords and remove some profile data TODO: Is this valid for D7?
   DELETE users_roles FROM users_roles LEFT JOIN users ON users_roles.uid = users.uid WHERE users.uid IS NULL; #remove user roles for deleted users
 
 
@@ -34,11 +33,6 @@ It is NOT suitable for work on:
   UPDATE users_access SET access = 280299600; #obfuscate last access
   UPDATE users SET access = 280299600; #obfuscate last access
   TRUNCATE blocked_ips; #don't show blocked IPs
-
-  -- Remove assorted IP / email data
-  UPDATE comment SET hostname = "127.0.0.1"; 
-  UPDATE role_activity SET ip = "127.0.0.1";
-  UPDATE sshkey SET title = "nobody@nomail.invalid";
 
   -- Remove sensitive variables and profile data
   DELETE FROM profile_value WHERE fid IN (select fid FROM profile_field WHERE visibility in (1, 4));
