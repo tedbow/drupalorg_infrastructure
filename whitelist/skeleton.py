@@ -19,6 +19,9 @@ It is NOT suitable for work on:
   * solr
 """
 
+
+
+"""
 # TODO: The following SQL is currently used for the Drupal.org-hosted Dev environments
 
 
@@ -35,6 +38,7 @@ It is NOT suitable for work on:
   TRUNCATE blocked_ips; #don't show blocked IPs
 
   -- Remove sensitive variables and profile data
+# No longer exists post migration
   DELETE FROM profile_value WHERE fid IN (select fid FROM profile_field WHERE visibility in (1, 4));
 
   -- Get rid of unpublished/blocked nodes, users, comments and related data in other tables.
@@ -83,3 +87,4 @@ It is NOT suitable for work on:
   DELETE v FROM search_api_db_project_issues_comments_comment_body_value v LEFT JOIN node n ON n.nid = v.item_id WHERE n.nid IS NULL;
   DELETE v FROM search_api_db_project_issues_body_value v LEFT JOIN node n ON n.nid = v.item_id WHERE n.nid IS NULL;
   DELETE v FROM search_api_db_project_issues v LEFT JOIN node n ON n.nid = v.item_id WHERE n.nid IS NULL;
+"""

@@ -33,6 +33,7 @@ class Whitelist:
 
     def get_tables(self):
         #return ['multiple_email', 'flood', 'comment', 'authmap', 'users', 'access', 'variable', 'apachesolr_environment']
+        return ['users', 'users_roles', 'users_access', 'blocked_ips']
         return [self.name_only(e) for e in self.tabledata.keys() if '_ignore:' not in e]
 
     def name_only(self, id):

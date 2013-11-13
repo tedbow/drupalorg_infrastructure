@@ -223,7 +223,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="blocked_ips", 
+    table="_nodata:blocked_ips", 
     columns=[
         "iid",
         "ip",

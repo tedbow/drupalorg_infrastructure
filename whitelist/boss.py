@@ -19,6 +19,13 @@ It is suitable for testing of:
 # Undo the whitelist sanitization for these fields
 
 whitelist.update(
+    table="blocked_ips",
+    columns=[
+        "iid",
+        "ip",
+    ])
+
+whitelist.update(
     table="users",
     columns=[
         "pass",

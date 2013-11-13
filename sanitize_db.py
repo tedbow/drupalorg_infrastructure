@@ -7,14 +7,23 @@ import table_customizations
 from optparse import OptionParser
 
 parser = OptionParser()
-parser.add_option('-d', '--dataset', dest="dataset", help="Pick the dataset whitelist overlay. (boss or skeleton)")
+parser.add_option('-d', '--dest-db', dest="destdb", help="The name of the database we insert into.")
+parser.add_option('-s', '--src-db', dest="sourcedb", help="The name of the database we select from.")
+parser.add_option('-p', '--data-profile', dest="dataset", help="Pick the data profile whitelist overlay. (boss or skeleton)")
 (options, args) = parser.parse_args()
 if options.dataset == 'boss':
     import whitelist.boss
     print "Like a boss."
     whitelist = whitelist.whitelist.whitelist
-sourcedb = 'drupal_sanitize'
-destdb = 'drupal_2'
+
+sourcedb = options.sourcedb
+if not sourcedb:
+    sourcedb = 'drupal_sanitize'
+    print "Using default source {0}".format(sourcedb)
+destdb = options.destdb
+if not destdb:
+    destdb = 'drupal_export'
+    print "Using default destination {0}".format(destdb)
 
 db=connect(user=password.user, passwd=password.password)
 c = db.cursor()
