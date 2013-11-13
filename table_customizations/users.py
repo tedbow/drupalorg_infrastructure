@@ -15,9 +15,29 @@ class Users(table_customizations.TableHandler):
             elif column == 'data':
                 columns += ', ' + column
                 srccolumns += ", ''"
-        query = "INSERT INTO `{dest}`.`{table}` ({columns}) SELECT {srccolumns} FROM `{source}`.`{table}` {limit}".format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
+        query = """
+          INSERT INTO 
+            `{dest}`.`{table}` ({columns}) 
+          SELECT
+            {srccolumns} 
+          FROM 
+            `{source}`.`{table}` {limit}
+          """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
         if self.dataset == 'skeleton':
             srccolumns = srccolumns.replace('access', '280299600')
-            query = "INSERT INTO `{dest}`.`{table}` ({columns}) SELECT {srccolumns} FROM `{source}`.`{table}` WHERE `{table}`.status = 1 AND (`{table}`.uid = 0 OR `{table}`.name = 'bacon') {limit}".format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
-        print query
+            query = """
+              INSERT INTO 
+                `{dest}`.`{table}` ({columns}) 
+              SELECT 
+                {srccolumns} 
+              FROM 
+                `{source}`.`{table}` 
+              WHERE 
+                `{table}`.status = 1 
+              AND 
+                (`{table}`.uid = 0 
+              OR 
+                `{table}`.name = 'bacon') {limit}
+            """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
+            print query
         return query
