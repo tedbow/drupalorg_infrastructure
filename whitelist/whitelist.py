@@ -6071,9 +6071,9 @@ whitelist.add(
         "type",
         "repo_id",
         "author_date",
-        "author",
+        "author", #Contains emails publicly listed by the repo viewer
         "author_uid",
-        "committer",
+        "committer", #Contains emails publicly listed by the repo viewer
         "committer_uid",
         "revision",
         "message",
@@ -6190,7 +6190,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="watchdog", 
+    table="_nodata:watchdog", 
     columns=[
         "wid",
         "uid",

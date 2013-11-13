@@ -10,6 +10,7 @@ class TableHandler(object):
         self.src = src
         self.dst = dst
         self.limit = 'LIMIT 1000'
+        self.dataset = None
 
     def get_sql(self, column_names):
         columns = (', ').join([e[1] for e in column_names if not e[0]])

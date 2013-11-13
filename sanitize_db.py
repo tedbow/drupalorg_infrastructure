@@ -9,14 +9,12 @@ from optparse import OptionParser
 parser = OptionParser()
 parser.add_option('-d', '--dataset', dest="dataset", help="Pick the dataset whitelist overlay. (boss or skeleton)")
 (options, args) = parser.parse_args()
-print whitelist
 if options.dataset == 'boss':
     import whitelist.boss
     print "Like a boss."
     whitelist = whitelist.whitelist.whitelist
-print whitelist
 sourcedb = 'drupal_sanitize'
-destdb = 'drupal_3'
+destdb = 'drupal_2'
 
 db=connect(user=password.user, passwd=password.password)
 c = db.cursor()
@@ -72,6 +70,10 @@ def run():
             #skip data for this table
             continue
         handler = table_customizations.get_handler(table, sourcedb, destdb)
+        try:
+            handler.dataset = options.dataset
+        except AttributeError:
+            pass
         query = handler.get_sql(column_names)
         c.execute(query)
         c.fetchall()
