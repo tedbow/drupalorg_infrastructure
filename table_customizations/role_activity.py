@@ -9,6 +9,13 @@ class Role_Activity(table_customizations.TableHandler):
             if column == 'ip':
                 columns += ', ' + column
                 srccolumns += ", '127.0.0.1'"
-        query = "INSERT INTO `{dest}`.`{table}` ({columns}) SELECT {srccolumns} FROM `{source}`.`{table}` {limit}".format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
+        query = """
+          INSERT INTO 
+            `{dest}`.`{table}` ({columns}) 
+          SELECT
+            {srccolumns} 
+          FROM
+            `{source}`.`{table}` {limit}
+          """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
         print query
         return query
