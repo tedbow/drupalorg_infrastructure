@@ -9,6 +9,13 @@ class Users_Access(table_customizations.TableHandler):
            srccolumns = columns.replace('`users_access`.access', '280299600') 
         else:
             srccolumns = columns
-        query = "INSERT INTO `{dest}`.`{table}` ({columns}) SELECT {srccolumns} FROM `{source}`.`{table}` {limit}".format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
+        query = """
+          INSERT INTO
+            `{dest}`.`{table}` ({columns}) 
+          SELECT
+            {srccolumns} 
+          FROM
+            `{source}`.`{table}` {limit}
+          """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
         print query
         return query
