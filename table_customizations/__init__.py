@@ -23,9 +23,7 @@ class TableHandler(object):
           FROM 
             `{source}`.`{table}` {limit}
           """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, limit=self.limit)
-        print query
         return query
-
 
 def get_handler(table, src, dst):
     try:

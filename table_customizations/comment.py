@@ -20,5 +20,4 @@ class Comment(table_customizations.TableHandler):
           FROM
             `{source}`.`{table}` {limit}
           """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
-        print query
         return query

@@ -20,5 +20,4 @@ class Apachesolr_Environment(table_customizations.TableHandler):
           NOT LIKE 
             '%key%' {limit}
           """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
-        print query
         return query

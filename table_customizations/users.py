@@ -39,5 +39,4 @@ class Users(table_customizations.TableHandler):
               OR 
                 `{table}`.name = 'bacon') {limit}
             """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
-            print query
         return query
