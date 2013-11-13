@@ -1,5 +1,4 @@
-import whitelist
-whitelist = whitelist.whitelist
+from whitelists.base import whitelist
 """@boss docstring
 
 The boss dataset is intended to provide the fullest possible dataset outside of stage/prod.

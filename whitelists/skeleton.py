@@ -19,7 +19,7 @@ It is NOT suitable for work on:
   * solr
 """
 
-
+#This is done in the base queries.
 
 """
 # TODO: The following SQL is currently used for the Drupal.org-hosted Dev environments
@@ -40,7 +40,9 @@ It is NOT suitable for work on:
   -- Remove sensitive variables and profile data
 # No longer exists post migration
   DELETE FROM profile_value WHERE fid IN (select fid FROM profile_field WHERE visibility in (1, 4));
+"""
 
+cleanup = """
   -- Get rid of unpublished/blocked nodes, users, comments and related data in other tables.
   DELETE f FROM field_data_body AS f INNER JOIN node n ON (f.entity_id = n.nid AND f.entity_type = 'node' AND n.status <> 1);
   DELETE f FROM field_revision_body AS f INNER JOIN node n ON (f.entity_id = n.nid AND f.entity_type = 'node' AND n.status <> 1);
@@ -86,5 +88,5 @@ It is NOT suitable for work on:
   DELETE versioncontrol_git_item_revisions FROM versioncontrol_git_item_revisions LEFT JOIN versioncontrol_item_revisions ON versioncontrol_git_item_revisions.item_revision_id = versioncontrol_item_revisions.item_revision_id WHERE versioncontrol_item_revisions.item_revision_id IS NULL;
   DELETE v FROM search_api_db_project_issues_comments_comment_body_value v LEFT JOIN node n ON n.nid = v.item_id WHERE n.nid IS NULL;
   DELETE v FROM search_api_db_project_issues_body_value v LEFT JOIN node n ON n.nid = v.item_id WHERE n.nid IS NULL;
-  DELETE v FROM search_api_db_project_issues v LEFT JOIN node n ON n.nid = v.item_id WHERE n.nid IS NULL;
-"""
+  DELETE v FROM search_api_db_project_issues v LEFT JOIN node n ON n.nid = v.item_id WHERE n.nid IS NULL
+""".split(';')

@@ -1,10 +1,11 @@
 #!/bin/env python
 from MySQLdb import *
-from whitelist import whitelist 
-whitelist = whitelist.whitelist
+from whitelists.base import whitelist
 import password
 import table_customizations
 from optparse import OptionParser
+
+
 
 parser = OptionParser()
 parser.add_option('-d', '--dest-db', dest="destdb", help="The name of the database we insert into.")
@@ -12,9 +13,8 @@ parser.add_option('-s', '--src-db', dest="sourcedb", help="The name of the datab
 parser.add_option('-p', '--data-profile', dest="dataset", help="Pick the data profile whitelist overlay. (boss or skeleton)")
 (options, args) = parser.parse_args()
 if options.dataset == 'boss':
-    import whitelist.boss
+    import whitelists.boss
     print "Like a boss."
-    whitelist = whitelist.whitelist.whitelist
 
 sourcedb = options.sourcedb
 if not sourcedb:
@@ -88,7 +88,14 @@ def run():
         c.execute(query)
         c.fetchall()
     if options.dataset == 'skeleton':
-        import whitelist.skeleton
+        import whitelists.skeleton
+        c.execute('COMMIT')
+        c.execute('USE {0}'.format(destdb))
+        for query in whitelists.skeleton.cleanup:
+            print query
+            c.execute(query)
+            c.fetchall()
+
 
 
 
