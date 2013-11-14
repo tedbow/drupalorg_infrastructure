@@ -142,7 +142,7 @@ whitelist.add(
         # http://drupalcode.org/project/infrastructure.git/blob/HEAD:/snapshot/common.staging.sql#l3
         "aid",
         "uid",
-        "_sanitize:authname",
+        "_sanitize-email:authname",
         "module",
     ])
 
@@ -526,13 +526,13 @@ whitelist.add(
         "nid",
         "uid",
         "subject",
-        "_sanitize:hostname",
+        "_sanitize-ip:hostname",
         "changed",
         "status",
         "thread",
         "name",
         # http://drupalcode.org/project/infrastructure.git/blob/HEAD:/snapshot/drupal.staging.sql#l1
-        "_sanitize:mail",
+        "_sanitize-email:mail",
         "homepage",
         "language",
         "created",
@@ -4734,7 +4734,7 @@ whitelist.add(
         "uid",
         # UPDATE multiple_email me INNER JOIN users u ON u.uid = me.uid SET me.email = concat(me.eid, '.', u.mail);
         # http://drupalcode.org/project/infrastructure.git/blob/HEAD:/snapshot/drupal.staging.sql#l3
-        "_sanitize:email",
+        "_sanitize-email:email",
         "time_registered",
         "confirmed",
         "confirm_code",
@@ -5428,7 +5428,7 @@ whitelist.add(
         "timestamp",
         "type",
         "referer",
-        "_sanitize:ip",
+        "_sanitize-ip:ip",
         "action",
         "link",
         "uri",
@@ -5752,7 +5752,7 @@ whitelist.add(
         "s_status",
         # UPDATE simplenews_subscriptions SET mail = CONCAT(snid, '@sanitized.invalid');
         # http://drupalcode.org/project/infrastructure.git/blob/HEAD:/snapshot/drupal.staging.sql#l2
-        "_sanitize:mail",
+        "_sanitize-email:mail",
         "uid",
     ])
 
@@ -5777,7 +5777,7 @@ whitelist.add(
         "entity_type",
         "entity_id",
         "fingerprint",
-        "_sanitize:title",
+        "_sanitize-text:title",
         "value",
         "changed",
     ])
@@ -5917,10 +5917,10 @@ whitelist.add(
     columns=[
         "uid",
         "name",
-        "_sanitize:pass",
+        "_sanitize-text:pass",
         # UPDATE users SET mail = concat(name, '@sanitized.invalid');
         # http://drupalcode.org/project/infrastructure.git/blob/HEAD:/snapshot/common.staging.sql#l1
-        "_sanitize:mail",
+        "_sanitize-email:mail",
         "theme",
         "signature",
         "status",
@@ -5929,8 +5929,8 @@ whitelist.add(
         "language",
         # UPDATE users SET init = if(init LIKE 'drupal.org/user/%/edit', concat('staging.dev', init), mail); 
         # http://drupalcode.org/project/infrastructure.git/blob/HEAD:/snapshot/common.staging.sql#l2 
-        "_sanitize:init",
-        "_sanitize:data",
+        "_sanitize-email:init",
+        "_sanitize-blank:data",
         "created",
         "login",
         "signature_format",
