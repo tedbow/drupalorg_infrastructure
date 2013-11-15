@@ -1,3 +1,5 @@
+from whitelists.base import whitelist
+
 """@skeleton docstring
 The skeleton dataset is the lightest weight of all images.
 
@@ -41,6 +43,21 @@ It is NOT suitable for work on:
 # No longer exists post migration
   DELETE FROM profile_value WHERE fid IN (select fid FROM profile_field WHERE visibility in (1, 4));
 """
+
+
+whitelist.update(
+    table="users",
+    columns=[
+        "_sanitize_timestamp:access",
+    ])
+
+whitelist.update(
+    table="users_access",
+    columns=[
+        "_sanitize_timestamp:access",
+    ])
+
+
 
 cleanup = """
   -- Get rid of unpublished/blocked nodes, users, comments and related data in other tables.

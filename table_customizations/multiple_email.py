@@ -3,12 +3,7 @@ import table_customizations
 class Multiple_Email(table_customizations.TableHandler):
 
     def get_sql(self, column_names):
-        columns = (', ').join([e[1] for e in column_names if not e[0]])
-        srccolumns = (', {0}.'.format(self.table)).join([e[1] for e in column_names if not e[0]])
-        srccolumns = "{table}.{srccols}".format(table=self.table, srccols=srccolumns)
-        for column in [e[1] for e in column_names if e[0]]:
-            columns += ', ' + column
-            srccolumns += ", CONCAT(`multiple_email`.`eid`, '.', `users`.`name`, '@sanitized.invalid')"
+        columns, srccolumns = self.field_handler.column_handler(column_names, self.table)
         query = """
           INSERT INTO
             `{dest}`.`{table}` ({columns}) 

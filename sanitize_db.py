@@ -4,6 +4,7 @@ from whitelists.base import whitelist
 import password
 import table_customizations
 from optparse import OptionParser
+import field_formatter
 
 
 
@@ -15,6 +16,10 @@ parser.add_option('-p', '--data-profile', dest="dataset", help="Pick the data pr
 if options.dataset == 'boss':
     import whitelists.boss
     print "Like a boss."
+
+if options.dataset == 'skeleton':
+    import whitelists.skeleton
+    print "Skeleton attack!"
 
 sourcedb = options.sourcedb
 if not sourcedb:
@@ -73,12 +78,14 @@ def run():
         print query
         c.execute(query)
 
+    field_handler = field_formatter.Field_Handler()
+
     for table in whitelist.get_tables():
         column_names = whitelist.process(table)
         if not column_names:
             #skip data for this table
             continue
-        handler = table_customizations.get_handler(table, sourcedb, destdb)
+        handler = table_customizations.get_handler(table, sourcedb, destdb, field_handler)
         try:
             handler.dataset = options.dataset
         except AttributeError:

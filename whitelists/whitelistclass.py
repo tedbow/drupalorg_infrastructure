@@ -19,7 +19,6 @@ class Whitelist:
     def process(self, table):
         known_columns = list()
         columns = self.table(table)
-        print self.tabledef(table)
         if '_nodata:' in self.tabledef(table):
             return
         for column in columns:
@@ -52,7 +51,6 @@ class Whitelist:
         mapped_tables = dict(zip(plain_tables, known_tables))
         if table in plain_tables:
             return self.tabledata[mapped_tables[table]]
-
         else:
             return False
 

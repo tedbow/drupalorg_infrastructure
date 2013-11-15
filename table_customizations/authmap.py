@@ -3,11 +3,7 @@ import table_customizations
 class Authmap(table_customizations.TableHandler):
 
     def get_sql(self, column_names):
-        columns = (', ').join([e[1] for e in column_names if not e[0]])
-        srccolumns = columns
-        for column in [e[1] for e in column_names if e[0]]:
-            columns += ', ' + column
-            srccolumns += ", CONCAT(aid, '@sanitized.invalid')"
+        columns, srccolumns = self.field_handler.column_handler(column_names, self.table)
         query = """
           INSERT INTO 
             `{dest}`.`{table}` ({columns}) 
