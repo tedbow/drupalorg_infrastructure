@@ -19,6 +19,9 @@ fi
 if [ "${cc_cssjs-}" = "true" ]; then
   ${drush} cc "css-js"
 fi
+if [ "${cc_views-}" = "true" ]; then
+  ${drush} cc "views"
+fi
 if [ "${cc_all-}" = "true" ]; then
   ${drush} cc "all"
 fi
