@@ -12,7 +12,7 @@ export TERM=dumb
   echo
 
   echo "Database"
-  ssh devdb.drupal.org df -h /
+  ssh devdb.drupal.org df -h /var
   echo
 
   for domain in $(ls "/var/www/dev"); do
