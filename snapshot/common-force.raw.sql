@@ -1,11 +1,6 @@
 -- Executed with mysql -f, every query will be executed, regardless of failure.
 
 -- Empty out scratch tables used during drupal7 migration.
-TRUNCATE project_issue_projects;
-TRUNCATE projects;
-TRUNCATE project_issues;
-TRUNCATE project_issue_comments;
-TRUNCATE comment_upload;
 TRUNCATE tracker2_node;
 TRUNCATE tracker2_user;
 TRUNCATE forum2_index;
