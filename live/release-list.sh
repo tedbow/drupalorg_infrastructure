@@ -10,6 +10,7 @@ set -uex
 drush -r /var/www/drupal.org/htdocs -l drupal.org sql-cli > /var/www/drupal.org/htdocs/files/releases.tsv <<end
   SELECT
     from_unixtime(n.created) AS created,
+    n.title AS project_name,
     pm.field_project_machine_name_value AS project_machine_name,
     rv.field_release_version_value AS version,
     td.name AS api
