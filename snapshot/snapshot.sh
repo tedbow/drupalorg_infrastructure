@@ -80,9 +80,6 @@ echo "SHOW TABLES LIKE '%cache%';" | mysql -o ${tmp_args} | tail -n +2 | sed -e 
 echo "SHOW TABLES LIKE 'civicrm_export_temp%';" | mysql -o ${tmp_args} | tail -n +2 | sed -e "s/^\(.*\)$/TRUNCATE \1;/" | mysql -o ${tmp_args}
 echo "SHOW TABLES LIKE 'civicrm_import_job%';" | mysql -o ${tmp_args} | tail -n +2 | sed -e "s/^\(.*\)$/TRUNCATE \1;/" | mysql -o ${tmp_args}
 
-# Reset file_temporary_path
-echo "UPDATE variable SET value='s:9:\"files/tmp\";' WHERE name='file_temporary_path';" | mysql -o ${tmp_args}
-
 # Snapshot in stages.
 
 # Raw is nearly unsanitized, excpet for some keys. Git-dev uses this for emails.
