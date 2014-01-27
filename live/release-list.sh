@@ -12,8 +12,8 @@ drush -r /var/www/drupal.org/htdocs -l drupal.org sql-cli > /var/www/drupal.org/
     from_unixtime(n.created) AS created,
     pm.field_project_machine_name_value AS project_machine_name,
     rv.field_release_version_value AS version,
-    td.name AS api
-    np.title AS project_name,
+    td.name AS api,
+    np.title AS project_name
   FROM node n
   INNER JOIN field_data_field_release_project rp ON rp.entity_id = n.nid
   INNER JOIN field_data_field_release_build_type rbt ON rbt.entity_id = n.nid AND rbt.field_release_build_type_value = 'static'
