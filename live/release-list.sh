@@ -8,6 +8,7 @@
 set -uex
 
 drush -r /var/www/drupal.org/htdocs -l drupal.org sql-cli > /var/www/drupal.org/htdocs/files/releases.tsv <<end
+  CHARSET utf8;
   SELECT
     from_unixtime(n.created) AS created,
     pm.field_project_machine_name_value AS project_machine_name,
