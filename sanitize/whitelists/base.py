@@ -124,7 +124,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cache", 
+    table="_nodata:cache", 
     columns=[
         "cid",
         "data",
@@ -134,7 +134,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cache_block", 
+    table="_nodata:cache_block", 
     columns=[
         "cid",
         "data",
@@ -144,7 +144,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cache_bootstrap", 
+    table="_nodata:cache_bootstrap", 
     columns=[
         "cid",
         "data",
@@ -154,7 +154,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cache_field", 
+    table="_nodata:cache_field", 
     columns=[
         "cid",
         "data",
@@ -164,7 +164,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cache_filter", 
+    table="_nodata:cache_filter", 
     columns=[
         "cid",
         "data",
@@ -174,7 +174,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cache_form", 
+    table="_nodata:cache_form", 
     columns=[
         "cid",
         "data",
@@ -184,7 +184,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cache_image", 
+    table="_nodata:cache_image", 
     columns=[
         "cid",
         "data",
@@ -194,7 +194,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cache_menu", 
+    table="_nodata:cache_menu", 
     columns=[
         "cid",
         "data",
@@ -204,7 +204,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cache_page", 
+    table="_nodata:cache_page", 
     columns=[
         "cid",
         "data",
@@ -214,7 +214,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cache_path", 
+    table="_nodata:cache_path", 
     columns=[
         "cid",
         "data",
@@ -224,7 +224,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cache_token", 
+    table="_nodata:cache_token", 
     columns=[
         "cid",
         "data",
@@ -234,7 +234,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cache_update", 
+    table="_nodata:cache_update", 
     columns=[
         "cid",
         "data",
@@ -244,7 +244,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cache_views", 
+    table="_nodata:cache_views", 
     columns=[
         "cid",
         "data",
@@ -254,7 +254,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cache_views_data", 
+    table="_nodata:cache_views_data", 
     columns=[
         "cid",
         "data",
