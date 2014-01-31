@@ -21,6 +21,10 @@ if options.dataset == 'skeleton':
     import whitelists.skeleton
     print "Skeleton attack!"
 
+if options.dataset == 'infra':
+    import whitelists.infra
+    print "Infrastructing madness!"
+
 sourcedb = options.sourcedb
 if not sourcedb:
     sourcedb = 'drupal_sanitize'
