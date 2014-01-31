@@ -11,7 +11,7 @@ import field_formatter
 parser = OptionParser()
 parser.add_option('-d', '--dest-db', dest="destdb", help="The name of the database we insert into.")
 parser.add_option('-s', '--src-db', dest="sourcedb", help="The name of the database we select from.")
-parser.add_option('-p', '--data-profile', dest="dataset", help="Pick the data profile whitelist overlay. (boss or skeleton)")
+parser.add_option('-p', '--data-profile', dest="dataset", help="Pick the data profile whitelist overlay. (boss, skeleton or infra)")
 (options, args) = parser.parse_args()
 if options.dataset == 'boss':
     import whitelists.boss
@@ -34,7 +34,7 @@ if not destdb:
     destdb = 'drupal_export'
     print "Using default destination {0}".format(destdb)
 
-db=connect(user=password.user, passwd=password.password)
+db=connect(host=password.host, user=password.user, passwd=password.password)
 c = db.cursor()
 
 
