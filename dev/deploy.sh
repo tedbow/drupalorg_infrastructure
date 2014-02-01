@@ -32,7 +32,7 @@ if [ "${site}" == "sydney2013" -o "${site}" == "portland2013" -o "${site}" == "p
 fi
 
 # Sites migrated to D7.
-if [ "${site}" == "association" -o "${site}" == "api" ]; then
+if [ "${site}" == "association" -o "${site}" == "api" -o "${site}" == "infrastructure" ]; then
   repository="${repository}-7"
 fi
 
