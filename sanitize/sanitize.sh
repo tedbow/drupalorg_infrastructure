@@ -21,7 +21,7 @@ tmp_args="-h${host} -u${user} -p${password} ${export_db}"
 # Sanitize into the export database.
 python26 ./sanitize/sanitize_db.py -s infrastructure -d ${export_db} -p ${profile}
 
-# Save the DB dump. Uses MySQL 5.6 / MariaDB 10 mysqldump.
+# Save the DB dump.
 mysqldump --single-transaction --quick ${tmp_args} | sed -e 's/^) ENGINE=[^ ]*/)/' | bzip2 > "/var/dumps/${subdir}/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2"
 mv -v "/var/dumps/${subdir}/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2" "/var/dumps/${subdir}/${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.bz2"
 ln -sfv "${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.bz2" "/var/dumps/${subdir}/${JOB_NAME}${suffix}-current.sql.bz2"
