@@ -20,7 +20,8 @@ password=$(cat sanitize/password.py | grep password | sed -e "s/password = '//" 
 tmp_args="-h${host} -u${user} -p${password} ${export_db}"
 
 if [ ${database} == "drupal" ]; then
-  mysqldump -h db2-main-vip.drupal.org -u${user} -p${password} --single-transaction --quick ${database} | database="drupal_sanitize" mysql -h${host} -u${user} -p${password} ${database}
+  database="drupal_sanitize"
+  mysqldump -h db2-main-vip.drupal.org -u${user} -p${password} --single-transaction --quick drupal | mysql -h${host} -u${user} -p${password} ${database}
 fi
 
 # Sanitize into the export database.
