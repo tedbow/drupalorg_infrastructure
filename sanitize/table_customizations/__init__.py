@@ -10,7 +10,6 @@ class TableHandler(object):
         self.src = src
         self.dst = dst
         self.limit = ''
-        self.limit = 'LIMIT 1000'
         self.dataset = None
         self.field_handler = field_handler
 
