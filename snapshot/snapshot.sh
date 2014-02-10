@@ -18,8 +18,7 @@ function snapshot {
   # Skip if this sanitization and phase does not exit.
   [ ! -f "snapshot/${sanitization}${suffix}.sql" ] && return
   # Execute SQL for this sanitization and phase.
-  #mysql -o ${tmp_args} < "snapshot/${sanitization}${suffix}.sql"
-  cat "snapshot/${sanitization}${suffix}.sql" | sed -e 's/^) ENGINE=[^ ]*/) ENGINE=aria/' | mysql -o ${tmp_args}
+  mysql -o ${tmp_args} < "snapshot/${sanitization}${suffix}.sql"
 
   # Remove initial '.'
   subdir=$(echo "${suffix}" | sed -e 's/^\.//')
