@@ -69,7 +69,7 @@ if [ -s "${WORKSPACE}/mysqldump-errors.txt" ]; then
   exit 1
 fi
 # Copy live to tmp database.
-gunzip < "${WORKSPACE}/tmp.mysql.gz" | sed -e 's/^) ENGINE=[^ ]*/) ENGINE=aria/' | mysql -o ${tmp_args}
+gunzip < "${WORKSPACE}/tmp.mysql.gz" | sed -e 's/^) ENGINE=[^ ]*/) ENGINE=MyISAM/' | mysql -o ${tmp_args}
 rm "${WORKSPACE}/tmp.mysql.gz"
 
 # Save a copy of the schema.
