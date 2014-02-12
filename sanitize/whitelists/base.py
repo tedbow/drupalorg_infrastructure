@@ -5,7 +5,7 @@ import whitelistclass
 whitelist = whitelistclass.Whitelist()
 
 whitelist.add(
-    table="actions", 
+    table="actions",
     columns=[
         "aid",
         "type",
@@ -15,7 +15,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="authmap", 
+    table="authmap",
     columns=[
         # http://drupalcode.org/project/infrastructure.git/blob/HEAD:/snapshot/common.staging.sql#l3
         "aid",
@@ -25,7 +25,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="bakery_user", 
+    table="bakery_user",
     columns=[
         "uid",
         "slave",
@@ -33,7 +33,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:batch", 
+    table="_nodata:batch",
     columns=[
         "bid",
         "token",
@@ -42,7 +42,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="block", 
+    table="block",
     columns=[
         "module",
         "delta",
@@ -59,7 +59,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="block_custom", 
+    table="block_custom",
     columns=[
         "bid",
         "body",
@@ -68,7 +68,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="block_node_type", 
+    table="block_node_type",
     columns=[
         "module",
         "delta",
@@ -76,7 +76,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="block_role", 
+    table="block_role",
     columns=[
         "module",
         "delta",
@@ -84,14 +84,14 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:blocked_ips", 
+    table="_nodata:blocked_ips",
     columns=[
         "iid",
         "ip",
     ])
 
 whitelist.add(
-    table="book", 
+    table="book",
     columns=[
         "mlid",
         "nid",
@@ -99,7 +99,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="bueditor_buttons", 
+    table="bueditor_buttons",
     columns=[
         "bid",
         "eid",
@@ -111,7 +111,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="bueditor_editors", 
+    table="bueditor_editors",
     columns=[
         "eid",
         "name",
@@ -124,7 +124,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:cache", 
+    table="_nodata:cache",
     columns=[
         "cid",
         "data",
@@ -134,7 +134,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:cache_block", 
+    table="_nodata:cache_block",
     columns=[
         "cid",
         "data",
@@ -144,7 +144,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:cache_bootstrap", 
+    table="_nodata:cache_bootstrap",
     columns=[
         "cid",
         "data",
@@ -154,7 +154,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:cache_field", 
+    table="_nodata:cache_field",
     columns=[
         "cid",
         "data",
@@ -164,7 +164,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:cache_filter", 
+    table="_nodata:cache_filter",
     columns=[
         "cid",
         "data",
@@ -174,7 +174,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:cache_form", 
+    table="_nodata:cache_form",
     columns=[
         "cid",
         "data",
@@ -184,7 +184,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:cache_image", 
+    table="_nodata:cache_image",
     columns=[
         "cid",
         "data",
@@ -194,7 +194,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:cache_menu", 
+    table="_nodata:cache_menu",
     columns=[
         "cid",
         "data",
@@ -204,7 +204,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:cache_page", 
+    table="_nodata:cache_page",
     columns=[
         "cid",
         "data",
@@ -214,7 +214,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:cache_path", 
+    table="_nodata:cache_path",
     columns=[
         "cid",
         "data",
@@ -224,7 +224,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:cache_token", 
+    table="_nodata:cache_token",
     columns=[
         "cid",
         "data",
@@ -234,7 +234,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:cache_update", 
+    table="_nodata:cache_update",
     columns=[
         "cid",
         "data",
@@ -244,7 +244,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:cache_views", 
+    table="_nodata:cache_views",
     columns=[
         "cid",
         "data",
@@ -254,7 +254,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:cache_views_data", 
+    table="_nodata:cache_views_data",
     columns=[
         "cid",
         "data",
@@ -264,7 +264,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="comment", 
+    table="comment",
     columns=[
         "cid",
         "pid",
@@ -284,7 +284,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:comment_alter_taxonomy", 
+    table="_nodata:comment_alter_taxonomy",
     columns=[
         "nid",
         "cid",
@@ -292,7 +292,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:comment_upload", 
+    table="_nodata:comment_upload",
     columns=[
         "fid",
         "nid",
@@ -304,7 +304,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="contact", 
+    table="contact",
     columns=[
         "category",
         "recipients",
@@ -315,7 +315,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="ctools_css_cache", 
+    table="ctools_css_cache",
     columns=[
         "cid",
         "filename",
@@ -324,7 +324,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="ctools_object_cache", 
+    table="ctools_object_cache",
     columns=[
         "sid",
         "name",
@@ -334,7 +334,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:cvs", 
+    table="_nodata:cvs",
     columns=[
         "user",
         "files",
@@ -344,7 +344,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:cvs_accounts", 
+    table="_nodata:cvs_accounts",
     columns=[
         "uid",
         "cvs_user",
@@ -354,14 +354,14 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:cvs_cache_block", 
+    table="_nodata:cvs_cache_block",
     columns=[
         "cid",
         "data",
     ])
 
 whitelist.add(
-    table="_ignore:cvs_files", 
+    table="_nodata:cvs_files",
     columns=[
         "cid",
         "rid",
@@ -375,7 +375,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:cvs_files_attic", 
+    table="_nodata:cvs_files_attic",
     columns=[
         "cid",
         "rid",
@@ -389,7 +389,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:cvs_messages", 
+    table="_nodata:cvs_messages",
     columns=[
         "cid",
         "rid",
@@ -400,7 +400,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:cvs_messages_attic", 
+    table="_nodata:cvs_messages_attic",
     columns=[
         "cid",
         "rid",
@@ -411,7 +411,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:cvs_migration", 
+    table="_nodata:cvs_migration",
     columns=[
         "uid",
         "cvs_user",
@@ -420,14 +420,14 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:cvs_project_maintainers", 
+    table="_nodata:cvs_project_maintainers",
     columns=[
         "nid",
         "uid",
     ])
 
 whitelist.add(
-    table="_ignore:cvs_projects", 
+    table="_nodata:cvs_projects",
     columns=[
         "nid",
         "rid",
@@ -435,7 +435,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:cvs_tags", 
+    table="_nodata:cvs_tags",
     columns=[
         "nid",
         "tag",
@@ -444,7 +444,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:cvs_tags_attic", 
+    table="_nodata:cvs_tags_attic",
     columns=[
         "nid",
         "tag",
@@ -452,7 +452,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:d6_upgrade_filter", 
+    table="_nodata:d6_upgrade_filter",
     columns=[
         "module",
         "weight",
@@ -462,7 +462,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="date_format_locale", 
+    table="date_format_locale",
     columns=[
         "format",
         "type",
@@ -470,7 +470,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="date_format_type", 
+    table="date_format_type",
     columns=[
         "type",
         "title",
@@ -478,7 +478,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="date_formats", 
+    table="date_formats",
     columns=[
         "dfid",
         "format",
@@ -487,7 +487,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_config", 
+    table="field_config",
     columns=[
         "id",
         "field_name",
@@ -505,7 +505,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_config_instance", 
+    table="field_config_instance",
     columns=[
         "id",
         "field_id",
@@ -517,7 +517,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_data_body", 
+    table="field_data_body",
     columns=[
         "entity_type",
         "bundle",
@@ -532,7 +532,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_data_comment_body", 
+    table="field_data_comment_body",
     columns=[
         "entity_type",
         "bundle",
@@ -546,7 +546,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_group", 
+    table="field_group",
     columns=[
         "id",
         "identifier",
@@ -559,7 +559,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_revision_body", 
+    table="field_revision_body",
     columns=[
         "entity_type",
         "bundle",
@@ -574,7 +574,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="file_managed", 
+    table="file_managed",
     columns=[
         "fid",
         "uid",
@@ -587,7 +587,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="file_usage", 
+    table="file_usage",
     columns=[
         "fid",
         "module",
@@ -597,7 +597,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="filter", 
+    table="filter",
     columns=[
         "format",
         "module",
@@ -608,7 +608,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="filter_format", 
+    table="filter_format",
     columns=[
         "format",
         "name",
@@ -618,7 +618,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:flood", 
+    table="_nodata:flood",
     columns=[
         "event",
         "identifier",
@@ -628,7 +628,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:forum2_index", 
+    table="_nodata:forum2_index",
     columns=[
         "nid",
         "title",
@@ -640,7 +640,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="history", 
+    table="history",
     columns=[
         "uid",
         "nid",
@@ -648,7 +648,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="image_effects", 
+    table="image_effects",
     columns=[
         "ieid",
         "isid",
@@ -658,7 +658,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="image_styles", 
+    table="image_styles",
     columns=[
         "isid",
         "name",
@@ -666,7 +666,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="menu_custom", 
+    table="menu_custom",
     columns=[
         "menu_name",
         "title",
@@ -674,7 +674,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="menu_links", 
+    table="menu_links",
     columns=[
         "menu_name",
         "mlid",
@@ -704,7 +704,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="menu_router", 
+    table="menu_router",
     columns=[
         "path",
         "load_functions",
@@ -732,7 +732,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:mv_drupalorg_node_by_term", 
+    table="_nodata:mv_drupalorg_node_by_term",
     columns=[
         "entity_type",
         "entity_id",
@@ -744,7 +744,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:mv_drupalorg_node_by_vocabulary", 
+    table="_nodata:mv_drupalorg_node_by_vocabulary",
     columns=[
         "entity_type",
         "entity_id",
@@ -756,7 +756,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="node", 
+    table="node",
     columns=[
         "nid",
         "type",
@@ -775,7 +775,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="node_access", 
+    table="node_access",
     columns=[
         "nid",
         "gid",
@@ -786,7 +786,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="node_comment_statistics", 
+    table="node_comment_statistics",
     columns=[
         "nid",
         "last_comment_timestamp",
@@ -797,7 +797,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="node_revision", 
+    table="node_revision",
     columns=[
         "nid",
         "vid",
@@ -812,7 +812,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="node_type", 
+    table="node_type",
     columns=[
         "type",
         "name",
@@ -830,7 +830,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:project_issue_comments", 
+    table="_nodata:project_issue_comments",
     columns=[
         "nid",
         "cid",
@@ -847,7 +847,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:project_issue_migration_original_issue_data", 
+    table="_nodata:project_issue_migration_original_issue_data",
     columns=[
         "nid",
         "orig_vid",
@@ -863,14 +863,14 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:project_issue_migration_original_thread", 
+    table="_nodata:project_issue_migration_original_thread",
     columns=[
         "cid",
         "thread",
     ])
 
 whitelist.add(
-    table="_ignore:project_issue_migration_timeline", 
+    table="_nodata:project_issue_migration_timeline",
     columns=[
         "nid",
         "prev_nid",
@@ -917,7 +917,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:project_issue_migration_timeline_init", 
+    table="_nodata:project_issue_migration_timeline_init",
     columns=[
         "nid",
         "prev_nid",
@@ -964,7 +964,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:project_issue_projects", 
+    table="_nodata:project_issue_projects",
     columns=[
         "nid",
         "issues",
@@ -979,7 +979,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:project_issues", 
+    table="_nodata:project_issues",
     columns=[
         "nid",
         "pid",
@@ -996,7 +996,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:projects", 
+    table="_nodata:projects",
     columns=[
         "pid",
         "name",
@@ -1008,7 +1008,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="queue", 
+    table="queue",
     columns=[
         "item_id",
         "name",
@@ -1018,7 +1018,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="redirect", 
+    table="redirect",
     columns=[
         "rid",
         "hash",
@@ -1035,7 +1035,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="registry", 
+    table="registry",
     columns=[
         "name",
         "type",
@@ -1045,14 +1045,14 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="registry_file", 
+    table="registry_file",
     columns=[
         "filename",
         "hash",
     ])
 
 whitelist.add(
-    table="role", 
+    table="role",
     columns=[
         "rid",
         "name",
@@ -1060,7 +1060,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="role_permission", 
+    table="role_permission",
     columns=[
         "rid",
         "permission",
@@ -1068,7 +1068,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:search_dataset", 
+    table="_nodata:search_dataset",
     columns=[
         "sid",
         "type",
@@ -1077,7 +1077,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:search_index", 
+    table="_nodata:search_index",
     columns=[
         "word",
         "sid",
@@ -1086,7 +1086,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:search_index_d6", 
+    table="_nodata:search_index_d6",
     columns=[
         "word",
         "sid",
@@ -1095,7 +1095,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:search_node_links", 
+    table="_nodata:search_node_links",
     columns=[
         "sid",
         "type",
@@ -1104,21 +1104,21 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:search_total", 
+    table="_nodata:search_total",
     columns=[
         "word",
         "count",
     ])
 
 whitelist.add(
-    table="_ignore:search_total_d6", 
+    table="_nodata:search_total_d6",
     columns=[
         "word",
         "count",
     ])
 
 whitelist.add(
-    table="_nodata:semaphore", 
+    table="_nodata:semaphore",
     columns=[
         "name",
         "value",
@@ -1126,13 +1126,13 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="sequences", 
+    table="sequences",
     columns=[
         "value",
     ])
 
 whitelist.add(
-    table="_nodata:sessions", 
+    table="_nodata:sessions",
     columns=[
         "uid",
         "sid",
@@ -1144,7 +1144,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="system", 
+    table="system",
     columns=[
         "filename",
         "name",
@@ -1158,7 +1158,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="taxonomy_index", 
+    table="taxonomy_index",
     columns=[
         "nid",
         "tid",
@@ -1167,7 +1167,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="taxonomy_term_data", 
+    table="taxonomy_term_data",
     columns=[
         "tid",
         "vid",
@@ -1178,14 +1178,14 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="taxonomy_term_hierarchy", 
+    table="taxonomy_term_hierarchy",
     columns=[
         "tid",
         "parent",
     ])
 
 whitelist.add(
-    table="taxonomy_vocabulary", 
+    table="taxonomy_vocabulary",
     columns=[
         "vid",
         "name",
@@ -1197,7 +1197,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:tracker2_node", 
+    table="_nodata:tracker2_node",
     columns=[
         "nid",
         "published",
@@ -1205,7 +1205,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_ignore:tracker2_user", 
+    table="_nodata:tracker2_user",
     columns=[
         "nid",
         "published",
@@ -1214,7 +1214,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="tracker_node", 
+    table="tracker_node",
     columns=[
         "nid",
         "published",
@@ -1222,7 +1222,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="tracker_user", 
+    table="tracker_user",
     columns=[
         "nid",
         "uid",
@@ -1231,7 +1231,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="url_alias", 
+    table="url_alias",
     columns=[
         "pid",
         "source",
@@ -1240,7 +1240,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="users", 
+    table="users",
     columns=[
         "uid",
         "name",
@@ -1253,8 +1253,8 @@ whitelist.add(
         "status",
         "timezone",
         "language",
-        # UPDATE users SET init = if(init LIKE 'drupal.org/user/%/edit', concat('staging.dev', init), mail); 
-        # http://drupalcode.org/project/infrastructure.git/blob/HEAD:/snapshot/common.staging.sql#l2 
+        # UPDATE users SET init = if(init LIKE 'drupal.org/user/%/edit', concat('staging.dev', init), mail);
+        # http://drupalcode.org/project/infrastructure.git/blob/HEAD:/snapshot/common.staging.sql#l2
         "_sanitize_email:init",
         "_sanitize_blank:data",
         "created",
@@ -1265,7 +1265,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="users_roles", 
+    table="users_roles",
     columns=[
         "uid",
         "rid",
@@ -1273,14 +1273,14 @@ whitelist.add(
 
 # DELETE FROM variable WHERE name LIKE '%key%'; http://drupalcode.org/project/infrastructure.git/blob/HEAD:/snapshot/common.raw.sql#l3
 whitelist.add(
-    table="_trimkeys:variable", 
+    table="_trimkeys:variable",
     columns=[
         "name",
         "value",
     ])
 
 whitelist.add(
-    table="views_display", 
+    table="views_display",
     columns=[
         "vid",
         "id",
@@ -1291,7 +1291,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="views_view", 
+    table="views_view",
     columns=[
         "vid",
         "name",
@@ -1303,7 +1303,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:watchdog", 
+    table="_nodata:watchdog",
     columns=[
         "wid",
         "uid",

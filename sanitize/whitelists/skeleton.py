@@ -1,4 +1,4 @@
-from whitelists.base import whitelist
+from whitelists.drupalorg import whitelist
 
 """@skeleton docstring
 The skeleton dataset is the lightest weight of all images.
@@ -21,29 +21,6 @@ It is NOT suitable for work on:
   * solr
 """
 
-#This is done in the base queries.
-
-"""
-# TODO: The following SQL is currently used for the Drupal.org-hosted Dev environments
-
-
-# http://drupalcode.org/project/infrastructure.git/blob/HEAD:/snapshot/common.dev.sql
-
-  DELETE FROM users WHERE status <> 1 AND uid <> 0 AND name <> 'bacon'; #delete blocked users
-  DELETE users_roles FROM users_roles LEFT JOIN users ON users_roles.uid = users.uid WHERE users.uid IS NULL; #remove user roles for deleted users
-
-
-# http://drupalcode.org/project/infrastructure.git/blob/HEAD:/snapshot/drupal.dev.sql
-
-  UPDATE users_access SET access = 280299600; #obfuscate last access
-  UPDATE users SET access = 280299600; #obfuscate last access
-  TRUNCATE blocked_ips; #don't show blocked IPs
-
-  -- Remove sensitive variables and profile data
-# No longer exists post migration
-  DELETE FROM profile_value WHERE fid IN (select fid FROM profile_field WHERE visibility in (1, 4));
-"""
-
 
 whitelist.update(
     table="users",
@@ -59,7 +36,7 @@ whitelist.update(
 
 
 
-cleanup = """
+cleanup += """
   -- Get rid of unpublished/blocked nodes, users, comments and related data in other tables.
   DELETE f FROM field_data_body AS f INNER JOIN node n ON (f.entity_id = n.nid AND f.entity_type = 'node' AND n.status <> 1);
   DELETE f FROM field_revision_body AS f INNER JOIN node n ON (f.entity_id = n.nid AND f.entity_type = 'node' AND n.status <> 1);
