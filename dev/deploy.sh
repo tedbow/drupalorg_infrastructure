@@ -77,6 +77,9 @@ ${drush} sql-cli <<END
   UPDATE system SET status = 0 WHERE name = 'civicrm';
 END
 
+# Run any pending updates.
+${drush} updatedb
+
 # Disable modules that don't work well in development (yet)
 ${drush} pm-disable paranoia
 ${drush} pm-disable beanstalkd
@@ -94,8 +97,6 @@ ${drush} vdel preprocess_js
 ${drush} pm-enable devel
 ${drush} pm-enable views_ui
 ${drush} pm-enable imagecache_ui
-
-${drush} updatedb
 
 # Set up for potential bakery testing
 ${drush} vdel bakery_slaves
