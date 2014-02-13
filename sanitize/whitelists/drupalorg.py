@@ -12,7 +12,7 @@ It is:
 # Add the following whitelists
 
 whitelist.add(
-    table="access", 
+    table="_nodata:access",
     columns=[
         "aid",
         "mask",
