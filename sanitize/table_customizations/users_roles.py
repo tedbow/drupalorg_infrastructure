@@ -20,13 +20,9 @@ class Users_Roles(table_customizations.TableHandler):
                 {srccolumns} 
               FROM
                 `{source}`.`{table}` 
-                LEFT JOIN 
-                  `{dest}`.`users` 
-                ON 
-                  (`{source}`.`{table}`.uid = `{dest}`.`users`.uid) 
-                WHERE
-                  `{dest}`.`users`.uid 
-                IS NOT NULL 
-                  {limit}
+              INNER JOIN
+                `{dest}`.`users`
+              ON
+                users_roles.uid = users.uid {limit}
               """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
         return query

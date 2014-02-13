@@ -22,9 +22,9 @@ class Users(table_customizations.TableHandler):
                 `{source}`.`{table}` 
               WHERE 
                 `{table}`.status = 1 
-              AND 
-                (`{table}`.uid = 0 
               OR 
-                `{table}`.name = 'bacon') {limit}
+                `{table}`.uid = 0 
+              OR 
+                `{table}`.name = 'bacon' {limit}
             """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
         return query
