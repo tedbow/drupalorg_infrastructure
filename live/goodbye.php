@@ -31,7 +31,6 @@ foreach (file('php://stdin') as $mail) {
       'status' => 0,
     );
     // Remove data.
-    $data = unserialize($account->data);
     if (is_array($data)) {
       foreach (array_keys($data) as $key) {
         $data[$key] = NULL;
