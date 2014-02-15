@@ -40,7 +40,7 @@ foreach (file('php://stdin') as $mail) {
     user_save($account, $array);
 
     // Remove profile & multiple_email data.
-    db_query('DELETE FROM {profile_values} WHERE uid = %d', $account->uid);
+    db_query('DELETE FROM {profile_value} WHERE uid = %d', $account->uid);
     db_query('DELETE FROM {multiple_email} WHERE uid = %d', $account->uid);
 
     // Subsites: bakery should forward the status and invalidated mail. We
@@ -49,7 +49,10 @@ foreach (file('php://stdin') as $mail) {
       $output = drush_invoke_process($site, 'sql-query', array("SELECT uid AS '' FROM users WHERE init = 'drupal.org/user/" . $account->uid . "/edit'"));
       if (!empty($output['output'])) {
         $slave_uid = trim($output['output']);
+        // D6
         drush_invoke_process($site, 'sql-query', array('DELETE FROM profile_values WHERE uid = ' . $slave_uid));
+        // D7
+        drush_invoke_process($site, 'sql-query', array('DELETE FROM profile_value WHERE uid = ' . $slave_uid));
       }
     }
   }
