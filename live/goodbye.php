@@ -14,7 +14,7 @@ foreach (variable_get('bakery_slaves', array()) as $slave) {
 foreach (file('php://stdin') as $mail) {
   $mail = trim($mail);
   // Find Drupal.org UID.
-  $uid = db_result(db_query("SELECT uid FROM {multiple_email} WHERE email = '%s'", $mail));
+  $uid = db_query("SELECT uid FROM {multiple_email} WHERE email = :mail", array(':mail' => $mail))->fetchField();
   if ($uid === FALSE) {
     // Non-matching email.
     print '### Not found: ' . $mail . "\n";
@@ -40,8 +40,8 @@ foreach (file('php://stdin') as $mail) {
     user_save($account, $array);
 
     // Remove profile & multiple_email data.
-    db_query('DELETE FROM {profile_value} WHERE uid = %d', $account->uid);
-    db_query('DELETE FROM {multiple_email} WHERE uid = %d', $account->uid);
+    db_query('DELETE FROM {profile_value} WHERE uid = :uid', array(':uid' => $account->uid));
+    db_query('DELETE FROM {multiple_email} WHERE uid = :uid', array(':uid' => $account->uid));
 
     // Subsites: bakery should forward the status and invalidated mail. We
     // should remove profile values. No other sites run multiple email.
