@@ -103,15 +103,15 @@ ${drush} vdel bakery_slaves
 ${drush} vset bakery_domain ".redesign.devdrupal.org"
 if [ "${site}" == "drupal" ]; then
   # Drupal.org sites are masters
-  ${drush} vset bakery_master "http://${name}-${site}.redesign.devdrupal.org/"
+  ${drush} vset bakery_master "https://${name}-${site}.redesign.devdrupal.org/"
   ${drush} vset bakery_key "$(pwgen -s 32 1)"
 else
   if [ "${bakery_master-}" ]; then
     # Hook up to a Drupal.org
-    ${drush} vset bakery_master "http://${bakery_master}-drupal.redesign.devdrupal.org/"
+    ${drush} vset bakery_master "https://${bakery_master}-drupal.redesign.devdrupal.org/"
     drush_master="drush -r /var/www/dev/${bakery_master}-drupal.redesign.devdrupal.org/htdocs -l ${bakery_master}-drupal.redesign.devdrupal.org -y"
     ${drush} vset bakery_key $(${drush_master} vget bakery_key | sed -ne 's/^.*"\(.*\)"/\1/p')
-    ${drush_master} bakery-add-slave "http://${name}-${site}.redesign.devdrupal.org/"
+    ${drush_master} bakery-add-slave "https://${name}-${site}.redesign.devdrupal.org/"
   else
     # Don't bother with bakery
     ${drush} pm-disable bakery
@@ -122,4 +122,4 @@ fi
 ${drush} upwd bacon --password=bacon
 
 # Prime any big caches
-wget -O /dev/null http://${name}-${site}.redesign.devdrupal.org --user=drupal --password=drupal
+wget --no-check-certificate -O /dev/null https://${name}-${site}.redesign.devdrupal.org --user=drupal --password=drupal
