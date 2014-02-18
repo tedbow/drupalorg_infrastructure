@@ -1,6 +1,6 @@
 import table_customizations
 
-class Users(table_customizations.TableHandler):
+class Search_Api_Db_Project_Issues(table_customizations.TableHandler):
 
     def get_sql(self, column_names):
         columns, srccolumns = self.field_handler.column_handler(column_names, self.table)
@@ -21,8 +21,8 @@ class Users(table_customizations.TableHandler):
             FROM
               {source}.{table}
             INNER JOIN
-              node
+              {source}.node
             ON
-              node.nid = {table}.item_id {limit}
+              {source}.node.nid = {source}.{table}.item_id {limit}
             """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
         return query

@@ -34,6 +34,7 @@ whitelist.update(
         "_sanitize_timestamp:access",
     ])
 
+cleanup = ""
 #cleanup += """
 #  -- Get rid of unpublished/blocked nodes, users, comments and related data in other tables.
 #  DELETE f FROM field_data_body AS f INNER JOIN node n ON (f.entity_id = n.nid AND f.entity_type = 'node' AND n.status <> 1);

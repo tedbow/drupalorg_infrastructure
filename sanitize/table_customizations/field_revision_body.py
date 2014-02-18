@@ -21,9 +21,9 @@ class Field_Revision_Body(table_customizations.TableHandler):
             FROM
               `{source}`.`{table}`
             INNER JOIN
-              `node_revision`
+              `{source}`.`node_revision`
             ON
-              `node_revision`.`vid` = `{table}`.`revision_id` {limit}
+              `{source}`.`node_revision`.`vid` = `{source}`.`{table}`.`revision_id` {limit}
             """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
         if self.dataset == 'infra':
           query = """

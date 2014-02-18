@@ -1,6 +1,6 @@
 import table_customizations
 
-class Users(table_customizations.TableHandler):
+class Tracker_User(table_customizations.TableHandler):
 
     def get_sql(self, column_names):
         columns, srccolumns = self.field_handler.column_handler(column_names, self.table)
@@ -25,8 +25,8 @@ class Users(table_customizations.TableHandler):
               ON
                 tracker_user.nid = node.nid 
               INNER JOIN 
-                users
+                {source}.users
               ON
-                tracker_user.uid = users.uid {limit}
+                {source}.tracker_user.uid = {source}.users.uid {limit}
             """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
         return query

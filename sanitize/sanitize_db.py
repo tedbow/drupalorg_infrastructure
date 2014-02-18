@@ -98,14 +98,14 @@ def run():
         print query
         c.execute(query)
         c.fetchall()
-    if options.dataset == 'skeleton':
-        import whitelists.skeleton
-        c.execute('COMMIT')
-        c.execute('USE {0}'.format(destdb))
-        for query in whitelists.skeleton.cleanup:
-            print query
-            c.execute(query)
-            c.fetchall()
+#    if options.dataset == 'skeleton':
+#        import whitelists.skeleton
+#        c.execute('COMMIT')
+#        c.execute('USE {0}'.format(destdb))
+#        for query in whitelists.skeleton.cleanup:
+#            print query
+#            c.execute(query)
+#            c.fetchall()
 
 
 

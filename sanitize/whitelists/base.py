@@ -847,123 +847,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:project_issue_migration_original_issue_data",
-    columns=[
-        "nid",
-        "orig_vid",
-        "first_cid",
-        "title",
-        "pid",
-        "component",
-        "category",
-        "priority",
-        "assigned",
-        "sid",
-        "rid",
-    ])
-
-whitelist.add(
-    table="_nodata:project_issue_migration_original_thread",
-    columns=[
-        "cid",
-        "thread",
-    ])
-
-whitelist.add(
-    table="_nodata:project_issue_migration_timeline",
-    columns=[
-        "nid",
-        "prev_nid",
-        "delta",
-        "genid",
-        "prev_genid",
-        "prev_changed_genid",
-        "timestamp",
-        "sort_timestamp",
-        "has_changes",
-        "comment_number",
-        "vid",
-        "cid",
-        "tl",
-        "last_cid",
-        "cur_pid",
-        "prev_pid",
-        "cur_component",
-        "prev_component",
-        "cur_category",
-        "prev_category",
-        "cur_priority",
-        "prev_priority",
-        "cur_assigned",
-        "prev_assigned",
-        "cur_sid",
-        "prev_sid",
-        "cur_rid",
-        "prev_rid",
-        "cur_title",
-        "prev_title",
-        "cur_body_value",
-        "prev_body_value",
-        "cur_body_format",
-        "prev_body_format",
-        "cur_attachments",
-        "prev_attachments",
-        "cur_tags",
-        "prev_tags",
-        "comment_body_value",
-        "comment_body_format",
-        "log",
-        "uid",
-    ])
-
-whitelist.add(
-    table="_nodata:project_issue_migration_timeline_init",
-    columns=[
-        "nid",
-        "prev_nid",
-        "delta",
-        "genid",
-        "prev_genid",
-        "prev_changed_genid",
-        "timestamp",
-        "sort_timestamp",
-        "has_changes",
-        "comment_number",
-        "vid",
-        "cid",
-        "tl",
-        "last_cid",
-        "cur_pid",
-        "prev_pid",
-        "cur_component",
-        "prev_component",
-        "cur_category",
-        "prev_category",
-        "cur_priority",
-        "prev_priority",
-        "cur_assigned",
-        "prev_assigned",
-        "cur_sid",
-        "prev_sid",
-        "cur_rid",
-        "prev_rid",
-        "cur_title",
-        "prev_title",
-        "cur_body_value",
-        "prev_body_value",
-        "cur_body_format",
-        "prev_body_format",
-        "cur_attachments",
-        "prev_attachments",
-        "cur_tags",
-        "prev_tags",
-        "comment_body_value",
-        "comment_body_format",
-        "log",
-        "uid",
-    ])
-
-whitelist.add(
     table="_nodata:project_issue_projects",
     columns=[
         "nid",
@@ -1086,15 +969,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:search_index_d6",
-    columns=[
-        "word",
-        "sid",
-        "type",
-        "score",
-    ])
-
-whitelist.add(
     table="_nodata:search_node_links",
     columns=[
         "sid",
@@ -1105,13 +979,6 @@ whitelist.add(
 
 whitelist.add(
     table="_nodata:search_total",
-    columns=[
-        "word",
-        "count",
-    ])
-
-whitelist.add(
-    table="_nodata:search_total_d6",
     columns=[
         "word",
         "count",

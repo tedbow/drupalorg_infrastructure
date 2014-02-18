@@ -1,6 +1,6 @@
 import table_customizations
 
-class Users(table_customizations.TableHandler):
+class Versioncontrol_Operations(table_customizations.TableHandler):
 
     def get_sql(self, column_names):
         columns, srccolumns = self.field_handler.column_handler(column_names, self.table)

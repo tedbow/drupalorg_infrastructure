@@ -1,6 +1,6 @@
 import table_customizations
 
-class Users(table_customizations.TableHandler):
+class Node_Comment_Statistics(table_customizations.TableHandler):
 
     def get_sql(self, column_names):
         columns, srccolumns = self.field_handler.column_handler(column_names, self.table)
@@ -21,8 +21,8 @@ class Users(table_customizations.TableHandler):
               FROM 
                 {source}.{table} 
               INNER JOIN 
-                node
+                {source}.node
               ON
-                node.nid = {table}.nid {limit}
+                {source}.node.nid = {source}.{table}.nid {limit}
             """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
         return query

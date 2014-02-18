@@ -4934,17 +4934,3 @@ whitelist.update(
         "git_vetted", 
         "git_disabled", 
     ]) 
-
-cleanup += """
-  -- TODO: The following SQL is currently used for the Drupal.org-hosted Dev environments
-  -- http://drupalcode.org/project/infrastructure.git/blob/HEAD:/snapshot/common.dev.sql
-  DELETE FROM users WHERE status <> 1 AND uid <> 0 AND name <> 'bacon';
-  DELETE users_roles FROM users_roles LEFT JOIN users ON users_roles.uid = users.uid WHERE users.uid IS NULL;
-
-  -- http://drupalcode.org/project/infrastructure.git/blob/HEAD:/snapshot/drupal.dev.sql
-  UPDATE users_access SET access = 280299600;
-  UPDATE users SET access = 280299600;
-
-  -- Remove sensitive variables and profile data
-  DELETE FROM profile_value WHERE fid IN (select fid FROM profile_field WHERE visibility in (1, 4));
-""".split(';')

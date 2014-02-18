@@ -1,6 +1,6 @@
 import table_customizations
 
-class Users(table_customizations.TableHandler):
+class Versioncontrol_Item_Revisions(table_customizations.TableHandler):
 
     def get_sql(self, column_names):
         columns, srccolumns = self.field_handler.column_handler(column_names, self.table)
@@ -21,8 +21,8 @@ class Users(table_customizations.TableHandler):
             FROM
               {source}.{table}
             INNER JOIN
-              versioncontrol_operations
+              {source}.versioncontrol_operations
             ON 
-              {table}.vc_op_id = versioncontrol_operations.vc_op_id {limit}
+              {source}.{table}.vc_op_id = {source}.versioncontrol_operations.vc_op_id {limit}
             """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
         return query

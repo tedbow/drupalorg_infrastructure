@@ -1,6 +1,6 @@
 import table_customizations
 
-class Users(table_customizations.TableHandler):
+class Field_Data_Field_Issue_Changes(table_customizations.TableHandler):
 
     def get_sql(self, column_names):
         columns, srccolumns = self.field_handler.column_handler(column_names, self.table)
@@ -21,8 +21,8 @@ class Users(table_customizations.TableHandler):
               FROM 
                 {source}.{table} 
               INNER JOIN 
-                comment
+                {source}.comment
               ON
-                comment.cid = {table}.entity_id {limit}
+                {source}.comment.cid = {source}.{table}.entity_id {limit}
             """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
         return query

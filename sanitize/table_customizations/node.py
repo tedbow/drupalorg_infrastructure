@@ -1,6 +1,6 @@
 import table_customizations
 
-class Users(table_customizations.TableHandler):
+class Node(table_customizations.TableHandler):
 
     def get_sql(self, column_names):
         columns, srccolumns = self.field_handler.column_handler(column_names, self.table)
@@ -21,11 +21,13 @@ class Users(table_customizations.TableHandler):
               FROM 
                 {source}.{table} 
               INNER JOIN 
-                comment on {table}.nid = comment.nid 
+                {source}.comment 
+              ON
+                {source}.{table}.nid = {source}.comment.nid 
               WHERE
-                {table}.type = 'forum'
+                {source}.{table}.type = 'forum'
               AND
-                {table}.created >= (unix_timestamp() - 60*24*60*60) {limit};
+                {source}.{table}.created >= (unix_timestamp() - 60*24*60*60) {limit};
 
               INSERT INTO 
                 {dest}.{table} ({columns}) 
