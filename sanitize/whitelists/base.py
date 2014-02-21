@@ -284,26 +284,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:comment_alter_taxonomy",
-    columns=[
-        "nid",
-        "cid",
-        "tid",
-    ])
-
-whitelist.add(
-    table="_nodata:comment_upload",
-    columns=[
-        "fid",
-        "nid",
-        "cid",
-        "description",
-        "list",
-        "weight",
-        "legacy_fid",
-    ])
-
-whitelist.add(
     table="contact",
     columns=[
         "category",
@@ -500,18 +480,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:forum2_index",
-    columns=[
-        "nid",
-        "title",
-        "tid",
-        "sticky",
-        "created",
-        "last_comment_timestamp",
-        "comment_count",
-    ])
-
-whitelist.add(
     table="history",
     columns=[
         "uid",
@@ -604,30 +572,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:mv_drupalorg_node_by_term",
-    columns=[
-        "entity_type",
-        "entity_id",
-        "term_tid",
-        "node_sticky",
-        "last_node_activity",
-        "node_created",
-        "node_title",
-    ])
-
-whitelist.add(
-    table="_nodata:mv_drupalorg_node_by_vocabulary",
-    columns=[
-        "entity_type",
-        "entity_id",
-        "term_vid",
-        "node_nid",
-        "node_last_comment_timestamp",
-        "node_title",
-        "node_comment_count",
-    ])
-
-whitelist.add(
     table="node",
     columns=[
         "nid",
@@ -699,67 +643,6 @@ whitelist.add(
         "orig_type",
         "module",
         "disabled",
-    ])
-
-whitelist.add(
-    table="_nodata:project_issue_comments",
-    columns=[
-        "nid",
-        "cid",
-        "rid",
-        "component",
-        "category",
-        "priority",
-        "assigned",
-        "sid",
-        "pid",
-        "title",
-        "timestamp",
-        "comment_number",
-    ])
-
-whitelist.add(
-    table="_nodata:project_issue_projects",
-    columns=[
-        "nid",
-        "issues",
-        "components",
-        "help",
-        "mail_digest",
-        "mail_copy",
-        "mail_copy_filter",
-        "mail_copy_filter_state",
-        "mail_reminder",
-        "default_component",
-    ])
-
-whitelist.add(
-    table="_nodata:project_issues",
-    columns=[
-        "nid",
-        "pid",
-        "category",
-        "component",
-        "priority",
-        "rid",
-        "assigned",
-        "sid",
-        "original_issue_data",
-        "last_comment_id",
-        "db_lock",
-        "priority_weight",
-    ])
-
-whitelist.add(
-    table="_nodata:projects",
-    columns=[
-        "pid",
-        "name",
-        "versions",
-        "developers",
-        "areas",
-        "mail",
-        "version_default",
     ])
 
 whitelist.add(
@@ -933,23 +816,6 @@ whitelist.add(
         "weight",
         "module",
         "machine_name",
-    ])
-
-whitelist.add(
-    table="_nodata:tracker2_node",
-    columns=[
-        "nid",
-        "published",
-        "changed",
-    ])
-
-whitelist.add(
-    table="_nodata:tracker2_user",
-    columns=[
-        "nid",
-        "published",
-        "uid",
-        "changed",
     ])
 
 whitelist.add(
