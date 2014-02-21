@@ -26,6 +26,9 @@ fi
 
 # Sanitize into the export database.
 python26 ./sanitize/sanitize_db.py -s ${database} -d ${export_db} -p ${profile}
+if [ $? -ne 0 ]; then
+  exit $?
+fi
 
 # Save the DB dump.
 mysqldump --single-transaction --quick ${tmp_args} | sed -e 's/^) ENGINE=[^ ]*/)/' | bzip2 > "/var/dumps/${subdir}/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2"
