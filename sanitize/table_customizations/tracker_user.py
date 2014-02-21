@@ -21,12 +21,12 @@ class Tracker_User(table_customizations.TableHandler):
               FROM 
                 {source}.{table} 
               INNER JOIN 
-                node 
+                {source}.node 
               ON
-                tracker_user.nid = node.nid 
+                {source}.{table}.nid = {source}.node.nid 
               INNER JOIN 
                 {source}.users
               ON
-                {source}.tracker_user.uid = {source}.users.uid {limit}
+                {source}.{table}.uid = {source}.users.uid {limit}
             """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
         return query

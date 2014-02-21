@@ -20,12 +20,10 @@ class Node(table_customizations.TableHandler):
                 {srccolumns} 
               FROM 
                 {source}.{table} 
-              INNER JOIN 
-                {source}.comment 
-              ON
-                {source}.{table}.nid = {source}.comment.nid 
               WHERE
                 {source}.{table}.type = 'forum'
+              AND
+                {source}.{table}.nid IN (SELECT nid FROM {source}.comment)
               AND
                 {source}.{table}.created >= (unix_timestamp() - 60*24*60*60) {limit};
 
