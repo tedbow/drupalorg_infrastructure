@@ -97,20 +97,9 @@ def run():
         query = handler.get_sql(column_names)
         print query
         c.execute(query)
+        db.commit()
         c.fetchall()
-#    if options.dataset == 'skeleton':
-#        import whitelists.skeleton
-#        c.execute('COMMIT')
-#        c.execute('USE {0}'.format(destdb))
-#        for query in whitelists.skeleton.cleanup:
-#            print query
-#            c.execute(query)
-#            c.fetchall()
-
-
-
 
 if __name__ == "__main__":
     run()
-    c.execute('COMMIT')
     c.close()
