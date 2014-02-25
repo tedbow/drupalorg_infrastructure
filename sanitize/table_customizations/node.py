@@ -20,33 +20,19 @@ class Node(table_customizations.TableHandler):
                 {srccolumns} 
               FROM 
                 {source}.{table} 
-              WHERE
-                {source}.{table}.type = 'forum'
-              AND
-                {source}.{table}.nid IN (SELECT nid FROM {source}.comment)
-              AND
-                {source}.{table}.created >= (unix_timestamp() - 60*24*60*60) {limit};
-
-              INSERT INTO 
-                {dest}.{table} ({columns}) 
-              SELECT 
-                {srccolumns} 
-              FROM 
-                {source}.{table} 
-              WHERE
-                {table}.type = 'project_issue'
-              AND
-                {table}.created >= (unix_timestamp() - 60*24*60*60) {limit};
-
-              INSERT INTO 
-                {dest}.{table} ({columns}) 
-              SELECT 
-                {srccolumns} 
-              FROM 
-                {source}.{table} 
-              WHERE
-                {table}.type
-              NOT IN
-                ('project_issue','forum') {limit}
+              WHERE 
+                ({table}.type = 'forum'
+              AND 
+                {table}.nid IN (SELECT nid FROM {source}.comment)
+              AND 
+                {table}.created >= (unix_timestamp() - 60*24*60*60))
+              OR
+                ({table}.type = 'project_issue'
+              AND 
+                {table}.created >= (unix_timestamp() - 60*24*60*60))
+              OR
+                ({table}.type 
+              NOT IN 
+                ('project_issue','forum')) {limit}
             """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
         return query
