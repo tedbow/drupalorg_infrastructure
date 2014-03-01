@@ -47,6 +47,13 @@ db_name=$1
 db_user=$2
 db_pass=$3
 
+# Temporarily use austin2014 for amsterdam2014 snapshots
+# until staging contains features and content.
+if [ "${db_name}" == "amsterdam2014" ]; then
+  db_name="austin2014"
+  echo $db_name
+fi
+
 # If the sanitization is not set, use the DB name.
 [ "${sanitization-}" ] || sanitization=${db_name}
 # If the DB host is not set, use db4-static.
