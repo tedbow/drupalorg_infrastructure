@@ -2,7 +2,7 @@
 
 # Drush commands for processing metrics collected and stored by Sampler API
 # Add them of the form:
-#   time drush sampler-sample [module] [metric] --save
+#   drush sampler-sample [module] [metric] --save
 
 # Exit immediately on uninitialized variable or error, and print each command.
 set -uex
@@ -14,10 +14,10 @@ umask g+w
 export TERM=dumb
 drush="drush -r /var/www/drupal.org/htdocs -l drupal.org -y"
 
-time ${drush} sampler-sample sampler nodes --save
-time ${drush} sampler-sample sampler comments --save
-time ${drush} sampler-sample sampler users --save
-time ${drush} sampler-sample project_release new_releases --save
-time ${drush} sampler-sample project_issue new_issues_comments_by_project --save
-time ${drush} sampler-sample project_issue opened_vs_closed_by_category --save
-time ${drush} sampler-sample project_issue reporters_participants_by_project --save
+${drush} sampler-sample sampler nodes --save
+${drush} sampler-sample sampler comments --save
+${drush} sampler-sample sampler users --save
+${drush} sampler-sample project_release new_releases --save
+${drush} sampler-sample project_issue new_issues_comments_by_project --save
+${drush} sampler-sample project_issue opened_vs_closed_by_category --save
+${drush} sampler-sample project_issue reporters_participants_by_project --save
