@@ -12,7 +12,7 @@ umask g+w
 
 # For easily executing Drush.
 export TERM=dumb
-drush="drush -r /var/www/staging.devdrupal.org/htdocs -l staging.devdrupal.org -y"
+drush="drush -r /var/www/staging.devdrupal.org/htdocs -l staging.devdrupal.org -y -v"
 
 ${drush} sampler-sample sampler nodes --save
 ${drush} sampler-sample sampler comments --save
