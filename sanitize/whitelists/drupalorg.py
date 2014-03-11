@@ -521,7 +521,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="drupalorg_crosssite_ind_civimembership", 
+    table="_nodata:drupalorg_crosssite_ind_civimembership", 
     columns=[
         "user_name",
         "membership_status",
@@ -530,7 +530,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="drupalorg_crosssite_org_civimembership", 
+    table="_nodata:drupalorg_crosssite_org_civimembership", 
     columns=[
         "org_name",
         "membership_type",
@@ -577,7 +577,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="drupalorg_ind_civimembership", 
+    table="_nodata:drupalorg_ind_civimembership", 
     columns=[
         "user_name",
         "membership_status",
@@ -586,7 +586,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="drupalorg_org_civimembership", 
+    table="_nodata:drupalorg_org_civimembership", 
     columns=[
         "org_name",
         "membership_type",
@@ -735,7 +735,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_data_field_budget", 
+    table="_nodata:field_data_field_budget", 
     columns=[
         "entity_type",
         "bundle",
@@ -1910,7 +1910,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_data_field_user_geolocation", 
+    table="_nodata:field_data_field_user_geolocation", 
     columns=[
         "entity_type",
         "bundle",
@@ -2341,7 +2341,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_revision_field_budget", 
+    table="_nodata:field_revision_field_budget", 
     columns=[
         "entity_type",
         "bundle",
@@ -3516,7 +3516,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_revision_field_user_geolocation", 
+    table="_nodata:field_revision_field_user_geolocation", 
     columns=[
         "entity_type",
         "bundle",
@@ -3917,7 +3917,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="httpbl", 
+    table="_nodata:httpbl", 
     columns=[
         "hostname",
         "status",
@@ -4030,7 +4030,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="multiple_email", 
+    table="_nodata:multiple_email", 
     columns=[
         "eid",
         "uid",
@@ -4307,7 +4307,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="project_release_package_errors", 
+    table="_nodata:project_release_package_errors", 
     columns=[
         "nid",
         "messages",
@@ -4393,7 +4393,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="role_activity", 
+    table="_nodata:role_activity", 
     columns=[
         "raid",
         "uid",
@@ -4688,7 +4688,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="user_restrictions", 
+    table="_nodata:user_restrictions", 
     columns=[
         "urid",
         "mask",

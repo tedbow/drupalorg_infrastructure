@@ -15,7 +15,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="authmap",
+    table="_nodata:authmap",
     columns=[
         # http://drupalcode.org/project/infrastructure.git/blob/HEAD:/snapshot/common.staging.sql#l3
         "aid",
@@ -287,7 +287,7 @@ whitelist.add(
     table="contact",
     columns=[
         "category",
-        "recipients",
+        "_sanitize_email:recipients",
         "reply",
         "cid",
         "weight",
@@ -646,7 +646,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="queue",
+    table="_nodata:queue",
     columns=[
         "item_id",
         "name",
