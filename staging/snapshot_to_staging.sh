@@ -5,8 +5,8 @@
 db=$(${drush} ${type}sql-conf | sed -ne 's/^\s*\[database\] => //p')
 
 # If a snapshot has not been already set in $snapshot, get it from $uri,
-# everything before the first '.'
-[ "${snapshot-}" ] || snapshot=$(echo ${uri} | sed -e 's/\..*$//')
+# everything before the first '.' or '-'.
+[ "${snapshot-}" ] || snapshot=$(echo ${uri} | sed -e 's/[.-].*$//')
 
 # If a snapshot type has been designated, use that. Otherwise, default to
 # the 'staging' snapshot.
