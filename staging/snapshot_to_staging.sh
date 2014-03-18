@@ -24,7 +24,7 @@ rsync -v --copy-links --password-file ~/util.rsync.pass "rsync://stagingmysql@ut
 ) | ${drush} ${type}sql-cli
 
 # Extra preparation for D7.
-if [ "${uri}" = "localize.7.devdrupal.org" ]; then
+if [ "${uri}" = "localize-7.staging.devdrupal.org" ]; then
   (
     # OG needs new entity module.
     echo "UPDATE system SET status = 0 WHERE name IN ('og');"
@@ -35,7 +35,7 @@ fi
 ${drush} -v updatedb --interactive
 ${drush} cc all
 
-if [ "${uri}" = "localize.7.devdrupal.org" ]; then
+if [ "${uri}" = "localize-7.staging.devdrupal.org" ]; then
   # Set the flag for OG to have global group roles
   ${drush} variable-set og_7000_access_field_default_value 0
 
@@ -52,15 +52,9 @@ if [ "${uri}" = "localize.7.devdrupal.org" ]; then
   # Disable Migrate once migration is done.
   ${drush} dis migrate
 
-  # Disable bakery for *.7.devdrupal.org sites.
-  ${drush} pm-disable bakery
-
-elif [ "${uri}" = "groups.7.devdrupal.org" ]; then
+elif [ "${uri}" = "groups-7.staging.devdrupal.org" ]; then
   # todo remove when the existing front page, "frontpage", does not 404.
   ${drush} variable-set site_frontpage "node"
-
-  # Disable bakery for *.7.devdrupal.org sites.
-  ${drush} pm-disable bakery
 
 elif echo "${uri}" | grep -q ".civicrm.devdrupal.org$"; then
   # CiviCRM dev sites do not have bakery set up.
