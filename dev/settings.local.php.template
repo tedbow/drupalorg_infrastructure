@@ -15,7 +15,7 @@ $base_url = 'https://NAME-SITE.redesign.devdrupal.org';
 $cookie_domain = 'redesign.devdrupal.org';
 
 $conf['apachesolr_read_only'] = 1;
-$conf['apachesolr_environments']['solr']['url'] = 'http://stagingsolr.drupal.org:8112/solr/do-staging';
+$conf['apachesolr_environments']['solr']['url'] = 'http://stagingsolr1.drupal.org:8112/solr/do-live';
 
 // Do not use Beanstalk for Drupal.org queues.
 unset($conf['queue_class_versioncontrol_repomgr']);
