@@ -9,7 +9,10 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
-    <p><span class="badge"><?php print getenv('version') ?></span> is currently deployed</p>
+    <p><span class="badge"><?php print getenv('version') ?></span> is deployed.</p>
+    <?php if (getenv('version') !== getenv('version_available')) { ?>
+      <div class="alert alert-info"><?php print getenv('version_available') ?> is available.</div>
+    <?php } ?>
 
     <script src="js/jquery-1.11.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
