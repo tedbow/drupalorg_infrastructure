@@ -9,7 +9,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
   </head>
   <body>
-    <p><span class="badge"><?php print $_ENV['version'] ?></span> is currently deployed</p>
+    <p><span class="badge"><?php print getenv('version') ?></span> is currently deployed</p>
 
     <script src="js/jquery-1.11.0.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
