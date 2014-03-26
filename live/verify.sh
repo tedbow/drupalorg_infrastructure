@@ -3,7 +3,7 @@
 
 # Collect information.
 cd ${webroot}
-export version=$(bzr version-info --custom --template="{revno}")
+export version=$(bzr revno)
 bzr log -r-1 -n0 > ${WORKSPACE}/version.txt
 bzr status > ${WORKSPACE}/status.txt
 bzr diff > ${WORKSPACE}/diff.txt
