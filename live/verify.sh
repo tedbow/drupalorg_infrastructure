@@ -10,7 +10,7 @@ bzr diff > ${WORKSPACE}/diff.txt
 
 # Set up report area.
 cd ${WORKSPACE}
-[ ! -d 'html' ] && mkdir 'html'
+[ ! -d 'html' ] && git clone 'https://bitbucket.org/drupalorg-infrastructure/site-status-assets.git' 'html'
 # Generate HTML report.
 php /usr/local/drupal-infrastructure/live/verify-template.php > 'html/index.html'
 
