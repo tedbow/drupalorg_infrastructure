@@ -12,7 +12,7 @@ bzr diff > ${WORKSPACE}/diff.txt
 cd ${WORKSPACE}
 [ ! -d 'html' ] && mkdir 'html'
 # Generate HTML report.
-php live/verify-template.php > 'html/index.html'
+php /usr/local/drupal-infrastructure/live/verify-template.php > 'html/index.html'
 
 # Make sure Devel is not enabled.
 if ${drush} pm-list --status=enabled --pipe | grep --quiet '^\(devel\)$'; then
