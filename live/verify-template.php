@@ -18,7 +18,7 @@
         <div class="alert alert-info"><span class="badge"><?php print getenv('version_available') ?></span> is available.</div>
       <?php } ?>
 
-      <?php if (!empty(getenv('repo_status'))) { ?>
+      <?php if (getenv('repo_status')) { ?>
         <div class="panel panel-danger">
           <div class="panel-heading"><h3 class="panel-title">Local changes!</h3></div>
           <div class="panel-body">
