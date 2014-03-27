@@ -10,10 +10,26 @@
   </head>
   <body>
     <div class="container">
+
+      <h2>Code</h2>
+
       <p><span class="badge"><?php print getenv('version') ?></span> is deployed.</p>
       <?php if (getenv('version') !== getenv('version_available')) { ?>
         <div class="alert alert-info"><span class="badge"><?php print getenv('version_available') ?></span> is available.</div>
       <?php } ?>
+
+      <?php if (!empty(getenv('repo_status'))) { ?>
+        <div class="panel panel-danger">
+          <div class="panel-heading"><h3 class="panel-title">Local changes!</h3></div>
+          <div class="panel-body">
+            <h4>Status</h4>
+            <pre><code><?php print htmlspecialchars(getenv('repo_status')); ?></code></pre>
+            <h4>Diff</h4>
+            <pre><code><?php print htmlspecialchars(getenv('repo_diff')); ?></code></pre>
+          </div>
+        </div>
+      <?php } ?>
+
     </div>
 
     <script src="js/jquery-1.11.0.min.js"></script>

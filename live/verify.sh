@@ -5,8 +5,8 @@
 cd ${webroot}
 export version=$(bzr revno)
 export version_available=$(bzr revno $(bzr info | sed -ne 's/\s*checkout of branch:\s*//p'))
-bzr status > ${WORKSPACE}/status.txt
-bzr diff > ${WORKSPACE}/diff.txt
+export repo_status=$(bzr status)
+export repo_diff=$(bzr diff)
 
 # Set up report area.
 cd ${WORKSPACE}
@@ -20,4 +20,4 @@ if ${drush} pm-list --status=enabled --pipe | grep --quiet '^\(devel\)$'; then
 fi
 
 # Exit with error if there are changes.
-exit $(cat ${WORKSPACE}/status.txt | wc -l)
+[ ! -n "${repo_status}" ]
