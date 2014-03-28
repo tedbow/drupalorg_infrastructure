@@ -13,9 +13,9 @@
 
       <h2>Code</h2>
 
-      <p><span class="badge"><?php print getenv('version') ?></span> is deployed.</p>
+      <p><span class="badge"><?php print getenv('version'); ?></span> is deployed.</p>
       <?php if (getenv('version') !== getenv('version_available')) { ?>
-        <div class="alert alert-info"><span class="badge"><?php print getenv('version_available') ?></span> is available.</div>
+        <div class="alert alert-info"><span class="badge"><?php print getenv('version_available'); ?></span> is available.</div>
       <?php } ?>
 
       <?php if (getenv('repo_status')) { ?>
