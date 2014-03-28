@@ -1,4 +1,20 @@
-<!DOCTYPE html>
+<?php
+
+// Check for required, forbidden, and discouraged projects.
+$projects = explode("\n", getenv('projects'));
+$projects_missing = array_diff(array(
+  'security_review',
+  'paranoia',
+  'bakery',
+), $projects);
+$projects_forbidden = array_intersect(array(
+  'devel',
+), $projects);
+$projects_discouraged = array_intersect(array(
+  'views_ui',
+), $projects);
+
+?><!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -28,6 +44,22 @@
             <pre><code><?php print htmlspecialchars(getenv('repo_diff')); ?></code></pre>
           </div>
         </div>
+      <?php } ?>
+
+
+      <h2>Drupal</h2>
+
+      <?php if (!empty($projects_missing)) { ?>
+        <div class="alert alert-danger"><strong>Required project missing:</strong>
+          <?php print implode(', ', $projects_missing); ?></div>
+      <?php } ?>
+      <?php if (!empty($projects_forbidden)) { ?>
+        <div class="alert alert-danger"><strong>Forbidden project enabled:</strong>
+          <?php print implode(', ', $projects_forbidden); ?></div>
+      <?php } ?>
+      <?php if (!empty($projects_discouraged)) { ?>
+        <div class="alert alert-warning"><strong>Discouraged project enabled:</strong>
+          <?php print implode(', ', $projects_discouraged); ?></div>
       <?php } ?>
 
     </div>
