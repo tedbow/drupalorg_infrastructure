@@ -16,7 +16,7 @@ $projects_discouraged = array_intersect(array(
 
 $features = array();
 $header = array('name', 'diff');
-foreach (explode("\n==== ", getenv('features')) as $feature) {
+foreach (preg_split('/(^|\n)==== /', getenv('features'), -1, PREG_SPLIT_NO_EMPTY) as $feature) {
   $features[] = array_combine($header, explode("\n", $feature, 2));
 }
 
