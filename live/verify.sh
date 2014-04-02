@@ -9,6 +9,13 @@ export repo_status=$(bzr status)
 export repo_diff=$(bzr diff)
 cd ${WORKSPACE}
 export projects=$(${drush} pm-list --status=enabled --pipe)
+export features=$(
+  # Machine names of enabled & overridden features.
+  for feature in $(${drush} features-list | sed -ne 's/\s*Enabled\s*Overridden\s*$//p' | sed -e 's/^.*\s\s//'); do
+    echo "==== ${feature}"
+    ${drush} features-diff ${feature}
+  done
+)
 
 # Set up report area.
 [ ! -d 'html' ] && git clone 'https://bitbucket.org/drupalorg-infrastructure/site-status-assets.git' 'html'

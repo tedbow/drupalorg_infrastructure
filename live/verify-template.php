@@ -14,6 +14,12 @@ $projects_discouraged = array_intersect(array(
   'views_ui',
 ), $projects);
 
+$features = array();
+$header = array('name', 'diff');
+foreach (explode("\n==== ", getenv('features')) as $feature) {
+  $features[] = array_combine($header, explode("\n", $feature, 2));
+}
+
 ?><!DOCTYPE html>
 <html lang="en">
   <head>
@@ -61,6 +67,19 @@ $projects_discouraged = array_intersect(array(
         <div class="alert alert-warning"><strong>Discouraged project enabled:</strong>
           <?php print implode(', ', $projects_discouraged); ?></div>
       <?php } ?>
+
+      <div class="panel-group" id="features">
+        <?php foreach ($features as $feature) { ?>
+          <div class="panel panel-danger">
+            <div class="panel-heading"><h3 class="panel-title">
+              <a data-toggle="collapse" data-parent="#features" href="#feature-<?php print htmlspecialchars($feature['name']); ?>"><strong>Overridden feature:</strong> <?php print htmlspecialchars($feature['name']); ?></a>
+            </h3></div>
+            <div id="feature-<?php print htmlspecialchars($feature['name']); ?>" class="panel-collapse collapse"><div class="panel-body">
+              <pre><code><?php print htmlspecialchars($feature['diff']); ?></code></pre>
+            </div></div>
+          </div>
+        <?php } ?>
+      </div>
 
     </div>
 
