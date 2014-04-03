@@ -14,7 +14,7 @@ export features=$(
   # would be good.
   for feature in $(COLUMNS=1000 ${drush} features-list | sed -ne 's/\s*Enabled\s*Overridden\s*$//p' | sed -e 's/^.*\s\s//'); do
     echo "==== ${feature}"
-    ${drush} features-diff "${feature}"
+    ${drush} features-diff "${feature}" | head -n 100
   done
 )
 
