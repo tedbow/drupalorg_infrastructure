@@ -24,10 +24,11 @@ foreach (file('php://stdin') as $mail) {
     print $mail . ' was "' . $account->name . '" ' . url('user/' . $account->uid, array('absolute' => TRUE)) . "\n";
 
     // Update username to 'no longer here UID' init, mail, status
+    $new_email = 'deletion-requested@' . $account->uid . '.invalid';
     $array = array(
       'name' => 'no longer here ' . $account->uid,
-      'init' => 'deletion-requested@' . $account->uid . '.invalid',
-      'mail' => 'deletion-requested@' . $account->uid . '.invalid',
+      'init' => $new_email,
+      'mail' => $new_email,
       'status' => 0,
     );
     // Remove data.
@@ -40,7 +41,7 @@ foreach (file('php://stdin') as $mail) {
 
     // Remove profile & multiple_email data.
     db_query('DELETE FROM {profile_value} WHERE uid = :uid', array(':uid' => $account->uid));
-    db_query('DELETE FROM {multiple_email} WHERE uid = :uid', array(':uid' => $account->uid));
+    db_query('DELETE FROM {multiple_email} WHERE uid = :uid AND email <> :email', array(':uid' => $account->uid, ':email' => $new_email));
 
     // Subsites: bakery should forward the status and invalidated mail. We
     // should remove profile values. No other sites run multiple email.
