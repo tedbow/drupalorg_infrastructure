@@ -2,7 +2,7 @@
 . staging/common.sh 'verify'
 
 cd ${webroot}
-if [ -d .bzr ] then
+if [ -d .bzr ]; then
  bzr log -r-1 -n0 > ${WORKSPACE}/version.txt
  bzr status > ${WORKSPACE}/status.txt
  bzr diff > ${WORKSPACE}/diff.txt
