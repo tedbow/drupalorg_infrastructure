@@ -16,4 +16,8 @@ fi
 test_site
 
 # Exit with error if there are changes.
-exit $(cat ${WORKSPACE}/status.txt | wc -l)
+if [ -d .bzr ]; then
+ exit $(cat ${WORKSPACE}/status.txt | wc -l)
+else 
+ exit $(cat ${WORKSPACE}/diff.txt | wc -l)
+fi
