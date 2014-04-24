@@ -4,7 +4,7 @@
 # Update code.
 cd ${webroot}
 
-if [ -d .bzr ]
+if [ -d .bzr ] then
  bzr up
 else 
  git pull
