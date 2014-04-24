@@ -3,7 +3,12 @@
 
 # Update code.
 cd ${webroot}
-bzr up
+
+if [ -d .bzr ]
+ bzr up
+else 
+ git pull
+fi
 
 # updatedb, clear and prime caches.
 ${drush} -v updatedb --interactive
