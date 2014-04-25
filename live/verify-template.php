@@ -6,6 +6,7 @@ $projects_missing = array_diff(array(
   'security_review',
   'paranoia',
   'bakery',
+  'drupalorg_crosssite',
 ), $projects);
 $projects_forbidden = array_intersect(array(
   'devel',
