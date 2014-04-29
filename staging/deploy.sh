@@ -10,9 +10,9 @@ else
  git pull
 fi
 
-# updatedb, clear and prime caches.
-${drush} -v updatedb --interactive
 ${drush} cc all
+${drush} -v updatedb --interactive
+
 # Also handle CiviCRM for the Association site.
 if [ "${uri}" = "association.staging.devdrupal.org" ]; then
   ${drush} cc civicrm
