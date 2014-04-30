@@ -10,6 +10,7 @@ else
  git pull
 fi
 
+# Clear caches, try updatedb.
 ${drush} cc all
 ${drush} -v updatedb --interactive
 

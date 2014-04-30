@@ -31,9 +31,9 @@ if [ "${uri}" = "localize-7.staging.devdrupal.org" ]; then
   ) | ${drush} sql-cli
 fi
 
-# Try updatedb, clear caches.
-${drush} -v updatedb --interactive
+# Clear caches, try updatedb.
 ${drush} cc all
+${drush} -v updatedb --interactive
 
 if [ "${uri}" = "localize-7.staging.devdrupal.org" ]; then
   # Set the flag for OG to have global group roles
