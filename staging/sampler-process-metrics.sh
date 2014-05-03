@@ -21,3 +21,4 @@ ${drush} sampler-sample project_release new_releases --save
 ${drush} sampler-sample project_issue new_issues_comments_by_project --save
 ${drush} sampler-sample project_issue opened_vs_closed_by_category --object_batch_size=10000
 ${drush} sampler-sample project_issue reporters_participants_by_project --save
+${drush} sampler-sample project_issue responses_by_project --object_batch_size=10000
