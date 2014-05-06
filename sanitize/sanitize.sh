@@ -21,6 +21,7 @@ tmp_args="-h${host} -u${user} -p${password} ${export_db}"
 
 if [ ${database} == "drupal" ]; then
   database="drupal_sanitize"
+  suffix=".whitelist"
   mysqldump -h db2-main-vip.drupal.org -u${user} -p${password} --single-transaction --quick drupal | mysql -h${host} -u${user} -p${password} ${database}
 fi
 
