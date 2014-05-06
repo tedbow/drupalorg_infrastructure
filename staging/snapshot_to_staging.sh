@@ -32,7 +32,9 @@ if [ "${uri}" = "localize-7.staging.devdrupal.org" ]; then
 fi
 
 # Clear caches, try updatedb.
-${drush} cc all
+if [ "${uri}" != "localize-7.staging.devdrupal.org" ]; then
+  ${drush} cc all
+fi
 ${drush} -v updatedb --interactive
 
 if [ "${uri}" = "localize-7.staging.devdrupal.org" ]; then
