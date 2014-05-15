@@ -4,6 +4,8 @@ set -x
 
 . live/webnodes.sh
 
+domain_name="drupal.bak"
+
 for i in ${webnodes[@]}; do
-  ssh bender@www$i.drupal.org "echo 'purge.url ^.*$' | nc localhost 8181"
+  echo 'purge.url ^.*$' | nc www${i}.${domain_name} 8181
 done

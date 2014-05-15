@@ -4,16 +4,16 @@ deadcount=0
 i=1
 while [[ deadcount -lt 5 ]]; do
   # only send 1 ping, and wait a maximum of 1 second for the answer
-  if ping -c 1 -W 1 "www$i.drupal.org" ; then
+  if ping -c 1 -W 1 "www$i.drupal.bak" ; then
     webnodes+=($i)
     deadcount=0
   else
-    echo "www$i.drupal.org is dead"
+    echo "www$i.drupal.bak is dead"
     ((deadcount++))
   fi
   ((i++))
 done  
 
 for i in ${webnodes[@]}; do
-  echo "www$i.drupal.org is alive"
+  echo "www$i.drupal.bak is alive"
 done
