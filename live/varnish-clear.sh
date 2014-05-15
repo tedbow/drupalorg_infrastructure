@@ -7,5 +7,9 @@ set -x
 domain_name="drupal.bak"
 
 for i in ${webnodes[@]}; do
-  echo 'purge.url ^.*$' | nc www${i}.${domain_name} 8181
+  if [ ${i} -eq 1 ]; then
+    echo 'purge.url ^.*$' | nc www${i}.${domain_name} 8181
+  else
+    echo 'ban.url req.http.host ~ "^.*$" && req.url ~ "^/.*$"' | nc www${i}.${domain_name} 8181
+  fi
 done
