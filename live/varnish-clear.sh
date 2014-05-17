@@ -7,9 +7,5 @@ set -x
 domain_name="drupal.bak"
 
 for i in ${webnodes[@]}; do
-  if [ ${i} -eq 1 ]; then
-    echo 'purge.url ^.*$' | nc www${i}.${domain_name} 8181
-  else
-    echo 'ban obj.http.x-host != "updates.drupal.org" && obj.http.x-url ~ "^.*$"' | nc www${i}.${domain_name} 8181
-  fi
+  echo 'ban obj.http.x-host != "updates.drupal.org" && obj.http.x-url ~ "^.*$"' | nc www${i}.${domain_name} 8181
 done
