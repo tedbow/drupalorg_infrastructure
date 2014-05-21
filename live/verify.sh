@@ -17,7 +17,6 @@ export features=$(
     ${drush} features-diff "${feature}" | head -n 100
   done
 )
-${drush} pm-refresh
 export updates=$(${drush_no} --simulate --pipe pm-updatecode)
 
 # Set up report area.
