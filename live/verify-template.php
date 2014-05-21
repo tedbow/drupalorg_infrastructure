@@ -15,6 +15,12 @@ $projects_discouraged = array_intersect(array(
   'views_ui',
 ), $projects);
 
+$updates = array();
+$header = array('project', 'installed', 'available', 'type');
+foreach (explode("\n", getenv('updates')) as $line) {
+  $updates[] = array_combine($header, explode(' ', $line));
+}
+
 $features = array();
 $header = array('name', 'diff');
 foreach (preg_split('/(^|\n)==== /', getenv('features'), -1, PREG_SPLIT_NO_EMPTY) as $feature) {
@@ -70,7 +76,16 @@ foreach (preg_split('/(^|\n)==== /', getenv('features'), -1, PREG_SPLIT_NO_EMPTY
       <?php } ?>
 
       <h3>Updates</h3>
-      <pre><code><?php print htmlspecialchars(getenv('updates')); ?></code></pre>
+      <table class="table">
+        <tr><th>Project</th><th>Installed</th><th>Available</th></tr>
+        <?php foreach ($updates as $update) { ?>
+          <tr<?php if ($update['type'] === 'SECURITY-UPDATE-available') { print ' class="danger"'; } ?>>
+            <td><?php print $update['project']; ?></td>
+            <td><?php print $update['installed']; ?></td>
+            <td><?php print $update['available']; ?></td>
+          </tr>
+        <?php } ?>
+      </table>
 
       <div class="panel-group" id="features">
         <?php foreach ($features as $feature) { ?>
