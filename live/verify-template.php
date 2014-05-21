@@ -69,6 +69,9 @@ foreach (preg_split('/(^|\n)==== /', getenv('features'), -1, PREG_SPLIT_NO_EMPTY
           <?php print implode(', ', $projects_discouraged); ?></div>
       <?php } ?>
 
+      <h3>Updates</h3>
+      <pre><code><?php print htmlspecialchars(getenv('updates')); ?></code></pre>
+
       <div class="panel-group" id="features">
         <?php foreach ($features as $feature) { ?>
           <div class="panel panel-danger">
