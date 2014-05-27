@@ -8,7 +8,7 @@ set -uex
 
 varnish_logdir="/var/log/DROP"
 domain_name="drupal.bak"
-rsync_args="--delete --delete-excluded --exclude=transfer.log --include=*"
+rsync_args="--delete --delete-excluded --exclude=varnishncsa.log --include=*"
 
 for i in ${webnodes[@]}; do
   nice -n 19 rsync -rt ${rsync_args} "www${i}.${domain_name}::varnishlogs/" "${varnish_logdir}/www${i}/" || true
