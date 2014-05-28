@@ -31,14 +31,9 @@ echo "Removing old files"
 /bin/rm -rf ${BUILDDIR}
 /bin/rm -rf ${BUILDGIT}
 
-# Clone built repo.
+# Clone make repo.
 /usr/bin/git clone -b ${branch} git@bitbucket.org:drupalorg-infrastructure/${BUILDPATH}.git ${MASTER}
 cd ${MASTER}
-
-# Make sure branch exists.
-if [ "$(git rev-parse --abbrev-ref HEAD)" != "${branch}" ]; then
-  git checkout -b "${branch}"
-fi
 
 LOG=`/usr/bin/git log -1 --oneline`
 LOG=${LOG//[^a-zA-Z0-9_ ]/}  #check_plain the log entry.
@@ -46,6 +41,14 @@ echo ${LOG}
 echo "We have a copy of the master repo, we are starting the build now"
 /usr/bin/drush make ${BUILDPATH}.make ${BUILDDIR}
 /usr/bin/git clone -b ${branch} git@bitbucket.org:drupalorg-infrastructure/${BUILDPATH}-built.git ${BUILDGIT} 
+
+# Make sure branch exists.
+cd ${BUILDGIT}
+if [ "$(git rev-parse --abbrev-ref HEAD)" != "${branch}" ]; then
+  git checkout -b "${branch}"
+fi
+cd ..
+
 ##This is hackish, however, we can either do an rm-rf or move the .git folder, in the end, it seems to be the same.
 mv ${BUILDGIT}/.git ${BUILDDIR}
 #We now move settings.php.  
