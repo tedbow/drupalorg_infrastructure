@@ -30,8 +30,16 @@ echo "Removing old files"
 /bin/rm -rf ${MASTER}
 /bin/rm -rf ${BUILDDIR}
 /bin/rm -rf ${BUILDGIT}
+
+# Clone built repo.
 /usr/bin/git clone -b ${branch} git@bitbucket.org:drupalorg-infrastructure/${BUILDPATH}.git ${MASTER}
 cd ${MASTER}
+
+# Make sure branch exists.
+if [ "$(git rev-parse --abbrev-ref HEAD)" != "${branch}" ]; then
+  git checkout -b "${branch}"
+fi
+
 LOG=`/usr/bin/git log -1 --oneline`
 LOG=${LOG//[^a-zA-Z0-9_ ]/}  #check_plain the log entry.
 echo ${LOG}
