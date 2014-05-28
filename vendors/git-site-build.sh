@@ -49,7 +49,7 @@ cd ${BUILDDIR}
 git add -A
 git commit -a -m "${LOG}"
 git status
-git push origin ${branch}
+git push --set-upstream origin ${branch}
 
 
 ###TODO: Clean up the 3 build dirs---or not?
