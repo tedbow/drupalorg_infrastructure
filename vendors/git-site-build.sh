@@ -38,11 +38,14 @@ cd ${MASTER}
 LOG=`/usr/bin/git log -1 --oneline`
 LOG=${LOG//[^a-zA-Z0-9_ ]/}  #check_plain the log entry.
 echo ${LOG}
+
+# Build the site.
 echo "We have a copy of the master repo, we are starting the build now"
 /usr/bin/drush make ${BUILDPATH}.make ${BUILDDIR}
-/usr/bin/git clone -b ${branch} git@bitbucket.org:drupalorg-infrastructure/${BUILDPATH}-built.git ${BUILDGIT} 
+/bin/rm -r "${BUILDDIR}/modules/php" # Use good judgement.
 
-# Make sure branch exists.
+# Clone built repo and make sure branch exists.
+/usr/bin/git clone -b ${branch} git@bitbucket.org:drupalorg-infrastructure/${BUILDPATH}-built.git ${BUILDGIT}
 cd ${BUILDGIT}
 if [ "$(git rev-parse --abbrev-ref HEAD)" != "${branch}" ]; then
   git checkout -b "${branch}"
