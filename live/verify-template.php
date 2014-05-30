@@ -43,8 +43,14 @@ foreach (preg_split('/(^|\n)==== /', getenv('features'), -1, PREG_SPLIT_NO_EMPTY
       <h2>Code</h2>
 
       <p><span class="badge"><?php print getenv('version'); ?></span> is deployed.</p>
-      <?php if (getenv('version') !== getenv('version_available')) { ?>
-        <div class="alert alert-info"><span class="badge"><?php print getenv('version_available'); ?></span> is available.</div>
+      <?php // todo remove !== condition when all sites are on Git. ?>
+      <?php if (getenv('version') && getenv('version') !== getenv('version_available')) { ?>
+        <div class="panel panel-info">
+          <div class="panel-heading"><h3 class="panel-title">Commits to deploy</h3></div>
+          <div class="panel-body">
+            <pre><code><?php print htmlspecialchars(getenv('version_available')); ?></code></pre>
+          </div>
+        </div>
       <?php } ?>
 
       <?php if (getenv('repo_status')) { ?>
