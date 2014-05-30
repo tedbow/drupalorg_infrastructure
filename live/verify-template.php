@@ -44,7 +44,7 @@ foreach (preg_split('/(^|\n)==== /', getenv('features'), -1, PREG_SPLIT_NO_EMPTY
 
       <p><span class="badge"><?php print getenv('version'); ?></span> is deployed.</p>
       <?php // todo remove !== condition when all sites are on Git. ?>
-      <?php if (getenv('version') && getenv('version') !== getenv('version_available')) { ?>
+      <?php if (getenv('version_available') && getenv('version') !== getenv('version_available')) { ?>
         <div class="panel panel-info">
           <div class="panel-heading"><h3 class="panel-title">Commits to deploy</h3></div>
           <div class="panel-body">
