@@ -47,12 +47,12 @@ db_name=$1
 db_user=$2
 db_pass=$3
 
-# Temporarily use austin2014 for amsterdam2014 snapshots
+# Temporarily use X for Y snapshots
 # until staging contains features and content.
-#if [ "${db_name}" == "amsterdam2014" ]; then
-#  db_name="austin2014"
-#  echo $db_name
-#fi
+if [ "${db_name}" == "latinamerica2015" ]; then
+  db_name="amsterdam2014"
+  echo $db_name
+fi
 
 # If the sanitization is not set, use the DB name.
 [ "${sanitization-}" ] || sanitization=${db_name}
