@@ -15,7 +15,7 @@ ${drush} cc all
 ${drush} -v updatedb --interactive
 
 # Also handle CiviCRM for the Association site.
-if [ "${uri}" = "association.staging.devdrupal.org" ]; then
+if [ "${uri}" = "assoc.staging.devdrupal.org" ]; then
   ${drush} cc civicrm
   ${drush} compile-templates
 fi
