@@ -92,8 +92,12 @@ if (!file_exists($project)) {
   exit(5);
 }
 
+// Use good judgement.
 if ($project === 'drupal') {
   _d_o_passthru('rm -rf ' . $project . '/modules/php');
+}
+elseif ($project === 'ds') {
+  _d_o_passthru('rm -rf ' . $project . '/modules/ds_format');
 }
 
 // Grab the first 5 chars of the version so we've got "6.x-2" for the vendor
