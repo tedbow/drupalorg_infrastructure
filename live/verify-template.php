@@ -10,6 +10,8 @@ $projects_missing = array_diff(array(
 ), $projects);
 $projects_forbidden = array_intersect(array(
   'devel',
+  'php',
+  'ds_format',
 ), $projects);
 $projects_discouraged = array_intersect(array(
   'views_ui',
