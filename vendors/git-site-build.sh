@@ -8,7 +8,7 @@ if [ -z "$1" ]; then
   echo "Need site string"
   exit 1
 fi
-if [[ ! ${branches[*]} =~ "$3" ]]; then 
+if [[ ! ${branches[*]} =~ "$3" ]]; then
   echo "bad branch"
   exit 1
 fi
@@ -57,7 +57,7 @@ cd ..
 
 ##This is hackish, however, we can either do an rm-rf or move the .git folder, in the end, it seems to be the same.
 mv ${BUILDGIT}/.git ${BUILDDIR}
-#We now move settings.php.  
+# We now move settings.php.
 cp ${MASTER}/settings.php ${BUILDDIR}/sites/default/
 cp ${MASTER}/.gitignore ${BUILDDIR}/  #replace core's file
 
