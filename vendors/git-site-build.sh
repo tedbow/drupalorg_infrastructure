@@ -45,7 +45,7 @@ echo "We have a copy of the master repo, we are starting the build now"
 
 # Use good judgement.
 /bin/rm -r "${BUILDDIR}/modules/php"
-find "${BUILDDIR}" -name 'ds_format' | xargs /bin/rm -rv
+find "${BUILDDIR}" -name 'ds_format' -print0 | xargs -0 -r  /bin/rm -rv
 
 # Clone built repo and make sure branch exists.
 /usr/bin/git clone -b ${branch} git@bitbucket.org:drupalorg-infrastructure/${BUILDPATH}-built.git ${BUILDGIT}
