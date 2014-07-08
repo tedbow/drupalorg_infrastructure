@@ -11,8 +11,9 @@ else
 fi
 
 # Clear caches, try updatedb.
-${drush} cc all
+${drush} cc all || true
 ${drush} -v updatedb --interactive
+${drush} cc all
 
 # Also handle CiviCRM for the Association site.
 if [ "${uri}" = "assoc.staging.devdrupal.org" ]; then
