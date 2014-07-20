@@ -515,3 +515,14 @@ whitelist.add(
         "field_ux_review_value",
     ])
 
+whitelist.add(
+    table="security_review",
+    columns=[
+        "namespace",
+        "reviewcheck",
+        "result",
+        "lastrun",
+        "skip",
+        "skiptime",
+        "skipuid",
+    ])
