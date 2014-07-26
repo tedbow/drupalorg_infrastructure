@@ -43,6 +43,7 @@ db_pass=$(pwgen -s 16 1)
 [ -e "${web_path}" ] && echo "Project webroot already exists!" && exit 1
 
 # Create the webroot and add comment file
+mkdir "${web_path}"
 chown -R bender:developers "${web_path}"
 echo "${COMMENT}" > "${web_path}/comment"
 
