@@ -43,7 +43,6 @@ db_pass=$(pwgen -s 16 1)
 [ -e "${web_path}" ] && echo "Project webroot already exists!" && exit 1
 
 # Create the webroot and add comment file
-mkdir -p "${web_path}/htdocs"
 chown -R bender:developers "${web_path}"
 echo "${COMMENT}" > "${web_path}/comment"
 
@@ -55,8 +54,32 @@ mysql -e "CREATE DATABASE ${db_name};"
 mysql -e "GRANT ALL ON ${db_name}.* TO '${db_name}'@'devwww.drupal.org' IDENTIFIED BY '${db_pass}';"
 
 # Checkout webroot 
-echo "Populating development environment with bzr checkout"
-bzr checkout bzr+ssh://bender-deploy@util.drupal.org/${repository} "${web_path}/htdocs"
+if [ "${site}" == "infrastructure" ]; then
+  # Clone make file.
+  git clone "git@bitbucket.org:drupalorg-infrastructure/${site}.drupal.org.git" "${web_path}/make"
+
+  # Append dev-specific overrides.
+  make_file="${web_path}/make/${site}.drupal.org.make"
+  cat <<END >> "${make_file}"
+
+;; Dev-specific overrides
+includes[drupalorg_dev] = "https://bitbucket.org/drupalorg-infrastructure/drupal.org-sites-common/raw/7.x/drupal.org-dev.make"
+END
+
+  # Run drush make.
+  drush make "${make_file}" "${web_path}/htdocs" --working-copy
+
+  # Compile bluecheese Sass.
+  pushd "${web_path}/htdocs/sites/all/themes/bluecheese"
+  bundle exec compass compile
+  popd
+
+  # Copy over settings.php.
+  cp "${web_path}/make/settings.php" "${web_path}/htdocs/sites/default"
+else
+  echo "Populating development environment with bzr checkout"
+  bzr checkout bzr+ssh://bender-deploy@util.drupal.org/${repository} "${web_path}/htdocs"
+fi
 
 # Add settings.local.php
 write_template "settings.local.php.template" "${web_path}/htdocs/sites/default/settings.local.php"
