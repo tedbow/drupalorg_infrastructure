@@ -28,7 +28,7 @@ class Field_Handler:
         if table == 'simplenews_subscriptions':
             return "CONCAT(`{table}`.`snid`, '@sanitized.invalid')".format(table=table)
         if table == 'contact':
-            return "CONCAT(`users`.`name`, '@sanitized.invalid')".format(table=table)
+            return "'noreply@sanitized.invalid'"
         return "CONCAT(`{table}`.`name`, '@sanitized.invalid')".format(table=table)
 
     def sanitize_ip(self, column, table):
