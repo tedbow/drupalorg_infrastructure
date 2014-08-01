@@ -2,6 +2,9 @@
 // The issue for automation is https://drupal.org/node/2193959
 
 $month = (int) getenv('month');
+if (empty($month)) {
+  $month = gmdate('n') - 1;
+}
 $year = (int) getenv('year');
 
 $function = getenv('testbot') ? 'run_queries_testbot' : 'run_queries';
