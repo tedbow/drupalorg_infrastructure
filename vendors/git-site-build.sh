@@ -57,9 +57,15 @@ cd ..
 
 ##This is hackish, however, we can either do an rm-rf or move the .git folder, in the end, it seems to be the same.
 mv ${BUILDGIT}/.git ${BUILDDIR}
-# We now move settings.php.
+
+# Move settings.php and other files.
 cp ${MASTER}/settings.php ${BUILDDIR}/sites/default/
-cp ${MASTER}/.gitignore ${BUILDDIR}/  #replace core's file
+cp ${MASTER}/.gitignore ${BUILDDIR}/  # Replace core's file
+if [ -d "${MASTER}/static-files" ]; then
+  pushd "${MASTER}/static-files"
+  find . -type f | cpio -pdmv "../../${BUILDDIR}"
+  popd
+fi
 
 #now we force a git commit
 cd ${BUILDDIR}
