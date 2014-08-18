@@ -1,7 +1,7 @@
 from whitelists.base import whitelist
 
 whitelist.update(
-    table="field_data_body", 
+    table="field_data_body",
     columns=[
         "entity_type",
         "bundle",
@@ -16,7 +16,7 @@ whitelist.update(
     ])
 
 whitelist.update(
-    table="field_revision_body", 
+    table="field_revision_body",
     columns=[
         "entity_type",
         "bundle",
@@ -31,7 +31,7 @@ whitelist.update(
     ])
 
 whitelist.add(
-    table="conditional_fields", 
+    table="conditional_fields",
     columns=[
         "id",
         "dependee",
@@ -40,14 +40,14 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="content_access", 
+    table="content_access",
     columns=[
         "nid",
         "settings",
     ])
 
 whitelist.add(
-    table="drupalorg_crosssite_ind_civimembership", 
+    table="drupalorg_crosssite_ind_civimembership",
     columns=[
         "user_name",
         "membership_status",
@@ -56,7 +56,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="drupalorg_crosssite_org_civimembership", 
+    table="drupalorg_crosssite_org_civimembership",
     columns=[
         "org_name",
         "membership_type",
@@ -66,7 +66,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_data_field_assigned", 
+    table="field_data_field_assigned",
     columns=[
         "entity_type",
         "bundle",
@@ -79,7 +79,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_data_field_attachments", 
+    table="field_data_field_attachments",
     columns=[
         "entity_type",
         "bundle",
@@ -122,7 +122,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_data_field_deployment_instructions", 
+    table="field_data_field_deployment_instructions",
     columns=[
         "entity_type",
         "bundle",
@@ -149,7 +149,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_data_field_implementation_plan", 
+    table="field_data_field_implementation_plan",
     columns=[
         "entity_type",
         "bundle",
@@ -163,7 +163,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_data_field_initiator", 
+    table="field_data_field_initiator",
     columns=[
         "entity_type",
         "bundle",
@@ -189,7 +189,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_data_field_prod_deployment_notes", 
+    table="field_data_field_prod_deployment_notes",
     columns=[
         "entity_type",
         "bundle",
@@ -216,7 +216,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_data_field_stage", 
+    table="field_data_field_stage",
     columns=[
         "entity_type",
         "bundle",
@@ -229,7 +229,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_data_field_staging_review_notes", 
+    table="field_data_field_staging_review_notes",
     columns=[
         "entity_type",
         "bundle",
@@ -257,7 +257,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_data_field_test_plan", 
+    table="field_data_field_test_plan",
     columns=[
         "entity_type",
         "bundle",
@@ -284,7 +284,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_revision_comment_body", 
+    table="field_revision_comment_body",
     columns=[
         "entity_type",
         "bundle",
@@ -298,7 +298,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_revision_field_assigned", 
+    table="field_revision_field_assigned",
     columns=[
         "entity_type",
         "bundle",
@@ -311,7 +311,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_revision_field_attachments", 
+    table="field_revision_field_attachments",
     columns=[
         "entity_type",
         "bundle",
@@ -354,7 +354,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_revision_field_deployment_instructions", 
+    table="field_revision_field_deployment_instructions",
     columns=[
         "entity_type",
         "bundle",
@@ -381,7 +381,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_revision_field_implementation_plan", 
+    table="field_revision_field_implementation_plan",
     columns=[
         "entity_type",
         "bundle",
@@ -395,7 +395,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_revision_field_initiator", 
+    table="field_revision_field_initiator",
     columns=[
         "entity_type",
         "bundle",
@@ -421,7 +421,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_revision_field_prod_deployment_notes", 
+    table="field_revision_field_prod_deployment_notes",
     columns=[
         "entity_type",
         "bundle",
@@ -448,7 +448,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_revision_field_stage", 
+    table="field_revision_field_stage",
     columns=[
         "entity_type",
         "bundle",
@@ -461,7 +461,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_revision_field_staging_review_notes", 
+    table="field_revision_field_staging_review_notes",
     columns=[
         "entity_type",
         "bundle",
@@ -489,7 +489,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_revision_field_test_plan", 
+    table="field_revision_field_test_plan",
     columns=[
         "entity_type",
         "bundle",
