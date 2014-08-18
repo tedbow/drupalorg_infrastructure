@@ -148,35 +148,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_data_field_demo_url",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_demo_url_url",
-        "field_demo_url_title",
-        "field_demo_url_attributes",
-    ])
-
-whitelist.add(
-    table="field_data_field_deployment_instructions",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_deployment_instructions_value",
-        "field_deployment_instructions_format",
-    ])
-
-whitelist.add(
     table="field_data_field_description",
     columns=[
         "entity_type",
@@ -241,33 +212,6 @@ whitelist.add(
         "language",
         "delta",
         "field_outage_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_performance_review",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_performance_review_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_prod_deployment_notes",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_prod_deployment_notes_value",
-        "field_prod_deployment_notes_format",
     ])
 
 whitelist.add(
@@ -463,35 +407,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_revision_field_demo_url",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_demo_url_url",
-        "field_demo_url_title",
-        "field_demo_url_attributes",
-    ])
-
-whitelist.add(
-    table="field_revision_field_deployment_instructions",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_deployment_instructions_value",
-        "field_deployment_instructions_format",
-    ])
-
-whitelist.add(
     table="field_revision_field_description",
     columns=[
         "entity_type",
@@ -556,33 +471,6 @@ whitelist.add(
         "language",
         "delta",
         "field_outage_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_performance_review",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_performance_review_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_prod_deployment_notes",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_prod_deployment_notes_value",
-        "field_prod_deployment_notes_format",
     ])
 
 whitelist.add(
