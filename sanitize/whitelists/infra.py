@@ -299,46 +299,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_data_field_security_review",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_security_review_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_stage",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_stage_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_staging_review_notes",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_staging_review_notes_value",
-        "field_staging_review_notes_format",
-    ])
-
-whitelist.add(
     table="field_data_field_status",
     columns=[
         "entity_type",
@@ -651,46 +611,6 @@ whitelist.add(
         "field_related_issues_url",
         "field_related_issues_title",
         "field_related_issues_attributes",
-    ])
-
-whitelist.add(
-    table="field_revision_field_security_review",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_security_review_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_stage",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_stage_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_staging_review_notes",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_staging_review_notes_value",
-        "field_staging_review_notes_format",
     ])
 
 whitelist.add(
