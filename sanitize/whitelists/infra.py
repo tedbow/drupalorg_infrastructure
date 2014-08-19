@@ -66,19 +66,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_data_field_assigned",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_assigned_target_id",
-    ])
-
-whitelist.add(
     table="field_data_field_attachments",
     columns=[
         "entity_type",
@@ -105,19 +92,6 @@ whitelist.add(
         "delta",
         "field_backout_plan_value",
         "field_backout_plan_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_component",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_component_value",
     ])
 
 whitelist.add(
@@ -325,19 +299,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_revision_field_assigned",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_assigned_target_id",
-    ])
-
-whitelist.add(
     table="field_revision_field_attachments",
     columns=[
         "entity_type",
@@ -364,19 +325,6 @@ whitelist.add(
         "delta",
         "field_backout_plan_value",
         "field_backout_plan_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_component",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_component_value",
     ])
 
 whitelist.add(
