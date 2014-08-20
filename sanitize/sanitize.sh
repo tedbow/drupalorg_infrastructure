@@ -3,44 +3,122 @@
 # Exit immediately on uninitialized variable or error, and print each command.
 set -uex
 
+## Get scripts current working directory
+CWD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+# Check if variables have been entered
+function help {
+  echo "sanitize.sh <database> <infra|boss|skeleton>"
+  exit 1
+}
+
+### Variables ###
+DATABASE=${1:=-h}
+PROFILE=${2:=empty}
+NODUMP=${3:=dump}
+
+EXPORT_DB="drupal_export"
+
+DBOPT="--single-transaction --quick"
+
+DIR=$PROFILE
+STAGE="$DIR"
+FILETYPE="sql"
+COMPRESSION="bz2"
+JOB_NAME=${JOB_NAME:=db_backup}
+BUILD_NUMBER=${BUILD_NUMBER:=0}
+
+
+DUMPPATH="/var/dumps/${DIR}"
+
+
+### Variables ###
+
+if [[ -z "${DATABASE}" ]] || [[ -z "${PROFILE}" ]]
+  then
+  help
+fi
+
+case ${DATABASE} in
+  "-h"|"--help"|"")
+    help
+    ;;
+esac
+
+case ${PROFILE} in
+  "infra"|"boss"|"skeleton")
+    ;;
+  *)
+    help
+    ;;
+esac
 # Grab the profile argument:
 #
 # Infra - infrastructure dev
 # Boss - for drupal.org
 # Skeleton - for drupal.org dev
-database=${1}
-profile=${2}
-export_db="drupal_export"
 
 # We are only creating dev snapshots right now.
-suffix=".dev"
-subdir=$(echo "${suffix}" | sed -e 's/^\.//')
+
+# Stop script if dump dir doesn't exist and can't be made by this user
+[ ! -d ${DUMPPATH} ] && mkdir -p ${DUMPPATH}
+[ ! -d ${DUMPPATH} ] && exit 1
+
+# Make sure that the directory is writeable
+touch ${DUMPPATH}/.test-write || exit 1
+rm ${DUMPPATH}/.test-write || exit 1
 
 # Grab the host, user and password from password.py
-host=$(cat sanitize/password.py | grep host | sed -e "s/host = '//" -e "s/'//")
-user=$(cat sanitize/password.py | grep user | sed -e "s/user = '//" -e "s/'//")
-password=$(cat sanitize/password.py | grep password | sed -e "s/password = '//" -e "s/'//")
-tmp_args="-h${host} -u${user} -p${password} ${export_db}"
+[ ! -f $CWD/password.py ] && echo "Missing password.py file" && exit 1
+source $CWD/password.py
 
-if [ ${database} == "drupal" ]; then
-  database="drupal_sanitize"
-  suffix=".whitelist"
-  mysqldump -h db2-main-vip.drupal.org -u${user} -p${password} --single-transaction --quick drupal | mysql -h${host} -u${user} -p${password} ${database}
+[ -z "${host}" ] &&  echo "Missing host in password.py file." && exit 1
+[ ! -z "${host}" ] && DBHOST="-h${host}"
+[ ! -z "${user}" ] && DBUSER="-u${user}"
+[ ! -z "${password}" ] && DBPASSWORD="-p${password}"
+
+TMP_ARGS="${DBHOST} ${DBUSER:= } ${DBPASSWORD:= } ${EXPORT_DB}"
+
+if [ ${DATABASE} == "drupal" ]; then
+  DATABASE="drupal_sanitize"
+  STAGE="whitelist"
+  TMP_ARGS2="-hdb2-main-vip.drupal.org ${DBUSER:= } ${DBPASSWORD:= } ${EXPORT_DB}"
+  mysqldump ${DBOPT} ${TMP_ARGS2} drupal | mysql ${TMP_ARGS} ${DATABASE}
 fi
 
 # Sanitize into the export database.
-python26 ./sanitize/sanitize_db.py -s ${database} -d ${export_db} -p ${profile}
+python2 $CWD/sanitize_db.py -s ${DATABASE} -d ${EXPORT_DB} -p ${PROFILE}
 if [ $? -ne 0 ]; then
   exit $?
 fi
 
-# Save the DB dump.
-mysqldump --single-transaction --quick ${tmp_args} | sed -e 's/^) ENGINE=[^ ]*/)/' | bzip2 > "/var/dumps/${subdir}/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2"
-mv -v "/var/dumps/${subdir}/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2" "/var/dumps/${subdir}/${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.bz2"
-ln -sfv "${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.bz2" "/var/dumps/${subdir}/${JOB_NAME}${suffix}-current.sql.bz2"
 
-# Remove old snapshots.
-old_snapshots=$(ls -t /var/dumps/${subdir}/${JOB_NAME}${suffix}-[0-9]*.sql.{bz2,gz} | tail -n +2)
-if [ -n "${old_snapshots}" ]; then
-  rm -v ${old_snapshots}
+if [ ${NODUMP} == "dump" ]; then
+  FVAR1="${JOB_NAME}.${STAGE}"
+  SUFFIX="${FILETYPE}.${COMPRESSION}"
+  DUMPPROG="${FVAR1}-${BUILD_NUMBER}-in-progress"
+  DUMPFILE="${FVAR1}-${BUILD_NUMBER}.${SUFFIX}"
+  DUMPCUR="${DUMPPATH}/${FVAR1}-current.${SUFFIX}"
+
+  # Save the DB dump.
+  echo "=================================================="
+  echo "start the dump"
+  time mysqldump ${DBOPT} ${TMP_ARGS} > ${DUMPPATH}/${DUMPPROG}.${FILETYPE}
+  echo "=================================================="
+  echo "the dump is done"
+  echo "=================================================="
+  echo "start the sed"
+  time cat ${DUMPPATH}/${DUMPPROG}.${FILETYPE}   | sed -e 's/^) ENGINE=[^ ]*/)/' > ${DUMPPATH}/${DUMPPROG}.${FILETYPE}
+  echo "=================================================="
+  echo "start the compression"
+  time pbzip2 -f ${DUMPPATH}/${DUMPPROG}.${FILETYPE} > ${DUMPPATH}/${DUMPPROG}.${SUFFIX} && rm ${DUMPPATH}/${DUMPPROG}.${FILETYPE}
+  echo "=================================================="
+  mv -v ${DUMPPATH}/${DUMPPROG}.${FILETYPE} ${DUMPPATH}/${DUMPFILE}
+  ln -sfv ${DUMPFILE} ${DUMPCUR}
+
+  # Remove old snapshots.
+  OLD_SNAPSHOTS=$(ls -t ${DUMPPATH}/${FVAR1}-[0-9]*.${FILETYPE}.{bz2,gz} | tail -n +2)
+  if [ -z "${OLD_SNAPSHOTS}" ]; then
+    rm -v ${OLD_SNAPSHOTS}
+  fi
 fi
