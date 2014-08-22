@@ -68,6 +68,13 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="_nodata:blocked_ips",
+    columns=[
+        "iid",
+        "ip",
+    ])
+
+whitelist.add(
     table="block_node_type",
     columns=[
         "module",
@@ -83,12 +90,6 @@ whitelist.add(
         "rid",
     ])
 
-whitelist.add(
-    table="_nodata:blocked_ips",
-    columns=[
-        "iid",
-        "ip",
-    ])
 
 whitelist.add(
     table="book",
@@ -322,19 +323,19 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="date_format_type",
-    columns=[
-        "type",
-        "title",
-        "locked",
-    ])
-
-whitelist.add(
     table="date_formats",
     columns=[
         "dfid",
         "format",
         "type",
+        "locked",
+    ])
+
+whitelist.add(
+    table="date_format_type",
+    columns=[
+        "type",
+        "title",
         "locked",
     ])
 

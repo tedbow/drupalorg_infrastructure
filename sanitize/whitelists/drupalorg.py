@@ -21,7 +21,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="aggregator_category", 
+    table="aggregator_category",
     columns=[
         "cid",
         "title",
@@ -30,21 +30,21 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="aggregator_category_feed", 
+    table="aggregator_category_feed",
     columns=[
         "fid",
         "cid",
     ])
 
 whitelist.add(
-    table="aggregator_category_item", 
+    table="aggregator_category_item",
     columns=[
         "iid",
         "cid",
     ])
 
 whitelist.add(
-    table="aggregator_feed", 
+    table="aggregator_feed",
     columns=[
         "fid",
         "title",
@@ -62,7 +62,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="aggregator_item", 
+    table="aggregator_item",
     columns=[
         "iid",
         "fid",
@@ -75,7 +75,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="apachesolr_environment", 
+    table="apachesolr_environment",
     columns=[
         "env_id",
         "name",
@@ -84,7 +84,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="apachesolr_environment_variable", 
+    table="apachesolr_environment_variable",
     columns=[
         "env_id",
         "name",
@@ -92,7 +92,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="apachesolr_index_bundles", 
+    table="apachesolr_index_bundles",
     columns=[
         "env_id",
         "entity_type",
@@ -100,7 +100,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="apachesolr_index_entities", 
+    table="apachesolr_index_entities",
     columns=[
         "entity_type",
         "entity_id",
@@ -110,7 +110,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="apachesolr_index_entities_node", 
+    table="apachesolr_index_entities_node",
     columns=[
         "entity_type",
         "entity_id",
@@ -120,7 +120,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="apachesolr_search_page", 
+    table="apachesolr_search_page",
     columns=[
         "page_id",
         "label",
@@ -132,7 +132,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="autoload_registry", 
+    table="autoload_registry",
     columns=[
         "name",
         "type",
@@ -142,14 +142,14 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="autoload_registry_file", 
+    table="autoload_registry_file",
     columns=[
         "filename",
         "hash",
     ])
 
 whitelist.add(
-    table="cache_advcache_block", 
+    table="_nodata:cache_advcache_block",
     columns=[
         "cid",
         "data",
@@ -159,28 +159,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cache_apachesolr", 
-    columns=[
-        "cid",
-        "data",
-        "expire",
-        "created",
-        "headers",
-        "serialized",
-    ])
-
-whitelist.add(
-    table="cache_comment", 
-    columns=[
-        "cid",
-        "data",
-        "expire",
-        "created",
-        "headers",
-    ])
-
-whitelist.add(
-    table="cache_content", 
+    table="_nodata:cache_apachesolr",
     columns=[
         "cid",
         "data",
@@ -191,7 +170,17 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cache_forum", 
+    table="_nodata:cache_comment",
+    columns=[
+        "cid",
+        "data",
+        "expire",
+        "created",
+        "headers",
+    ])
+
+whitelist.add(
+    table="_nodata:cache_content",
     columns=[
         "cid",
         "data",
@@ -202,37 +191,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cache_libraries", 
-    columns=[
-        "cid",
-        "data",
-        "expire",
-        "created",
-        "serialized",
-    ])
-
-whitelist.add(
-    table="cache_node", 
-    columns=[
-        "cid",
-        "data",
-        "expire",
-        "created",
-        "headers",
-    ])
-
-whitelist.add(
-    table="cache_project_release_download_table", 
-    columns=[
-        "cid",
-        "data",
-        "expire",
-        "created",
-        "serialized",
-    ])
-
-whitelist.add(
-    table="cache_project_usage", 
+    table="_nodata:cache_forum",
     columns=[
         "cid",
         "data",
@@ -243,7 +202,27 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cache_search", 
+    table="_nodata:cache_libraries",
+    columns=[
+        "cid",
+        "data",
+        "expire",
+        "created",
+        "serialized",
+    ])
+
+whitelist.add(
+    table="_nodata:cache_metatag",
+    columns=[
+        "cid",
+        "data",
+        "expire",
+        "created",
+        "serialized",
+    ])
+
+whitelist.add(
+    table="_nodata:cache_node",
     columns=[
         "cid",
         "data",
@@ -253,7 +232,48 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cache_taxonomy", 
+    table="_nodata:cache_project_release_download_table",
+    columns=[
+        "cid",
+        "data",
+        "expire",
+        "created",
+        "serialized",
+    ])
+
+whitelist.add(
+    table="_nodata:cache_project_usage",
+    columns=[
+        "cid",
+        "data",
+        "expire",
+        "created",
+        "headers",
+        "serialized",
+    ])
+
+whitelist.add(
+    table="_nodata:cache_search",
+    columns=[
+        "cid",
+        "data",
+        "expire",
+        "created",
+        "headers",
+    ])
+whitelist.add(
+    table="_nodata:cache_render",
+    columns=[
+        "cid",
+        "data",
+        "expire",
+        "created",
+        "serialized",
+    ])
+
+
+whitelist.add(
+    table="_nodata:cache_taxonomy",
     columns=[
         "cid",
         "data",
@@ -263,7 +283,27 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="content_field_developed_org", 
+    table="_nodata:comment_alter_taxonomy",
+    columns=[
+        "nid",
+        "cid",
+        "tid",
+    ])
+
+whitelist.add(
+    table="_nodata:comment_upload",
+    columns=[
+        "fid",
+        "nid",
+        "cid",
+        "description",
+        "list",
+        "weight",
+        "legacy_fid",
+    ])
+
+whitelist.add(
+    table="content_field_developed_org",
     columns=[
         "vid",
         "nid",
@@ -272,7 +312,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="content_field_images", 
+    table="content_field_images",
     columns=[
         "vid",
         "nid",
@@ -283,7 +323,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="content_field_impacts", 
+    table="content_field_impacts",
     columns=[
         "vid",
         "nid",
@@ -292,7 +332,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="content_field_issues", 
+    table="content_field_issues",
     columns=[
         "vid",
         "nid",
@@ -301,7 +341,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="content_field_link", 
+    table="content_field_link",
     columns=[
         "vid",
         "nid",
@@ -311,7 +351,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="content_field_module", 
+    table="content_field_module",
     columns=[
         "vid",
         "nid",
@@ -320,7 +360,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="content_field_profiles", 
+    table="content_field_profiles",
     columns=[
         "vid",
         "nid",
@@ -329,7 +369,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="content_field_project_images", 
+    table="content_field_project_images",
     columns=[
         "vid",
         "nid",
@@ -340,7 +380,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="content_group", 
+    table="content_group",
     columns=[
         "group_type",
         "type_name",
@@ -351,7 +391,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="content_group_fields", 
+    table="content_group_fields",
     columns=[
         "type_name",
         "group_name",
@@ -359,7 +399,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="content_node_field", 
+    table="content_node_field",
     columns=[
         "field_name",
         "type",
@@ -374,7 +414,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="content_node_field_instance", 
+    table="content_node_field_instance",
     columns=[
         "field_name",
         "type_name",
@@ -389,7 +429,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="content_type_book_listing", 
+    table="content_type_book_listing",
     columns=[
         "vid",
         "nid",
@@ -415,7 +455,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="content_type_casestudy", 
+    table="content_type_casestudy",
     columns=[
         "vid",
         "nid",
@@ -436,7 +476,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="content_type_changenotice", 
+    table="content_type_changenotice",
     columns=[
         "vid",
         "nid",
@@ -458,7 +498,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="content_type_organization", 
+    table="content_type_organization",
     columns=[
         "vid",
         "nid",
@@ -490,4421 +530,10 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="content_type_project_project", 
+    table="content_type_project_project",
     columns=[
         "vid",
         "nid",
-    ])
-
-whitelist.add(
-    table="cvs_repositories", 
-    columns=[
-        "rid",
-        "name",
-        "root",
-        "modules",
-        "diffurl",
-        "newurl",
-        "trackerurl",
-        "method",
-        "updated",
-    ])
-
-whitelist.add(
-    table="drupalorg", 
-    columns=[
-        "cid",
-        "data",
-        "expire",
-        "created",
-        "serialized",
-    ])
-
-whitelist.add(
-    table="_nodata:drupalorg_crosssite_ind_civimembership", 
-    columns=[
-        "user_name",
-        "membership_status",
-        "expiration_date",
-        "updated",
-    ])
-
-whitelist.add(
-    table="_nodata:drupalorg_crosssite_org_civimembership", 
-    columns=[
-        "org_name",
-        "membership_type",
-        "membership_status",
-        "expiration_date",
-        "updated",
-    ])
-
-whitelist.add(
-    table="drupalorg_git_consent_log", 
-    columns=[
-        "uid",
-        "timestamp",
-        "action",
-    ])
-
-whitelist.add(
-    table="drupalorg_git_disable_log", 
-    columns=[
-        "uid",
-        "admin_uid",
-        "timestamp",
-        "action",
-        "email",
-    ])
-
-whitelist.add(
-    table="drupalorg_git_push_log", 
-    columns=[
-        "push_id",
-        "uid",
-        "timestamp",
-        "repo_id",
-    ])
-
-whitelist.add(
-    table="drupalorg_git_push_log_refs", 
-    columns=[
-        "push_id",
-        "refname",
-        "reftype",
-        "old_obj",
-        "new_obj",
-    ])
-
-whitelist.add(
-    table="_nodata:drupalorg_ind_civimembership", 
-    columns=[
-        "user_name",
-        "membership_status",
-        "expiration_date",
-        "updated",
-    ])
-
-whitelist.add(
-    table="_nodata:drupalorg_org_civimembership", 
-    columns=[
-        "org_name",
-        "membership_type",
-        "membership_status",
-        "expiration_date",
-        "updated",
-    ])
-
-whitelist.add(
-    table="facetapi", 
-    columns=[
-        "name",
-        "searcher",
-        "realm",
-        "facet",
-        "enabled",
-        "settings",
-    ])
-
-whitelist.add(
-    table="field_collection_item", 
-    columns=[
-        "item_id",
-        "revision_id",
-        "field_name",
-        "archived",
-    ])
-
-whitelist.add(
-    table="field_collection_item_revision", 
-    columns=[
-        "revision_id",
-        "item_id",
-    ])
-
-whitelist.add(
-    table="field_data_field_book_description", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_book_description_value",
-        "field_book_description_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_book_isbn_10", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_book_isbn_10_value",
-        "field_book_isbn_10_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_book_isbn_13", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_book_isbn_13_value",
-        "field_book_isbn_13_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_book_listing_authors", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_book_listing_authors_value",
-        "field_book_listing_authors_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_book_listing_date", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_book_listing_date_value",
-        "field_book_listing_date_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_book_page_count", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_book_page_count_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_book_purchase_link", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_book_purchase_link_url",
-        "field_book_purchase_link_title",
-        "field_book_purchase_link_attributes",
-    ])
-
-whitelist.add(
-    table="field_data_field_book_subtitle", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_book_subtitle_value",
-        "field_book_subtitle_format",
-    ])
-
-whitelist.add(
-    table="_nodata:field_data_field_budget", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_budget_value",
-        "field_budget_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_change_record_status", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_change_record_status_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_change_to", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_change_to_value",
-        "field_change_to_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_change_to_branch", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_change_to_branch_value",
-        "field_change_to_branch_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_coder_recorded", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_coder_recorded_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_coder_update_recorded", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_coder_update_recorded_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_community", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_community_value",
-        "field_community_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_contributions", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_contributions_value",
-        "field_contributions_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_cover_image", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_cover_image_fid",
-        "field_cover_image_alt",
-        "field_cover_image_title",
-        "field_cover_image_width",
-        "field_cover_image_height",
-    ])
-
-whitelist.add(
-    table="field_data_field_description", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_description_value",
-        "field_description_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_developed", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_developed_value",
-        "field_developed_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_developed_org", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_developed_org_nid",
-    ])
-
-whitelist.add(
-    table="field_data_field_examples_recorded", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_examples_recorded_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_goals", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_goals_value",
-        "field_goals_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_images", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_images_fid",
-        "field_images_alt",
-        "field_images_title",
-        "field_images_width",
-        "field_images_height",
-    ])
-
-whitelist.add(
-    table="field_data_field_impacts", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_impacts_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_issue_assigned", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_issue_assigned_target_id",
-    ])
-
-whitelist.add(
-    table="field_data_field_issue_category", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_issue_category_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_issue_changes", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_issue_changes_nid",
-        "field_issue_changes_vid",
-        "field_issue_changes_field_name",
-        "field_issue_changes_old_value",
-        "field_issue_changes_new_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_issue_component", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_issue_component_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_issue_files", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_issue_files_fid",
-        "field_issue_files_display",
-        "field_issue_files_description",
-    ])
-
-whitelist.add(
-    table="field_data_field_issue_parent", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_issue_parent_target_id",
-    ])
-
-whitelist.add(
-    table="field_data_field_issue_priority", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_issue_priority_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_issue_related", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_issue_related_target_id",
-    ])
-
-whitelist.add(
-    table="field_data_field_issue_status", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_issue_status_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_issue_version", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_issue_version_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_issues", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_issues_target_id",
-    ])
-
-whitelist.add(
-    table="field_data_field_link", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_link_url",
-        "field_link_title",
-        "field_link_attributes",
-    ])
-
-whitelist.add(
-    table="field_data_field_logo", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_logo_fid",
-        "field_logo_alt",
-        "field_logo_title",
-        "field_logo_width",
-        "field_logo_height",
-    ])
-
-whitelist.add(
-    table="field_data_field_mainimage", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_mainimage_fid",
-        "field_mainimage_alt",
-        "field_mainimage_title",
-        "field_mainimage_width",
-        "field_mainimage_height",
-    ])
-
-whitelist.add(
-    table="field_data_field_module", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_module_nid",
-    ])
-
-whitelist.add(
-    table="field_data_field_module_recorded", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_module_recorded_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_module_selection", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_module_selection_value",
-        "field_module_selection_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_official_website", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_official_website_url",
-        "field_official_website_title",
-        "field_official_website_attributes",
-    ])
-
-whitelist.add(
-    table="field_data_field_online_recorded", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_online_recorded_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_org_marketplace_request", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_org_marketplace_request_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_org_training_issue", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_org_training_issue_nid",
-    ])
-
-whitelist.add(
-    table="field_data_field_org_training_request", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_org_training_request_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_organization_headquarters", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_organization_headquarters_value",
-        "field_organization_headquarters_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_organization_issue", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_organization_issue_nid",
-    ])
-
-whitelist.add(
-    table="field_data_field_organization_list_rule", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_organization_list_rule_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_organization_security", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_organization_security_value",
-        "field_organization_security_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_organization_training_desc", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_organization_training_desc_value",
-        "field_organization_training_desc_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_organization_training_list", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_organization_training_list_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_organization_training_url", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_organization_training_url_url",
-        "field_organization_training_url_title",
-        "field_organization_training_url_attributes",
-    ])
-
-whitelist.add(
-    table="field_data_field_other_details", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_other_details_value",
-        "field_other_details_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_other_recorded", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_other_recorded_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_overview", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_overview_value",
-        "field_overview_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_profiles", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_profiles_uid",
-    ])
-
-whitelist.add(
-    table="field_data_field_project", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_target_id",
-    ])
-
-whitelist.add(
-    table="field_data_field_project_changelog", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_changelog_url",
-        "field_project_changelog_title",
-        "field_project_changelog_attributes",
-    ])
-
-whitelist.add(
-    table="field_data_field_project_components", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_components_value",
-        "field_project_components_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_project_default_component", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_default_component_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_project_demo", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_demo_url",
-        "field_project_demo_title",
-        "field_project_demo_attributes",
-    ])
-
-whitelist.add(
-    table="field_data_field_project_documentation", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_documentation_url",
-        "field_project_documentation_title",
-        "field_project_documentation_attributes",
-    ])
-
-whitelist.add(
-    table="field_data_field_project_has_issue_queue", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_has_issue_queue_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_project_has_releases", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_has_releases_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_project_homepage", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_homepage_url",
-        "field_project_homepage_title",
-        "field_project_homepage_attributes",
-    ])
-
-whitelist.add(
-    table="field_data_field_project_images", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_images_fid",
-        "field_project_images_alt",
-        "field_project_images_title",
-        "field_project_images_width",
-        "field_project_images_height",
-    ])
-
-whitelist.add(
-    table="field_data_field_project_issue_guidelines", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_issue_guidelines_value",
-        "field_project_issue_guidelines_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_project_license", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_license_url",
-        "field_project_license_title",
-        "field_project_license_attributes",
-    ])
-
-whitelist.add(
-    table="field_data_field_project_machine_name", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_machine_name_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_project_screenshots", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_screenshots_url",
-        "field_project_screenshots_title",
-        "field_project_screenshots_attributes",
-    ])
-
-whitelist.add(
-    table="field_data_field_project_type", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_type_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_publisher", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_publisher_value",
-        "field_publisher_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_release_build_type", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_build_type_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_release_file", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_file_fid",
-        "field_release_file_display",
-        "field_release_file_description",
-    ])
-
-whitelist.add(
-    table="field_data_field_release_file_downloads", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_file_downloads_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_release_file_hash", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_file_hash_value",
-        "field_release_file_hash_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_release_files", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_files_value",
-        "field_release_files_revision_id",
-    ])
-
-whitelist.add(
-    table="field_data_field_release_project", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_project_target_id",
-    ])
-
-whitelist.add(
-    table="field_data_field_release_recommended", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_recommended_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_release_update_status", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_update_status_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_release_vcs_label", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_vcs_label_value",
-        "field_release_vcs_label_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_release_version", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_version_value",
-        "field_release_version_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_release_version_ext_delta", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_version_ext_delta_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_release_version_ext_weight", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_version_ext_weight_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_release_version_extra", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_version_extra_value",
-        "field_release_version_extra_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_release_version_format", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_version_format_value",
-        "field_release_version_format_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_release_version_major", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_version_major_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_release_version_minor", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_version_minor_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_release_version_patch", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_version_patch_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_status", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_status_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_theme_recorded", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_theme_recorded_value",
-    ])
-
-whitelist.add(
-    table="field_data_field_update_progress", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_update_progress_value",
-        "field_update_progress_format",
-    ])
-
-whitelist.add(
-    table="_nodata:field_data_field_user_geolocation", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_user_geolocation_lat",
-        "field_user_geolocation_lng",
-        "field_user_geolocation_lat_sin",
-        "field_user_geolocation_lat_cos",
-        "field_user_geolocation_lng_rad",
-    ])
-
-whitelist.add(
-    table="field_data_taxonomy_forums", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_forums_tid",
-    ])
-
-whitelist.add(
-    table="field_data_taxonomy_vocabulary_2", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_2_tid",
-    ])
-
-whitelist.add(
-    table="field_data_taxonomy_vocabulary_3", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_3_tid",
-    ])
-
-whitelist.add(
-    table="field_data_taxonomy_vocabulary_31", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_31_tid",
-    ])
-
-whitelist.add(
-    table="field_data_taxonomy_vocabulary_34", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_34_tid",
-    ])
-
-whitelist.add(
-    table="field_data_taxonomy_vocabulary_38", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_38_tid",
-    ])
-
-whitelist.add(
-    table="field_data_taxonomy_vocabulary_44", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_44_tid",
-    ])
-
-whitelist.add(
-    table="field_data_taxonomy_vocabulary_46", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_46_tid",
-    ])
-
-whitelist.add(
-    table="field_data_taxonomy_vocabulary_48", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_48_tid",
-    ])
-
-whitelist.add(
-    table="field_data_taxonomy_vocabulary_5", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_5_tid",
-    ])
-
-whitelist.add(
-    table="field_data_taxonomy_vocabulary_50", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_50_tid",
-    ])
-
-whitelist.add(
-    table="field_data_taxonomy_vocabulary_52", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_52_tid",
-    ])
-
-whitelist.add(
-    table="field_data_taxonomy_vocabulary_54", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_54_tid",
-    ])
-
-whitelist.add(
-    table="field_data_taxonomy_vocabulary_56", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_56_tid",
-    ])
-
-whitelist.add(
-    table="field_data_taxonomy_vocabulary_58", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_58_tid",
-    ])
-
-whitelist.add(
-    table="field_data_taxonomy_vocabulary_6", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_6_tid",
-    ])
-
-whitelist.add(
-    table="field_data_taxonomy_vocabulary_60", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_60_tid",
-    ])
-
-whitelist.add(
-    table="field_data_taxonomy_vocabulary_62", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_62_tid",
-    ])
-
-whitelist.add(
-    table="field_data_taxonomy_vocabulary_7", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_7_tid",
-    ])
-
-whitelist.add(
-    table="field_data_taxonomy_vocabulary_9", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_9_tid",
-    ])
-
-whitelist.add(
-    table="field_data_taxonomyextra", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomyextra_tid",
-    ])
-
-whitelist.add(
-    table="field_data_upload", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "upload_fid",
-        "upload_display",
-        "upload_description",
-    ])
-
-whitelist.add(
-    table="field_revision_comment_body", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "comment_body_value",
-        "comment_body_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_book_description", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_book_description_value",
-        "field_book_description_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_book_isbn_10", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_book_isbn_10_value",
-        "field_book_isbn_10_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_book_isbn_13", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_book_isbn_13_value",
-        "field_book_isbn_13_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_book_listing_authors", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_book_listing_authors_value",
-        "field_book_listing_authors_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_book_listing_date", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_book_listing_date_value",
-        "field_book_listing_date_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_book_page_count", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_book_page_count_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_book_purchase_link", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_book_purchase_link_url",
-        "field_book_purchase_link_title",
-        "field_book_purchase_link_attributes",
-    ])
-
-whitelist.add(
-    table="field_revision_field_book_subtitle", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_book_subtitle_value",
-        "field_book_subtitle_format",
-    ])
-
-whitelist.add(
-    table="_nodata:field_revision_field_budget", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_budget_value",
-        "field_budget_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_change_record_status", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_change_record_status_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_change_to", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_change_to_value",
-        "field_change_to_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_change_to_branch", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_change_to_branch_value",
-        "field_change_to_branch_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_coder_recorded", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_coder_recorded_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_coder_update_recorded", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_coder_update_recorded_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_community", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_community_value",
-        "field_community_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_contributions", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_contributions_value",
-        "field_contributions_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_cover_image", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_cover_image_fid",
-        "field_cover_image_alt",
-        "field_cover_image_title",
-        "field_cover_image_width",
-        "field_cover_image_height",
-    ])
-
-whitelist.add(
-    table="field_revision_field_description", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_description_value",
-        "field_description_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_developed", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_developed_value",
-        "field_developed_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_developed_org", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_developed_org_nid",
-    ])
-
-whitelist.add(
-    table="field_revision_field_examples_recorded", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_examples_recorded_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_goals", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_goals_value",
-        "field_goals_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_images", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_images_fid",
-        "field_images_alt",
-        "field_images_title",
-        "field_images_width",
-        "field_images_height",
-    ])
-
-whitelist.add(
-    table="field_revision_field_impacts", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_impacts_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_issue_assigned", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_issue_assigned_target_id",
-    ])
-
-whitelist.add(
-    table="field_revision_field_issue_category", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_issue_category_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_issue_changes", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_issue_changes_nid",
-        "field_issue_changes_vid",
-        "field_issue_changes_field_name",
-        "field_issue_changes_old_value",
-        "field_issue_changes_new_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_issue_component", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_issue_component_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_issue_files", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_issue_files_fid",
-        "field_issue_files_display",
-        "field_issue_files_description",
-    ])
-
-whitelist.add(
-    table="field_revision_field_issue_parent", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_issue_parent_target_id",
-    ])
-
-whitelist.add(
-    table="field_revision_field_issue_priority", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_issue_priority_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_issue_related", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_issue_related_target_id",
-    ])
-
-whitelist.add(
-    table="field_revision_field_issue_status", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_issue_status_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_issue_version", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_issue_version_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_issues", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_issues_target_id",
-    ])
-
-whitelist.add(
-    table="field_revision_field_link", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_link_url",
-        "field_link_title",
-        "field_link_attributes",
-    ])
-
-whitelist.add(
-    table="field_revision_field_logo", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_logo_fid",
-        "field_logo_alt",
-        "field_logo_title",
-        "field_logo_width",
-        "field_logo_height",
-    ])
-
-whitelist.add(
-    table="field_revision_field_mainimage", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_mainimage_fid",
-        "field_mainimage_alt",
-        "field_mainimage_title",
-        "field_mainimage_width",
-        "field_mainimage_height",
-    ])
-
-whitelist.add(
-    table="field_revision_field_module", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_module_nid",
-    ])
-
-whitelist.add(
-    table="field_revision_field_module_recorded", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_module_recorded_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_module_selection", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_module_selection_value",
-        "field_module_selection_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_official_website", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_official_website_url",
-        "field_official_website_title",
-        "field_official_website_attributes",
-    ])
-
-whitelist.add(
-    table="field_revision_field_online_recorded", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_online_recorded_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_org_marketplace_request", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_org_marketplace_request_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_org_training_issue", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_org_training_issue_nid",
-    ])
-
-whitelist.add(
-    table="field_revision_field_org_training_request", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_org_training_request_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_organization_headquarters", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_organization_headquarters_value",
-        "field_organization_headquarters_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_organization_issue", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_organization_issue_nid",
-    ])
-
-whitelist.add(
-    table="field_revision_field_organization_list_rule", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_organization_list_rule_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_organization_security", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_organization_security_value",
-        "field_organization_security_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_organization_training_desc", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_organization_training_desc_value",
-        "field_organization_training_desc_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_organization_training_list", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_organization_training_list_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_organization_training_url", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_organization_training_url_url",
-        "field_organization_training_url_title",
-        "field_organization_training_url_attributes",
-    ])
-
-whitelist.add(
-    table="field_revision_field_other_details", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_other_details_value",
-        "field_other_details_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_other_recorded", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_other_recorded_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_overview", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_overview_value",
-        "field_overview_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_profiles", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_profiles_uid",
-    ])
-
-whitelist.add(
-    table="field_revision_field_project", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_target_id",
-    ])
-
-whitelist.add(
-    table="field_revision_field_project_changelog", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_changelog_url",
-        "field_project_changelog_title",
-        "field_project_changelog_attributes",
-    ])
-
-whitelist.add(
-    table="field_revision_field_project_components", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_components_value",
-        "field_project_components_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_project_default_component", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_default_component_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_project_demo", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_demo_url",
-        "field_project_demo_title",
-        "field_project_demo_attributes",
-    ])
-
-whitelist.add(
-    table="field_revision_field_project_documentation", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_documentation_url",
-        "field_project_documentation_title",
-        "field_project_documentation_attributes",
-    ])
-
-whitelist.add(
-    table="field_revision_field_project_has_issue_queue", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_has_issue_queue_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_project_has_releases", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_has_releases_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_project_homepage", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_homepage_url",
-        "field_project_homepage_title",
-        "field_project_homepage_attributes",
-    ])
-
-whitelist.add(
-    table="field_revision_field_project_images", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_images_fid",
-        "field_project_images_alt",
-        "field_project_images_title",
-        "field_project_images_width",
-        "field_project_images_height",
-    ])
-
-whitelist.add(
-    table="field_revision_field_project_issue_guidelines", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_issue_guidelines_value",
-        "field_project_issue_guidelines_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_project_license", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_license_url",
-        "field_project_license_title",
-        "field_project_license_attributes",
-    ])
-
-whitelist.add(
-    table="field_revision_field_project_machine_name", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_machine_name_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_project_screenshots", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_screenshots_url",
-        "field_project_screenshots_title",
-        "field_project_screenshots_attributes",
-    ])
-
-whitelist.add(
-    table="field_revision_field_project_type", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_type_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_publisher", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_publisher_value",
-        "field_publisher_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_release_build_type", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_build_type_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_release_file", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_file_fid",
-        "field_release_file_display",
-        "field_release_file_description",
-    ])
-
-whitelist.add(
-    table="field_revision_field_release_file_downloads", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_file_downloads_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_release_file_hash", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_file_hash_value",
-        "field_release_file_hash_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_release_files", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_files_value",
-        "field_release_files_revision_id",
-    ])
-
-whitelist.add(
-    table="field_revision_field_release_project", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_project_target_id",
-    ])
-
-whitelist.add(
-    table="field_revision_field_release_recommended", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_recommended_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_release_update_status", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_update_status_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_release_vcs_label", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_vcs_label_value",
-        "field_release_vcs_label_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_release_version", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_version_value",
-        "field_release_version_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_release_version_ext_delta", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_version_ext_delta_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_release_version_ext_weight", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_version_ext_weight_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_release_version_extra", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_version_extra_value",
-        "field_release_version_extra_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_release_version_format", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_version_format_value",
-        "field_release_version_format_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_release_version_major", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_version_major_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_release_version_minor", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_version_minor_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_release_version_patch", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_version_patch_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_status", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_status_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_theme_recorded", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_theme_recorded_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_update_progress", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_update_progress_value",
-        "field_update_progress_format",
-    ])
-
-whitelist.add(
-    table="_nodata:field_revision_field_user_geolocation", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_user_geolocation_lat",
-        "field_user_geolocation_lng",
-        "field_user_geolocation_lat_sin",
-        "field_user_geolocation_lat_cos",
-        "field_user_geolocation_lng_rad",
-    ])
-
-whitelist.add(
-    table="field_revision_taxonomy_forums", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_forums_tid",
-    ])
-
-whitelist.add(
-    table="field_revision_taxonomy_vocabulary_2", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_2_tid",
-    ])
-
-whitelist.add(
-    table="field_revision_taxonomy_vocabulary_3", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_3_tid",
-    ])
-
-whitelist.add(
-    table="field_revision_taxonomy_vocabulary_31", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_31_tid",
-    ])
-
-whitelist.add(
-    table="field_revision_taxonomy_vocabulary_34", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_34_tid",
-    ])
-
-whitelist.add(
-    table="field_revision_taxonomy_vocabulary_38", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_38_tid",
-    ])
-
-whitelist.add(
-    table="field_revision_taxonomy_vocabulary_44", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_44_tid",
-    ])
-
-whitelist.add(
-    table="field_revision_taxonomy_vocabulary_46", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_46_tid",
-    ])
-
-whitelist.add(
-    table="field_revision_taxonomy_vocabulary_48", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_48_tid",
-    ])
-
-whitelist.add(
-    table="field_revision_taxonomy_vocabulary_5", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_5_tid",
-    ])
-
-whitelist.add(
-    table="field_revision_taxonomy_vocabulary_50", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_50_tid",
-    ])
-
-whitelist.add(
-    table="field_revision_taxonomy_vocabulary_52", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_52_tid",
-    ])
-
-whitelist.add(
-    table="field_revision_taxonomy_vocabulary_54", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_54_tid",
-    ])
-
-whitelist.add(
-    table="field_revision_taxonomy_vocabulary_56", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_56_tid",
-    ])
-
-whitelist.add(
-    table="field_revision_taxonomy_vocabulary_58", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_58_tid",
-    ])
-
-whitelist.add(
-    table="field_revision_taxonomy_vocabulary_6", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_6_tid",
-    ])
-
-whitelist.add(
-    table="field_revision_taxonomy_vocabulary_60", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_60_tid",
-    ])
-
-whitelist.add(
-    table="field_revision_taxonomy_vocabulary_62", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_62_tid",
-    ])
-
-whitelist.add(
-    table="field_revision_taxonomy_vocabulary_7", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_7_tid",
-    ])
-
-whitelist.add(
-    table="field_revision_taxonomy_vocabulary_9", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomy_vocabulary_9_tid",
-    ])
-
-whitelist.add(
-    table="field_revision_taxonomyextra", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "taxonomyextra_tid",
-    ])
-
-whitelist.add(
-    table="field_revision_upload", 
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "upload_fid",
-        "upload_display",
-        "upload_description",
-    ])
-
-whitelist.add(
-    table="files", 
-    columns=[
-        "fid",
-        "uid",
-        "filename",
-        "filepath",
-        "filemime",
-        "filesize",
-        "status",
-        "timestamp",
-    ])
-
-whitelist.add(
-    table="flag_content", 
-    columns=[
-        "fcid",
-        "fid",
-        "content_type",
-        "content_id",
-        "uid",
-        "sid",
-        "timestamp",
-    ])
-
-whitelist.add(
-    table="flag_counts", 
-    columns=[
-        "fid",
-        "content_type",
-        "content_id",
-        "count",
-        "last_updated",
-    ])
-
-whitelist.add(
-    table="flag_types", 
-    columns=[
-        "fid",
-        "type",
-    ])
-
-whitelist.add(
-    table="flags", 
-    columns=[
-        "fid",
-        "content_type",
-        "name",
-        "title",
-        "global",
-        "options",
-    ])
-
-whitelist.add(
-    table="forum", 
-    columns=[
-        "nid",
-        "tid",
-        "vid",
-    ])
-
-whitelist.add(
-    table="forum_index", 
-    columns=[
-        "nid",
-        "title",
-        "tid",
-        "sticky",
-        "created",
-        "last_comment_timestamp",
-        "comment_count",
-        "cid",
-    ])
-
-whitelist.add(
-    table="homebox_pages", 
-    columns=[
-        "name",
-        "settings",
-    ])
-
-whitelist.add(
-    table="homebox_users", 
-    columns=[
-        "uid",
-        "name",
-        "settings",
-    ])
-
-whitelist.add(
-    table="honeypot_user", 
-    columns=[
-        "uid",
-        "timestamp",
-    ])
-
-whitelist.add(
-    table="_nodata:httpbl", 
-    columns=[
-        "hostname",
-        "status",
-        "expire",
-    ])
-
-whitelist.add(
-    table="image", 
-    columns=[
-        "nid",
-        "fid",
-        "image_size",
-    ])
-
-whitelist.add(
-    table="imagecache_action", 
-    columns=[
-        "actionid",
-        "presetid",
-        "weight",
-        "module",
-        "action",
-        "data",
-    ])
-
-whitelist.add(
-    table="imagecache_preset", 
-    columns=[
-        "presetid",
-        "presetname",
-    ])
-
-whitelist.add(
-    table="lists_mailman", 
-    columns=[
-        "nid",
-        "uid",
-        "timestamp",
-    ])
-
-whitelist.add(
-    table="locales_meta", 
-    columns=[
-        "locale",
-        "name",
-        "enabled",
-        "isdefault",
-        "plurals",
-        "formula",
-    ])
-
-whitelist.add(
-    table="locales_source", 
-    columns=[
-        "lid",
-        "location",
-        "source",
-        "textgroup",
-        "version",
-        "context",
-    ])
-
-whitelist.add(
-    table="locales_target", 
-    columns=[
-        "lid",
-        "translation",
-        "locale",
-        "plid",
-        "plural",
-        "language",
-    ])
-
-whitelist.add(
-    table="materialized_view", 
-    columns=[
-        "mvid",
-        "schema_hash",
-    ])
-
-whitelist.add(
-    table="materialized_view_indexing", 
-    columns=[
-        "mvid",
-        "entity_type",
-        "max_indexed_id",
-    ])
-
-whitelist.add(
-    table="migrate_log", 
-    columns=[
-        "mlid",
-        "machine_name",
-        "process_type",
-        "starttime",
-        "endtime",
-        "initialhighwater",
-        "finalhighwater",
-        "numprocessed",
-    ])
-
-whitelist.add(
-    table="migrate_status", 
-    columns=[
-        "machine_name",
-        "class_name",
-        "status",
-        "highwater",
-        "arguments",
-    ])
-
-whitelist.add(
-    table="_nodata:multiple_email", 
-    columns=[
-        "eid",
-        "uid",
-        "email",
-        "time_registered",
-        "confirmed",
-        "confirm_code",
-        "time_code_generated",
-        "attempts",
-    ])
-
-whitelist.add(
-    table="package", 
-    columns=[
-        "id",
-        "name",
-        "type",
-        "version",
-        "filename",
-    ])
-
-whitelist.add(
-    table="pift_data", 
-    columns=[
-        "test_id",
-        "type",
-        "id",
-        "nid",
-        "status",
-        "message",
-        "last_tested",
-    ])
-
-whitelist.add(
-    table="pift_project", 
-    columns=[
-        "pid",
-    ])
-
-whitelist.add(
-    table="pift_test", 
-    columns=[
-        "test_id",
-        "type",
-        "id",
-        "status",
-        "message",
-        "last_tested",
-    ])
-
-whitelist.add(
-    table="profile_field", 
-    columns=[
-        "fid",
-        "title",
-        "name",
-        "explanation",
-        "category",
-        "type",
-        "weight",
-        "visibility",
-        "autocomplete",
-        "options",
-        "page",
-        "required",
-        "register",
-    ])
-
-whitelist.add(
-    table="profile_value", 
-    columns=[
-        "fid",
-        "uid",
-        "value",
-    ])
-
-whitelist.add(
-    table="project", 
-    columns=[
-        "nid",
-        "pid",
-        "pstatus",
-        "area",
-        "priority",
-        "version",
-        "assigned",
-        "file",
-        "ptype",
-    ])
-
-whitelist.add(
-    table="project_comments_conversion_errors", 
-    columns=[
-        "cid",
-        "pid",
-        "old_rid",
-        "new_rid",
-    ])
-
-whitelist.add(
-    table="project_dependency_component", 
-    columns=[
-        "component_id",
-        "release_nid",
-        "name",
-        "title",
-        "description",
-    ])
-
-whitelist.add(
-    table="project_dependency_dependency", 
-    columns=[
-        "dependency_id",
-        "component_id",
-        "dependency",
-        "core_api",
-        "external",
-        "external_release_nid",
-        "dependency_type",
-    ])
-
-whitelist.add(
-    table="project_issue_notification_global", 
-    columns=[
-        "uid",
-        "level",
-        "mail_body",
-        "mail_subject_project",
-        "mail_subject_category",
-    ])
-
-whitelist.add(
-    table="project_issue_notification_project", 
-    columns=[
-        "nid",
-        "uid",
-        "level",
-    ])
-
-whitelist.add(
-    table="project_issue_priority", 
-    columns=[
-        "priority",
-        "name",
-        "weight",
-    ])
-
-whitelist.add(
-    table="project_issue_project_maintainer", 
-    columns=[
-        "nid",
-        "uid",
-        "maintain_issues",
-    ])
-
-whitelist.add(
-    table="project_issue_state", 
-    columns=[
-        "sid",
-        "name",
-        "weight",
-        "author_has",
-        "default_query",
-    ])
-
-whitelist.add(
-    table="project_maintainer", 
-    columns=[
-        "nid",
-        "uid",
-        "administer_maintainers",
-        "update_project",
-    ])
-
-whitelist.add(
-    table="project_package_local_patch", 
-    columns=[
-        "package_nid",
-        "item_nid",
-        "patch_file_url",
-        "patch_description_url",
-        "patch_nid",
-        "patch_comment_id",
-    ])
-
-whitelist.add(
-    table="project_package_local_release_item", 
-    columns=[
-        "package_nid",
-        "item_nid",
-    ])
-
-whitelist.add(
-    table="project_package_remote_item", 
-    columns=[
-        "id",
-        "package_nid",
-        "name",
-        "url",
-    ])
-
-whitelist.add(
-    table="project_package_remote_patch", 
-    columns=[
-        "package_nid",
-        "remote_id",
-        "patch_file_url",
-        "patch_description_url",
-        "patch_nid",
-        "patch_comment_id",
-    ])
-
-whitelist.add(
-    table="project_projects", 
-    columns=[
-        "nid",
-        "uri",
-        "homepage",
-        "changelog",
-        "cvs",
-        "demo",
-        "documentation",
-        "screenshots",
-        "license",
-        "sandbox",
-    ])
-
-whitelist.add(
-    table="project_release_file", 
-    columns=[
-        "fid",
-        "nid",
-        "filehash",
-        "weight",
-        "downloads",
-        "delta",
-    ])
-
-whitelist.add(
-    table="project_release_legacy", 
-    columns=[
-        "rid",
-        "nid",
-        "pid",
-        "time",
-        "save_ms",
-        "update_ms",
-    ])
-
-whitelist.add(
-    table="project_release_node_rebuild_metadata", 
-    columns=[
-        "nid",
-        "rebuild_version",
-    ])
-
-whitelist.add(
-    table="project_release_nodes", 
-    columns=[
-        "nid",
-        "pid",
-        "version",
-        "tag",
-        "rebuild",
-        "version_major",
-        "version_minor",
-        "version_patch",
-        "version_extra",
-        "version_api_tid",
-        "security_update",
-        "update_status",
-        "version_extra_weight",
-        "version_extra_delta",
-    ])
-
-whitelist.add(
-    table="_nodata:project_release_package_errors", 
-    columns=[
-        "nid",
-        "messages",
-    ])
-
-whitelist.add(
-    table="project_release_project_maintainer", 
-    columns=[
-        "nid",
-        "uid",
-        "administer_releases",
-    ])
-
-whitelist.add(
-    table="project_release_projects", 
-    columns=[
-        "nid",
-        "releases",
-        "version_format",
-    ])
-
-whitelist.add(
-    table="project_release_supported_versions", 
-    columns=[
-        "nid",
-        "tid",
-        "major",
-        "supported",
-        "recommended",
-        "snapshot",
-        "recommended_release",
-        "latest_release",
-        "latest_security_release",
-    ])
-
-whitelist.add(
-    table="project_releases", 
-    columns=[
-        "rid",
-        "nid",
-        "fid",
-        "path",
-        "created",
-        "version",
-        "changes",
-        "weight",
-        "changed",
-        "status",
-        "hash",
-    ])
-
-whitelist.add(
-    table="project_releases_backup", 
-    columns=[
-        "rid",
-        "nid",
-        "fid",
-        "path",
-        "created",
-        "version",
-        "changes",
-        "weight",
-        "changed",
-        "status",
-        "hash",
-    ])
-
-whitelist.add(
-    table="project_usage_week_project", 
-    columns=[
-        "nid",
-        "timestamp",
-        "tid",
-        "count",
-    ])
-
-whitelist.add(
-    table="project_usage_week_release", 
-    columns=[
-        "nid",
-        "timestamp",
-        "count",
-    ])
-
-whitelist.add(
-    table="_nodata:role_activity", 
-    columns=[
-        "raid",
-        "uid",
-        "timestamp",
-        "type",
-        "referer",
-        "ip",
-        "action",
-        "link",
-        "uri",
-        "message",
-    ])
-
-whitelist.add(
-    table="sampler_metric_state", 
-    columns=[
-        "module",
-        "metric",
-        "data_type",
-        "storage_plugin",
-        "method_plugin",
-        "adjustment_plugin",
-    ])
-
-whitelist.add(
-    table="sampler_project_issue_new_issues_comments_by_project", 
-    columns=[
-        "object_id",
-        "timestamp",
-        "value_new_issues",
-        "value_new_comments",
-        "value_new_total",
-    ])
-
-whitelist.add(
-    table="sampler_project_issue_opened_vs_closed_by_category", 
-    columns=[
-        "object_id",
-        "timestamp",
-        "value_bug_open",
-        "value_feature_open",
-        "value_task_open",
-        "value_support_open",
-        "value_bug_closed",
-        "value_feature_closed",
-        "value_task_closed",
-        "value_support_closed",
-        "value_total_open",
-        "value_total_closed",
-    ])
-
-whitelist.add(
-    table="sampler_project_issue_reporters_participants_by_project", 
-    columns=[
-        "object_id",
-        "timestamp",
-        "value_reporters",
-        "value_participants",
-    ])
-
-whitelist.add(
-    table="sampler_project_release_new_releases", 
-    columns=[
-        "object_id",
-        "timestamp",
-        "value_releases",
-    ])
-
-whitelist.add(
-    table="sampler_sampler_comments", 
-    columns=[
-        "object_id",
-        "timestamp",
-        "value_period_comments",
-        "value_total_comments",
-    ])
-
-whitelist.add(
-    table="sampler_sampler_nodes", 
-    columns=[
-        "object_id",
-        "timestamp",
-        "value_period_nodes",
-        "value_total_nodes",
-    ])
-
-whitelist.add(
-    table="sampler_sampler_users", 
-    columns=[
-        "object_id",
-        "timestamp",
-        "value_period_users",
-        "value_total_users",
-    ])
-
-whitelist.add(
-    table="search_api_db_project_issues", 
-    columns=[
-        "item_id",
-        "title",
-        "search_api_language",
-        "created",
-        "changed",
-        "field_issue_category",
-        "field_issue_component",
-        "field_issue_assigned",
-        "field_issue_status",
-        "field_issue_priority",
-        "field_issue_version",
-        "field_project",
-        "author",
-        "comment_count",
-        "last_comment_timestamp",
-    ])
-
-whitelist.add(
-    table="search_api_db_project_issues_project_issue_followers", 
-    columns=[
-        "item_id",
-        "value",
-    ])
-
-whitelist.add(
-    table="search_api_db_project_issues_project_issue_participants", 
-    columns=[
-        "item_id",
-        "value",
-    ])
-
-whitelist.add(
-    table="search_api_db_project_issues_taxonomy_vocabulary_9", 
-    columns=[
-        "item_id",
-        "value",
-    ])
-
-whitelist.add(
-    table="search_api_db_project_issues_text", 
-    columns=[
-        "item_id",
-        "field_name",
-        "word",
-        "score",
-    ])
-
-whitelist.add(
-    table="search_api_index", 
-    columns=[
-        "id",
-        "name",
-        "machine_name",
-        "description",
-        "server",
-        "item_type",
-        "options",
-        "enabled",
-        "read_only",
-        "status",
-        "module",
-    ])
-
-whitelist.add(
-    table="search_api_item", 
-    columns=[
-        "item_id",
-        "index_id",
-        "changed",
-    ])
-
-whitelist.add(
-    table="search_api_server", 
-    columns=[
-        "id",
-        "name",
-        "machine_name",
-        "description",
-        "class",
-        "options",
-        "enabled",
-        "status",
-        "module",
-    ])
-
-whitelist.add(
-    table="search_api_task", 
-    columns=[
-        "id",
-        "server_id",
-        "type",
-        "index_id",
-        "data",
-    ])
-
-whitelist.add(
-    table="sections", 
-    columns=[
-        "name",
-        "post",
-        "dump",
-        "timout",
-        "status",
-    ])
-
-whitelist.add(
-    table="security_review", 
-    columns=[
-        "namespace",
-        "reviewcheck",
-        "result",
-        "lastrun",
-        "skip",
-        "skiptime",
-        "skipuid",
-    ])
-
-whitelist.add(
-    table="simplenews_newsletters", 
-    columns=[
-        "nid",
-        "tid",
-        "s_status",
-        "s_format",
-        "priority",
-        "receipt",
-        "vid",
-    ])
-
-whitelist.add(
-    table="simplenews_snid_tid", 
-    columns=[
-        "snid",
-        "tid",
-    ])
-
-whitelist.add(
-    table="simplenews_subscriptions", 
-    columns=[
-        "snid",
-        "a_status",
-        "s_status",
-        "mail",
-        "uid",
-    ])
-
-whitelist.add(
-    table="site", 
-    columns=[
-        "sid",
-        "name",
-        "link",
-        "size",
-        "changed",
-        "feed",
-        "refresh",
-        "threshold",
-        "checked",
-    ])
-
-whitelist.add(
-    table="sshkey", 
-    columns=[
-        "key_id",
-        "entity_type",
-        "entity_id",
-        "fingerprint",
-        "title",
-        "value",
-        "changed",
-    ])
-
-whitelist.add(
-    table="story", 
-    columns=[
-        "nid",
-        "section",
-    ])
-
-whitelist.add(
-    table="taxonomy_term_relation", 
-    columns=[
-        "tid1",
-        "tid2",
-        "trid",
-    ])
-
-whitelist.add(
-    table="taxonomy_term_synonym", 
-    columns=[
-        "tid",
-        "name",
-        "tsid",
-    ])
-
-whitelist.add(
-    table="_nodata:user_restrictions", 
-    columns=[
-        "urid",
-        "mask",
-        "type",
-        "subtype",
-        "status",
-        "expire",
-    ])
-
-whitelist.add(
-    table="users_access", 
-    columns=[
-        "uid",
-        "access",
-    ])
-
-whitelist.add(
-    table="versioncontrol_auth_account", 
-    columns=[
-        "uid",
-        "repo_id",
-        "access",
-        "branch_create",
-        "branch_update",
-        "branch_delete",
-        "tag_create",
-        "tag_update",
-        "tag_delete",
-    ])
-
-whitelist.add(
-    table="versioncontrol_auth_account_label", 
-    columns=[
-        "uid",
-        "repo_id",
-        "label_id",
-        "label_update",
-        "label_delete",
-    ])
-
-whitelist.add(
-    table="versioncontrol_event_log", 
-    columns=[
-        "elid",
-        "repo_id",
-        "uid",
-        "timestamp",
-    ])
-
-whitelist.add(
-    table="versioncontrol_git_event_data", 
-    columns=[
-        "elid",
-        "refname",
-        "label_id",
-        "reftype",
-        "old_sha1",
-        "new_sha1",
-        "ff",
-    ])
-
-whitelist.add(
-    table="versioncontrol_git_item_revisions", 
-    columns=[
-        "item_revision_id",
-        "blob_hash",
-    ])
-
-whitelist.add(
-    table="versioncontrol_git_operations", 
-    columns=[
-        "vc_op_id",
-        "author_name",
-        "committer_name",
-        "parent_commit",
-        "merge",
-    ])
-
-whitelist.add(
-    table="versioncontrol_git_repositories", 
-    columns=[
-        "repo_id",
-        "default_branch",
-    ])
-
-whitelist.add(
-    table="versioncontrol_item_revisions", 
-    columns=[
-        "item_revision_id",
-        "vc_op_id",
-        "repo_id",
-        "path",
-        "revision",
-        "type",
-        "source_item_revision_id",
-        "action",
-        "line_changes_added",
-        "line_changes_removed",
-    ])
-
-whitelist.add(
-    table="versioncontrol_labels", 
-    columns=[
-        "label_id",
-        "repo_id",
-        "name",
-        "type",
-    ])
-
-whitelist.add(
-    table="versioncontrol_operation_labels", 
-    columns=[
-        "vc_op_id",
-        "label_id",
-    ])
-
-whitelist.add(
-    table="versioncontrol_operations", 
-    columns=[
-        "vc_op_id",
-        "type",
-        "repo_id",
-        "author_date",
-        "author",
-        "author_uid",
-        "committer",
-        "committer_uid",
-        "revision",
-        "message",
-        "committer_date",
-    ])
-
-whitelist.add(
-    table="versioncontrol_project_maintainers_block_cache", 
-    columns=[
-        "cid",
-        "data",
-    ])
-
-whitelist.add(
-    table="versioncontrol_project_projects", 
-    columns=[
-        "nid",
-        "repo_id",
-    ])
-
-whitelist.add(
-    table="versioncontrol_release_labels", 
-    columns=[
-        "release_nid",
-        "label_id",
-        "project_nid",
-    ])
-
-whitelist.add(
-    table="versioncontrol_repositories", 
-    columns=[
-        "repo_id",
-        "name",
-        "vcs",
-        "root",
-        "updated",
-        "cron",
-        "locked",
-        "data",
-        "plugins",
-        "init",
-    ])
-
-whitelist.add(
-    table="versioncontrol_sync_log", 
-    columns=[
-        "slid",
-        "repo_id",
-        "elid",
-        "plugin",
-        "successful",
-        "fullsync_failover",
-        "initial",
-        "cron",
-        "errors",
-        "start",
-        "end",
-        "message",
-    ])
-
-whitelist.add(
-    table="versioncontrol_views_sets", 
-    columns=[
-        "views_set",
-        "vcs",
-        "view_name",
-    ])
-
-whitelist.add(
-    table="views_content_cache", 
-    columns=[
-        "timestamp",
-        "c1",
-        "c2",
-        "c3",
-        "c4",
-        "c5",
-        "c6",
-        "c7",
-        "c8",
-    ])
-
-whitelist.add(
-    table="views_object_cache", 
-    columns=[
-        "sid",
-        "name",
-        "obj",
-        "updated",
-        "data",
     ])
 
 whitelist.add(
@@ -5009,6 +638,20 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="cvs_repositories",
+    columns=[
+        "rid",
+        "name",
+        "root",
+        "modules",
+        "diffurl",
+        "newurl",
+        "trackerurl",
+        "method",
+        "updated",
+    ])
+
+whitelist.add(
     table="_nodata:cvs_tags",
     columns=[
         "nid",
@@ -5036,11 +679,3579 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:comment_alter_taxonomy",
+    table="drupalorg",
+    columns=[
+        "cid",
+        "data",
+        "expire",
+        "created",
+        "serialized",
+    ])
+
+whitelist.add(
+    table="_nodata:drupalorg_crosssite_ind_civimembership",
+    columns=[
+        "user_name",
+        "membership_status",
+        "expiration_date",
+        "updated",
+    ])
+
+whitelist.add(
+    table="_nodata:drupalorg_crosssite_org_civimembership",
+    columns=[
+        "org_name",
+        "membership_type",
+        "membership_status",
+        "expiration_date",
+        "updated",
+    ])
+
+whitelist.add(
+    table="drupalorg_git_consent_log",
+    columns=[
+        "uid",
+        "timestamp",
+        "action",
+    ])
+
+whitelist.add(
+    table="drupalorg_git_disable_log",
+    columns=[
+        "uid",
+        "admin_uid",
+        "timestamp",
+        "action",
+        "email",
+    ])
+
+whitelist.add(
+    table="drupalorg_git_push_log",
+    columns=[
+        "push_id",
+        "uid",
+        "timestamp",
+        "repo_id",
+    ])
+
+whitelist.add(
+    table="drupalorg_git_push_log_refs",
+    columns=[
+        "push_id",
+        "refname",
+        "reftype",
+        "old_obj",
+        "new_obj",
+    ])
+
+whitelist.add(
+    table="_nodata:drupalorg_ind_civimembership",
+    columns=[
+        "user_name",
+        "membership_status",
+        "expiration_date",
+        "updated",
+    ])
+
+whitelist.add(
+    table="_nodata:drupalorg_org_civimembership",
+    columns=[
+        "org_name",
+        "membership_type",
+        "membership_status",
+        "expiration_date",
+        "updated",
+    ])
+
+whitelist.add(
+    table="entity_modified",
+    columns=[
+        "entity_type",
+        "entity_id",
+        "modified",
+    ])
+
+whitelist.add(
+    table="facetapi",
+    columns=[
+        "name",
+        "searcher",
+        "realm",
+        "facet",
+        "enabled",
+        "settings",
+    ])
+
+whitelist.add(
+    table="field_collection_item",
+    columns=[
+        "item_id",
+        "revision_id",
+        "field_name",
+        "archived",
+    ])
+
+whitelist.add(
+    table="field_collection_item_revision",
+    columns=[
+        "revision_id",
+        "item_id",
+    ])
+
+whitelist.add(
+    table="field_data_field_book_description",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_book_description_value",
+        "field_book_description_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_book_isbn_10",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_book_isbn_10_value",
+        "field_book_isbn_10_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_book_isbn_13",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_book_isbn_13_value",
+        "field_book_isbn_13_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_book_listing_authors",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_book_listing_authors_value",
+        "field_book_listing_authors_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_book_listing_date",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_book_listing_date_value",
+        "field_book_listing_date_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_book_page_count",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_book_page_count_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_book_purchase_link",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_book_purchase_link_url",
+        "field_book_purchase_link_title",
+        "field_book_purchase_link_attributes",
+    ])
+
+whitelist.add(
+    table="field_data_field_book_subtitle",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_book_subtitle_value",
+        "field_book_subtitle_format",
+    ])
+
+whitelist.add(
+    table="_nodata:field_data_field_budget",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_budget_value",
+        "field_budget_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_change_record_status",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_change_record_status_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_change_to",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_change_to_value",
+        "field_change_to_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_change_to_branch",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_change_to_branch_value",
+        "field_change_to_branch_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_coder_recorded",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_coder_recorded_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_coder_update_recorded",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_coder_update_recorded_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_community",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_community_value",
+        "field_community_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_contributions",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_contributions_value",
+        "field_contributions_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_cover_image",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_cover_image_fid",
+        "field_cover_image_alt",
+        "field_cover_image_title",
+        "field_cover_image_width",
+        "field_cover_image_height",
+    ])
+
+whitelist.add(
+    table="field_data_field_current_company_org",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_current_company_org_value",
+        "field_current_company_org_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_description",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_description_value",
+        "field_description_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_developed",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_developed_value",
+        "field_developed_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_developed_org",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_developed_org_nid",
+    ])
+
+whitelist.add(
+    table="field_data_field_examples_recorded",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_examples_recorded_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_goals",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_goals_value",
+        "field_goals_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_how_they_helped",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_how_they_helped_value",
+        "field_how_they_helped_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_images",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_images_fid",
+        "field_images_alt",
+        "field_images_title",
+        "field_images_width",
+        "field_images_height",
+    ])
+
+whitelist.add(
+    table="field_data_field_impacts",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_impacts_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_issue_assigned",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_issue_assigned_target_id",
+    ])
+
+whitelist.add(
+    table="field_data_field_issue_category",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_issue_category_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_issue_changes",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_issue_changes_nid",
+        "field_issue_changes_vid",
+        "field_issue_changes_field_name",
+        "field_issue_changes_old_value",
+        "field_issue_changes_new_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_issue_component",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_issue_component_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_issue_files",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_issue_files_fid",
+        "field_issue_files_display",
+        "field_issue_files_description",
+    ])
+
+whitelist.add(
+    table="field_data_field_issue_parent",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_issue_parent_target_id",
+    ])
+
+whitelist.add(
+    table="field_data_field_issue_priority",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_issue_priority_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_issue_related",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_issue_related_target_id",
+    ])
+
+whitelist.add(
+    table="field_data_field_issues",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_issues_target_id",
+    ])
+
+whitelist.add(
+    table="field_data_field_issue_status",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_issue_status_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_issue_version",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_issue_version_value",
+    ])
+
+
+whitelist.add(
+    table="field_data_field_link",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_link_url",
+        "field_link_title",
+        "field_link_attributes",
+    ])
+
+whitelist.add(
+    table="field_data_field_logo",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_logo_fid",
+        "field_logo_alt",
+        "field_logo_title",
+        "field_logo_width",
+        "field_logo_height",
+    ])
+
+whitelist.add(
+    table="field_data_field_mainimage",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_mainimage_fid",
+        "field_mainimage_alt",
+        "field_mainimage_title",
+        "field_mainimage_width",
+        "field_mainimage_height",
+    ])
+
+whitelist.add(
+    table="field_data_field_module",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_module_nid",
+    ])
+
+whitelist.add(
+    table="field_data_field_module_recorded",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_module_recorded_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_module_selection",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_module_selection_value",
+        "field_module_selection_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_official_website",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_official_website_url",
+        "field_official_website_title",
+        "field_official_website_attributes",
+    ])
+
+whitelist.add(
+    table="field_data_field_online_recorded",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_online_recorded_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_organization",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organization_nid",
+    ])
+
+whitelist.add(
+    table="field_data_field_organization_headquarters",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organization_headquarters_value",
+        "field_organization_headquarters_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_organization_issue",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organization_issue_nid",
+    ])
+
+whitelist.add(
+    table="field_data_field_organization_list_rule",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organization_list_rule_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_organization_security",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organization_security_value",
+        "field_organization_security_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_organization_support",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organization_support_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_organization_technologies",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organization_technologies_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_organization_training_desc",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organization_training_desc_value",
+        "field_organization_training_desc_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_organization_training_list",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organization_training_list_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_organization_training_url",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organization_training_url_url",
+        "field_organization_training_url_title",
+        "field_organization_training_url_attributes",
+    ])
+
+whitelist.add(
+    table="field_data_field_org_marketplace_request",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_org_marketplace_request_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_org_training_issue",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_org_training_issue_nid",
+    ])
+
+whitelist.add(
+    table="field_data_field_org_training_request",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_org_training_request_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_other_details",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_other_details_value",
+        "field_other_details_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_other_recorded",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_other_recorded_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_overview",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_overview_value",
+        "field_overview_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_profiles",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_profiles_uid",
+    ])
+
+whitelist.add(
+    table="field_data_field_project",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_target_id",
+    ])
+
+whitelist.add(
+    table="field_data_field_project_changelog",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_changelog_url",
+        "field_project_changelog_title",
+        "field_project_changelog_attributes",
+    ])
+
+whitelist.add(
+    table="field_data_field_project_components",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_components_value",
+        "field_project_components_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_project_default_component",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_default_component_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_project_demo",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_demo_url",
+        "field_project_demo_title",
+        "field_project_demo_attributes",
+    ])
+
+whitelist.add(
+    table="field_data_field_project_documentation",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_documentation_url",
+        "field_project_documentation_title",
+        "field_project_documentation_attributes",
+    ])
+
+whitelist.add(
+    table="field_data_field_project_has_issue_queue",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_has_issue_queue_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_project_has_releases",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_has_releases_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_project_homepage",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_homepage_url",
+        "field_project_homepage_title",
+        "field_project_homepage_attributes",
+    ])
+
+whitelist.add(
+    table="field_data_field_project_images",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_images_fid",
+        "field_project_images_alt",
+        "field_project_images_title",
+        "field_project_images_width",
+        "field_project_images_height",
+    ])
+
+whitelist.add(
+    table="field_data_field_project_issue_guidelines",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_issue_guidelines_value",
+        "field_project_issue_guidelines_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_project_license",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_license_url",
+        "field_project_license_title",
+        "field_project_license_attributes",
+    ])
+
+whitelist.add(
+    table="field_data_field_project_machine_name",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_machine_name_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_project_screenshots",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_screenshots_url",
+        "field_project_screenshots_title",
+        "field_project_screenshots_attributes",
+    ])
+
+whitelist.add(
+    table="field_data_field_project_type",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_type_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_publisher",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_publisher_value",
+        "field_publisher_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_release_build_type",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_build_type_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_release_file",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_file_fid",
+        "field_release_file_display",
+        "field_release_file_description",
+    ])
+
+whitelist.add(
+    table="field_data_field_release_file_downloads",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_file_downloads_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_release_file_hash",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_file_hash_value",
+        "field_release_file_hash_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_release_files",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_files_value",
+        "field_release_files_revision_id",
+    ])
+
+whitelist.add(
+    table="field_data_field_release_project",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_project_target_id",
+    ])
+
+whitelist.add(
+    table="field_data_field_release_recommended",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_recommended_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_release_update_status",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_update_status_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_release_vcs_label",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_vcs_label_value",
+        "field_release_vcs_label_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_release_version",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_version_value",
+        "field_release_version_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_release_version_ext_delta",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_version_ext_delta_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_release_version_extra",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_version_extra_value",
+        "field_release_version_extra_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_release_version_ext_weight",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_version_ext_weight_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_release_version_format",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_version_format_value",
+        "field_release_version_format_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_release_version_major",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_version_major_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_release_version_minor",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_version_minor_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_release_version_patch",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_version_patch_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_short_description",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_short_description_value",
+        "field_short_description_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_status",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_status_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_supporting_organizations",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_supporting_organizations_value",
+        "field_supporting_organizations_revision_id",
+    ])
+
+whitelist.add(
+    table="field_data_field_theme_recorded",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_theme_recorded_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_update_progress",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_update_progress_value",
+        "field_update_progress_format",
+    ])
+
+whitelist.add(
+    table="_nodata:field_data_field_user_geolocation",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_user_geolocation_lat",
+        "field_user_geolocation_lng",
+        "field_user_geolocation_lat_sin",
+        "field_user_geolocation_lat_cos",
+        "field_user_geolocation_lng_rad",
+    ])
+
+whitelist.add(
+    table="field_data_taxonomyextra",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomyextra_tid",
+    ])
+
+whitelist.add(
+    table="field_data_taxonomy_forums",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_forums_tid",
+    ])
+
+whitelist.add(
+    table="field_data_taxonomy_vocabulary_2",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_2_tid",
+    ])
+
+whitelist.add(
+    table="field_data_taxonomy_vocabulary_3",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_3_tid",
+    ])
+
+whitelist.add(
+    table="field_data_taxonomy_vocabulary_31",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_31_tid",
+    ])
+
+whitelist.add(
+    table="field_data_taxonomy_vocabulary_34",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_34_tid",
+    ])
+
+whitelist.add(
+    table="field_data_taxonomy_vocabulary_38",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_38_tid",
+    ])
+
+whitelist.add(
+    table="field_data_taxonomy_vocabulary_44",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_44_tid",
+    ])
+
+whitelist.add(
+    table="field_data_taxonomy_vocabulary_46",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_46_tid",
+    ])
+
+whitelist.add(
+    table="field_data_taxonomy_vocabulary_48",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_48_tid",
+    ])
+
+whitelist.add(
+    table="field_data_taxonomy_vocabulary_5",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_5_tid",
+    ])
+
+whitelist.add(
+    table="field_data_taxonomy_vocabulary_50",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_50_tid",
+    ])
+
+whitelist.add(
+    table="field_data_taxonomy_vocabulary_52",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_52_tid",
+    ])
+
+whitelist.add(
+    table="field_data_taxonomy_vocabulary_54",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_54_tid",
+    ])
+
+whitelist.add(
+    table="field_data_taxonomy_vocabulary_56",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_56_tid",
+    ])
+
+whitelist.add(
+    table="field_data_taxonomy_vocabulary_58",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_58_tid",
+    ])
+
+whitelist.add(
+    table="field_data_taxonomy_vocabulary_6",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_6_tid",
+    ])
+
+whitelist.add(
+    table="field_data_taxonomy_vocabulary_60",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_60_tid",
+    ])
+
+whitelist.add(
+    table="field_data_taxonomy_vocabulary_62",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_62_tid",
+    ])
+
+whitelist.add(
+    table="field_data_taxonomy_vocabulary_7",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_7_tid",
+    ])
+
+whitelist.add(
+    table="field_data_taxonomy_vocabulary_9",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_9_tid",
+    ])
+
+
+whitelist.add(
+    table="field_data_upload",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "upload_fid",
+        "upload_display",
+        "upload_description",
+    ])
+
+whitelist.add(
+    table="field_revision_comment_body",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "comment_body_value",
+        "comment_body_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_current_company_org",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_current_company_org_value",
+        "field_current_company_org_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_book_description",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_book_description_value",
+        "field_book_description_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_book_isbn_10",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_book_isbn_10_value",
+        "field_book_isbn_10_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_book_isbn_13",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_book_isbn_13_value",
+        "field_book_isbn_13_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_book_listing_authors",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_book_listing_authors_value",
+        "field_book_listing_authors_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_book_listing_date",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_book_listing_date_value",
+        "field_book_listing_date_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_book_page_count",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_book_page_count_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_book_purchase_link",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_book_purchase_link_url",
+        "field_book_purchase_link_title",
+        "field_book_purchase_link_attributes",
+    ])
+
+whitelist.add(
+    table="field_revision_field_book_subtitle",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_book_subtitle_value",
+        "field_book_subtitle_format",
+    ])
+
+whitelist.add(
+    table="_nodata:field_revision_field_budget",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_budget_value",
+        "field_budget_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_change_record_status",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_change_record_status_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_change_to",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_change_to_value",
+        "field_change_to_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_change_to_branch",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_change_to_branch_value",
+        "field_change_to_branch_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_coder_recorded",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_coder_recorded_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_coder_update_recorded",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_coder_update_recorded_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_community",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_community_value",
+        "field_community_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_contributions",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_contributions_value",
+        "field_contributions_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_cover_image",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_cover_image_fid",
+        "field_cover_image_alt",
+        "field_cover_image_title",
+        "field_cover_image_width",
+        "field_cover_image_height",
+    ])
+
+whitelist.add(
+    table="field_revision_field_description",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_description_value",
+        "field_description_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_developed",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_developed_value",
+        "field_developed_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_developed_org",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_developed_org_nid",
+    ])
+
+whitelist.add(
+    table="field_revision_field_examples_recorded",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_examples_recorded_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_goals",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_goals_value",
+        "field_goals_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_how_they_helped",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_how_they_helped_value",
+        "field_how_they_helped_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_images",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_images_fid",
+        "field_images_alt",
+        "field_images_title",
+        "field_images_width",
+        "field_images_height",
+    ])
+
+whitelist.add(
+    table="field_revision_field_impacts",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_impacts_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_issue_assigned",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_issue_assigned_target_id",
+    ])
+
+whitelist.add(
+    table="field_revision_field_issue_category",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_issue_category_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_issue_changes",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_issue_changes_nid",
+        "field_issue_changes_vid",
+        "field_issue_changes_field_name",
+        "field_issue_changes_old_value",
+        "field_issue_changes_new_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_issue_component",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_issue_component_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_issue_files",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_issue_files_fid",
+        "field_issue_files_display",
+        "field_issue_files_description",
+    ])
+
+whitelist.add(
+    table="field_revision_field_issue_parent",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_issue_parent_target_id",
+    ])
+
+whitelist.add(
+    table="field_revision_field_issue_priority",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_issue_priority_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_issue_related",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_issue_related_target_id",
+    ])
+
+whitelist.add(
+    table="field_revision_field_issues",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_issues_target_id",
+    ])
+
+whitelist.add(
+    table="field_revision_field_issue_status",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_issue_status_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_issue_version",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_issue_version_value",
+    ])
+
+
+whitelist.add(
+    table="field_revision_field_link",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_link_url",
+        "field_link_title",
+        "field_link_attributes",
+    ])
+
+whitelist.add(
+    table="field_revision_field_logo",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_logo_fid",
+        "field_logo_alt",
+        "field_logo_title",
+        "field_logo_width",
+        "field_logo_height",
+    ])
+
+whitelist.add(
+    table="field_revision_field_mainimage",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_mainimage_fid",
+        "field_mainimage_alt",
+        "field_mainimage_title",
+        "field_mainimage_width",
+        "field_mainimage_height",
+    ])
+
+whitelist.add(
+    table="field_revision_field_module",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_module_nid",
+    ])
+
+whitelist.add(
+    table="field_revision_field_module_recorded",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_module_recorded_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_module_selection",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_module_selection_value",
+        "field_module_selection_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_official_website",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_official_website_url",
+        "field_official_website_title",
+        "field_official_website_attributes",
+    ])
+
+whitelist.add(
+    table="field_revision_field_online_recorded",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_online_recorded_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_organization",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organization_nid",
+    ])
+
+whitelist.add(
+    table="field_revision_field_organization_headquarters",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organization_headquarters_value",
+        "field_organization_headquarters_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_organization_issue",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organization_issue_nid",
+    ])
+
+whitelist.add(
+    table="field_revision_field_organization_list_rule",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organization_list_rule_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_organization_security",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organization_security_value",
+        "field_organization_security_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_organization_support",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organization_support_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_organization_technologies",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organization_technologies_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_organization_training_desc",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organization_training_desc_value",
+        "field_organization_training_desc_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_organization_training_list",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organization_training_list_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_organization_training_url",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organization_training_url_url",
+        "field_organization_training_url_title",
+        "field_organization_training_url_attributes",
+    ])
+
+whitelist.add(
+    table="field_revision_field_org_marketplace_request",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_org_marketplace_request_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_org_training_issue",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_org_training_issue_nid",
+    ])
+
+whitelist.add(
+    table="field_revision_field_org_training_request",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_org_training_request_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_other_details",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_other_details_value",
+        "field_other_details_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_other_recorded",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_other_recorded_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_overview",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_overview_value",
+        "field_overview_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_profiles",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_profiles_uid",
+    ])
+
+whitelist.add(
+    table="field_revision_field_project",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_target_id",
+    ])
+
+whitelist.add(
+    table="field_revision_field_project_changelog",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_changelog_url",
+        "field_project_changelog_title",
+        "field_project_changelog_attributes",
+    ])
+
+whitelist.add(
+    table="field_revision_field_project_components",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_components_value",
+        "field_project_components_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_project_default_component",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_default_component_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_project_demo",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_demo_url",
+        "field_project_demo_title",
+        "field_project_demo_attributes",
+    ])
+
+whitelist.add(
+    table="field_revision_field_project_documentation",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_documentation_url",
+        "field_project_documentation_title",
+        "field_project_documentation_attributes",
+    ])
+
+whitelist.add(
+    table="field_revision_field_project_has_issue_queue",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_has_issue_queue_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_project_has_releases",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_has_releases_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_project_homepage",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_homepage_url",
+        "field_project_homepage_title",
+        "field_project_homepage_attributes",
+    ])
+
+whitelist.add(
+    table="field_revision_field_project_images",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_images_fid",
+        "field_project_images_alt",
+        "field_project_images_title",
+        "field_project_images_width",
+        "field_project_images_height",
+    ])
+
+whitelist.add(
+    table="field_revision_field_project_issue_guidelines",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_issue_guidelines_value",
+        "field_project_issue_guidelines_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_project_license",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_license_url",
+        "field_project_license_title",
+        "field_project_license_attributes",
+    ])
+
+whitelist.add(
+    table="field_revision_field_project_machine_name",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_machine_name_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_project_screenshots",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_screenshots_url",
+        "field_project_screenshots_title",
+        "field_project_screenshots_attributes",
+    ])
+
+whitelist.add(
+    table="field_revision_field_project_type",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_type_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_publisher",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_publisher_value",
+        "field_publisher_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_release_build_type",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_build_type_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_release_file",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_file_fid",
+        "field_release_file_display",
+        "field_release_file_description",
+    ])
+
+whitelist.add(
+    table="field_revision_field_release_file_downloads",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_file_downloads_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_release_file_hash",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_file_hash_value",
+        "field_release_file_hash_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_release_files",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_files_value",
+        "field_release_files_revision_id",
+    ])
+
+whitelist.add(
+    table="field_revision_field_release_project",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_project_target_id",
+    ])
+
+whitelist.add(
+    table="field_revision_field_release_recommended",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_recommended_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_release_update_status",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_update_status_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_release_vcs_label",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_vcs_label_value",
+        "field_release_vcs_label_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_release_version",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_version_value",
+        "field_release_version_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_release_version_ext_delta",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_version_ext_delta_value",
+    ])
+
+
+whitelist.add(
+    table="field_revision_field_release_version_extra",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_version_extra_value",
+        "field_release_version_extra_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_release_version_ext_weight",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_version_ext_weight_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_release_version_format",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_version_format_value",
+        "field_release_version_format_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_release_version_major",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_version_major_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_release_version_minor",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_version_minor_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_release_version_patch",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_version_patch_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_short_description",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_short_description_value",
+        "field_short_description_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_supporting_organizations",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_supporting_organizations_value",
+        "field_supporting_organizations_revision_id",
+    ])
+
+whitelist.add(
+    table="field_revision_field_status",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_status_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_theme_recorded",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_theme_recorded_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_update_progress",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_update_progress_value",
+        "field_update_progress_format",
+    ])
+
+whitelist.add(
+    table="_nodata:field_revision_field_user_geolocation",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_user_geolocation_lat",
+        "field_user_geolocation_lng",
+        "field_user_geolocation_lat_sin",
+        "field_user_geolocation_lat_cos",
+        "field_user_geolocation_lng_rad",
+    ])
+
+whitelist.add(
+    table="field_revision_taxonomyextra",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomyextra_tid",
+    ])
+
+whitelist.add(
+    table="field_revision_taxonomy_forums",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_forums_tid",
+    ])
+
+whitelist.add(
+    table="field_revision_taxonomy_vocabulary_2",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_2_tid",
+    ])
+
+whitelist.add(
+    table="field_revision_taxonomy_vocabulary_3",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_3_tid",
+    ])
+
+whitelist.add(
+    table="field_revision_taxonomy_vocabulary_31",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_31_tid",
+    ])
+
+whitelist.add(
+    table="field_revision_taxonomy_vocabulary_34",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_34_tid",
+    ])
+
+whitelist.add(
+    table="field_revision_taxonomy_vocabulary_38",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_38_tid",
+    ])
+
+whitelist.add(
+    table="field_revision_taxonomy_vocabulary_44",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_44_tid",
+    ])
+
+whitelist.add(
+    table="field_revision_taxonomy_vocabulary_46",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_46_tid",
+    ])
+
+whitelist.add(
+    table="field_revision_taxonomy_vocabulary_48",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_48_tid",
+    ])
+
+whitelist.add(
+    table="field_revision_taxonomy_vocabulary_5",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_5_tid",
+    ])
+
+whitelist.add(
+    table="field_revision_taxonomy_vocabulary_50",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_50_tid",
+    ])
+
+whitelist.add(
+    table="field_revision_taxonomy_vocabulary_52",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_52_tid",
+    ])
+
+whitelist.add(
+    table="field_revision_taxonomy_vocabulary_54",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_54_tid",
+    ])
+
+whitelist.add(
+    table="field_revision_taxonomy_vocabulary_56",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_56_tid",
+    ])
+
+whitelist.add(
+    table="field_revision_taxonomy_vocabulary_58",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_58_tid",
+    ])
+
+whitelist.add(
+    table="field_revision_taxonomy_vocabulary_6",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_6_tid",
+    ])
+
+whitelist.add(
+    table="field_revision_taxonomy_vocabulary_60",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_60_tid",
+    ])
+
+whitelist.add(
+    table="field_revision_taxonomy_vocabulary_62",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_62_tid",
+    ])
+
+whitelist.add(
+    table="field_revision_taxonomy_vocabulary_7",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_7_tid",
+    ])
+
+whitelist.add(
+    table="field_revision_taxonomy_vocabulary_9",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "taxonomy_vocabulary_9_tid",
+    ])
+
+
+
+whitelist.add(
+    table="field_revision_upload",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "upload_fid",
+        "upload_display",
+        "upload_description",
+    ])
+
+whitelist.add(
+    table="files",
+    columns=[
+        "fid",
+        "uid",
+        "filename",
+        "filepath",
+        "filemime",
+        "filesize",
+        "status",
+        "timestamp",
+    ])
+
+whitelist.add(
+    table="flag_content",
+    columns=[
+        "fcid",
+        "fid",
+        "content_type",
+        "content_id",
+        "uid",
+        "sid",
+        "timestamp",
+    ])
+
+whitelist.add(
+    table="flag_counts",
+    columns=[
+        "fid",
+        "content_type",
+        "content_id",
+        "count",
+        "last_updated",
+    ])
+
+
+whitelist.add(
+    table="flags",
+    columns=[
+        "fid",
+        "content_type",
+        "name",
+        "title",
+        "global",
+        "options",
+    ])
+
+whitelist.add(
+    table="flag_types",
+    columns=[
+        "fid",
+        "type",
+    ])
+
+whitelist.add(
+    table="forum",
     columns=[
         "nid",
-        "cid",
         "tid",
+        "vid",
     ])
 
 whitelist.add(
@@ -5056,20 +4267,317 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:tracker2_node",
+    table="forum_index",
     columns=[
         "nid",
-        "published",
-        "changed",
+        "title",
+        "tid",
+        "sticky",
+        "created",
+        "last_comment_timestamp",
+        "comment_count",
+        "cid",
     ])
 
 whitelist.add(
-    table="_nodata:tracker2_user",
+    table="homebox_pages",
+    columns=[
+        "name",
+        "settings",
+    ])
+
+whitelist.add(
+    table="homebox_users",
+    columns=[
+        "uid",
+        "name",
+        "settings",
+    ])
+
+whitelist.add(
+    table="honeypot_user",
+    columns=[
+        "uid",
+        "timestamp",
+    ])
+
+whitelist.add(
+    table="_nodata:httpbl",
+    columns=[
+        "hostname",
+        "status",
+        "expire",
+    ])
+
+whitelist.add(
+    table="image",
     columns=[
         "nid",
-        "published",
+        "fid",
+        "image_size",
+    ])
+
+whitelist.add(
+    table="imagecache_action",
+    columns=[
+        "actionid",
+        "presetid",
+        "weight",
+        "module",
+        "action",
+        "data",
+    ])
+
+whitelist.add(
+    table="imagecache_preset",
+    columns=[
+        "presetid",
+        "presetname",
+    ])
+
+whitelist.add(
+    table="lists_mailman",
+    columns=[
+        "nid",
         "uid",
-        "changed",
+        "timestamp",
+    ])
+
+whitelist.add(
+    table="locales_meta",
+    columns=[
+        "locale",
+        "name",
+        "enabled",
+        "isdefault",
+        "plurals",
+        "formula",
+    ])
+
+whitelist.add(
+    table="locales_source",
+    columns=[
+        "lid",
+        "location",
+        "source",
+        "textgroup",
+        "version",
+        "context",
+    ])
+
+whitelist.add(
+    table="locales_target",
+    columns=[
+        "lid",
+        "translation",
+        "locale",
+        "plid",
+        "plural",
+        "language",
+    ])
+
+whitelist.add(
+    table="materialized_view",
+    columns=[
+        "mvid",
+        "schema_hash",
+    ])
+
+whitelist.add(
+    table="materialized_view_indexing",
+    columns=[
+        "mvid",
+        "entity_type",
+        "max_indexed_id",
+    ])
+
+whitelist.add(
+    table="metatag",
+    columns=[
+        "entity_type",
+        "entity_id",
+        "revision_id",
+        "language",
+        "data",
+    ])
+
+whitelist.add(
+    table="metatag_config",
+    columns=[
+        "cid",
+        "instance",
+        "config",
+    ])
+
+
+whitelist.add(
+    table="migrate_log",
+    columns=[
+        "mlid",
+        "machine_name",
+        "process_type",
+        "starttime",
+        "endtime",
+        "initialhighwater",
+        "finalhighwater",
+        "numprocessed",
+    ])
+
+whitelist.add(
+    table="migrate_status",
+    columns=[
+        "machine_name",
+        "class_name",
+        "status",
+        "highwater",
+        "arguments",
+    ])
+
+whitelist.add(
+    table="_nodata:multiple_email",
+    columns=[
+        "eid",
+        "uid",
+        "email",
+        "time_registered",
+        "confirmed",
+        "confirm_code",
+        "time_code_generated",
+        "attempts",
+    ])
+
+whitelist.add(
+    table="_nodata:mv_drupalorg_node_by_term",
+    columns=[
+        "entity_type",
+        "entity_id",
+        "term_tid",
+        "node_sticky",
+        "last_node_activity",
+        "node_created",
+        "node_title",
+    ])
+
+whitelist.add(
+    table="_nodata:mv_drupalorg_node_by_vocabulary",
+    columns=[
+        "entity_type",
+        "entity_id",
+        "term_vid",
+        "node_nid",
+        "node_last_comment_timestamp",
+        "node_title",
+        "node_comment_count",
+    ])
+
+whitelist.add(
+    table="package",
+    columns=[
+        "id",
+        "name",
+        "type",
+        "version",
+        "filename",
+    ])
+
+whitelist.add(
+    table="pift_data",
+    columns=[
+        "test_id",
+        "type",
+        "id",
+        "nid",
+        "status",
+        "message",
+        "last_tested",
+    ])
+
+whitelist.add(
+    table="pift_project",
+    columns=[
+        "pid",
+    ])
+
+whitelist.add(
+    table="pift_test",
+    columns=[
+        "test_id",
+        "type",
+        "id",
+        "status",
+        "message",
+        "last_tested",
+    ])
+
+whitelist.add(
+    table="profile_field",
+    columns=[
+        "fid",
+        "title",
+        "name",
+        "explanation",
+        "category",
+        "type",
+        "weight",
+        "visibility",
+        "autocomplete",
+        "options",
+        "page",
+        "required",
+        "register",
+    ])
+
+whitelist.add(
+    table="profile_value",
+    columns=[
+        "fid",
+        "uid",
+        "value",
+    ])
+
+whitelist.add(
+    table="project",
+    columns=[
+        "nid",
+        "pid",
+        "pstatus",
+        "area",
+        "priority",
+        "version",
+        "assigned",
+        "file",
+        "ptype",
+    ])
+
+whitelist.add(
+    table="project_comments_conversion_errors",
+    columns=[
+        "cid",
+        "pid",
+        "old_rid",
+        "new_rid",
+    ])
+
+whitelist.add(
+    table="project_dependency_component",
+    columns=[
+        "component_id",
+        "release_nid",
+        "name",
+        "title",
+        "description",
+    ])
+
+whitelist.add(
+    table="project_dependency_dependency",
+    columns=[
+        "dependency_id",
+        "component_id",
+        "dependency",
+        "core_api",
+        "external",
+        "external_release_nid",
+        "dependency_type",
     ])
 
 whitelist.add(
@@ -5087,6 +4595,52 @@ whitelist.add(
         "title",
         "timestamp",
         "comment_number",
+    ])
+
+
+whitelist.add(
+    table="project_issue_notification_global",
+    columns=[
+        "uid",
+        "level",
+        "mail_body",
+        "mail_subject_project",
+        "mail_subject_category",
+    ])
+
+whitelist.add(
+    table="project_issue_notification_project",
+    columns=[
+        "nid",
+        "uid",
+        "level",
+    ])
+
+whitelist.add(
+    table="project_issue_notification_global",
+    columns=[
+        "uid",
+        "level",
+        "mail_body",
+        "mail_subject_project",
+        "mail_subject_category",
+        "notify_own_updates",
+    ])
+
+whitelist.add(
+    table="project_issue_priority",
+    columns=[
+        "priority",
+        "name",
+        "weight",
+    ])
+
+whitelist.add(
+    table="project_issue_project_maintainer",
+    columns=[
+        "nid",
+        "uid",
+        "maintain_issues",
     ])
 
 whitelist.add(
@@ -5122,6 +4676,199 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="project_issue_state",
+    columns=[
+        "sid",
+        "name",
+        "weight",
+        "author_has",
+        "default_query",
+    ])
+
+whitelist.add(
+    table="project_maintainer",
+    columns=[
+        "nid",
+        "uid",
+        "administer_maintainers",
+        "update_project",
+    ])
+
+whitelist.add(
+    table="project_package_local_patch",
+    columns=[
+        "package_nid",
+        "item_nid",
+        "patch_file_url",
+        "patch_description_url",
+        "patch_nid",
+        "patch_comment_id",
+    ])
+
+whitelist.add(
+    table="project_package_local_release_item",
+    columns=[
+        "package_nid",
+        "item_nid",
+    ])
+
+whitelist.add(
+    table="project_package_remote_item",
+    columns=[
+        "id",
+        "package_nid",
+        "name",
+        "url",
+    ])
+
+whitelist.add(
+    table="project_package_remote_patch",
+    columns=[
+        "package_nid",
+        "remote_id",
+        "patch_file_url",
+        "patch_description_url",
+        "patch_nid",
+        "patch_comment_id",
+    ])
+
+whitelist.add(
+    table="project_projects",
+    columns=[
+        "nid",
+        "uri",
+        "homepage",
+        "changelog",
+        "cvs",
+        "demo",
+        "documentation",
+        "screenshots",
+        "license",
+        "sandbox",
+    ])
+
+whitelist.add(
+    table="project_release_file",
+    columns=[
+        "fid",
+        "nid",
+        "filehash",
+        "weight",
+        "downloads",
+        "delta",
+    ])
+
+whitelist.add(
+    table="project_release_legacy",
+    columns=[
+        "rid",
+        "nid",
+        "pid",
+        "time",
+        "save_ms",
+        "update_ms",
+    ])
+
+whitelist.add(
+    table="project_release_node_rebuild_metadata",
+    columns=[
+        "nid",
+        "rebuild_version",
+    ])
+
+whitelist.add(
+    table="project_release_nodes",
+    columns=[
+        "nid",
+        "pid",
+        "version",
+        "tag",
+        "rebuild",
+        "version_major",
+        "version_minor",
+        "version_patch",
+        "version_extra",
+        "version_api_tid",
+        "security_update",
+        "update_status",
+        "version_extra_weight",
+        "version_extra_delta",
+    ])
+
+whitelist.add(
+    table="_nodata:project_release_package_errors",
+    columns=[
+        "nid",
+        "messages",
+    ])
+
+whitelist.add(
+    table="project_release_project_maintainer",
+    columns=[
+        "nid",
+        "uid",
+        "administer_releases",
+    ])
+
+whitelist.add(
+    table="project_release_projects",
+    columns=[
+        "nid",
+        "releases",
+        "version_format",
+    ])
+
+
+
+whitelist.add(
+    table="project_releases",
+    columns=[
+        "rid",
+        "nid",
+        "fid",
+        "path",
+        "created",
+        "version",
+        "changes",
+        "weight",
+        "changed",
+        "status",
+        "hash",
+    ])
+
+whitelist.add(
+    table="project_releases_backup",
+    columns=[
+        "rid",
+        "nid",
+        "fid",
+        "path",
+        "created",
+        "version",
+        "changes",
+        "weight",
+        "changed",
+        "status",
+        "hash",
+    ])
+
+whitelist.add(
+    table="project_release_supported_versions",
+    columns=[
+        "nid",
+        "tid",
+        "major",
+        "supported",
+        "recommended",
+        "snapshot",
+        "recommended_release",
+        "latest_release",
+        "latest_security_release",
+    ])
+
+
+
+whitelist.add(
     table="_nodata:projects",
     columns=[
         "pid",
@@ -5134,64 +4881,593 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:comment_upload",
+    table="project_usage_week_project",
     columns=[
-        "fid",
         "nid",
-        "cid",
+        "timestamp",
+        "tid",
+        "count",
+    ])
+
+whitelist.add(
+    table="project_usage_week_release",
+    columns=[
+        "nid",
+        "timestamp",
+        "count",
+    ])
+
+whitelist.add(
+    table="_nodata:role_activity",
+    columns=[
+        "raid",
+        "uid",
+        "timestamp",
+        "type",
+        "referer",
+        "ip",
+        "action",
+        "link",
+        "uri",
+        "message",
+    ])
+
+whitelist.add(
+    table="sampler_metric_state",
+    columns=[
+        "module",
+        "metric",
+        "data_type",
+        "storage_plugin",
+        "method_plugin",
+        "adjustment_plugin",
+    ])
+
+whitelist.add(
+    table="sampler_project_issue_new_issues_comments_by_project",
+    columns=[
+        "object_id",
+        "timestamp",
+        "value_new_issues",
+        "value_new_comments",
+        "value_new_total",
+    ])
+
+whitelist.add(
+    table="sampler_project_issue_opened_vs_closed_by_category",
+    columns=[
+        "object_id",
+        "timestamp",
+        "value_bug_open",
+        "value_feature_open",
+        "value_task_open",
+        "value_support_open",
+        "value_bug_closed",
+        "value_feature_closed",
+        "value_task_closed",
+        "value_support_closed",
+        "value_total_open",
+        "value_total_closed",
+    ])
+
+whitelist.add(
+    table="sampler_project_issue_reporters_participants_by_project",
+    columns=[
+        "object_id",
+        "timestamp",
+        "value_reporters",
+        "value_participants",
+    ])
+
+whitelist.add(
+    table="sampler_project_issue_responses_by_project",
+    columns=[
+        "object_id",
+        "timestamp",
+        "value_response_rate",
+        "value_response_time",
+    ])
+
+whitelist.add(
+    table="sampler_project_release_new_releases",
+    columns=[
+        "object_id",
+        "timestamp",
+        "value_releases",
+    ])
+
+whitelist.add(
+    table="sampler_sampler_comments",
+    columns=[
+        "object_id",
+        "timestamp",
+        "value_period_comments",
+        "value_total_comments",
+    ])
+
+whitelist.add(
+    table="sampler_sampler_nodes",
+    columns=[
+        "object_id",
+        "timestamp",
+        "value_period_nodes",
+        "value_total_nodes",
+    ])
+
+whitelist.add(
+    table="sampler_sampler_users",
+    columns=[
+        "object_id",
+        "timestamp",
+        "value_period_users",
+        "value_total_users",
+    ])
+
+whitelist.add(
+    table="search_api_db_project_issues",
+    columns=[
+        "item_id",
+        "title",
+        "search_api_language",
+        "created",
+        "changed",
+        "field_issue_category",
+        "field_issue_component",
+        "field_issue_assigned",
+        "field_issue_status",
+        "field_issue_priority",
+        "field_issue_version",
+        "field_project",
+        "author",
+        "comment_count",
+        "last_comment_timestamp",
+        "field_project_title",
+    ])
+
+whitelist.add(
+    table="search_api_db_project_issues_project_issue_followers",
+    columns=[
+        "item_id",
+        "value",
+    ])
+
+whitelist.add(
+    table="search_api_db_project_issues_project_issue_participants",
+    columns=[
+        "item_id",
+        "value",
+    ])
+
+whitelist.add(
+    table="search_api_db_project_issues_taxonomy_vocabulary_9",
+    columns=[
+        "item_id",
+        "value",
+    ])
+
+whitelist.add(
+    table="search_api_db_project_issues_text",
+    columns=[
+        "item_id",
+        "field_name",
+        "word",
+        "score",
+    ])
+
+whitelist.add(
+    table="search_api_index",
+    columns=[
+        "id",
+        "name",
+        "machine_name",
         "description",
-        "list",
-        "weight",
-        "legacy_fid",
+        "server",
+        "item_type",
+        "options",
+        "enabled",
+        "read_only",
+        "status",
+        "module",
     ])
 
 whitelist.add(
-    table="_nodata:mv_drupalorg_node_by_term",
+    table="search_api_item",
     columns=[
-        "entity_type",
-        "entity_id",
-        "term_tid",
-        "node_sticky",
-        "last_node_activity",
-        "node_created",
-        "node_title",
+        "item_id",
+        "index_id",
+        "changed",
     ])
 
 whitelist.add(
-    table="_nodata:mv_drupalorg_node_by_vocabulary",
+    table="search_api_server",
     columns=[
+        "id",
+        "name",
+        "machine_name",
+        "description",
+        "class",
+        "options",
+        "enabled",
+        "status",
+        "module",
+    ])
+
+whitelist.add(
+    table="search_api_task",
+    columns=[
+        "id",
+        "server_id",
+        "type",
+        "index_id",
+        "data",
+    ])
+
+whitelist.add(
+    table="sections",
+    columns=[
+        "name",
+        "post",
+        "dump",
+        "timout",
+        "status",
+    ])
+
+whitelist.add(
+    table="security_review",
+    columns=[
+        "namespace",
+        "reviewcheck",
+        "result",
+        "lastrun",
+        "skip",
+        "skiptime",
+        "skipuid",
+    ])
+
+whitelist.add(
+    table="simplenews_newsletters",
+    columns=[
+        "nid",
+        "tid",
+        "s_status",
+        "s_format",
+        "priority",
+        "receipt",
+        "vid",
+    ])
+
+whitelist.add(
+    table="simplenews_snid_tid",
+    columns=[
+        "snid",
+        "tid",
+    ])
+
+whitelist.add(
+    table="simplenews_subscriptions",
+    columns=[
+        "snid",
+        "a_status",
+        "s_status",
+        "mail",
+        "uid",
+    ])
+
+whitelist.add(
+    table="site",
+    columns=[
+        "sid",
+        "name",
+        "link",
+        "size",
+        "changed",
+        "feed",
+        "refresh",
+        "threshold",
+        "checked",
+    ])
+
+whitelist.add(
+    table="sshkey",
+    columns=[
+        "key_id",
         "entity_type",
         "entity_id",
-        "term_vid",
-        "node_nid",
-        "node_last_comment_timestamp",
-        "node_title",
-        "node_comment_count",
+        "fingerprint",
+        "title",
+        "value",
+        "changed",
+    ])
+
+whitelist.add(
+    table="story",
+    columns=[
+        "nid",
+        "section",
+    ])
+
+whitelist.add(
+    table="taxonomy_term_relation",
+    columns=[
+        "tid1",
+        "tid2",
+        "trid",
+    ])
+
+whitelist.add(
+    table="taxonomy_term_synonym",
+    columns=[
+        "tid",
+        "name",
+        "tsid",
+    ])
+
+whitelist.add(
+    table="_nodata:tracker2_node",
+    columns=[
+        "nid",
+        "published",
+        "changed",
+    ])
+
+whitelist.add(
+    table="_nodata:tracker2_user",
+    columns=[
+        "nid",
+        "published",
+        "uid",
+        "changed",
+    ])
+whitelist.add(
+    table="_nodata:user_restrictions",
+    columns=[
+        "urid",
+        "mask",
+        "type",
+        "subtype",
+        "status",
+        "expire",
+    ])
+
+whitelist.add(
+    table="users_access",
+    columns=[
+        "uid",
+        "access",
+    ])
+
+whitelist.add(
+    table="versioncontrol_auth_account",
+    columns=[
+        "uid",
+        "repo_id",
+        "access",
+        "branch_create",
+        "branch_update",
+        "branch_delete",
+        "tag_create",
+        "tag_update",
+        "tag_delete",
+    ])
+
+whitelist.add(
+    table="versioncontrol_auth_account_label",
+    columns=[
+        "uid",
+        "repo_id",
+        "label_id",
+        "label_update",
+        "label_delete",
+    ])
+
+whitelist.add(
+    table="versioncontrol_event_log",
+    columns=[
+        "elid",
+        "repo_id",
+        "uid",
+        "timestamp",
+    ])
+
+whitelist.add(
+    table="versioncontrol_git_event_data",
+    columns=[
+        "elid",
+        "refname",
+        "label_id",
+        "reftype",
+        "old_sha1",
+        "new_sha1",
+        "ff",
+    ])
+
+whitelist.add(
+    table="versioncontrol_git_item_revisions",
+    columns=[
+        "item_revision_id",
+        "blob_hash",
+    ])
+
+whitelist.add(
+    table="versioncontrol_git_operations",
+    columns=[
+        "vc_op_id",
+        "author_name",
+        "committer_name",
+        "parent_commit",
+        "merge",
+    ])
+
+whitelist.add(
+    table="versioncontrol_git_repositories",
+    columns=[
+        "repo_id",
+        "default_branch",
+    ])
+
+whitelist.add(
+    table="versioncontrol_item_revisions",
+    columns=[
+        "item_revision_id",
+        "vc_op_id",
+        "repo_id",
+        "path",
+        "revision",
+        "type",
+        "source_item_revision_id",
+        "action",
+        "line_changes_added",
+        "line_changes_removed",
+    ])
+
+whitelist.add(
+    table="versioncontrol_labels",
+    columns=[
+        "label_id",
+        "repo_id",
+        "name",
+        "type",
+    ])
+
+whitelist.add(
+    table="versioncontrol_operation_labels",
+    columns=[
+        "vc_op_id",
+        "label_id",
+    ])
+
+whitelist.add(
+    table="versioncontrol_operations",
+    columns=[
+        "vc_op_id",
+        "type",
+        "repo_id",
+        "author_date",
+        "author",
+        "author_uid",
+        "committer",
+        "committer_uid",
+        "revision",
+        "message",
+        "committer_date",
+    ])
+
+whitelist.add(
+    table="versioncontrol_project_issue_operations",
+    columns=[
+        "nid",
+        "vc_op_id",
+    ])
+
+whitelist.add(
+    table="versioncontrol_project_maintainers_block_cache",
+    columns=[
+        "cid",
+        "data",
+    ])
+
+whitelist.add(
+    table="versioncontrol_project_projects",
+    columns=[
+        "nid",
+        "repo_id",
+    ])
+
+whitelist.add(
+    table="versioncontrol_release_labels",
+    columns=[
+        "release_nid",
+        "label_id",
+        "project_nid",
+    ])
+
+whitelist.add(
+    table="versioncontrol_repositories",
+    columns=[
+        "repo_id",
+        "name",
+        "vcs",
+        "root",
+        "updated",
+        "cron",
+        "locked",
+        "data",
+        "plugins",
+        "init",
+    ])
+
+whitelist.add(
+    table="versioncontrol_sync_log",
+    columns=[
+        "slid",
+        "repo_id",
+        "elid",
+        "plugin",
+        "successful",
+        "fullsync_failover",
+        "initial",
+        "cron",
+        "errors",
+        "start",
+        "end",
+        "message",
+    ])
+
+whitelist.add(
+    table="versioncontrol_views_sets",
+    columns=[
+        "views_set",
+        "vcs",
+        "view_name",
+    ])
+
+whitelist.add(
+    table="views_content_cache",
+    columns=[
+        "timestamp",
+        "c1",
+        "c2",
+        "c3",
+        "c4",
+        "c5",
+        "c6",
+        "c7",
+        "c8",
+    ])
+
+whitelist.add(
+    table="views_object_cache",
+    columns=[
+        "sid",
+        "name",
+        "obj",
+        "updated",
+        "data",
     ])
 
 # Updates to the default base schema for drupal.org
 
 # Unknown column(s) ['headers'] found in table 'cache_views' fresh base config for whitelist.py is below. This needs to be merged with with current configuration.
 whitelist.update(
-    table="cache_views", 
+    table="cache_views",
     columns=[
         "headers",
     ])
 
 # Unknown column(s) ['headers'] found in table 'cache_views_data' fresh base config for whitelist.py is below. This needs to be merged with with current configuration.
 whitelist.update(
-    table="cache_views_data", 
+    table="cache_views_data",
     columns=[
         "headers",
     ])
 
 # Unknown column(s) ['rating', 'git_username', 'git_consent', 'git_vetted', 'git_disabled'] found in table 'users' fresh base config for whitelist.py is below. This needs to be merged with with current configuration.
 whitelist.update(
-    table="users",  
-    columns=[ 
-        "rating", 
-        "git_username", 
-        "git_consent", 
-        "git_vetted", 
-        "git_disabled", 
-    ]) 
+    table="users",
+    columns=[
+        "rating",
+        "git_username",
+        "git_consent",
+        "git_vetted",
+        "git_disabled",
+    ])
