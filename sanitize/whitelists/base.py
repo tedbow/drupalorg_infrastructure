@@ -17,10 +17,9 @@ whitelist.add(
 whitelist.add(
     table="_nodata:authmap",
     columns=[
-        # http://drupalcode.org/project/infrastructure.git/blob/HEAD:/snapshot/common.staging.sql#l3
         "aid",
         "uid",
-        "_sanitize_email:authname",
+        "authname",
         "module",
     ])
 
