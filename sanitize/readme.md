@@ -1,7 +1,7 @@
 Running the script
 ==================
-./sanitize_db.py 
- 
+./sanitize_db.py
+
 Options:
   -h, --help            show this help message and exit
   -d DESTDB, --dest-db=DESTDB

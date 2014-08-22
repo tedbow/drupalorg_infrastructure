@@ -33,7 +33,7 @@ class Field_Handler:
 
     def sanitize_ip(self, column, table):
         return "'127.0.0.1'"
-        
+
     def sanitize_text(self, column, table):
         if table == 'sshkey':
             return "'nobody@nomail.invalid'"

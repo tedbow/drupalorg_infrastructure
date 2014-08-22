@@ -1,15 +1,15 @@
-import table_customizations 
+import table_customizations
 
 class Field_Revision_Field_Issue_Changes(table_customizations.TableHandler):
 
     def get_sql(self, column_names):
         columns, srccolumns = self.field_handler.column_handler(column_names, self.table)
         query = """
-          INSERT INTO 
-            {dest}.{table} ({columns}) 
+          INSERT INTO
+            {dest}.{table} ({columns})
           SELECT
-            {srccolumns} 
-          FROM 
+            {srccolumns}
+          FROM
             {source}.{table} {limit}
           """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
         if self.dataset == 'skeleton':
@@ -19,13 +19,13 @@ class Field_Revision_Field_Issue_Changes(table_customizations.TableHandler):
                  SELECT
                     {table}.entity_type, {table}.bundle, {table}.deleted, {table}.entity_id, {table}.revision_id, {table}.language, {table}.delta, {table}.field_issue_changes_nid, {table}.field_issue_changes_vid, {table}.field_issue_changes_field_name, {table}.field_issue_changes_old_value, {table}.field_issue_changes_new_value
                  FROM
-                   {source}.{table} 
+                   {source}.{table}
                  INNER JOIN
-                   {source}.field_data_field_issue_changes 
+                   {source}.field_data_field_issue_changes
                  ON
                    {source}.field_data_field_issue_changes.entity_id = {source}.{table}.entity_id
                  LEFT JOIN
-                   {source}.node n 
+                   {source}.node n
                  ON
                    n.nid = {source}.field_data_field_issue_changes.field_issue_changes_nid
                  AND

@@ -6,14 +6,14 @@ class Multiple_Email(table_customizations.TableHandler):
         columns, srccolumns = self.field_handler.column_handler(column_names, self.table)
         query = """
           INSERT INTO
-            `{dest}`.`{table}` ({columns}) 
-          SELECT 
-            {srccolumns} 
-          FROM 
-            `{source}`.`{table}` 
-            LEFT JOIN 
-              `{source}`.`users` 
-            ON 
+            `{dest}`.`{table}` ({columns})
+          SELECT
+            {srccolumns}
+          FROM
+            `{source}`.`{table}`
+            LEFT JOIN
+              `{source}`.`users`
+            ON
               (`multiple_email`.`uid` = `users`.`uid`)  {limit}
         """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
         return query
