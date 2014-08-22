@@ -295,7 +295,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="ctools_css_cache",
+    table="_nodata:ctools_css_cache",
     columns=[
         "cid",
         "filename",
@@ -304,7 +304,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="ctools_object_cache",
+    table="_nodata:ctools_object_cache",
     columns=[
         "sid",
         "name",
