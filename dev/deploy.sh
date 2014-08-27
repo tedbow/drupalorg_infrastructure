@@ -68,7 +68,7 @@ includes[drupalorg_dev] = "https://bitbucket.org/drupalorg-infrastructure/drupal
 END
 
   # Run drush make.
-  drush make "${make_file}" "${web_path}/htdocs" --working-copy
+  drush6 make "${make_file}" "${web_path}/htdocs" --working-copy
 
   # Compile bluecheese Sass.
   pushd "${web_path}/htdocs/sites/all/themes/bluecheese"
