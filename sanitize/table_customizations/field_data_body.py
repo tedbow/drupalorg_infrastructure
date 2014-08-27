@@ -6,35 +6,35 @@ class Field_Data_Body(table_customizations.TableHandler):
         columns, srccolumns = self.field_handler.column_handler(column_names, self.table)
         query = """
           INSERT INTO
-            `{dest}`.`{table}` ({columns})
+            {dest}.{table} ({columns})
           SELECT
             {srccolumns}
           FROM
-            `{source}`.`{table}` {limit}
+            {source}.{table} {limit}
           """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
         if self.dataset == 'skeleton':
           query = """
             INSERT INTO
-              `{dest}`.`{table}` ({columns})
+              {dest}.{table} ({columns})
             SELECT
               {srccolumns}
             FROM
-              `{source}`.`{table}`
+              {source}.{table}
             INNER JOIN
-              `{source}`.`node_revision`
+              {source}.node_revision
             ON
-              `{source}`.`node_revision`.`vid` = `{source}`.`{table}`.`revision_id` {limit}
+              {source}.node_revision.vid = {source}.{table}.revision_id {limit}
             """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
         if self.dataset == 'infra':
           query = """
             INSERT INTO
-              `{dest}`.`{table}` ({columns})
+              {dest}.{table} ({columns})
             SELECT
               {srccolumns}
             FROM
-              `{source}`.`{table}`
+              {source}.{table}
             WHERE
-              `bundle`
+              bundle
             NOT LIKE
               '%infra_page%' {limit}
             """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
