@@ -55,7 +55,7 @@ mysql -e "CREATE DATABASE ${db_name};"
 mysql -e "GRANT ALL ON ${db_name}.* TO '${db_name}'@'devwww.drupal.org' IDENTIFIED BY '${db_pass}';"
 
 # Checkout webroot 
-if [ "${site}" == "infrastructure" ]; then
+if [ "${site}" == "infrastructure" -o "${site}" == "api" ]; then
   # Clone make file.
   git clone "git@bitbucket.org:drupalorg-infrastructure/${site}.drupal.org.git" "${web_path}/make"
 
