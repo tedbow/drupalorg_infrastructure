@@ -1,4 +1,4 @@
-FROM isntall/centos6:base
+FROM isntall/centos6-base
 MAINTAINER Archie Brentano <isntall.us@gmail.com>
 ADD files/MariaDB.repo /etc/yum.repos.d/MariaDB.repo
 RUN rpm --import http://yum.mariadb.org/RPM-GPG-KEY-MariaDB
