@@ -319,19 +319,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_revision_field_impact",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_impact_value",
-    ])
-
-whitelist.add(
     table="field_revision_field_outage",
     columns=[
         "entity_type",
