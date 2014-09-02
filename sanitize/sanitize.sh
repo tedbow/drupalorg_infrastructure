@@ -106,7 +106,7 @@ if [ ${NODUMP} == "dump" ]; then
   cat ${DUMPPATH}/${DUMPPROG}.${FILETYPE} | sed -e 's/^) ENGINE=[^ ]*/)/' > ${DUMPPATH}/sed-${DUMPPROG}.${FILETYPE} && rm ${DUMPPATH}/${DUMPPROG}.${FILETYPE}
   echo "start the compression"
   pbzip2 -f ${DUMPPATH}/sed-${DUMPPROG}.${FILETYPE} > ${DUMPPATH}/${DUMPPROG}.${SUFFIX} && rm ${DUMPPATH}/sed-${DUMPPROG}.${FILETYPE}
-  mv -v ${DUMPPATH}/${DUMPPROG}.${FILETYPE} ${DUMPPATH}/${DUMPFILE}
+  mv -v ${DUMPPATH}/${DUMPPROG}.${SUFFIX} ${DUMPPATH}/${DUMPFILE}
   ln -sfv ${DUMPFILE} ${DUMPCUR}
 
   # Remove old snapshots.
