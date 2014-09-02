@@ -15,7 +15,7 @@ function help {
 ### Variables ###
 DATABASE=${1:=-h}
 PROFILE=${2:=empty}
-NODUMP=${3:=dump}
+NODUMP=${3:-dump}
 
 EXPORT_DB="drupal_export"
 
@@ -104,10 +104,8 @@ if [ ${NODUMP} == "dump" ]; then
   echo "start the dump"
   mysqldump ${DBOPT} ${TMP_ARGS} > ${DUMPPATH}/${DUMPPROG}.${FILETYPE}
   cat ${DUMPPATH}/${DUMPPROG}.${FILETYPE} | sed -e 's/^) ENGINE=[^ ]*/)/' > ${DUMPPATH}/sed-${DUMPPROG}.${FILETYPE} && rm ${DUMPPATH}/${DUMPPROG}.${FILETYPE}
-  echo "=================================================="
   echo "start the compression"
   pbzip2 -f ${DUMPPATH}/sed-${DUMPPROG}.${FILETYPE} > ${DUMPPATH}/${DUMPPROG}.${SUFFIX} && rm ${DUMPPATH}/${DUMPPROG}.${FILETYPE}
-  echo "=================================================="
   mv -v ${DUMPPATH}/${DUMPPROG}.${FILETYPE} ${DUMPPATH}/${DUMPFILE}
   ln -sfv ${DUMPFILE} ${DUMPCUR}
 
