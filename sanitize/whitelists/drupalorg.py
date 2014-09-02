@@ -1037,6 +1037,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_current",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_current_value",
+    ])
+
+whitelist.add(
     table="field_data_field_current_company_org",
     columns=[
         "entity_type",
@@ -1160,6 +1173,20 @@ whitelist.add(
         "language",
         "delta",
         "field_impacts_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_industries_worked_in",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_industries_worked_in_value",
+        "field_industries_worked_in_format",
     ])
 
 whitelist.add(
@@ -1311,6 +1338,19 @@ whitelist.add(
         "field_issue_version_value",
     ])
 
+whitelist.add(
+    table="field_data_field_job_title",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_job_title_value",
+        "field_job_title_format",
+    ])
 
 whitelist.add(
     table="field_data_field_link",
@@ -1414,6 +1454,34 @@ whitelist.add(
         "field_official_website_url",
         "field_official_website_title",
         "field_official_website_attributes",
+    ])
+
+whitelist.add(
+    table="field_data_field_organization_name",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organization_name_value",
+        "field_organization_name_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_organizations",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organizations_value",
+        "field_organizations_revision_id",
     ])
 
 whitelist.add(
@@ -2502,6 +2570,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_revision_field_current",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_current_value",
+    ])
+
+whitelist.add(
     table="field_revision_field_current_company_org",
     columns=[
         "entity_type",
@@ -2866,6 +2947,20 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_revision_field_industries_worked_in",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_industries_worked_in_value",
+        "field_industries_worked_in_format",
+    ])
+
+whitelist.add(
     table="field_revision_field_issue_assigned",
     columns=[
         "entity_type",
@@ -3014,6 +3109,19 @@ whitelist.add(
         "field_issue_version_value",
     ])
 
+whitelist.add(
+    table="field_revision_field_job_title",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_job_title_value",
+        "field_job_title_format",
+    ])
 
 whitelist.add(
     table="field_revision_field_link",
@@ -3183,6 +3291,34 @@ whitelist.add(
         "language",
         "delta",
         "field_organization_list_rule_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_organization_name",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organization_name_value",
+        "field_organization_name_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_organizations",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organizations_value",
+        "field_organizations_revision_id",
     ])
 
 whitelist.add(
