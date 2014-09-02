@@ -1,4 +1,4 @@
-#!/bin/env python
+#!/bin/env python26
 from MySQLdb import *
 from whitelists.base import whitelist
 import password
