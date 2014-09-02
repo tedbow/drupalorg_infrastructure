@@ -83,7 +83,7 @@ if [ ${DATABASE} == "drupal" ]; then
   DATABASE="drupal_sanitize"
   STAGE="whitelist"
   TMP_ARGS2="-hdb2-main-vip.drupal.org ${DBUSER:= } ${DBPASSWORD:= } ${EXPORT_DB}"
-  mysqldump ${DBOPT} ${TMP_ARGS2} drupal | mysql ${TMP_ARGS} ${DATABASE}
+  time mysqldump ${DBOPT} ${TMP_ARGS2} drupal | mysql ${TMP_ARGS} ${DATABASE}
 fi
 
 # Sanitize into the export database.
