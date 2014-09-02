@@ -5,7 +5,12 @@ import password
 import table_customizations
 from optparse import OptionParser
 import field_formatter
-
+#from multiprocessing import Process, Queue, current_process, freeze_support
+import multiprocessing
+#import datetime
+#from multiprocessing import Pool
+#from multiprocessing.dummy import Pool as ThreadPool 
+import random
 
 
 parser = OptionParser()
@@ -34,8 +39,16 @@ if not destdb:
     destdb = 'drupal_export'
     print "Using default destination {0}".format(destdb)
 
-db=connect(host=password.host, user=password.user, passwd=password.password)
+db = connect(host=password.host, user=password.user, passwd=password.password)
+db1 = connect(host=password.host, user=password.user, passwd=password.password)
+db2 = connect(host=password.host, user=password.user, passwd=password.password)
+db3 = connect(host=password.host, user=password.user, passwd=password.password)
+db4 = connect(host=password.host, user=password.user, passwd=password.password)
 c = db.cursor()
+c1 = db1.cursor()
+c2 = db2.cursor()
+c3 = db3.cursor()
+c4 = db4.cursor()
 
 
 def generate_base_whitelist(table):
@@ -84,6 +97,12 @@ def run():
 
     field_handler = field_formatter.Field_Handler()
 
+    qq = multiprocessing.Queue()
+    NUMBER_OF_PROCESSES = 4
+
+    for i in range(NUMBER_OF_PROCESSES):
+        multiprocessing.Process(target=qrun, args=(qq,i)).start()
+
     for table in whitelist.get_tables():
         column_names = whitelist.process(table)
         if not column_names:
@@ -95,11 +114,50 @@ def run():
         except AttributeError:
             pass
         query = handler.get_sql(column_names)
-        print query
-        c.execute(query)
-        db.commit()
-        c.fetchall()
+#        print query
+        qq.put(query)
+
+    # Stop all child processes
+    for i in range(NUMBER_OF_PROCESSES):
+        qq.put('STOP')
+
+def qrun(qq, i):
+    for q in iter(qq.get, 'STOP'):
+      if i == 1:
+          d1(q)
+      elif i == 2:
+          d2(q)
+      elif i == 3:
+          d3(q)
+      elif i == 4:
+          d4(q)
+      else:
+          d(q)
+def d(q):
+    c.execute(q)
+    db.commit()
+    c.fetchall()
+
+def d1(q):
+    c1.execute(q)
+    db1.commit()
+    c1.fetchall()
+
+def d2(q):
+    c2.execute(q)
+    db2.commit()
+    c2.fetchall()
+
+def d3(q):
+    c3.execute(q)
+    db3.commit()
+    c3.fetchall()
+def d4(q):
+    c4.execute(q)
+    db4.commit()
+    c4.fetchall()
 
 if __name__ == "__main__":
+    multiprocessing.freeze_support()
     run()
     c.close()

@@ -13,13 +13,13 @@ INFRAREPO=""${STORAGE}/git-repos/infrastructure
 ### imports the db
 ### run san script (for skeleton atm)
 ## create new subvolume
-rsync -LavhP bender@util.drupal.org:/var/dumps/raw/drupal_database_snapshot.raw-current.sql.bz2 ${STORAGE}/dumps/raw/
+rsync -LavhP isntall@util.drupal.org:/var/dumps/raw/drupal_database_snapshot.raw-current.sql.bz2 ${STORAGE}/dumps/raw/
 cd ${STORAGE}/dumps/raw/ && \
 lbunzip2 -f drupal_database_snapshot.raw-current.sql.bz2
 docker run -i -t --rm \
   -v ${STORAGE}/dumps/:/var/dumps/ \
   -v ${STORAGE}/mysql/current-raw/:/var/lib/mysql/ \
-  -v ${INFRAREPO}/:/mnt/infrastructure/snapshot2 \
+  -v ${INFRAREPO}/:/mnt/infrastructure/ \
   isntall/centos6:mariadb.aria.imp \
   /mnt/infrastructure/snapshot2/raw-import-con.sh
 [ ! -d ${STORAGE}/mysql/raw-$DATE-ro ] && \
