@@ -31,15 +31,6 @@ whitelist.update(
     ])
 
 whitelist.add(
-    table="conditional_fields",
-    columns=[
-        "id",
-        "dependee",
-        "dependent",
-        "options",
-    ])
-
-whitelist.add(
     table="content_access",
     columns=[
         "nid",
