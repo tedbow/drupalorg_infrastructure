@@ -105,7 +105,7 @@ if [ ${NODUMP} == "dump" ]; then
   mysqldump ${DBOPT} ${TMP_ARGS} > ${DUMPPATH}/${DUMPPROG}.${FILETYPE}
   cat ${DUMPPATH}/${DUMPPROG}.${FILETYPE} | sed -e 's/^) ENGINE=[^ ]*/)/' > ${DUMPPATH}/sed-${DUMPPROG}.${FILETYPE} && rm ${DUMPPATH}/${DUMPPROG}.${FILETYPE}
   echo "start the compression"
-  pbzip2 -f ${DUMPPATH}/sed-${DUMPPROG}.${FILETYPE} > ${DUMPPATH}/${DUMPPROG}.${SUFFIX} && rm ${DUMPPATH}/sed-${DUMPPROG}.${FILETYPE}
+  pbzip2 -fc ${DUMPPATH}/sed-${DUMPPROG}.${FILETYPE} > ${DUMPPATH}/${DUMPPROG}.${SUFFIX} && rm ${DUMPPATH}/sed-${DUMPPROG}.${FILETYPE}
   mv -v ${DUMPPATH}/${DUMPPROG}.${SUFFIX} ${DUMPPATH}/${DUMPFILE}
   ln -sfv ${DUMPFILE} ${DUMPCUR}
 
