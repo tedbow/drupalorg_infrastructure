@@ -4,7 +4,7 @@
 set -uex
 
 ## Get scripts current working directory
-CWD="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+CWD=$( dirname "${BASH_SOURCE[0]}" )
 
 # Check if variables have been entered
 function help {
@@ -101,17 +101,12 @@ if [ ${NODUMP} == "dump" ]; then
   DUMPCUR="${DUMPPATH}/${FVAR1}-current.${SUFFIX}"
 
   # Save the DB dump.
-  echo "=================================================="
   echo "start the dump"
-  time mysqldump ${DBOPT} ${TMP_ARGS} > ${DUMPPATH}/${DUMPPROG}.${FILETYPE}
-  echo "=================================================="
-  echo "the dump is done"
-  echo "=================================================="
-  echo "start the sed"
-  time cat ${DUMPPATH}/${DUMPPROG}.${FILETYPE}   | sed -e 's/^) ENGINE=[^ ]*/)/' > ${DUMPPATH}/${DUMPPROG}.${FILETYPE}
+  mysqldump ${DBOPT} ${TMP_ARGS} > ${DUMPPATH}/${DUMPPROG}.${FILETYPE}
+  cat ${DUMPPATH}/${DUMPPROG}.${FILETYPE} | sed -e 's/^) ENGINE=[^ ]*/)/' > ${DUMPPATH}/sed-${DUMPPROG}.${FILETYPE} && rm ${DUMPPATH}/${DUMPPROG}.${FILETYPE}
   echo "=================================================="
   echo "start the compression"
-  time pbzip2 -f ${DUMPPATH}/${DUMPPROG}.${FILETYPE} > ${DUMPPATH}/${DUMPPROG}.${SUFFIX} && rm ${DUMPPATH}/${DUMPPROG}.${FILETYPE}
+  pbzip2 -f ${DUMPPATH}/sed-${DUMPPROG}.${FILETYPE} > ${DUMPPATH}/${DUMPPROG}.${SUFFIX} && rm ${DUMPPATH}/${DUMPPROG}.${FILETYPE}
   echo "=================================================="
   mv -v ${DUMPPATH}/${DUMPPROG}.${FILETYPE} ${DUMPPATH}/${DUMPFILE}
   ln -sfv ${DUMPFILE} ${DUMPCUR}
