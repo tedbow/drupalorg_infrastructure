@@ -450,19 +450,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_revision_field_ux_review",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_ux_review_value",
-    ])
-
-whitelist.add(
     table="security_review",
     columns=[
         "namespace",
