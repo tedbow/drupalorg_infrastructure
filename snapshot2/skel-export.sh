@@ -17,7 +17,7 @@ docker run -i -t --rm \
   -v ${STORAGE}/dumps/:/var/dumps/ \
   -v ${STORAGE}/mysql/raw-skel/:/var/lib/mysql/ \
   -v ${INFRAREPO}/:/mnt/infrastructure/ \
-  isntall/centos6:mariadb.aria.imp \
+  isntall/centos6-mariadb.aria.imp \
   /mnt/infrastructure/snapshot2/skel-export-con.sh
 sudo rsync -avhP --delete ${STORAGE}/mysql/raw-skel/ ${STORAGE}/mysql/current-skel/
 [ ! -d ${STORAGE}/mysql/skel-$DATE-ro ] && \

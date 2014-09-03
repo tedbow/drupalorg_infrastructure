@@ -20,7 +20,7 @@ docker run -i -t --rm \
   -v ${STORAGE}/dumps/:/var/dumps/ \
   -v ${STORAGE}/mysql/current-raw/:/var/lib/mysql/ \
   -v ${INFRAREPO}/:/mnt/infrastructure/ \
-  isntall/centos6:mariadb.aria.imp \
+  isntall/centos6-mariadb.aria.imp \
   /mnt/infrastructure/snapshot2/raw-import-con.sh
 [ ! -d ${STORAGE}/mysql/raw-$DATE-ro ] && \
 sudo btrfs sub snapshot -r ${STORAGE}/mysql/current-raw ${STORAGE}/mysql/raw-$DATE-ro
