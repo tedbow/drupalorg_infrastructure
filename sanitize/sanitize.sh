@@ -87,7 +87,7 @@ if [ ${DATABASE} == "drupal" ]; then
 fi
 
 # Sanitize into the export database.
-python26 $CWD/sanitize_db.py -s ${DATABASE} -d ${EXPORT_DB} -p ${PROFILE}
+python2.6 $CWD/sanitize_db.py -s ${DATABASE} -d ${EXPORT_DB} -p ${PROFILE}
 if [ $? -ne 0 ]; then
   exit $?
 fi
