@@ -79,12 +79,12 @@ source $CWD/password.py
 
 TMP_ARGS="${DBHOST} ${DBUSER:= } ${DBPASSWORD:= } ${EXPORT_DB}"
 
-if [ ${DATABASE} == "drupal" ]; then
-  DATABASE="drupal_sanitize"
-  STAGE="whitelist"
-  TMP_ARGS2="-hdb2-main-vip.drupal.org ${DBUSER:= } ${DBPASSWORD:= } ${EXPORT_DB}"
-  time mysqldump ${DBOPT} ${TMP_ARGS2} drupal | mysql ${TMP_ARGS} ${DATABASE}
-fi
+##if [ ${DATABASE} == "drupal" ]; then
+##  DATABASE="drupal_sanitize"
+##  STAGE="whitelist"
+##  TMP_ARGS2="-hdb2-main-vip.drupal.org ${DBUSER:= } ${DBPASSWORD:= } ${EXPORT_DB}"
+##  time mysqldump ${DBOPT} ${TMP_ARGS2} drupal | mysql ${TMP_ARGS} ${DATABASE}
+##fi
 
 # Sanitize into the export database.
 python2.6 $CWD/sanitize_db.py -s ${DATABASE} -d ${EXPORT_DB} -p ${PROFILE}
@@ -115,3 +115,4 @@ if [ ${NODUMP} == "dump" ]; then
     rm -v ${OLD_SNAPSHOTS}
   fi
 fi
+

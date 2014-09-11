@@ -1,7 +1,8 @@
 #!/bin/bash
 set -uex
-STORAGE="/mnt/storage"
-INFRAREPO="/mnt/storage/git-repos/infrastructure"
+STORAGE="/media/storage"
+INFRAREPO="/media/storage/git-repos/infrastructure"
+DOCKERCON="isntall/centos6-mariadb55.aria.imp-50g"
 ###
 ## Snapshot current to raw-skel
 ## Run docker container that creates skeleton db
@@ -10,17 +11,19 @@ INFRAREPO="/mnt/storage/git-repos/infrastructure"
 ## delete the raw-skel snapshot
 
 DATE=$(date +'%Y%m%d')
-[ ! -d ${STORAGE}/mysql/raw-skel ] && \
-  sudo btrfs sub snapshot ${STORAGE}/mysql/current-raw ${STORAGE}/mysql/raw-skel
-sync
-docker run -i -t --rm \
+[ -d ${STORAGE}/mysql/raw-skeleton ] &&  sudo btrfs sub delete ${STORAGE}/mysql/raw-skeleton
+sudo btrfs sub snapshot ${STORAGE}/mysql/current-raw ${STORAGE}/mysql/raw-skeleton && \
+sync && \
+docker run -t --rm \
   -v ${STORAGE}/dumps/:/var/dumps/ \
-  -v ${STORAGE}/mysql/raw-skel/:/var/lib/mysql/ \
-  -v ${INFRAREPO}/:/mnt/infrastructure/ \
-  isntall/centos6-mariadb.aria.imp \
-  /mnt/infrastructure/snapshot2/skel-export-con.sh
-sudo rsync -avhP --delete ${STORAGE}/mysql/raw-skel/ ${STORAGE}/mysql/current-skel/
-[ ! -d ${STORAGE}/mysql/skel-$DATE-ro ] && \
-  sudo btrfs sub snapshot -r ${STORAGE}/mysql/current-skel ${STORAGE}/mysql/skel-$DATE-ro
-sudo btrfs sub delete ${STORAGE}/mysql/raw-skel
+  -v ${STORAGE}/mysql/raw-skeleton/:/var/lib/mysql/ \
+  -v ${INFRAREPO}/:/media/infrastructure/ \
+  ${DOCKERCON} \
+  /media/infrastructure/snapshot2/skel-export-con.sh
+
+sudo rsync -avhP --delete ${STORAGE}/mysql/raw-skeleton/ ${STORAGE}/mysql/current-skeleton/
+[ ! -d ${STORAGE}/mysql/skeleton-$DATE-ro ] && \
+  sudo btrfs sub snapshot -r ${STORAGE}/mysql/current-skeleton ${STORAGE}/mysql/skeleton-$DATE-ro
+sudo btrfs sub delete ${STORAGE}/mysql/raw-skeleton
+exit
 

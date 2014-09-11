@@ -15,6 +15,7 @@ RUN yum install -y \
   openssh-clients \
   pbzip2 \
   pigz \
+  rsync \
   screen \
   tar \
   tree \

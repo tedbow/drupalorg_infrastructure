@@ -1,4 +1,4 @@
-#!/bin/env python26
+#!/bin/env python
 from MySQLdb import *
 from whitelists.base import whitelist
 import password
@@ -44,11 +44,17 @@ db1 = connect(host=password.host, user=password.user, passwd=password.password)
 db2 = connect(host=password.host, user=password.user, passwd=password.password)
 db3 = connect(host=password.host, user=password.user, passwd=password.password)
 db4 = connect(host=password.host, user=password.user, passwd=password.password)
+db5 = connect(host=password.host, user=password.user, passwd=password.password)
+db6 = connect(host=password.host, user=password.user, passwd=password.password)
+db7 = connect(host=password.host, user=password.user, passwd=password.password)
 c = db.cursor()
 c1 = db1.cursor()
 c2 = db2.cursor()
 c3 = db3.cursor()
 c4 = db4.cursor()
+c5 = db5.cursor()
+c6 = db6.cursor()
+c7 = db7.cursor()
 
 
 def generate_base_whitelist(table):
@@ -98,7 +104,7 @@ def run():
     field_handler = field_formatter.Field_Handler()
 
     qq = multiprocessing.Queue()
-    NUMBER_OF_PROCESSES = 4
+    NUMBER_OF_PROCESSES = 8
 
     for i in range(NUMBER_OF_PROCESSES):
         multiprocessing.Process(target=qrun, args=(qq,i)).start()
@@ -131,6 +137,12 @@ def qrun(qq, i):
           d3(q)
       elif i == 4:
           d4(q)
+      elif i == 5:
+          d5(q)
+      elif i == 6:
+          d6(q)
+      elif i == 7:
+          d7(q)
       else:
           d(q)
 def d(q):
@@ -152,12 +164,29 @@ def d3(q):
     c3.execute(q)
     db3.commit()
     c3.fetchall()
+
 def d4(q):
     c4.execute(q)
     db4.commit()
     c4.fetchall()
 
+def d5(q):
+    c5.execute(q)
+    db5.commit()
+    c5.fetchall()
+
+def d6(q):
+    c6.execute(q)
+    db6.commit()
+    c6.fetchall()
+
+def d7(q):
+    c7.execute(q)
+    db7.commit()
+    c7.fetchall()
+
 if __name__ == "__main__":
     multiprocessing.freeze_support()
     run()
     c.close()
+
