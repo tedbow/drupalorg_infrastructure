@@ -1,6 +1,5 @@
 #!/bin/bash
 set -uex
-RAWDB="drupal"
 ### start mysql
 ### create skeleton db
 ### Drop raw copy of the DB

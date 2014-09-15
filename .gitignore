@@ -2,3 +2,4 @@ password.py
 *.pyc
 *.swp
 *~
+conf

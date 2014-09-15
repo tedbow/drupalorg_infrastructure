@@ -1,8 +1,5 @@
 #!/bin/bash
 set -uex
-STORAGE="/media/storage"
-INFRAREPO="/media/storage/git-repos/infrastructure"
-DOCKERCON="isntall/centos6-mariadb55.aria.imp-50g"
 ###
 ## Snapshot current to raw-skel
 ## Run docker container that creates skeleton db
