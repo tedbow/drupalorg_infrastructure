@@ -8,7 +8,7 @@ CWD=$( dirname "${BASH_SOURCE[0]}" )
 
 # Check if variables have been entered
 function help {
-  echo "sanitize.sh <database> <infra|boss|skeleton>"
+  echo "sanitize.sh <database> <boss|infra|redated|skeleton>"
   exit 1
 }
 
@@ -46,7 +46,7 @@ case ${DATABASE} in
 esac
 
 case ${PROFILE} in
-  "infra"|"boss"|"skeleton")
+  "boss"|"infra"|"redacted"|"skeleton")
     ;;
   *)
     help
