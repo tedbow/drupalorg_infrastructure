@@ -268,7 +268,7 @@ function run_queries_testbot($args) {
   }
 
   // # of Drupal core patches tested / Average core test queue time (min) / Average core test duration (min) / Average core total wait time (min)
-  $result = db_query("SELECT MONTH(FROM_UNIXTIME(pt.last_received)), YEAR(FROM_UNIXTIME(pt.last_received)), COUNT(pt.test_id), AVG((pt.last_requested - pt.last_received)/60) AS avg_queue_time, AVG((pt.last_tested - pt.last_requested)/60) AS avg_test_duration, AVG((pt.last_tested - pt.last_received)/60) AS avg_total_wait FROM {pifr_test} pt LEFT JOIN {pifr_file} pf ON pt.test_id = pf.test_id WHERE pt.type = 3 AND pt.status = 4 AND pf.branch_id IN (1,2) AND pt.last_requested != 0 AND YEAR(FROM_UNIXTIME(last_received)) = 2014 GROUP BY YEAR(FROM_UNIXTIME(last_received)), MONTH(FROM_UNIXTIME(last_received))");
+  $result = db_query("SELECT MONTH(FROM_UNIXTIME(pt.last_received)), YEAR(FROM_UNIXTIME(pt.last_received)), COUNT(pt.test_id), AVG((pt.last_requested - pt.last_received)/60) AS avg_queue_time, AVG((pt.last_tested - pt.last_requested)/60) AS avg_test_duration, AVG((pt.last_tested - pt.last_received)/60) AS avg_total_wait FROM {pifr_test} pt LEFT JOIN {pifr_file} pf ON pt.test_id = pf.test_id WHERE pt.type = 3 AND pt.status = 4 AND pf.branch_id IN (1,2,29488,29453) AND pt.last_requested != 0 AND YEAR(FROM_UNIXTIME(last_received)) = 2014 GROUP BY YEAR(FROM_UNIXTIME(last_received)), MONTH(FROM_UNIXTIME(last_received))");
   while ($data['test_core'][] = db_fetch_array($result)) {
   }
 
@@ -278,7 +278,7 @@ function run_queries_testbot($args) {
   }
 
   // Same, D8 only
-  $result = db_query("SELECT MONTH(FROM_UNIXTIME(pt.last_received)), YEAR(FROM_UNIXTIME(pt.last_received)), COUNT(pt.test_id), AVG((pt.last_requested - pt.last_received)/60) AS avg_queue_time, AVG((pt.last_tested - pt.last_requested)/60) AS avg_test_duration, AVG((pt.last_tested - pt.last_received)/60) AS avg_total_wait FROM {pifr_test} pt LEFT JOIN {pifr_file} pf ON pt.test_id = pf.test_id WHERE pt.type = 3 AND pt.status = 4 AND pf.branch_id = 2 AND pt.last_requested != 0 AND YEAR(FROM_UNIXTIME(last_received)) = 2014 GROUP BY YEAR(FROM_UNIXTIME(last_received)), MONTH(FROM_UNIXTIME(last_received))");
+  $result = db_query("SELECT MONTH(FROM_UNIXTIME(pt.last_received)), YEAR(FROM_UNIXTIME(pt.last_received)), COUNT(pt.test_id), AVG((pt.last_requested - pt.last_received)/60) AS avg_queue_time, AVG((pt.last_tested - pt.last_requested)/60) AS avg_test_duration, AVG((pt.last_tested - pt.last_received)/60) AS avg_total_wait FROM {pifr_test} pt LEFT JOIN {pifr_file} pf ON pt.test_id = pf.test_id WHERE pt.type = 3 AND pt.status = 4 AND pf.branch_id IN (2,29488,29453) AND pt.last_requested != 0 AND YEAR(FROM_UNIXTIME(last_received)) = 2014 GROUP BY YEAR(FROM_UNIXTIME(last_received)), MONTH(FROM_UNIXTIME(last_received))");
   while ($data['test_core_d8'][] = db_fetch_array($result)) {
   }
 
