@@ -19,13 +19,15 @@ class Comment(table_customizations.TableHandler):
               SELECT
                 {srccolumns}
               FROM
-                {source}.{table} t
+                {source}.{table}
               LEFT JOIN
-                {source}.node n on t.nid = n.nid
+                {source}.node
+              ON
+                {source}.node.nid = {source}.{table}.entity_id
               WHERE
-                t.status = 1
-              AND
-                ((n.type IN ('project_issue','forum') AND n.created >= (unix_timestamp() - 60*24*60*60)) OR n.type NOT IN ('project_issue','forum'))
+                {source}.node.type NOT IN ('project_issue','forum')
+              OR
+                {source}.node.created >= (unix_timestamp() - 60*24*60*60)
               {limit}
             """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
         return query
