@@ -23,7 +23,7 @@ class Comment(table_customizations.TableHandler):
               LEFT JOIN
                 {source}.node
               ON
-                {source}.node.nid = {source}.{table}.entity_id
+                {source}.node.nid = {source}.{table}.nid
               WHERE
                 {source}.node.type NOT IN ('project_issue','forum')
               OR
