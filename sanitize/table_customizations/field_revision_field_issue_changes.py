@@ -14,12 +14,12 @@ class Field_Revision_Field_Issue_Changes(table_customizations.TableHandler):
           """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
         if self.dataset == 'skeleton':
             query = """
-                 INSERT INTO
-                   {dest}.{table} ( entity_type, bundle, deleted, entity_id, revision_id, language, delta, field_issue_changes_nid, field_issue_changes_vid, field_issue_changes_field_name, field_issue_changes_old_value, field_issue_changes_new_value)
-                 SELECT
-                    {table}.entity_type, {table}.bundle, {table}.deleted, {table}.entity_id, {table}.revision_id, {table}.language, {table}.delta, {table}.field_issue_changes_nid, {table}.field_issue_changes_vid, {table}.field_issue_changes_field_name, {table}.field_issue_changes_old_value, {table}.field_issue_changes_new_value
-                 FROM
-                   {source}.{table}
+                INSERT INTO
+                  {dest}.{table} ({columns})
+                SELECT
+                  {srccolumns}
+                FROM
+                  {source}.{table}
                  INNER JOIN
                    {source}.field_data_field_issue_changes
                  ON
