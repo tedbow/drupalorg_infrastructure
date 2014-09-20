@@ -27,7 +27,7 @@ class Versioncontrol_Git_Item_Revisions(table_customizations.TableHandler):
             INNER JOIN
               {source}.versioncontrol_operations
             ON
-              {source}.{table}.vc_op_id = versioncontrol_operations.vc_op_id
+              {source}.versioncontrol_item_revisions.vc_op_id = versioncontrol_operations.vc_op_id
             WHERE
               {source}.versioncontrol_operations.author_date >= (unix_timestamp() - 60*24*60*60)
             {limit}
