@@ -15,7 +15,7 @@ docker run -t --rm \
   -v ${INFRAREPO}/:/media/infrastructure/ \
   ${DOCKERCON} \
   /media/infrastructure/snapshot2/san-export-con.sh ${SANTYPE} ${SANOUT}
-
+sudo rm ${STORAGEEX}/raw-${SANTYPE}/xtrabackup_*
 sudo rsync -avhP --delete ${STORAGEEX}/raw-${SANTYPE}/ ${STORAGEEX}/current-${SANTYPE}/
 [ ! -d ${STORAGEEX}/${SANTYPE}-$DATE-ro ] && \
   sudo btrfs sub snapshot -r ${STORAGEEX}/current-${SANTYPE} ${STORAGEEX}/${SANTYPE}-${DATE}-ro
