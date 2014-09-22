@@ -21,15 +21,11 @@ class Versioncontrol_Item_Revisions(table_customizations.TableHandler):
             FROM
               {source}.{table}
             INNER JOIN
-              (
-              SELECT
-                *
-              FROM
                 {source}.versioncontrol_operations
-              WHERE
-                author_date >= (unix_timestamp() - 60*24*60*60)
-              ) AS versioncontrol_operations_mod
             ON
-              {source}.{table}.vc_op_id = versioncontrol_operations_mod.vc_op_id {limit}
+              {source}.{table}.vc_op_id = versioncontrol_operations.vc_op_id
+              WHERE
+                {source}.versioncontrol_operations.author_date >= (unix_timestamp() - 60*24*60*60)
+            {limit}
             """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
         return query
