@@ -67,6 +67,17 @@ if [ -d "${MASTER}/static-files" ]; then
   popd
 fi
 
+# If Symfony module is present, run Composer.
+if [ -d "${BUILDDIR}/sites/all/modules/symfony" ]; then
+  pushd "${BUILDDIR}/sites/all/modules/symfony"
+  # We do want to check composer.lock and vendors in.
+  rm -v ".gitignore"
+  # static-files/sites/all/modules/symfony/composer.lock is copied over by the
+  # previous step.
+  composer install
+  popd
+fi
+
 #now we force a git commit
 cd ${BUILDDIR}
 git add -A
