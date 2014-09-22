@@ -109,7 +109,7 @@ def run():
     field_handler = field_formatter.Field_Handler()
 
     qq = multiprocessing.Queue()
-    NUMBER_OF_PROCESSES = 6
+    NUMBER_OF_PROCESSES = 8
 
     for i in range(NUMBER_OF_PROCESSES):
         multiprocessing.Process(target=qrun, args=(qq,i)).start()
@@ -125,7 +125,7 @@ def run():
         except AttributeError:
             pass
         query = handler.get_sql(column_names)
-#        print query
+        print query
         qq.put(query)
 
     # Stop all child processes
