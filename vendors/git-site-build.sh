@@ -63,7 +63,7 @@ cp ${MASTER}/settings.php ${BUILDDIR}/sites/default/
 cp ${MASTER}/.gitignore ${BUILDDIR}/  # Replace core's file
 if [ -d "${MASTER}/static-files" ]; then
   pushd "${MASTER}/static-files"
-  find . -type f | cpio -pdmv "${BUILDDIR}"
+  find . -type f | cpio -pdmuv "${BUILDDIR}"
   popd
 fi
 
