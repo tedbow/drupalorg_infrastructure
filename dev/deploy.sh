@@ -14,7 +14,6 @@ function write_template {
 # Handle drupal.org vs. sub-domains properly
 if [ ${site} == "drupal" ]; then
   fqdn="drupal.org"
-  repository="drupal.org-7"
   snapshot="drupal_database_snapshot.reduce-current.sql.bz2"
 else
   # Strip any _ and following characters from ${site}, and add .drupal.org.
@@ -32,7 +31,7 @@ if [ "${site}" == "sydney2013" -o "${site}" == "portland2013" -o "${site}" == "p
 fi
 
 # Sites migrated to D7.
-if [ "${site}" == "association" -o "${site}" == "api" -o "${site}" == "infrastructure" ]; then
+if [ "${site}" == "association" ]; then
   repository="${repository}-7"
 fi
 
