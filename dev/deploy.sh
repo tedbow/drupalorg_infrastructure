@@ -30,11 +30,6 @@ if [ "${site}" == "sydney2013" -o "${site}" == "portland2013" -o "${site}" == "p
   repository="drupalcon-7"
 fi
 
-# Sites migrated to D7.
-if [ "${site}" == "association" ]; then
-  repository="${repository}-7"
-fi
-
 export TERM=dumb
 drush="drush -r ${web_path}/htdocs -y"
 db_pass=$(pwgen -s 16 1)
@@ -54,10 +49,12 @@ mysql -e "CREATE DATABASE ${db_name};"
 mysql -e "GRANT ALL ON ${db_name}.* TO '${db_name}'@'devwww.drupal.org' IDENTIFIED BY '${db_pass}';"
 
 # Checkout webroot 
-if [ "${site}" == "infrastructure" -o "${site}" == "api" -o "${site}" == "latinamerica2015" -o "${site}" == "localize_7" -o "${site}" == "drupal" ]; then
+if [ "${site}" == "infrastructure" -o "${site}" == "api" -o "${site}" == "latinamerica2015" -o "${site}" == "localize_7" -o "${site}" == "drupal" -o "${site}" == "association" ]; then
   # Clone make file.
   if [ "${site}" == "drupal" ]; then
     git clone "git@bitbucket.org:drupalorg-infrastructure/drupal.org.git" "${web_path}/make"
+  elif [ "${site}" == "association" ]; then
+    git clone "git@bitbucket.org:drupalorg-infrastructure/assoc.drupal.org.git" "${web_path}/make"
   else
     git clone "git@bitbucket.org:drupalorg-infrastructure/${site}.drupal.org.git" "${web_path}/make"
   fi
