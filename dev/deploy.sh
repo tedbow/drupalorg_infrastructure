@@ -55,9 +55,13 @@ mysql -e "CREATE DATABASE ${db_name};"
 mysql -e "GRANT ALL ON ${db_name}.* TO '${db_name}'@'devwww.drupal.org' IDENTIFIED BY '${db_pass}';"
 
 # Checkout webroot 
-if [ "${site}" == "infrastructure" -o "${site}" == "api" -o "${site}" == "latinamerica2015" -o "${site}" == "localize_7" ]; then
+if [ "${site}" == "infrastructure" -o "${site}" == "api" -o "${site}" == "latinamerica2015" -o "${site}" == "localize_7" -o "${site}" == "drupal" ]; then
   # Clone make file.
-  git clone "git@bitbucket.org:drupalorg-infrastructure/${site}.drupal.org.git" "${web_path}/make"
+  if [ "${site}" == "drupal" ]; then
+    git clone "git@bitbucket.org:drupalorg-infrastructure/drupal.org.git" "${web_path}/make"
+  else
+    git clone "git@bitbucket.org:drupalorg-infrastructure/${site}.drupal.org.git" "${web_path}/make"
+  fi
 
   # Append dev-specific overrides.
   make_file="${web_path}/make/${site}.drupal.org.make"
