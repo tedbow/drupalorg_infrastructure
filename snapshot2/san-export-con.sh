@@ -14,7 +14,7 @@ mysql -uroot -e "DROP DATABASE IF EXISTS narayan;" && \
 service mysql stop
 rm -rf /var/lib/mysql/*
 mysql_install_db
-pbunzip2 /var/dumps/${SANTYPE}/db_backup.${SANTYPE}-current.sql.bz2 > /var/dumps/${SANTYPE}/db_backup.${SANTYPE}-current.sql
+pbunzip2 -f /var/dumps/${SANTYPE}/db_backup.${SANTYPE}-current.sql.bz2 > /var/dumps/${SANTYPE}/db_backup.${SANTYPE}-current.sql
 service mysql start
 mysql -uroot -e "CREATE DATABASE drupal_export;"
 mysql -uroot drupal_export < /var/dumps/${SANTYPE}/db_backup.${SANTYPE}-current.sql
