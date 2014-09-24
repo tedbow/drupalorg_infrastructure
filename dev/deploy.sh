@@ -27,7 +27,7 @@ else
 fi
 
 # DrupalCon São Paulo 2012 and later have a common BZR repository.
-if [ "${site}" == "sydney2013" -o "${site}" == "portland2013" -o "${site}" == "prague2013" -o "${site}" == "northamerica2014" ]; then
+if [ "${site}" == "sydney2013" -o "${site}" == "portland2013" -o "${site}" == "prague2013" ]; then
   repository="drupalcon-7"
 fi
 
