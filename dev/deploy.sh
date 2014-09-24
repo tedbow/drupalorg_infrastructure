@@ -51,16 +51,14 @@ mysql -e "GRANT ALL ON ${db_name}.* TO '${db_name}'@'devwww.drupal.org' IDENTIFI
 # Checkout webroot 
 if [ "${site}" == "infrastructure" -o "${site}" == "api" -o "${site}" == "latinamerica2015" -o "${site}" == "localize_7" -o "${site}" == "drupal" -o "${site}" == "association" ]; then
   # Clone make file.
-  if [ "${site}" == "drupal" ]; then
-    git clone "git@bitbucket.org:drupalorg-infrastructure/drupal.org.git" "${web_path}/make"
-  elif [ "${site}" == "association" ]; then
+  if [ "${site}" == "association" ]; then
     git clone "git@bitbucket.org:drupalorg-infrastructure/assoc.drupal.org.git" "${web_path}/make"
   else
-    git clone "git@bitbucket.org:drupalorg-infrastructure/${site}.drupal.org.git" "${web_path}/make"
+    git clone "git@bitbucket.org:drupalorg-infrastructure/${fqdn}.git" "${web_path}/make"
   fi
 
   # Append dev-specific overrides.
-  make_file="${web_path}/make/${site}.drupal.org.make"
+  make_file="${web_path}/make/${fqdn}.make"
   cat <<END >> "${make_file}"
 
 ;; Dev-specific overrides
