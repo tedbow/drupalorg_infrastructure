@@ -12,6 +12,7 @@ sudo btrfs sub snapshot ${STORAGEEX}/current-raw ${STORAGEEX}/raw-${SANTYPE} && 
 sync && \
 docker run -t --rm \
   -v ${STORAGEEX}/raw-${SANTYPE}/:/var/lib/mysql/ \
+  -v ${STORAGE}/dumps/:/var/dumps/ \
   -v ${INFRAREPO}/:/media/infrastructure/ \
   ${DOCKERCON} \
   /media/infrastructure/snapshot2/san-export-con.sh ${SANTYPE} ${SANOUT}
