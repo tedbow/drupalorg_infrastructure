@@ -14,7 +14,6 @@ function write_template {
 # Handle drupal.org vs. sub-domains properly
 if [ ${site} == "drupal" ]; then
   fqdn="drupal.org"
-  repository="drupal.org-7"
   snapshot="drupal_database_snapshot.reduce-current.sql.bz2"
 else
   # Strip any _ and following characters from ${site}, and add .drupal.org.
@@ -27,13 +26,8 @@ else
 fi
 
 # DrupalCon São Paulo 2012 and later have a common BZR repository.
-if [ "${site}" == "sydney2013" -o "${site}" == "portland2013" -o "${site}" == "prague2013" -o "${site}" == "northamerica2014" ]; then
+if [ "${site}" == "sydney2013" -o "${site}" == "portland2013" -o "${site}" == "prague2013" ]; then
   repository="drupalcon-7"
-fi
-
-# Sites migrated to D7.
-if [ "${site}" == "association" -o "${site}" == "api" -o "${site}" == "infrastructure" ]; then
-  repository="${repository}-7"
 fi
 
 export TERM=dumb
@@ -55,12 +49,16 @@ mysql -e "CREATE DATABASE ${db_name};"
 mysql -e "GRANT ALL ON ${db_name}.* TO '${db_name}'@'devwww.drupal.org' IDENTIFIED BY '${db_pass}';"
 
 # Checkout webroot 
-if [ "${site}" == "infrastructure" -o "${site}" == "api" -o "${site}" == "latinamerica2015" -o "${site}" == "localize_7" ]; then
+if [ "${site}" == "infrastructure" -o "${site}" == "api" -o "${site}" == "latinamerica2015" -o "${site}" == "localize_7" -o "${site}" == "drupal" -o "${site}" == "association" ]; then
   # Clone make file.
-  git clone "git@bitbucket.org:drupalorg-infrastructure/${site}.drupal.org.git" "${web_path}/make"
+  if [ "${site}" == "association" ]; then
+    git clone "git@bitbucket.org:drupalorg-infrastructure/assoc.drupal.org.git" "${web_path}/make"
+  else
+    git clone "git@bitbucket.org:drupalorg-infrastructure/${fqdn}.git" "${web_path}/make"
+  fi
 
   # Append dev-specific overrides.
-  make_file="${web_path}/make/${site}.drupal.org.make"
+  make_file="${web_path}/make/${fqdn}.make"
   cat <<END >> "${make_file}"
 
 ;; Dev-specific overrides
