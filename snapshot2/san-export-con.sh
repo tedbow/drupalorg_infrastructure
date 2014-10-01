@@ -19,7 +19,7 @@ mysqldump ${DBEXPORT} -d > /var/dumps/${SANTYPE}/td/${DBEXPORT}-tables.sql && \
 mysqldump ${DBEXPORT} --tab=/var/dumps/${SANTYPE}/td/ && \
 service mysql stop
 rm -rf /var/lib/mysql/*
-cp /etc/my-aria.cnf /etc/my.cnf
+cp /etc/my-ariadb.cnf /etc/my.cnf
 mysql_install_db
 
 
