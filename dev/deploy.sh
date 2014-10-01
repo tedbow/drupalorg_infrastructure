@@ -75,6 +75,24 @@ END
 
   # Copy over settings.php.
   cp "${web_path}/make/settings.php" "${web_path}/htdocs/sites/default"
+  cp "${web_path}/make/.gitignore" "${web_path}/htdocs/"  # Replace core's file
+  if [ -d "${web_path}/make/static-files" ]; then
+    pushd "${web_path}/make/static-files"
+    find . -type f | cpio -pdmuv "${web_path}/htdocs"
+    popd
+  fi
+
+  # If Symfony module is present, run Composer.
+  if [ -d "${web_path}/htdocs/sites/all/modules/symfony" ]; then
+    pushd "${web_path}/htdocs/sites/all/modules/symfony"
+    # We do want to check composer.lock and vendors in.
+    rm -v ".gitignore"
+    # static-files/sites/all/modules/symfony/composer.lock is copied over by the
+    # previous step.
+    composer install
+    popd
+  fi
+
 else
   echo "Populating development environment with bzr checkout"
   bzr checkout bzr+ssh://bender-deploy@util.drupal.org/${repository} "${web_path}/htdocs"
