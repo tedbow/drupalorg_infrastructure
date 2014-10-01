@@ -15,8 +15,8 @@ service mysql start && \
 mysql -uroot -e "DROP DATABASE IF EXISTS drupal;" && \
 mysql -uroot -e "DROP DATABASE IF EXISTS pivots;" && \
 mysql -uroot -e "DROP DATABASE IF EXISTS narayan;" && \
-mysqldump ${DBEXPORT} -d > /var/dumps/${SANTYPE}/td/${DBEXPORT}-tables.sql
-mysqldump ${DBEXPORT} --tab=/var/dumps/${SANTYPE}/td/
+mysqldump ${DBEXPORT} -d > /var/dumps/${SANTYPE}/td/${DBEXPORT}-tables.sql && \
+mysqldump ${DBEXPORT} --tab=/var/dumps/${SANTYPE}/td/ && \
 service mysql stop
 rm -rf /var/lib/mysql/*
 mysql_install_db
