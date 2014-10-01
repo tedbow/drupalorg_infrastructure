@@ -799,6 +799,20 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_bio",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_bio_value",
+        "field_bio_format",
+    ])
+
+whitelist.add(
     table="field_data_field_book_description",
     columns=[
         "entity_type",
@@ -1187,6 +1201,20 @@ whitelist.add(
         "delta",
         "field_industries_worked_in_value",
         "field_industries_worked_in_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_irc_nick",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_irc_nick_value",
+        "field_irc_nick_format",
     ])
 
 whitelist.add(
@@ -2267,6 +2295,21 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_websites",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_websites_url",
+        "field_websites_title",
+        "field_websites_attributes",
+    ])
+
+whitelist.add(
     table="field_data_taxonomyextra",
     columns=[
         "entity_type",
@@ -2567,6 +2610,20 @@ whitelist.add(
         "delta",
         "comment_body_value",
         "comment_body_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_bio",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_bio_value",
+        "field_bio_format",
     ])
 
 whitelist.add(
@@ -2958,6 +3015,20 @@ whitelist.add(
         "delta",
         "field_industries_worked_in_value",
         "field_industries_worked_in_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_irc_nick",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_irc_nick_value",
+        "field_irc_nick_format",
     ])
 
 whitelist.add(
@@ -4036,6 +4107,21 @@ whitelist.add(
         "field_user_geolocation_lat_sin",
         "field_user_geolocation_lat_cos",
         "field_user_geolocation_lng_rad",
+    ])
+
+whitelist.add(
+    table="field_revision_field_websites",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_websites_url",
+        "field_websites_title",
+        "field_websites_attributes",
     ])
 
 whitelist.add(
