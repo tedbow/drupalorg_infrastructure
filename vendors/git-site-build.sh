@@ -60,7 +60,7 @@ mv ${BUILDGIT}/.git ${BUILDDIR}
 
 # Move settings.php and other files.
 cp ${MASTER}/settings.php ${BUILDDIR}/sites/default/
-cp ${MASTER}/.gitignore ${BUILDDIR}/  # Replace core's file
+[ -f "${master}/.gitignore" ] && cp "${MASTER}/.gitignore" "${BUILDDIR}/"  # Replace core's file
 if [ -d "${MASTER}/static-files" ]; then
   pushd "${MASTER}/static-files"
   find . -type f | cpio -pdmuv "${BUILDDIR}"
