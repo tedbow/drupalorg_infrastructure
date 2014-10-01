@@ -7,6 +7,7 @@ RUN yum history new
 ADD files/my-innodb.cnf /etc/my-innodb.cnf
 ADD files/my-ariadb.cnf /etc/my-ariadb.cnf
 RUN cp /etc/my-innodb.cnf /etc/my.cnf
+RUN mkdir /var/lib/mysql
 RUN yum install -y \
   MariaDB-server \
   MariaDB-client \

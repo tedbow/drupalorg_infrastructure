@@ -19,7 +19,7 @@ key-buffer-size                = 10G
 myisam-recover                 = FORCE,BACKUP
 
 # SAFETY #
-max-allowed-packet             = 2G
+max-allowed-packet             = 1073741824
 max-connect-errors             = 1000000
 
 # DATA STORAGE #
