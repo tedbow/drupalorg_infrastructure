@@ -85,7 +85,7 @@ def check_schema():
             print("Table '{table}' ignored".format(table=table))
             continue
         if not whitelist.table(table):
-            print("Table '{table}' not presant in whitelist.py base config is:\n".format(table=table))
+            print("Table '{table}' not present in whitelist.py base config is:\n".format(table=table))
             generate_base_whitelist(table)
             continue
         query = "DESCRIBE `{source}`.`{table}`".format(table=table, source=sourcedb)
