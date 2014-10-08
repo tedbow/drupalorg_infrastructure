@@ -75,7 +75,7 @@ END
 
   # Copy over settings.php.
   cp "${web_path}/make/settings.php" "${web_path}/htdocs/sites/default"
-  cp "${web_path}/make/.gitignore" "${web_path}/htdocs/"  # Replace core's file
+  [ -f "${web_path}/make/.gitignore" ] && cp "${web_path}/make/.gitignore" "${web_path}/htdocs/"  # Replace core's file
   if [ -d "${web_path}/make/static-files" ]; then
     pushd "${web_path}/make/static-files"
     find . -type f | cpio -pdmuv "${web_path}/htdocs"
