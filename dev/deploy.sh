@@ -53,12 +53,13 @@ if [ "${site}" == "infrastructure" -o "${site}" == "api" -o "${site}" == "latina
   # Clone make file.
   if [ "${site}" == "association" ]; then
     git clone "git@bitbucket.org:drupalorg-infrastructure/assoc.drupal.org.git" "${web_path}/make"
+    make_file="${web_path}/make/assoc.drupal.org.make"
   else
     git clone "git@bitbucket.org:drupalorg-infrastructure/${fqdn}.git" "${web_path}/make"
+    make_file="${web_path}/make/${fqdn}.make"
   fi
 
   # Append dev-specific overrides.
-  make_file="${web_path}/make/${fqdn}.make"
   cat <<END >> "${make_file}"
 
 ;; Dev-specific overrides
