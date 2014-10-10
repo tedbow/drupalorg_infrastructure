@@ -15,7 +15,7 @@ function help {
 ### Variables ###
 DATABASE=${1:=-h}
 PROFILE=${2:=empty}
-NODUMP=${3:-dump}
+NODUMP=${3:=dump}
 
 EXPORT_DB="drupal_export"
 
@@ -92,7 +92,6 @@ if [ $? -ne 0 ]; then
   exit $?
 fi
 
-
 if [ ${NODUMP} == "dump" ]; then
   FVAR1="${JOB_NAME}.${STAGE}"
   SUFFIX="${FILETYPE}.${COMPRESSION}"
@@ -111,7 +110,7 @@ if [ ${NODUMP} == "dump" ]; then
 
   # Remove old snapshots.
   OLD_SNAPSHOTS=$(ls -t ${DUMPPATH}/${FVAR1}-[0-9]*.${FILETYPE}.{bz2,gz} | tail -n +2)
-  if [ -z "${OLD_SNAPSHOTS}" ]; then
+  if [ ! -z "${OLD_SNAPSHOTS}" ]; then
     rm -v ${OLD_SNAPSHOTS}
   fi
 fi
