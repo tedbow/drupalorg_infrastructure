@@ -15,15 +15,15 @@ service mysql start && \
 mysqldump ${DBEXPORT} -d > /var/dumps/${SANTYPE}/td/${DBEXPORT}-tables.sql && \
 mysqldump ${DBEXPORT} --tab=/var/dumps/${SANTYPE}/td/ && \
 service mysql stop
-rm -rf /var/lib/mysql/*
-cp /etc/my-ariadb.cnf /etc/my.cnf
-mysql_install_db
-service mysql start
-service mysql status
-mysql -uroot -e "CREATE DATABASE drupal_export;"
-
-time mysql ${DBEXPORT} < /var/dumps/${SANTYPE}/td/${DBEXPORT}-tables.sql
-time mysqlimport -uroot --use-threads=8 ${DBEXPORT}  /var/dumps/${SANTYPE}/td/*.txt
-
-service mysql stop
+if [ ${SANTYPE} != "redacted" ]; then
+  rm -rf /var/lib/mysql/*
+  cp /etc/my-ariadb.cnf /etc/my.cnf
+  mysql_install_db
+  service mysql start
+  service mysql status
+  mysql -uroot -e "CREATE DATABASE drupal_export;"
+  time mysql ${DBEXPORT} < /var/dumps/${SANTYPE}/td/${DBEXPORT}-tables.sql
+  time mysqlimport -uroot --lock-tables --debug-info --use-threads=8 ${DBEXPORT}  /var/dumps/${SANTYPE}/td/*.txt
+  service mysql stop
+fi
 exit
