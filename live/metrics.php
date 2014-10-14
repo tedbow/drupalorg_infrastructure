@@ -28,14 +28,9 @@ function run_queries($args) {
   $data['accounts_logged_in'] = db_query("SELECT COUNT(*) FROM {users} WHERE status = 1 AND access > :start AND :end", $args)->fetchField();
 
   // Number of Active Accounts (at least 1 activity per period of time)
-  $data['accounts_active'] = db_query("SELECT count(1) 
-    FROM {users} u 
-    WHERE u.status = 1 AND u.uid IN (SELECT DISTINCT n.uid FROM {node} n WHERE n.status = 1 AND n.created BETWEEN :start AND :end 
-      UNION SELECT DISTINCT c.uid FROM {comment} c WHERE c.status = 1 AND c.created BETWEEN :start AND :end 
-      UNION SELECT DISTINCT nr.uid FROM {node_revision} nr WHERE nr.status = 1 AND nr.timestamp BETWEEN :start AND :end 
-      UNION SELECT DISTINCT o.author_uid 
-      FROM {versioncontrol_operations} o 
-      WHERE o.committer_date BETWEEN :start AND :end)", $args)->fetchField();
+  $data['accounts_active'] = count(array_unique(array_merge(
+    db_query('SELECT DISTINCT u.uid FROM {comment} c INNER JOIN {users} u ON u.status = 1 AND u.uid = c.uid WHERE c.status = 1 AND c.created BETWEEN :start AND :end', $args)->fetchCol(),
+    db_query('SELECT DISTINCT u.uid FROM {node_revision} nr INNER JOIN {users} u ON u.status = 1 AND u.uid = nr.uid WHERE nr.status = 1 AND nr.timestamp BETWEEN :start AND :end', $args)->fetchCol(),                                                                                                                                                                                                db_query('SELECT DISTINCT u.uid FROM {versioncontrol_operations} o INNER JOIN {users} u ON u.status = 1 AND u.uid = o.author_uid WHERE o.committer_date BETWEEN :start AND :end', $args)->fetchCol()                                                                                                                                                                                            )));
 
   // Number of Blocked Accounts (on this specific date)
   $data['accounts_blocked'] = db_query("SELECT COUNT(*) FROM {users} WHERE status=0")->fetchField();
