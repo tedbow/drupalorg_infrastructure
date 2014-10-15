@@ -41,7 +41,7 @@ echo ${LOG}
 
 # Build the site.
 echo "We have a copy of the master repo, we are starting the build now"
-/usr/bin/drush6 make ${BUILDPATH}.make ${BUILDDIR}
+/usr/bin/drush6 make --no-cache ${BUILDPATH}.make ${BUILDDIR}
 
 # Use good judgement.
 /bin/rm -r "${BUILDDIR}/modules/php"
