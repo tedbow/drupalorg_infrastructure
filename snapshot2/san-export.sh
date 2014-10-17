@@ -23,7 +23,7 @@ sync
 
 ## tar ball the *.txt files with the schema file
 if [ ${SANTYPE} == "redacted" ]; then
-  cd ${STORDUMP}/td && tar cfO - --use-compress-program=pbzip2 *.txt ${DBEXPORT}-tables.sql > ${STORDUMP}/${JOB_NAME}-${SANTYPE}.tar.bz2
+  cd ${STORDUMP}/td && tar cfO - --use-compress-program=pbzip2 *.txt ${DBEXPORT}-tables.sql > ${STORDUMP}/current-${SANTYPE}.tar.bz2
 else
   sudo rsync -avhP --delete ${STORAGEEX}/raw-${SANTYPE}/ ${STORAGE}/mysql/current-${SANTYPE}/
   [ ! -d ${STORAGE}/mysql/${SANTYPE}-$DATE-ro ] && \
