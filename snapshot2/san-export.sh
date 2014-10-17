@@ -8,7 +8,8 @@ set -uex
 ## delete the raw-${SANTYPE} snapshot
 JOB_NAME=${JOB_NAME:=db_backup}
 STORAGEEX="${TMPSTORAGE}/mysql"
-STORDUMP="${STOREAGE}/dumps/${SANTYPE}"
+STORDUMP="${STORAGE}/dumps/${SANTYPE}"
+DBEXPORT="drupal_export"
 [ -d ${STORAGEEX}/raw-${SANTYPE} ] &&  sudo btrfs sub delete ${STORAGEEX}/raw-${SANTYPE}
 sudo btrfs sub snapshot ${STORAGEEX}/current-raw ${STORAGEEX}/raw-${SANTYPE} && \
 sync && \
@@ -21,10 +22,9 @@ docker run -t --rm \
 sync
 
 ## tar ball the *.txt files with the schema file
-if [ ${SANTYPE} != "redacted" ]; then
-  cd ${STORDUMP}/td && tar cjO - --use-compress-program=pbzip2 *.txt ${DBEXPORT}-tables.sql > ${STORDUMP}/${JOB_NAME}-${STAGE}.tar.bz2
-fi
-if [ ${SANTYPE} != "redacted" ]; then
+if [ ${SANTYPE} == "redacted" ]; then
+  cd ${STORDUMP}/td && tar cfO - --use-compress-program=pbzip2 *.txt ${DBEXPORT}-tables.sql > ${STORDUMP}/${JOB_NAME}-${SANTYPE}.tar.bz2
+else
   sudo rsync -avhP --delete ${STORAGEEX}/raw-${SANTYPE}/ ${STORAGE}/mysql/current-${SANTYPE}/
   [ ! -d ${STORAGE}/mysql/${SANTYPE}-$DATE-ro ] && \
     sudo btrfs sub snapshot -r ${STORAGE}/mysql/current-${SANTYPE} ${STORAGE}/mysql/${SANTYPE}-${DATE}-ro
