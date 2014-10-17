@@ -12,7 +12,7 @@ SANTYPE=$1
 rm -rf /var/dumps/${SANTYPE}/td/*
 service mysql start && \
 /media/infrastructure/sanitize/sanitize.sh ${DBIMPORT} ${SANTYPE} $2 && \
-mysqldump ${DBEXPORT} -d > /var/dumps/${SANTYPE}/td/${DBEXPORT}-tables.sql && \
+mysqldump ${DBEXPORT} -d > /var/dumps/${SANTYPE}/td/${SANTYPE}-tables.sql && \
 mysqldump ${DBEXPORT} --tab=/var/dumps/${SANTYPE}/td/ && \
 service mysql stop
 if [ ${SANTYPE} != "redacted" ]; then
@@ -22,7 +22,7 @@ if [ ${SANTYPE} != "redacted" ]; then
   service mysql start
   service mysql status
   mysql -uroot -e "CREATE DATABASE drupal_export;"
-  time mysql ${DBEXPORT} < /var/dumps/${SANTYPE}/td/${DBEXPORT}-tables.sql
+  time mysql ${DBEXPORT} < /var/dumps/${SANTYPE}/td/${SANTYPE}-tables.sql
   time mysqlimport -uroot --lock-tables --debug-info --use-threads=8 ${DBEXPORT}  /var/dumps/${SANTYPE}/td/*.txt
   service mysql stop
 fi
