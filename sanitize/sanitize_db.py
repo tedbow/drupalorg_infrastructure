@@ -134,23 +134,23 @@ def run():
 
 def qrun(qq, i):
     for q in iter(qq.get, 'STOP'):
-      if i == 1:
-          d1(q)
-      elif i == 2:
-          d2(q)
-      elif i == 3:
-          d3(q)
-      elif i == 4:
-          d4(q)
-      elif i == 5:
-          d5(q)
-      elif i == 6:
-          d6(q)
-      elif i == 7:
-          d7(q)
-      else:
-          d(q)
-      print "Core %d has completed a job" % q
+        if i == 1:
+            d1(q)
+        elif i == 2:
+            d2(q)
+        elif i == 3:
+            d3(q)
+        elif i == 4:
+            d4(q)
+        elif i == 5:
+            d5(q)
+        elif i == 6:
+            d6(q)
+        elif i == 7:
+            d7(q)
+        else:
+            d(q)
+        print "Core %d has completed a job" % q
 
 def d(q):
     c.execute(q)
