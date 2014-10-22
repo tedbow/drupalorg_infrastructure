@@ -150,7 +150,7 @@ def qrun(qq, i):
             d7(q)
         else:
             d(q)
-        print "CPU Core %d has completed a job" % q
+        print "CPU Core %s has completed a job" % q
 
 def d(q):
     c.execute(q)
