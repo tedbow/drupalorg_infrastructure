@@ -53,12 +53,13 @@ if [ "${site}" == "infrastructure" -o "${site}" == "api" -o "${site}" == "latina
   # Clone make file.
   if [ "${site}" == "association" ]; then
     git clone "git@bitbucket.org:drupalorg-infrastructure/assoc.drupal.org.git" "${web_path}/make"
+    make_file="${web_path}/make/assoc.drupal.org.make"
   else
     git clone "git@bitbucket.org:drupalorg-infrastructure/${fqdn}.git" "${web_path}/make"
+    make_file="${web_path}/make/${fqdn}.make"
   fi
 
   # Append dev-specific overrides.
-  make_file="${web_path}/make/${fqdn}.make"
   cat <<END >> "${make_file}"
 
 ;; Dev-specific overrides
@@ -75,7 +76,7 @@ END
 
   # Copy over settings.php.
   cp "${web_path}/make/settings.php" "${web_path}/htdocs/sites/default"
-  cp "${web_path}/make/.gitignore" "${web_path}/htdocs/"  # Replace core's file
+  [ -f "${web_path}/make/.gitignore" ] && cp "${web_path}/make/.gitignore" "${web_path}/htdocs/"  # Replace core's file
   if [ -d "${web_path}/make/static-files" ]; then
     pushd "${web_path}/make/static-files"
     find . -type f | cpio -pdmuv "${web_path}/htdocs"
