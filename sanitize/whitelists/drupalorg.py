@@ -1144,6 +1144,20 @@ whitelist.add(
         "field_examples_recorded_value",
     ])
 
+
+whitelist.add(
+    table="field_data_field_gender",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_gender_value",
+    ])
+
 whitelist.add(
     table="field_data_field_goals",
     columns=[
@@ -2969,6 +2983,20 @@ whitelist.add(
         "language",
         "delta",
         "field_examples_recorded_value",
+    ])
+
+
+whitelist.add(
+    table="field_revision_field_gender",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_gender_value",
     ])
 
 whitelist.add(

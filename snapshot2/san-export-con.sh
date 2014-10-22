@@ -27,3 +27,4 @@ if [ ${SANTYPE} != "redacted" ]; then
   service mysql stop
 fi
 exit
+
