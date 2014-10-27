@@ -168,20 +168,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_data_field_time",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_time_value",
-        "field_time_format",
-    ])
-
-whitelist.add(
     table="field_revision_comment_body",
     columns=[
         "entity_type",
@@ -304,20 +290,6 @@ whitelist.add(
         "language",
         "delta",
         "field_status_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_time",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_time_value",
-        "field_time_format",
     ])
 
 whitelist.add(
