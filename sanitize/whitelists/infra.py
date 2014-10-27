@@ -140,19 +140,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_data_field_properties",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_properties_tid",
-    ])
-
-whitelist.add(
     table="field_data_field_related_issues",
     columns=[
         "entity_type",
@@ -289,19 +276,6 @@ whitelist.add(
         "language",
         "delta",
         "field_outage_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_properties",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_properties_tid",
     ])
 
 whitelist.add(
