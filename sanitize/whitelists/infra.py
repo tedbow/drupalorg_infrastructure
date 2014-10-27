@@ -99,20 +99,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_data_field_date",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_date_value",
-        "field_date_format",
-    ])
-
-whitelist.add(
     table="field_data_field_description",
     columns=[
         "entity_type",
@@ -221,20 +207,6 @@ whitelist.add(
         "language",
         "delta",
         "field_contact_target_id",
-    ])
-
-whitelist.add(
-    table="field_revision_field_date",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_date_value",
-        "field_date_format",
     ])
 
 whitelist.add(
