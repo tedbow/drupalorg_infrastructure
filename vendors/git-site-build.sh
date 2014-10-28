@@ -58,8 +58,8 @@ cd ..
 ##This is hackish, however, we can either do an rm-rf or move the .git folder, in the end, it seems to be the same.
 mv ${BUILDGIT}/.git ${BUILDDIR}
 
-# Move settings.php and other files.
-cp ${MASTER}/settings.php ${BUILDDIR}/sites/default/
+# Copy static files.
+[ -f "${MASTER}/settings.php" ] && cp "${MASTER}/settings.php" "${BUILDDIR}/sites/default/"
 [ -f "${MASTER}/.gitignore" ] && cp "${MASTER}/.gitignore" "${BUILDDIR}/"  # Replace core's file
 if [ -d "${MASTER}/static-files" ]; then
   pushd "${MASTER}/static-files"
