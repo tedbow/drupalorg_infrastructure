@@ -1,5 +1,7 @@
 <?php
 
+$limit = (int) getenv('limit');
+
 foreach (variable_get('bakery_slaves', array()) as $slave) {
   // Make drush site alias records.
   $url = parse_url($slave);
@@ -30,7 +32,7 @@ foreach (variable_get('bakery_slaves', array()) as $slave) {
   $deleted_uids = $query->execute()->fetchCol();
   drush_log(dt('@site has @count users not present on Drupal.org', array('@site' => $url['host'], '@count' => count($deleted_uids))));
 
-  if (count($deleted_uids) > 5) {
+  if (count($deleted_uids) > $limit) {
     // Bail if there are a lot of users to delete.
     drush_log(dt('Too many users to delete! Drupal.org UIDs are @uids', array('@uids' => implode(', ', $deleted_uids))), 'error');
     exit(1);
