@@ -12,17 +12,25 @@ db=$(${drush} ${type}sql-conf | sed -ne 's/^\s*\[database\] => //p')
 # the 'staging' snapshot.
 [ "${snaptype-}" ] || snaptype=staging
 
-# Copy snapshot.
-rsync -v --copy-links --password-file ~/util.rsync.pass "rsync://stagingmysql@util.drupal.org/mysql-${snaptype}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2" "${WORKSPACE}"
+if [ "${uri}" != "staging.devdrupal.org" ]; then
+  # Copy snapshot.
+  rsync -v --copy-links --password-file ~/util.rsync.pass "rsync://stagingmysql@util.drupal.org/mysql-${snaptype}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2" "${WORKSPACE}"
 
-# Clear out the DB and import a snapshot.
-(
-  echo "DROP DATABASE ${db};"
-  echo "CREATE DATABASE ${db};"
-  echo "USE ${db};"
-  bunzip2 < "${WORKSPACE}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2"
-) | ${drush} ${type}sql-cli
-
+  # Clear out the DB and import a snapshot.
+  (
+    echo "DROP DATABASE ${db};"
+    echo "CREATE DATABASE ${db};"
+    echo "USE ${db};"
+    bunzip2 < "${WORKSPACE}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2"
+  ) | ${drush} ${type}sql-cli
+else
+  ALTDBLOC="/var/www/staging.devdrupal.org/altdb"
+  if [ -f ${ALTDBLOC} ]; then
+    rm ${ALTDBLOC}
+  else
+    touch ${ALTDBLOC}
+  fi
+fi
 # Extra preparation for D7.
 if [ "${uri}" = "localize-7.staging.devdrupal.org" ]; then
   (
