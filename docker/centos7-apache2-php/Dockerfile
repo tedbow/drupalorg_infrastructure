@@ -1,4 +1,4 @@
-FROM isntall/centos6-base
+FROM isntall/centos7-base
 MAINTAINER Archie Brentano <isntall.us@gmail.com>
 RUN yum install -y \
   httpd \

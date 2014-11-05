@@ -4,7 +4,10 @@ ADD files/MariaDB.repo /etc/yum.repos.d/MariaDB.repo
 RUN rpm --import http://yum.mariadb.org/RPM-GPG-KEY-MariaDB
 RUN rpm --import https://www.percona.com/downloads/RPM-GPG-KEY-percona
 RUN yum history new
-ADD files/my.cnf /etc/my.cnf
+ADD files/my-innodb.cnf /etc/my-innodb.cnf
+ADD files/my-ariadb.cnf /etc/my-ariadb.cnf
+RUN cp /etc/my-innodb.cnf /etc/my.cnf
+RUN mkdir /var/lib/mysql
 RUN yum install -y \
   MariaDB-server \
   MariaDB-client \

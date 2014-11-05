@@ -813,6 +813,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_country",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_country_value",
+    ])
+
+whitelist.add(
     table="field_data_field_book_description",
     columns=[
         "entity_type",
@@ -1131,6 +1144,35 @@ whitelist.add(
         "field_examples_recorded_value",
     ])
 
+
+whitelist.add(
+    table="field_data_field_gender",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_gender_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_github_profile",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_github_profile_value",
+        "field_github_profile_title",
+        "field_github_profile_attributes",
+    ])
+
 whitelist.add(
     table="field_data_field_goals",
     columns=[
@@ -1143,6 +1185,19 @@ whitelist.add(
         "delta",
         "field_goals_value",
         "field_goals_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_hosting_type",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_hosting_type_value",
     ])
 
 whitelist.add(
@@ -2627,6 +2682,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_revision_field_country",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_country_value",
+    ])
+
+whitelist.add(
     table="field_revision_field_current",
     columns=[
         "entity_type",
@@ -2945,6 +3013,35 @@ whitelist.add(
         "field_examples_recorded_value",
     ])
 
+
+whitelist.add(
+    table="field_revision_field_gender",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_gender_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_github_profile",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_github_profile_value",
+        "field_github_profile_title",
+        "field_github_profile_attributes",
+    ])
+
 whitelist.add(
     table="field_revision_field_goals",
     columns=[
@@ -2957,6 +3054,19 @@ whitelist.add(
         "delta",
         "field_goals_value",
         "field_goals_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_hosting_type",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_hosting_type_value",
     ])
 
 whitelist.add(

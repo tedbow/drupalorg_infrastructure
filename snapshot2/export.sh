@@ -7,6 +7,5 @@ export SANTYPE=$1
 export SANOUT=$2
 [ ! -f ${CWD}/conf ] && exit 1
 source ${CWD}/conf
-${CWD}/raw-import.sh
 ${CWD}/san-export.sh
 
