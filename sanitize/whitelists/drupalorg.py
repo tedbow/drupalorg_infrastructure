@@ -271,7 +271,6 @@ whitelist.add(
         "serialized",
     ])
 
-
 whitelist.add(
     table="_nodata:cache_taxonomy",
     columns=[
@@ -799,6 +798,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_areas_of_expertise_data",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_areas_of_expertise_tid",
+    ])
+
+whitelist.add(
     table="field_data_field_bio",
     columns=[
         "entity_type",
@@ -1144,7 +1156,6 @@ whitelist.add(
         "field_examples_recorded_value",
     ])
 
-
 whitelist.add(
     table="field_data_field_gender",
     columns=[
@@ -1256,6 +1267,19 @@ whitelist.add(
         "delta",
         "field_industries_worked_in_value",
         "field_industries_worked_in_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_interests_data",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_interests_tid",
     ])
 
 whitelist.add(
@@ -1433,6 +1457,19 @@ whitelist.add(
         "delta",
         "field_job_title_value",
         "field_job_title_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_languages",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_languages_value",
     ])
 
 whitelist.add(
@@ -2306,6 +2343,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_terms_of_service",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_terms_of_service_value",
+    ])
+
+whitelist.add(
     table="field_data_field_theme_recorded",
     columns=[
         "entity_type",
@@ -2636,7 +2686,6 @@ whitelist.add(
         "delta",
         "taxonomy_vocabulary_9_tid",
     ])
-
 
 whitelist.add(
     table="field_data_upload",
@@ -3013,7 +3062,6 @@ whitelist.add(
         "field_examples_recorded_value",
     ])
 
-
 whitelist.add(
     table="field_revision_field_gender",
     columns=[
@@ -3302,6 +3350,19 @@ whitelist.add(
         "delta",
         "field_job_title_value",
         "field_job_title_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_languages",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_languages_value",
     ])
 
 whitelist.add(
@@ -4053,7 +4114,6 @@ whitelist.add(
         "field_release_version_ext_delta_value",
     ])
 
-
 whitelist.add(
     table="field_revision_field_release_version_extra",
     columns=[
@@ -4173,6 +4233,19 @@ whitelist.add(
         "language",
         "delta",
         "field_status_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_terms_of_service",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_terms_of_service_value",
     ])
 
 whitelist.add(
@@ -4507,8 +4580,6 @@ whitelist.add(
         "taxonomy_vocabulary_9_tid",
     ])
 
-
-
 whitelist.add(
     table="field_revision_upload",
     columns=[
@@ -4558,7 +4629,6 @@ whitelist.add(
         "count",
         "last_updated",
     ])
-
 
 whitelist.add(
     table="flags",
@@ -4740,7 +4810,6 @@ whitelist.add(
         "instance",
         "config",
     ])
-
 
 whitelist.add(
     table="migrate_log",
@@ -4928,7 +4997,6 @@ whitelist.add(
         "timestamp",
         "comment_number",
     ])
-
 
 whitelist.add(
     table="project_issue_notification_global",
@@ -5150,8 +5218,6 @@ whitelist.add(
         "version_format",
     ])
 
-
-
 whitelist.add(
     table="project_releases",
     columns=[
@@ -5197,8 +5263,6 @@ whitelist.add(
         "latest_release",
         "latest_security_release",
     ])
-
-
 
 whitelist.add(
     table="_nodata:projects",
