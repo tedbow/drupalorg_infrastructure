@@ -125,7 +125,7 @@ def run():
         except AttributeError:
             pass
         query = handler.get_sql(column_names)
-        print query
+        # print query
         qq.put(query)
 
     # Stop all child processes
