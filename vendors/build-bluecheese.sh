@@ -27,3 +27,25 @@ fi
 
 # Push to remote.
 git push private branded
+
+# And for responsive.
+
+# Mirror changes.
+git checkout 7.x-2.x
+git pull
+git push private 7.x-2.x
+
+# Merge changes.
+git checkout branded-2.x
+git pull
+git merge 7.x-2.x
+
+# Compile CSS.
+bundle exec compass compile
+if ! git diff --quiet css/styles.css; then
+  git add css/styles.css
+  git commit -m 'compass compile'
+fi
+
+# Push to remote.
+git push private branded-2.x
