@@ -4,7 +4,7 @@ set -uex
 BINVARS=" --parallel=${RTHREADS} --compress --compress-threads=${RTHREADS} --defaults-file=/etc/my.cnf --no-lock  --ibbackup=${XBV} "
 sudo chown -R ec2:ec2 ${TMPSTORAGE}/mysql/current-raw/
 sudo rm -rf ${TMPSTORAGE}/mysql/current-raw/*
-ssh ec2@db2-static.drupal.org ~/binback.sh ${TMPSTORAGE} ${BINVARS}
+ssh ec2@db2-static.drupal.org "~/binback.sh ${SSHTARGET} ${TMPSTORAGE} ${BINVARS} "
 docker run -t --rm \
   -v ${TMPSTORAGE}/mysql/current-raw/:/var/lib/mysql/ \
   -v ${INFRAREPO}/:/media/infrastructure/ \
