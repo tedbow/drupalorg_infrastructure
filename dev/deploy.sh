@@ -38,6 +38,7 @@ db_pass=$(pwgen -s 16 1)
 
 # Create the webroot and add comment file
 mkdir "${web_path}"
+mkdir "${web_path}/traces"
 chown -R bender:developers "${web_path}"
 echo "${COMMENT}" > "${web_path}/comment"
 

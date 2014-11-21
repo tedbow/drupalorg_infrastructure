@@ -29,3 +29,6 @@ $conf['simpletest_username'] = 'drupal';
 $conf['simpletest_password'] = 'drupal';
 
 $conf['site_name'] = 'NAME SITE dev';
+
+# XHProf trace output
+ini_set('xhprof.output_dir','/var/www/dev/NAME-SITE.redesign.devdrupal.org/traces');
