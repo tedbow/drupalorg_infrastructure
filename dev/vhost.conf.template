@@ -9,6 +9,9 @@
   <Directory "/var/www/dev/NAME-SITE.redesign.devdrupal.org/htdocs">
     Include vhosts.d/development.inc
   </Directory>
+  <Directory "/usr/share/xhprof">
+    Include vhosts.d/development.inc
+  </Directory>
 
   ErrorLog "|/usr/sbin/cronolog /var/www/dev/NAME-SITE.redesign.devdrupal.org/logs/error/%Y%m%d.log"
   CustomLog "|/usr/sbin/cronolog /var/www/dev/NAME-SITE.redesign.devdrupal.org/logs/access/%Y%m%d.log" combined
