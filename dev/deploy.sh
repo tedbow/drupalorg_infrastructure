@@ -38,7 +38,7 @@ db_pass=$(pwgen -s 16 1)
 
 # Create the webroot and add comment file
 mkdir "${web_path}"
-mkdir "${web_path}/traces"
+mkdir -p "${web_path}/xhprof/{traces,htdocs}"
 chown -R bender:developers "${web_path}"
 echo "${COMMENT}" > "${web_path}/comment"
 
@@ -133,7 +133,7 @@ ${drush} pm-disable beanstalkd
 ln -s /media/${fqdn} "${web_path}/htdocs/$(${drush} status | sed -ne 's/^ *File directory path *: *\([^ ]*\).*$/\1/p')"
 
 # Link up the xhprof_html directory
-ln -s /usr/share/xhprof/xhprof_html "${web_path}/htdocs/xhprof_html"
+ln -s /usr/share/xhprof/xhprof_html "${web_path}/xhprof/htdocs/xhprof_html"
 
 # Reload apache with new vhost
 restart_apache

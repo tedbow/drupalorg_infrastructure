@@ -1,1 +1,1 @@
-xhprof.output_dir = "/var/www/dev/NAME-SITE.redesign.devdrupal.org/traces"
+xhprof.output_dir = "/var/www/dev/NAME-SITE.redesign.devdrupal.org/xhprof/traces"
