@@ -105,6 +105,7 @@ write_template "settings.local.php.template" "${web_path}/htdocs/sites/default/s
 
 # Add .user.ini PHP settings
 write_template "user.ini.template" "${web_path}/htdocs/.user.ini"
+write_template "user.ini.template" "${web_path}/xhprof/htdocs/.user.ini"
 
 # Strongarm the permissions
 echo "Forcing proper permissions on ${web_path}"
@@ -132,8 +133,8 @@ ${drush} pm-disable beanstalkd
 # Link up the files directory
 ln -s /media/${fqdn} "${web_path}/htdocs/$(${drush} status | sed -ne 's/^ *File directory path *: *\([^ ]*\).*$/\1/p')"
 
-# Link up the xhprof_html directory
-ln -s /usr/share/xhprof/xhprof_html "${web_path}/xhprof/htdocs/xhprof_html"
+# Sync xhprof webapp directory
+rsync -av /usr/share/xhprof/ "${web_path}/xhprof/htdocs/"
 
 # Reload apache with new vhost
 restart_apache
@@ -145,6 +146,8 @@ ${drush} vdel preprocess_js
 ${drush} pm-enable devel
 ${drush} pm-enable views_ui
 ${drush} pm-enable imagecache_ui
+${drush} vset devel_xhprof_directory "/var/www/dev/${name}-${site}.redesign.devdrupal.org/xhprof/htdocs"
+${drush} vset devel_xhprof_url "https://xhprof-${name}-${site}.redesign.devdrupal.org/xhprof_html"
 
 # Set up for potential bakery testing
 ${drush} vdel bakery_slaves

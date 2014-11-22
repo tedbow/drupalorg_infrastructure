@@ -26,8 +26,6 @@
 
   <Directory "/var/www/dev/NAME-SITE.redesign.devdrupal.org/xhprof/htdocs">
     Include vhosts.d/development.inc
-  </Directory>
-  <Directory "/usr/share/xhprof">
-    Include vhosts.d/development.inc
+    DirectoryIndex index.php
   </Directory>
 </VirtualHost>
