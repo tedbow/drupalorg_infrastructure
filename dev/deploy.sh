@@ -42,10 +42,6 @@ mkdir -p "${web_path}/xhprof/htdocs"
 chown -R bender:developers "${web_path}"
 echo "${COMMENT}" > "${web_path}/comment"
 
-# Add traces directory after global chown
-mkdir -p "${web_path}/xhprof/traces"
-sudo chown -R drupal_site:drupal_site "${web_path}/xhprof/traces"
-
 # Create the vhost config
 write_template "vhost.conf.template" "${vhost_path}"
 
@@ -116,6 +112,10 @@ echo "Forcing proper permissions on ${web_path}"
 find "${web_path}" -type d -exec chmod g+rwx {} +
 find "${web_path}" -type f -exec chmod g+rw {} +
 chgrp -R developers "${web_path}"
+
+# Add traces directory after global chown
+mkdir -p "${web_path}/xhprof/traces"
+sudo chown -R drupal_site:drupal_site "${web_path}/xhprof/traces"
 
 # Import database
 rsync -v --copy-links --password-file ~/util.rsync.pass "rsync://devmysql@util.drupal.org/mysql-dev/${snapshot}" "${WORKSPACE}"
