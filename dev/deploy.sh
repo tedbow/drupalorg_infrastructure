@@ -103,10 +103,6 @@ fi
 # Add settings.local.php
 write_template "settings.local.php.template" "${web_path}/htdocs/sites/default/settings.local.php"
 
-# Add .user.ini PHP settings
-write_template "user.ini.template" "${web_path}/htdocs/.user.ini"
-write_template "user.ini.template" "${web_path}/xhprof/htdocs/.user.ini"
-
 # Strongarm the permissions
 echo "Forcing proper permissions on ${web_path}"
 find "${web_path}" -type d -exec chmod g+rwx {} +
@@ -135,6 +131,10 @@ ln -s /media/${fqdn} "${web_path}/htdocs/$(${drush} status | sed -ne 's/^ *File 
 
 # Sync xhprof webapp directory
 rsync -av /usr/share/xhprof/ "${web_path}/xhprof/htdocs/"
+
+# Add .user.ini PHP settings
+write_template "user.ini.template" "${web_path}/htdocs/.user.ini"
+write_template "user.ini.template" "${web_path}/xhprof/htdocs/.user.ini"
 
 # Reload apache with new vhost
 restart_apache
