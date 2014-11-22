@@ -44,7 +44,7 @@ echo "${COMMENT}" > "${web_path}/comment"
 
 # Add traces directory after global chown
 mkdir -p "${web_path}/xhprof/traces"
-chown -R drupal_site:drupal_site "${web_path}/xhprof/traces"
+sudo chown -R drupal_site:drupal_site "${web_path}/xhprof/traces"
 
 # Create the vhost config
 write_template "vhost.conf.template" "${vhost_path}"
