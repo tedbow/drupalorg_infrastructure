@@ -42,6 +42,7 @@ mkdir -p "${web_path}/xhprof/traces"
 mkdir -p "${web_path}/xhprof/htdocs"
 chown -R bender:developers "${web_path}"
 echo "${COMMENT}" > "${web_path}/comment"
+chown -R drupal_site:drupal_site "${web_path}/xhprof/traces"
 
 # Create the vhost config
 write_template "vhost.conf.template" "${vhost_path}"
