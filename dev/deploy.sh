@@ -38,10 +38,12 @@ db_pass=$(pwgen -s 16 1)
 
 # Create the webroot and add comment file
 mkdir "${web_path}"
-mkdir -p "${web_path}/xhprof/traces"
 mkdir -p "${web_path}/xhprof/htdocs"
 chown -R bender:developers "${web_path}"
 echo "${COMMENT}" > "${web_path}/comment"
+
+# Add traces directory after global chown
+mkdir -p "${web_path}/xhprof/traces"
 chown -R drupal_site:drupal_site "${web_path}/xhprof/traces"
 
 # Create the vhost config
