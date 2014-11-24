@@ -811,19 +811,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_data_field_areas_of_expertise_data",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_areas_of_expertise_tid",
-    ])
-
-whitelist.add(
     table="field_data_field_bio",
     columns=[
         "entity_type",
@@ -1293,19 +1280,6 @@ whitelist.add(
         "delta",
         "field_industries_worked_in_value",
         "field_industries_worked_in_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_interests_data",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_interests_tid",
     ])
 
 whitelist.add(
