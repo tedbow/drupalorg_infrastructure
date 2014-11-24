@@ -798,6 +798,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_areas_of_expertise",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_areas_of_expertise_tid",
+    ])
+
+whitelist.add(
     table="field_data_field_areas_of_expertise_data",
     columns=[
         "entity_type",
@@ -1042,6 +1055,19 @@ whitelist.add(
         "delta",
         "field_community_value",
         "field_community_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_contributed",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_contributed_value",
     ])
 
 whitelist.add(
@@ -2717,6 +2743,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_revision_field_areas_of_expertise",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_areas_of_expertise_tid",
+    ])
+
+whitelist.add(
     table="field_revision_field_bio",
     columns=[
         "entity_type",
@@ -2975,6 +3014,19 @@ whitelist.add(
         "delta",
         "field_community_value",
         "field_community_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_contributed",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_contributed_value",
     ])
 
 whitelist.add(
