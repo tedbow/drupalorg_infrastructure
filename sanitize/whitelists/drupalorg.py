@@ -1157,6 +1157,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_download_count",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_download_count_value",
+    ])
+
+whitelist.add(
     table="field_data_field_examples_recorded",
     columns=[
         "entity_type",
@@ -1167,6 +1180,19 @@ whitelist.add(
         "language",
         "delta",
         "field_examples_recorded_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_events_attended",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_events_attended_value",
     ])
 
 whitelist.add(
@@ -2316,6 +2342,21 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_social_links",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_social_links_value",
+        "field_social_links_title",
+        "field_social_links_attributes",
+    ])
+
+whitelist.add(
     table="field_data_field_status",
     columns=[
         "entity_type",
@@ -3073,6 +3114,32 @@ whitelist.add(
         "language",
         "delta",
         "field_developed_org_nid",
+    ])
+
+whitelist.add(
+    table="field_revision_field_download_count",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_download_count_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_events_attended",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_events_attended_value",
     ])
 
 whitelist.add(
@@ -4232,6 +4299,21 @@ whitelist.add(
         "delta",
         "field_short_description_value",
         "field_short_description_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_social_links",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_social_links_value",
+        "field_social_links_title",
+        "field_social_links_attributes",
     ])
 
 whitelist.add(
