@@ -17,7 +17,7 @@
   CustomLog "|/usr/sbin/cronolog /var/www/dev/NAME-SITE.redesign.devdrupal.org/logs/access/%Y%m%d.log" combined
 </VirtualHost>  
 <VirtualHost *:8080>
-  ServerName xhprof-NAME-SITE-drupal.redesign.devdrupal.org
+  ServerName xhprof-NAME-SITE.redesign.devdrupal.org
 
   DocumentRoot /var/www/dev/NAME-SITE.redesign.devdrupal.org/xhprof/htdocs
 
