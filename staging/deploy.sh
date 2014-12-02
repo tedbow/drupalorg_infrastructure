@@ -12,7 +12,7 @@ fi
 
 # Clear caches, try updatedb.
 ${drush} cc all || true
-${drush} -v updatedb --interactive
+${drush} updatedb --interactive
 ${drush} cc all
 
 # Also handle CiviCRM for the Association site.
