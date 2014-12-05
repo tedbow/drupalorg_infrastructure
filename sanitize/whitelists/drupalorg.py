@@ -1519,6 +1519,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_mentors",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_mentors_target_id",
+    ])
+
+whitelist.add(
     table="field_data_field_module",
     columns=[
         "entity_type",
@@ -3447,6 +3460,19 @@ whitelist.add(
         "field_mainimage_title",
         "field_mainimage_width",
         "field_mainimage_height",
+    ])
+
+whitelist.add(
+    table="field_revision_field_mentors",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_mentors_target_id",
     ])
 
 whitelist.add(
