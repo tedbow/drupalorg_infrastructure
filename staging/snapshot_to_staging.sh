@@ -12,7 +12,7 @@ db=$(${drush} ${type}sql-conf | sed -ne 's/^\s*\[database\] => //p')
 # the 'staging' snapshot.
 [ "${snaptype-}" ] || snaptype=staging
 
-if [ "${uri}" != "staging.devdrupal.org" ]; then
+if [ "${uri}" != "staging.devdrupal.org" -a "${uri}" != "infrastructure.staging.devdrupal.org" ]; then
   # Copy snapshot.
   rsync -v --copy-links --password-file ~/util.rsync.pass "rsync://stagingmysql@util.drupal.org/mysql-${snaptype}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2" "${WORKSPACE}"
 
@@ -24,7 +24,7 @@ if [ "${uri}" != "staging.devdrupal.org" ]; then
     bunzip2 < "${WORKSPACE}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2"
   ) | ${drush} ${type}sql-cli
 else
-  ALTDBLOC="/var/www/staging.devdrupal.org/altdb"
+  ALTDBLOC="/var/www/${uri}/altdb"
   if [ -f ${ALTDBLOC} ]; then
     rm ${ALTDBLOC}
   else
