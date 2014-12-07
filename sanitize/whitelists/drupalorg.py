@@ -2811,32 +2811,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_revision_field_country",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_country_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_current",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_current_value",
-    ])
-
-whitelist.add(
     table="field_revision_field_book_description",
     columns=[
         "entity_type",
@@ -3071,6 +3045,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_revision_field_country",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_country_value",
+    ])
+
+whitelist.add(
     table="field_revision_field_cover_image",
     columns=[
         "entity_type",
@@ -3085,6 +3072,19 @@ whitelist.add(
         "field_cover_image_title",
         "field_cover_image_width",
         "field_cover_image_height",
+    ])
+
+whitelist.add(
+    table="field_revision_field_current",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_current_value",
     ])
 
 whitelist.add(
