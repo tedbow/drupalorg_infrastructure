@@ -22,7 +22,7 @@ fi
 
 # For easily executing Drush.
 export TERM=dumb
-drush="drush -r ${webroot} -l ${uri} -y"
+drush="drush -v -r ${webroot} -l ${uri} -y"
 
 # Test that the site is functional enough to return a non-error response. Also
 # primes caches.
