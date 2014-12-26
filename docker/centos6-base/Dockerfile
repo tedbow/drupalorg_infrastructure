@@ -8,6 +8,7 @@ RUN yum install -y \
 RUN yum install -y \
   bzip2 \
   file \
+  hostname \
   htop \
   lrzip \
   ncdu \
