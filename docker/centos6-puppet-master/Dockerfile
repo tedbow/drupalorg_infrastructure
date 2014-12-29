@@ -1,6 +1,0 @@
-FROM isntall/centos6-puppet
-MAINTAINER Archie Brentano <isntall.us@gmail.com>
-RUN yum install -y \
-      puppet-server
-RUN yum clean all
-
