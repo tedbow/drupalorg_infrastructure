@@ -1,5 +1,11 @@
 #!/bin/bash
+
+###snapshot_prod-import-staging.sh <PRODDB> <CURRENTDB>
+
 set -uex
+
+[ ! -f ${CWD}/conf ] && exit 1
+source /etc/dumpdb/conf
 
 PRODDB="${1}"
 CURRENTDB="${2}" && \
@@ -8,7 +14,7 @@ echo "the current db is ${CURRENTDB}"
 IMPORTDB=$([[ "${CURRENTDB}" == *1 ]] && echo "${CURRENTDB%?}" || echo "${CURRENTDB}1") && \
 echo "The importdb is ${IMPORTDB}"
 
-LOCALDIR="/home/ec2/tmp/${PRODDB}" && \
+LOCALDIR="${STAGINGDEST}/${PRODDB}" && \
 [ ! -d "${LOCALDIR}/" ] && mkdir -p "${LOCALDIR}/"
 
 time mysql -e "DROP DATABASE ${IMPORTDB};CREATE DATABASE ${IMPORTDB};" && \

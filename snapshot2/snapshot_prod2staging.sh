@@ -1,22 +1,23 @@
 #!/bin/bash
 
+###snapshot2/snapshot_prod2staging.sh <PRODDB> <PRODDBSERBER> <STAGINGDB> <STAGINGDBSERVER> <STAGINGWEBSERVER> <TARGETSITE>
+
 set -uex
 
-STAGINGDBSERVER="${1}"
-TARGETSITE="${2}"
-PRODDB="${3}"
-STAGINGDB="${4}"
+PRODDB="${1}"
+PRODDBSERBER="${2}"
+STAGINGDB="${3}"
+STAGINGDBSERVER="${4}"
 STAGINGWEBSERVER="${5}"
+TARGETSITE="${6}"
 
+SSHUSER="ec2"
 
-# get current working directory
-export CWD=$(dirname "${BASH_SOURCE[0]}")
-[ ! -f ${CWD}/conf ] && exit 1
-source ${CWD}/conf
-# ssh to prod db server mysql dump
-${CWD}/snapshot_prod-dump.sh ${PRODDB} ${PRODDUMPDIR}
-# ssh to prod db server rsync to destination
-${CWD}/snapshot_prod-rsync.sh ${PRODDB} ${PRODDUMPDIR} ${STAGINGDEST} ${SSHUSER}
-# ssh to stagindb import and modifiy for staging
+###Get name of current staging db
 REQUESTDBNAME=$(ssh ${STAGINGWEBSERVER} [ -f /var/www/${TARGETSITE}/altdb ]  && echo "${STAGINGDB}1" || echo "${STAGINGDB}")
-${CWD}/snapshot_prod-import-staging.sh ${PRODDB} ${REQUESTDBNAME}
+[ -z "${REQUESTDBNAME}" ] && exit 1
+
+# ssh to prod db server rsync to destination
+ssh ${SSHUSER}@${PRODDBSERBER} "${SCRIPTDIR}/snapshot2/snapshot_prod-rsync.sh ${PRODDB} ${SSHSTAGING} ${SCRIPTDIR}/snapshot2/"
+# ssh to stagindb import and modifiy for staging
+ssh ${SSHUSER}@${STAGINGDBSERVER} "${SCRIPTDIR}/snapshot2/snapshot_prod-import-staging.sh ${PRODDB} ${REQUESTDBNAME}"
