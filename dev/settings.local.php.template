@@ -29,3 +29,6 @@ $conf['simpletest_username'] = 'drupal';
 $conf['simpletest_password'] = 'drupal';
 
 $conf['site_name'] = 'NAME SITE dev';
+
+// Allow permissions changes.
+$conf['drupalorg_crosssite_lock_permissions'] = FALSE;
