@@ -14,7 +14,7 @@ echo "the current db is ${CURRENTDB}"
 IMPORTDB=$([[ "${CURRENTDB}" == *1 ]] && echo "${CURRENTDB%?}" || echo "${CURRENTDB}1") && \
 echo "The importdb is ${IMPORTDB}"
 
-LOCALDIR="${STAGINGDEST}/${PRODDB}" && \
+LOCALDIR="${FSDEST}/${PRODDB}" && \
 [ ! -d "${LOCALDIR}/" ] && mkdir -p "${LOCALDIR}/"
 
 time mysql -e "DROP DATABASE ${IMPORTDB};CREATE DATABASE ${IMPORTDB};" && \
