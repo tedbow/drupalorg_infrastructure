@@ -12,8 +12,7 @@ CWD="${3}"
 FSDEST="${4}"
 
 DUMPDIR="${PRODDUMPDIR}/${PRODDB}"
-DESTDUMP="${FSDEST}/${PRODDB}"
 
 rsync -zavhP --delete --exclude-from ${CWD}/rsync-table-exclusions.txt \
-  ${DUMPDIR} ${SSHDEST}:${DESTDUMP}/
+  ${DUMPDIR} ${SSHDEST}:${FSDEST}/
 
