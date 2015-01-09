@@ -3,8 +3,8 @@
 ###snapshot_prod-rsync.sh <PRODDB> <SSHDEST> <SCRIPTDIR>
 
 set -uex
-[ ! -f "/etc/dumpdb/conf" ] && exit 1
-source /etc/dumpdb/conf
+[ ! -f "/etc/dbdump/conf" ] && exit 1
+source /etc/dbdump/conf
 
 DUMPDIR="${PRODDUMPDIR}/${PRODDB}"
 DESTDUMP="${FSDEST}/${PRODDB}"

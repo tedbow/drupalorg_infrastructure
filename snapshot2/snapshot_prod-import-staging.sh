@@ -4,8 +4,8 @@
 
 set -uex
 
-[ ! -f ${CWD}/conf ] && exit 1
-source /etc/dumpdb/conf
+[ ! -f /etc/dbdump/conf ] && exit 1
+source /etc/dbdump/conf
 
 PRODDB="${1}"
 CURRENTDB="${2}" && \
