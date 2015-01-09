@@ -9,6 +9,7 @@ source /etc/dbdump/conf
 PRODDB="${1}"
 SSHDEST="${2}"
 CWD="${3}"
+FSDEST="${4}"
 
 DUMPDIR="${PRODDUMPDIR}/${PRODDB}"
 DESTDUMP="${FSDEST}/${PRODDB}"
