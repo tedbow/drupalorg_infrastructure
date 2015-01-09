@@ -10,6 +10,7 @@ source /etc/dbdump/conf
 PRODDB="${1}"
 CURRENTDB="${2}" && \
 echo "the current db is ${CURRENTDB}"
+FSDEST="${3}"
 
 IMPORTDB=$([[ "${CURRENTDB}" == *1 ]] && echo "${CURRENTDB%?}" || echo "${CURRENTDB}1") && \
 echo "The importdb is ${IMPORTDB}"
