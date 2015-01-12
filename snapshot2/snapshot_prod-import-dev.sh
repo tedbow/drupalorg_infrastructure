@@ -16,5 +16,5 @@ docker run -t --rm \
   -v ${DEVDEST}/current-${PRODDB}:/var/lib/mysql/ \
   -v ${INFRAREPO}/:/media/infrastructure/ \
   ${DOCKERCON} \
-  /media/infrastructure/snapshot2/snapsho_prod-import-con.sh ${PRODDB} "/mnt" ${NTHREADS}
+  /media/infrastructure/snapshot2/snapshot_prod-import-con.sh ${PRODDB} "/mnt" ${NTHREADS}
 sync
