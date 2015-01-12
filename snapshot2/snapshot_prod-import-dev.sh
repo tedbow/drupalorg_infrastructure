@@ -1,12 +1,18 @@
 #!/bin/bash
 set -uex
 
-sudo chown -R ${SSHUSER}:${SSHUSER} ${TMPSTORAGE}/mysql/current-raw/
+[ ! -f /etc/dbdump/conf ] && exit 1
+source /etc/dbdump/conf
+PRODDB="${1}"
+FSDEST="${2}"
+SSHUSER="${3}"
+RAWDUMP="${FSDEST}/${PRODDB}"
+sudo chown -R ${SSHUSER}:${SSHUSER} ${RAWDUMP}/
 
 docker run -t --rm \
-  -v ${TMPSTORAGE}/mysql/current-raw/:/var/lib/mysql/ \
+  -v ${RAWDUMP}/:/mnt/ \
+  -v${DEVDEST}:/var/lib/mysql/ \
   -v ${INFRAREPO}/:/media/infrastructure/ \
   ${DOCKERCON} \
-  /media/infrastructure/snapshot2/raw-import-con.sh ${NTHREADS}
+  /media/infrastructure/snapshot2/snapsho_prod-import-con.sh ${PRODB} "/mnt" ${NTHREADS}
 sync
-
