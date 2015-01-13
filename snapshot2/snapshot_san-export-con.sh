@@ -12,10 +12,10 @@ INFRAREPO="${5}"
 
 DUMPDIR="/var/dumps/${DBEXPORT}-${SANTYPE}/td"
 
-[ ! -d ${DUMPDIR}/ ] && mkdir ${DUMPDIR}/ || rm -rf ${DUMPDIR}/*
+[ ! -d ${DUMPDIR}/ ] && mkdir -p ${DUMPDIR}/ || rm -rf ${DUMPDIR}/*
 chown -R mysql:mysql /var/lib/mysql/
 service mysql start && \
-${INFRAREPO}/sanitize/sanitize.sh ${DBIMPORT} ${SANTYPE} ${SANOUT}
+${INFRAREPO}/sanitize/sanitize.sh ${PRODDB} ${SANTYPE} ${SANOUT}
 mysqldump ${DBEXPORT} --single-transaction --tab=${DUMPDIR}/
 service mysql stop
 rm -rf /var/lib/mysql/*

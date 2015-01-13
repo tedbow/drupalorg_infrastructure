@@ -6,16 +6,16 @@ source /etc/dbdump/conf
 PRODDB="${1}"
 FSDEST="${2}"
 SSHUSER="${3}"
-RAWDUMP="${FSDEST}/${PRODDB}"
+TXTTABLEDIR="${FSDEST}/${PRODDB}"
 
 RAWMYSQL="${MYSQLDEST}/raw/${PRODDB}/"
 
-sudo chown -R ${SSHUSER}:${SSHUSER} ${RAWDUMP}/
+sudo chown -R ${SSHUSER}:${SSHUSER} ${TXTTABLEDIR}/
 [ ! -d "${DEVDEST}/current-${PRODDB}" ] && sudo btrfs sub create ${DEVDEST}/current-${PRODDB}
 sudo chown -R ${SSHUSER}:${SSHUSER} ${RAWMYSQL}
 
 docker run -t --rm \
-  -v ${RAWDUMP}/:/mnt/ \
+  -v ${TXTTABLEDIR}/:/mnt/ \
   -v ${RAWMYSQL}/:/var/lib/mysql/ \
   -v ${INFRAREPO}/:${INFRAREPO}/ \
   ${DOCKERCON} \
