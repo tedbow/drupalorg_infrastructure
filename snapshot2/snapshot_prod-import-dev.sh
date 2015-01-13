@@ -7,14 +7,17 @@ PRODDB="${1}"
 FSDEST="${2}"
 SSHUSER="${3}"
 RAWDUMP="${FSDEST}/${PRODDB}"
+
+RAWMYSQL="${MYSQLDEST}/raw/${PRODDB}/"
+
 sudo chown -R ${SSHUSER}:${SSHUSER} ${RAWDUMP}/
 [ ! -d "${DEVDEST}/current-${PRODDB}" ] && sudo btrfs sub create ${DEVDEST}/current-${PRODDB}
-sudo chown -R ${SSHUSER}:${SSHUSER} ${DEVDEST}/current-${PRODDB}
+sudo chown -R ${SSHUSER}:${SSHUSER} ${RAWMYSQL}
 
 docker run -t --rm \
   -v ${RAWDUMP}/:/mnt/ \
-  -v ${DEVDEST}/current-${PRODDB}:/var/lib/mysql/ \
-  -v ${INFRAREPO}/:/media/infrastructure/ \
+  -v ${RAWMYSQL}/:/var/lib/mysql/ \
+  -v ${INFRAREPO}/:${INFRAREPO}/ \
   ${DOCKERCON} \
-  /media/infrastructure/snapshot2/snapshot_prod-import-dev-con.sh ${PRODDB} "/mnt" ${NTHREADS}
+  ${INFRAREPO}/snapshot2/snapshot_prod-import-dev-con.sh ${PRODDB} "/mnt" ${NTHREADS}
 sync
