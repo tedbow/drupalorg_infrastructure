@@ -1,33 +1,42 @@
 #!/bin/bash
 set -uex
-###
-## Snapshot current to raw-${SANTYPE}
-## Run docker container that creates ${SANTYPE} db
-## rsync the files from raw-${SANTYPE} over to the current-${SANTYPE}
-## snapshot current-${SANTYPE} to ${SANTYPE}-$DATE-ro
-## delete the raw-${SANTYPE} snapshot
+
+[ ! -f /etc/dbdump/conf ] && exit 1
+source /etc/dbdump/conf
+
+PRODDB="${1}"
+DBEXPORT="${2}"
+SANTYPE="${3}"
+SANOUT="${4}"
+
+DATE=$(date +'%Y%m%d%H%M')
 JOB_NAME=${JOB_NAME:=db_backup}
-STORAGEEX="${TMPSTORAGE}/mysql"
-STORDUMP="${STORAGE}/dumps/${SANTYPE}"
-DBEXPORT="drupal_export"
-[ -d ${STORAGEEX}/raw-${SANTYPE} ] &&  sudo btrfs sub delete ${STORAGEEX}/raw-${SANTYPE}
-sudo btrfs sub snapshot ${STORAGEEX}/current-raw ${STORAGEEX}/raw-${SANTYPE} && \
+
+
+RAWDIR="${FSDEST}/${PRODDB}"
+WORKINGDIR="${DEVDEST}/${PRODB}-working-${SANTYPE}"
+SANDUMPDIR="${STORAGE}/dumps/${DBEXPORT}-${SANTYPE}-${DATE}"
+EXPORTDIR="${DEVDEST}/${DBEXPORT}-${SANTYPE}"
+RODIR="${DEVDEST}/${DBEXPORT}-${SANTYPE}-${DATE}-ro"
+
+[ -d  ${WORKINGDIR}/ ] &&  sudo btrfs sub delete ${WORKINGDIR}/
+sudo btrfs sub snapshot ${RAWDIR} ${WORKINGDIR}/ && \
 sync && \
 docker run -t --rm \
-  -v ${STORAGEEX}/raw-${SANTYPE}/:/var/lib/mysql/ \
-  -v ${STORAGE}/dumps/:/var/dumps/ \
-  -v ${INFRAREPO}/:/media/infrastructure/ \
+  -v ${WORKINGDIR}/:/var/lib/mysql/ \
+  -v ${SANDUMPDIR}/:/var/dumps/ \
+  -v ${INFRAREPO}/:${INFRAREPO}/ \
   ${DOCKERCON} \
-  /media/infrastructure/snapshot2/san-export-con.sh ${SANTYPE} ${SANOUT}
+  ${INFRAREPO}/snapshot2/snapshot_san-export-con.sh ${PRODDB} ${DBEXPORT} ${SANTYPE} ${SANOUT} ${INFRAREPO}
 sync
 
 ## tar ball the *.txt files with the schema file
 if [ ${SANTYPE} == "redacted" ]; then
-  cd ${STORDUMP}/td && tar cfO - --use-compress-program=pbzip2 *.txt ${SANTYPE}-tables.sql > ${STORDUMP}/current-${SANTYPE}.tar.bz2
+  cd ${SANDUMP} && tar cfO - --use-compress-program=pbzip2 *.txt ${SANTYPE}-tables.sql > ${SANDUMP}/current-${SANTYPE}.tar.bz2
 else
-  sudo rsync -avhP --delete ${STORAGEEX}/raw-${SANTYPE}/ ${STORAGE}/mysql/current-${SANTYPE}/
-  [ ! -d ${STORAGE}/mysql/${SANTYPE}-$DATE-ro ] && \
-    sudo btrfs sub snapshot -r ${STORAGE}/mysql/current-${SANTYPE} ${STORAGE}/mysql/${SANTYPE}-${DATE}-ro
+  sudo rsync -avhP --delete ${WORKINGDIR}/ ${EXPORTDIR}/
+  [ ! -d ${RODIR}/ ] && \
+    sudo btrfs sub snapshot -r ${EXPORTDIR}/ ${RODIR}/
 fi
-sudo btrfs sub delete ${STORAGEEX}/raw-${SANTYPE}
+sudo btrfs sub delete ${WORKINGDIR}
 exit

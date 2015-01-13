@@ -1,11 +1,13 @@
-#!/bin/bash
+#/bin/bash
 
 set -uex
-CWD=$(dirname "${BASH_SOURCE[0]}")
-export DATE=$(date +'%Y%m%d%H%M')
-export SANTYPE=$1
-export SANOUT=$2
-[ ! -f ${CWD}/conf ] && exit 1
-source ${CWD}/conf
-${CWD}/san-export.sh
 
+SSHUSER="ec2"
+SANSERVER="140.211.169.84"
+SCRIPTDIR="/usr/local/drupal-infrastructure"
+PRODDB="drupal"
+DBXPORT="${PRODDB}_export"
+SANTYPE="skeleton"
+SANOUT="no-dump"
+
+ssh ${SSHUSER}@${SANSERVER} "${SCRIPTDIR}/snaphot2/snapshot_san-export.sh ${PRODDB} ${DBEXPORT} ${SANTYPE} ${SANOUT}

@@ -4,15 +4,19 @@ set -uex
 ### create skeleton db
 ### Drop raw copy of the DB
 ### stop mysql
-DBIMPORT="drupal"
-DBEXPORT="drupal_export"
-SANTYPE=$1
-DUMPDIR="/var/dumps/${SANTYPE}/td"
+PRODDB="${1}"
+DBEXPORT="${2}"
+SANTYPE="${3}"
+SANOUT="${4}"
+INFRAREPO="${5}"
+
+DUMPDIR="/var/dumps/${DBEXPORT}-${SANTYPE}/td"
+
 [ ! -d ${DUMPDIR}/ ] && mkdir ${DUMPDIR}/ || rm -rf ${DUMPDIR}/*
 chown -R mysql:mysql /var/lib/mysql/
 service mysql start && \
-/media/infrastructure/sanitize/sanitize.sh ${DBIMPORT} ${SANTYPE} $2
-mysqldump ${DBEXPORT} --tab=${DUMPDIR}/
+${INFRAREPO}/sanitize/sanitize.sh ${DBIMPORT} ${SANTYPE} ${SANOUT}
+mysqldump ${DBEXPORT} --single-transaction --tab=${DUMPDIR}/
 service mysql stop
 rm -rf /var/lib/mysql/*
 cp /etc/my-ariadb.cnf /etc/my.cnf
@@ -24,4 +28,3 @@ time cat ${DUMPDIR}/*.sql | mysql ${DBEXPORT}
 time mysqlimport -uroot --debug-info --use-threads=4 ${DBEXPORT}  ${DUMPDIR}/*.txt
 service mysql stop
 exit
-
