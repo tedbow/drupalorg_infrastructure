@@ -11,7 +11,7 @@ SANOUT="${4}"
 INFRAREPO="${5}"
 
 DUMPDIR="/var/dumps/${DBEXPORT}-${SANTYPE}/td"
-
+chmod -R 777 ${DUMPDIR}/
 [ ! -d ${DUMPDIR}/ ] && mkdir -p ${DUMPDIR}/ || rm -rf ${DUMPDIR}/*
 chown -R mysql:mysql /var/lib/mysql/
 service mysql start && \

@@ -11,13 +11,14 @@ SANOUT="${4}"
 
 DATE=$(date +'%Y%m%d%H%M')
 JOB_NAME=${JOB_NAME:=db_backup}
-
+SSHUSER=$(whoami)
 RAWDIR="${MYSQLDEST}/raw/${PRODDB}"
-WORKINGDIR="${MYSQLDEST}/${PRODDB}-working-${SANTYPE}"
+WORKINGDIR="${MYSQLDEST}/working/${PRODDB}-${SANTYPE}"
 SANDUMPDIR="${FSDEST}/${DBEXPORT}-${SANTYPE}"
-EXPORTDIR="${MYSQLDEST}/${DBEXPORT}-${SANTYPE}"
+EXPORTDIR="${MYSQLDEST}/export/${DBEXPORT}-${SANTYPE}"
 RODIR="${MYSQLDEST}/${DBEXPORT}-${SANTYPE}-${DATE}-ro"
-
+[ ! -d  ${EXPORTDIR}/ ] &&  sudo btrfs sub create ${EXPORTDIR}/
+sudo chown -R ${SSHUSER}:${SSHUSER} ${EXPORTDIR}/
 [ -d  ${WORKINGDIR}/ ] &&  sudo btrfs sub delete ${WORKINGDIR}/
 sudo btrfs sub snapshot ${RAWDIR} ${WORKINGDIR}/ && \
 sync && \
@@ -35,7 +36,7 @@ if [ ${SANTYPE} == "redacted" ]; then
 else
   sudo rsync -avhP --delete ${WORKINGDIR}/ ${EXPORTDIR}/
   [ ! -d ${RODIR}/ ] && \
-    sudo btrfs sub snapshot -r ${EXPORTDIR}/ ${RODIR}/
+  sudo btrfs sub snapshot -r ${EXPORTDIR}/ ${RODIR}/
 fi
 sudo btrfs sub delete ${WORKINGDIR}
 exit
