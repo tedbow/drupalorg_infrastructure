@@ -28,4 +28,8 @@ time mysql -e "UPDATE ${IMPORTDB}.${DBTABLE} SET mail = CONCAT(MD5(\`${DBTABLE}\
 time mysql -e "DELETE FROM variable WHERE name LIKE '%key%';" ${IMPORTDB} && \
 time mysql -e "UPDATE ${IMPORTDB}.${DBTABLE} SET init = replace( init, 'www.drupal.org/user', 'staging.devdrupal.org/user') WHERE init LIKE 'www.drupal.org/user/%/edit';" ${IMPORTDB} && \
 time mysql -e "UPDATE ${IMPORTDB}.${DBTABLE} SET init = replace( init, 'drupal.org/user', 'staging.devdrupal.org/user') WHERE init LIKE 'drupal.org/user/%/edit';" ${IMPORTDB} && \
+DBTABLE="bakery_user" && \
+time mysql -e "CREATE INDEX uid_index ON ${IMPORTDB}.${DBTABLE} (uid);" ${IMPORTDB} && \
+time mysql -e "CREATE INDEX slave_index ON ${IMPORTDB}.${DBTABLE} (slave);" ${IMPORTDB} && \
+time mysql -e "CREATE INDEX slave_uid_index ON ${IMPORTDB}.${DBTABLE} (slave_uid);" ${IMPORTDB} && \
 echo "DONE"
