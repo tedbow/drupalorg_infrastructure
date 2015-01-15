@@ -18,7 +18,7 @@ echo "The importdb is ${IMPORTDB}"
 LOCALDIR="${FSDEST}/${PRODDB}" && \
 [ ! -d "${LOCALDIR}/" ] && mkdir -p "${LOCALDIR}/"
 
-time mysql -e "DROP DATABASE ${IMPORTDB};CREATE DATABASE ${IMPORTDB};" && \
+time mysql -e "DROP DATABASE IF EXISTS  ${IMPORTDB};CREATE DATABASE ${IMPORTDB};" && \
 time cat ${LOCALDIR}/*.sql | mysql ${IMPORTDB} && \
 time mysqlimport --local  --debug-info --use-threads=5 ${IMPORTDB} ${LOCALDIR}/*.txt && \
 DBTABLE="comment" && \
