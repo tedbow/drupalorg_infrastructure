@@ -66,10 +66,12 @@ if [ "${site}" == "infrastructure" -o "${site}" == "api" -o "${site}" == "latina
   # Run drush make.
   drush6 make "${make_file}" "${web_path}/htdocs" --working-copy
 
-  # Compile bluecheese Sass.
-  pushd "${web_path}/htdocs/sites/all/themes/bluecheese"
-  bundle exec compass compile
-  popd
+  if [ -d "${web_path}/htdocs/sites/all/themes/bluecheese" ]; then
+    # Compile bluecheese Sass.
+    pushd "${web_path}/htdocs/sites/all/themes/bluecheese"
+    bundle exec compass compile
+    popd
+  fi
 
   # Copy static files.
   [ -f "${web_path}/make/settings.php" ] && cp "${web_path}/make/settings.php" "${web_path}/htdocs/sites/default/"
