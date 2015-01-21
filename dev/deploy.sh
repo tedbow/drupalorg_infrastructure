@@ -49,8 +49,8 @@ write_template "vhost.conf.template" "${vhost_path}"
 mysql -e "CREATE DATABASE ${db_name};"
 mysql -e "GRANT ALL ON ${db_name}.* TO '${db_name}'@'devwww.drupal.org' IDENTIFIED BY '${db_pass}';"
 
-# Checkout webroot 
-if [ "${site}" == "infrastructure" -o "${site}" == "api" -o "${site}" == "latinamerica2015" -o "${site}" == "localize_7" -o "${site}" == "drupal" -o "${site}" == "association" ]; then
+# Checkout webroot
+if [ "${site}" == "infrastructure" -o "${site}" == "api" -o "${site}" == "latinamerica2015" -o "${site}" == "events" -o "${site}" == "localize_7" -o "${site}" == "drupal" -o "${site}" == "association" ]; then
   # Clone make file.
   if [ "${site}" == "association" ]; then
     git clone "git@bitbucket.org:drupalorg-infrastructure/assoc.drupal.org.git" "${web_path}/make"
