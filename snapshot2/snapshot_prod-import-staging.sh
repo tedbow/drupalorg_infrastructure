@@ -21,8 +21,6 @@ LOCALDIR="${FSDEST}/${PRODDB}" && \
 time mysql -e "DROP DATABASE IF EXISTS  ${IMPORTDB};CREATE DATABASE ${IMPORTDB};" && \
 time cat ${LOCALDIR}/*.sql | mysql ${IMPORTDB} && \
 time mysqlimport --local  --debug-info --use-threads=5 ${IMPORTDB} ${LOCALDIR}/*.txt && \
-DBTABLE="comment" && \
-time mysql -e "UPDATE ${IMPORTDB}.${DBTABLE} SET mail = CONCAT(MD5(\`${DBTABLE}\`.\`name\`), '@sanitized.invalid');" && \
 DBTABLE="users" && \
 time mysql -e "UPDATE ${IMPORTDB}.${DBTABLE} SET mail = CONCAT(MD5(\`${DBTABLE}\`.\`name\`), '@sanitized.invalid');" && \
 time mysql -e "DELETE FROM variable WHERE name LIKE '%key%';" ${IMPORTDB} && \
@@ -31,5 +29,9 @@ time mysql -e "UPDATE ${IMPORTDB}.${DBTABLE} SET init = replace( init, 'drupal.o
 DBTABLE="bakery_user" && \
 time mysql -e "CREATE INDEX uid_index ON ${IMPORTDB}.${DBTABLE} (uid);" ${IMPORTDB} && \
 time mysql -e "CREATE INDEX slave_index ON ${IMPORTDB}.${DBTABLE} (slave);" ${IMPORTDB} && \
-time mysql -e "CREATE INDEX slave_uid_index ON ${IMPORTDB}.${DBTABLE} (slave_uid);" ${IMPORTDB} && \
+time mysql -e "CREATE INDEX slave_uid_index ON ${IMPORTDB}.${DBTABLE} (slave_uid);" ${IMPORTDB}
+if [ "${PRODDB}" != "drupal_jobs" ]; then
+  DBTABLE="comment" && \
+  time mysql -e "UPDATE ${IMPORTDB}.${DBTABLE} SET mail = CONCAT(MD5(\`${DBTABLE}\`.\`name\`), '@sanitized.invalid');" && \
+fi
 echo "DONE"
