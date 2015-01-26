@@ -8,6 +8,9 @@ cd /var/git/bluecheese
 git remote show private || git remote add private ssh://git@bitbucket.org/drupalorg-infrastructure/bluecheese-private.git
 git fetch private
 
+# Reset Git repo.
+git reset --hard HEAD
+
 # Mirror changes.
 git checkout 7.x-1.x
 git pull
