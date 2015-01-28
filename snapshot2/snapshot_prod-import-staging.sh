@@ -30,7 +30,7 @@ DBTABLE="bakery_user" && \
 time mysql -e "CREATE INDEX uid_index ON ${IMPORTDB}.${DBTABLE} (uid);" ${IMPORTDB} && \
 time mysql -e "CREATE INDEX slave_index ON ${IMPORTDB}.${DBTABLE} (slave);" ${IMPORTDB} && \
 time mysql -e "CREATE INDEX slave_uid_index ON ${IMPORTDB}.${DBTABLE} (slave_uid);" ${IMPORTDB}
-if [ "${PRODDB}" != "drupal_jobs" ]; then
+if [ "${PRODDB}" != "drupal_jobs" -a "${PRODDB}" != "drupal_qa" ]; then
   DBTABLE="comment" && \
   time mysql -e "UPDATE ${IMPORTDB}.${DBTABLE} SET mail = CONCAT(MD5(\`${DBTABLE}\`.\`name\`), '@sanitized.invalid');"
 fi
