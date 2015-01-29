@@ -165,6 +165,27 @@ function run_queries($args) {
     INNER JOIN {field_data_field_project_type} t ON t.entity_id = n.nid AND t.field_project_type_value = 'full'
     WHERE n.status = 1 AND n.created BETWEEN :start AND :end", $args)->fetchField();
 
+  // Total number of Projects
+  $data['total_projects'] = db_query("SELECT COUNT(n.nid)
+    FROM {node} n
+    INNER JOIN {users} u ON u.uid = n.uid AND u.status = 1
+    INNER JOIN {field_data_field_project_type} t ON t.entity_id = n.nid
+    WHERE n.status = 1")->fetchField();
+
+  // Total number of Sandbox Projects
+  $data['total_projects_sandbox'] = db_query("SELECT COUNT(n.nid)
+    FROM {node} n
+    INNER JOIN {users} u ON u.uid = n.uid AND u.status = 1
+    INNER JOIN {field_data_field_project_type} t ON t.entity_id = n.nid AND t.field_project_type_value = 'sandbox'
+    WHERE n.status = 1")->fetchField();
+
+  // Total number of Full Projects
+  $data['total_projects_full'] = db_query("SELECT COUNT(n.nid)
+    FROM {node} n
+    INNER JOIN {users} u ON u.uid = n.uid AND u.status = 1
+    INNER JOIN {field_data_field_project_type} t ON t.entity_id = n.nid AND t.field_project_type_value = 'full'
+    WHERE n.status = 1")->fetchField();
+
   // Support
   // % issues about Drupal.org responded to in 48 hours
   // (% of issues, created during the time period, which received first comment, not from the issue author, in less than 48 hours after issue published, in the following queues: Content, Webmasters, Infrastructure, Bluecheese, Drupalorg, Drupalorg_crosssite)
