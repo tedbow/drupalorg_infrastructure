@@ -12,7 +12,7 @@ db=$(${drush} ${type}sql-conf | sed -ne 's/^\s*\[database\] => //p')
 # the 'staging' snapshot.
 [ "${snaptype-}" ] || snaptype=staging
 
-if [ "${uri}" != "staging.devdrupal.org" -a "${uri}" != "infrastructure.staging.devdrupal.org" -a "${uri}" != "assoc.staging.devdrupal.org" -a "${uri}" != "events.staging.devdrupal.org" -a "${uri}" != "api.staging.devdrupal.org" -a "${uri}" != "jobs.staging.devdrupal.org" -a "${uri}" != "qa.staging.devdrupal.org" ]; then
+if [ "${uri}" != "staging.devdrupal.org" -a "${uri}" != "infrastructure.staging.devdrupal.org" -a "${uri}" != "assoc.staging.devdrupal.org" -a "${uri}" != "events.staging.devdrupal.org" -a "${uri}" != "api.staging.devdrupal.org" -a "${uri}" != "jobs.staging.devdrupal.org" -a "${uri}" != "jobs.devdrupal.org"-a "${uri}" != "qa.staging.devdrupal.org" ]; then
   # Copy snapshot.
   rsync -v --copy-links --password-file ~/util.rsync.pass "rsync://stagingmysql@util.drupal.org/mysql-${snaptype}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2" "${WORKSPACE}"
 
