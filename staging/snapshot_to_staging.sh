@@ -66,7 +66,7 @@ elif [ "${uri}" = "groups-7.staging.devdrupal.org" ]; then
   # todo remove when the existing front page, "frontpage", does not 404.
   ${drush} variable-set site_frontpage "node"
 
-elif echo "${uri}" | grep -q ".civicrm.devdrupal.org$"; then
+elif echo "${uri}" | grep -qE ".civicrm.devdrupal.org$|^jobs.devdrupal.org$"; then
   # CiviCRM dev sites do not have bakery set up.
   ${drush} pm-disable bakery
 fi
