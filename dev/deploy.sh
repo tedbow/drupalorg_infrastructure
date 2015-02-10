@@ -153,7 +153,6 @@ ${drush} vset devel_xhprof_url "https://xhprof-${name}-${site}.redesign.devdrupa
 
 # Set up for potential bakery testing
 ${drush} vdel bakery_slaves
-${drush} vset bakery_domain ".redesign.devdrupal.org"
 if [ "${site}" == "drupal" ]; then
   # Drupal.org sites are masters
   ${drush} vset bakery_master "https://${name}-${site}.redesign.devdrupal.org/"
