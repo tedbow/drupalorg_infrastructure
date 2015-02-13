@@ -64,7 +64,7 @@ if [ "${site}" == "infrastructure" -o "${site}" == "api" -o "${site}" == "latina
   curl 'https://bitbucket.org/drupalorg-infrastructure/drupal.org-sites-common/raw/7.x/drupal.org-dev.make' >> "${make_file}"
 
   # Run drush make.
-  drush6 make "${make_file}" "${web_path}/htdocs" --working-copy
+  drush6 make --no-cache "${make_file}" "${web_path}/htdocs" --working-copy
 
   if [ -d "${web_path}/htdocs/sites/all/themes/bluecheese" ]; then
     # Compile bluecheese Sass.
