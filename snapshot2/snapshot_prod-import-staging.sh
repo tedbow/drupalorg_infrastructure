@@ -23,7 +23,7 @@ time cat ${LOCALDIR}/*.sql | mysql ${IMPORTDB} && \
 time mysqlimport --local  --debug-info --use-threads=5 ${IMPORTDB} ${LOCALDIR}/*.txt
 DBTABLE="users"
 time mysql -e "UPDATE ${IMPORTDB}.${DBTABLE} SET uid = '0' WHERE name = '';"
-if [ "${PRODDB}" != "drupal_qa" ]; then
+if [ "${PRODDB}" = "drupal_qa" ]; then
   time mysql -e "UPDATE ${IMPORTDB}.${DBTABLE} SET mail = CONCAT(MD5(\`${DBTABLE}\`.\`name\`), '@sanitized.invalid') WHERE uid > 0;"
 fi
 time mysql -e "DELETE FROM variable WHERE name LIKE '%key%';" ${IMPORTDB}
