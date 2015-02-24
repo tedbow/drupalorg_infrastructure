@@ -6,8 +6,22 @@ set -uex
 source /etc/dbdump/conf
 
 PRODDB="${1}"
+CWD="${2}"
 DUMPDIR="${PRODDUMPDIR}/${PRODDB}"
+TMPPREFIX="/tmp/${PRODDB}"
+echo "" > ${TMPPREFIX}-ignore
+EXCLUSIONFILE="${CWD}/te.txt"
 [ ! -d "${DUMPDIR}/" ] && mkdir -p "${DUMPDIR}/"
 rm -f ${DUMPDIR}/*
-mysqldump ${PRODDB} --single-transaction --tab=${DUMPDIR}/
 
+while read LINE
+do
+  TABLENAME=$(mysql -N -e "show tables like  '$LINE' ;"  ${PRODDB} )
+  [ ! -z "${TABLENAME}" ] && echo "${TABLENAME}" | while read LINE2
+  do
+    echo -n "--ignore-table=${PRODDB}.${LINE2} " >> ${TMPPREFIX}-ignore
+  done
+done < ${EXCLUSIONFILE}
+EXCLUDEDTABLES="$(cat ${TMPPREFIX}-ignore)"
+mysqldump ${PRODDB} --no-data > ${DUMPDIR}/${PRODDB}-schema.sql
+mysqldump ${PRODDB} ${EXCLUDEDTABLES} --single-transaction --no-create-db --no-create-info > ${DUMPDIR}/${PRODDB}-data.sql

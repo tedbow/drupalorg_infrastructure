@@ -12,15 +12,15 @@ CURRENTDB="${2}" && \
 echo "the current db is ${CURRENTDB}"
 FSDEST="${3}"
 
-IMPORTDB=$([[ "${CURRENTDB}" == *1 ]] && echo "${CURRENTDB%?}" || echo "${CURRENTDB}1") 
+IMPORTDB=$([[ "${CURRENTDB}" == *1 ]] && echo "${CURRENTDB%?}" || echo "${CURRENTDB}1")
 echo "The importdb is ${IMPORTDB}"
 
-LOCALDIR="${FSDEST}/${PRODDB}" 
+LOCALDIR="${FSDEST}/${PRODDB}"
 [ ! -d "${LOCALDIR}/" ] && mkdir -p "${LOCALDIR}/"
 
 time mysql -e "DROP DATABASE IF EXISTS  ${IMPORTDB};CREATE DATABASE ${IMPORTDB};"
-time cat ${LOCALDIR}/*.sql | mysql ${IMPORTDB} && \
-time mysqlimport --local  --debug-info --use-threads=5 ${IMPORTDB} ${LOCALDIR}/*.txt
+time mysql ${IMPORTDB} < ${LOCALDIR}/*-schema.sql
+time mysql ${IMPORTDB} < ${LOCALDIR}/*-data.sql
 DBTABLE="users"
 if [ "${PRODDB}" = "drupal_qa" ]; then
   time mysql -e "UPDATE ${IMPORTDB}.${DBTABLE} SET uid = '0' WHERE name = '';"
