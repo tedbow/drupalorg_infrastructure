@@ -10,7 +10,7 @@ CWD="${2}"
 DUMPDIR="${PRODDUMPDIR}/${PRODDB}"
 TMPPREFIX="/tmp/${PRODDB}"
 echo "" > ${TMPPREFIX}-ignore
-EXCLUSIONFILE="${CWD}/te.txt"
+EXCLUSIONFILE="${CWD}/table-exclusions.txt"
 [ ! -d "${DUMPDIR}/" ] && mkdir -p "${DUMPDIR}/"
 rm -f ${DUMPDIR}/*
 
