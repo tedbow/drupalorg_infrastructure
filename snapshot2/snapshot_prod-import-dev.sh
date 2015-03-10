@@ -8,7 +8,10 @@ FSDEST="${2}"
 SSHUSER="${3}"
 TXTTABLEDIR="${FSDEST}/${PRODDB}"
 
+[ ! -d  ${MYSQLDEST}/ ] && sudo btrfs sub create ${MYSQLDEST}/
+[ ! -d  ${MYSQLDEST}/raw/ ] && sudo btrfs sub create ${MYSQLDEST}/raw/
 RAWMYSQL="${MYSQLDEST}/raw/${PRODDB}/"
+[ ! -d  ${RAWMYSQL}/ ] && sudo btrfs sub create ${RAWMYSQL}/
 
 sudo chown -R ${SSHUSER}:${SSHUSER} ${TXTTABLEDIR}/
 sudo chown -R ${SSHUSER}:${SSHUSER} ${RAWMYSQL}
