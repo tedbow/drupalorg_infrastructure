@@ -12,7 +12,7 @@ mysql_install_db
 service mysql start
 service mysql status
 mysql -uroot -e "CREATE DATABASE ${PRODDB};"
-time cat ${TXTTABLEDIR}/*.sql | mysql ${PRODDB}
-time mysqlimport -uroot --debug-info --use-threads=${NTHREADS} ${PRODDB}  ${TXTTABLEDIR}/*.txt
+time cat ${TXTTABLEDIR}/${PRODDB}-schema.sql | mysql ${PRODDB}
+time lz4cat ${TXTTABLEDIR}/${PRODDB}-data.sql.lz4 | mysql ${PRODDB}
 service mysql stop
 exit
