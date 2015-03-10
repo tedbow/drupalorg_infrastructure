@@ -21,6 +21,7 @@ LOCALDIR="${FSDEST}/${PRODDB}"
 time mysql -e "DROP DATABASE IF EXISTS  ${IMPORTDB};CREATE DATABASE ${IMPORTDB};"
 time mysql ${IMPORTDB} < ${LOCALDIR}/*-schema.sql
 time mysql ${IMPORTDB} < ${LOCALDIR}/*-data.sql
+time lz4cat ${LOCALDIR}/*-data.sql.lz4 | mysql ${IMPORTDB}
 DBTABLE="users"
 if [ "${PRODDB}" = "drupal_qa" ]; then
   time mysql -e "UPDATE ${IMPORTDB}.${DBTABLE} SET uid = '0' WHERE name = '';"
