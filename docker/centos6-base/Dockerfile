@@ -11,6 +11,7 @@ RUN yum install -y \
   hostname \
   htop \
   lrzip \
+  lz4 \
   ncdu \
   openssh-server \
   openssh-clients \
