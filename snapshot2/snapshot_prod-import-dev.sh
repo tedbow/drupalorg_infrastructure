@@ -13,8 +13,9 @@ TXTTABLEDIR="${FSDEST}/${PRODDB}"
 RAWMYSQL="${MYSQLDEST}/raw/${PRODDB}/"
 [ ! -d  ${RAWMYSQL}/ ] && sudo btrfs sub create ${RAWMYSQL}/
 
-sudo chown -R ${SSHUSER}:${SSHUSER} ${TXTTABLEDIR}/
+sudo chown -R ${SSHUSER}:${SSHUSER} ${TXTTABLEDIR}
 sudo chown -R ${SSHUSER}:${SSHUSER} ${RAWMYSQL}
+sudo rm -rf ${RAWMYSQL}/*
 
 docker run -t --rm \
   -v ${TXTTABLEDIR}/:/mnt/ \
