@@ -10,7 +10,7 @@ SANTYPE="${3}"
 SANOUT="${4}"
 INFRAREPO="${5}"
 
-DUMPDIR="/var/dumps/${DBEXPORT}-${SANTYPE}/td"
+DUMPDIR="/mnt/tmp/${DBEXPORT}-${SANTYPE}/td"
 [ ! -d ${DUMPDIR}/ ] && mkdir -p ${DUMPDIR}/
 chmod -R 777 ${DUMPDIR}/
 rm -rf ${DUMPDIR}/*

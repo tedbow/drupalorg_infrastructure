@@ -32,12 +32,13 @@ EXPORTDIR="${MYSQLDEST}/export/${DBEXPORT}-${SANTYPE}"
 
 sudo chown -R ${SSHUSER}:${SSHUSER} ${EXPORTDIR}/
 [ -d  ${WORKINGDIR}/ ] && sudo btrfs sub delete ${WORKINGDIR}/
-sudo btrfs sub snapshot ${RAWDIR} ${WORKINGDIR}/ 
+sudo btrfs sub snapshot ${RAWDIR} ${WORKINGDIR}/
 sync
 docker run -t --rm \
   -v ${WORKINGDIR}/:/var/lib/mysql/ \
   -v ${SANDUMPDIR}/:/var/dumps/ \
   -v ${INFRAREPO}/:${INFRAREPO}/ \
+  -v ${TMPSTORE}/:/mnt/tmp/ \
   ${DOCKERCON} \
   ${INFRAREPO}/snapshot2/snapshot_san-export-con.sh ${PRODDB} ${DBEXPORT} ${SANTYPE} ${SANOUT} ${INFRAREPO}
 sync
