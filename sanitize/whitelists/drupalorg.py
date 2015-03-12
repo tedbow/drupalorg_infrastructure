@@ -212,6 +212,16 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="_nodata:cache_mailchimp",
+    columns=[
+        "cid",
+        "data",
+        "expire",
+        "created",
+        "serialized",
+    ])
+
+whitelist.add(
     table="_nodata:cache_metatag",
     columns=[
         "cid",
@@ -299,6 +309,62 @@ whitelist.add(
         "list",
         "weight",
         "legacy_fid",
+    ])
+
+whitelist.add(
+    table="_nodata:field_deleted_data_257",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_current_company_org_value",
+        "field_current_company_org_format",
+    ])
+
+whitelist.add(
+    table="_nodata:field_deleted_data_303",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_drupal_contributions_value",
+        "field_drupal_contributions_format",
+    ])
+
+whitelist.add(
+    table="_nodata:field_deleted_revision_257",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_current_company_org_value",
+        "field_current_company_org_format",
+    ])
+
+whitelist.add(
+    table="_nodata:field_deleted_revision_303",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_drupal_contributions_value",
+        "field_drupal_contributions_format",
     ])
 
 whitelist.add(
@@ -1614,6 +1680,20 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="_nodata:field_data_field_notes",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_notes_value",
+        "field_notes_format",
+    ])
+
+whitelist.add(
     table="field_data_field_official_website",
     columns=[
         "entity_type",
@@ -1720,6 +1800,19 @@ whitelist.add(
         "language",
         "delta",
         "field_organization_list_rule_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_organization_reference",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organization_reference_target_id",
     ])
 
 whitelist.add(
@@ -2393,6 +2486,18 @@ whitelist.add(
         "language",
         "delta",
         "field_status_value",
+    ])
+
+whitelist.add(
+    table="_nodata:field_data_field_subscribe_to",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
     ])
 
 whitelist.add(
@@ -3600,6 +3705,20 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="_nodata:field_revision_field_notes",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_notes_value",
+        "field_notes_format",
+    ])
+
+whitelist.add(
     table="field_revision_field_official_website",
     columns=[
         "entity_type",
@@ -3706,6 +3825,19 @@ whitelist.add(
         "delta",
         "field_organizations_value",
         "field_organizations_revision_id",
+    ])
+
+whitelist.add(
+    table="field_revision_field_organization_reference",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organization_reference_target_id",
     ])
 
 whitelist.add(
@@ -4369,6 +4501,31 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_revision_field_status",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_status_value",
+    ])
+
+whitelist.add(
+    table="_nodata:field_revision_field_subscribe_to",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+    ])
+
+whitelist.add(
     table="field_revision_field_supporting_organizations",
     columns=[
         "entity_type",
@@ -4380,19 +4537,6 @@ whitelist.add(
         "delta",
         "field_supporting_organizations_value",
         "field_supporting_organizations_revision_id",
-    ])
-
-whitelist.add(
-    table="field_revision_field_status",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_status_value",
     ])
 
 whitelist.add(
