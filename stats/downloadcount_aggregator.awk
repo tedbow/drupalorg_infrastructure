@@ -1,4 +1,4 @@
-#!/bin/gawk
+#!/bin/gawk -f
 # Reads in all of the download count files and aggregates the counts together.
 
 # Set the Field Separator
@@ -8,5 +8,5 @@ BEGIN {FS=","}
 {downloaded_files[$5] += $1;}
 
 END {
-  for (filename in downloaded_files) print downloaded_files[filename] "," filename;
+  for (filename in downloaded_files) print downloaded_files[filename] "," filename > "comprehensive_download_stats.csv";
 }
