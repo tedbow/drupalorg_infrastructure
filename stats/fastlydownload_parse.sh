@@ -9,3 +9,6 @@ for filename in *; do
      /usr/local/drupal-infrastructure/stats/fastlycounts.awk $filename
    fi;
 done
+
+# Create the comprehensive download counts
+/usr/local/drupal-infrastructure/stats/downloadcount_aggregator.awk /data/logs/fastly/downloadcounts/*.downloadcounts.csv
