@@ -3,7 +3,7 @@
 set -uex
 
 DBDUMPCONF="/etc/dbdump/conf"
-SSTYPE="drupal_export-skeleton"
+SSTYPE="${1}"
 [ ! -d "${DBDUMPCONF}" ] && source "${DBDUMPCONF}" || exit 1
 
 ### Get the name of the parent on the FileSystemDestinationDirectory
