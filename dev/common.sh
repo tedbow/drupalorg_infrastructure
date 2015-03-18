@@ -3,6 +3,7 @@ set -uex
 
 function restart_apache {
   sudo /etc/init.d/httpd restart
+  sudo /etc/init.d/php-fpm restart
 }
 
 # Set common variables.
