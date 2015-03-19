@@ -24,6 +24,8 @@ WORKINGDIR="${MYSQLDEST}/working/${PRODDB}-${SANTYPE}"
 [ ! -d  ${WORKINGDIR}/ ] && sudo btrfs sub create ${WORKINGDIR}/
 
 SANDUMPDIR="${FSDEST}/${DBEXPORT}-${SANTYPE}"
+[ ! -d  ${STORAGE}/ ] && sudo btrfs sub create ${STORAGE}/
+[ ! -d  ${FSDEST}/ ] && sudo btrfs sub create ${FSDEST}/
 [ ! -d  ${SANDUMPDIR}/ ] && sudo btrfs sub create ${SANDUMPDIR}/
 
 [ ! -d  ${MYSQLDEST}/export/ ] &&  sudo btrfs sub create ${MYSQLDEST}/export/
