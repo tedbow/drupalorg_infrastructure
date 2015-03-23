@@ -2,7 +2,7 @@
 set -uex
 export TERM=dumb
 BUILDBASE='/var/git/builds'
-branches=(stg prod) ## Warning, the will not add the branch to the git repo, please create the branch before running this
+branches=(stg prod integration) ## Warning, the will not add the branch to the git repo, please create the branch before running this
 versions=(6 7 8)
 if [ -z "$1" ]; then
   echo "Need site string"
