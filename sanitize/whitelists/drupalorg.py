@@ -21,6 +21,44 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="_nodata:advagg_aggregates",
+    columns=[
+        "aggregate_filenames_hash",
+        "filename_hash",
+        "porder",
+        "settings",
+    ])
+
+whitelist.add(
+    table="_nodata:advagg_aggregates_hashes",
+    columns=[
+        "hash",
+        "settings",
+    ])
+
+whitelist.add(
+    table="_nodata:advagg_aggregates_versions",
+    columns=[
+        "aggregate_filenames_hash",
+        "aggregate_contents_hash",
+        "atime",
+        "root",
+    ])
+
+whitelist.add(
+    table="_nodata:advagg_files",
+    columns=[
+        "filename",
+        "filename_hash",
+        "content_hash",
+        "filetype",
+        "filesize",
+        "linecount",
+        "mtime",
+        "changes",
+    ])
+
+whitelist.add(
     table="aggregator_category",
     columns=[
         "cid",
@@ -146,6 +184,27 @@ whitelist.add(
     columns=[
         "filename",
         "hash",
+    ])
+
+whitelist.add(
+    table="_nodata:cache_advagg_aggregates",
+    columns=[
+        "cid",
+        "data",
+        "expire",
+        "created",
+        "serialized",
+    ])
+
+
+whitelist.add(
+    table="_nodata:cache_advagg_info",
+    columns=[
+        "cid",
+        "data",
+        "expire",
+        "created",
+        "serialized",
     ])
 
 whitelist.add(
@@ -876,6 +935,20 @@ whitelist.add(
         "field_areas_of_expertise_tid",
     ])
 
+
+whitelist.add(
+    table="field_data_field_attribute_contribution_to",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_attribute_contribution_to_target_id",
+    ])
+
 whitelist.add(
     table="field_data_field_bio",
     columns=[
@@ -1273,6 +1346,19 @@ whitelist.add(
         "delta",
         "field_first_name_value",
         "field_first_name_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_for_customer",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_for_customer_target_id",
     ])
 
 whitelist.add(
@@ -2902,6 +2988,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_revision_field_attribute_contribution_to",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_attribute_contribution_to_target_id",
+    ])
+
+whitelist.add(
     table="field_revision_field_bio",
     columns=[
         "entity_type",
@@ -3298,6 +3397,19 @@ whitelist.add(
         "delta",
         "field_first_name_value",
         "field_first_name_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_for_customer",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_for_customer_target_id",
     ])
 
 whitelist.add(
