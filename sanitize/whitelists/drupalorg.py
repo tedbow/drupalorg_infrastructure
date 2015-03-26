@@ -196,7 +196,6 @@ whitelist.add(
         "serialized",
     ])
 
-
 whitelist.add(
     table="_nodata:cache_advagg_info",
     columns=[
@@ -935,7 +934,6 @@ whitelist.add(
         "field_areas_of_expertise_tid",
     ])
 
-
 whitelist.add(
     table="field_data_field_attribute_contribution_to",
     columns=[
@@ -961,19 +959,6 @@ whitelist.add(
         "delta",
         "field_bio_value",
         "field_bio_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_country",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_country_value",
     ])
 
 whitelist.add(
@@ -1208,6 +1193,19 @@ whitelist.add(
         "delta",
         "field_contributions_value",
         "field_contributions_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_country",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_country_value",
     ])
 
 whitelist.add(
