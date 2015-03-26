@@ -22,4 +22,4 @@ NEWSS="${SSORIGSUBVOL}/${OGCHILD}"
 ## verify that the DESTPARENT exists on the FSORIG
 [ -d "${SSORIGSUBVOL}/${DESTPARENT}" ] || ( echo "The parent does not exist on the originating file system" && exit 1 )
 ## find closest relative on dest dir
-time sudo btrfs send -p "${SSORIGSUBVOL}/${DESTPARENT}" "${NEWSS}" | sudo btrfs receive ${SSDESTSUBVOL}/
+time sudo sh -c 'btrfs send -p "${SSORIGSUBVOL}/${DESTPARENT}" "${NEWSS}" | btrfs receive ${SSDESTSUBVOL}/'
