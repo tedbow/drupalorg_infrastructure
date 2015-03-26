@@ -7,7 +7,5 @@ ADD files/my.cnf /etc/my.cnf
 RUN yum install -y \
   MariaDB-server \
   MariaDB-client \
-  MySQL-python 
+  MySQL-python
 RUN yum clean all
-EXPOSE 3306
-
