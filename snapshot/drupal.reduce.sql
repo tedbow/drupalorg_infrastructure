@@ -41,7 +41,7 @@ DELETE field_revision_field_project FROM field_revision_field_project LEFT JOIN 
 DELETE field_revision_body FROM field_revision_body LEFT JOIN node_revision ON node_revision.vid = field_revision_body.revision_id WHERE node_revision.vid IS NULL;
 
 -- Delete taxonomy vocab associated with deleted nodes
-DELETE ft FROM roles_drupal.field_revision_taxonomy_vocabulary_9 ft LEFT JOIN roles_drupal.node n on n.nid = ft.entity_id WHERE n.nid is NULL;
+DELETE ft FROM field_revision_taxonomy_vocabulary_9 ft LEFT JOIN node n on n.nid = ft.entity_id WHERE n.nid is NULL;
 -- Delete versioncontrol operations more than 60 days old.
 DELETE FROM versioncontrol_operations WHERE author_date < (unix_timestamp() - 60*24*60*60);
 DELETE versioncontrol_operation_labels FROM versioncontrol_operation_labels LEFT JOIN versioncontrol_operations ON versioncontrol_operation_labels.vc_op_id = versioncontrol_operations.vc_op_id WHERE versioncontrol_operations.vc_op_id IS NULL;
