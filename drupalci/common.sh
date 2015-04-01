@@ -33,32 +33,32 @@ fetchGit() {
         git pull
       else
         git clone $base_repo
-        cd drupalci_base
       fi
+      cd drupalci_base
       ;;
     api)
       if [ -d api ]; then
         git pull
       else
         git clone $api_repo
-        cd api
       fi
+      cd api
       ;;
     dispatcher)
       if [ -d dispatcher ]; then
         git pull
       else
         git clone $dispatcher_repo
-        cd dispatcher
       fi
+      cd dispatcher
       ;;
     results)
       if [ -d results ]; then
         git pull
       else
         git clone $results_repo
-        cd results
       fi
+      cd results
       ;;
     *)
       echo $"Usage: $0 {base|api|dispatcher|results}"
