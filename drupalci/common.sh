@@ -46,7 +46,7 @@ fetchGit() {
         cd $1
       fi
       ;;
-    dispatcher)
+    dispatcher*)
       if [ -d $1 ]; then
         cd $1
         git pull
