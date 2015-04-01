@@ -29,36 +29,40 @@ buildAMI() {
 fetchGit() {
   case "$1" in
     base)
-      if [ -d drupalci_base ]; then
+      if [ -d drupalci_$1 ]; then
+        cd drupalci_$1
         git pull
       else
         git clone $base_repo
+        cd drupalci_$1
       fi
-      cd drupalci_base
       ;;
     api)
-      if [ -d api ]; then
+      if [ -d $1 ]; then
+        cd $1
         git pull
       else
         git clone $api_repo
+        cd $1
       fi
-      cd api
       ;;
     dispatcher)
-      if [ -d dispatcher ]; then
+      if [ -d $1 ]; then
+        cd $1
         git pull
       else
         git clone $dispatcher_repo
+        cd $1
       fi
-      cd dispatcher
       ;;
     results)
-      if [ -d results ]; then
+      if [ -d $1 ]; then
+        cd $1
         git pull
       else
         git clone $results_repo
+        cd $1
       fi
-      cd results
       ;;
     *)
       echo $"Usage: $0 {base|api|dispatcher|results}"
