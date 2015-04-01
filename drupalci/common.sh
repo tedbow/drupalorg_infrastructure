@@ -9,9 +9,9 @@ export PACKER_HOME=/opt/packer
 
 # Repository configuration
 base_repo=git@bitbucket.org:drupalorg-infrastructure/drupalci_base.git
-api_repo=git@github.com:drupalci/api.git
-dispatcher_repo=git@github.com:drupalci/dispatcher.git
-results_repo=git@github.com:drupalci/results.git
+api_repo=https://github.com/drupalci/api.git
+dispatcher_repo=https://github.com/drupalci/dispatcher.git
+results_repo=https://github.com/drupalci/results.git
 
 
 latestBaseAMI() {
