@@ -1,5 +1,3 @@
-#/bin/bash
-
 # EC2 configuration
 . ~/.ec2creds
 export EC2_HOME=/opt/ec2/ec2-api-tools-1.7.3.2
@@ -21,7 +19,7 @@ latestBaseAMI() {
 }
 
 buildBaseAMI() {
-  $PACKER_HOME/packer build packer/packer.json
+  $PACKER_HOME/packer build packer.json
 }
 
 buildAMI() {
@@ -31,16 +29,36 @@ buildAMI() {
 fetchGit() {
   case "$1" in
     base)
-      cd drupalci_base && git pull || git clone $base_repo && cd drupalci_base
+      if [ -d drupalci_base ]; then
+        git pull
+      else
+        git clone $base_repo
+        cd drupalci_base
+      fi
       ;;
     api)
-      cd api && git pull || git clone $api_repo && cd api
+      if [ -d api ]; then
+        git pull
+      else
+        git clone $api_repo
+        cd api
+      fi
       ;;
     dispatcher)
-      cd dispatcher && git pull || git clone $dispatcher_repo && cd dispatcher
+      if [ -d dispatcher ]; then
+        git pull
+      else
+        git clone $dispatcher_repo
+        cd dispatcher
+      fi
       ;;
     results)
-      cd results && git pull || git clone $results_repo && cd results
+      if [ -d results ]; then
+        git pull
+      else
+        git clone $results_repo
+        cd results
+      fi
       ;;
     *)
       echo $"Usage: $0 {base|api|dispatcher|results}"

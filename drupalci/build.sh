@@ -1,26 +1,25 @@
 #/bin/bash
-
 source /usr/local/drupal-infrastructure/drupalci/common.sh
+
+# Exit immediately on uninitialized variable or error, and print each command.
+set -uex
+
+fetchGit $1
 
 case "$1" in
   base)
-    gitFetch $1
     buildBaseAMI
     ;;
   api)
-    gitFetch $1
     buildAMI
     ;;
   dispatcher)
-    gitFetch $1
     buildAMI
     ;;
   results)
-    gitFetch $1
     buildAMI
     ;;
   *)
     echo $"Usage: $0 {base|api|dispatcher|results}"
     exit 1
 esac
-
