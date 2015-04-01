@@ -8,18 +8,21 @@ fetchGit $1
 
 case "$1" in
   base)
-    buildBaseAMI
+    buildBaseAMI packer.json
     ;;
   api)
-    buildAMI
+    buildAMI packer/packer.json
     ;;
-  dispatcher)
-    buildAMI
+  dispatcher-master)
+    buildAMI packer/master/packer.json
+    ;;
+  dispatcher-slave)
+    buildAMI packer/slave/packer.json
     ;;
   results)
-    buildAMI
+    buildAMI packer/packer.json
     ;;
   *)
-    echo $"Usage: $0 {base|api|dispatcher|results}"
+    echo $"Usage: $0 {base|api|dispatcher-master|dispatcher-slave|results}"
     exit 1
 esac

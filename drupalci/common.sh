@@ -19,11 +19,11 @@ latestBaseAMI() {
 }
 
 buildBaseAMI() {
-  $PACKER_HOME/packer build packer.json
+  $PACKER_HOME/packer build $1
 }
 
 buildAMI() {
-  $PACKER_HOME/packer build -var "source_ami=$(latestBaseAMI)" packer/packer.json
+  $PACKER_HOME/packer build -var "source_ami=$(latestBaseAMI)" $1
 }
 
 fetchGit() {
@@ -48,11 +48,11 @@ fetchGit() {
       ;;
     dispatcher)
       if [ -d $1 ]; then
-        cd $1/master
+        cd $1
         git pull
       else
         git clone $dispatcher_repo
-        cd $1/master
+        cd $1
       fi
       ;;
     results)
