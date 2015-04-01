@@ -13,6 +13,12 @@ api_repo=https://github.com/drupalci/api.git
 dispatcher_repo=https://github.com/drupalci/dispatcher.git
 results_repo=https://github.com/drupalci/results.git
 
+deregisterAMI() {
+  ami_name=$1
+  for ami in $($EC2_HOME/ec2-describe-images | grep $ami_name | awk '{ print $2 }' | head -n-3); do
+    $EC2_HOME/ec2-deregister $ami
+  done
+}
 
 latestBaseAMI() {
   $EC2_HOME/bin/ec2-describe-images | awk '/DrupalCI D.O base image/ { ami=$2 } END { print ami }'
