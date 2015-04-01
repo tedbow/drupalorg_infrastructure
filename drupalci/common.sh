@@ -48,11 +48,11 @@ fetchGit() {
       ;;
     dispatcher)
       if [ -d $1 ]; then
-        cd $1
+        cd $1/master
         git pull
       else
         git clone $dispatcher_repo
-        cd $1
+        cd $1/master
       fi
       ;;
     results)
