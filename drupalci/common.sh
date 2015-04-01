@@ -47,12 +47,12 @@ fetchGit() {
       fi
       ;;
     dispatcher*)
-      if [ -d $1 ]; then
-        cd $1
+      if [ -d ${1%%-*} ]; then
+        cd ${1%%-*} 
         git pull
       else
         git clone $dispatcher_repo
-        cd $1
+        cd ${1%%-*} 
       fi
       ;;
     results)
@@ -65,7 +65,7 @@ fetchGit() {
       fi
       ;;
     *)
-      echo $"Usage: $0 {base|api|dispatcher|results}"
+      echo $"Usage: $0 {base|api|dispatcher-master|dispatcher-slave|results}"
       exit 1
   esac
 }
