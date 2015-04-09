@@ -67,8 +67,8 @@ DELETE fc FROM flag_content fc
 LEFT JOIN node n on n.nid = fc.content_id and fc.content_type = 'node'
 WHERE n.nid IS NULL;
 
--- Delete users who have never logged in.
-DELETE u FROM users u LEFT JOIN node n ON n.uid = u.uid WHERE u.login = 0 AND u.uid != 0 AND n.uid IS NOT NULL;
+-- Delete users who have never logged in, and do not author a node.
+DELETE u FROM users u LEFT JOIN node n ON n.uid = u.uid WHERE u.login = 0 AND u.uid != 0 AND n.uid IS NULL;
 DELETE me FROM multiple_email me LEFT JOIN users u ON u.uid = me.uid WHERE u.uid IS NULL;
 DELETE fc FROM field_revision_field_country fc LEFT JOIN users u ON u.uid = fc.entity_id WHERE u.uid IS NULL;
 DELETE fc FROM field_data_field_country fc LEFT JOIN users u ON u.uid = fc.entity_id WHERE u.uid IS NULL;
