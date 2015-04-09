@@ -47,30 +47,30 @@ fetchGit() {
       fi
       ;;
     api)
-      if [ -d $1 ]; then
-        cd $1
+      if [ -d drupalci_$1 ]; then
+        cd drupalci_$1
         git pull
       else
         git clone $api_repo
-        cd $1
+        cd drupalci_$1
       fi
       ;;
     dispatcher*)
-      if [ -d ${1%%-*} ]; then
-        cd ${1%%-*} 
+      if [ -d drupalci_jenkins ]; then
+        cd drupalci_jenkins
         git pull
       else
         git clone $dispatcher_repo
-        cd ${1%%-*} 
+        cd drupalci_jenkins
       fi
       ;;
     results)
-      if [ -d $1 ]; then
-        cd $1
+      if [ -d drupalci_$1 ]; then
+        cd drupalci_$1
         git pull
       else
         git clone $results_repo
-        cd $1
+        cd drupalci_$1
       fi
       ;;
     *)
