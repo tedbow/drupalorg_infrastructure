@@ -9,9 +9,9 @@ export PACKER_HOME=/opt/packer
 
 # Repository configuration
 base_repo=git@bitbucket.org:drupalorg-infrastructure/drupalci_base.git
-api_repo=https://github.com/drupalci/api.git
-dispatcher_repo=https://github.com/drupalci/dispatcher.git
-results_repo=https://github.com/drupalci/results.git
+api_repo=http://git.drupal.org/project/drupalci_api.git
+dispatcher_repo=http://git.drupal.org/project/drupalci_jenkins.git
+results_repo=http://git.drupal.org/project/drupalci_results.git
 
 deregisterAMI() {
   for ami in $($EC2_HOME/bin/ec2-describe-images | awk "/$1/ "'{ print $2 }' | head -n-3); do
