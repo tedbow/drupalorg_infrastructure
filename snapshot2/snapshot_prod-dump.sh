@@ -23,5 +23,5 @@ do
   done
 done < ${EXCLUSIONFILE}
 EXCLUDEDTABLES="$(cat ${TMPPREFIX}-ignore)"
-mysqldump ${PRODDB} --no-data > ${DUMPDIR}/${PRODDB}-schema.sql
+mysqldump ${PRODDB} --single-transaction --no-data > ${DUMPDIR}/${PRODDB}-schema.sql
 mysqldump ${PRODDB} ${EXCLUDEDTABLES} --single-transaction --no-create-db --no-create-info --max_allowed_packet=128M | lz4 > ${DUMPDIR}/${PRODDB}-data.sql.lz4
