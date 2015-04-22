@@ -15,7 +15,7 @@ db=$([[ "${db}" == *1 ]] && echo "${db%?}" || echo "${db}1")
 # the 'staging' snapshot.
 [ "${snaptype-}" ] || snaptype=staging
 
-if [ "${suffix-}" == "civicrm" ]; then
+if [ "${suffix-}" != "civicrm" ]; then
   # Copy snapshot.
   rsync -v --copy-links --password-file ~/util.rsync.pass "rsync://stagingmysql@util.drupal.org/mysql-${snaptype}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2" "${WORKSPACE}"
 
@@ -27,17 +27,10 @@ if [ "${suffix-}" == "civicrm" ]; then
     bunzip2 < "${WORKSPACE}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2"
   ) | ${drush} ${type}sql-cli
 
+  # Promote the inactive database to active
   swap_db
-
-## Big ELSE for the new snapshots
-else
-  ALTDBLOC="/var/www/${uri}/altdb"
-  if [ -f ${ALTDBLOC} ]; then
-    rm ${ALTDBLOC}
-  else
-    touch ${ALTDBLOC}
-  fi
 fi
+
 # Extra preparation for D7.
 if [ "${uri}" = "localize-7.staging.devdrupal.org" ]; then
   (
