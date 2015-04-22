@@ -4,6 +4,9 @@
 # Get the DB name from drush
 db=$(${drush} ${type}sql-conf | sed -ne 's/^\s*\[database\] => //p')
 
+# Use the inactive db for import
+db=$([[ "${db}" == *1 ]] && echo "${db%?}" || echo "${db}1")
+
 # If a snapshot has not been already set in $snapshot, get it from $uri,
 # everything before the first '.' or '-'.
 [ "${snapshot-}" ] || snapshot=$(echo ${uri} | sed -e 's/[.-].*$//')
@@ -23,6 +26,10 @@ if [ "${uri}" != "staging.devdrupal.org" -a "${uri}" != "infrastructure.staging.
     echo "USE ${db};"
     bunzip2 < "${WORKSPACE}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2"
   ) | ${drush} ${type}sql-cli
+
+  swap_db
+
+## Big ELSE for the new snapshots
 else
   ALTDBLOC="/var/www/${uri}/altdb"
   if [ -f ${ALTDBLOC} ]; then

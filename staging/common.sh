@@ -29,3 +29,13 @@ drush="drush -v -r ${webroot} -l ${uri} -y"
 function test_site {
   curl --insecure --retry 3 --retry-delay 10 "https://drupal:drupal@${uri}" > /dev/null
 }
+
+# Swap the active and inactive databases
+function swap_db {
+  altdbloc="/var/www/${uri}/altdb"
+  if [ -f ${altdbloc} ]; then
+    rm ${altdbloc}
+  else
+    touch ${altdbloc}
+  fi
+}
