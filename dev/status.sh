@@ -13,7 +13,7 @@ export TERM=dumb
 
   echo "Database"
   # @TODO: Don't use an ssh session for this
-  #ssh devdb1.drupal.aws df -h /var/lib/mysql
+  #ssh devdb.drupal.aws df -h /var/lib/mysql
   echo
 
   for domain in $(ls "/var/www/dev"); do
