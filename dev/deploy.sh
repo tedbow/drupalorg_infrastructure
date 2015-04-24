@@ -47,7 +47,7 @@ write_template "vhost.conf.template" "${vhost_path}"
 
 # Configure the database
 mysql -e "CREATE DATABASE ${db_name};"
-mysql -e "GRANT ALL ON ${db_name}.* TO '${db_name}'@'devwww.drupal.org' IDENTIFIED BY '${db_pass}';"
+mysql -e "GRANT ALL ON ${db_name}.* TO '${db_name}'@'devwww1.drupal.aws' IDENTIFIED BY '${db_pass}';"
 
 # Clone make file.
 if [ "${site}" == "association" ]; then
