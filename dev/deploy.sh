@@ -119,11 +119,20 @@ ${drush} sql-cli <<END
   ALTER TABLE url_alias ENGINE InnoDB;
 END
 
-# CiviCRM is not on public dev sites.
-${drush} pm-disable civicrm
+if [ "${site}" = "association" ]; then
+  # CiviCRM is not on public dev sites.
+  ${drush} pm-disable civicrm
+elif [ "${site}" = "localize_7" ]; then
+  . staging/localize_7.sh
+  localize_7_pre_update
+fi
 
 # Run any pending updates.
-${drush} updatedb
+${drush} -v updatedb --interactive
+
+if [ "${site}" = "localize_7" ]; then
+  localize_7_post_update
+fi
 
 # Disable modules that don't work well in development (yet)
 ${drush} pm-disable paranoia
