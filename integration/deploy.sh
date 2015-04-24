@@ -3,12 +3,7 @@
 
 # Update code.
 cd ${webroot}
-
-if [ -d .bzr ]; then
- bzr up
-else 
- git pull
-fi
+git pull
 
 # Clear caches, try updatedb.
 ${drush} cc all || true
