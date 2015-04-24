@@ -128,7 +128,7 @@ ${drush} pm-disable paranoia
 ${drush} pm-disable beanstalkd
 
 # Link up the files directory
-ln -s /media/${fqdn} "${web_path}/htdocs/$(${drush} status | sed -ne 's/^ *File directory path *: *\([^ ]*\).*$/\1/p')"
+ln -s /media/nfs/${fqdn} "${web_path}/htdocs/$(${drush} status | sed -ne 's/^ *File directory path *: *\([^ ]*\).*$/\1/p')"
 
 # Sync xhprof webapp directory
 rsync -av /usr/share/xhprof/ "${web_path}/xhprof/htdocs/"
