@@ -109,7 +109,7 @@ chgrp -R developers "${web_path}"
 
 # Add traces directory after global chown
 mkdir -p "${web_path}/xhprof/traces"
-sudo chown -R drupal_site:drupal_site "${web_path}/xhprof/traces"
+sudo chown -R apache:apache "${web_path}/xhprof/traces"
 
 # Import database
 rsync -v --copy-links --password-file ~/util.rsync.pass "rsync://devmysql@util.drupal.org/mysql-dev/${snapshot}" "${WORKSPACE}"
