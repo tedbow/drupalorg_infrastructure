@@ -17,11 +17,10 @@ database=${1:=-h}
 profile=${2:=empty}
 export_db="drupal_export"
 dbopt="--single-transaction --quick"
-dir=$profile
-stage="$dir"
+stage="whitelist"
 filetype="sql"
 compression="bz2"
-dumppath="/var/dumps/${dir}"
+dumppath="/var/dumps/${stage}"
 
 # Variables exported by Jenkins
 JOB_NAME=${JOB_NAME:=db_backup}
@@ -79,23 +78,20 @@ fi
 ### Dump the sanitized data
 fvar1="${JOB_NAME}.${stage}"
 suffix="${filetype}.${compression}"
-dumpprog="${fvar1}-${BUILD_NUMBER}-in-progress"
+dumpinprogress="${fvar1}-${BUILD_NUMBER}-in-progress"
 dumpfile="${fvar1}-${BUILD_NUMBER}.${suffix}"
 dumpcur="${dumppath}/${fvar1}-current.${suffix}"
 
-# Save the DB dump.
+# Save the DB dump, strip ENGINE type from the output
 echo "start the dump"
-mysqldump ${dbopt} ${tmp_args} ${export_db} > ${dumppath}/${dumpprog}.${filetype}
+mysqldump ${dbopt} ${tmp_args} ${export_db} | sed -e 's/^) ENGINE=[^ ]*/)/' > ${dumppath}/${dumpinprogress}.${filetype}
 
-# Strip any ENGINE data from the dump, store in temporary sed file
-cat ${dumppath}/${dumpprog}.${filetype} | sed -e 's/^) ENGINE=[^ ]*/)/' > ${dumppath}/sed-${dumpprog}.${filetype} && rm ${dumppath}/${dumpprog}.${filetype}
 echo "start the compression"
-
-# Compress into original in-progress file and remove temporary sed file
-pbzip2 -fc ${dumppath}/sed-${dumpprog}.${filetype} > ${dumppath}/${dumpprog}.${suffix} && rm ${dumppath}/sed-${dumpprog}.${filetype}
+# Compress the thing
+pbzip2 -fc ${dumppath}/${dumpinprogress}.${filetype}
 
 # Move -in-progress to final location and symlink to current
-mv -v ${dumppath}/${dumpprog}.${suffix} ${dumppath}/${dumpfile}
+mv -v ${dumppath}/${dumpinprogress}.${suffix} ${dumppath}/${dumpfile}
 ln -sfv ${dumpfile} ${dumpcur}
 
 # Remove old snapshots.
