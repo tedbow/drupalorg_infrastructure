@@ -117,9 +117,10 @@ bunzip2 < "${WORKSPACE}/${snapshot}" | mysql "${db_name}"
 ${drush} sql-cli <<END
   -- InnoDB handles the url alias table much faster.
   ALTER TABLE url_alias ENGINE InnoDB;
-  -- CiviCRM is needy.
-  UPDATE system SET status = 0 WHERE name = 'civicrm';
 END
+
+# CiviCRM is not on public dev sites.
+${drush} pm-disable civicrm
 
 # Run any pending updates.
 ${drush} updatedb
