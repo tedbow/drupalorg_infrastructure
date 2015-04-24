@@ -3,115 +3,95 @@
 # Exit immediately on uninitialized variable or error, and print each command.
 set -uex
 
-## Get scripts current working directory
-CWD=$( dirname "${BASH_SOURCE[0]}" )
+# Get scripts current working directory
+cwd=$( dirname "${BASH_SOURCE[0]}" )
 
-# Check if variables have been entered
+# Help function
 function help {
-  echo "sanitize.sh <database> <boss|infra|redated|skeleton>"
+  echo "sanitize.sh <database> <boss|redacted|skeleton>"
   exit 1
 }
 
 ### Variables ###
-DATABASE=${1:=-h}
-PROFILE=${2:=empty}
-NODUMP=${3:=dump}
+database=${1:=-h}
+profile=${2:=empty}
+export_db="drupal_export"
+dbopt="--single-transaction --quick"
+stage="dev"
+filetype="sql"
+compression="bz2"
+dumppath="/var/dumps/${stage}"
 
-EXPORT_DB="drupal_export"
-
-DBOPT="--single-transaction --quick"
-
-DIR=$PROFILE
-STAGE="$DIR"
-FILETYPE="sql"
-COMPRESSION="bz2"
+# Variables exported by Jenkins
 JOB_NAME=${JOB_NAME:=db_backup}
 BUILD_NUMBER=${BUILD_NUMBER:=0}
-
-
-DUMPPATH="/var/dumps/${DIR}"
-
-
 ### Variables ###
 
-if [[ -z "${DATABASE}" ]] || [[ -z "${PROFILE}" ]]
+### Argument check ###
+if [[ -z "${database}" ]] || [[ -z "${profile}" ]]
   then
   help
 fi
-
-case ${DATABASE} in
+case ${database} in
   "-h"|"--help"|"")
     help
     ;;
 esac
-
-case ${PROFILE} in
-  "boss"|"infra"|"redacted"|"skeleton")
+case ${profile} in
+  "boss"|"redacted"|"skeleton")
     ;;
   *)
     help
     ;;
 esac
-# Grab the profile argument:
-#
-# Infra - infrastructure dev
-# Boss - for drupal.org
-# Skeleton - for drupal.org dev
-
-# We are only creating dev snapshots right now.
-
-# Stop script if dump dir doesn't exist and can't be made by this user
-[ ! -d ${DUMPPATH} ] && mkdir -p ${DUMPPATH}
-[ ! -d ${DUMPPATH} ] && exit 1
-
-# Make sure that the directory is writeable
-touch ${DUMPPATH}/.test-write || exit 1
-rm ${DUMPPATH}/.test-write || exit 1
+### End Argument check ###
 
 # Grab the host, user and password from password.py
-[ ! -f $CWD/password.py ] && echo "Missing password.py file" && exit 1
-source $CWD/password.py
+[ ! -f $cwd/password.py ] && echo "Missing password.py file" && exit 1
+source $cwd/password.py
 
 [ -z "${host}" ] &&  echo "Missing host in password.py file." && exit 1
-[ ! -z "${host}" ] && DBHOST="-h${host}"
-[ ! -z "${user}" ] && DBUSER="-u${user}"
-[ ! -z "${password}" ] && DBPASSWORD="-p${password}"
+[ ! -z "${host}" ] && dbhost="-h${host}"
+[ ! -z "${user}" ] && dbuser="-u${user}"
+[ ! -z "${password}" ] && dbpassword="-p${password}"
 
-TMP_ARGS="${DBHOST} ${DBUSER:= } ${DBPASSWORD:= } ${EXPORT_DB}"
+# Set the tmp_args for the database to be sanitized
+tmp_args="${dbhost} ${dbuser:= } ${dbpassword:= }"
 
-##if [ ${DATABASE} == "drupal" ]; then
-##  DATABASE="drupal_sanitize"
-##  STAGE="whitelist"
-##  TMP_ARGS2="-hdb2-main-vip.drupal.org ${DBUSER:= } ${DBPASSWORD:= } ${EXPORT_DB}"
-##  time mysqldump ${DBOPT} ${TMP_ARGS2} drupal | mysql ${TMP_ARGS} ${DATABASE}
-##fi
+if [ ${database} == "drupal" ]; then
+  # @TODO: drupal_sanitize should be automatically generated from the source
+  # database name, i.e. drupal_sanitize, drupal_api_sanitize, etc.
+  database="drupal_sanitize"
+  # Set tmp_args2 of the database being transferred to the sanitization host
+  # @TODO: db6-reader-vip should be a variable
+  tmp_args2="-hdb6-reader-vip.drupal.org ${dbuser:= } ${dbpassword:= }"
+  time mysqldump ${dbopt} ${tmp_args2} drupal | mysql ${tmp_args} ${database}
+fi
 
 # Sanitize into the export database.
-python2.6 $CWD/sanitize_db.py -s ${DATABASE} -d ${EXPORT_DB} -p ${PROFILE}
+python2.6 $cwd/sanitize_db.py -s ${database} -d ${export_db} -p ${profile}
 if [ $? -ne 0 ]; then
   exit $?
 fi
 
-if [ ${NODUMP} == "dump" ]; then
-  FVAR1="${JOB_NAME}.${STAGE}"
-  SUFFIX="${FILETYPE}.${COMPRESSION}"
-  DUMPPROG="${FVAR1}-${BUILD_NUMBER}-in-progress"
-  DUMPFILE="${FVAR1}-${BUILD_NUMBER}.${SUFFIX}"
-  DUMPCUR="${DUMPPATH}/${FVAR1}-current.${SUFFIX}"
+### Dump the sanitized data
+fvar1="${JOB_NAME}.${stage}"
+suffix="${filetype}.${compression}"
+dumpinprogress="${fvar1}-${BUILD_NUMBER}-in-progress"
+dumpfile="${fvar1}-${BUILD_NUMBER}.${suffix}"
+dumpcur="${dumppath}/${fvar1}-current.${suffix}"
 
-  # Save the DB dump.
-  echo "start the dump"
-  mysqldump ${DBOPT} ${TMP_ARGS} > ${DUMPPATH}/${DUMPPROG}.${FILETYPE}
-  cat ${DUMPPATH}/${DUMPPROG}.${FILETYPE} | sed -e 's/^) ENGINE=[^ ]*/)/' > ${DUMPPATH}/sed-${DUMPPROG}.${FILETYPE} && rm ${DUMPPATH}/${DUMPPROG}.${FILETYPE}
-  echo "start the compression"
-  pbzip2 -fc ${DUMPPATH}/sed-${DUMPPROG}.${FILETYPE} > ${DUMPPATH}/${DUMPPROG}.${SUFFIX} && rm ${DUMPPATH}/sed-${DUMPPROG}.${FILETYPE}
-  mv -v ${DUMPPATH}/${DUMPPROG}.${SUFFIX} ${DUMPPATH}/${DUMPFILE}
-  ln -sfv ${DUMPFILE} ${DUMPCUR}
+# Save the DB dump, strip ENGINE type from the output
+echo "start the dump"
+mysqldump ${dbopt} ${tmp_args} ${export_db} | sed -e 's/^) ENGINE=[^ ]*/)/' | pbzip2 -fc > ${dumppath}/${dumpinprogress}.${suffix}
 
-  # Remove old snapshots.
-  OLD_SNAPSHOTS=$(ls -t ${DUMPPATH}/${FVAR1}-[0-9]*.${FILETYPE}.{bz2,gz} | tail -n +2)
-  if [ ! -z "${OLD_SNAPSHOTS}" ]; then
-    rm -v ${OLD_SNAPSHOTS}
-  fi
+# Move -in-progress to final location and symlink to current
+mv -v ${dumppath}/${dumpinprogress}.${suffix} ${dumppath}/${dumpfile}
+ln -sfv ${dumpfile} ${dumpcur}
+
+# Remove old snapshots.
+old_snapshots=$(ls -t ${dumppath}/${fvar1}-[0-9]*.${filetype}.{bz2,gz} | tail -n +2)
+if [ ! -z "${old_snapshots}" ]; then
+  rm -v ${old_snapshots}
 fi
 
