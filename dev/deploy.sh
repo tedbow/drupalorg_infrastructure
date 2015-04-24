@@ -66,7 +66,7 @@ fi
 # Run drush make.
 drush6 make --no-cache "${make_file}" "${web_path}/htdocs" --working-copy
 
-if [ -d "${web_path}/htdocs/sites/all/themes/bluecheese" ]; then
+if [ -f "${web_path}/htdocs/sites/all/themes/bluecheese/Gemfile" ]; then
   # Compile bluecheese Sass.
   pushd "${web_path}/htdocs/sites/all/themes/bluecheese"
   bundle install
