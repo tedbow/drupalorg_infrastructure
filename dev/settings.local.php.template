@@ -16,7 +16,7 @@ $cookie_domain = 'NAME-SITE.redesign.devdrupal.org';
 
 $conf['apachesolr_read_only'] = 1;
 # @TODO: Move to devsolr1 and use a shared core
-#$conf['apachesolr_environments']['solr']['url'] = 'http://stagingsolr1.drupalsystems.org/solr/do-live';
+$conf['apachesolr_environments']['solr']['url'] = 'http://devsolr1.drupal.aws/solr/do-live';
 
 // Do not use Beanstalk for Drupal.org queues.
 unset($conf['queue_class_versioncontrol_repomgr']);
