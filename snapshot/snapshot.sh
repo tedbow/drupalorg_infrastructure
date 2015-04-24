@@ -39,7 +39,7 @@ function snapshot {
 }
 
 function clear_tmp {
-  echo "DROP DATABASE ${tmp_db}; CREATE DATABASE ${tmp_db};" | mysql ${tmp_args}
+  echo "DROP DATABASE IF EXISTS ${tmp_db}; CREATE DATABASE ${tmp_db};" | mysql ${tmp_args}
 }
 
 # Configure credentials
