@@ -130,7 +130,9 @@ ${drush} pm-disable paranoia
 ${drush} pm-disable beanstalkd
 
 # Link up the files directory
-ln -s /media/nfs/${fqdn} "${web_path}/htdocs/$(${drush} status | sed -ne 's/^ *File directory path *: *\([^ ]*\).*$/\1/p')"
+drupal_files=$("${web_path}/htdocs/$(${drush} status | sed -ne 's/^ *File directory path *: *\([^ ]*\).*$/\1/p')")
+rm -rf ${drupal_files}
+ln -s /media/nfs/${fqdn} ${drupal_files}
 
 # Sync xhprof webapp directory
 rsync -av /usr/share/xhprof/ "${web_path}/xhprof/htdocs/"
