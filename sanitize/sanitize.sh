@@ -56,11 +56,16 @@ source $cwd/password.py
 [ ! -z "${user}" ] && dbuser="-u${user}"
 [ ! -z "${password}" ] && dbpassword="-p${password}"
 
-tmp_args="${dbhost} ${dbuser:= } ${dbpassword:= } ${export_db}"
+# Set the tmp_args for the database to be sanitized
+tmp_args="${dbhost} ${dbuser:= } ${dbpassword:= }"
 
 if [ ${database} == "drupal" ]; then
+  # @TODO: drupal_sanitize should be automatically generated from the source
+  # database name, i.e. drupal_sanitize, drupal_api_sanitize, etc.
   database="drupal_sanitize"
   stage="whitelist"
+  # Set tmp_args2 of the database being transferred to the sanitization host
+  # @TODO: db6-reader-vip should be a variable
   tmp_args2="-hdb6-reader-vip.drupal.org ${dbuser:= } ${dbpassword:= }"
   time mysqldump ${dbopt} ${tmp_args2} drupal | mysql ${tmp_args} ${database}
 fi
@@ -80,7 +85,7 @@ dumpcur="${dumppath}/${fvar1}-current.${suffix}"
 
 # Save the DB dump.
 echo "start the dump"
-mysqldump ${dbopt} ${tmp_args} > ${dumppath}/${dumpprog}.${filetype}
+mysqldump ${dbopt} ${tmp_args} ${export_db} > ${dumppath}/${dumpprog}.${filetype}
 
 # Strip any ENGINE data from the dump, store in temporary sed file
 cat ${dumppath}/${dumpprog}.${filetype} | sed -e 's/^) ENGINE=[^ ]*/)/' > ${dumppath}/sed-${dumpprog}.${filetype} && rm ${dumppath}/${dumpprog}.${filetype}
