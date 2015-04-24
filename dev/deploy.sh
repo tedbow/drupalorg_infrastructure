@@ -69,6 +69,7 @@ drush6 make --no-cache "${make_file}" "${web_path}/htdocs" --working-copy
 if [ -d "${web_path}/htdocs/sites/all/themes/bluecheese" ]; then
   # Compile bluecheese Sass.
   pushd "${web_path}/htdocs/sites/all/themes/bluecheese"
+  bundle install
   bundle exec compass compile
   popd
 fi
