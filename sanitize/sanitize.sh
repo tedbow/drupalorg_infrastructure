@@ -62,7 +62,6 @@ if [ ${database} == "drupal" ]; then
   # @TODO: drupal_sanitize should be automatically generated from the source
   # database name, i.e. drupal_sanitize, drupal_api_sanitize, etc.
   database="drupal_sanitize"
-  stage="whitelist"
   # Set tmp_args2 of the database being transferred to the sanitization host
   # @TODO: db6-reader-vip should be a variable
   tmp_args2="-hdb6-reader-vip.drupal.org ${dbuser:= } ${dbpassword:= }"
