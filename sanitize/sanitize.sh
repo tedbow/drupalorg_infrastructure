@@ -61,7 +61,7 @@ tmp_args="${dbhost} ${dbuser:= } ${dbpassword:= } ${export_db}"
 if [ ${database} == "drupal" ]; then
   database="drupal_sanitize"
   stage="whitelist"
-  tmp_args2="-hdb6-reader-vip.drupal.org ${dbuser:= } ${dbpassword:= } ${export_db}"
+  tmp_args2="-hdb6-reader-vip.drupal.org ${dbuser:= } ${dbpassword:= }"
   time mysqldump ${dbopt} ${tmp_args2} drupal | mysql ${tmp_args} ${database}
 fi
 
