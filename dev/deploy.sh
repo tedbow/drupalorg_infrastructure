@@ -49,53 +49,48 @@ write_template "vhost.conf.template" "${vhost_path}"
 mysql -e "CREATE DATABASE ${db_name};"
 mysql -e "GRANT ALL ON ${db_name}.* TO '${db_name}'@'devwww.drupal.org' IDENTIFIED BY '${db_pass}';"
 
-# Checkout webroot
-if [ "${site}" == "infrastructure" -o "${site}" == "api" -o "${site}" == "latinamerica2015" -o "${site}" == "events" -o "${site}" == "localize_7" -o "${site}" == "drupal" -o "${site}" == "association" ]; then
-  # Clone make file.
-  if [ "${site}" == "association" ]; then
-    git clone "git@bitbucket.org:drupalorg-infrastructure/assoc.drupal.org.git" "${web_path}/make"
-    make_file="${web_path}/make/assoc.drupal.org.make"
-  else
-    git clone "git@bitbucket.org:drupalorg-infrastructure/${fqdn}.git" "${web_path}/make"
-    make_file="${web_path}/make/${fqdn}.make"
-  fi
-
-  # Append dev-specific overrides.
-  curl 'https://bitbucket.org/drupalorg-infrastructure/drupal.org-sites-common/raw/7.x/drupal.org-dev.make' >> "${make_file}"
-
-  # Run drush make.
-  drush6 make --no-cache "${make_file}" "${web_path}/htdocs" --working-copy
-
-  if [ -d "${web_path}/htdocs/sites/all/themes/bluecheese" ]; then
-    # Compile bluecheese Sass.
-    pushd "${web_path}/htdocs/sites/all/themes/bluecheese"
-    bundle exec compass compile
-    popd
-  fi
-
-  # Copy static files.
-  [ -f "${web_path}/make/settings.php" ] && cp "${web_path}/make/settings.php" "${web_path}/htdocs/sites/default/"
-  [ -f "${web_path}/make/.gitignore" ] && cp "${web_path}/make/.gitignore" "${web_path}/htdocs/"  # Replace core's file
-  if [ -d "${web_path}/make/static-files" ]; then
-    pushd "${web_path}/make/static-files"
-    find . -type f | cpio -pdmuv "${web_path}/htdocs"
-    popd
-  fi
-
-  # If Symfony module is present, run Composer.
-  if [ -d "${web_path}/htdocs/sites/all/modules/symfony" ]; then
-    pushd "${web_path}/htdocs/sites/all/modules/symfony"
-    # We do want to check composer.lock and vendors in.
-    rm -v ".gitignore"
-    # static-files/sites/all/modules/symfony/composer.lock is copied over by the
-    # previous step.
-    composer install
-    popd
-  fi
-
+# Clone make file.
+if [ "${site}" == "association" ]; then
+  git clone "git@bitbucket.org:drupalorg-infrastructure/assoc.drupal.org.git" "${web_path}/make"
+  make_file="${web_path}/make/assoc.drupal.org.make"
 else
-  echo "Populating development environment with bzr checkout"
-  bzr checkout bzr+ssh://bender-deploy@util.drupal.org/${repository} "${web_path}/htdocs"
+  git clone "git@bitbucket.org:drupalorg-infrastructure/${fqdn}.git" "${web_path}/make"
+  make_file="${web_path}/make/${fqdn}.make"
+fi
+
+# Append dev-specific overrides.
+if [ "${site}" != "groups" -a "${site}" != "qa" -a "${site}" != "localize" ]; then
+  curl 'https://bitbucket.org/drupalorg-infrastructure/drupal.org-sites-common/raw/7.x/drupal.org-dev.make' >> "${make_file}"
+fi
+
+# Run drush make.
+drush6 make --no-cache "${make_file}" "${web_path}/htdocs" --working-copy
+
+if [ -d "${web_path}/htdocs/sites/all/themes/bluecheese" ]; then
+  # Compile bluecheese Sass.
+  pushd "${web_path}/htdocs/sites/all/themes/bluecheese"
+  bundle exec compass compile
+  popd
+fi
+
+# Copy static files.
+[ -f "${web_path}/make/settings.php" ] && cp "${web_path}/make/settings.php" "${web_path}/htdocs/sites/default/"
+[ -f "${web_path}/make/.gitignore" ] && cp "${web_path}/make/.gitignore" "${web_path}/htdocs/"  # Replace core's file
+if [ -d "${web_path}/make/static-files" ]; then
+  pushd "${web_path}/make/static-files"
+  find . -type f | cpio -pdmuv "${web_path}/htdocs"
+  popd
+fi
+
+# If Symfony module is present, run Composer.
+if [ -d "${web_path}/htdocs/sites/all/modules/symfony" ]; then
+  pushd "${web_path}/htdocs/sites/all/modules/symfony"
+  # We do want to check composer.lock and vendors in.
+  rm -v ".gitignore"
+  # static-files/sites/all/modules/symfony/composer.lock is copied over by the
+  # previous step.
+  composer install
+  popd
 fi
 
 # Add settings.local.php
@@ -133,7 +128,7 @@ ${drush} pm-disable paranoia
 ${drush} pm-disable beanstalkd
 
 # Link up the files directory
-ln -s /media/${fqdn} "${web_path}/htdocs/$(${drush} status | sed -ne 's/^ *File directory path *: *\([^ ]*\).*$/\1/p')"
+ln -s /media/nfs/${fqdn} "${web_path}/htdocs/$(${drush} status | sed -ne 's/^ *File directory path *: *\([^ ]*\).*$/\1/p')"
 
 # Sync xhprof webapp directory
 rsync -av /usr/share/xhprof/ "${web_path}/xhprof/htdocs/"
