@@ -25,6 +25,11 @@ else
   snapshot="${site}_database_snapshot.dev-current.sql.bz2"
 fi
 
+if [ "${site}" = "localize_7" ]; then
+  snapshot="localize_database_snapshot.dev-current.sql.bz2"
+  git_options="--branch 7.x-prod"
+fi
+
 export TERM=dumb
 drush="drush -r ${web_path}/htdocs -y"
 db_pass=$(pwgen -s 16 1)
@@ -49,7 +54,7 @@ if [ "${site}" == "association" ]; then
   git clone "git@bitbucket.org:drupalorg-infrastructure/assoc.drupal.org.git" "${web_path}/make"
   make_file="${web_path}/make/assoc.drupal.org.make"
 else
-  git clone "git@bitbucket.org:drupalorg-infrastructure/${fqdn}.git" "${web_path}/make"
+  git clone "${git_options-}" "git@bitbucket.org:drupalorg-infrastructure/${fqdn}.git" "${web_path}/make"
   make_file="${web_path}/make/${fqdn}.make"
 fi
 
