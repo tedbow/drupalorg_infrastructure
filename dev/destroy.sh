@@ -17,8 +17,8 @@ rm -f "${vhost_path}"
 # Drop the database and user
 mysql <<end
   DROP DATABASE ${db_name};
-  REVOKE ALL ON ${db_name}.* FROM '${db_name}'@'devwww.drupal.org';
-  DROP USER '${db_name}'@'devwww.drupal.org';
+  REVOKE ALL ON ${db_name}.* FROM '${db_name}'@'devwww1.drupal.aws';
+  DROP USER '${db_name}'@'devwww1.drupal.aws';
 end
 
 restart_apache
