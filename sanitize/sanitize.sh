@@ -17,7 +17,7 @@ database=${1:=-h}
 profile=${2:=empty}
 export_db="drupal_export"
 dbopt="--single-transaction --quick"
-stage="whitelist"
+stage="dev"
 filetype="sql"
 compression="bz2"
 dumppath="/var/dumps/${stage}"
@@ -84,7 +84,7 @@ dumpcur="${dumppath}/${fvar1}-current.${suffix}"
 
 # Save the DB dump, strip ENGINE type from the output
 echo "start the dump"
-mysqldump ${dbopt} ${tmp_args} ${export_db} | sed -e 's/^) ENGINE=[^ ]*/)/' | pbzip2 -fc > ${dumppath}/${dumpinprogress}.${filetype}
+mysqldump ${dbopt} ${tmp_args} ${export_db} | sed -e 's/^) ENGINE=[^ ]*/)/' | pbzip2 -fc > ${dumppath}/${dumpinprogress}.${suffix}
 
 # Move -in-progress to final location and symlink to current
 mv -v ${dumppath}/${dumpinprogress}.${suffix} ${dumppath}/${dumpfile}
