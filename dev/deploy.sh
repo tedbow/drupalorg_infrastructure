@@ -169,7 +169,7 @@ else
 fi
 
 # Set up test user
-${drush} upwd bacon --password=bacon
+${drush} upwd bacon --password=bacon || true
 
 # Prime any big caches
 wget --no-check-certificate -O /dev/null https://${name}-${site}.redesign.devdrupal.org --user=drupal --password=drupal
