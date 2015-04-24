@@ -64,7 +64,7 @@ tmp_args2="-hdb6-reader-vip.drupal.org ${dbuser:= } ${dbpassword:= }"
 time mysqldump ${dbopt} ${tmp_args2} ${database} | mysql ${tmp_args} ${database}_sanitize
 
 # Sanitize into the export database.
-python2.6 $cwd/sanitize_db.py -s ${database} -d ${export_db} -p ${profile}
+python2.6 $cwd/sanitize_db.py -s ${database}_sanitize -d ${export_db} -p ${profile}
 if [ $? -ne 0 ]; then
   exit $?
 fi
