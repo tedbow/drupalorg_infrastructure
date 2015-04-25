@@ -17,7 +17,7 @@ db=$([[ "${db}" == *1 ]] && echo "${db%?}" || echo "${db}1")
 
 if [ "${suffix-}" != "civicrm" ]; then
   # Copy snapshot.
-  rsync -v --copy-links --password-file ~/util.rsync.pass "rsync://stagingmysql@util.drupal.org/mysql-${snaptype}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2" "${WORKSPACE}"
+  rsync -v --copy-links --password-file ~/util.rsync.pass "rsync://stagingmysql@dbutil.drupal.org/mysql-${snaptype}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2" "${WORKSPACE}"
 
   # Clear out the DB and import a snapshot.
   (

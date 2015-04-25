@@ -112,7 +112,7 @@ mkdir -p "${web_path}/xhprof/traces"
 sudo chown -R apache:apache "${web_path}/xhprof/traces"
 
 # Import database
-rsync -v --copy-links --password-file ~/util.rsync.pass "rsync://devmysql@util.drupal.org/mysql-dev/${snapshot}" "${WORKSPACE}"
+rsync -v --copy-links --password-file ~/util.rsync.pass "rsync://devmysql@dbutil.drupal.org/mysql-dev/${snapshot}" "${WORKSPACE}"
 bunzip2 < "${WORKSPACE}/${snapshot}" | mysql "${db_name}"
 ${drush} sql-cli <<END
   -- InnoDB handles the url alias table much faster.
