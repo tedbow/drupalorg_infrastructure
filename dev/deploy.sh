@@ -14,7 +14,6 @@ function write_template {
 # Handle drupal.org vs. sub-domains properly
 if [ ${site} == "drupal" ]; then
   fqdn="drupal.org"
-  snapshot="drupal_database_snapshot.reduce-current.sql.bz2"
 else
   # Strip any _ and following characters from ${site}, and add .drupal.org.
   # Such as 'qa_7' -> 'qa.drupal.org'
@@ -22,12 +21,13 @@ else
   # If ${site} has an underscore, use the following characters. Such as
   # 'qa_7' -> 'qa.drupal.org-7'
   repository="${fqdn}$(echo ${site} | sed -ne 's/.*_/-/p')"
-  snapshot="${site}_database_snapshot.dev-current.sql.bz2"
 fi
 
 if [ "${site}" = "localize_7" ]; then
   snapshot="localize_database_snapshot.dev-current.sql.bz2"
   git_options="--branch 7.x-prod"
+else
+  snapshot="${site}_database_snapshot.dev-current.sql.bz2"
 fi
 
 export TERM=dumb
