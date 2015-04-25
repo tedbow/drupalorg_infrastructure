@@ -1,1 +1,0 @@
-cod-7.dev.sql

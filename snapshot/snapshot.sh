@@ -39,7 +39,7 @@ function snapshot {
 }
 
 function clear_tmp {
-  echo "DROP DATABASE ${tmp_db}; CREATE DATABASE ${tmp_db};" | mysql ${tmp_args}
+  echo "DROP DATABASE IF EXISTS ${tmp_db}; CREATE DATABASE ${tmp_db};" | mysql ${tmp_args}
 }
 
 # Configure credentials
@@ -49,13 +49,13 @@ db_pass=$3
 
 # If the sanitization is not set, use the DB name.
 [ "${sanitization-}" ] || sanitization=${db_name}
-# If the DB host is not set, use db4-static.
-[ "${db_host-}" ] || db_host=db4-static.drupal.org
+# If the DB host is not set, use db6-reader-vip
+[ "${db_host-}" ] || db_host=db6-reader-vip.drupal.org
 
-tmp_db=drupal_sanitize
+tmp_db=${db_name}_sanitize
 tmp_user=sanitize_rw
 tmp_pass=$4
-tmp_host=db4-static.drupal.org
+tmp_host=dbutil.drupal.org
 tmp_args="-h${tmp_host} -u${tmp_user} -p${tmp_pass} ${tmp_db}"
 
 clear_tmp

@@ -15,7 +15,7 @@ function help {
 ### Variables ###
 database=${1:=-h}
 profile=${2:=empty}
-export_db="drupal_export"
+export_db="${database}_export"
 dbopt="--single-transaction --quick"
 stage="dev"
 filetype="sql"
@@ -25,7 +25,7 @@ dumppath="/var/dumps/${stage}"
 # Variables exported by Jenkins
 JOB_NAME=${JOB_NAME:=db_backup}
 BUILD_NUMBER=${BUILD_NUMBER:=0}
-### Variables ###
+### End Variables ###
 
 ### Argument check ###
 if [[ -z "${database}" ]] || [[ -z "${profile}" ]]
@@ -49,7 +49,6 @@ esac
 # Grab the host, user and password from password.py
 [ ! -f $cwd/password.py ] && echo "Missing password.py file" && exit 1
 source $cwd/password.py
-
 [ -z "${host}" ] &&  echo "Missing host in password.py file." && exit 1
 [ ! -z "${host}" ] && dbhost="-h${host}"
 [ ! -z "${user}" ] && dbuser="-u${user}"
@@ -58,18 +57,14 @@ source $cwd/password.py
 # Set the tmp_args for the database to be sanitized
 tmp_args="${dbhost} ${dbuser:= } ${dbpassword:= }"
 
-if [ ${database} == "drupal" ]; then
-  # @TODO: drupal_sanitize should be automatically generated from the source
-  # database name, i.e. drupal_sanitize, drupal_api_sanitize, etc.
-  database="drupal_sanitize"
-  # Set tmp_args2 of the database being transferred to the sanitization host
-  # @TODO: db6-reader-vip should be a variable
-  tmp_args2="-hdb6-reader-vip.drupal.org ${dbuser:= } ${dbpassword:= }"
-  time mysqldump ${dbopt} ${tmp_args2} drupal | mysql ${tmp_args} ${database}
-fi
+# Copy the raw database to the sanitization host (i.e. dbutil)
+# Set tmp_args2 of the database being transferred to the sanitization host
+# @TODO: db6-reader-vip should be a variable
+tmp_args2="-hdb6-reader-vip.drupal.org ${dbuser:= } ${dbpassword:= }"
+time mysqldump ${dbopt} ${tmp_args2} ${database} | mysql ${tmp_args} ${database}_sanitize
 
 # Sanitize into the export database.
-python2.6 $cwd/sanitize_db.py -s ${database} -d ${export_db} -p ${profile}
+python2.6 $cwd/sanitize_db.py -s ${database}_sanitize -d ${export_db} -p ${profile}
 if [ $? -ne 0 ]; then
   exit $?
 fi
