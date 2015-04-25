@@ -18,9 +18,6 @@ else
   # Strip any _ and following characters from ${site}, and add .drupal.org.
   # Such as 'qa_7' -> 'qa.drupal.org'
   fqdn="$(echo "${site}" | sed -e 's/_.*//').drupal.org"
-  # If ${site} has an underscore, use the following characters. Such as
-  # 'qa_7' -> 'qa.drupal.org-7'
-  repository="${fqdn}$(echo ${site} | sed -ne 's/.*_/-/p')"
 fi
 
 if [ "${site}" = "localize_7" ]; then
