@@ -1528,6 +1528,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_revision_field_issue_credit",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_issue_credit_target_id",
+    ])
+
+whitelist.add(
     table="field_data_field_issue_files",
     columns=[
         "entity_type",
@@ -3629,6 +3642,19 @@ whitelist.add(
         "language",
         "delta",
         "field_issue_component_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_issue_credit",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_issue_credit_target_id",
     ])
 
 whitelist.add(
