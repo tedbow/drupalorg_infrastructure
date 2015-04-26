@@ -16,15 +16,11 @@ import random
 parser = OptionParser()
 parser.add_option('-d', '--dest-db', dest="destdb", help="The name of the database we insert into.")
 parser.add_option('-s', '--src-db', dest="sourcedb", help="The name of the database we select from.")
-parser.add_option('-p', '--data-profile', dest="dataset", help="Pick the data profile whitelist overlay. (boss, infra, redacted, or skeleton)")
+parser.add_option('-p', '--data-profile', dest="dataset", help="Pick the data profile whitelist overlay. (boss, redacted, or skeleton)")
 (options, args) = parser.parse_args()
 if options.dataset == 'boss':
     import whitelists.boss
     print "Like a boss."
-
-if options.dataset == 'infra':
-    import whitelists.infra
-    print "Infrastructing madness!"
 
 if options.dataset == 'redacted':
     import whitelists.skeleton
