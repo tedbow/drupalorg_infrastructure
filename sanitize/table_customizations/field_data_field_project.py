@@ -14,7 +14,7 @@ class Field_Data_Field_Project(table_customizations.TableHandler):
               INSERT INTO {dest}.{table} ({columns})
               SELECT {srccolumns}
               FROM {source}.{table}
-                LEFT JOIN {source}.node n on n.nid = {source}.{table}.field_issue_changes_nid
+                LEFT JOIN {source}.node n on n.nid = {source}.{table}.entity_id
               WHERE n.type NOT IN ('project_issue','forum')
                 OR n.created >= (unix_timestamp() - 60*24*60*60)
               {limit}
