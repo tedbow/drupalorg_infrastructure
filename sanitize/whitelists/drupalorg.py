@@ -1074,7 +1074,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:field_data_field_budget",
+    table="field_data_field_budget",
     columns=[
         "entity_type",
         "bundle",
@@ -3191,7 +3191,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:field_revision_field_budget",
+    table="field_revision_field_budget",
     columns=[
         "entity_type",
         "bundle",
