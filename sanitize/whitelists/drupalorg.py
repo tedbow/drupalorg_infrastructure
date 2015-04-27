@@ -1528,7 +1528,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_revision_field_issue_credit",
+    table="field_data_field_issue_credit",
     columns=[
         "entity_type",
         "bundle",
