@@ -6107,7 +6107,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="simplenews_newsletters",
+    table="_nodata:simplenews_newsletters",
     columns=[
         "nid",
         "tid",
@@ -6119,14 +6119,14 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="simplenews_snid_tid",
+    table="_nodata:simplenews_snid_tid",
     columns=[
         "snid",
         "tid",
     ])
 
 whitelist.add(
-    table="simplenews_subscriptions",
+    table="_nodata:simplenews_subscriptions",
     columns=[
         "snid",
         "a_status",
