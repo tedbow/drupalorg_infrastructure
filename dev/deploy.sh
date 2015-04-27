@@ -28,7 +28,7 @@ else
 fi
 
 export TERM=dumb
-drush="drush -r ${web_path}/htdocs -y"
+drush="drush6 -r ${web_path}/htdocs -y"
 db_pass=$(pwgen -s 16 1)
 
 [ -e "${web_path}" ] && echo "Project webroot already exists!" && exit 1
@@ -167,7 +167,7 @@ else
   if [ "${bakery_master-}" ]; then
     # Hook up to a Drupal.org
     ${drush} vset bakery_master "https://${bakery_master}-drupal.redesign.devdrupal.org/"
-    drush_master="drush -r /var/www/dev/${bakery_master}-drupal.redesign.devdrupal.org/htdocs -l ${bakery_master}-drupal.redesign.devdrupal.org -y"
+    drush_master="drush6 -r /var/www/dev/${bakery_master}-drupal.redesign.devdrupal.org/htdocs -l ${bakery_master}-drupal.redesign.devdrupal.org -y"
     ${drush} vset bakery_key $(${drush_master} vget bakery_key | sed -ne 's/^.*"\(.*\)"/\1/p')
     ${drush_master} bakery-add-slave "https://${name}-${site}.redesign.devdrupal.org/"
   else
