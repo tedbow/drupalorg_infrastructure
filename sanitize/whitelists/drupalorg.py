@@ -6342,7 +6342,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="versioncontrol_project_maintainers_block_cache",
+    table="_nodata:versioncontrol_project_maintainers_block_cache",
     columns=[
         "cid",
         "data",
@@ -6404,7 +6404,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="views_content_cache",
+    table="_nodata:views_content_cache",
     columns=[
         "timestamp",
         "c1",
@@ -6418,7 +6418,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="views_object_cache",
+    table="_nodata:views_object_cache",
     columns=[
         "sid",
         "name",
