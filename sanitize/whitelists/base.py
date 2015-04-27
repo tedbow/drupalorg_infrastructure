@@ -482,7 +482,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="history",
+    table="_nodata:history",
     columns=[
         "uid",
         "nid",
