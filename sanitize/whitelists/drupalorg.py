@@ -6156,7 +6156,7 @@ whitelist.add(
         "entity_type",
         "entity_id",
         "fingerprint",
-        "title",
+        "_sanitize_text:title",
         "value",
         "changed",
     ])
