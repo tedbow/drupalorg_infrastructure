@@ -34,17 +34,4 @@ class Field_Data_Body(table_customizations.TableHandler):
               {source}.node_revision.timestamp >= (unix_timestamp() - 60*24*60*60)
             {limit}
             """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
-        if self.dataset == 'infra':
-          query = """
-            INSERT INTO
-              {dest}.{table} ({columns})
-            SELECT
-              {srccolumns}
-            FROM
-              {source}.{table}
-            WHERE
-              bundle
-            NOT LIKE
-              '%infra_page%' {limit}
-            """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
         return query
