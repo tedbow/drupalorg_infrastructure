@@ -6212,7 +6212,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="users_access",
+    table="_nodata:users_access",
     columns=[
         "uid",
         "access",

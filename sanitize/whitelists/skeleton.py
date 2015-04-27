@@ -28,12 +28,6 @@ whitelist.update(
         "_sanitize_timestamp:access",
     ])
 
-whitelist.update(
-    table="users_access",
-    columns=[
-        "_sanitize_timestamp:access",
-    ])
-
 cleanup = ""
 #cleanup += """
 #  -- Get rid of unpublished/blocked nodes, users, comments and related data in other tables.
