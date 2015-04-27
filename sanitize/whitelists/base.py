@@ -250,6 +250,7 @@ whitelist.add(
         "data",
         "expire",
         "created",
+        "headers",
         "serialized",
     ])
 
@@ -260,6 +261,7 @@ whitelist.add(
         "data",
         "expire",
         "created",
+        "headers",
         "serialized",
     ])
 

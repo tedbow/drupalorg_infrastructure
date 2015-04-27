@@ -6427,21 +6427,7 @@ whitelist.add(
         "data",
     ])
 
-# Updates to the default base schema for drupal.org
-
-# Unknown column(s) ['headers'] found in table 'cache_views' fresh base config for whitelist.py is below. This needs to be merged with with current configuration.
-whitelist.update(
-    table="cache_views",
-    columns=[
-        "headers",
-    ])
-
-# Unknown column(s) ['headers'] found in table 'cache_views_data' fresh base config for whitelist.py is below. This needs to be merged with with current configuration.
-whitelist.update(
-    table="cache_views_data",
-    columns=[
-        "headers",
-    ])
+# Updates to the default base schema for Drupal.org
 
 # Unknown column(s) ['rating', 'git_username', 'git_consent', 'git_vetted', 'git_disabled'] found in table 'users' fresh base config for whitelist.py is below. This needs to be merged with with current configuration.
 whitelist.update(
