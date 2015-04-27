@@ -61,7 +61,7 @@ if [ "${site}" != "groups" -a "${site}" != "qa" -a "${site}" != "localize" ]; th
 fi
 
 # Run drush make.
-drush6 make --no-cache "${make_file}" "${web_path}/htdocs" --working-copy
+drush6 make --no-cache "${make_file}" "${web_path}/htdocs" --working-copy --no-gitinfofile
 
 if [ -f "${web_path}/htdocs/sites/all/themes/bluecheese/Gemfile" ]; then
   # Compile bluecheese Sass.
