@@ -868,7 +868,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:drupalorg_ind_civimembership",
+    table="drupalorg_ind_civimembership",
     columns=[
         "user_name",
         "membership_status",
@@ -877,7 +877,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:drupalorg_org_civimembership",
+    table="drupalorg_org_civimembership",
     columns=[
         "org_name",
         "membership_type",
