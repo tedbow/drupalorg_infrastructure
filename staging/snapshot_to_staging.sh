@@ -4,8 +4,10 @@
 # Get the DB name from drush
 db=$(${drush} ${type}sql-conf | sed -ne 's/^\s*\[database\] => //p')
 
-# Use the inactive db for import
-db=$([[ "${db}" == *1 ]] && echo "${db%?}" || echo "${db}1")
+if [ "${suffix-}" != "civicrm" ]; then
+  # Use the inactive db for import
+  db=$([[ "${db}" == *1 ]] && echo "${db%?}" || echo "${db}1")
+fi
 
 # If a snapshot has not been already set in $snapshot, get it from $uri,
 # everything before the first '.' or '-'.
