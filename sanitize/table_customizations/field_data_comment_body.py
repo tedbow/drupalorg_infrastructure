@@ -15,8 +15,8 @@ class Field_Data_Comment_Body(table_customizations.TableHandler):
               SELECT {srccolumns}
               FROM {source}.{table}
               INNER JOIN {source}.comment ON {source}.comment.cid = {source}.{table}.entity_id AND {source}.comment.status = 1
-              INNER JOIN {source}.node ON {source}.node.nid = {source}.comment.cid AND {source}.node.status = 1
-              WHERE {source}.node.type NOT IN ('project_issue','forum') OR {source}.node.created >= (unix_timestamp() - 60*24*60*60)
+              INNER JOIN {source}.node ON {source}.node.nid = {source}.comment.nid AND {source}.node.status = 1
+                AND {source}.node.type NOT IN ('project_issue','forum') OR {source}.node.created >= (unix_timestamp() - 60*24*60*60)
               {limit}
             """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
         return query
