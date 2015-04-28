@@ -5,6 +5,7 @@ export WORKSPACE=${1}
 export JOB_NAME=${2}
 export BUILD_NUMBER=${3}
 [ "${8-}" ] && export db_host=${8}
+[ "${9-}" ] && export skip_common=${9}
 
 # Make sure the WORKSPACE exists
 mkdir -p ${WORKSPACE}
