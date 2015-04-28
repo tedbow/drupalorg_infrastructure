@@ -15,18 +15,18 @@ db=$([[ "${db}" == *1 ]] && echo "${db%?}" || echo "${db}1")
 # the 'staging' snapshot.
 [ "${snaptype-}" ] || snaptype=staging
 
+# Copy snapshot.
+rsync -v --copy-links --password-file ~/util.rsync.pass "rsync://stagingmysql@dbutil.drupal.org/mysql-${snaptype}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2" "${WORKSPACE}"
+
+# Clear out the DB and import a snapshot.
+(
+  echo "DROP DATABASE ${db};"
+  echo "CREATE DATABASE ${db};"
+  echo "USE ${db};"
+  bunzip2 < "${WORKSPACE}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2"
+) | ${drush} ${type}sql-cli
+
 if [ "${suffix-}" != "civicrm" ]; then
-  # Copy snapshot.
-  rsync -v --copy-links --password-file ~/util.rsync.pass "rsync://stagingmysql@dbutil.drupal.org/mysql-${snaptype}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2" "${WORKSPACE}"
-
-  # Clear out the DB and import a snapshot.
-  (
-    echo "DROP DATABASE ${db};"
-    echo "CREATE DATABASE ${db};"
-    echo "USE ${db};"
-    bunzip2 < "${WORKSPACE}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2"
-  ) | ${drush} ${type}sql-cli
-
   # Promote the inactive database to active
   swap_db
 fi
@@ -66,8 +66,8 @@ elif [ "${uri}" = "groups-7.staging.devdrupal.org" ]; then
   # todo remove when the existing front page, "frontpage", does not 404.
   ${drush} variable-set site_frontpage "node"
 
-elif echo "${uri}" | grep -qE ".civicrm.devdrupal.org$|^jobs.devdrupal.org$"; then
-  # CiviCRM dev sites do not have bakery set up.
+elif echo "${uri}" | grep -qE "-civicrm.staging.devdrupal.org$|^jobs.devdrupal.org$"; then
+  # CiviCRM and Jobs dev sites do not have bakery set up.
   ${drush} pm-disable bakery
 fi
 
