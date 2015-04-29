@@ -1,9 +1,9 @@
 # Include common staging script.
 . staging/common.sh 'snapshot_to'
 
-# Get the DB name from drush
-db=$(${drush} ${type}sql-conf | sed -ne 's/^\s*\[database\] => //p')
 
+# Get the DB name from drush
+db=$(${drush} ${sqlconf} | sed -ne 's/^\s*\[database\] => //p')
 if [ "${suffix-}" != "civicrm" ]; then
   # Use the inactive db for import
   db=$([[ "${db}" == *1 ]] && echo "${db%?}" || echo "${db}1")
@@ -26,7 +26,7 @@ rsync -v --copy-links --password-file ~/util.rsync.pass "rsync://stagingmysql@db
   echo "CREATE DATABASE ${db};"
   echo "USE ${db};"
   bunzip2 < "${WORKSPACE}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2"
-) | ${drush} ${type}sql-cli
+) | ${drush} ${sqlcli}
 
 if [ "${suffix-}" != "civicrm" ]; then
   # Promote the inactive database to active
