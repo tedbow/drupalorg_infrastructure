@@ -172,7 +172,7 @@ else
     # Hook up to a Drupal.org
     ${drush} vset bakery_master "https://${bakery_master}-drupal.redesign.devdrupal.org/"
     drush_master="drush6 -r /var/www/dev/${bakery_master}-drupal.redesign.devdrupal.org/htdocs -l ${bakery_master}-drupal.redesign.devdrupal.org -y"
-    ${drush} vset bakery_key $(${drush_master} vget bakery_key | sed -ne 's/^.*"\(.*\)"/\1/p')
+    ${drush} vset bakery_key $(${drush_master} vget bakery_key --exact --format=string)
     ${drush_master} bakery-add-slave "https://${name}-${site}.redesign.devdrupal.org/"
   else
     # Don't bother with bakery
