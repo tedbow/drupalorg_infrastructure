@@ -20,6 +20,12 @@ $conf['apachesolr_environments']['solr']['url'] = 'http://devsolr1.drupal.aws/so
 // Memcache configuration.
 $conf['memcache_key_prefix'] = 'DB_NAME';
 
+// Memcache config.
+if ('SITE' == 'drupal') {
+  $conf['cache_backends'] = array( 'sites/all/modules/memcache/memcache.inc' );
+  $conf['cache_default_class'] = 'MemCacheDrupal';
+}
+
 // Do not use Beanstalk for Drupal.org queues.
 unset($conf['queue_class_versioncontrol_repomgr']);
 unset($conf['queue_class_versioncontrol_git_repo_parsing']);
