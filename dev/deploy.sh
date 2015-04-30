@@ -37,6 +37,8 @@ db_pass=$(pwgen -s 16 1)
 mkdir "${web_path}"
 mkdir -p "${web_path}/xhprof/htdocs"
 chown -R bender:developers "${web_path}"
+mkdir -p "${web_path}/files-tmp"
+chown -R apache:developers "${web_path}/files-tmp"
 echo "${COMMENT}" > "${web_path}/comment"
 
 # Create the vhost config
