@@ -11,7 +11,7 @@ function localize_7_post_update {
   ${drush} variable-set og_7000_access_field_default_value 0
 
   # Enable required modules.
-  ${drush} en og_context og_ui migrate localizedrupalorg
+  ${drush} en og_context og_ui migrate localizedrupalorg localizedrupalorg_groups localizedrupalorg_permissions localizedrupalorg_polls localizedrupalorg_stories localizedrupalorg_users localizedrupalorg_wikis
 
   # Display a birdview of OG migration and migrate data.
   ${drush} ms
