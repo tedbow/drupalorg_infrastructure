@@ -6439,3 +6439,51 @@ whitelist.update(
         "git_vetted",
         "git_disabled",
     ])
+
+whitelist.add(
+    table="_nodata:tfa_accepted_code",
+    columns=[
+        "cid",
+        "uid",
+        "code_hash",
+        "time_accepted",
+    ])
+
+whitelist.add(
+    table="_nodata:tfa_recovery_code",
+    columns=[
+        "id",
+        "uid",
+        "code",
+        "created",
+        "used",
+    ])
+
+whitelist.add(
+    table="_nodata:tfa_totp_seed",
+    columns=[
+        "uid",
+        "seed",
+        "created",
+    ])
+
+whitelist.add(
+    table="_nodata:tfa_trusted_browser",
+    columns=[
+        "did",
+        "uid",
+        "value",
+        "created",
+        "last_used",
+        "ip",
+        "name",
+    ])
+
+whitelist.add(
+    table="_nodata:tfa_user_settings",
+    columns=[
+        "uid",
+        "saved",
+        "status",
+        "data",
+    ])
