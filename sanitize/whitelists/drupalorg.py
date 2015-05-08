@@ -935,6 +935,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_attribute_as_volunteer",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_attribute_as_volunteer_value",
+    ])
+
+whitelist.add(
     table="field_data_field_attribute_contribution_to",
     columns=[
         "entity_type",
@@ -3049,6 +3062,19 @@ whitelist.add(
         "language",
         "delta",
         "field_areas_of_expertise_tid",
+    ])
+
+whitelist.add(
+    table="field_revision_field_attribute_as_volunteer",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_attribute_as_volunteer_value",
     ])
 
 whitelist.add(
