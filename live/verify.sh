@@ -3,18 +3,11 @@
 
 # Collect information.
 cd ${webroot}
-if [ -d .bzr ]; then
-  export version=$(bzr revno)
-  export version_available=$(bzr revno $(bzr info | sed -ne 's/\s*checkout of branch:\s*//p'))
-  export repo_status=$(bzr status)
-  export repo_diff=$(bzr diff)
-else
-  git fetch
-  export version=$(git rev-parse --short HEAD)
-  export version_available=$(git log "HEAD..origin/$(git rev-parse --abbrev-ref HEAD)" --oneline)
-  export repo_status=$(git status --short)
-  export repo_diff=$(git diff)
-fi
+git fetch
+export version=$(git rev-parse --short HEAD)
+export version_available=$(git log "HEAD..origin/$(git rev-parse --abbrev-ref HEAD)" --oneline)
+export repo_status=$(git status --short)
+export repo_diff=$(git diff)
 cd ${WORKSPACE}
 export projects=$(${drush} pm-list --status=enabled --pipe)
 export features=$(

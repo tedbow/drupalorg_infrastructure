@@ -2,11 +2,7 @@
 . live/common.sh 'deploy'
 
 cd ${webroot}
-if [ -d .bzr ]; then
-  bzr update
-else
-  git pull
-fi
+git pull
 
 if [ "${updatedb-}" = "true" ]; then
   ${drush} -v updatedb --interactive
