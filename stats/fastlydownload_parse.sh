@@ -1,3 +1,5 @@
+#!/bin/bash
+set -uex
 export PATH=$PATH:/usr/local/bin
 export TERM=dumb
 
@@ -11,4 +13,4 @@ for filename in *; do
 done
 
 # Create the comprehensive download counts
-/usr/local/drupal-infrastructure/stats/downloadcount_aggregator.awk /data/logs/fastly/downloadcounts/*.downloadcounts.csv <(gzip -dc /data/logs/fastly/downloadcounts/*.downloadcounts.csv.gz)
+/usr/local/drupal-infrastructure/stats/downloadcount_aggregator.awk /data/logs/fastly/downloadcounts/*.downloadcounts.csv <(/bin/gzip -dc /data/logs/fastly/downloadcounts/*.downloadcounts.csv.gz)
