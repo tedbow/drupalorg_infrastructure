@@ -5528,7 +5528,6 @@ whitelist.add(
         "job_id",
         "environment",
         "target_type",
-        "results_id",
         "ci_url",
         "status",
         "result",
