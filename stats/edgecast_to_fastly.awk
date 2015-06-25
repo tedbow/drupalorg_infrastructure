@@ -11,10 +11,6 @@ $7 ~ /updates.drupal.org/ {
   split($0, user_agent, "\"");
   if (user_agent[3] == "-") user_agent[3] = "(null)";
 
-
-  split($7,parts,"/");
-  split(parts[8],urlbits,"?");
-
   split($4,dateparts,"/");
   split(dateparts[3],timeparts,":");
 
