@@ -1,6 +1,7 @@
 #!/bin/gawk -f
 
-# This script takes standard NCSA logs and reformats them into the same format that rsyslog creates.
+# This script takes in edgecast logs and reformats them into the same format that fastly creates.
+# Usage: ./edgecast_to_fastly.awk filename.log > newfilename.log
 $7 ~ /updates.drupal.org/ {
 
   gsub(/http:\/\/updates.drupal.org\/80C301/,"",$7);
