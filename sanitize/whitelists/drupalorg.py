@@ -5523,6 +5523,35 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="pift_ci_job",
+    columns=[
+        "job_id",
+        "environment",
+        "target_type",
+        "ci_url",
+        "status",
+        "result",
+        "message",
+        "issue_nid",
+        "file_id",
+        "release_nid",
+        "commit_id",
+        "build_iteration",
+        "job_priority",
+        "updated",
+        "created",
+    ])
+
+whitelist.add(
+    table="pift_ci_project",
+    columns=[
+        "nid",
+        "environment",
+        "release_nid",
+        "testing",
+    ])
+
+whitelist.add(
     table="profile_field",
     columns=[
         "fid",
