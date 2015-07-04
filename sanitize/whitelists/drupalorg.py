@@ -5384,29 +5384,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="migrate_log",
-    columns=[
-        "mlid",
-        "machine_name",
-        "process_type",
-        "starttime",
-        "endtime",
-        "initialhighwater",
-        "finalhighwater",
-        "numprocessed",
-    ])
-
-whitelist.add(
-    table="migrate_status",
-    columns=[
-        "machine_name",
-        "class_name",
-        "status",
-        "highwater",
-        "arguments",
-    ])
-
-whitelist.add(
     table="_nodata:mollom",
     columns=[
         "entity",
