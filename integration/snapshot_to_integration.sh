@@ -1,36 +1,38 @@
 # Include common integration script.
 . integration/common.sh 'snapshot_to'
 
+
 # Get the DB name from drush
-db=$(${drush} ${type}sql-conf | sed -ne 's/^\s*\[database\] => //p')
+db=$(${drush} ${sqlconf} | sed -ne 's/^\s*\[database\] => //p')
+if [ "${suffix-}" != "civicrm" ]; then
+  # Use the inactive db for import
+  db=$([[ "${db}" == *1 ]] && echo "${db%?}" || echo "${db}1")
+fi
 
 # If a snapshot has not been already set in $snapshot, get it from $uri,
 # everything before the first '.' or '-'.
 [ "${snapshot-}" ] || snapshot=$(echo ${uri} | sed -e 's/[.-].*$//')
 
 # If a snapshot type has been designated, use that. Otherwise, default to
-# the 'integration' snapshot.
-[ "${snaptype-}" ] || snaptype=integration
+# the 'staging' snapshot.
+[ "${snaptype-}" ] || snaptype=staging
 
-if [ "${uri}" != "integration.devdrupal.org" -a "${uri}" != "infrastructure.integration.devdrupal.org" -a "${uri}" != "assoc.integration.devdrupal.org" -a "${uri}" != "events.integration.devdrupal.org" -a "${uri}" != "api.integration.devdrupal.org" -a "${uri}" != "jobs.integration.devdrupal.org" -a "${uri}" != "jobs.devdrupal.org" -a "${uri}" != "qa.integration.devdrupal.org" ] || [ "${suffix-}" == "civicrm" ]; then
-  # Copy snapshot.
-  rsync -v --copy-links --password-file ~/util.rsync.pass "rsync://integrationmysql@util.drupal.org/mysql-${snaptype}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2" "${WORKSPACE}"
+# Copy snapshot.
+rsync -v --copy-links --password-file ~/util.rsync.pass "rsync://stagingmysql@dbutil.drupal.org/mysql-${snaptype}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2" "${WORKSPACE}"
 
-  # Clear out the DB and import a snapshot.
-  (
-    echo "DROP DATABASE ${db};"
-    echo "CREATE DATABASE ${db};"
-    echo "USE ${db};"
-    bunzip2 < "${WORKSPACE}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2"
-  ) | ${drush} ${type}sql-cli
-else
-  ALTDBLOC="/var/www/${uri}/altdb"
-  if [ -f ${ALTDBLOC} ]; then
-    rm ${ALTDBLOC}
-  else
-    touch ${ALTDBLOC}
-  fi
+# Clear out the DB and import a snapshot.
+(
+  echo "DROP DATABASE ${db};"
+  echo "CREATE DATABASE ${db};"
+  echo "USE ${db};"
+  bunzip2 < "${WORKSPACE}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2"
+) | ${drush} ${sqlcli}
+
+if [ "${suffix-}" != "civicrm" ]; then
+  # Promote the inactive database to active
+  swap_db
 fi
+
 # Extra preparation for D7.
 if [ "${uri}" = "localize-7.integration.devdrupal.org" ]; then
   (
@@ -66,8 +68,8 @@ elif [ "${uri}" = "groups-7.integration.devdrupal.org" ]; then
   # todo remove when the existing front page, "frontpage", does not 404.
   ${drush} variable-set site_frontpage "node"
 
-elif echo "${uri}" | grep -qE ".civicrm.devdrupal.org$|^jobs.devdrupal.org$"; then
-  # CiviCRM dev sites do not have bakery set up.
+elif echo "${uri}" | grep -qE "civicrm.integration.devdrupal.org$|^jobs.devdrupal.org$"; then
+  # CiviCRM and Jobs dev sites do not have bakery set up.
   ${drush} pm-disable bakery
 fi
 

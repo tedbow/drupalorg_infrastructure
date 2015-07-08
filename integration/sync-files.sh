@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Use rsync to make copies of files directories available for integration and dev.
+# Use rsync to make copies of files directories available for staging/integration/dev.
 
 # Exit immediately on uninitialized variable or error, and print each command.
 set -uex
