@@ -5517,6 +5517,8 @@ whitelist.add(
         "job_priority",
         "updated",
         "created",
+        "uid",
+        "reason",
     ])
 
 whitelist.add(
