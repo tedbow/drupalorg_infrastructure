@@ -9,7 +9,7 @@ git pull
 ${drush} cc all || true
 # Temporary D7 upgrade steps for localize
 if [ "${uri}" = "localize-7.staging.devdrupal.org" ]; then
-  . staging/localize_7.sh
+  . /usr/local/drupal-infrastructure/staging/localize_7.sh
   localize_7_pre_update
 fi
 ${drush} updatedb --interactive
