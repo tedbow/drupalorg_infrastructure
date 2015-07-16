@@ -2,7 +2,7 @@
 function localize_7_pre_update {
   (
     # OG needs new entity module.
-    echo "UPDATE system SET status = 0 WHERE name IN ('og','og_ui');"
+    echo "UPDATE system SET status = 0 WHERE name IN ('og','og_ui', 'og_context');"
   ) | ${drush} sql-cli
 }
 
