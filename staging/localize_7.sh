@@ -21,7 +21,7 @@ function localize_7_post_update {
   ${drush} mi --all
 
   # Revert view og_members_ldo.
-  ${drush} views-revert og_members_ldo
+  #${drush} views-revert og_members_ldo
 
   # Disable Migrate once migration is done.
   ${drush} dis migrate
