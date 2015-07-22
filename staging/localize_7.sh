@@ -13,6 +13,9 @@ function localize_7_post_update {
   # Set the installation profile
   ${drush} variable-set install_profile minimal
 
+  # Do not try getting projects from Drupal.org's DB.
+  ${drush} variable-delete l10n_server_connector_l10n_project_drupalorg_cron
+
   # Enable required modules.
   ${drush} en og og_context og_ui migrate localizedrupalorg localizedrupalorg_groups localizedrupalorg_permissions localizedrupalorg_polls localizedrupalorg_stories localizedrupalorg_users localizedrupalorg_wikis
 
