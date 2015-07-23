@@ -96,7 +96,7 @@ foreach (preg_split('/(^|\n)==== /', getenv('features'), -1, PREG_SPLIT_NO_EMPTY
       </table>
 
       <h3>Logs</h3>
-      <p>DB logs since <strong class="text-<?php (getenv('log_earliest') < strtotime('-1 week')) ? 'danger' : 'info' ?>"><?php print gmdate('r', getenv('log_earliest')) ?></strong></p>
+      <p>DB logs since <strong class="text-<?php print (getenv('log_earliest') < strtotime('-1 week')) ? 'info' : 'danger' ?>"><?php print gmdate('r', getenv('log_earliest')) ?></strong></p>
 
       <div class="panel-group" id="features">
         <?php foreach ($features as $feature) { ?>
