@@ -18,7 +18,6 @@ function localize_7_post_update {
 
   # Set the flag for OG to have global group roles
   ${drush} vset og_7000_access_field_default_value 0
-  ${drush} vset og_user_roles_default_admin_role 12
 
   # Rebuild Registry
   ${drush} rr
@@ -30,6 +29,11 @@ function localize_7_post_update {
   # Turn off front-end cache for now.
   ${drush} vset preprocess_css 0
   ${drush} vset preprocess_js 0
+
+  # Setup localizedrupalorg module to be ready to be updated later
+  (
+    echo "UPDATE system SET schema_version = 7101 WHERE name='localizedrupalorg'";
+  ) | drush sql-cli
 
   # Display a birdview of OG migration and migrate data.
   #${drush} ms
