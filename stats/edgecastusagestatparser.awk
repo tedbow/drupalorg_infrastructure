@@ -9,8 +9,7 @@ BEGIN {
        OFS="|";
        } # Split line on pipes
 
-$7 ~ /updates\.drupal\.org/
- { # Trim leading bracket from date field
+$7 ~ /updates\.drupal\.org/ { # Trim leading bracket from date field
    gsub(/^\[/,"",$4);
 
    # Split date components into individual y/m/d parts
