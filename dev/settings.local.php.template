@@ -31,6 +31,9 @@ unset($conf['queue_class_versioncontrol_repomgr']);
 unset($conf['queue_class_versioncontrol_git_repo_parsing']);
 unset($conf['queue_class_versioncontrol_reposync']);
 
+// Do not require TFA for admins.
+$conf['tfa_basic_roles_require'] = array();
+
 $conf['drupalorg_site_status'] = 'This is a <a href="http://drupal.org/node/1018084">development site</a>.';
 
 $conf['simpletest_verbose'] = 1;

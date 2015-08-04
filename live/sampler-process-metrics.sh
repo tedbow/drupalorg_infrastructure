@@ -12,7 +12,7 @@ umask g+w
 
 # For easily executing Drush.
 export TERM=dumb
-drush="drush -r /var/www/drupal.org/htdocs -l drupal.org -y"
+drush="drush -r /var/www/drupal.org/htdocs -v -l drupal.org -y"
 
 ${drush} sampler-sample sampler nodes --save
 ${drush} sampler-sample sampler comments --save

@@ -9,6 +9,7 @@ export version_available=$(git log "HEAD..origin/$(git rev-parse --abbrev-ref HE
 export repo_status=$(git status --short)
 export repo_diff=$(git diff)
 cd ${WORKSPACE}
+export log_earliest=$(${drush} sql-query 'SELECT min(timestamp) AS "" FROM watchdog;')
 export projects=$(${drush} pm-list --status=enabled --pipe)
 export features=$(
   # Machine names of enabled & overridden features. Machine-readable output
