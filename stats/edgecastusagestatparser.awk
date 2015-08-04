@@ -10,7 +10,7 @@ BEGIN {
        } # Split line on pipes
 
  { # Trim leading bracket from date field
-   gsub(/^[\/,"",$4);
+   gsub(/^\[/,"",$4);
 
    # Split date components into individual y/m/d parts
    # Check if the date has changed, if so, recalculate new week and create subdir.
