@@ -21,7 +21,7 @@ BEGIN {FS="|";
         entry_timestamp =  mktime(dateparts[1] " " dateparts[2] " " dateparts[3] " " 0 " " 0 " " 0);
         dayofweek = strftime("%w",entry_timestamp);
         week_timestamp = mktime(dateparts[1] " " dateparts[2] " " dateparts[3] - dayofweek  " " 0 " " 0 " " 0);
-        system("mkdir -p /data/logs/fastly/updates-syslogs/newupdates/" week_timestamp);
+        system("mkdir -p /data/logs/updatestats/reformatted/" week_timestamp);
         lastdate = $4;
    }
 
@@ -45,9 +45,9 @@ BEGIN {FS="|";
 
 
    if (length(site_key[2]) != 0) {
-     print site_key[2],project,version[2],api_version >> ("/data/logs/fastly/updates-syslogs/newupdates/" week_timestamp "/" FILENAME);
+     print site_key[2],project,version[2],api_version >> ("/data/logs/updatestats/reformatted/" week_timestamp "/" FILENAME);
    } else {
-     print $4,project,version[2],api_version >> ("/data/logs/fastly/updates-syslogs/newupdates/" week_timestamp "/" FILENAME ".nokey");
+     print $4,project,version[2],api_version >> ("/data/logs/updatestats/reformatted/" week_timestamp "/" FILENAME ".nokey");
    }
    # pull out the filename, but trim off the initial slash
    #filename=substr(request[2],2);
