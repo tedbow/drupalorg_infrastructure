@@ -5,10 +5,12 @@
 # 2015-06-27T00:00:00Z cache-ams4140 fastlyupdates[310]: 144.76.104.230 | "-" | "-" | 2015-06-26 | 23:59:59 +0000 | GET /release-history/metatag/7.x?site_key=IPfiGkPnKUfj6HIFgEQXFo0JyCXwfP5R9QQZxMCLJJA&version=7.x-1.5&list=metatag%2Cmetatag_context | 200 | (null) | Drupal (+http://drupal.org/)
 
 # 75.119.222.166 - - [22/Jun/2015:23:59:52 +0000] "GET http://updates.drupal.org/80C301/updates.drupal.org/release-history/field_group_table/7.x?site_key=jzziGM7E2rLqT9SYM4K4kmQV2cjmnBr127pqMUXyH2g&version=7.x-1.5&list=field_group_table HTTP/1.1" 200 12636 "-" "Drupal (+http://drupal.org/)"
-
+BEGIN {
+       OFS="|";
+       } # Split line on pipes
 
  { # Trim leading bracket from date field
-   gsub(/^[/,"",$4);
+   gsub(/^[\/,"",$4);
 
    # Split date components into individual y/m/d parts
    # Check if the date has changed, if so, recalculate new week and create subdir.
@@ -29,8 +31,8 @@
    # split the request into project and version
    gsub(/release-history\/\//,"release-history/",urlparts[1]);
    split(urlparts[1], urlfields, "/");
-   project = urlfields[3];
-   api_version = urlfields[4];
+   project = urlfields[7];
+   api_version = urlfields[8];
    projects[project]=1;
 
    split(urlparts[2],qsvars,"&");
