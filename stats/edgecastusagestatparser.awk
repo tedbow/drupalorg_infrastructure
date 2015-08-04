@@ -8,8 +8,8 @@
 BEGIN {
        OFS="|";
        } # Split line on pipes
-       
-$7 ~ /updates.drupal.org/
+
+$7 ~ /updates\.drupal\.org/
  { # Trim leading bracket from date field
    gsub(/^\[/,"",$4);
 
