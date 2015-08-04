@@ -18,7 +18,6 @@ $7 ~ /updates\.drupal\.org/ { # Trim leading bracket from date field
         split($4,dateparts,"/");
         split(dateparts[3],timeparts,":");
         monthnum = sprintf("%02d",(match("JanFebMarAprMayJunJulAugSepOctNovDec",dateparts[2])+2)/3);
-        split($4,dateparts,"-");
         entry_timestamp = mktime(timeparts[1] " " monthnum " " dateparts[1] " " 0 " " 0 " " 0);
         dayofweek = sprintf("%02d",(dateparts[1] - strftime("%w",entry_timestamp)));
         week_timestamp = mktime(timeparts[1] " " monthnum " " dayofweek  " " 0 " " 0 " " 0);
