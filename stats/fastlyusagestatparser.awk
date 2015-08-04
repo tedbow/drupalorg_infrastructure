@@ -19,7 +19,7 @@ BEGIN {FS="|";
    if (lastdate != $4) {
         split($4,dateparts,"-");
         entry_timestamp =  mktime(dateparts[1] " " dateparts[2] " " dateparts[3] " " 0 " " 0 " " 0);
-        dayofweek = sprintf("%02d",(dateparts[3] - strftime("%w",entry_timestamp));
+        dayofweek = sprintf("%02d",(dateparts[3] - strftime("%w",entry_timestamp)));
         week_timestamp = mktime(dateparts[1] " " dateparts[2] " " dayofweek  " " 0 " " 0 " " 0);
         system("mkdir -p /data/logs/updatestats/reformatted/" week_timestamp);
         lastdate = $4;
