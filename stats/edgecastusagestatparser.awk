@@ -4,33 +4,28 @@
 # A sample line looks like the following:
 # 2015-06-27T00:00:00Z cache-ams4140 fastlyupdates[310]: 144.76.104.230 | "-" | "-" | 2015-06-26 | 23:59:59 +0000 | GET /release-history/metatag/7.x?site_key=IPfiGkPnKUfj6HIFgEQXFo0JyCXwfP5R9QQZxMCLJJA&version=7.x-1.5&list=metatag%2Cmetatag_context | 200 | (null) | Drupal (+http://drupal.org/)
 
-BEGIN {FS="|";
-       OFS="|";
-       } # Split line on pipes
+# 75.119.222.166 - - [22/Jun/2015:23:59:52 +0000] "GET http://updates.drupal.org/80C301/updates.drupal.org/release-history/field_group_table/7.x?site_key=jzziGM7E2rLqT9SYM4K4kmQV2cjmnBr127pqMUXyH2g&version=7.x-1.5&list=field_group_table HTTP/1.1" 200 12636 "-" "Drupal (+http://drupal.org/)"
 
- { # Only operate on lines with files/projects in them - ignore translations
-   # split incoming data for ip address
-   # Trim leading spaces from date field
-      gsub(/^[ \t]+/,"",$4);
-      # Trim trailing spaces from date field
-      gsub(/[ \t]+$/,"",$4);
-      # Split date components into individual y/m/d parts
 
-   if (lastdate != $4) {
+ { # Trim leading bracket from date field
+   gsub(/^[/,"",$4);
+
+   # Split date components into individual y/m/d parts
+   # Check if the date has changed, if so, recalculate new week and create subdir.
+   if (lastdate != substr($4,0,11)) {
+        split($4,dateparts,"/");
+        split(dateparts[3],timeparts,":");
+        monthnum = sprintf("%02d",(match("JanFebMarAprMayJunJulAugSepOctNovDec",dateparts[2])+2)/3);
         split($4,dateparts,"-");
-        entry_timestamp =  mktime(dateparts[1] " " dateparts[2] " " dateparts[3] " " 0 " " 0 " " 0);
+        entry_timestamp =  mktime(timeparts[1] " " monthnum " " dateparts[1] " " 0 " " 0 " " 0);
         dayofweek = strftime("%w",entry_timestamp);
-        week_timestamp = mktime(dateparts[1] " " dateparts[2] " " dateparts[3] - dayofweek  " " 0 " " 0 " " 0);
+        week_timestamp = mktime(timeparts[1] " " monthnum " " dateparts[1] - dayofweek  " " 0 " " 0 " " 0);
         system("mkdir -p /data/logs/updatestats/reformatted/" week_timestamp);
-        lastdate = $4;
+        lastdate = substr($4,0,11);
    }
 
-   #split($1,metadata," ");
-   #ipaddress = metadata[4];
-   # split request line on spaces
-   split($6,request," ");
-   # split the url into request and querystring
-   split(request[2], urlparts, "?");
+
+   split($7, urlparts, "?");
    # split the request into project and version
    gsub(/release-history\/\//,"release-history/",urlparts[1]);
    split(urlparts[1], urlfields, "/");
@@ -39,7 +34,6 @@ BEGIN {FS="|";
    projects[project]=1;
 
    split(urlparts[2],qsvars,"&");
-
    split(qsvars[1], site_key, "=");
    split(qsvars[2], version, "=");
 
@@ -48,4 +42,5 @@ BEGIN {FS="|";
    } else {
      print $4,project,version[2],api_version >> ("/data/logs/updatestats/reformatted/" week_timestamp "/" FILENAME ".nokey");
    }
+
 }
