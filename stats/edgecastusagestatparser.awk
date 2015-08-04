@@ -19,9 +19,9 @@ $7 ~ /updates\.drupal\.org/ { # Trim leading bracket from date field
         split(dateparts[3],timeparts,":");
         monthnum = sprintf("%02d",(match("JanFebMarAprMayJunJulAugSepOctNovDec",dateparts[2])+2)/3);
         split($4,dateparts,"-");
-        entry_timestamp =  mktime(timeparts[1] " " monthnum " " dateparts[1] " " 0 " " 0 " " 0);
-        dayofweek = strftime("%w",entry_timestamp);
-        week_timestamp = mktime(timeparts[1] " " monthnum " " dateparts[1] - dayofweek  " " 0 " " 0 " " 0);
+        entry_timestamp = mktime(timeparts[1] " " monthnum " " dateparts[1] " " 0 " " 0 " " 0);
+        dayofweek = dateparts[1] - strftime("%w",entry_timestamp);
+        week_timestamp = mktime(timeparts[1] " " monthnum " " dayofweek  " " 0 " " 0 " " 0);
         system("mkdir -p /data/logs/updatestats/reformatted/" week_timestamp);
         lastdate = substr($4,0,11);
    }
