@@ -39,9 +39,9 @@ $7 ~ /updates\.drupal\.org/ { # Trim leading bracket from date field
    split(qsvars[2], version, "=");
 
    if (length(site_key[2]) != 0) {
-     print site_key[2],project,version[2],api_version >> ("/data/logs/updatestats/reformatted/" week_timestamp "/" FILENAME.formatted);
+     print site_key[2],project,version[2],api_version >> ("/data/logs/updatestats/reformatted/" week_timestamp "/" FILENAME ".formatted");
    } else {
-     print $4,project,version[2],api_version >> ("/data/logs/updatestats/reformatted/" week_timestamp "/" FILENAME ".nokey");
+     print $4,project,version[2],api_version >> ("/data/logs/updatestats/keyless/" week_timestamp "/" FILENAME ".nokey");
    }
 
 }
