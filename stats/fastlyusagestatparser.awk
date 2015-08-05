@@ -25,8 +25,8 @@ BEGIN {FS="|";
         lastdate = $4;
    }
 
-   #split($1,metadata," ");
-   #ipaddress = metadata[4];
+   split($1,metadata," ");
+   ipaddress = metadata[4];
    # split request line on spaces
    split($6,request," ");
    # split the url into request and querystring
@@ -46,6 +46,6 @@ BEGIN {FS="|";
    if (length(site_key[2]) != 0) {
      print site_key[2],project,version[2],api_version >> ("/data/logs/updatestats/reformatted/" week_timestamp "/" FILENAME.formatted);
    } else {
-     print $4,project,version[2],api_version >> ("/data/logs/updatestats/reformatted/" week_timestamp "/" FILENAME ".nokey");
+     print ipaddress,project,version[2],api_version >> ("/data/logs/updatestats/reformatted/" week_timestamp "/" FILENAME ".nokey");
    }
 }
