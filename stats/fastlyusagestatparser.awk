@@ -44,7 +44,7 @@ BEGIN {FS="|";
    split(qsvars[2], version, "=");
 
    if (length(site_key[2]) != 0) {
-     print site_key[2],project,version[2],api_version >> ("/data/logs/updatestats/reformatted/" week_timestamp "/" FILENAME);
+     print site_key[2],project,version[2],api_version >> ("/data/logs/updatestats/reformatted/" week_timestamp "/" FILENAME.formatted);
    } else {
      print $4,project,version[2],api_version >> ("/data/logs/updatestats/reformatted/" week_timestamp "/" FILENAME ".nokey");
    }
