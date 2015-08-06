@@ -60,7 +60,7 @@ tmp_args="${dbhost} ${dbuser:= } ${dbpassword:= }"
 # Copy the raw database to the sanitization host (i.e. dbutil)
 # Set tmp_args2 of the database being transferred to the sanitization host
 # @TODO: db6-reader-vip should be a variable
-tmp_args2="-hdb6-reader-vip.drupal.org ${dbuser:= } ${dbpassword:= }"
+tmp_args2="-hdb6-reader-vip.drupal.bak ${dbuser:= } ${dbpassword:= }"
 time mysqldump ${dbopt} ${tmp_args2} ${database} | mysql ${tmp_args} ${database}_sanitize
 
 # Sanitize into the export database.
