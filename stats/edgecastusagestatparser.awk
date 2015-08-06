@@ -39,7 +39,7 @@ $7 ~ /updates\.drupal\.org/ { # Trim leading bracket from date field
    split(qsvars[2], version, "=");
 
    # sometimes version isnt second, 'list' is, but no version.
-   if (version[1] != 'version' ) {
+   if (version[1] != "version" ) {
      next;
    }
 
