@@ -50,7 +50,7 @@ db_pass=$3
 # If the sanitization is not set, use the DB name.
 [ "${sanitization-}" ] || sanitization=${db_name}
 # If the DB host is not set, use db6-reader-vip
-[ "${db_host-}" ] || db_host=db6-reader-vip.drupal.org
+[ "${db_host-}" ] || db_host=db6-reader-vip.drupal.bak
 
 tmp_db=${db_name}_sanitize
 tmp_user=sanitize_rw
