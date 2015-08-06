@@ -42,10 +42,12 @@ BEGIN {FS="|";
 
    split(qsvars[1], site_key, "=");
    split(qsvars[2], version, "=");
+   # If the version contains anything with a % sign, discard it as it may be a dev version of a release.
+   split(version[2], realversion, "%")
 
    if (length(site_key[2]) != 0) {
-     print site_key[2],project,version[2],api_version >> ("/data/logs/updatestats/reformatted/" week_timestamp "/" FILENAME ".formatted");
+     print site_key[2],project,realversion[1],api_version >> ("/data/logs/updatestats/reformatted/" week_timestamp "/" FILENAME ".formatted");
    } else {
-     print ipaddress,project,version[2],api_version >> ("/data/logs/updatestats/keyless/" week_timestamp "/" FILENAME ".nokey");
+     print ipaddress,project,realversion[1],api_version >> ("/data/logs/updatestats/keyless/" week_timestamp "/" FILENAME ".nokey");
    }
 }
