@@ -37,6 +37,12 @@ $7 ~ /updates\.drupal\.org/ { # Trim leading bracket from date field
    split(urlparts[2],qsvars,"&");
    split(qsvars[1], site_key, "=");
    split(qsvars[2], version, "=");
+
+   # sometimes version isnt second, 'list' is, but no version.
+   if (version[1] != 'version' ) {
+     next;
+   }
+
    # converts dev releases to nearest full release
    # split(version[2], realversion, "%");
    # fixedversion = realversion[1];
@@ -44,6 +50,7 @@ $7 ~ /updates\.drupal\.org/ { # Trim leading bracket from date field
    # Convert dev releases to dev releases, not full releases.
    gsub(/\.[0-9].*%2B[0-9]+-dev$/,".x-dev", version[2]);
    fixedversion = version[2];
+
    if (length(site_key[2]) != 0) {
      print site_key[2],project,fixedversion,api_version >> ("/data/logs/updatestats/reformatted/" week_timestamp "/" FILENAME ".formatted");
    } else {
