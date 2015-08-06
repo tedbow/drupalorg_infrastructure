@@ -43,11 +43,17 @@ BEGIN {FS="|";
    split(qsvars[1], site_key, "=");
    split(qsvars[2], version, "=");
    # If the version contains anything with a % sign, discard it as it may be a dev version of a release.
-   split(version[2], realversion, "%")
+
+   # converts dev releases to nearest full release
+   # split(version[2], realversion, "%");
+   # fixedversion = realversion[1];
+
+   # Convert dev releases to dev releases, not full releases.
+   fixedversion = gensub(/-([0-9]+)\..*%2B[0-9]+-dev/,"-\\1.x-dev", "g", $version[2]);
 
    if (length(site_key[2]) != 0) {
-     print site_key[2],project,realversion[1],api_version >> ("/data/logs/updatestats/reformatted/" week_timestamp "/" FILENAME ".formatted");
+     print site_key[2],project,fixedversion,api_version >> ("/data/logs/updatestats/reformatted/" week_timestamp "/" FILENAME ".formatted");
    } else {
-     print ipaddress,project,realversion[1],api_version >> ("/data/logs/updatestats/keyless/" week_timestamp "/" FILENAME ".nokey");
+     print ipaddress,project,fixedversion,api_version >> ("/data/logs/updatestats/keyless/" week_timestamp "/" FILENAME ".nokey");
    }
 }
