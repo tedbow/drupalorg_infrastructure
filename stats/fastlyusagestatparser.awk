@@ -49,8 +49,8 @@ BEGIN {FS="|";
    # fixedversion = realversion[1];
 
    # Convert dev releases to dev releases, not full releases.
-   fixedversion = gsub(/\.[0-9].*%2B[0-9]+-dev$/,".x-dev", $version[2]);
-
+   gsub(/\.[0-9].*%2B[0-9]+-dev$/,".x-dev", $version[2]);
+   fixedversion = $version[2];
    if (length(site_key[2]) != 0) {
      print site_key[2],project,fixedversion,api_version >> ("/data/logs/updatestats/reformatted/" week_timestamp "/" FILENAME ".formatted");
    } else {
