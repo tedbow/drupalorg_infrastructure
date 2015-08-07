@@ -7,8 +7,9 @@
 BEGIN {FS="|";
        OFS="|";
         #blow away any existing files for this filename, in case we reprocess.
-        system("rm -rf /data/logs/updatestats/reformatted/*/" FILENAME ".formatted");
-        system("rm -rf /data/logs/updatestats/submodules/*/" FILENAME ".formatted");
+        # FILENAME isnt available in BEGIN blocks. Because magic.
+        system("rm -rf /data/logs/updatestats/reformatted/*/" ARGV[1] ".formatted");
+        system("rm -rf /data/logs/updatestats/submodules/*/" ARGV[1] ".formatted");
        } # Split line on pipes
 
  { # Only operate on lines with files/projects in them - ignore translations
