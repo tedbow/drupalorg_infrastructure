@@ -11,7 +11,7 @@ BEGIN {
        # FILENAME isnt available in BEGIN blocks. Because magic.
        system("rm -rf /data/logs/updatestats/reformatted/*/" ARGV[1] ".formatted");
        system("rm -rf /data/logs/updatestats/submodules/*/" ARGV[1] ".formatted");
-       system("rm -rf /data/logs/updatestats/keyless/*/" ARGV[1] ".formatted");
+       system("rm -rf /data/logs/updatestats/keyless/*/" ARGV[1] ".nokey");
        } # Split line on pipes
 
 $7 ~ /updates\.drupal\.org/ { # Trim leading bracket from date field
