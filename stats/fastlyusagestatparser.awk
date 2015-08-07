@@ -10,6 +10,7 @@ BEGIN {FS="|";
         # FILENAME isnt available in BEGIN blocks. Because magic.
         system("rm -rf /data/logs/updatestats/reformatted/*/" ARGV[1] ".formatted");
         system("rm -rf /data/logs/updatestats/submodules/*/" ARGV[1] ".formatted");
+        system("rm -rf /data/logs/updatestats/keyless/*/" ARGV[1] ".formatted");
        } # Split line on pipes
 
  { # Only operate on lines with files/projects in them - ignore translations
