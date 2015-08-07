@@ -42,6 +42,10 @@ BEGIN {FS="|";
 
    split(qsvars[1], site_key, "=");
    split(qsvars[2], version, "=");
+   # list are submodules used for each project.
+   split(qsvars[3], list, "=");
+   gsub(/%2C/, ",", list[2]);
+   split(list[2], submodules, ",");
 
    # sometimes version isnt second, 'list' is, but no version.
    if (version[1] != "version" ) {
@@ -58,7 +62,11 @@ BEGIN {FS="|";
 
    if (length(site_key[2]) != 0) {
      print site_key[2],project,fixedversion,api_version >> ("/data/logs/updatestats/reformatted/" week_timestamp "/" FILENAME ".formatted");
+     for (submodule in submodules) {
+       print site_key[2],project,fixedversion,api_version,submodule >> ("/data/logs/updatestats/submodules/" week_timestamp "/" FILENAME ".formatted");
+     }
    } else {
      print ipaddress,project,fixedversion,api_version >> ("/data/logs/updatestats/keyless/" week_timestamp "/" FILENAME ".nokey");
+     # If there isnt a key, we ignore the submodules.
    }
 }

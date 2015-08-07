@@ -37,6 +37,10 @@ $7 ~ /updates\.drupal\.org/ { # Trim leading bracket from date field
    split(urlparts[2],qsvars,"&");
    split(qsvars[1], site_key, "=");
    split(qsvars[2], version, "=");
+   # list variable is submodules in use for each project.
+   split(qsvars[3], list, "=");
+   gsub(/%2C/, ",", list[2]);
+   split(list[2], submodules, ",");
 
    # sometimes version isnt second, 'list' is, but no version.
    if (version[1] != "version" ) {
@@ -53,8 +57,12 @@ $7 ~ /updates\.drupal\.org/ { # Trim leading bracket from date field
 
    if (length(site_key[2]) != 0) {
      print site_key[2],project,fixedversion,api_version >> ("/data/logs/updatestats/reformatted/" week_timestamp "/" FILENAME ".formatted");
+     for (submodule in submodules) {
+            print site_key[2],project,fixedversion,api_version,submodule >> ("/data/logs/updatestats/submodules/" week_timestamp "/" FILENAME ".formatted");
+          }
    } else {
      print $1,project,fixedversion,api_version >> ("/data/logs/updatestats/keyless/" week_timestamp "/" FILENAME ".nokey");
+     # If there isnt a key, we ignore the submodules.
    }
 
 }
