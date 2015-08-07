@@ -6,6 +6,9 @@
 
 BEGIN {FS="|";
        OFS="|";
+        #blow away any existing files for this filename, in case we reprocess.
+        system("rm -rf /data/logs/updatestats/reformatted/*/" FILENAME ".formatted");
+        system("rm -rf /data/logs/updatestats/submodules/*/" FILENAME ".formatted");
        } # Split line on pipes
 
  { # Only operate on lines with files/projects in them - ignore translations
@@ -22,6 +25,7 @@ BEGIN {FS="|";
         dayofweek = sprintf("%02d",(dateparts[3] - strftime("%w",entry_timestamp)));
         week_timestamp = mktime(dateparts[1] " " dateparts[2] " " dayofweek  " " 0 " " 0 " " 0);
         system("mkdir -p /data/logs/updatestats/reformatted/" week_timestamp);
+        system("mkdir -p /data/logs/updatestats/submodules/" week_timestamp);
         lastdate = $4;
    }
 
