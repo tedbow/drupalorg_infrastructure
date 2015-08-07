@@ -62,9 +62,9 @@ $7 ~ /updates\.drupal\.org/ { # Trim leading bracket from date field
 
    if (length(site_key[2]) != 0) {
      print site_key[2],project,fixedversion,api_version >> ("/data/logs/updatestats/reformatted/" week_timestamp "/" FILENAME ".formatted");
-     for (submodule in submodules) {
-       if (submodule != project){
-             print site_key[2],project,fixedversion,api_version,submodule >> ("/data/logs/updatestats/submodules/" week_timestamp "/" FILENAME ".formatted");
+     for (i in submodules) {
+       if (submodules[i] != project){
+             print site_key[2],project,fixedversion,api_version,submodules[i] >> ("/data/logs/updatestats/submodules/" week_timestamp "/" FILENAME ".formatted");
            }
        }
    } else {
