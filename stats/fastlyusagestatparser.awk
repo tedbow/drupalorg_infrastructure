@@ -45,13 +45,13 @@ BEGIN {FS="|";
    projects[project]=1;
 
    split(urlparts[2],qsvars,"&");
-
    split(qsvars[1], site_key, "=");
    split(qsvars[2], version, "=");
-   # list are submodules used for each project.
+   # list variable is submodules in use for each project.
    split(qsvars[3], list, "=");
    gsub(/%2C/, ",", list[2]);
    split(list[2], submodules, ",");
+
    if (length(site_key[2]) != 0) {
      # sometimes version isnt second, 'list' is, but no version.
      if (version[1] != "version" ) {
@@ -66,18 +66,18 @@ BEGIN {FS="|";
      gsub(/\.[0-9].*%2B[0-9]+-dev$/,".x-dev", version[2]);
      # Convert core dev releases to dev release.
      if (project == "drupal") {
-          gsub(/\.[0-9]+-dev$/,".x-dev", version[2]);
+       gsub(/\.[0-9]+-dev$/,".x-dev", version[2]);
      }
      fixedversion = version[2];
 
      print site_key[2],project,fixedversion,api_version >> ("/data/logs/updatestats/reformatted/" week_timestamp "/" FILENAME ".formatted");
      for (i in submodules) {
-     if (submodules[i] != project){
-       print site_key[2],project,fixedversion,api_version,submodules[i] >> ("/data/logs/updatestats/submodules/" week_timestamp "/" FILENAME ".formatted");
+       if (submodules[i] != project) {
+         print site_key[2],project,fixedversion,api_version,submodules[i] >> ("/data/logs/updatestats/submodules/" week_timestamp "/" FILENAME ".formatted");
        }
      }
    } else {
-     print ipaddress,project,fixedversion,api_version >> ("/data/logs/updatestats/keyless/" week_timestamp "/" FILENAME ".nokey");
+     print ipaddress,project,api_version >> ("/data/logs/updatestats/keyless/" week_timestamp "/" FILENAME ".nokey");
      # If there isnt a key, we ignore the submodules.
    }
 }
