@@ -31,7 +31,7 @@ $7 ~ /updates\.drupal\.org/ { # Trim leading bracket from date field
         lastdate = substr($4,0,11);
    }
 
-
+   ipaddress = $1;
    split($7, urlparts, "?");
    # split the request into project and version
    gsub(/release-history\/\//,"release-history/",urlparts[1]);
@@ -68,13 +68,12 @@ $7 ~ /updates\.drupal\.org/ { # Trim leading bracket from date field
 
      print site_key[2],project,fixedversion,api_version >> ("/data/logs/updatestats/reformatted/" week_timestamp "/" FILENAME ".formatted");
      for (i in submodules) {
-       if (submodules[i] != project){
-             print site_key[2],project,fixedversion,api_version,submodules[i] >> ("/data/logs/updatestats/submodules/" week_timestamp "/" FILENAME ".formatted");
-           }
+       if (submodules[i] != project) {
+         print site_key[2],project,fixedversion,api_version,submodules[i] >> ("/data/logs/updatestats/submodules/" week_timestamp "/" FILENAME ".formatted");
        }
+     }
    } else {
-     print $1,project,fixedversion,api_version >> ("/data/logs/updatestats/keyless/" week_timestamp "/" FILENAME ".nokey");
+     print ipaddress,project,api_version >> ("/data/logs/updatestats/keyless/" week_timestamp "/" FILENAME ".nokey");
      # If there isnt a key, we ignore the submodules.
    }
-
 }
