@@ -56,8 +56,12 @@ $7 ~ /updates\.drupal\.org/ { # Trim leading bracket from date field
    # split(version[2], realversion, "%");
    # fixedversion = realversion[1];
 
-   # Convert dev releases to dev releases, not full releases.
+   # Convert contrib dev releases to dev releases, not full releases.
    gsub(/\.[0-9].*%2B[0-9]+-dev$/,".x-dev", version[2]);
+   # Convert core dev releases to dev release.
+   if (project = "drupal") {
+     gsub(/\.[0-9]+-dev$/,".x-dev", version[2]);
+   }
    fixedversion = version[2];
 
    if (length(site_key[2]) != 0) {
