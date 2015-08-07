@@ -7,6 +7,9 @@
 # 75.119.222.166 - - [22/Jun/2015:23:59:52 +0000] "GET http://updates.drupal.org/80C301/updates.drupal.org/release-history/field_group_table/7.x?site_key=jzziGM7E2rLqT9SYM4K4kmQV2cjmnBr127pqMUXyH2g&version=7.x-1.5&list=field_group_table HTTP/1.1" 200 12636 "-" "Drupal (+http://drupal.org/)"
 BEGIN {
        OFS="|";
+       #blow away any existing files for this filename, in case we reprocess.
+       system("rm -rf /data/logs/updatestats/reformatted/*/" FILENAME ".formatted");
+       system("rm -rf /data/logs/updatestats/submodules/*/" FILENAME ".formatted");
        } # Split line on pipes
 
 $7 ~ /updates\.drupal\.org/ { # Trim leading bracket from date field
@@ -22,6 +25,7 @@ $7 ~ /updates\.drupal\.org/ { # Trim leading bracket from date field
         dayofweek = sprintf("%02d",(dateparts[1] - strftime("%w",entry_timestamp)));
         week_timestamp = mktime(timeparts[1] " " monthnum " " dayofweek  " " 0 " " 0 " " 0);
         system("mkdir -p /data/logs/updatestats/reformatted/" week_timestamp);
+        system("mkdir -p /data/logs/updatestats/submodules/" week_timestamp);
         lastdate = substr($4,0,11);
    }
 
