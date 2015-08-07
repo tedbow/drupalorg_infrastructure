@@ -63,7 +63,9 @@ BEGIN {FS="|";
    if (length(site_key[2]) != 0) {
      print site_key[2],project,fixedversion,api_version >> ("/data/logs/updatestats/reformatted/" week_timestamp "/" FILENAME ".formatted");
      for (submodule in submodules) {
+     if (submodule != project){
        print site_key[2],project,fixedversion,api_version,submodule >> ("/data/logs/updatestats/submodules/" week_timestamp "/" FILENAME ".formatted");
+       }
      }
    } else {
      print ipaddress,project,fixedversion,api_version >> ("/data/logs/updatestats/keyless/" week_timestamp "/" FILENAME ".nokey");
