@@ -17,6 +17,8 @@ DELETE upload FROM field_data_upload upload LEFT JOIN node ON upload.entity_id =
 DELETE file_managed FROM file_managed LEFT JOIN users ON file_managed.uid = users.uid WHERE users.uid IS NULL;
 DELETE og FROM og LEFT JOIN node ON node.nid = og.nid WHERE node.nid IS NULL;
 DELETE og_users_roles_group FROM og_users_roles_group LEFT JOIN node ON node.nid = og_users_roles_group.gid WHERE node.nid IS NULL;
+DELETE f FROM field_data_upload AS f LEFT JOIN comment c ON f.entity_id = c.cid WHERE c.cid IS NULL;
+DELETE f FROM field_revision_upload AS f LEFT JOIN comment c ON f.entity_id = c.cid WHERE c.cid IS NULL;
 
 -- Get rid of the most of the l10n_server projects to reduce data size.
 DELETE FROM l10n_server_project WHERE weight > -40000;
