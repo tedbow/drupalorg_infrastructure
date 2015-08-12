@@ -20,12 +20,7 @@ else
   fqdn="$(echo "${site}" | sed -e 's/_.*//').drupal.org"
 fi
 
-if [ "${site}" = "localize_7" ]; then
-  snapshot="localize_database_snapshot.dev-current.sql.bz2"
-  git_options="--branch 7.x-prod"
-else
-  snapshot="${site}_database_snapshot.dev-current.sql.bz2"
-fi
+snapshot="${site}_database_snapshot.dev-current.sql.bz2"
 
 export TERM=dumb
 drush="drush6 -r ${web_path}/htdocs -y"
@@ -51,12 +46,12 @@ if [ "${site}" == "association" ]; then
   git clone "git@bitbucket.org:drupalorg-infrastructure/assoc.drupal.org.git" "${web_path}/make"
   make_file="${web_path}/make/assoc.drupal.org.make"
 else
-  git clone ${git_options-} "git@bitbucket.org:drupalorg-infrastructure/${fqdn}.git" "${web_path}/make"
+  git clone "git@bitbucket.org:drupalorg-infrastructure/${fqdn}.git" "${web_path}/make"
   make_file="${web_path}/make/${fqdn}.make"
 fi
 
 # Append dev-specific overrides.
-if [ "${site}" != "groups" -a "${site}" != "qa" -a "${site}" != "localize" ]; then
+if [ "${site}" != "groups" -a "${site}" != "qa" ]; then
   curl 'https://bitbucket.org/drupalorg-infrastructure/drupal.org-sites-common/raw/7.x/drupal.org-dev.make' >> "${make_file}"
 fi
 
@@ -123,17 +118,10 @@ END
 if [ "${site}" = "association" ]; then
   # CiviCRM is not on public dev sites.
   ${drush} pm-disable civicrm
-elif [ "${site}" = "localize_7" ]; then
-  . staging/localize_7.sh
-  localize_7_pre_update
 fi
 
 # Run any pending updates.
 ${drush} -v updatedb --interactive
-
-if [ "${site}" = "localize_7" ]; then
-  localize_7_post_update
-fi
 
 # Disable modules that don't work well in development (yet)
 ${drush} pm-disable paranoia
