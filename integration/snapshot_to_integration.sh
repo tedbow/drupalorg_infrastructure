@@ -33,38 +33,10 @@ if [ "${suffix-}" != "civicrm" ]; then
   swap_db
 fi
 
-# Extra preparation for D7.
-if [ "${uri}" = "localize-7.integration.devdrupal.org" ]; then
-  (
-    # OG needs new entity module.
-    echo "UPDATE system SET status = 0 WHERE name IN ('og');"
-  ) | ${drush} sql-cli
-fi
-
-# Clear caches, try updatedb.
-if [ "${uri}" != "localize-7.integration.devdrupal.org" ]; then
-  ${drush} cc all
-fi
+${drush} cc all
 ${drush} -v updatedb --interactive
 
-if [ "${uri}" = "localize-7.integration.devdrupal.org" ]; then
-  # Set the flag for OG to have global group roles
-  ${drush} variable-set og_7000_access_field_default_value 0
-
-  # Enable required modules.
-  ${drush} en og_context og_ui migrate
-
-  # Display a birdview of OG migration and migrate data.
-  ${drush} ms
-  ${drush} mi --all
-
-  # Revert view og_members_ldo.
-  ${drush} views-revert og_members_ldo
-
-  # Disable Migrate once migration is done.
-  ${drush} dis migrate
-
-elif [ "${uri}" = "groups-7.integration.devdrupal.org" ]; then
+if [ "${uri}" = "groups-7.integration.devdrupal.org" ]; then
   # todo remove when the existing front page, "frontpage", does not 404.
   ${drush} variable-set site_frontpage "node"
 

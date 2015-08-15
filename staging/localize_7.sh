@@ -50,5 +50,6 @@ function localize_7_post_update {
 
   # Disable and uninstall migrate
   ${drush} dis migrate_ui migrate
-  ${drush} pm-uninstall migrate_ui migrate
+  ${drush} pm-uninstall migrate_ui
+  ${drush} pm-uninstall migrate
 }
