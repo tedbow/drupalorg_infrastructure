@@ -28,6 +28,7 @@ BEGIN {FS="|";
         week_timestamp = mktime(dateparts[1] " " dateparts[2] " " dayofweek  " " 0 " " 0 " " 0);
         system("mkdir -p /data/logs/updatestats/reformatted/" week_timestamp);
         system("mkdir -p /data/logs/updatestats/submodules/" week_timestamp);
+        system("mkdir -p /data/logs/updatestats/keyless/" week_timestamp);
         lastdate = $4;
    }
 
