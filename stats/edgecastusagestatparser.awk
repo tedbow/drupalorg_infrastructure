@@ -9,9 +9,9 @@ BEGIN {
        OFS="|";
        #blow away any existing files for this filename, in case we reprocess.
        # FILENAME isnt available in BEGIN blocks. Because magic.
-       system("rm -rf /data/logs/updatestats/reformatted/*/" ARGV[1] ".formatted");
-       system("rm -rf /data/logs/updatestats/submodules/*/" ARGV[1] ".formatted");
-       system("rm -rf /data/logs/updatestats/keyless/*/" ARGV[1] ".nokey");
+       system("rm -rf /data/stats/updatestats/reformatted/*/projects" ARGV[1] ".formatted");
+       system("rm -rf /data/stats/updatestats/reformatted/*/submodules" ARGV[1] ".formatted");
+       system("rm -rf /data/stats/updatestats/reformatted/*/keyless" ARGV[1] ".formatted");
        } # Split line on pipes
 
 $7 ~ /updates\.drupal\.org/ { # Trim leading bracket from date field
@@ -26,9 +26,9 @@ $7 ~ /updates\.drupal\.org/ { # Trim leading bracket from date field
         entry_timestamp = mktime(timeparts[1] " " monthnum " " dateparts[1] " " 0 " " 0 " " 0);
         dayofweek = sprintf("%02d",(dateparts[1] - strftime("%w",entry_timestamp)));
         week_timestamp = mktime(timeparts[1] " " monthnum " " dayofweek  " " 0 " " 0 " " 0);
-        system("mkdir -p /data/logs/updatestats/reformatted/" week_timestamp);
-        system("mkdir -p /data/logs/updatestats/submodules/" week_timestamp);
-        system("mkdir -p /data/logs/updatestats/keyless/" week_timestamp);
+        system("mkdir -p /data/stats/updatestats/reformatted/" week_timestamp "/projects");
+        system("mkdir -p /data/stats/updatestats/reformatted/" week_timestamp "/submodules");
+        system("mkdir -p /data/stats/updatestats/reformatted/" week_timestamp "/keyless");
         lastdate = substr($4,0,11);
    }
 
@@ -67,14 +67,14 @@ $7 ~ /updates\.drupal\.org/ { # Trim leading bracket from date field
      }
      fixedversion = version[2];
 
-     print site_key[2],project,fixedversion,api_version >> ("/data/logs/updatestats/reformatted/" week_timestamp "/" FILENAME ".formatted");
+     print site_key[2],project,fixedversion,api_version >> ("/data/stats/updatestats/reformatted/" week_timestamp "/projects/" FILENAME ".formatted");
      for (i in submodules) {
        if (submodules[i] != project) {
-         print site_key[2],project,fixedversion,api_version,submodules[i] >> ("/data/logs/updatestats/submodules/" week_timestamp "/" FILENAME ".formatted");
+         print site_key[2],project,fixedversion,api_version,submodules[i] >> ("/data/stats/updatestats/reformatted/" week_timestamp "/submodules/" FILENAME ".formatted");
        }
      }
    } else {
-     print ipaddress,project,api_version >> ("/data/logs/updatestats/keyless/" week_timestamp "/" FILENAME ".nokey");
+     print ipaddress,project,api_version >> ("/data/stats/updatestats/reformatted/" week_timestamp "/keyless/" FILENAME ".formatted");
      # If there isnt a key, we ignore the submodules.
    }
 }
