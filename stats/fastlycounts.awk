@@ -22,4 +22,4 @@ BEGIN {FS="|";} # Split line on pipes
 }
 
 # At the end, loop through our count array and output Count,Y,M,D,Filename
-END { for (i in count) print count[i] "," i >> ("/data/logs/fastly/downloadcounts/"dateparts[1]"."dateparts[2]"."dateparts[3]".downloadcounts.csv")}
+END { for (i in count) print count[i] "," i >> ("/data/stats/downloadstats/projects/"dateparts[1]"."dateparts[2]"."dateparts[3]".downloadcounts.csv")}

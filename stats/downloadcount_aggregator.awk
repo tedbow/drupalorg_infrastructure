@@ -9,5 +9,5 @@ BEGIN {FS=","}
 # $5 ~ /files\/projects/ {downloaded_files[$5] += $1;}
 
 END {
-  for (filename in downloaded_files) print downloaded_files[filename] "," filename > "/data/logs/fastly/downloadcounts/comprehensive_download_stats.csv";
+  for (filename in downloaded_files) print downloaded_files[filename] "," filename > "/data/stats/downloadstats/totals/comprehensive_download_stats.csv";
 }
