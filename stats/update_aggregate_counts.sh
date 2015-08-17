@@ -9,7 +9,7 @@ rm -rf /data/stats/updatestats/counts/$weektimestamp.*
 # Handle project/release usage counts
 
 # Sort and uniq the project/release usage data per week (eliminates extra calls from the same site key.)
-{ time multisort -f -S 75% -T /data/stats/updatestats/tmpdir -u /data/stats/updatestats/reformatted/$weektimestamp/projects/*.formatted > /data/stats/updatestats/counts/$weektimestamp.project_counts.uniq.sorted ; } 2>&1
+{ time multisort -f -S 75% -T /data/stats/updatestats/tmpdir -u /data/stats/updatestats/reformatted/$weektimestamp/projects/*.formatted > /data/stats/updatestats/counts/$weektimestamp.project_counts.uniq.sorted <(/bin/gzip -dc /data/stats/updatestats/reformatted/$weektimestamp/projects/*.formatted.gz); } 2>&1
 
 # Find the number of unique sites asking us for data that week
 { time cut -f1 -d"|" /data/stats/updatestats/counts/$weektimestamp.project_counts.uniq.sorted |uniq -i |wc -l > /data/stats/updatestats/counts/$weektimestamp.uniquesitekeys ; } 2>&1
