@@ -4,8 +4,7 @@ set -eux
 weektimestamp=$1
 
 #clear out existing data - script reruns do not accumluate data
-rm -rf /data/stats/updatestats/counts/$weektimestamp
-mkdir -p /data/stats/updatestats/counts/$weektimestamp
+rm -rf /data/stats/updatestats/counts/$weektimestamp.*
 
 # Handle project/release usage counts
 
