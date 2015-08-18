@@ -7,7 +7,9 @@ if [ -z "${site}" ]; then
   exit 1
 fi
 
-if [ "${version-}" ]; then
+if [ "${GIT_BRANCH-}" ]; then
+  branch="$(echo "${GIT_BRANCH}" | sed -e 's#^origin/##')"
+elif [ "${version-}" ]; then
   versions=(6 7 8)
   if [[ ! ${versions[*]} =~ "${version}" ]]; then
     echo "bad version"
