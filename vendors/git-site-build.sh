@@ -3,11 +3,11 @@ set -uex
 export TERM=dumb
 BUILDBASE='/var/git/builds'
 versions=(6 7 8)
-if [ -z "$1" ]; then
+if [ -z "${1}" ]; then
   echo "Need site string"
   exit 1
 fi
-if [[ ! ${versions[*]} =~ "$2" ]]; then
+if [[ ! ${versions[*]} =~ "${2}" ]]; then
   echo "bad version"
   exit 1
 fi
