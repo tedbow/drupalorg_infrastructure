@@ -2,17 +2,20 @@
 set -uex
 export TERM=dumb
 BUILDBASE='/var/git/builds'
-versions=(6 7 8)
 if [ -z "${site}" ]; then
   echo "Need site string"
   exit 1
 fi
-if [[ ! ${versions[*]} =~ "${version}" ]]; then
-  echo "bad version"
-  exit 1
+
+if [ "${version-}" ]; then
+  versions=(6 7 8)
+  if [[ ! ${versions[*]} =~ "${version}" ]]; then
+    echo "bad version"
+    exit 1
+  fi
+  branch="${version}.x-${branch}"
 fi
 
-branch="${version}.x-${branch}"
 BUILDPATH="${site}"
 #Lets do some check_plain's for bash
 BUILDPATH=${BUILDPATH//[^a-zA-Z0-9_ \.]/}
