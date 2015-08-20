@@ -2,23 +2,23 @@
 set -uex
 export TERM=dumb
 BUILDBASE='/var/git/builds'
-branches=(stg prod integration) ## Warning, the will not add the branch to the git repo, please create the branch before running this
-versions=(6 7 8)
-if [ -z "$1" ]; then
+if [ -z "${site}" ]; then
   echo "Need site string"
   exit 1
 fi
-if [[ ! ${branches[*]} =~ "$3" ]]; then
-  echo "bad branch"
-  exit 1
-fi
-if [[ ! ${versions[*]} =~ "$2" ]]; then
-  echo "bad version"
-  exit 1
+
+if [ "${GIT_BRANCH-}" ]; then
+  branch="$(echo "${GIT_BRANCH}" | sed -e 's#^origin/##')"
+elif [ "${version-}" ]; then
+  versions=(6 7 8)
+  if [[ ! ${versions[*]} =~ "${version}" ]]; then
+    echo "bad version"
+    exit 1
+  fi
+  branch="${version}.x-${branch}"
 fi
 
-branch=${2}.x-${3}
-BUILDPATH="${1}"
+BUILDPATH="${site}"
 #Lets do some check_plain's for bash
 BUILDPATH=${BUILDPATH//[^a-zA-Z0-9_ \.]/}
 MASTER="${BUILDBASE}/${BUILDPATH}"

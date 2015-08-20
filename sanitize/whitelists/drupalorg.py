@@ -5522,6 +5522,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="pift_ci_job_result",
+    columns=[
+        "job_result_id",
+        "job_id",
+        "suite",
+        "class",
+        "test",
+        "result",
+        "error",
+        "output",
+    ])
+
+whitelist.add(
     table="pift_ci_project",
     columns=[
         "nid",
