@@ -1,0 +1,14 @@
+
+<VirtualHost *:8080>
+  ServerName xhprof-URI
+
+  DocumentRoot /var/www/URI/xhprof/htdocs
+
+  AddOutputFilterByType DEFLATE text/css application/javascript application/x-javascript text/html
+  Header add Vary "Accept-Encoding"
+
+  <Directory "/var/www/URI/xhprof/htdocs">
+    Include vhosts.d/integration.inc
+    DirectoryIndex index.php
+  </Directory>
+</VirtualHost>
