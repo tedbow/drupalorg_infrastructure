@@ -1,4 +1,5 @@
-
+# TODO: this only works for bare domains when you wanna xhprof on one of the other integration domains
+# it needs to be xhprof-URI
 <VirtualHost *:8080>
   ServerName xhprof.URI
 
