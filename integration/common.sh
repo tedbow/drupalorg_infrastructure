@@ -50,8 +50,8 @@ rsync -av /usr/share/xhprof/ "/var/www/${uri}/xhprof/htdocs/"
 mkdir -p "/var/www/${uri}/xhprof/traces"
 sudo chown -R apache:apache "/var/www/${uri}/xhprof/traces"
 
-sed -e "s/URI/${uri}/g;" "vhost.conf.template" > "/etc/httpd/vhosts.d/xhprof/${uri}.conf"
-sed -e "s/URI/${uri}/g;" "user.ini.template" > "/var/www/${uri}/xhprof/htdocs/.uri.ini"
+sed -e "s/URI/${uri}/g;" "integration/vhost.conf.template" > "/etc/httpd/vhosts.d/xhprof/${uri}.conf"
+sed -e "s/URI/${uri}/g;" "integration/user.ini.template" > "/var/www/${uri}/xhprof/htdocs/.uri.ini"
 
 ${drush} vset devel_xhprof_directory "/var/www/${uri}/xhprof/htdocs"
 ${drush} vset devel_xhprof_url "https://xhprof-${uri}/xhprof_html"
