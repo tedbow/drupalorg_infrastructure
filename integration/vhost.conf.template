@@ -1,6 +1,6 @@
 
 <VirtualHost *:8080>
-  ServerName xhprof-URI
+  ServerName xhprof.URI
 
   DocumentRoot /var/www/URI/xhprof/htdocs
 
