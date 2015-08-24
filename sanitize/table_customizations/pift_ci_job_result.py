@@ -15,6 +15,6 @@ class Pift_Ci_Job_Result(table_customizations.TableHandler):
               SELECT {srccolumns}
               FROM {source}.{table}
               INNER JOIN {source}.pift_ci_job ON {source}.pift_ci_job.job_id = {source}.{table}.job_id
-              AND {source}.pift_ci_job.created >= (unix_timestamp() - 30*24*60*60)
+              AND {source}.pift_ci_job.created >= (unix_timestamp() - 20*24*60*60)
             """.format(table=self.table, dest=self.dst, source=self.src, columns=columns, srccolumns=srccolumns, limit=self.limit)
         return query
