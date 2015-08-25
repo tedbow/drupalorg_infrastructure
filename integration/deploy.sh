@@ -3,7 +3,7 @@
 
 # Update code.
 cd ${webroot}
-[ "${branch-}" ] && git checkout "${branch}"
+[ "${branch-}" ] && git fetch && git checkout "${branch}"
 git pull
 
 # Clear caches, try updatedb.
