@@ -44,6 +44,7 @@ function swap_db {
   fi
 }
 # setup for xhprof
+rm -rf "/var/www/${uri}/xhprof/htdocs"
 mkdir -p "/var/www/${uri}/xhprof/htdocs"
 #rsync -av /usr/share/xhprof/ "/var/www/${uri}/xhprof/htdocs/"
 git clone https://github.com/ryanaslett/xhprof.git "/var/www/${uri}/xhprof/htdocs"
