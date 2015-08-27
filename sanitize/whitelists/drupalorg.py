@@ -5519,6 +5519,7 @@ whitelist.add(
         "created",
         "uid",
         "reason",
+        "bypass_uid",
     ])
 
 whitelist.add(
