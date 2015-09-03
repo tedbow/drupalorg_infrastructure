@@ -45,7 +45,7 @@ git merge 7.x-2.x
 
 # Compile CSS.
 bundle exec compass compile
-if ! git diff --quiet css; then
+if [ -n "$(git status --short css)" ]; then
   git add -A css
   git commit -m 'compass compile'
 fi
