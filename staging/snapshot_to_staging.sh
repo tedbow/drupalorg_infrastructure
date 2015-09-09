@@ -1,11 +1,6 @@
 # Include common staging script.
 . staging/common.sh 'snapshot_to'
 
-# Extra preparation for Localize D7.
-if [ "${uri}" = "localize-7.staging.devdrupal.org" ]; then
-  . staging/localize_7.sh
-fi
-
 # Get the DB name from drush
 db=$(${drush} ${sqlconf} | sed -ne 's/^\s*\[database\] => //p')
 if [ "${suffix-}" != "civicrm" ]; then
@@ -37,21 +32,11 @@ if [ "${suffix-}" != "civicrm" ]; then
   swap_db
 fi
 
-# Extra preparation for D7.
-if [ "${uri}" = "localize-7.staging.devdrupal.org" ]; then
-  localize_7_pre_update
-fi
-
 # Clear caches, try updatedb.
-if [ "${uri}" != "localize-7.staging.devdrupal.org" ]; then
-  ${drush} cc all
-fi
+${drush} cc all
 ${drush} -v updatedb --interactive
 
-if [ "${uri}" = "localize-7.staging.devdrupal.org" ]; then
-  localize_7_post_update
-
-elif [ "${uri}" = "groups-7.staging.devdrupal.org" ]; then
+if [ "${uri}" = "groups-7.staging.devdrupal.org" ]; then
   # todo remove when the existing front page, "frontpage", does not 404.
   ${drush} variable-set site_frontpage "node"
 
