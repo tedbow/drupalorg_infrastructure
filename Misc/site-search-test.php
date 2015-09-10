@@ -65,6 +65,9 @@ $searches = array(
   'drupal core' => array(
     'e7ikco/node/3060' => '✓', // Drupal core
   ),
+  'drupal' => array(
+    'e7ikco/node/3060' => '✓', // Drupal core
+  ),
   'tag1' => array(
     'e7ikco/node/1762646' => '✓', // Organization
   ),
