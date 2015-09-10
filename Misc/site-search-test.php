@@ -46,6 +46,7 @@ $searches = array(
   ),
   'media' => array(
     'e7ikco/node/19304' => '✓', // Module
+    'e7ikco/node/2358115' => '✓', // Resource guide
   ),
   'redirect' => array(
     'e7ikco/node/3287' => '✓', // Module
