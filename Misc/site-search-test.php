@@ -59,6 +59,12 @@ $searches = array(
     'e7ikco/node/343333' => '✓', // Module
     'e7ikco/node/2179357' => '!', // Sandbox
   ),
+  'core' => array(
+    'e7ikco/node/3060' => '✓', // Drupal core
+  ),
+  'drupal core' => array(
+    'e7ikco/node/3060' => '✓', // Drupal core
+  ),
   'tag1' => array(
     'e7ikco/node/1762646' => '✓', // Organization
   ),
