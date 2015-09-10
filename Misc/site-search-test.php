@@ -7,19 +7,21 @@ $searches = array(
   // ),
   // Flairs:
   // '✓' Great result
+  // '~' Okay result
   // '!' Bad result
+  'coding standards' => array(
+    'e7ikco/node/318' => '✓', // Documentation
+    'e7ikco/node/2465321' => '~', // Project
+  ),
+  'installation guide' => array(
+    'e7ikco/node/251019' => '✓', // Documentation
+  ),
+  'glossary' => array(
+    'e7ikco/node/937' => '✓', // Documentation
+  ),
   'rules' => array(
     'e7ikco/node/190124' => '✓', // Module
     'e7ikco/node/298476' => '✓', // Documentation
-  ),
-  'mediacurrent' => array(
-    'e7ikco/node/1125004' => '✓', // Organization
-  ),
-  'acquia' => array(
-    'e7ikco/node/1204416' => '✓', // Organization
-  ),
-  'coding standards' => array(
-    'e7ikco/node/318' => '✓', // Documentation
   ),
   'draggableviews' => array(
     'e7ikco/node/283087' => '✓', // Module
@@ -28,9 +30,8 @@ $searches = array(
   'zen' => array(
     'e7ikco/node/88566' => '✓', // Theme
     'e7ikco/node/193318' => '✓', // Documentation
-  ),
-  'tag1' => array(
-    'e7ikco/node/1762646' => '✓', // Organization
+    'e7ikco/node/1072403' => '!', // Unsupported
+    'e7ikco/node/485812' => '!', // Unsupported
   ),
   'views' => array(
     'e7ikco/node/1912118' => '✓', // Documentation
@@ -42,12 +43,6 @@ $searches = array(
   ),
   'apache solr' => array(
     'e7ikco/node/204268' => '✓', // Module
-  ),
-  'installation guide' => array(
-    'e7ikco/node/251019' => '✓', // Documentation
-  ),
-  'glossary' => array(
-    'e7ikco/node/937' => '✓', // Documentation
   ),
   'media' => array(
     'e7ikco/node/19304' => '✓', // Module
@@ -62,6 +57,15 @@ $searches = array(
   'ctools' => array(
     'e7ikco/node/343333' => '✓', // Module
     'e7ikco/node/2179357' => '!', // Sandbox
+  ),
+  'tag1' => array(
+    'e7ikco/node/1762646' => '✓', // Organization
+  ),
+  'mediacurrent' => array(
+    'e7ikco/node/1125004' => '✓', // Organization
+  ),
+  'acquia' => array(
+    'e7ikco/node/1204416' => '✓', // Organization
   ),
   'drupal geeks' => array(
     'e7ikco/node/2013897' => '✓', // Organization
