@@ -1,6 +1,6 @@
 <?php
 
-$environments = array('solr_5', 'solr_5_0');
+$environments = array('solr_0', 'solr_0_0');
 $searches = array(
   // 'search keys' => array(
   //   'result id' => 'flair',
