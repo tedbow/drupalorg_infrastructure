@@ -81,9 +81,7 @@ $searches = array(
   ),
 );
 
-$environments = drush_get_arguments();
-array_shift($environments);
-array_shift($environments);
+list(,, $env_1, $env_2) = drush_get_arguments();
 $stdout = fopen('php://stdout', 'w');
 foreach ($searches as $keys => $notes) {
   drupal_static_reset();
@@ -92,7 +90,7 @@ foreach ($searches as $keys => $notes) {
   $search_page['settings']['apachesolr_search_per_page'] = 100;
   $conditions = apachesolr_search_conditions_default($search_page);
 
-  $search_page['env_id'] = array_shift($environments);
+  $search_page['env_id'] = $env_1;
   foreach (apachesolr_search_search_results($keys, $conditions, $search_page) as $n => $result) {
     $output[$result['fields']['id']] = array(
       '' => isset($notes[$result['fields']['id']]) ? $notes[$result['fields']['id']] : '',
@@ -109,7 +107,7 @@ foreach ($searches as $keys => $notes) {
   }
 
   // Swap environment.
-  $search_page['env_id'] = array_shift($environments);
+  $search_page['env_id'] = $env_2;
   foreach (apachesolr_search_search_results($keys, $conditions, $search_page) as $n => $result) {
     if (isset($output[$result['fields']['id']])) {
       $output[$result['fields']['id']]['score_old'] = $result['score'];
