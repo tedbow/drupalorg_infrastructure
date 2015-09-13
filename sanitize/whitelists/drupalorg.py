@@ -249,6 +249,26 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="_nodata:cache_entity_og_membership",
+    columns=[
+        "cid",
+        "data",
+        "expire",
+        "created",
+        "serialized",
+    ])
+
+whitelist.add(
+    table="_nodata:cache_entity_og_membership_type",
+    columns=[
+        "cid",
+        "data",
+        "expire",
+        "created",
+        "serialized",
+    ])
+
+whitelist.add(
     table="_nodata:cache_forum",
     columns=[
         "cid",
@@ -297,6 +317,16 @@ whitelist.add(
         "expire",
         "created",
         "headers",
+    ])
+
+whitelist.add(
+    table="_nodata:cache_panels",
+    columns=[
+        "cid",
+        "data",
+        "expire",
+        "created",
+        "serialized",
     ])
 
 whitelist.add(
@@ -367,6 +397,18 @@ whitelist.add(
         "list",
         "weight",
         "legacy_fid",
+    ])
+
+whitelist.add(
+    table="draggableviews_structure",
+    columns=[
+        "dvid",
+        "view_name",
+        "view_display",
+        "args",
+        "entity_id",
+        "weight",
+        "parent",
     ])
 
 whitelist.add(
@@ -1454,6 +1496,19 @@ whitelist.add(
         "language",
         "delta",
         "field_impacts_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_include_in_group_menu",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_include_in_group_menu_value",
     ])
 
 whitelist.add(
@@ -2750,6 +2805,59 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_group_group",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "group_group_value",
+    ])
+
+whitelist.add(
+    table="field_data_og_group_ref",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "og_group_ref_target_id",
+    ])
+
+whitelist.add(
+    table="_nodata:field_data_og_membership_request",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "og_membership_request_value",
+        "og_membership_request_format",
+    ])
+
+whitelist.add(
+    table="field_data_og_user_node",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "og_user_node_target_id",
+    ])
+
+whitelist.add(
     table="field_data_taxonomyextra",
     columns=[
         "entity_type",
@@ -3587,6 +3695,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_revision_field_include_in_group_menu",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_include_in_group_menu_value",
+    ])
+
+whitelist.add(
     table="field_revision_field_industries_worked_in",
     columns=[
         "entity_type",
@@ -3774,6 +3895,19 @@ whitelist.add(
         "language",
         "delta",
         "field_issue_version_value",
+    ])
+
+whitelist.add(
+    table="field_revision_group_group",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "group_group_value",
     ])
 
 whitelist.add(
@@ -4880,6 +5014,46 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_revision_og_group_ref",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "og_group_ref_target_id",
+    ])
+
+whitelist.add(
+    table="_nodata:field_revision_og_membership_request",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "og_membership_request_value",
+        "og_membership_request_format",
+    ])
+
+whitelist.add(
+    table="field_revision_og_user_node",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "og_user_node_target_id",
+    ])
+
+whitelist.add(
     table="field_revision_taxonomyextra",
     columns=[
         "entity_type",
@@ -5461,6 +5635,150 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="og_membership",
+    columns=[
+        "id",
+        "type",
+        "etid",
+        "entity_type",
+        "gid",
+        "group_type",
+        "state",
+        "created",
+        "field_name",
+        "language",
+    ])
+
+whitelist.add(
+    table="og_membership_type",
+    columns=[
+        "id",
+        "name",
+        "description",
+        "status",
+        "module",
+        "language",
+    ])
+
+whitelist.add(
+    table="og_role",
+    columns=[
+        "rid",
+        "gid",
+        "group_type",
+        "group_bundle",
+        "name",
+    ])
+
+whitelist.add(
+    table="og_role_permission",
+    columns=[
+        "rid",
+        "permission",
+        "module",
+    ])
+
+whitelist.add(
+    table="og_users_roles",
+    columns=[
+        "uid",
+        "rid",
+        "gid",
+        "group_type",
+    ])
+
+whitelist.add(
+    table="page_manager_handlers",
+    columns=[
+        "did",
+        "name",
+        "task",
+        "subtask",
+        "handler",
+        "weight",
+        "conf",
+    ])
+
+whitelist.add(
+    table="page_manager_pages",
+    columns=[
+        "pid",
+        "name",
+        "task",
+        "admin_title",
+        "admin_description",
+        "path",
+        "access",
+        "menu",
+        "arguments",
+        "conf",
+    ])
+
+whitelist.add(
+    table="page_manager_weights",
+    columns=[
+        "name",
+        "weight",
+    ])
+
+whitelist.add(
+    table="panels_display",
+    columns=[
+        "did",
+        "layout",
+        "layout_settings",
+        "panel_settings",
+        "cache",
+        "title",
+        "hide_title",
+        "title_pane",
+        "uuid",
+    ])
+
+whitelist.add(
+    table="panels_layout",
+    columns=[
+        "lid",
+        "name",
+        "admin_title",
+        "admin_description",
+        "category",
+        "plugin",
+        "settings",
+    ])
+
+whitelist.add(
+    table="panels_pane",
+    columns=[
+        "pid",
+        "did",
+        "panel",
+        "type",
+        "subtype",
+        "shown",
+        "access",
+        "configuration",
+        "cache",
+        "style",
+        "css",
+        "extras",
+        "position",
+        "locks",
+        "uuid",
+    ])
+
+whitelist.add(
+    table="panels_renderer_pipeline",
+    columns=[
+        "rpid",
+        "name",
+        "admin_title",
+        "admin_description",
+        "weight",
+        "settings",
+    ])
+
+whitelist.add(
     table="package",
     columns=[
         "id",
@@ -5534,6 +5852,20 @@ whitelist.add(
         "error",
         "output",
     ])
+
+whitelist.add(
+    table="_nodata:pift_ci_notification",
+    columns=[
+        "notification_id",
+        "uid",
+        "notify_on",
+        "own",
+        "job_id",
+        "environment",
+        "release_nid",
+        "file_id",
+    ])
+
 
 whitelist.add(
     table="pift_ci_project",
