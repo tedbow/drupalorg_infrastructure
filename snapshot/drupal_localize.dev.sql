@@ -20,7 +20,7 @@ DELETE f FROM field_data_upload AS f LEFT JOIN comment c ON f.entity_id = c.cid 
 DELETE f FROM field_revision_upload AS f LEFT JOIN comment c ON f.entity_id = c.cid WHERE c.cid IS NULL;
 
 -- Get rid of the most of the l10n_server projects to reduce data size.
-DELETE FROM l10n_server_project WHERE weight > -40000;
+DELETE FROM l10n_server_project WHERE weight > -100;
 DELETE l10n_server_release FROM l10n_server_release LEFT JOIN l10n_server_project ON l10n_server_project.pid = l10n_server_release.pid WHERE l10n_server_project.pid IS NULL;
 DELETE l10n_server_line FROM l10n_server_line LEFT JOIN l10n_server_project ON l10n_server_project.pid = l10n_server_line.pid WHERE l10n_server_project.pid IS NULL;
 DELETE l10n_server_file FROM l10n_server_file LEFT JOIN l10n_server_project ON l10n_server_project.pid = l10n_server_file.pid WHERE l10n_server_project.pid IS NULL;
