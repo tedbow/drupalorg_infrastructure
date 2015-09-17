@@ -269,6 +269,16 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="_nodata:cache_features",
+    columns=[
+        "cid",
+        "data",
+        "expire",
+        "created",
+        "serialized",
+    ])
+
+whitelist.add(
     table="_nodata:cache_forum",
     columns=[
         "cid",
