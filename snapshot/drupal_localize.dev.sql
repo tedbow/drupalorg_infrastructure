@@ -18,13 +18,3 @@ DELETE file_managed FROM file_managed LEFT JOIN users ON file_managed.uid = user
 DELETE og_users_roles_group FROM og_users_roles_group LEFT JOIN node ON node.nid = og_users_roles_group.gid WHERE node.nid IS NULL;
 DELETE f FROM field_data_upload AS f LEFT JOIN comment c ON f.entity_id = c.cid WHERE c.cid IS NULL;
 DELETE f FROM field_revision_upload AS f LEFT JOIN comment c ON f.entity_id = c.cid WHERE c.cid IS NULL;
-
--- Get rid of the most of the l10n_server projects to reduce data size.
-DELETE FROM l10n_server_project WHERE weight > -100;
-DELETE l10n_server_release FROM l10n_server_release LEFT JOIN l10n_server_project ON l10n_server_project.pid = l10n_server_release.pid WHERE l10n_server_project.pid IS NULL;
-DELETE l10n_server_line FROM l10n_server_line LEFT JOIN l10n_server_project ON l10n_server_project.pid = l10n_server_line.pid WHERE l10n_server_project.pid IS NULL;
-DELETE l10n_server_file FROM l10n_server_file LEFT JOIN l10n_server_project ON l10n_server_project.pid = l10n_server_file.pid WHERE l10n_server_project.pid IS NULL;
-DELETE l10n_server_string FROM l10n_server_string LEFT JOIN l10n_server_line ON l10n_server_string.sid = l10n_server_line.sid WHERE l10n_server_line.sid IS NULL;
-DELETE l10n_server_status_flag FROM l10n_server_status_flag LEFT JOIN l10n_server_string ON l10n_server_status_flag.sid = l10n_server_string.sid WHERE l10n_server_string.sid IS NULL;
-DELETE l10n_server_translation FROM l10n_server_translation LEFT JOIN l10n_server_string ON l10n_server_translation.sid = l10n_server_string.sid WHERE l10n_server_string.sid IS NULL;
-DELETE l10n_server_translation_history FROM l10n_server_translation_history LEFT JOIN l10n_server_translation ON l10n_server_translation_history.tid = l10n_server_translation.tid WHERE l10n_server_translation.tid IS NULL;
