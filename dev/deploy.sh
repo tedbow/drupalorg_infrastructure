@@ -173,4 +173,4 @@ fi
 ${drush} upwd bacon --password=bacon || true
 
 # Prime any big caches
-wget --no-check-certificate -O /dev/null https://${name}-${site}.redesign.devdrupal.org --user=drupal --password=drupal
+curl --insecure --retry 3 --retry-delay 10 "https://drupal:drupal@${name}-${site}.redesign.devdrupal.org" > /dev/null
