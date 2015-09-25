@@ -16,7 +16,7 @@ function help {
 database=${1:=-h}
 profile=${2:=empty}
 export_db="${database}_export"
-dbopt="--single-transaction --quick"
+dbopt="--single-transaction --quick --max-allowed-packet=256M"
 stage="dev"
 filetype="sql"
 compression="bz2"
