@@ -5877,7 +5877,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:pift_ci_job_result",
+    table="pift_ci_job_result",
     columns=[
         "job_result_id",
         "job_id",
