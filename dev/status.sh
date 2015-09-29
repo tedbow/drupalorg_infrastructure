@@ -21,7 +21,6 @@ export TERM=dumb
     cd "/var/www/dev/${domain}/htdocs"
     site=$(echo "${domain}" | sed -e 's/\.redesign\.devdrupal\.org$//;s/^.*-//')
     echo "SELECT from_unixtime(max(access)) AS 'Last access' FROM users;" | drush sql-cli | xargs echo
-    git status || echo "Git status failed!"
     echo
   done
 } > "/var/www/dev-status.txt"
