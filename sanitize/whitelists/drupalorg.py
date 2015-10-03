@@ -5486,14 +5486,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:httpbl",
-    columns=[
-        "hostname",
-        "status",
-        "expire",
-    ])
-
-whitelist.add(
     table="image",
     columns=[
         "nid",
