@@ -78,7 +78,7 @@ BEGIN {FS="|";
        }
      }
    } else {
-     print ipaddress,project,api_version >> ("/data/stats/updatestats/reformatted/" week_timestamp "/keyless/" FILENAME ".nokey");
+     print ipaddress,project,api_version >> ("/data/stats/updatestats/reformatted/" week_timestamp "/keyless/" FILENAME ".formatted");
      # If there isnt a key, we ignore the submodules.
    }
 }
