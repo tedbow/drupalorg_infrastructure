@@ -78,6 +78,11 @@ if [ -d "${BUILDDIR}/sites/all/modules/symfony" ]; then
   popd
 fi
 
+# If Composer Manager module is present, run Composer.
+if [ -d "${BUILDDIR}/sites/default/composer" ]; then
+  composer --working-dir="${BUILDDIR}/sites/default/composer" install
+fi
+
 #now we force a git commit
 cd ${BUILDDIR}
 git add -A
