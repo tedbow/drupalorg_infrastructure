@@ -5,7 +5,7 @@
 
 # Usage: write_template "template" "path/to/destination"
 function write_template {
-  sed -e "s/DB_NAME/${db_name}/g;s/NAME/${name}/g;s/SITE/${site}/g;s/DB_PASS/${db_pass}/g" "dev/${1}" > "${2}"
+  sed -e "s/DB_NAME/${site}/g;s/DB_USER/${db_user}/g;s/SITE/${site}/g;s/DB_PASS/${db_pass}/g;s/DB_PORT/330${BUILD_NUMBER}/g" "dev/${1}" > "${2}"
 }
 
 # Fail early if comment is omitted.
@@ -24,7 +24,8 @@ snapshot="${site}_database_snapshot.dev-current.sql.bz2"
 
 export TERM=dumb
 drush="drush6 -r ${web_path}/htdocs -y"
-db_pass=$(pwgen -s 16 1)
+db_user="root"
+db_pass="drupal"
 
 [ -e "${web_path}" ] && echo "Project webroot already exists!" && exit 1
 
@@ -34,12 +35,11 @@ mkdir -p "${web_path}/xhprof/htdocs"
 chown -R bender:developers "${web_path}"
 echo "${COMMENT}" > "${web_path}/comment"
 
+# @TODO: Verify port is available
+#nc -z localhost 330${BUILD_NUMBER}
+
 # Create the vhost config
 write_template "vhost.conf.template" "${vhost_path}"
-
-# Configure the database
-mysql -e "CREATE DATABASE ${db_name};"
-mysql -e "GRANT ALL ON ${db_name}.* TO '${db_name}'@'devwww1.drupal.aws' IDENTIFIED BY '${db_pass}';"
 
 # Clone make file.
 if [ "${site}" == "association" ]; then
@@ -107,13 +107,8 @@ sudo chown -R apache:apache "${web_path}/xhprof/traces"
 mkdir -p "${web_path}/files-tmp"
 sudo chown -R apache:developers "${web_path}/files-tmp"
 
-# Import database
-rsync -v --copy-links --password-file ~/util.rsync.pass "rsync://devmysql@dbutil.drupal.org/mysql-dev/${snapshot}" "${WORKSPACE}"
-bunzip2 < "${WORKSPACE}/${snapshot}" | mysql "${db_name}"
-${drush} sql-cli <<END
-  -- InnoDB handles the url alias table much faster.
-  ALTER TABLE url_alias ENGINE InnoDB;
-END
+### Start docker container
+docker run --name=${container_name} -d -p 330${BUILD_NUMBER}:3306 devwww/${site}:latest --datadir=/mnt
 
 if [ "${site}" = "association" ]; then
   # CiviCRM is not on public dev sites.

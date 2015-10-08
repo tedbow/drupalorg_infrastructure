@@ -1,13 +1,14 @@
 <?php
 // Drupal 6
-$db_url = 'mysql://DB_NAME:DB_PASS@devdb.drupal.aws/DB_NAME';
+$db_url = 'mysql://DB_NAME:DB_PASS@localhost:DB_PORT/DB_NAME';
 // Drupal 7
 $databases['default']['default'] = array(
   'driver' => 'mysql',
   'database' => 'DB_NAME',
-  'username' => 'DB_NAME',
+  'username' => 'DB_USER',
   'password' => 'DB_PASS',
-  'host'     => 'devdb.drupal.aws',
+  'host'     => 'localhost',
+  'port'     => 'DB_PORT',
   'collation' => 'utf8_general_ci',
 );
 

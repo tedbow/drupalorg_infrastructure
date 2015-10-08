@@ -14,11 +14,8 @@ sudo rm -rf "${web_path}"
 # Delete the vhost
 rm -f "${vhost_path}"
 
-# Drop the database and user
-mysql <<end
-  DROP DATABASE ${db_name};
-  REVOKE ALL ON ${db_name}.* FROM '${db_name}'@'devwww1.drupal.aws';
-  DROP USER '${db_name}'@'devwww1.drupal.aws';
-end
+### Stop and remove docker container
+docker stop ${container_name}
+docker rm ${container_name}
 
 restart_apache
