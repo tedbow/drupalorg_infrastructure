@@ -6469,6 +6469,14 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="search_api_item_string_id",
+    columns=[
+        "item_id",
+        "index_id",
+        "changed",
+    ])
+
+whitelist.add(
     table="search_api_server",
     columns=[
         "id",
