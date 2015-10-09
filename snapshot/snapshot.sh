@@ -27,7 +27,7 @@ function snapshot {
     subdir='dev'
   fi
   # Save the DB dump.
-  mysqldump --single-transaction --quick --max-allowed-packet=256M ${tmp_args} | sed -e 's/^) ENGINE=[^ ]*/)/' | bzip2 > "/var/dumps/${subdir}/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2"
+  mysqldump --single-transaction --quick --max-allowed-packet=256M ${tmp_args} | sed -e 's/^) ENGINE=[^ ]*/) ROW_FORMAT=COMPRESSED/' | bzip2 > "/var/dumps/${subdir}/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2"
   mv -v "/var/dumps/${subdir}/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2" "/var/dumps/${subdir}/${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.bz2"
   ln -sfv "${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.bz2" "/var/dumps/${subdir}/${JOB_NAME}${suffix}-current.sql.bz2"
 
@@ -72,7 +72,7 @@ if [ ${db_name} != 'drupal' ]; then
     exit 1
   fi
   # Copy live to tmp database.
-  gunzip < "${WORKSPACE}/tmp.mysql.gz" | sed -e 's/^) ENGINE=[^ ]*/) ENGINE=MyISAM/' | mysql -o ${tmp_args}
+  gunzip < "${WORKSPACE}/tmp.mysql.gz" | sed -e 's/^) ENGINE=[^ ]*/) ROW_FORMAT=COMPRESSED/' | mysql -o ${tmp_args}
   rm "${WORKSPACE}/tmp.mysql.gz"
 fi
 
