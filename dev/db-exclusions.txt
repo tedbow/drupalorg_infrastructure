@@ -1,2 +1,2 @@
-qa
-latinamerica2015
+qa*
+latinamerica2015*
