@@ -74,15 +74,9 @@ if [ -d "${web_path}/make/static-files" ]; then
   popd
 fi
 
-# If Symfony module is present, run Composer.
-if [ -d "${web_path}/htdocs/sites/all/modules/symfony" ]; then
-  pushd "${web_path}/htdocs/sites/all/modules/symfony"
-  # We do want to check composer.lock and vendors in.
-  rm -v ".gitignore"
-  # static-files/sites/all/modules/symfony/composer.lock is copied over by the
-  # previous step.
-  composer install
-  popd
+# If Composer Manager module is present, run Composer.
+if [ -d "${web_path}/htdocs/sites/default/composer" ]; then
+  composer --working-dir="${web_path}/htdocs/sites/default/composer" install
 fi
 
 # Add settings.local.php
