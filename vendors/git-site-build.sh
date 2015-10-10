@@ -59,7 +59,6 @@ cd ..
 mv ${BUILDGIT}/.git ${BUILDDIR}
 
 # Copy static files.
-[ -f "${MASTER}/settings.php" ] && cp "${MASTER}/settings.php" "${BUILDDIR}/sites/default/"
 [ -f "${MASTER}/.gitignore" ] && cp "${MASTER}/.gitignore" "${BUILDDIR}/"  # Replace core's file
 if [ -d "${MASTER}/static-files" ]; then
   pushd "${MASTER}/static-files"

@@ -67,7 +67,6 @@ if [ -f "${web_path}/htdocs/sites/all/themes/bluecheese/Gemfile" ]; then
 fi
 
 # Copy static files.
-[ -f "${web_path}/make/settings.php" ] && cp "${web_path}/make/settings.php" "${web_path}/htdocs/sites/default/"
 [ -f "${web_path}/make/.gitignore" ] && cp "${web_path}/make/.gitignore" "${web_path}/htdocs/"  # Replace core's file
 if [ -d "${web_path}/make/static-files" ]; then
   pushd "${web_path}/make/static-files"
