@@ -102,9 +102,11 @@ chgrp -R developers "${web_path}"
 mkdir -p "${web_path}/xhprof/traces"
 sudo chown -R apache:apache "${web_path}/xhprof/traces"
 
-# Add temporary files directory after global chown
+# Add temporary files and devel mail directories after global chown.
 mkdir -p "${web_path}/files-tmp"
 sudo chown -R apache:developers "${web_path}/files-tmp"
+mkdir -p "${web_path}/devel-mail"
+sudo chown -R apache:developers "${web_path}/devel-mail"
 
 # Import database
 rsync -v --copy-links --password-file ~/util.rsync.pass "rsync://devmysql@dbutil.drupal.org/mysql-dev/${snapshot}" "${WORKSPACE}"
