@@ -108,7 +108,13 @@ mkdir -p "${web_path}/files-tmp"
 sudo chown -R apache:developers "${web_path}/files-tmp"
 
 ### Start docker container
-docker run --name=${container_name} -d -p 330${BUILD_NUMBER}:3306 devwww/${site}:latest --datadir=/mnt
+echo "  Starting new Mariadb container"
+CONTAINERID=$(docker run --name=${container_name} -d -p 330${BUILD_NUMBER}:3306 devwww/${site}:latest --datadir=/mnt)
+### Verfiy that the container is up
+echo "  Letting MYSQL spin up"
+sleep 10
+nc -z localhost 330${BUILD_NUMBER} || sleep 10
+nc -z localhost 330${BUILD_NUMBER} || sleep 10
 
 if [ "${site}" = "association" ]; then
   # CiviCRM is not on public dev sites.
