@@ -109,12 +109,13 @@ sudo chown -R apache:developers "${web_path}/files-tmp"
 
 ### Start docker container
 echo "  Starting new Mariadb container"
-CONTAINERID=$(docker run --name=${container_name} -d -p 330${BUILD_NUMBER}:3306 devwww/${site}:latest --datadir=/mnt --max-allowed-packet=256M --innodb-log-file-size=1G --innodb-file-per-table=1 --innodb-file-format=barracuda)
+CONTAINERPORT=$((3300 + ${BUILD_NUMBER}))
+CONTAINERID=$(docker run --name=${container_name} -d -p ${CONTAINERPORT}:3306 devwww/${site}:latest --datadir=/mnt --max-allowed-packet=256M --innodb-log-file-size=1G --innodb-file-per-table=1 --innodb-file-format=barracuda)
 ### Verfiy that the container is up
 echo "  Letting MYSQL spin up"
 sleep 10
-nc -z localhost 330${BUILD_NUMBER} || sleep 10
-nc -z localhost 330${BUILD_NUMBER} || sleep 10
+nc -z localhost ${CONTAINERPORT} || sleep 10
+nc -z localhost ${CONTAINERPORT} || sleep 10
 
 if [ "${site}" = "association" ]; then
   # CiviCRM is not on public dev sites.
