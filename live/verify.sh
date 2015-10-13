@@ -10,7 +10,7 @@ export repo_status=$(git status --short)
 export repo_diff=$(git diff)
 cd ${WORKSPACE}
 export log_earliest=$(${drush} sql-query 'SELECT min(timestamp) AS "" FROM watchdog;')
-export log_php_summary=$(${drush} sql-query 'SELECT severity, count(1) AS c, from_unixtime(min(timestamp)) AS earliest, from_unixtime(max(timestamp)) AS latest, substr(variables, 1, 500) AS variables FROM watchdog WHERE type = '\''php'\'' GROUP BY variables ORDER BY severity, c DESC LIMIT 500;')
+export log_php_summary=$(${drush} sql-query 'SELECT severity, count(1) AS c, from_unixtime(min(timestamp)) AS earliest, from_unixtime(max(timestamp)) AS latest, substr(variables, 1, 500) AS variables FROM watchdog WHERE type = '\''php'\'' GROUP BY variables ORDER BY severity, c DESC LIMIT 250;')
 export projects=$(${drush} pm-list --status=enabled --pipe)
 export features=$(
   # Machine names of enabled & overridden features. Machine-readable output
