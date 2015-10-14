@@ -5,7 +5,7 @@
 
 # Usage: write_template "template" "path/to/destination"
 function write_template {
-  sed -e "s/DB_NAME/${site}/g;s/NAME/${name}/g;s/DB_USER/${db_user}/g;s/SITE/${site}/g;s/DB_PASS/${db_pass}/g;s/DB_PORT/330${BUILD_NUMBER}/g" "dev/${1}" > "${2}"
+  sed -e "s/DB_NAME/${site}/g;s/NAME/${name}/g;s/DB_USER/${db_user}/g;s/SITE/${site}/g;s/DB_PASS/${db_pass}/g;s/DB_PORT/${CONTAINERPORT}/g" "dev/${1}" > "${2}"
 }
 
 # Fail early if comment is omitted.
@@ -37,6 +37,8 @@ echo "${COMMENT}" > "${web_path}/comment"
 
 # @TODO: Verify port is available
 #nc -z localhost 330${BUILD_NUMBER}
+### Set MYSQL port
+CONTAINERPORT=$((3300 + ${BUILD_NUMBER}))
 
 # Create the vhost config
 write_template "vhost.conf.template" "${vhost_path}"
@@ -109,7 +111,6 @@ sudo chown -R apache:developers "${web_path}/files-tmp"
 
 ### Start docker container
 echo "  Starting new Mariadb container"
-CONTAINERPORT=$((3300 + ${BUILD_NUMBER}))
 CONTAINERID=$(docker run --name=${container_name} -d -p ${CONTAINERPORT}:3306 devwww/${site}:latest --datadir=/mnt --max-allowed-packet=256M --innodb-log-file-size=1G --innodb-file-per-table=1 --innodb-file-format=barracuda)
 ### Verfiy that the container is up
 echo "  Letting MYSQL spin up"
