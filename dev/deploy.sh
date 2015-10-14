@@ -176,4 +176,4 @@ fi
 ${drush} upwd bacon --password=bacon || true
 
 # Prime any big caches
-##curl --insecure --retry 3 --retry-delay 10 "https://drupal:drupal@${name}-${site}.dev.devdrupal.org" > /dev/null
+curl --insecure --retry 3 --retry-delay 10 "https://drupal:drupal@${name}-${site}.dev.devdrupal.org" > /dev/null
