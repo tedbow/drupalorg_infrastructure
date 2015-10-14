@@ -149,23 +149,23 @@ ${drush} vdel preprocess_js
 ${drush} pm-enable devel
 ${drush} pm-enable views_ui
 ${drush} pm-enable imagecache_ui || true # May not exist on D6.
-${drush} vset devel_xhprof_directory "/var/www/dev/${name}-${site}.redesign.devdrupal.org/xhprof/htdocs"
-${drush} vset devel_xhprof_url "https://xhprof-${name}-${site}.redesign.devdrupal.org/xhprof_html"
+${drush} vset devel_xhprof_directory "/var/www/dev/${name}-${site}.dev.devdrupal.devdrupal.org/xhprof/htdocs"
+${drush} vset devel_xhprof_url "https://xhprof-${name}-${site}.dev.devdrupal.devdrupal.org/xhprof_html"
 ${drush} vset mailchimp_api_key nope
 
 # Set up for potential bakery testing
 ${drush} vdel bakery_slaves
 if [ "${site}" == "drupal" ]; then
   # Drupal.org sites are masters
-  ${drush} vset bakery_master "https://${name}-${site}.redesign.devdrupal.org/"
+  ${drush} vset bakery_master "https://${name}-${site}.dev.devdrupal.devdrupal.org/"
   ${drush} vset bakery_key "$(pwgen -s 32 1)"
 else
   if [ "${bakery_master-}" ]; then
     # Hook up to a Drupal.org
-    ${drush} vset bakery_master "https://${bakery_master}-drupal.redesign.devdrupal.org/"
-    drush_master="drush6 -r /var/www/dev/${bakery_master}-drupal.redesign.devdrupal.org/htdocs -l ${bakery_master}-drupal.redesign.devdrupal.org -y"
+    ${drush} vset bakery_master "https://${bakery_master}-drupal.dev.devdrupal.devdrupal.org/"
+    drush_master="drush6 -r /var/www/dev/${bakery_master}-drupal.dev.devdrupal.devdrupal.org/htdocs -l ${bakery_master}-drupal.dev.devdrupal.devdrupal.org -y"
     ${drush} vset bakery_key $(${drush_master} vget bakery_key --exact --format=string)
-    ${drush_master} bakery-add-slave "https://${name}-${site}.redesign.devdrupal.org/"
+    ${drush_master} bakery-add-slave "https://${name}-${site}.dev.devdrupal.devdrupal.org/"
   else
     # Don't bother with bakery
     ${drush} pm-disable bakery
@@ -176,4 +176,4 @@ fi
 ${drush} upwd bacon --password=bacon || true
 
 # Prime any big caches
-##curl --insecure --retry 3 --retry-delay 10 "https://drupal:drupal@${name}-${site}.redesign.devdrupal.org" > /dev/null
+##curl --insecure --retry 3 --retry-delay 10 "https://drupal:drupal@${name}-${site}.dev.devdrupal.devdrupal.org" > /dev/null
