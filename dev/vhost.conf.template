@@ -1,30 +1,30 @@
 <VirtualHost *:8080>
-  ServerName NAME-SITE.dev.devdrupal.devdrupal.org
+  ServerName NAME-SITE.dev.devdrupal.org
 
-  DocumentRoot /var/www/dev/NAME-SITE.dev.devdrupal.devdrupal.org/htdocs
+  DocumentRoot /var/www/dev/NAME-SITE.dev.devdrupal.org/htdocs
 
   AddOutputFilterByType DEFLATE text/css application/javascript application/x-javascript text/html
   Header add Vary "Accept-Encoding"
 
-  <Directory "/var/www/dev/NAME-SITE.dev.devdrupal.devdrupal.org/htdocs">
+  <Directory "/var/www/dev/NAME-SITE.dev.devdrupal.org/htdocs">
     Include vhosts.d/development.inc
   </Directory>
   <Directory "/usr/share/xhprof">
     Include vhosts.d/development.inc
   </Directory>
 
-  ErrorLog "|/usr/sbin/cronolog /var/www/dev/NAME-SITE.dev.devdrupal.devdrupal.org/logs/error/%Y%m%d.log"
-  CustomLog "|/usr/sbin/cronolog /var/www/dev/NAME-SITE.dev.devdrupal.devdrupal.org/logs/access/%Y%m%d.log" combined
+  ErrorLog "|/usr/sbin/cronolog /var/www/dev/NAME-SITE.dev.devdrupal.org/logs/error/%Y%m%d.log"
+  CustomLog "|/usr/sbin/cronolog /var/www/dev/NAME-SITE.dev.devdrupal.org/logs/access/%Y%m%d.log" combined
 </VirtualHost>  
 <VirtualHost *:8080>
-  ServerName xhprof-NAME-SITE.dev.devdrupal.devdrupal.org
+  ServerName xhprof-NAME-SITE.dev.devdrupal.org
 
-  DocumentRoot /var/www/dev/NAME-SITE.dev.devdrupal.devdrupal.org/xhprof/htdocs
+  DocumentRoot /var/www/dev/NAME-SITE.dev.devdrupal.org/xhprof/htdocs
 
   AddOutputFilterByType DEFLATE text/css application/javascript application/x-javascript text/html
   Header add Vary "Accept-Encoding"
 
-  <Directory "/var/www/dev/NAME-SITE.dev.devdrupal.devdrupal.org/xhprof/htdocs">
+  <Directory "/var/www/dev/NAME-SITE.dev.devdrupal.org/xhprof/htdocs">
     Include vhosts.d/development.inc
     DirectoryIndex index.php
   </Directory>
