@@ -124,7 +124,7 @@ if [ "${site}" = "association" ]; then
 fi
 
 # Run any pending updates.
-${drush} -v updatedb --interactive
+${drush} -v updatedb -y
 
 # Disable modules that don't work well in development (yet)
 ${drush} pm-disable paranoia
