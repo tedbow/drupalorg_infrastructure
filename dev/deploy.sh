@@ -114,7 +114,7 @@ echo "  Starting new Mariadb container"
 CONTAINERID=$(docker run --name=${container_name} -d -p ${CONTAINERPORT}:3306 devwww/${site}:latest --datadir=/mnt --max-allowed-packet=256M --innodb-log-file-size=1G --innodb-file-per-table=1 --innodb-file-format=barracuda)
 ### Verfiy that the container is up
 echo "  Letting MYSQL spin up"
-sleep 10
+sleep 60
 nc -z localhost ${CONTAINERPORT} || sleep 10
 nc -z localhost ${CONTAINERPORT} || sleep 10
 
@@ -124,7 +124,7 @@ if [ "${site}" = "association" ]; then
 fi
 
 # Run any pending updates.
-${drush} -v updatedb -y
+${drush} -v updatedb --interactive
 
 # Disable modules that don't work well in development (yet)
 ${drush} pm-disable paranoia
