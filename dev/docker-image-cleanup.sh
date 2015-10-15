@@ -11,5 +11,7 @@ devwwwcontainers=$(docker inspect --format '{{ .Image }}' $(docker ps -a | grep 
 keepdevwwwimages=$(sort -u <(echo "$devwwwcontainers") <(echo "$latestdevwwwimages"))
 # List of images that can be removed
 deletedevwwwimages=$(comm -2 -3 <(echo "$alldevwwwimages") <(echo "$keepdevwwwimages"))
+# list images that will be removed
+echo "$deletedevwwwimages"
 # remove images
 docker rmi $deletedevwwwimages
