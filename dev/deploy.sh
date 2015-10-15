@@ -163,10 +163,12 @@ if [ "${site}" == "drupal" ]; then
   ${drush} vset bakery_key "$(pwgen -s 32 1)"
 
   # Clean up solr and create a read-only core
-  ${drush} ev "apachesolr_environment_delete('solr_0')"
-  ${drush} ev "apachesolr_environment_delete('solr_0_0')"
-  ${drush} solr-set-env-url http://devsolr1.drupal.aws:8114/solr/do-core1
-  ${drush} solr-vset --yes apachesolr_read_only 1
+  ${drush} ev "variable_set('apachesolr_default_environment', solr_0_1)"
+  ${drush} solr-set-env-url --id="solr_0_1" http://devsolr1.drupal.aws:8114/solr/do-core1
+  ${drush} solr-vset --id="solr_0_1" --yes apachesolr_read_only 1
+  ${drush} ev "apachesolr_environment_delete(solr_0)"
+  ${drush} ev "apachesolr_environment_delete(solr_0_0)"
+
 
 else
   if [ "${bakery_master-}" ]; then
