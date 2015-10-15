@@ -161,6 +161,13 @@ if [ "${site}" == "drupal" ]; then
   # Drupal.org sites are masters
   ${drush} vset bakery_master "https://${name}-${site}.dev.devdrupal.org/"
   ${drush} vset bakery_key "$(pwgen -s 32 1)"
+
+  # Clean up solr and create a read-only core
+  ${drush} ev "apachesolr_environment_delete('solr_0’)"
+  ${drush} ev "apachesolr_environment_delete('solr_0_0’)"
+  ${drush} solr-set-env-url http://devsolr1.drupal.aws:8114/solr/do-core1
+  ${drush} solr-vset --yes apachesolr_read_only 1
+
 else
   if [ "${bakery_master-}" ]; then
     # Hook up to a Drupal.org
