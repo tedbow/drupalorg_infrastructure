@@ -112,7 +112,7 @@ sudo chown -R apache:developers "${web_path}/files-tmp"
 
 # Start docker container
 echo "  Starting new Mariadb container"
-CONTAINERID=$(docker run --name=${container_name} -d -p ${CONTAINERPORT}:3306 devwww/${site}:latest --datadir=/mnt --max-allowed-packet=256M --innodb-log-file-size=1G --innodb-file-per-table=1 --innodb-file-format=barracuda)
+CONTAINERID=$(docker run --name=${container_name} -d -v /usr/local/drupal-infrastructure/dev/mysql.d:/etc/mysql/conf.d -p ${CONTAINERPORT}:3306 devwww/${site}:latest)
 # Give mysql some time to load
 echo "  Letting MYSQL spin up"
 sleep 60
