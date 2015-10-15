@@ -169,7 +169,6 @@ if [ "${site}" == "drupal" ]; then
   ${drush} ev "apachesolr_environment_delete(solr_0)"
   ${drush} ev "apachesolr_environment_delete(solr_0_0)"
 
-
 else
   if [ "${bakery_master-}" ]; then
     # Hook up to a Drupal.org
