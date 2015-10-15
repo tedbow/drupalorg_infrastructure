@@ -14,7 +14,7 @@ sudo rm -rf "${web_path}"
 # Delete the vhost
 rm -f "${vhost_path}"
 
-### Stop and remove docker container
+# Stop and remove docker container
 docker stop ${container_name}
 docker rm ${container_name}
 

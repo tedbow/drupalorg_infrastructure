@@ -1,7 +1,6 @@
 #!/bin/bash
 
 ## Image clean up
-###
 # Get all devwww images
 alldevwwwimages=$(docker images --no-trunc | grep devwww | awk '{print $3}' | sort -u)
 # Get all latest devwww images

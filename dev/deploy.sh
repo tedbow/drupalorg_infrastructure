@@ -1,4 +1,4 @@
-# Create a development environment for a given "name" on devwww/devdb
+# Create a development environment for a given "name" on devwww2
 
 # Include common dev script.
 . dev/common.sh
@@ -35,10 +35,11 @@ mkdir -p "${web_path}/xhprof/htdocs"
 chown -R bender:developers "${web_path}"
 echo "${COMMENT}" > "${web_path}/comment"
 
-# @TODO: Verify port is available
-#nc -z localhost 330${BUILD_NUMBER}
-### Set MYSQL port
+# Set port number
 CONTAINERPORT=$((3300 + ${BUILD_NUMBER}))
+
+# @TODO: Verify port is available
+#nc -z localhost ${CONTAINERPORT}
 
 # Create the vhost config
 write_template "vhost.conf.template" "${vhost_path}"
@@ -109,12 +110,13 @@ sudo chown -R apache:apache "${web_path}/xhprof/traces"
 mkdir -p "${web_path}/files-tmp"
 sudo chown -R apache:developers "${web_path}/files-tmp"
 
-### Start docker container
+# Start docker container
 echo "  Starting new Mariadb container"
 CONTAINERID=$(docker run --name=${container_name} -d -p ${CONTAINERPORT}:3306 devwww/${site}:latest --datadir=/mnt --max-allowed-packet=256M --innodb-log-file-size=1G --innodb-file-per-table=1 --innodb-file-format=barracuda)
-### Verfiy that the container is up
+# Give mysql some time to load
 echo "  Letting MYSQL spin up"
 sleep 60
+# Verfiy that the port is active
 nc -z localhost ${CONTAINERPORT} || sleep 10
 nc -z localhost ${CONTAINERPORT} || sleep 10
 
