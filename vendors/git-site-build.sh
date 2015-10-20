@@ -59,22 +59,10 @@ cd ..
 mv ${BUILDGIT}/.git ${BUILDDIR}
 
 # Copy static files.
-[ -f "${MASTER}/settings.php" ] && cp "${MASTER}/settings.php" "${BUILDDIR}/sites/default/"
 [ -f "${MASTER}/.gitignore" ] && cp "${MASTER}/.gitignore" "${BUILDDIR}/"  # Replace core's file
 if [ -d "${MASTER}/static-files" ]; then
   pushd "${MASTER}/static-files"
   find . -type f | cpio -pdmuv "${BUILDDIR}"
-  popd
-fi
-
-# If Symfony module is present, run Composer.
-if [ -d "${BUILDDIR}/sites/all/modules/symfony" ]; then
-  pushd "${BUILDDIR}/sites/all/modules/symfony"
-  # We do want to check composer.lock and vendors in.
-  rm -v ".gitignore"
-  # static-files/sites/all/modules/symfony/composer.lock is copied over by the
-  # previous step.
-  composer install
   popd
 fi
 

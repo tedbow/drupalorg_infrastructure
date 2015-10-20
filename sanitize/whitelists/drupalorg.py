@@ -5391,32 +5391,10 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="flag_content",
-    columns=[
-        "fcid",
-        "fid",
-        "content_type",
-        "content_id",
-        "uid",
-        "sid",
-        "timestamp",
-    ])
-
-whitelist.add(
-    table="flag_counts",
+    table="flag",
     columns=[
         "fid",
-        "content_type",
-        "content_id",
-        "count",
-        "last_updated",
-    ])
-
-whitelist.add(
-    table="flags",
-    columns=[
-        "fid",
-        "content_type",
+        "entity_type",
         "name",
         "title",
         "global",
@@ -5424,10 +5402,32 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="flag_counts",
+    columns=[
+        "fid",
+        "entity_type",
+        "entity_id",
+        "count",
+        "last_updated",
+    ])
+
+whitelist.add(
     table="flag_types",
     columns=[
         "fid",
         "type",
+    ])
+
+whitelist.add(
+    table="flagging",
+    columns=[
+        "flagging_id",
+        "fid",
+        "entity_type",
+        "entity_id",
+        "uid",
+        "sid",
+        "timestamp",
     ])
 
 whitelist.add(

@@ -70,7 +70,6 @@ if [ -f "${web_path}/htdocs/sites/all/themes/bluecheese/Gemfile" ]; then
 fi
 
 # Copy static files.
-[ -f "${web_path}/make/settings.php" ] && cp "${web_path}/make/settings.php" "${web_path}/htdocs/sites/default/"
 [ -f "${web_path}/make/.gitignore" ] && cp "${web_path}/make/.gitignore" "${web_path}/htdocs/"  # Replace core's file
 if [ -d "${web_path}/make/static-files" ]; then
   pushd "${web_path}/make/static-files"
@@ -78,15 +77,9 @@ if [ -d "${web_path}/make/static-files" ]; then
   popd
 fi
 
-# If Symfony module is present, run Composer.
-if [ -d "${web_path}/htdocs/sites/all/modules/symfony" ]; then
-  pushd "${web_path}/htdocs/sites/all/modules/symfony"
-  # We do want to check composer.lock and vendors in.
-  rm -v ".gitignore"
-  # static-files/sites/all/modules/symfony/composer.lock is copied over by the
-  # previous step.
-  composer install
-  popd
+# If Composer Manager module is present, run Composer.
+if [ -d "${web_path}/htdocs/sites/default/composer" ]; then
+  composer --working-dir="${web_path}/htdocs/sites/default/composer" install
 fi
 
 # Add settings.local.php
@@ -106,9 +99,11 @@ chgrp -R developers "${web_path}"
 mkdir -p "${web_path}/xhprof/traces"
 sudo chown -R apache:apache "${web_path}/xhprof/traces"
 
-# Add temporary files directory after global chown
+# Add temporary files and devel mail directories after global chown.
 mkdir -p "${web_path}/files-tmp"
 sudo chown -R apache:developers "${web_path}/files-tmp"
+mkdir -p "${web_path}/devel-mail"
+sudo chown -R apache:developers "${web_path}/devel-mail"
 
 # Start docker container
 echo "  Starting new Mariadb container"

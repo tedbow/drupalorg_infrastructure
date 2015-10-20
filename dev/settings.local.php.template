@@ -42,3 +42,9 @@ $conf['site_name'] = 'NAME SITE dev';
 
 // Allow permissions changes.
 $conf['drupalorg_crosssite_lock_permissions'] = FALSE;
+
+// Devel mail
+$conf['mail_system'] = array(
+  'default-system' => 'DevelMailLog',
+);
+$conf['devel_debug_mail_directory'] = '../devel-mail';
