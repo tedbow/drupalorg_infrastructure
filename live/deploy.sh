@@ -22,6 +22,9 @@ fi
 if [ "${cc_views-}" = "true" ]; then
   ${drush} -v cc "views"
 fi
+if [ "${cc_block-}" = "true" ]; then
+  ${drush} -v cc "block"
+fi
 if [ "${cc_all-}" = "true" ]; then
   ${drush} -v cc "all"
 fi
