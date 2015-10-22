@@ -8,6 +8,6 @@ function restart_apache {
 
 # Set common variables.
 vhost_path="/etc/httpd/vhosts.d/automated-hudson/${name}-${site}.conf"
-web_path="/var/www/dev/${name}-${site}.redesign.devdrupal.org"
-# Clean DB name, no dots or dashes, truncate to 16 characters.
-db_name=$(echo "${name}_${site}" | sed -e "s/[-.]/_/g;s/^\(.\{16\}\).*/\1/")
+web_path="/var/www/dev/${name}-${site}.dev.devdrupal.org"
+# Clean site name, no dots or dashes, truncate to 16 characters.
+container_name=$(echo "${name}_${site}" | sed -e "s/[-.]/_/g;s/^\(.\{16\}\).*/\1/")
