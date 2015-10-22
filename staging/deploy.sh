@@ -9,7 +9,6 @@ git pull
 ${drush} cc all || true
 
 ${drush} updatedb --interactive
-${drush} cc all
 
 # Also handle CiviCRM for the Association site.
 if [ "${uri}" = "assoc.staging.devdrupal.org" ]; then
