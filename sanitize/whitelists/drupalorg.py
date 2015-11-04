@@ -6903,3 +6903,47 @@ whitelist.add(
         "status",
         "data",
     ])
+
+whitelist.add(
+    table="panelizer_defaults",
+    columns=[
+        "pnid",
+        "name",
+        "title",
+        "panelizer_type",
+        "panelizer_key",
+        "no_blocks",
+        "css_id",
+        "css",
+        "pipeline",
+        "contexts",
+        "relationships",
+        "did",
+        "access",
+        "view_mode",
+        "css_class",
+        "title_element",
+        "link_to_entity",
+        "extra",
+    ])
+
+whitelist.add(
+    table="panelizer_entity",
+    columns=[
+        "entity_type",
+        "entity_id",
+        "revision_id",
+        "name",
+        "no_blocks",
+        "css_id",
+        "css",
+        "pipeline",
+        "contexts",
+        "relationships",
+        "did",
+        "view_mode",
+        "css_class",
+        "title_element",
+        "link_to_entity",
+        "extra",
+    ])
