@@ -273,6 +273,83 @@ function run_queries($args) {
 }
 
 /**
+ * DrupalCI (queries against Drupal.org db)
+ */
+
+function run_queries_dci($args) {
+  $data = array();
+
+  // # of test requests sent
+  $result = db_query(SELECT MONTH(FROM_UNIXTIME(cijob.created)) AS Month, count(*) AS Tests, sum(ttd.name = '8.x' ) AS D8, sum(ttd.name = '7.x' ) AS D7, sum(ttd.name = '6.x' ) AS D6, sum(ttd.name = '8.x' ) + sum(ttd.name = '7.x' ) + sum(ttd.name = '6.x' ) AS TOTAL
+FROM pift_ci_job cijob
+  LEFT JOIN node release_node on release_node.nid = cijob.release_nid
+  LEFT JOIN taxonomy_index ti on ti.nid = release_node.nid
+  LEFT JOIN taxonomy_term_data ttd on ttd.tid = ti.tid
+  LEFT JOIN field_data_field_release_project fdfrp on fdfrp.entity_id = release_node.nid
+  LEFT JOIN node project_node on project_node.nid = fdfrp.field_release_project_target_id
+
+WHERE YEAR(FROM_UNIXTIME(cijob.created)) = 2015
+  AND project_node.nid = 3060
+  AND release_node.type = 'project_release'
+  AND ttd.name in ('6.x','7.x','8.x')
+  AND ttd.vid = 6
+GROUP BY MONTH(FROM_UNIXTIME(cijob.created)));
+  while ($data['core_test_count'][] = db_fetch_array($result)) {
+  }
+
+  $result = db_query(SELECT MONTH(FROM_UNIXTIME(cijob.created)) AS Month, count(*) AS Tests, sum(ttd.name = '8.x' ) AS D8, sum(ttd.name = '7.x' ) AS D7, sum(ttd.name = '6.x' ) AS D6, sum(ttd.name = '8.x' ) + sum(ttd.name = '7.x' ) + sum(ttd.name = '6.x' ) AS TOTAL
+FROM pift_ci_job cijob
+  LEFT JOIN node release_node on release_node.nid = cijob.release_nid
+  LEFT JOIN taxonomy_index ti on ti.nid = release_node.nid
+  LEFT JOIN taxonomy_term_data ttd on ttd.tid = ti.tid
+  LEFT JOIN field_data_field_release_project fdfrp on fdfrp.entity_id = release_node.nid
+  LEFT JOIN node project_node on project_node.nid = fdfrp.field_release_project_target_id
+
+WHERE YEAR(FROM_UNIXTIME(cijob.created)) = 2015
+  AND project_node.nid != 3060
+  AND release_node.type = 'project_release'
+  AND ttd.name in ('6.x','7.x','8.x')
+  AND ttd.vid = 6
+GROUP BY MONTH(FROM_UNIXTIME(cijob.created)));
+  while ($data['contrib_test_count'][] = db_fetch_array($result)) {
+  }
+
+  $result = db_query(SELECT MONTH(FROM_UNIXTIME(cijob.created)) AS Month, AVG(cijob.updated - cijob.created)/60 AS Duration
+FROM pift_ci_job cijob
+  LEFT JOIN node release_node on release_node.nid = cijob.release_nid
+  LEFT JOIN taxonomy_index ti on ti.nid = release_node.nid
+  LEFT JOIN taxonomy_term_data ttd on ttd.tid = ti.tid
+  LEFT JOIN field_data_field_release_project fdfrp on fdfrp.entity_id = release_node.nid
+  LEFT JOIN node project_node on project_node.nid = fdfrp.field_release_project_target_id
+
+WHERE YEAR(FROM_UNIXTIME(cijob.created)) = 2015
+  AND project_node.nid = 3060
+  AND cijob.environment = 'php5.5_mysql5.5'
+  AND release_node.type = 'project_release'
+  AND ttd.name = '8.x'
+  AND ttd.vid = 6
+GROUP BY MONTH(FROM_UNIXTIME(cijob.created)));
+  while ($data['d8_core_avg_time'][] = db_fetch_array($result)) {
+  }
+
+  $result = db_query(SELECT MONTH(FROM_UNIXTIME(cijob.created)) AS Month, AVG(cijob.updated - cijob.created)/60 AS Duration
+FROM pift_ci_job cijob
+  LEFT JOIN node release_node on release_node.nid = cijob.release_nid
+  LEFT JOIN taxonomy_index ti on ti.nid = release_node.nid
+  LEFT JOIN taxonomy_term_data ttd on ttd.tid = ti.tid
+  LEFT JOIN field_data_field_release_project fdfrp on fdfrp.entity_id = release_node.nid
+  LEFT JOIN node project_node on project_node.nid = fdfrp.field_release_project_target_id
+
+WHERE YEAR(FROM_UNIXTIME(cijob.created)) = 2015
+  AND project_node.nid = 3060
+  AND release_node.type = 'project_release'
+  AND ttd.name = '7.x'
+  AND ttd.vid = 6
+GROUP BY MONTH(FROM_UNIXTIME(cijob.created)));
+  while ($data['d7_core_avg_time'][] = db_fetch_array($result)) {
+  }
+
+/**
  * Testbot (queries against qa.d.o)
  */
 function run_queries_testbot($args) {
