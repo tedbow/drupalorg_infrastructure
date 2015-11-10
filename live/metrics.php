@@ -7,7 +7,7 @@ if (empty($month)) {
 }
 $year = (int) getenv('year');
 
-$function = getenv('testbot') ? 'run_queries_testbot' : 'run_queries';
+$function = getenv('testbot') ? 'run_queries_testbot' : 'run_queries_dci' : 'run_queries';
 
 print "Month:\n";
 print_r($function(array(
@@ -348,6 +348,9 @@ WHERE YEAR(FROM_UNIXTIME(cijob.created)) = 2015
 GROUP BY MONTH(FROM_UNIXTIME(cijob.created)));
   while ($data['d7_core_avg_time'][] = db_fetch_array($result)) {
   }
+
+  return $data;
+}
 
 /**
  * Testbot (queries against qa.d.o)
