@@ -285,7 +285,7 @@ function run_queries_dci($args) {
   $data = array();
 
   // # of test requests sent
-  $result = db_query("SELECT MONTH(FROM_UNIXTIME(cijob.created)) AS Month, count(*) AS Tests, sum(ttd.name = '8.x' ) AS D8, sum(ttd.name = '7.x' ) AS D7, sum(ttd.name = '6.x' ) AS D6, sum(ttd.name = '8.x' ) + sum(ttd.name = '7.x' ) + sum(ttd.name = '6.x' ) AS TOTAL
+  $data['core_test_count'] = db_query("SELECT MONTH(FROM_UNIXTIME(cijob.created)) AS Month, count(*) AS Tests, sum(ttd.name = '8.x' ) AS D8, sum(ttd.name = '7.x' ) AS D7, sum(ttd.name = '6.x' ) AS D6, sum(ttd.name = '8.x' ) + sum(ttd.name = '7.x' ) + sum(ttd.name = '6.x' ) AS TOTAL
 FROM pift_ci_job cijob
   LEFT JOIN node release_node on release_node.nid = cijob.release_nid
   LEFT JOIN taxonomy_index ti on ti.nid = release_node.nid
@@ -298,11 +298,10 @@ WHERE YEAR(FROM_UNIXTIME(cijob.created)) = 2015
   AND release_node.type = 'project_release'
   AND ttd.name in ('6.x','7.x','8.x')
   AND ttd.vid = 6
-GROUP BY MONTH(FROM_UNIXTIME(cijob.created))");
-  while ($data['core_test_count'][] = db_fetch_array($result)) {
-  }
+GROUP BY MONTH(FROM_UNIXTIME(cijob.created))")->fetchAllAssoc('name');
+ 
 
-  $result = db_query("SELECT MONTH(FROM_UNIXTIME(cijob.created)) AS Month, count(*) AS Tests, sum(ttd.name = '8.x' ) AS D8, sum(ttd.name = '7.x' ) AS D7, sum(ttd.name = '6.x' ) AS D6, sum(ttd.name = '8.x' ) + sum(ttd.name = '7.x' ) + sum(ttd.name = '6.x' ) AS TOTAL
+  $data['contrib_test_count'] = db_query("SELECT MONTH(FROM_UNIXTIME(cijob.created)) AS Month, count(*) AS Tests, sum(ttd.name = '8.x' ) AS D8, sum(ttd.name = '7.x' ) AS D7, sum(ttd.name = '6.x' ) AS D6, sum(ttd.name = '8.x' ) + sum(ttd.name = '7.x' ) + sum(ttd.name = '6.x' ) AS TOTAL
 FROM pift_ci_job cijob
   LEFT JOIN node release_node on release_node.nid = cijob.release_nid
   LEFT JOIN taxonomy_index ti on ti.nid = release_node.nid
@@ -315,11 +314,9 @@ WHERE YEAR(FROM_UNIXTIME(cijob.created)) = 2015
   AND release_node.type = 'project_release'
   AND ttd.name in ('6.x','7.x','8.x')
   AND ttd.vid = 6
-GROUP BY MONTH(FROM_UNIXTIME(cijob.created))");
-  while ($data['contrib_test_count'][] = db_fetch_array($result)) {
-  }
+GROUP BY MONTH(FROM_UNIXTIME(cijob.created))")->fetchAllAssoc('name');
 
-  $result = db_query("SELECT MONTH(FROM_UNIXTIME(cijob.created)) AS Month, AVG(cijob.updated - cijob.created)/60 AS Duration
+  $data['d8_core_avg_time'] = db_query("SELECT MONTH(FROM_UNIXTIME(cijob.created)) AS Month, AVG(cijob.updated - cijob.created)/60 AS Duration
 FROM pift_ci_job cijob
   LEFT JOIN node release_node on release_node.nid = cijob.release_nid
   LEFT JOIN taxonomy_index ti on ti.nid = release_node.nid
@@ -333,11 +330,9 @@ WHERE YEAR(FROM_UNIXTIME(cijob.created)) = 2015
   AND release_node.type = 'project_release'
   AND ttd.name = '8.x'
   AND ttd.vid = 6
-GROUP BY MONTH(FROM_UNIXTIME(cijob.created))");
-  while ($data['d8_core_avg_time'][] = db_fetch_array($result)) {
-  }
+GROUP BY MONTH(FROM_UNIXTIME(cijob.created))")->fetchAllAssoc('created');
 
-  $result = db_query("SELECT MONTH(FROM_UNIXTIME(cijob.created)) AS Month, AVG(cijob.updated - cijob.created)/60 AS Duration
+  $data['d7_core_avg_time'] = db_query("SELECT MONTH(FROM_UNIXTIME(cijob.created)) AS Month, AVG(cijob.updated - cijob.created)/60 AS Duration
 FROM pift_ci_job cijob
   LEFT JOIN node release_node on release_node.nid = cijob.release_nid
   LEFT JOIN taxonomy_index ti on ti.nid = release_node.nid
@@ -350,9 +345,7 @@ WHERE YEAR(FROM_UNIXTIME(cijob.created)) = 2015
   AND release_node.type = 'project_release'
   AND ttd.name = '7.x'
   AND ttd.vid = 6
-GROUP BY MONTH(FROM_UNIXTIME(cijob.created))");
-  while ($data['d7_core_avg_time'][] = db_fetch_array($result)) {
-  }
+GROUP BY MONTH(FROM_UNIXTIME(cijob.created))")->fetchAllAssoc('created');
 
   return $data;
 }
