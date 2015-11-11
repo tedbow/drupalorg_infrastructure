@@ -48,6 +48,14 @@ db4 = connect(host=password.host, user=password.user, passwd=password.password)
 db5 = connect(host=password.host, user=password.user, passwd=password.password)
 db6 = connect(host=password.host, user=password.user, passwd=password.password)
 db7 = connect(host=password.host, user=password.user, passwd=password.password)
+db8 = connect(host=password.host, user=password.user, passwd=password.password)
+db9 = connect(host=password.host, user=password.user, passwd=password.password)
+db10 = connect(host=password.host, user=password.user, passwd=password.password)
+db11 = connect(host=password.host, user=password.user, passwd=password.password)
+db12 = connect(host=password.host, user=password.user, passwd=password.password)
+db13 = connect(host=password.host, user=password.user, passwd=password.password)
+db14 = connect(host=password.host, user=password.user, passwd=password.password)
+db15 = connect(host=password.host, user=password.user, passwd=password.password)
 c = db.cursor()
 c1 = db1.cursor()
 c2 = db2.cursor()
@@ -56,6 +64,14 @@ c4 = db4.cursor()
 c5 = db5.cursor()
 c6 = db6.cursor()
 c7 = db7.cursor()
+c8 = db8.cursor()
+c9 = db9.cursor()
+c10 = db10.cursor()
+c11 = db11.cursor()
+c12 = db12.cursor()
+c13 = db13.cursor()
+c14 = db14.cursor()
+c15 = db15.cursor()
 
 
 def generate_base_whitelist(table):
@@ -105,7 +121,7 @@ def run():
     field_handler = field_formatter.Field_Handler()
 
     qq = multiprocessing.Queue()
-    NUMBER_OF_PROCESSES = 4
+    NUMBER_OF_PROCESSES = 16
 
     for i in range(NUMBER_OF_PROCESSES):
         multiprocessing.Process(target=qrun, args=(qq,i)).start()
@@ -144,6 +160,22 @@ def qrun(qq, i):
             d6(q)
         elif i == 7:
             d7(q)
+        elif i == 8:
+            d8(q)
+        elif i == 9:
+            d9(q)
+        elif i == 10:
+            d10(q)
+        elif i == 11:
+            d11(q)
+        elif i == 12:
+            d12(q)
+        elif i == 13:
+            d13(q)
+        elif i == 14:
+            d14(q)
+        elif i == 15:
+            d15(q)
         else:
             d(q)
         print "CPU Core %s has completed a job" % q
@@ -187,6 +219,46 @@ def d7(q):
     c7.execute(q)
     db7.commit()
     c7.fetchall()
+
+def d8(q):
+    c8.execute(q)
+    db8.commit()
+    c8.fetchall()
+
+def d9(q):
+    c9.execute(q)
+    db9.commit()
+    c9.fetchall()
+
+def d10(q):
+    c10.execute(q)
+    db10.commit()
+    c10.fetchall()
+
+def d11(q):
+    c11.execute(q)
+    db11.commit()
+    c11.fetchall()
+
+def d12(q):
+    c12.execute(q)
+    db12.commit()
+    c12.fetchall()
+
+def d13(q):
+    c13.execute(q)
+    db13.commit()
+    c13.fetchall()
+
+def d14(q):
+    c14.execute(q)
+    db14.commit()
+    c14.fetchall()
+
+def d15(q):
+    c15.execute(q)
+    db15.commit()
+    c15.fetchall()
 
 if __name__ == "__main__":
     multiprocessing.freeze_support()
