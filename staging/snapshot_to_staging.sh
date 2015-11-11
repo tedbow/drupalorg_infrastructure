@@ -24,7 +24,7 @@ rsync -v --copy-links --password-file ~/util.rsync.pass "rsync://stagingmysql@db
   echo "DROP DATABASE ${db};"
   echo "CREATE DATABASE ${db};"
   echo "USE ${db};"
-  bunzip2 < "${WORKSPACE}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2"
+  pbunzip2 < "${WORKSPACE}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2"
 ) | ${drush} ${sqlcli}
 
 if [ "${suffix-}" != "civicrm" ]; then
