@@ -7,6 +7,7 @@ if (empty($month)) {
 }
 $year = (int) getenv('year');
 
+//Run the testbot queries (after cd'ing to qa in jenkins)
 $function = getenv('testbot') ? 'run_queries_testbot' : 'run_queries';
 
 print "Month:\n";
@@ -19,11 +20,12 @@ print_r($function(array(
   ':start' => gmmktime(0, 0, 0, 1, 1, $year),
   ':end' => gmmktime(0, 0, 0, $month + 1, 1, $year),
 )));
-print "DCI:\n";
-print_r(run_queries_dci(array(
-  ':start' => gmmktime(0, 0, 0, 1, 1, $year),
-  ':end' => gmmktime(0, 0, 0, $month + 1, 1, $year),
-)));
+
+//Include DCI on the regular query run
+if (getenv('drupalci') && $function == 'run_queries') {
+  print "DCI:\n";
+  print_r(run_queries_dci());
+}
 
 function run_queries($args) {
   print date('c', $args[':start']) . ' to ' . date('c', $args[':end']) . "\n";
