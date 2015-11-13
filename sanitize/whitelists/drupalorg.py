@@ -5512,22 +5512,27 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="languages",
+    columns=[
+        "language",
+        "name",
+        "native",
+        "direction",
+        "enabled",
+        "plurals",
+        "formula",
+        "domain",
+        "prefix",
+        "weight",
+        "javascript",
+    ])
+
+whitelist.add(
     table="lists_mailman",
     columns=[
         "nid",
         "uid",
         "timestamp",
-    ])
-
-whitelist.add(
-    table="locales_meta",
-    columns=[
-        "locale",
-        "name",
-        "enabled",
-        "isdefault",
-        "plurals",
-        "formula",
     ])
 
 whitelist.add(
