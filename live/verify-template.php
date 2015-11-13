@@ -97,15 +97,6 @@ foreach (preg_split('/(^|\n)==== /', getenv('features'), -1, PREG_SPLIT_NO_EMPTY
 
       <h3>Logs</h3>
       <p>DB logs since <strong class="text-<?php print (getenv('log_earliest') < strtotime('-1 week')) ? 'info' : 'danger' ?>"><?php print gmdate('r', getenv('log_earliest')) ?></strong></p>
-      <table class="table">
-        <tr><th></th><th>#</th><th>Earliest</th><th>Latest</th><th>Message</th></tr>
-        <?php foreach (explode("\n", getenv('log_php_summary')) as $line) {
-          list($severity, $c, $earliest, $latest, $variables) = explode("\t", $line);
-          $variables = unserialize($variables); ?>
-            <tr><td></td><td</tr>
-        <?php // %type: !message in %function (line %line of %file). ?>
-        <?php } ?>
-      </table>
 
       <div class="panel-group" id="features">
         <?php foreach ($features as $feature) { ?>
