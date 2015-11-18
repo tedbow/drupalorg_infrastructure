@@ -6952,3 +6952,29 @@ whitelist.add(
         "link_to_entity",
         "extra",
     ])
+
+whitelist.add(
+    table="field_data_group_theme",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "group_theme_value",
+    ])
+
+whitelist.add(
+    table="field_revision_group_theme",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "group_theme_value",
+    ])
