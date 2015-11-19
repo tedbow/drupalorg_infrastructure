@@ -12,14 +12,14 @@ git fetch private
 git reset --hard HEAD
 
 # Mirror changes.
-git checkout 7.x-1.x
+git checkout d8frontpage
 git pull
-git push private 7.x-1.x
+git push private d8frontpage
 
 # Merge changes.
-git checkout branded
+git checkout branded-d8frontpage
 git pull
-git merge 7.x-1.x
+git merge d8frontpage
 
 # Compile CSS.
 bundle exec compass compile
@@ -29,7 +29,7 @@ if ! git diff --quiet css/styles.css; then
 fi
 
 # Push to remote.
-git push private branded
+git push private branded-d8frontpage
 
 # And for responsive.
 
