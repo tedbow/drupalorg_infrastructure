@@ -6978,3 +6978,56 @@ whitelist.add(
         "delta",
         "group_theme_value",
     ])
+
+whitelist.add(
+    table="ctools_custom_content",
+    columns=[
+        "cid",
+        "name",
+        "admin_title",
+        "admin_description",
+        "category",
+        "settings",
+    ])
+
+whitelist.add(
+    table="field_data_field_release_short_description",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_short_description_value",
+        "field_release_short_description_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_release_short_description",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_short_description_value",
+        "field_release_short_description_format",
+    ])
+
+whitelist.add(
+    table="panels_mini",
+    columns=[
+        "pid",
+        "name",
+        "category",
+        "did",
+        "admin_title",
+        "admin_description",
+        "requiredcontexts",
+        "contexts",
+        "relationships",
+    ])
