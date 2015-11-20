@@ -117,3 +117,9 @@ foreach (preg_split('/(^|\n)==== /', getenv('features'), -1, PREG_SPLIT_NO_EMPTY
     <script src="js/bootstrap.min.js"></script>
   </body>
 </html>
+<?php
+// Exit with error if there is something wrong.
+if (!empty($projects_missing)) {
+  exit 1;
+}
+?>
