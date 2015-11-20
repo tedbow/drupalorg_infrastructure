@@ -91,6 +91,26 @@ foreach (explode("\n", getenv('updates')) as $line) {
 
       <h3>Logs</h3>
       <p>DB logs since <strong class="text-<?php print (getenv('log_earliest') < strtotime('-1 week')) ? 'info' : 'danger' ?>"><?php print gmdate('r', getenv('log_earliest')) ?></strong></p>
+      <table class="table">
+        <tr><th></th><th>#</th><th>Earliest</th><th>Latest</th><th>Message</th></tr>
+        <?php $first = TRUE;
+        foreach (explode("\n", getenv('log_php_summary')) as $line) {
+          if ($first) { // Skip header row.
+            $first = FALSE;
+            continue;
+          }
+          list($severity, $c, $earliest, $latest, $variables) = explode("\t", $line);
+          $variables = unserialize($variables); ?>
+            <tr>
+              <td><?php print $severity; ?></td>
+              <td><?php print $c; ?></td>
+              <td><?php print gmdate('r', $earliest); ?></td>
+              <td><?php print gmdate('r', $latest); ?></td>
+              <td><?php print $variables['!message']; ?><br>
+                <code><?php print htmlspecialchars($variables['%function']); ?></code> at <code><?php print htmlspecialchars($variables['%file']); ?>:<?php print htmlspecialchars($variables['%line']); ?></code>)</td>
+            </tr>
+        <?php } ?>
+      </table>
 
       <div class="panel-group" id="features">
         <?php foreach (explode("\n", getenv('features')) as $feature) { ?>
