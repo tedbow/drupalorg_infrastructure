@@ -3,7 +3,7 @@
 DUMPSDIR="/var/dumps"
 export SCRIPTDIR="/usr/local/drupal-infrastructure/docker/db-images"
 ## Strings to ignore, like the raw dumps
-IGNORE="raw|qa|latinamerica2015|association_civicrm"
+IGNORE="raw|qa|latinamerica2015|association_civicrm|tmp"
 DBSTRING="sql"
 CONCURRENCY="3"
 export DATE=$(date +'%Y%m%d%H%M')
