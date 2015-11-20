@@ -107,7 +107,7 @@ sudo chown -R apache:developers "${web_path}/devel-mail"
 
 # Start docker container
 echo "  Starting new Mariadb container"
-CONTAINERID=$(docker run --name=${container_name} -d -v /usr/local/drupal-infrastructure/dev/mysql.d:/etc/mysql/conf.d -p ${CONTAINERPORT}:3306 devwww/${site}:latest)
+CONTAINERID=$(docker run --name=${container_name} -d -v /usr/local/drupal-infrastructure/dev/mysql.d:/etc/mysql/conf.d -p ${CONTAINERPORT}:3306 dev/${site}:latest)
 # Give mysql some time to load
 echo "  Letting MYSQL spin up"
 sleep 60

@@ -1,4 +1,4 @@
-# Remove a development environment for a given "name" on devwww/devdb
+# Remove a development environment for a given "name" on devwww2
 
 # Include common dev script.
 . dev/common.sh
