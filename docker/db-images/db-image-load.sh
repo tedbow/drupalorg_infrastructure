@@ -7,7 +7,7 @@
 
 
 echo "** START: $(date) **"
-
+sudo bash -c 'echo 3 > /proc/sys/vm/drop_caches'
 for DB in $(ls) ; do
   ## Parse the DB name from the file name
   DBNAME=$(echo ${DB} | awk -F'_' '{print $1}')
@@ -22,5 +22,5 @@ for DB in $(ls) ; do
   echo "  ----------  Conatiner ${DOCKERREPOSITORY}/${DBNAME}:${DATE} Loaded"
   echo "  ================================================================"
 done
-
+sudo bash -c 'echo 3 > /proc/sys/vm/drop_caches'
 echo "** END: $(date) **"
