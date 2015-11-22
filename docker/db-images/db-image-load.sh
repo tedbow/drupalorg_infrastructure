@@ -16,7 +16,7 @@ for DB in $(ls) ; do
   DATE=$(echo ${DB} | awk -F'.' '{print $2}' | awk -F'-' '{print $2}')
   echo "  Loading: ${DOCKERREPOSITORY}/${DBNAME}:${DATE}";
   bunzip2 -dc < ${DB} | docker load
-  docker tag ${DOCKERREPOSITORY}/${DBNAME}:${DATE} ${DOCKERREPOSITORY}/${DBNAME}:latest
+  docker tag -f ${DOCKERREPOSITORY}/${DBNAME}:${DATE} ${DOCKERREPOSITORY}/${DBNAME}:latest
 
   echo "  ================================================================"
   echo "  ----------  Conatiner ${DOCKERREPOSITORY}/${DBNAME}:${DATE} Loaded"
