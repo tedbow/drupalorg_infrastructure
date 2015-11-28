@@ -7,13 +7,14 @@ BASEDIR=$HOME
 DUMPSDIR="/var/dumps"
 SLEEPTIME="30"
 DATE=$(date +'%Y%m%d%H%M')
-PBZCONCURRENCY="5"
+PBZCONCURRENCY="9"
 
 ## Docker conf
 IMAGE=mariadb
 TAG=10.0
 DBUSER=root
 DBPASS=drupal
+DOCKERCONF="--memory=12g -e MYSQL_ROOT_PASSWORD=${DBPASS} -d ${IMAGE}:${TAG}"
 
 ## MariaDB conf
 MYSQLCONF="--datadir=/mnt --max-allowed-packet=256M --innodb-log-file-size=1G --innodb-file-per-table=1 --innodb-file-format=barracuda"
@@ -42,7 +43,7 @@ DN=$(echo ${DBNAME} | cut -c1-2 )
 echo "${DR}/${DN} | Building: ${DBNAME} at $(date)";
 
 echo "${DR}/${DN} | Starting new Mariadb container"
-CONTAINERID=$(docker run --memory=8g -e MYSQL_ROOT_PASSWORD=${DBPASS} -d ${IMAGE}:${TAG} ${MYSQLCONF})
+CONTAINERID=$(docker run ${DOCKERCONF} ${MYSQLCONF})
 echo "${DR}/${DN} | Container ID: ${CONTAINERID}"
 
 #### Get container IP
