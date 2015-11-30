@@ -64,7 +64,7 @@ pbunzip2 -dc -p${PBZCONCURRENCY} < ${MAINDIR}/${DBNAME}${CURRENTSTRINGSQL} | mys
 echo "${DR}/${DN} | Stoping container with ID: ${CONTAINERID}"
 docker stop ${CONTAINERID}
 echo "${DR}/${DN} | Commiting container with ID: ${CONTAINERID}"
-IMAGEID=$(docker commit ${CONTAINERID} ${DOCKERREPOSITORY}/${DBNAME}:${DATE})
+IMAGEID=$(docker commit --message="{DOCKERREPOSITORY}/${DBNAME}:${DATE}" ${CONTAINERID} ${DOCKERREPOSITORY}/${DBNAME}:${DATE})
 
 echo "${DR}/${DN} | Saving container: ${IMAGEID}"
 docker save ${DOCKERREPOSITORY}/${DBNAME}:${DATE} > ${DUMPSDIR}/tmp/${DBNAME}${DATESTRINGTAR}
