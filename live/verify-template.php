@@ -23,12 +23,6 @@ foreach (explode("\n", getenv('updates')) as $line) {
   $updates[] = array_combine($header, explode(' ', $line));
 }
 
-$features = array();
-$header = array('name', 'diff');
-foreach (preg_split('/(^|\n)==== /', getenv('features'), -1, PREG_SPLIT_NO_EMPTY) as $feature) {
-  $features[] = array_combine($header, explode("\n", $feature, 2));
-}
-
 ?><!DOCTYPE html>
 <html lang="en">
   <head>
@@ -99,14 +93,11 @@ foreach (preg_split('/(^|\n)==== /', getenv('features'), -1, PREG_SPLIT_NO_EMPTY
       <p>DB logs since <strong class="text-<?php print (getenv('log_earliest') < strtotime('-1 week')) ? 'info' : 'danger' ?>"><?php print gmdate('r', getenv('log_earliest')) ?></strong></p>
 
       <div class="panel-group" id="features">
-        <?php foreach ($features as $feature) { ?>
+        <?php foreach (explode("\n", getenv('features')) as $feature) { ?>
           <div class="panel panel-danger">
             <div class="panel-heading"><h3 class="panel-title">
-              <a data-toggle="collapse" data-parent="#features" href="#feature-<?php print htmlspecialchars($feature['name']); ?>"><strong>Overridden feature:</strong> <?php print htmlspecialchars($feature['name']); ?></a>
+              <strong>Overridden feature:</strong> <?php print htmlspecialchars($feature); ?>
             </h3></div>
-            <div id="feature-<?php print htmlspecialchars($feature['name']); ?>" class="panel-collapse collapse"><div class="panel-body">
-              <pre><code><?php print htmlspecialchars($feature['diff']); ?></code></pre>
-            </div></div>
           </div>
         <?php } ?>
       </div>
