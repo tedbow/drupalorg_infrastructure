@@ -283,7 +283,7 @@ function run_queries($args) {
  * DrupalCI (queries against Drupal.org db)
  */
 
-function run_queries_dci($args) {
+function run_queries_dci() {
   $data = array();
 
   // # of test requests sent
@@ -300,7 +300,7 @@ WHERE YEAR(FROM_UNIXTIME(cijob.created)) = 2015
   AND release_node.type = 'project_release'
   AND ttd.name in ('6.x','7.x','8.x')
   AND ttd.vid = 6
-GROUP BY MONTH(FROM_UNIXTIME(cijob.created))")->fetchAllAssoc('name');
+GROUP BY MONTH(FROM_UNIXTIME(cijob.created))")->fetchAllAssoc('Month');
  
 
   $data['contrib_test_count'] = db_query("SELECT MONTH(FROM_UNIXTIME(cijob.created)) AS Month, count(*) AS Tests, sum(ttd.name = '8.x' ) AS D8, sum(ttd.name = '7.x' ) AS D7, sum(ttd.name = '6.x' ) AS D6, sum(ttd.name = '8.x' ) + sum(ttd.name = '7.x' ) + sum(ttd.name = '6.x' ) AS TOTAL
@@ -316,7 +316,7 @@ WHERE YEAR(FROM_UNIXTIME(cijob.created)) = 2015
   AND release_node.type = 'project_release'
   AND ttd.name in ('6.x','7.x','8.x')
   AND ttd.vid = 6
-GROUP BY MONTH(FROM_UNIXTIME(cijob.created))")->fetchAllAssoc('name');
+GROUP BY MONTH(FROM_UNIXTIME(cijob.created))")->fetchAllAssoc('Month');
 
   $data['d8_core_avg_time'] = db_query("SELECT MONTH(FROM_UNIXTIME(cijob.created)) AS Month, AVG(cijob.updated - cijob.created)/60 AS Duration
 FROM pift_ci_job cijob
@@ -332,7 +332,7 @@ WHERE YEAR(FROM_UNIXTIME(cijob.created)) = 2015
   AND release_node.type = 'project_release'
   AND ttd.name = '8.x'
   AND ttd.vid = 6
-GROUP BY MONTH(FROM_UNIXTIME(cijob.created))")->fetchAllAssoc('created');
+GROUP BY MONTH(FROM_UNIXTIME(cijob.created))")->fetchAllAssoc('Month');
 
   $data['d7_core_avg_time'] = db_query("SELECT MONTH(FROM_UNIXTIME(cijob.created)) AS Month, AVG(cijob.updated - cijob.created)/60 AS Duration
 FROM pift_ci_job cijob
@@ -347,7 +347,7 @@ WHERE YEAR(FROM_UNIXTIME(cijob.created)) = 2015
   AND release_node.type = 'project_release'
   AND ttd.name = '7.x'
   AND ttd.vid = 6
-GROUP BY MONTH(FROM_UNIXTIME(cijob.created))")->fetchAllAssoc('created');
+GROUP BY MONTH(FROM_UNIXTIME(cijob.created))")->fetchAllAssoc('Month');
 
   return $data;
 }
