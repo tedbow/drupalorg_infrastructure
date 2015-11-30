@@ -1,0 +1,30 @@
+{
+  "variables": {
+    "source_ami": "ami-534d5d32"
+  },
+  "provisioners": [{
+    "type":            "shell",
+    "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+    "scripts": [
+      "packer/slave/scripts/base.sh",
+      "packer/slave/scripts/docker.sh",
+      "packer/slave/scripts/containers.sh"
+    ]
+  }],
+  "builders": [{
+    "type":          "amazon-ebs",
+    "region":        "us-west-2",
+    "source_ami":    "{{user `source_ami`}}",
+    "instance_type": "m3.medium",
+    "ssh_username":  "ubuntu",
+    "ami_name":      "DrupalCI slave {{timestamp}}",
+    "ami_block_device_mappings": [
+      {
+        "device_name":  "/dev/sda1",
+        "volume_type":  "standard",
+        "volume_size":  "20",
+        "delete_on_termination":  true
+      }
+    ]
+  }]
+}

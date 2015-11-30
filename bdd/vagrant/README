@@ -1,0 +1,7 @@
+install
+
+Once vagrant has been installed
+
+vagrant up
+
+vagrant ssh

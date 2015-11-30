@@ -1,0 +1,18 @@
+vagrant
+  use the vagrant box to build a local environment on OSX and Windows
+
+packer
+  To create an EC2 instance you'll need a dispatcher and a slave
+    dispatcher
+      running a packer build
+      will need to setup keys to connect slave
+    slave
+      once keys are created add them to the packer build file and build
+
+docker
+  has a custom bddrupalext Dockerfile that has all of the parts need to create a container with behat, mink, and the drupal_extension
+  docker-compose.yml
+    sets up the network links, volumes and starts the containers
+
+behat
+  the behat tests, and other configuration

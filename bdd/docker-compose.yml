@@ -1,0 +1,8 @@
+behat:
+  image: drupalorg/drupalbehat:latest
+  volumes:
+    - $PWD/behat:/home/behat/data
+      links:
+        - selenium:selenium
+selenium:
+  image: selenium/standalone-firefox
