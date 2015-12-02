@@ -24,6 +24,7 @@ dumppath="/var/dumps/${stage}"
 
 # Variables exported by Jenkins
 JOB_NAME=${JOB_NAME:=db_backup}
+JOB_NAME=$(echo $JOB_NAME | sed -e 's/_dev//')
 BUILD_NUMBER=${BUILD_NUMBER:=0}
 ### End Variables ###
 
