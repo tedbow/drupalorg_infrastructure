@@ -22,6 +22,8 @@ function snapshot {
 
   # Remove initial '.'
   subdir=$(echo "${suffix}" | sed -e 's/^\.//')
+  # Remove _staging from JOB_NAME
+  JOB_NAME=$(echo $JOB_NAME | sed -e 's/_staging//')
   # Store reduce with dev, they are the same level of sanitization.
   if [ "${subdir}" = 'reduce' ]; then
     subdir='dev'
