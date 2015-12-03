@@ -6,7 +6,7 @@
       "type":            "shell",
       "execute_command": "echo 'FreeBSD' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
       "scripts": [
-        "packer/dispatcher/scripts/base.sh"
+        "dispatcher/scripts/base.sh"
       ]
     }
   ],

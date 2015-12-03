@@ -28,3 +28,7 @@ latestAMI() {
 buildAMI() {
   $PACKER_HOME/packer build -var "source_ami=$(latestBaseAMI)" $1
 }
+
+buildBaseAMI() {
+  $PACKER_HOME/packer build  $1
+}
