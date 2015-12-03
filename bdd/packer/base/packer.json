@@ -12,7 +12,7 @@
     "source_ami":    "ami-534d5d32",
     "instance_type": "m3.medium",
     "ssh_username":  "ubuntu",
-    "ami_name":      "DrupalOrg BDD slave {{timestamp}}",
+    "ami_name":      "DrupalOrg BDD base image {{timestamp}}",
     "ami_block_device_mappings": [
       {
         "device_name":  "/dev/sda1",
