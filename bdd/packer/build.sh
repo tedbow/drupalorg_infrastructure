@@ -7,7 +7,7 @@ set -uex
 
 case "$1" in
   base)
-    buildABaseMI base/packer.json
+    buildBaseMI base/packer.json
     ;;
   bdd-dispatcher)
     buildAMI dispatcher/packer.json
