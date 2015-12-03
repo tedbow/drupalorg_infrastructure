@@ -7,7 +7,7 @@ BASEDIR=$HOME
 DUMPSDIR="/var/dumps"
 SLEEPTIME="30"
 DATE=$(date +'%Y%m%d%H%M')
-PBZCONCURRENCY="9"
+PBZCONCURRENCY="10"
 
 ## Docker conf
 IMAGE=mariadb
