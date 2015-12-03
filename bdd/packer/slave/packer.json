@@ -17,7 +17,7 @@
     "source_ami":    "{{user `source_ami`}}",
     "instance_type": "m3.medium",
     "ssh_username":  "ubuntu",
-    "ami_name":      "DrupalCI slave {{timestamp}}",
+    "ami_name":      "DrupalOrg BDD slave {{timestamp}}",
     "ami_block_device_mappings": [
       {
         "device_name":  "/dev/sda1",

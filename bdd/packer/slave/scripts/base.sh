@@ -44,10 +44,10 @@ for arg in args:
     if arg.split("=")[0] == "SLAVE_NAME":
         slaveName = arg.split("=")[1]
 
-# Use dispatcher-origin.drupalci.aws for these requests in order to make the
+# Use bdd-dispatcher-origin.drupalcsystems.aws for these requests in order to make the
 # jnlp connection to the correct server (directly to jenkins, bypassing the elb)
 os.system("wget " + jenkinsUrl + "jnlpJars/slave.jar -O slave.jar")
-os.system("java -jar slave.jar -jnlpCredentials slave:j190U2l7HCYp7SKDTfM9azhBqz0Ggjw -jnlpUrl " + jenkinsUrl + "/computer/" + slaveName + "/slave-agent.jnlp")
+os.system("java -jar slave.jar -jnlpCredentials slave:Ziejee7zeimah3Pishao7eiPOhVoh8ot -jnlpUrl " + jenkinsUrl + "/computer/" + slaveName + "/slave-agent.jnlp")
 
 EOF
 ) > /usr/bin/userdata
