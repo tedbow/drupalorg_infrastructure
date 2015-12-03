@@ -3,4 +3,4 @@
 date
 
 docker pull selenium/standalone-firefox
-docker pull drupalorg/bdddrupalextension
+docker pull drupalorg/bdddrupalext
