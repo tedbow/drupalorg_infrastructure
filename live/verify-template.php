@@ -106,7 +106,7 @@ foreach (explode("\n", getenv('updates')) as $line) {
           );
           list($severity, $c, $earliest, $latest, $variables) = explode("\t", $line);
           $variables = unserialize(str_replace(array('\n', '\\\\'), array("\n", '\\'), $variables)); ?>
-            <tr class="<?php $severities[$severity]; ?>">
+            <tr class="<?php print $severities[$severity]; ?>">
               <td><?php print number_format($c); ?></td>
               <td><?php if ($earliest != $latest) { print gmdate('Y-m-d H:i:s', $earliest); } ?></td>
               <td><?php print gmdate('Y-m-d H:i:s', $latest); ?></td>
