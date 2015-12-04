@@ -90,9 +90,9 @@ foreach (explode("\n", getenv('updates')) as $line) {
       </table>
 
       <h3>Logs</h3>
-      <p>DB logs since <strong class="text-<?php print (getenv('log_earliest') < strtotime('-1 week')) ? 'info' : 'danger' ?>"><?php print gmdate('r', getenv('log_earliest')) ?></strong></p>
+      <p>DB logs since <strong class="text-<?php print (getenv('log_earliest') < strtotime('-1 week')) ? 'info' : 'danger' ?>"><?php print gmdate('Y-m-d H:i:s', getenv('log_earliest')) ?></strong></p>
       <table class="table table-condensed">
-        <tr><th>#</th><th>Earliest</th><th>Latest</th><th>Message</th></tr>
+        <tr><th class="text-right">#</th><th>Earliest</th><th>Latest</th><th>Message</th></tr>
         <?php $first = TRUE;
         foreach (explode("\n", getenv('log_php_summary')) as $line) {
           if ($first) { // Skip header row.
@@ -108,9 +108,11 @@ foreach (explode("\n", getenv('updates')) as $line) {
           $variables = unserialize(str_replace(array('\n', '\\\\'), array("\n", '\\'), $variables)); ?>
             <tr class="<?php print $severities[$severity]; ?>">
               <td class="text-right"><?php print number_format($c); ?></td>
-              <td><?php if ($earliest != $latest) { print gmdate('Y-m-d H:i:s', $earliest); } ?></td>
-              <td><?php print gmdate('Y-m-d H:i:s', $latest); ?></td>
-              <td><?php print $variables['!message']; ?><br>
+              <td><?php if ($earliest != $latest) { ?>
+                <small><?php print gmdate('Y-m-d', $earliest); ?></small> <?php print gmdate('H:i:s', $earliest); ?>
+              <?php } ?></td>
+              <td><small><?php print gmdate('Y-m-d', $latest); ?></small> <?php print gmdate('H:i:s', $latest); ?></td>
+              <td><?php print nl2br(htmlspecialchars($variables['!message'])); ?><br>
                 <code><?php print htmlspecialchars($variables['%function']); ?></code> at <code><?php print htmlspecialchars($variables['%file']); ?>:<?php print htmlspecialchars($variables['%line']); ?></code></td>
             </tr>
         <?php } ?>
