@@ -91,7 +91,7 @@ foreach (explode("\n", getenv('updates')) as $line) {
 
       <h3>Logs</h3>
       <p>DB logs since <strong class="text-<?php print (getenv('log_earliest') < strtotime('-1 week')) ? 'info' : 'danger' ?>"><?php print gmdate('r', getenv('log_earliest')) ?></strong></p>
-      <table class="table">
+      <table class="table table-condensed">
         <tr><th></th><th>#</th><th>Earliest</th><th>Latest</th><th>Message</th></tr>
         <?php $first = TRUE;
         foreach (explode("\n", getenv('log_php_summary')) as $line) {
@@ -99,12 +99,16 @@ foreach (explode("\n", getenv('updates')) as $line) {
             $first = FALSE;
             continue;
           }
+          $severities = array(
+            3 => 'danger',
+            4 => 'warning',
+            5 => '',
+          );
           list($severity, $c, $earliest, $latest, $variables) = explode("\t", $line);
           $variables = unserialize(str_replace(array('\n', '\\\\'), array("\n", '\\'), $variables)); ?>
-            <tr>
-              <td><?php print $severity; ?></td>
+            <tr class="<?php $severities[$severity]; ?>">
               <td><?php print number_format($c); ?></td>
-              <td><?php print gmdate('Y-m-d H:i:s', $earliest); ?></td>
+              <td><?php if ($earliest != $latest) { print gmdate('Y-m-d H:i:s', $earliest); } ?></td>
               <td><?php print gmdate('Y-m-d H:i:s', $latest); ?></td>
               <td><?php print $variables['!message']; ?><br>
                 <code><?php print htmlspecialchars($variables['%function']); ?></code> at <code><?php print htmlspecialchars($variables['%file']); ?>:<?php print htmlspecialchars($variables['%line']); ?></code></td>
