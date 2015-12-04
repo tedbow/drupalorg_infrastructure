@@ -104,8 +104,8 @@ foreach (explode("\n", getenv('updates')) as $line) {
             <tr>
               <td><?php print $severity; ?></td>
               <td><?php print number_format($c); ?></td>
-              <td><?php print gmdate('r', $earliest); ?></td>
-              <td><?php print gmdate('r', $latest); ?></td>
+              <td><?php print gmdate('Y-m-d H:i:s', $earliest); ?></td>
+              <td><?php print gmdate('Y-m-d H:i:s', $latest); ?></td>
               <td><?php print $variables['!message']; ?><br>
                 <code><?php print htmlspecialchars($variables['%function']); ?></code> at <code><?php print htmlspecialchars($variables['%file']); ?>:<?php print htmlspecialchars($variables['%line']); ?></code></td>
             </tr>
