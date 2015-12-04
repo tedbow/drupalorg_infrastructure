@@ -103,11 +103,11 @@ foreach (explode("\n", getenv('updates')) as $line) {
           $variables = unserialize(str_replace('\n', "\n", $variables)); ?>
             <tr>
               <td><?php print $severity; ?></td>
-              <td><?php print $c; ?></td>
+              <td><?php print number_format($c); ?></td>
               <td><?php print gmdate('r', $earliest); ?></td>
               <td><?php print gmdate('r', $latest); ?></td>
               <td><?php print $variables['!message']; ?><br>
-                <code><?php print htmlspecialchars($variables['%function']); ?></code> at <code><?php print htmlspecialchars($variables['%file']); ?>:<?php print htmlspecialchars($variables['%line']); ?></code>)</td>
+                <code><?php print htmlspecialchars($variables['%function']); ?></code> at <code><?php print htmlspecialchars($variables['%file']); ?>:<?php print htmlspecialchars($variables['%line']); ?></code></td>
             </tr>
         <?php } ?>
       </table>
