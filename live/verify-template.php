@@ -100,7 +100,7 @@ foreach (explode("\n", getenv('updates')) as $line) {
             continue;
           }
           list($severity, $c, $earliest, $latest, $variables) = explode("\t", $line);
-          $variables = unserialize(str_replace('\n', "\n", $variables)); ?>
+          $variables = unserialize(str_replace(array('\n', '\\\\'), array("\n", '\\'), $variables)); ?>
             <tr>
               <td><?php print $severity; ?></td>
               <td><?php print number_format($c); ?></td>
