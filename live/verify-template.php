@@ -93,25 +93,35 @@ foreach (explode("\n", getenv('updates')) as $line) {
       <p>DB logs since <strong class="text-<?php print (getenv('log_earliest') < strtotime('-1 week')) ? 'info' : 'danger' ?>"><?php print gmdate('Y-m-d H:i:s', getenv('log_earliest')) ?></strong></p>
       <table class="table table-condensed">
         <tr><th class="text-right">#</th><th>Earliest</th><th>Latest</th><th>Message</th></tr>
-        <?php $first = TRUE;
+        <?php
+        $first = TRUE;
+        $severities = array(
+          3 => 'danger',
+          4 => 'warning',
+          5 => '',
+        );
         foreach (explode("\n", getenv('log_php_summary')) as $line) {
           if ($first) { // Skip header row.
             $first = FALSE;
             continue;
           }
-          $severities = array(
-            3 => 'danger',
-            4 => 'warning',
-            5 => '',
-          );
           list($severity, $c, $earliest, $latest, $variables) = explode("\t", $line);
+          if ((time() - $latest) < 60 * 60) {
+            $latest_class = 'text-danger';
+          }
+          elseif ((time() - $latest) < 60 * 60 * 24) {
+            $latest_class = 'text-warning';
+          }
+          else {
+            $latest_class = '';
+          }
           $variables = unserialize(str_replace(array('\n', '\\\\'), array("\n", '\\'), $variables)); ?>
             <tr class="<?php print $severities[$severity]; ?>">
               <td class="text-right"><?php print number_format($c); ?></td>
-              <td><?php if ($earliest != $latest) { ?>
-                <small><?php print gmdate('Y-m-d', $earliest); ?></small> <?php print gmdate('H:i:s', $earliest); ?>
+              <td class="text-nowrap"><?php if ($earliest != $latest) { ?>
+                <small><?php print gmdate('Y-m-d', $earliest); ?></small><br><?php print gmdate('H:i:s', $earliest); ?>
               <?php } ?></td>
-              <td><small><?php print gmdate('Y-m-d', $latest); ?></small> <?php print gmdate('H:i:s', $latest); ?></td>
+              <td class="text-nowrap <?php print $latest_class; ?>"><small><?php print gmdate('Y-m-d', $latest); ?></small><br><?php print gmdate('H:i:s', $latest); ?></td>
               <td><?php print nl2br(htmlspecialchars($variables['!message'])); ?><br>
                 <code><?php print htmlspecialchars($variables['%function']); ?></code> at <code><?php print htmlspecialchars($variables['%file']); ?>:<?php print htmlspecialchars($variables['%line']); ?></code></td>
             </tr>
