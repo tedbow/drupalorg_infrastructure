@@ -3,3 +3,4 @@ password.py
 *.swp
 *~
 conf
+.vagrant
