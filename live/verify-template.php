@@ -109,7 +109,7 @@ foreach (explode("\n", getenv('updates')) as $line) {
           if ((time() - $latest) < 60 * 60) {
             $latest_class = 'text-danger';
           }
-          elseif ((time() - $latest) < 60 * 60 * 24) {
+          elseif ((time() - $latest) < 60 * 60 * 6) {
             $latest_class = 'text-warning';
           }
           else {
