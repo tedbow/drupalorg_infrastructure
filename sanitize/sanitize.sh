@@ -79,7 +79,7 @@ dumpcur="${dumppath}/${fvar1}-current.${suffix}"
 
 # Save the DB dump, strip ENGINE type from the output
 echo "start the dump"
-mysqldump ${dbopt} ${tmp_args} ${export_db} | sed -e 's/^) ENGINE=[^ ]*/) ROW_FORMAT=COMPRESSED/' | pbzip2 -p10 -fc > ${dumppath}/${dumpinprogress}.${suffix}
+mysqldump ${dbopt} ${tmp_args} ${export_db} | sed -e 's/^) ENGINE=[^ ]*/) ROW_FORMAT=COMPRESSED/' | pbzip2 -p12 -fc > ${dumppath}/${dumpinprogress}.${suffix}
 
 # Move -in-progress to final location and symlink to current
 mv -v ${dumppath}/${dumpinprogress}.${suffix} ${dumppath}/${dumpfile}
