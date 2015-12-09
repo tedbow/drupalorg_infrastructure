@@ -100,7 +100,7 @@ foreach (explode("\n", getenv('updates')) as $line) {
           4 => 'warning',
           5 => '',
         );
-        foreach (explode("\n", getenv('log_php_summary')) as $line) {
+        foreach (file('log_php_summary.tsv', FILE_IGNORE_NEW_LINES) as $line) {
           if ($first) { // Skip header row.
             $first = FALSE;
             continue;
