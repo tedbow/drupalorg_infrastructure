@@ -128,16 +128,17 @@ foreach (explode("\n", getenv('updates')) as $line) {
         <?php } ?>
       </table>
 
-      <div class="panel-group" id="features">
-        <?php foreach (explode("\n", getenv('features')) as $feature) { ?>
-          <div class="panel panel-danger">
-            <div class="panel-heading"><h3 class="panel-title">
-              <strong>Overridden feature:</strong> <?php print htmlspecialchars($feature); ?>
-            </h3></div>
-          </div>
-        <?php } ?>
-      </div>
-
+      <?php if ($features = getenv('features')) { ?>
+        <div class="panel-group" id="features">
+          <?php foreach (explode("\n", $features) as $feature) { ?>
+            <div class="panel panel-danger">
+              <div class="panel-heading"><h3 class="panel-title">
+                <strong>Overridden feature:</strong> <?php print htmlspecialchars($feature); ?>
+              </h3></div>
+            </div>
+          <?php } ?>
+        </div>
+      <?php } ?>
     </div>
 
     <script src="js/jquery-1.11.0.min.js"></script>
