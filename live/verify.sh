@@ -10,7 +10,7 @@ export repo_status=$(git status --short)
 export repo_diff=$(git diff)
 cd ${WORKSPACE}
 export log_earliest=$(${drush} sql-query 'SELECT min(timestamp) AS "" FROM watchdog;')
-${drush} sql-query 'SELECT severity, count(1) AS c, min(timestamp) AS earliest, max(timestamp) AS latest, variables FROM watchdog WHERE type = '\''php'\'' GROUP BY variables ORDER BY severity, c DESC, latest DESC LIMIT 150;' > log_php_summary.tsv
+${drush} sql-query 'SELECT severity, count(1) AS c, min(timestamp) AS earliest, max(timestamp) AS latest, variables FROM watchdog WHERE type = '\''php'\'' GROUP BY variables ORDER BY severity, c DESC, latest DESC;' > log_php_summary.tsv
 export projects=$(${drush} pm-list --status=enabled --pipe)
 export features=$(COLUMNS=1000 ${drush} features-list | sed -ne 's/\s*Enabled.*Overridden\s*$//p' | sed -e 's/^.*\s\s//')
 export updates=$(${drush_no} --simulate --pipe pm-updatecode)
