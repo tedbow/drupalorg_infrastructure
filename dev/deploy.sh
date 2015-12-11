@@ -149,6 +149,8 @@ ${drush} pm-enable imagecache_ui || true # May not exist on D6.
 ${drush} vset devel_xhprof_directory "/var/www/dev/${name}-${site}.dev.devdrupal.org/xhprof/htdocs"
 ${drush} vset devel_xhprof_url "https://xhprof-${name}-${site}.dev.devdrupal.org/xhprof_html"
 ${drush} vset mailchimp_api_key nope
+${drush} vset mailchimp_api_classname MailChimpTest
+
 
 # Set up for potential bakery testing
 ${drush} vdel bakery_slaves
