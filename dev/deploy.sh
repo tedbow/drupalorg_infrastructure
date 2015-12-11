@@ -107,7 +107,11 @@ sudo chown -R apache:developers "${web_path}/devel-mail"
 
 # Start docker container
 echo "  Starting new Mariadb container"
-CONTAINERID=$(docker run --name=${container_name} -d -v /usr/local/drupal-infrastructure/dev/mysql.d:/etc/mysql/conf.d -p ${CONTAINERPORT}:3306 dev/${site}:latest)
+# Get image ID of lateset image
+IMGID=$(docker images  | grep dev/${site} | grep latest | awk '{print $3}')
+# Get alternate tag name of image id
+IMGREPOTAG=$(docker images | grep ${IMGID} | grep -v latest | awk '{print $1 ":" $2}')
+CONTAINERID=$(docker run --name=${container_name} -d -v /usr/local/drupal-infrastructure/dev/mysql.d:/etc/mysql/conf.d -p ${CONTAINERPORT}:3306 $IMGREPOTAG)
 # Give mysql some time to load
 echo "  Letting MYSQL spin up"
 sleep 60
