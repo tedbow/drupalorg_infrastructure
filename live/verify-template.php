@@ -124,7 +124,7 @@ foreach (explode("\n", getenv('updates')) as $line) {
               <td class="text-nowrap <?php print $latest_class; ?>"><small><?php print gmdate('Y-m-d', $latest); ?></small><br><?php print gmdate('H:i:s', $latest); ?></td>
               <td><?php print nl2br(htmlspecialchars($variables['!message'])); ?><br>
                 <code><?php print htmlspecialchars($variables['%function']); ?></code> at <code><?php print htmlspecialchars($variables['%file']); ?>:<?php print htmlspecialchars($variables['%line']); ?></code><br>
-                <?php print implode(', ', explode(',', $locations); ?></td>
+                <?php print implode(', ', explode(',', $locations)); ?></td>
             </tr>
         <?php } ?>
       </table>
