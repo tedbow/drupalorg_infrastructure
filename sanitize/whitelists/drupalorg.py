@@ -56,6 +56,7 @@ whitelist.add(
         "linecount",
         "mtime",
         "changes",
+        "filesize_processed",
     ])
 
 whitelist.add(
@@ -5871,6 +5872,7 @@ whitelist.add(
         "uid",
         "reason",
         "bypass_uid",
+        "core_branch",
     ])
 
 whitelist.add(
