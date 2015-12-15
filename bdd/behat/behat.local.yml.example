@@ -1,7 +1,7 @@
 default:
   extensions:
     Behat\MinkExtension:
-      base_url: 'TESTINGURI'
+      base_url: '|TESTINGURI|'
       sessions:
         selenium_session:
           selenium2:
@@ -11,4 +11,4 @@ default:
       # the base_url set above. Leave off the preceding '@'.
       default_driver: drush
       drush:
-        alias: 'NAME-SITE'
+        alias: '|NAME|-|SITE|'

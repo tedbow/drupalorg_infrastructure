@@ -14,9 +14,9 @@ $aliases['staging'] = array(
   'remote-host' => 'stagingwww1.drupalsystems.org',
   'os' => 'Linux',
 );
-$aliases['NAME-SITE'] = array(
-  'parent' => '@SERVER',
-  'uri' => 'TESTINGURI',
-  'root' => 'ROOT',
+$aliases['|NAME|-|SITE|'] = array(
+  'parent' => '@|SERVER|',
+  'uri' => '|URI|',
+  'root' => '|ROOT|',
 );
 ?>
