@@ -4,3 +4,5 @@ password.py
 *~
 conf
 .vagrant
+vendor
+composer.lock
