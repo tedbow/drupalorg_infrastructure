@@ -1,0 +1,14 @@
+default:
+  extensions:
+    Behat\MinkExtension:
+      base_url: 'https://TESTINGURL/'
+      sessions:
+        selenium_session:
+          selenium2:
+            wd_host: http://selenium:4444/wd/hub
+    Drupal\DrupalExtension:
+      # Set this drush alias in your aliases.drushrc.php file to match
+      # the base_url set above. Leave off the preceding '@'.
+      default_driver: drush
+      drush:
+        alias: 'NAME-SITE'

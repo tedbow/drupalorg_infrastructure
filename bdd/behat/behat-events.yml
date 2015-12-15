@@ -22,24 +22,23 @@ default:
       drush: ~
       text:
         log_out: "Logout"
-      # Blue Cheese regions
       region_map:
-        right sidebar: "#aside .region-sidebar-second"
-        content: "#content"
+        # right sidebar: "#aside .region-sidebar-second"
+        # content: "#content"
         # Header regions
-        left header: "#header-left"
-        top header: "#nav-header"
-        right header: "#header-right"
-        bottom header: "#nav-masthead"
+        # left header: "#header-left"
+        top header: ".l-navigation"
+        # right header: "#header-right"
+        # bottom header: "#nav-masthead"
         # frontpage content regions
-        top middle content: "#sites-with-drupal"
-        top right content: "#develop-with-drupal"
-        bottom right content: "#community-updates"
-        middle content: "#front-drupal-stats"
+        # top middle content: "#sites-with-drupal"
+        # top right content: "#develop-with-drupal"
+        # bottom right content: "#community-updates"
+        # middle content: "#front-drupal-stats"
         # Footer region
-        footer: "#footer"
+        footer: ".l-footer-wrapper"
         # Pager region
-        pager: ".pager"
+        # pager: ".pager"
 
 imports:
   - behat.local.yml
