@@ -15,9 +15,8 @@ $aliases['staging'] = array(
   'os' => 'Linux',
 );
 $aliases['NAME-SITE'] = array(
-  'parent' => '@LEVEL',
+  'parent' => '@SERVER',
   'uri' => 'TESTINGURI',
   'root' => 'ROOT',
 );
-
 ?>
