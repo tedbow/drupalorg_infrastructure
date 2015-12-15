@@ -1,12 +1,12 @@
 default:
   suites:
     default:
-      path: %paths.base%/features
+      path:
+        - %paths.base%/features/events
       contexts:
         - FeatureContext
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MinkContext
-        - Drupal\DrupalExtension\Context\MarkupContext
       filters:
         tags: "@events,@shared"
   extensions:
@@ -24,10 +24,10 @@ default:
         log_out: "Logout"
       region_map:
         # right sidebar: "#aside .region-sidebar-second"
-        # content: "#content"
+        # content: ".l-content"
         # Header regions
         # left header: "#header-left"
-        top header: ".l-navigation"
+        top header: "#top"
         # right header: "#header-right"
         # bottom header: "#nav-masthead"
         # frontpage content regions
