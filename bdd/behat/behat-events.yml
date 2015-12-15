@@ -19,8 +19,6 @@ default:
       blackbox: ~
       api_driver: 'drush'
       drush: ~
-      text:
-        log_out: "Logout"
       region_map:
         # right sidebar: "#aside .region-sidebar-second"
         # content: ".l-content"
