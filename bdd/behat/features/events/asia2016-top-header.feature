@@ -1,4 +1,4 @@
-@events
+@asia2016
 Feature: top header links
   In order to verify functionality
   As an anonymous user

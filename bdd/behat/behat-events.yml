@@ -1,14 +1,13 @@
 default:
   suites:
     default:
-      path:
-        - %paths.base%/features/events
+      path: %paths.base%/features
       contexts:
         - FeatureContext
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MinkContext
       filters:
-        tags: "@events,@shared"
+        tags: "@events,@asia2016"
   extensions:
     Behat\MinkExtension:
       goutte: ~
