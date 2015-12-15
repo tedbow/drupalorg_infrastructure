@@ -1,6 +1,6 @@
-@api @dupal
-Feature: Drush driver
-  In order to show functionality of user creation
+@api @drupal
+Feature: Create users with roles
+  In order to verify user creation
   As a user of drupal.org
   I need to create users of various roles
 

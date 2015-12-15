@@ -6,17 +6,8 @@ default:
         - FeatureContext
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MinkContext
-        - Drupal\DrupalExtension\Context\MarkupContext
       filters:
-        tags: "@drupal,@shared"
-    events:
-      path: %paths.base%/features
-      contexts:
-        - FeatureContext
-        - Drupal\DrupalExtension\Context\DrupalContext
-        - Drupal\DrupalExtension\Context\MinkContext
-      filters:
-        tags: "@events,@shared"
+        tags: "@drupal"
   extensions:
     Behat\MinkExtension:
       goutte: ~
