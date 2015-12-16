@@ -20,7 +20,7 @@ function write_template {
   if [[ ! -z ${BDDUSER} ]]; then
     sed -e "s#|SERVER|#${server}#g;s#|NAME|#${name}#g;s#|ROOT|#${root}#g;s#|SITE|#${site}#g;s#|TESTINGURI|#${testinguri}#g;s#|URI|#${URI}#g;s#bdduser#${BDDUSER}#g" "${1}" > "${2}"
   else
-    sed -e "s#|SERVER|#${server}#g;s#|NAME|#${name}#g;s#|ROOT|#${root}#g;s#|SITE|#${site}#g;s#|TESTINGURI|#${testinguri}#gs#|URI|#${URI}#g" "${1}" > "${2}"
+    sed -e "s#|SERVER|#${server}#g;s#|NAME|#${name}#g;s#|ROOT|#${root}#g;s#|SITE|#${site}#g;s#|TESTINGURI|#${testinguri}#g;s#|URI|#${URI}#g" "${1}" > "${2}"
   fi
 }
 URI=""
@@ -35,7 +35,7 @@ else
     SUBDOMAIN="${site}.${server}"
   fi
   name="${server}"
-  URL=${SUBDOMAIN}.${DOMAIN}
+  URI=${SUBDOMAIN}.${DOMAIN}
   root="/var/www/${URI}/htdocs"
 fi
 
@@ -55,4 +55,4 @@ if [[ ! -z ${BDDDEBUG} ]]; then
 fi
 
 # Run behat
-# behat --config behat-${site}.yml
+behat --config behat-${site}.yml
