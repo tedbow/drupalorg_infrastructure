@@ -1,7 +1,6 @@
 #!/bin/bash -eux
 
 # Name:        base.sh
-# Author:      Nick Schuch (nick@myschuch.com)
 # Description: Install base packages and configuration.
 date
 apt-get update
@@ -12,6 +11,10 @@ apt-get -y install bsdtar curl dstat gawk git grep htop iotop linux-headers-$(un
                    nmon ntp openjdk-7-jre python sqlite3 ssh sysstat vim wget
 apt-get clean
 apt-get -y autoremove
+
+# disable ssh strict checking
+echo 'Host *' > /home/ubuntu/.ssh/config
+echo 'StrictHostKeyChecking no' >> /home/ubuntu/.ssh/config
 
 # Jenkins Slave configuration
 (
@@ -56,6 +59,11 @@ chmod +x /usr/bin/userdata
 sed --in-place -e 's/exit 0//' /etc/rc.local
 (
 cat << EOF
+
+# disable ssh strict checking
+echo 'Host *' > /home/ubuntu/.ssh/config
+echo '  StrictHostKeyChecking no' >> /home/ubuntu/.ssh/config
+
 python /usr/bin/userdata
 exit 0
 EOF
