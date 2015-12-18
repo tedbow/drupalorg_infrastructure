@@ -42,6 +42,7 @@ fi
 testinguri="https://${BASICAUTH}${URI}"
 
 # Update drushrc
+[ ! -d $HOME/.drush ] && mkdir $HOME/.drush
 write_template "../drush/bdd.aliases.drushrc.php" "$HOME/.drush/bdd.aliases.drushrc.php"
 # Update behat.local.yml
 write_template 'behat.local.yml.example' 'behat.local.yml'
