@@ -13,10 +13,10 @@ latestdevimages=$(docker images | grep dev | grep latest | awk '{print $3}' | so
 # Get all dev images that are being used by containers
 containerimageid=$(docker ps -a | grep -v "CONTAINER ID" | awk '{print $2}' | sort -u)
 # List of images to keep: latest images and images in use, do not print empty line
-keepdevimages=$(sort -u <( [ ! -z "$containerimageid" ] && echo "$containerimageid") <( [ ! -z "$latestdevimages" ] && echo "$latestdevimages"))
+keepdevimages=$(sort -u <( [ ! -z "${containerimageid}" ] && echo "${containerimageid}") <( [ ! -z "${latestdevimages}" ] && echo "${latestdevimages}"))
 # List of images that can be removed
-unuseddevimages=$(comm -2 -3 <(echo "$alldevimages") <(echo "$keepdevimages"))
+unuseddevimages=$(comm -2 -3 <(echo "${alldevimages}") <(echo "${keepdevimages}"))
 # Test if there are images to delete
 # list images that will be removed
 # Remove images if there are images to delete
-[ ! -z $unuseddevimages ] && echo "Images to delete $unuseddevimages" && docker rmi $unuseddevimages || echo "No image to remove"
+[ ! -z "${unuseddevimages}" ] && echo "Images to delete ${unuseddevimages}" && docker rmi ${unuseddevimages} || echo "No image to remove"
