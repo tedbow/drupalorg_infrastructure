@@ -14,9 +14,6 @@ umask g+w
 export TERM=dumb
 drush="drush -r /var/www/drupal.org/htdocs -v -l drupal.org -y"
 
-${drush} sampler-sample sampler nodes --save
-${drush} sampler-sample sampler comments --save
-${drush} sampler-sample sampler users --save
 ${drush} sampler-sample project_release new_releases --save
 ${drush} sampler-sample project_issue new_issues_comments_by_project --save
 ${drush} sampler-sample project_issue opened_vs_closed_by_category --object_batch_size=10000
