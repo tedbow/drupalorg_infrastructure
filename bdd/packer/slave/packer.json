@@ -10,6 +10,7 @@
       "slave/scripts/docker.sh",
       "slave/scripts/containers.sh",
       "slave/scripts/drupal-infrastructure.sh"
+      "slave/scripts/key.sh"
     ]
   }],
   "builders": [{
