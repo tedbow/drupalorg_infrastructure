@@ -1,8 +1,13 @@
 {
   "variables": {
-    "source_ami": "ami-534d5d32"
+    "source_ami": "ami-534d5d32",
+    "KEY": "env `KEY`"
   },
   "provisioners": [{
+    "type": "file",
+    "source": "/home/bender/keys/id_rsa-bdd-slave",
+    "destination": "/home/ubuntu/.ssh/id_rsa"
+    },{
     "type":            "shell",
     "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
     "scripts": [
