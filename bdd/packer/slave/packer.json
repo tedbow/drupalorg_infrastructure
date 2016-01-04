@@ -1,7 +1,6 @@
 {
   "variables": {
-    "source_ami": "ami-534d5d32",
-    "KEY": "env `KEY`"
+    "source_ami": "ami-534d5d32"
   },
   "provisioners": [{
     "type": "file",
