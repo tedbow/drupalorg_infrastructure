@@ -6012,7 +6012,6 @@ whitelist.add(
     columns=[
         "uid",
         "level",
-        "mail_body",
         "mail_subject_project",
         "mail_subject_category",
         "notify_own_updates",
