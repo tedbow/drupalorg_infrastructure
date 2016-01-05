@@ -10,11 +10,7 @@ default:
         tags: "@events,@asia2016"
   extensions:
     Behat\MinkExtension:
-      goutte: ~
-      sessions:
-        default_session:
-          goutte: ~
-        selenium_session: ~
+      selenium2: ~
     Drupal\DrupalExtension:
       blackbox: ~
       api_driver: 'drush'
