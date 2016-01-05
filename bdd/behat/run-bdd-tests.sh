@@ -56,8 +56,8 @@ if [[ ! -z ${BDDDEBUG} ]]; then
 fi
 
 # disable tfa
-[ 'dev' != ${server} ] && [ 'drupal' = ${site} ] && drush @${name}-${site} dis -y tfa tfa-basic
+[ 'dev' != ${server} ] && [ 'drupal' = ${site} ] && drush @${name}-${site} dis -y tfa
 # Run behat
 behat --config behat-${site}.yml
 # enable tfa
-[  'dev' != ${server} ] && [ 'drupal' = ${site} ] && drush @${name}-${site} en -y tfa tfa-basic
+[  'dev' != ${server} ] && [ 'drupal' = ${site} ] && drush @${name}-${site} en -y tfa tfa-basic drupalorg_permissions
