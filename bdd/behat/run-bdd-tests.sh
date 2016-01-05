@@ -12,8 +12,8 @@ server=${1}
 site=${2}
 name=${3}
 
-DOMAIN='devdrupal.org'
-BASICAUTH='drupal:drupal@'
+[ -z ${DOMAIN} ] && DOMAIN='devdrupal.org'
+[ -z ${BASICAUTH} ] && BASICAUTH='drupal:drupal@'
 
 function write_template {
   # Change bdduser to BDDUSER if variable is set
