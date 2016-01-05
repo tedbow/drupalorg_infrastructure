@@ -55,5 +55,9 @@ if [[ ! -z ${BDDDEBUG} ]]; then
   echo "behat --config behat-${site}.yml"
 fi
 
+# disable tfa
+[ 'dev' != ${server} ] && [ 'drupal' = ${site} ] && drush @${name}-${site} dis -y tfa tfa-basic
 # Run behat
 behat --config behat-${site}.yml
+# enable tfa
+[  'dev' != ${server} ] && [ 'drupal' = ${site} ] && drush @${name}-${site} en -y tfa tfa-basic
