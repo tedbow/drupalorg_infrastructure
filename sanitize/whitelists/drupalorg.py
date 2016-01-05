@@ -6000,16 +6000,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="project_issue_notification_global",
-    columns=[
-        "uid",
-        "level",
-        "mail_body",
-        "mail_subject_project",
-        "mail_subject_category",
-    ])
-
-whitelist.add(
     table="project_issue_notification_project",
     columns=[
         "nid",
