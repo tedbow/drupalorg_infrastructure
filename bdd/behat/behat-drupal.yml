@@ -10,11 +10,7 @@ default:
         tags: "@drupal"
   extensions:
     Behat\MinkExtension:
-      goutte: ~
-      sessions:
-        default_session:
-          goutte: ~
-        selenium_session: ~
+      selenium_session: ~
     Drupal\DrupalExtension:
       blackbox: ~
       api_driver: 'drush'
