@@ -60,7 +60,7 @@ if [ 'dev' != "${server}" ] && [ 'drupal' = ${site} ]; then
   drush @${name}-${site} dis -y tfa
 fi
 
-mkdir ./build
+[ ! -d "./build" ] && mkdir ./build
 # Run behat
 behat --format junit --out ./build/ --config behat-${site}.yml
 
