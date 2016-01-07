@@ -10,7 +10,7 @@ default:
         tags: "@drupal"
   extensions:
     Behat\MinkExtension:
-      selenium_session: ~
+      selenium2: ~
     Drupal\DrupalExtension:
       blackbox: ~
       api_driver: 'drush'

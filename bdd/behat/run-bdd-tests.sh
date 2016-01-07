@@ -52,8 +52,7 @@ if [[ ! -z ${BDDDEBUG} ]]; then
   echo ""
   cat behat.local.yml
   echo ""
-  #echo "behat --format junit --out ./build/ --config behat-${site}.yml"
-  echo "behat --config behat-${site}.yml"
+  echo "behat --format pretty --out std --format junit --out ./build/ --config behat-${site}.yml"
   echo ""
 fi
 
@@ -62,7 +61,7 @@ if [ 'dev' != "${server}" ] && [ 'drupal' = ${site} ]; then
   drush @${name}-${site} dis -y tfa
 fi
 
-mkdir ./build
+[ ! -d "./build" ] && mkdir ./build
 # Run behat
 behat --format pretty --out std --format junit --out ./build/ --config behat-${site}.yml
 
