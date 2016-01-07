@@ -52,7 +52,8 @@ if [[ ! -z ${BDDDEBUG} ]]; then
   echo ""
   cat behat.local.yml
   echo ""
-  echo "behat --format junit --out ./build/ --config behat-${site}.yml"
+  #echo "behat --format junit --out ./build/ --config behat-${site}.yml"
+  echo "behat --config behat-${site}.yml"
   echo ""
 fi
 
@@ -61,9 +62,11 @@ if [ 'dev' != "${server}" ] && [ 'drupal' = ${site} ]; then
   drush @${name}-${site} dis -y tfa
 fi
 
-[ ! -d "./build" ] && mkdir ./build
+#[ -d "./build" ] && rm -rf ./build
+#mkdir ./build
 # Run behat
-behat --format junit --out ./build/ --config behat-${site}.yml
+#behat --format junit --out ./build/ --config behat-${site}.yml
+behat --config behat-${site}.yml
 
 if [ 'dev' != "${server}" ] && [ 'drupal' = ${site} ]; then
   # enable tfa
