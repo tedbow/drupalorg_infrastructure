@@ -60,8 +60,9 @@ if [ 'dev' != "${server}" ] && [ 'drupal' = ${site} ]; then
   drush @${name}-${site} dis -y tfa
 fi
 
+mkdir ./build
 # Run behat
-behat --config behat-${site}.yml
+behat --format junit --out ./build/ --config behat-${site}.yml
 
 if [ 'dev' != "${server}" ] && [ 'drupal' = ${site} ]; then
   # enable tfa
