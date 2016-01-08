@@ -14,6 +14,7 @@ name=${3}
 
 [ -z ${DOMAIN} ] && DOMAIN='devdrupal.org'
 [ -z ${BASICAUTH} ] && BASICAUTH='drupal:drupal@'
+[ ! -z ${BUILD_NUMBER} ] && jBUILDID=${BUILD_NUMBER}
 
 function write_template {
   # Change bdduser to BDDUSER if variable is set
@@ -52,7 +53,7 @@ if [[ ! -z ${BDDDEBUG} ]]; then
   echo ""
   cat behat.local.yml
   echo ""
-  echo "behat --format pretty --out std --format junit --out ./build/ --config behat-${site}.yml"
+  echo "behat --format pretty --out std --format junit --out ./build/${jBUILDID} --config behat-${site}.yml"
   echo ""
 fi
 
@@ -63,7 +64,7 @@ fi
 
 [ ! -d "./build" ] && mkdir ./build
 # Run behat
-behat --format pretty --out std --format junit --out ./build/ --config behat-${site}.yml
+behat --format pretty --out std --format junit --out ./build/${jBUILDID} --config behat-${site}.yml
 
 if [ 'dev' != "${server}" ] && [ 'drupal' = ${site} ]; then
   # enable tfa
