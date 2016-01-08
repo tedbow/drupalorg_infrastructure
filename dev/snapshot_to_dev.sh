@@ -1,7 +1,7 @@
 #!/bin/bash
 set -uex
 
-SNAPSHOTPATH=/var/www/docker-images/
+SNAPSHOTPATH=/var/lib/docker/docker-images/
 mkdir -p ${SNAPSHOTPATH}
 
 ## Get the DB snapshots
@@ -10,3 +10,5 @@ rsync -vr --whole-file --password-file ~/util.rsync.pass  --exclude-from="./dev/
 ## Build the docker container
 cd ${SNAPSHOTPATH}
 /usr/local/drupal-infrastructure/docker/db-images/db-image-load.sh dev
+
+rm -rf ${SNAPSHOTPATH}/*
