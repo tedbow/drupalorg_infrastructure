@@ -5873,6 +5873,7 @@ whitelist.add(
         "reason",
         "bypass_uid",
         "core_branch",
+        "custom",
     ])
 
 whitelist.add(
@@ -6852,6 +6853,12 @@ whitelist.update(
         "git_disabled",
     ])
 
+whitelist.update(
+    table="block",
+    columns=[
+        "css_class",
+    ])
+
 whitelist.add(
     table="_nodata:tfa_accepted_code",
     columns=[
@@ -7047,4 +7054,168 @@ whitelist.add(
         "requiredcontexts",
         "contexts",
         "relationships",
+    ])
+
+whitelist.add(
+    table="_nodata:field_data_field_distil_reg_botscore",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_distil_reg_botscore_value",
+    ])
+
+whitelist.add(
+    table="_nodata:field_data_field_distil_reg_flagged",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_distil_reg_flagged_value",
+    ])
+
+whitelist.add(
+    table="_nodata:field_data_field_distil_reg_iid",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_distil_reg_iid_value",
+        "field_distil_reg_iid_format",
+    ])
+
+whitelist.add(
+    table="_nodata:field_data_field_distil_reg_reported_ip",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_distil_reg_reported_ip_value",
+        "field_distil_reg_reported_ip_format",
+    ])
+
+whitelist.add(
+    table="_nodata:field_data_field_distil_reg_sid_ip",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_distil_reg_sid_ip_value",
+        "field_distil_reg_sid_ip_format",
+    ])
+
+whitelist.add(
+    table="_nodata:field_data_field_distil_reg_uid",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_distil_reg_uid_value",
+        "field_distil_reg_uid_format",
+    ])
+
+whitelist.add(
+    table="_nodata:field_revision_field_distil_reg_botscore",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_distil_reg_botscore_value",
+    ])
+
+whitelist.add(
+    table="_nodata:field_revision_field_distil_reg_flagged",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_distil_reg_flagged_value",
+    ])
+
+whitelist.add(
+    table="_nodata:field_revision_field_distil_reg_iid",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_distil_reg_iid_value",
+        "field_distil_reg_iid_format",
+    ])
+
+whitelist.add(
+    table="_nodata:field_revision_field_distil_reg_reported_ip",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_distil_reg_reported_ip_value",
+        "field_distil_reg_reported_ip_format",
+    ])
+
+whitelist.add(
+    table="_nodata:field_revision_field_distil_reg_sid_ip",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_distil_reg_sid_ip_value",
+        "field_distil_reg_sid_ip_format",
+    ])
+
+whitelist.add(
+    table="_nodata:field_revision_field_distil_reg_uid",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_distil_reg_uid_value",
+        "field_distil_reg_uid_format",
     ])
