@@ -7219,3 +7219,38 @@ whitelist.add(
         "field_distil_reg_uid_value",
         "field_distil_reg_uid_format",
     ])
+
+whitelist.add(
+    table="og_menu",
+    columns=[
+        "menu_name",
+        "gid",
+        "group_type",
+        "weight",
+    ])
+
+whitelist.add(
+    table="field_data_field_parent_section",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_parent_section_target_id",
+    ])
+
+whitelist.add(
+    table="field_revision_field_parent_section",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_parent_section_target_id",
+    ])
