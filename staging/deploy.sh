@@ -6,7 +6,8 @@ cd ${webroot}
 git pull
 
 # Clear caches, try updatedb.
-${drush} cc all || true
+# Note: Commented out. updb should operate first. Cache clear happens after updb.
+#${drush} cc all || true
 
 ${drush} updatedb --interactive
 

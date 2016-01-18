@@ -32,9 +32,8 @@ if [ "${suffix-}" != "civicrm" ]; then
   swap_db
 fi
 
-# Clear caches, try updatedb.
-${drush} cc all
-${drush} -v updatedb --interactive
+# run updb, this clears the caches after whether updates exist or not.
+${drush} -v updb --interactive
 
 if [ "${uri}" = "groups-7.staging.devdrupal.org" ]; then
   # todo remove when the existing front page, "frontpage", does not 404.
