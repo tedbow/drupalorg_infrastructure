@@ -13,7 +13,7 @@ BEGIN {FS="|";
         system("rm -rf /data/stats/updatestats/reformatted/*/keyless/" ARGV[1] ".formatted");
        } # Split line on pipes
 
- { # Only operate on lines with files/projects in them - ignore translations
+ !/\(null\) 301 \(null\)/ { # Only operate on lines with files/projects in them - ignore translations
    # split incoming data for ip address
    # Trim leading spaces from date field
       gsub(/^[ \t]+/,"",$4);
