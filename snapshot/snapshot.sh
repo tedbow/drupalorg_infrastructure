@@ -55,7 +55,7 @@ db_pass=$3
 tmp_db=${db_name}
 tmp_user=sanitize_rw
 tmp_pass=$4
-tmp_host=dbutil.drupalsystems.org
+tmp_host=localhost
 tmp_args="-h${tmp_host} -u${tmp_user} -p${tmp_pass} ${tmp_db}"
 
 # Save a copy of the schema.
