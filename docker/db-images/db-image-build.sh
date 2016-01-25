@@ -14,7 +14,7 @@ IMAGE=mariadb
 TAG=10.0
 DBUSER=root
 DBPASS=drupal
-DOCKERCONF="--memory=12g -e MYSQL_ROOT_PASSWORD=${DBPASS} -d ${IMAGE}:${TAG}"
+DOCKERCONF="--memory=4g -e MYSQL_ROOT_PASSWORD=${DBPASS} -d ${IMAGE}:${TAG}"
 
 ## MariaDB conf
 MYSQLCONF="--datadir=/mnt --max-allowed-packet=256M --innodb-log-file-size=1G --innodb-file-per-table=1 --innodb-file-format=barracuda"
