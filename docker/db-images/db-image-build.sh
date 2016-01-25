@@ -7,7 +7,7 @@ BASEDIR=$HOME
 DUMPSDIR="/var/dumps"
 SLEEPTIME="30"
 DATE=$(date +'%Y%m%d%H%M')
-PBZCONCURRENCY="12"
+PBZCONCURRENCY="4"
 
 ## Docker conf
 IMAGE=mariadb
@@ -59,7 +59,7 @@ echo "${DR}/${DN} | Creating DB: ${DBNAME}"
 mysql -u ${DBUSER} -p${DBPASS} -h ${IP} -P ${MYSQLPORT} -e "CREATE DATABASE ${DBNAME}"
 
 echo "${DR}/${DN} | Import data into database: ${DBNAME}"
-pbunzip2 -dc -p${PBZCONCURRENCY} < ${MAINDIR}/${DBNAME}${CURRENTSTRINGSQL} | mysql -u ${DBUSER} -p${DBPASS} -h ${IP} -P ${MYSQLPORT} ${DBNAME}
+pbzip2 -dc -p${PBZCONCURRENCY} < ${MAINDIR}/${DBNAME}${CURRENTSTRINGSQL} | mysql -u ${DBUSER} -p${DBPASS} -h ${IP} -P ${MYSQLPORT} ${DBNAME}
 
 echo "${DR}/${DN} | Stoping container with ID: ${CONTAINERID}"
 docker stop ${CONTAINERID}
