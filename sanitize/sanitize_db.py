@@ -121,7 +121,7 @@ def run():
     field_handler = field_formatter.Field_Handler()
 
     qq = multiprocessing.Queue()
-    NUMBER_OF_PROCESSES = 16
+    NUMBER_OF_PROCESSES = 6
 
     for i in range(NUMBER_OF_PROCESSES):
         multiprocessing.Process(target=qrun, args=(qq,i)).start()

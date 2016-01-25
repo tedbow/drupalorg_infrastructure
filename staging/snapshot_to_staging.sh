@@ -17,7 +17,7 @@ fi
 [ "${snaptype-}" ] || snaptype=staging
 
 # Copy snapshot.
-rsync -v --copy-links --password-file ~/util.rsync.pass "rsync://stagingmysql@dbutil.drupal.org/mysql-${snaptype}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2" "${WORKSPACE}"
+rsync -v --copy-links --password-file ~/util.rsync.pass "rsync://stagingmysql@dbutil.drupalsystems.org/mysql-${snaptype}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2" "${WORKSPACE}"
 
 # Clear out the DB and import a snapshot.
 (

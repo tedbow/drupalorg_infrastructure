@@ -51,33 +51,12 @@ db_pass=$3
 
 # If the sanitization is not set, use the DB name.
 [ "${sanitization-}" ] || sanitization=${db_name}
-# If the DB host is not set, use db6-reader-vip
-[ "${db_host-}" ] || db_host=db6-reader-vip.drupal.bak
 
-tmp_db=${db_name}_sanitize
+tmp_db=${db_name}
 tmp_user=sanitize_rw
 tmp_pass=$4
-tmp_host=dbutil.drupal.org
+tmp_host=dbutil.drupalsystems.org
 tmp_args="-h${tmp_host} -u${tmp_user} -p${tmp_pass} ${tmp_db}"
-
-# Work around clearing out a copy of the database when using the whitelist for
-# dev (which populates drupal_sanitize for us). Prevents doing a duplicate
-# mysqldump from the live site when using the whitelist.
-if [ ${db_name} != 'drupal' ]; then
-  clear_tmp
-  # Make a copy of live.
-  mysqldump -h$db_host -u$db_user -p$db_pass --single-transaction --quick $db_name 2> "${WORKSPACE}/mysqldump-errors.txt" | gzip > "${WORKSPACE}/tmp.mysql.gz"
-  # Check for errors.
-  if [ -s "${WORKSPACE}/mysqldump-errors.txt" ]; then
-    rm "${WORKSPACE}/tmp.mysql.gz"
-    cat "${WORKSPACE}/mysqldump-errors.txt"
-    exit 1
-  fi
-  # Copy live to tmp database.
-  gunzip < "${WORKSPACE}/tmp.mysql.gz" | sed -e 's/^) ENGINE=[^ ]*/) ROW_FORMAT=COMPRESSED/' | mysql -o ${tmp_args}
-  rm "${WORKSPACE}/tmp.mysql.gz"
-fi
-
 
 # Save a copy of the schema.
 mysqldump --single-transaction --quick ${tmp_args} -d --compact --skip-opt > "${WORKSPACE}/schema.mysql"

@@ -58,14 +58,8 @@ source $cwd/password.py
 # Set the tmp_args for the database to be sanitized
 tmp_args="${dbhost} ${dbuser:= } ${dbpassword:= }"
 
-# Copy the raw database to the sanitization host (i.e. dbutil)
-# Set tmp_args2 of the database being transferred to the sanitization host
-# @TODO: db6-reader-vip should be a variable
-tmp_args2="-hdb6-reader-vip.drupal.bak ${dbuser:= } ${dbpassword:= }"
-time mysqldump ${dbopt} ${tmp_args2} ${database} | mysql ${tmp_args} ${database}_sanitize
-
 # Sanitize into the export database.
-python2.6 $cwd/sanitize_db.py -s ${database}_sanitize -d ${export_db} -p ${profile}
+python2.6 $cwd/sanitize_db.py -s ${database} -d ${export_db} -p ${profile}
 if [ $? -ne 0 ]; then
   exit $?
 fi
