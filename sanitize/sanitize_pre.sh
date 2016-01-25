@@ -5,8 +5,8 @@ set -uex
 
 # Copy data from db5/db6 and move it into place before running sanitization
 sudo systemctl stop mysql
-sudo systemctl status mysql
-sudo killall mysqld
+sudo systemctl status mysql || true
+sudo killall mysqld || true
 sudo rm -rf /var/lib/mysql/
 sudo systemctl stop puppet
 sudo systemctl status puppet
