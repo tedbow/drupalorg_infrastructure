@@ -59,7 +59,7 @@ source $cwd/password.py
 tmp_args="${dbhost} ${dbuser:= } ${dbpassword:= }"
 
 # Sanitize into the export database.
-python2.6 $cwd/sanitize_db.py -s ${database} -d ${export_db} -p ${profile}
+python $cwd/sanitize_db.py -s ${database} -d ${export_db} -p ${profile}
 if [ $? -ne 0 ]; then
   exit $?
 fi
