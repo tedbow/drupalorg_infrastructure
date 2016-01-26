@@ -250,6 +250,36 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="_nodata:cache_entity_message",
+    columns=[
+        "cid",
+        "data",
+        "expire",
+        "created",
+        "serialized",
+    ])
+
+whitelist.add(
+    table="_nodata:cache_entity_message_type",
+    columns=[
+        "cid",
+        "data",
+        "expire",
+        "created",
+        "serialized",
+    ])
+
+whitelist.add(
+    table="_nodata:cache_entity_message_type_category",
+    columns=[
+        "cid",
+        "data",
+        "expire",
+        "created",
+        "serialized",
+    ])
+
+whitelist.add(
     table="_nodata:cache_entity_og_membership",
     columns=[
         "cid",
@@ -2757,6 +2787,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_target_comment",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_target_comment_target_id",
+    ])
+
+whitelist.add(
     table="field_data_field_terms_of_service",
     columns=[
         "entity_type",
@@ -2839,6 +2882,20 @@ whitelist.add(
         "language",
         "delta",
         "group_group_value",
+    ])
+
+whitelist.add(
+    table="field_data_message_text",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "message_text_value",
+        "message_text_format",
     ])
 
 whitelist.add(
@@ -4979,6 +5036,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_revision_field_target_comment",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_target_comment_target_id",
+    ])
+
+whitelist.add(
     table="field_revision_field_terms_of_service",
     columns=[
         "entity_type",
@@ -5571,6 +5641,43 @@ whitelist.add(
         "mvid",
         "entity_type",
         "max_indexed_id",
+    ])
+
+whitelist.add(
+    table="message",
+    columns=[
+        "mid",
+        "type",
+        "arguments",
+        "uid",
+        "timestamp",
+        "language",
+    ])
+
+whitelist.add(
+    table="message_type",
+    columns=[
+        "id",
+        "name",
+        "category",
+        "description",
+        "argument_keys",
+        "language",
+        "status",
+        "module",
+        "arguments",
+        "data",
+    ])
+
+whitelist.add(
+    table="message_type_category",
+    columns=[
+        "id",
+        "category",
+        "description",
+        "language",
+        "status",
+        "module",
     ])
 
 whitelist.add(
@@ -6976,6 +7083,21 @@ whitelist.add(
         "delta",
         "group_theme_value",
     ])
+
+whitelist.add(
+    table="field_revision_message_text",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "message_text_value",
+        "message_text_format",
+    ])
+
 
 whitelist.add(
     table="ctools_custom_content",
