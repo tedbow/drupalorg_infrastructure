@@ -1540,19 +1540,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_data_field_include_in_group_menu",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_include_in_group_menu_value",
-    ])
-
-whitelist.add(
     table="field_data_field_industries_worked_in",
     columns=[
         "entity_type",
@@ -3773,19 +3760,6 @@ whitelist.add(
         "language",
         "delta",
         "field_impacts_value",
-    ])
-
-whitelist.add(
-    table="field_revision_field_include_in_group_menu",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_include_in_group_menu_value",
     ])
 
 whitelist.add(
