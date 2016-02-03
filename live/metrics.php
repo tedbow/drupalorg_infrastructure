@@ -7,25 +7,20 @@ if (empty($month)) {
 }
 $year = (int) getenv('year');
 
-//Run the testbot queries (after cd'ing to qa in jenkins)
-$function = getenv('testbot') ? 'run_queries_testbot' : 'run_queries';
-
 print "Month:\n";
-print_r($function(array(
+print_r(run_queries(array(
   ':start' => gmmktime(0, 0, 0, $month, 1, $year),
   ':end' => gmmktime(0, 0, 0, $month + 1, 1, $year),
 )));
 print "YTD:\n";
-print_r($function(array(
+print_r(run_queries(array(
   ':start' => gmmktime(0, 0, 0, 1, 1, $year),
   ':end' => gmmktime(0, 0, 0, $month + 1, 1, $year),
 )));
 
-//Include DCI on the regular query run
-if (getenv('drupalci') && $function == 'run_queries') {
-  print "DCI:\n";
-  print_r(run_queries_dci());
-}
+// Include DCI on the regular query run
+print "DCI:\n";
+print_r(run_queries_dci());
 
 function run_queries($args) {
   print date('c', $args[':start']) . ' to ' . date('c', $args[':end']) . "\n";
@@ -282,7 +277,6 @@ function run_queries($args) {
 /**
  * DrupalCI (queries against Drupal.org db)
  */
-
 function run_queries_dci() {
   $data = array();
 
@@ -348,37 +342,6 @@ WHERE YEAR(FROM_UNIXTIME(cijob.created)) = 2016
   AND ttd.name = '7.x'
   AND ttd.vid = 6
 GROUP BY MONTH(FROM_UNIXTIME(cijob.created))")->fetchAllAssoc('Month');
-
-  return $data;
-}
-
-/**
- * Testbot (queries against qa.d.o)
- */
-function run_queries_testbot($args) {
-  $data = array();
-
-  // Drupal 6 time warp!
-
-  // # of test requests sent
-  $result = db_query("SELECT MONTH(FROM_UNIXTIME(last_received)), COUNT(test_id) FROM {pifr_test} WHERE type IN (2,3) AND status = 4 AND YEAR(FROM_UNIXTIME(last_received)) = 2016 GROUP BY MONTH(FROM_UNIXTIME(last_received))");
-  while ($data['test_count'][] = db_fetch_array($result)) {
-  }
-
-  // # of Drupal core patches tested / Average core test queue time (min) / Average core test duration (min) / Average core total wait time (min)
-  $result = db_query("SELECT MONTH(FROM_UNIXTIME(pt.last_received)), YEAR(FROM_UNIXTIME(pt.last_received)), COUNT(pt.test_id), AVG((pt.last_requested - pt.last_received)/60) AS avg_queue_time, AVG((pt.last_tested - pt.last_requested)/60) AS avg_test_duration, AVG((pt.last_tested - pt.last_received)/60) AS avg_total_wait FROM {pifr_test} pt LEFT JOIN {pifr_file} pf ON pt.test_id = pf.test_id WHERE pt.type = 3 AND pt.status = 4 AND pf.branch_id IN (1,2,29488,29453) AND pt.last_requested != 0 AND YEAR(FROM_UNIXTIME(last_received)) = 2016 GROUP BY YEAR(FROM_UNIXTIME(last_received)), MONTH(FROM_UNIXTIME(last_received))");
-  while ($data['test_core'][] = db_fetch_array($result)) {
-  }
-
-  // Same, D7 only
-  $result = db_query("SELECT MONTH(FROM_UNIXTIME(pt.last_received)), YEAR(FROM_UNIXTIME(pt.last_received)), COUNT(pt.test_id), AVG((pt.last_requested - pt.last_received)/60) AS avg_queue_time, AVG((pt.last_tested - pt.last_requested)/60) AS avg_test_duration, AVG((pt.last_tested - pt.last_received)/60) AS avg_total_wait FROM {pifr_test} pt LEFT JOIN {pifr_file} pf ON pt.test_id = pf.test_id WHERE pt.type = 3 AND pt.status = 4 AND pf.branch_id = 1 AND pt.last_requested != 0 AND YEAR(FROM_UNIXTIME(last_received)) = 2016 GROUP BY YEAR(FROM_UNIXTIME(last_received)), MONTH(FROM_UNIXTIME(last_received))");
-  while ($data['test_core_d7'][] = db_fetch_array($result)) {
-  }
-
-  // Same, D8 only
-  $result = db_query("SELECT MONTH(FROM_UNIXTIME(pt.last_received)), YEAR(FROM_UNIXTIME(pt.last_received)), COUNT(pt.test_id), AVG((pt.last_requested - pt.last_received)/60) AS avg_queue_time, AVG((pt.last_tested - pt.last_requested)/60) AS avg_test_duration, AVG((pt.last_tested - pt.last_received)/60) AS avg_total_wait FROM {pifr_test} pt LEFT JOIN {pifr_file} pf ON pt.test_id = pf.test_id WHERE pt.type = 3 AND pt.status = 4 AND pf.branch_id IN (2,29488,29453) AND pt.last_requested != 0 AND YEAR(FROM_UNIXTIME(last_received)) = 2016 GROUP BY YEAR(FROM_UNIXTIME(last_received)), MONTH(FROM_UNIXTIME(last_received))");
-  while ($data['test_core_d8'][] = db_fetch_array($result)) {
-  }
 
   return $data;
 }
