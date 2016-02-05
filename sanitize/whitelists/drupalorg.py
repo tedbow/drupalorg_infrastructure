@@ -7207,6 +7207,20 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="_nodata:field_data_field_distil_reg_reported_ua",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_distil_reg_reported_ua_value",
+        "field_distil_reg_reported_ua_format",
+    ])
+
+whitelist.add(
     table="_nodata:field_data_field_distil_reg_sid_ip",
     columns=[
         "entity_type",
@@ -7286,6 +7300,20 @@ whitelist.add(
         "delta",
         "field_distil_reg_reported_ip_value",
         "field_distil_reg_reported_ip_format",
+    ])
+
+whitelist.add(
+    table="_nodata:field_revision_field_distil_reg_reported_ua",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_distil_reg_reported_ua_value",
+        "field_distil_reg_reported_ua_format",
     ])
 
 whitelist.add(
