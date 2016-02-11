@@ -5629,6 +5629,15 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="message_follow_by_type",
+    columns=[
+        "uid",
+        "content_type",
+        "message_type",
+        "enabled",
+    ])
+
+whitelist.add(
     table="message_type",
     columns=[
         "id",
