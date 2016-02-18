@@ -54,7 +54,7 @@ aws s3 cp  ./${COMPRESSEDFILE} s3://${S3BUCKET}/${JOBPATH}/
 # Verify compressed file is in S3 and then delete job builds
 if [[ $(aws s3 ls s3://${S3BUCKET}/${JOBPATH}/${COMPRESSEDFILE}) ]]; then
   echo "Deleting build consoleText for IDs from ${startID} to ${endID}"
-  cat ./${idARCHIVE} | xargs -P 2 -I {} bash -c 'curl  -u ${CREDS} -X POST ${URL}/${JOBPATH}/{}/doDelete'
+  cat ./${idARCHIVE} | xargs -P 2 -I {} bash -c 'curl --silent -u ${CREDS} -X POST ${URL}/${JOBPATH}/{}/doDelete'
 fi
 
 echo "Total number of builds $(cat ./${idFILE} | wc -l)"
