@@ -16,10 +16,13 @@ export COMPRESSEDFILE="${FOLDER}.tgz"
 # Trying to use a variable in the date command wasn't wokring well
 export XDAYEPOCH=$(date -v-90d +"%s")
 export XDAYEPOCHMILI="$((${XDAYEPOCH} * 1000))"
+export DECODESCRIPT="/usr/local/drupal-infrastructure/drupalci/console-log-archive/dci-decode-json.php"
+
+cd ${WORKSPACE}
 
 # Get json from jenkins, decode it and put into temp file
 echo "Getting the list of all builds for ${JOBNAME}"
-curl --silent --globoff -u ${CREDS} "$URL/${URI}" | php ./dci-decode-json.php > ./${idFILE}
+curl --silent --globoff -u ${CREDS} "$URL/${URI}" | php ${DECODESCRIPT} > ./${idFILE}
 
 # Create a temporary folder for the consoletext to live
 if [[ ! -d ./${FOLDER} ]]; then
