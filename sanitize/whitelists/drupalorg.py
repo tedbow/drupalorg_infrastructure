@@ -441,18 +441,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="draggableviews_structure",
-    columns=[
-        "dvid",
-        "view_name",
-        "view_display",
-        "args",
-        "entity_id",
-        "weight",
-        "parent",
-    ])
-
-whitelist.add(
     table="_nodata:field_deleted_data_257",
     columns=[
         "entity_type",
