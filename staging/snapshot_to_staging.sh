@@ -39,7 +39,7 @@ if [ "${uri}" = "groups-7.staging.devdrupal.org" ]; then
   # todo remove when the existing front page, "frontpage", does not 404.
   ${drush} variable-set site_frontpage "node"
 
-elif echo "${uri}" | grep -qE "civicrm.staging.devdrupal.org$|^jobs.devdrupal.org$|^jobs-tiger.devdrupal.org$"; then
+elif echo "${uri}" | grep -qE "civicrm.staging.devdrupal.org$|^jobs.dev.devdrupal.org$|^jobs-tiger.dev.devdrupal.org$"; then
   # CiviCRM and Jobs dev sites do not have bakery set up.
   ${drush} pm-disable bakery
 fi
