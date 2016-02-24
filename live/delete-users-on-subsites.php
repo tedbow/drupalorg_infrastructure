@@ -40,7 +40,7 @@ foreach (variable_get('bakery_slaves', array()) as $slave) {
   elseif (count($deleted_uids)) {
     // Delete the users.
     foreach ($deleted_uids as $uid) {
-      $output = drush_invoke_process($site, 'sql-query', array("SELECT name AS '' FROM users WHERE init = 'www.drupal.org/user/" . $uid . "/edit'"));
+      $output = drush_invoke_process($site, 'sql-query', array("charset utf8; SELECT name AS '' FROM users WHERE init = 'www.drupal.org/user/" . $uid . "/edit'"));
       $name = trim($output['output']);
       if (!empty($name)) {
         drush_log(dt('Deleting @name on @site', array('@name' => $name, '@site' => $url['host'])));
