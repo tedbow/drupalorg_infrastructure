@@ -5913,6 +5913,13 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="pift_file",
+    columns=[
+        "file_id",
+        "release_nid",
+    ])
+
+whitelist.add(
     table="pift_project",
     columns=[
         "pid",
