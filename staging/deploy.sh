@@ -17,4 +17,10 @@ if [ "${uri}" = "assoc.staging.devdrupal.org" ]; then
   ${drush} compile-templates
 fi
 
+# Clean up solr and create a read-only core
+${drush} vset apachesolr_default_environment solr_0
+${drush} solr-set-env-url --id="solr_0" http://stagingsolr1.drupal.aws:8080/solr/do-core1
+${drush} solr-vset --id="solr_0" --yes apachesolr_read_only 1
+${drush} ev "apachesolr_environment_delete(solr_0_0)"
+
 test_site
