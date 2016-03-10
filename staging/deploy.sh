@@ -17,9 +17,11 @@ if [ "${uri}" = "assoc.staging.devdrupal.org" ]; then
   ${drush} compile-templates
 fi
 
-# Clean up solr 
-${drush} vset apachesolr_default_environment solr_0
-${drush} solr-set-env-url --id="solr_0" http://stagingsolr1.drupal.aws:8080/solr/do-core1
-${drush} ev "apachesolr_environment_delete(solr_0_0)"
+# Clean up solr (if enabled)
+if ${drush} pm-list --status=enabled | grep -q apachesolr; then
+  ${drush} vset apachesolr_default_environment solr_0
+  ${drush} solr-set-env-url --id="solr_0" http://stagingsolr1.drupal.aws:8080/solr/do-core1
+  ${drush} ev "apachesolr_environment_delete(solr_0_0)"
+fi
 
 test_site
