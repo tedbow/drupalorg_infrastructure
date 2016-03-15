@@ -72,8 +72,9 @@ dumpfile="${fvar1}-${BUILD_NUMBER}.${suffix}"
 dumpcur="${dumppath}/${fvar1}-current.${suffix}"
 
 # Save the DB dump, strip ENGINE type from the output
+# Also add ROW_FORMAT=COMPRESSED for all tables to save space in preproduction
 echo "start the dump"
-mysqldump ${dbopt} ${tmp_args} ${export_db} | sed -e 's/^) ENGINE=[^ ]*/) ROW_FORMAT=COMPRESSED/' | pbzip2 -p4 -fc > ${dumppath}/${dumpinprogress}.${suffix}
+mysqldump ${dbopt} ${tmp_args} ${export_db} | awk '!/ENGINE=[^ ]* / || /ROW_FORMAT=COMPRESSED/ {gsub(/ENGINE=[^ ]* /,"",$0); print $0} /ENGINE=[^ ]* / && !/ROW_FORMAT=COMPRESSED/ {gsub(/ENGINE=[^ ]* /,"ROW_FORMAT=COMPRESSED ",$0); print $0;}' | pbzip2 -p4 -fc > ${dumppath}/${dumpinprogress}.${suffix}
 
 # Move -in-progress to final location and symlink to current
 mv -v ${dumppath}/${dumpinprogress}.${suffix} ${dumppath}/${dumpfile}
