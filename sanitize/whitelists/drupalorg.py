@@ -2520,6 +2520,34 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_release_file_sha1",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_file_hash_value",
+        "field_release_file_hash_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_release_file_sha256",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_file_hash_value",
+        "field_release_file_hash_format",
+    ])
+
+whitelist.add(
     table="field_data_field_release_files",
     columns=[
         "entity_type",
@@ -4743,6 +4771,34 @@ whitelist.add(
 
 whitelist.add(
     table="field_revision_field_release_file_hash",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_file_hash_value",
+        "field_release_file_hash_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_release_file_sha1",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_file_hash_value",
+        "field_release_file_hash_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_release_file_sha256",
     columns=[
         "entity_type",
         "bundle",
