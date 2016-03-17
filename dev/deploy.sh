@@ -122,6 +122,8 @@ if [ "${site}" = "association" ]; then
   ${drush} pm-disable civicrm
 fi
 
+#todo remove when field_data_field_release_file_sha1 comes full, skip for now.
+echo "UPDATE system SET schema_version = 7020 WHERE name = 'project_release';" | ${drush} sql-cli
 # Run any pending updates.
 ${drush} -v updatedb --interactive
 
