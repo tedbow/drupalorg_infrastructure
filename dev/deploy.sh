@@ -20,8 +20,6 @@ else
   fqdn="$(echo "${site}" | sed -e 's/_.*//').drupal.org"
 fi
 
-snapshot="${site}_database_snapshot.dev-current.sql.bz2"
-
 export TERM=dumb
 drush="drush6 -r ${web_path}/htdocs -y"
 db_user="root"
