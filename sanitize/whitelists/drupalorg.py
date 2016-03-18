@@ -2529,8 +2529,8 @@ whitelist.add(
         "revision_id",
         "language",
         "delta",
-        "field_release_file_hash_value",
-        "field_release_file_hash_format",
+        "field_release_file_sha1_value",
+        "field_release_file_sha1_format",
     ])
 
 whitelist.add(
@@ -2543,8 +2543,8 @@ whitelist.add(
         "revision_id",
         "language",
         "delta",
-        "field_release_file_hash_value",
-        "field_release_file_hash_format",
+        "field_release_file_sha256_value",
+        "field_release_file_sha256_format",
     ])
 
 whitelist.add(
@@ -4793,8 +4793,8 @@ whitelist.add(
         "revision_id",
         "language",
         "delta",
-        "field_release_file_hash_value",
-        "field_release_file_hash_format",
+        "field_release_file_sha1_value",
+        "field_release_file_sha1_format",
     ])
 
 whitelist.add(
@@ -4807,8 +4807,8 @@ whitelist.add(
         "revision_id",
         "language",
         "delta",
-        "field_release_file_hash_value",
-        "field_release_file_hash_format",
+        "field_release_file_sha256_value",
+        "field_release_file_sha256_format",
     ])
 
 whitelist.add(
