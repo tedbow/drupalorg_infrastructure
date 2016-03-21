@@ -6,7 +6,7 @@ export EC2_URL=ec2.us-west-2.amazonaws.com
 export JAVA_HOME=/usr
 
 create_ebs_snapshot() {
-  $EC2_HOME/bin/ec2-create-snapshot --volume-id ${1} --description "${2}"
+  $EC2_HOME/bin/ec2-create-snapshot -d "${2}" "${1}"
 }
 
 delete_ebs_snapshot() {
