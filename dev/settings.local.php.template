@@ -19,7 +19,7 @@ $cookie_domain = 'NAME-SITE.dev.devdrupal.org';
 $conf['memcache_key_prefix'] = 'NAME_SITE';
 
 // Memcache config.
-if ('SITE' == 'drupal') {
+if ('SITE' != 'groups') {
   $conf['cache_backends'] = array( 'sites/all/modules/memcache/memcache.inc' );
   $conf['cache_default_class'] = 'MemCacheDrupal';
 }
