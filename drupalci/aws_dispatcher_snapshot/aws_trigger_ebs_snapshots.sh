@@ -1,4 +1,4 @@
-#!/usr/local/bin/bash
+#/bin/bash
 source /usr/local/drupal-infrastructure/dev/aws_common.sh
 
 DATE=$(date +'%Y%m%d%H%M')
