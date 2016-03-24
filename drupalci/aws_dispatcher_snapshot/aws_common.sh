@@ -14,7 +14,7 @@ delete_ebs_snapshot() {
 }
 
 describe_snapshots () {
-  $EC2_HOME/bin/ec2-describe_snapshots
+  $EC2_HOME/bin/ec2-describe-snapshots
 }
 
 # Keep 4 snapshots
