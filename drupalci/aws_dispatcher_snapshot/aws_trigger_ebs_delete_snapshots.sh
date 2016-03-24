@@ -1,5 +1,5 @@
 #/bin/bash
-source /usr/local/drupal-infrastructure/dev/aws_common.sh
+source /usr/local/drupal-infrastructure/drupalci/aws_dispatcher_snapshot
 
 date31=$(date --date="31 days ago" +'%Y%m%d%H%M')
 

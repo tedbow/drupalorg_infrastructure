@@ -1,5 +1,5 @@
 #/bin/bash
-source /usr/local/drupal-infrastructure/dev/aws_common.sh
+source /usr/local/drupal-infrastructure/drupalci/aws_dispatcher_snapshot
 
 DATE=$(date +'%Y%m%d%H%M')
 DESCRIPTOR="auto_dispatcher_/dev"
