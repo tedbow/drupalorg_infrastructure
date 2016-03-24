@@ -2,8 +2,7 @@
 
 export CREDS="${1}"
 jobname="${2}"
-#export URL="http://dispatcher-origin.drupalci.aws:8080"
-export URL="http://staging-dispatcher-origin.drupalci.aws:8080"
+export URL="http://localhost:8080"
 s3bucket="dci-console-log"
 
 export JOBPATH="job/${jobname}"
