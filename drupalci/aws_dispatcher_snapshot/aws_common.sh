@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/local/bin/bash
 # EC2 configuration
 . ~/.ec2creds_dispatcher-bender_snapshot
 export EC2_HOME=/opt/ec2/ec2-api-tools-1.7.3.2
