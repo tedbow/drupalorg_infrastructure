@@ -400,15 +400,6 @@ whitelist.add(
         "created",
         "headers",
     ])
-whitelist.add(
-    table="_nodata:cache_render",
-    columns=[
-        "cid",
-        "data",
-        "expire",
-        "created",
-        "serialized",
-    ])
 
 whitelist.add(
     table="_nodata:cache_taxonomy",
