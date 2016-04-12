@@ -18,12 +18,6 @@ $cookie_domain = 'NAME-SITE.dev.devdrupal.org';
 // Memcache configuration.
 $conf['memcache_key_prefix'] = 'NAME_SITE';
 
-// Memcache config.
-if ('SITE' != 'groups') {
-  $conf['cache_backends'] = array( 'sites/all/modules/memcache/memcache.inc' );
-  $conf['cache_default_class'] = 'MemCacheDrupal';
-}
-
 // Do not use Beanstalk for Drupal.org queues.
 unset($conf['queue_class_versioncontrol_repomgr']);
 unset($conf['queue_class_versioncontrol_git_repo_parsing']);
