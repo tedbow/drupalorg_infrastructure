@@ -5,7 +5,7 @@ set -uex
 umask g+w
 
 # Get the uri and webroot by stripping the prefix and suffix from the job name.
-uri=$(echo ${JOB_NAME} | sed -e "s/^${1}_//;s/--.*$//")
+uri=$(echo ${JOB_NAME} | sed -e "s/^.*\/${1}_//;s/--.*$//")
 webroot="/var/www/${uri}/htdocs"
 sqlconf="sql-conf"
 sqlcli="sql-cli"
@@ -26,7 +26,7 @@ fi
 
 # For easily executing Drush.
 export TERM=dumb
-drush="drush6 -v -r ${webroot} -l ${uri} -y"
+drush="drush -v -r ${webroot} -l ${uri} -y"
 
 # Test that the site is functional enough to return a non-error response. Also
 # primes caches.
