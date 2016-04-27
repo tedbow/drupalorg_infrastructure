@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Exit immediately on uninitialized variable or error, and print each command.
 set -uex
 
