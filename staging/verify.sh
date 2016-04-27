@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Include common staging script.
 . staging/common.sh 'verify'
 
