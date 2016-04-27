@@ -7,7 +7,7 @@ default:
         - Drupal\DrupalExtension\Context\DrupalContext
         - Drupal\DrupalExtension\Context\MinkContext
       filters:
-        tags: "@events,@asia2016"
+        tags: "@events,@asia2016,neworleans2016"
   extensions:
     Behat\MinkExtension:
       selenium2: ~
