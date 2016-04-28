@@ -24,7 +24,7 @@ Feature: Create users with roles
     Given I am logged in as a user with the "community" role
     When I go to "user"
     Then I should be on "user"
-  Scenario: session organizerrole
+  Scenario: session organizer role
     Given I am logged in as a user with the "session organizer" role
     When I go to "user"
     Then I should be on "user"
