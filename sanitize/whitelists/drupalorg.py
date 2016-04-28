@@ -57,6 +57,7 @@ whitelist.add(
         "mtime",
         "changes",
         "filesize_processed",
+        "use_strict",
     ])
 
 whitelist.add(
@@ -6101,6 +6102,8 @@ whitelist.add(
         "name",
         "title",
         "description",
+        "package",
+        "composer",
     ])
 
 whitelist.add(
@@ -7428,4 +7431,27 @@ whitelist.add(
         "language",
         "delta",
         "field_parent_section_target_id",
+    ])
+
+whitelist.add(
+    table="project_composer_provider_includes",
+    columns=[
+        "provider_include_id",
+        "provider_include_grouping",
+        "core_api",
+        "filename",
+        "sha256",
+    ])
+
+whitelist.add(
+    table="project_composer_providers",
+    columns=[
+        "provider_id",
+        "project_nid",
+        "provider_name",
+        "core_api",
+        "provider_type",
+        "filename",
+        "sha256",
+        "provider_include_grouping",
     ])
