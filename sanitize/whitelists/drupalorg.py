@@ -7455,3 +7455,13 @@ whitelist.add(
         "sha256",
         "provider_include_grouping",
     ])
+
+whitelist.add(
+    table="project_composer_download_counts",
+    columns=[
+        "provider_count_id",
+        "provider_name",
+        "release_nid",
+        "core_api",
+        "download_count",
+    ])
