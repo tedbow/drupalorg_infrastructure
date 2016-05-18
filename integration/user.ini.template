@@ -1,1 +1,2 @@
 xhprof.output_dir = "/var/www/URI/xhprof/traces"
+
