@@ -7,11 +7,9 @@
 cd ${webroot}
 git pull
 
-# Clear caches, try updatedb.
-# Note: Commented out. updb should operate first. Cache clear happens after updb.
-#${drush} cc all || true
-
+# Update DB & clear caches.
 ${drush} updatedb --interactive
+${drush} cc all
 
 # Also handle CiviCRM for the Association site.
 if [ "${uri}" = "assoc.staging.devdrupal.org" ]; then
