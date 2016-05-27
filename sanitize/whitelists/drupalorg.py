@@ -1356,6 +1356,36 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_documentation_changes",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_documentation_changes_nid",
+        "field_documentation_changes_vid",
+        "field_documentation_changes_field_name",
+        "field_documentation_changes_old_value",
+        "field_documentation_changes_new_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_documentation_status",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_documentation_status_value",
+    ])
+
+whitelist.add(
     table="field_data_field_download_count",
     columns=[
         "entity_type",
@@ -1460,6 +1490,36 @@ whitelist.add(
         "delta",
         "field_goals_value",
         "field_goals_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_guide_changes",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_guide_changes_nid",
+        "field_guide_changes_vid",
+        "field_guide_changes_field_name",
+        "field_guide_changes_old_value",
+        "field_guide_changes_new_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_guide_status",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_guide_status_value",
     ])
 
 whitelist.add(
@@ -2768,6 +2828,20 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_summary",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_summary_value",
+        "field_summary_format",
+    ])
+
+whitelist.add(
     table="field_data_field_supporting_organizations",
     columns=[
         "entity_type",
@@ -2904,6 +2978,19 @@ whitelist.add(
         "language",
         "delta",
         "og_group_ref_target_id",
+    ])
+
+whitelist.add(
+    table="field_data_og_group_ref_documentation",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "og_group_ref_documentation_target_id",
     ])
 
 whitelist.add(
@@ -3607,6 +3694,36 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_revision_field_documentation_changes",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_documentation_changes_nid",
+        "field_documentation_changes_vid",
+        "field_documentation_changes_field_name",
+        "field_documentation_changes_old_value",
+        "field_documentation_changes_new_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_documentation_status",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_documentation_status_value",
+    ])
+
+whitelist.add(
     table="field_revision_field_download_count",
     columns=[
         "entity_type",
@@ -3697,6 +3814,38 @@ whitelist.add(
         "language",
         "delta",
         "field_gender_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_guide_changes",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_guide_changes_nid",
+        "field_guide_changes_vid",
+        "field_guide_changes_field_name",
+        "field_guide_changes_old_value",
+        "field_guide_changes_new_value",
+    ])
+
+Table 'field_revision_field_guide_status' not present in whitelist.py base config is:
+
+whitelist.add(
+    table="field_revision_field_guide_status",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_guide_status_value",
     ])
 
 whitelist.add(
@@ -5032,6 +5181,20 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_revision_field_summary",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_summary_value",
+        "field_summary_format",
+    ])
+
+whitelist.add(
     table="field_revision_field_supporting_organizations",
     columns=[
         "entity_type",
@@ -5141,6 +5304,19 @@ whitelist.add(
         "language",
         "delta",
         "og_group_ref_target_id",
+    ])
+
+whitelist.add(
+    table="field_revision_og_group_ref_documentation",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "og_group_ref_documentation_target_id",
     ])
 
 whitelist.add(
