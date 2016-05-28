@@ -3833,8 +3833,6 @@ whitelist.add(
         "field_guide_changes_new_value",
     ])
 
-Table 'field_revision_field_guide_status' not present in whitelist.py base config is:
-
 whitelist.add(
     table="field_revision_field_guide_status",
     columns=[
