@@ -189,6 +189,15 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="bueditor_plus_profiles",
+    columns=[
+        "pid",
+        "name",
+        "data",
+        "global",
+    ])
+
+whitelist.add(
     table="_nodata:cache_advagg_aggregates",
     columns=[
         "cid",
@@ -410,6 +419,20 @@ whitelist.add(
         "expire",
         "created",
         "headers",
+    ])
+
+whitelist.add(
+    table="ckeditor_input_format",
+    columns=[
+        "name",
+        "format",
+    ])
+
+whitelist.add(
+    table="ckeditor_settings",
+    columns=[
+        "name",
+        "settings",
     ])
 
 whitelist.add(
