@@ -14,3 +14,4 @@ rsync -av --exclude=tmp/ /var/www/drupal.org/htdocs/files/ /var/www/staging.devd
 
 # Otherwise, exit with the real status.
 exit ${status}
+
