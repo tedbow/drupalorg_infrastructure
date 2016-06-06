@@ -888,6 +888,15 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="_nodata:distil_registration_iid_status",
+    columns=[
+        "distil_iid",
+        "status",
+        "timestamp",
+        "admin_uid",
+    ])
+
+whitelist.add(
     table="drupalorg",
     columns=[
         "cid",
@@ -7631,11 +7640,32 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="project_composer_download_counts",
+    columns=[
+        "provider_count_id",
+        "provider_name",
+        "release_nid",
+        "api_tid",
+        "download_count",
+    ])
+
+whitelist.add(
+    table="project_composer_namespace_map",
+    columns=[
+        "map_id",
+        "project_nid",
+        "project_name",
+        "component_name",
+        "package_namespace",
+        "api_tid",
+    ])
+
+whitelist.add(
     table="project_composer_provider_includes",
     columns=[
         "provider_include_id",
         "provider_include_grouping",
-        "core_api",
+        "api_tid",
         "filename",
         "sha256",
     ])
@@ -7646,7 +7676,7 @@ whitelist.add(
         "provider_id",
         "project_nid",
         "provider_name",
-        "core_api",
+        "api_tid",
         "provider_type",
         "filename",
         "sha256",
