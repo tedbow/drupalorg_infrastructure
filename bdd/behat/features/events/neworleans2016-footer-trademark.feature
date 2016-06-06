@@ -1,6 +1,6 @@
 @neworleans2016
-Feature: Registed trademark in footer
-  In order to show trademark precense
+Feature: Registered trademark in footer
+  In order to show trademark is present
   As an anonymous user, I should see "registered trademark"
 
   Scenario: Find registered trademark
