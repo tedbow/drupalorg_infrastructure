@@ -7,7 +7,7 @@ set -uex
 umask g+w
 
 # Get the uri and webroot by stripping the prefix and suffix from the job name.
-uri=$(echo ${JOB_NAME} | sed -e "s/^(.*\/)?${1}_//;s/--.*$//")
+uri=$(echo ${JOB_NAME} | sed -e "s#^.*/##;s/^${1}_//;s/--.*$//")
 webroot="/var/www/${uri}/htdocs"
 sqlconf="sql-conf"
 sqlcli="sql-cli"
