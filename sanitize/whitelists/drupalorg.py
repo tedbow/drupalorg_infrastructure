@@ -7670,6 +7670,20 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_packaged_git_sha1",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_packaged_git_sha1_value",
+        "field_packaged_git_sha1_format",
+    ])
+
+whitelist.add(
     table="field_data_field_parent_section",
     columns=[
         "entity_type",
@@ -7680,6 +7694,20 @@ whitelist.add(
         "language",
         "delta",
         "field_parent_section_target_id",
+    ])
+
+whitelist.add(
+    table="field_revision_field_packaged_git_sha1",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_packaged_git_sha1_value",
+        "field_packaged_git_sha1_format",
     ])
 
 whitelist.add(
