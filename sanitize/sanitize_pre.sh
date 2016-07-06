@@ -11,6 +11,8 @@ sudo rm -rf /var/lib/mysql/
 sudo systemctl stop puppet
 sudo systemctl status puppet || true
 time ssh bender@db6-reader-vip.drupal.org
+## After copying the production data, take a backup before decompressing
+/opt/puppetlabs/puppet/bin//backup perform --trigger mysql --config-file '/etc/backup/config.rb' --tmp-path ~/Backup/.tmp
 time innobackupex --parallel=2 --compress-threads=4 --decompress /var/sanitize/drupal_sanitize/
 time innobackupex --apply-log --use-memory=6G /var/sanitize/drupal_sanitize/
 sudo rm -rf /var/lib/mysql/
