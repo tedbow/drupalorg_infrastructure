@@ -5766,9 +5766,10 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="honeypot_user",
+    table="_nodata:honeypot_user",
     columns=[
         "uid",
+        "hostname",
         "timestamp",
     ])
 
