@@ -7134,7 +7134,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="versioncontrol_sync_log",
+    table="_nodata:versioncontrol_sync_log",
     columns=[
         "slid",
         "repo_id",
