@@ -39,7 +39,7 @@ function snapshot {
   mysqldump --no-data --single-transaction --quick --max-allowed-packet=256M ${tmp_args} > "/var/sanitize/drupal_export/${subdir}/${db_name}/${db_name}.sql"
   sudo innobackupex --apply-log --export "/var/sanitize/drupal_export/${subdir}/${db_name}"
   sudo chown -R bender:bender "/var/sanitize/drupal_export/${subdir}/${db_name}"
-  tar -czvf "/var/dumps/${subdir}/${JOB_NAME}${suffix}-${BUILD_NUMBER}-binary.tar.gz /var/sanitize/drupal_export/${subdir}/${db_name}"
+  tar -czvf "/var/dumps/${subdir}/${JOB_NAME}${suffix}-${BUILD_NUMBER}-binary.tar.gz" "/var/sanitize/drupal_export/${subdir}/${db_name}"
   ln -sfv "${JOB_NAME}${suffix}-${BUILD_NUMBER}-binary.tar.gz" "/var/dumps/${subdir}/${JOB_NAME}${suffix}-binary-current.tar.gz"
 
   # Remove old snapshots.
