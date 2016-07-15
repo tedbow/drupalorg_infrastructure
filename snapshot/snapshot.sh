@@ -32,9 +32,20 @@ function snapshot {
   mysqldump --single-transaction --quick --max-allowed-packet=256M ${tmp_args} | sed -e 's/^) ENGINE=[^ ]*/) ROW_FORMAT=COMPRESSED/' | pbzip2 -p4 > "/var/dumps/${subdir}/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2"
   mv -v "/var/dumps/${subdir}/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2" "/var/dumps/${subdir}/${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.bz2"
   ln -sfv "${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.bz2" "/var/dumps/${subdir}/${JOB_NAME}${suffix}-current.sql.bz2"
+  # Create and save a binary snapshot.
+  innobackupex --no-timestamp --databases="${db_name}" /var/sanitize/drupal_export/${subdir}/${db_name}
+  mysqldump --no-data --single-transaction --quick --max-allowed-packet=256M ${tmp_args} > "/var/sanitize/drupal_export/${subdir}/${db_name}/${db_name}.sql"
+  innobackupex --apply-log --export /var/sanitize/drupal_export/${subdir}/${db_name}
+  tar -czvf "/var/dumps/${subdir}/${JOB_NAME}${suffix}-${BUILD_NUMBER}-binary.tar.gz /var/sanitize/drupal_export/${subdir}/${db_name}"
+  ln -sfv "${JOB_NAME}${suffix}-${BUILD_NUMBER}-binary.tar.gz" "/var/dumps/${subdir}/${JOB_NAME}${suffix}-binary-current.tar.gz"
 
   # Remove old snapshots.
   old_snapshots=$(ls -t /var/dumps/${subdir}/${JOB_NAME}${suffix}-[0-9]*.sql.{bz2,gz} | tail -n +2)
+  if [ -n "${old_snapshots}" ]; then
+    rm -v ${old_snapshots}
+  fi
+  # Don't forget me... remove old binary snapshots too.
+  old_snapshots=$(ls -t /var/dumps/${subdir}/${JOB_NAME}${suffix}-[0-9]*-binary.tar.gz | tail -n +2)
   if [ -n "${old_snapshots}" ]; then
     rm -v ${old_snapshots}
   fi
