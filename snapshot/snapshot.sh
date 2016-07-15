@@ -33,9 +33,10 @@ function snapshot {
   mv -v "/var/dumps/${subdir}/${JOB_NAME}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2" "/var/dumps/${subdir}/${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.bz2"
   ln -sfv "${JOB_NAME}${suffix}-${BUILD_NUMBER}.sql.bz2" "/var/dumps/${subdir}/${JOB_NAME}${suffix}-current.sql.bz2"
   # Create and save a binary snapshot.
-  innobackupex --no-timestamp --databases="${db_name}" /var/sanitize/drupal_export/${subdir}/${db_name}
+  sudo innobackupex --no-timestamp --databases="${db_name}" /var/sanitize/drupal_export/${subdir}/${db_name}
   mysqldump --no-data --single-transaction --quick --max-allowed-packet=256M ${tmp_args} > "/var/sanitize/drupal_export/${subdir}/${db_name}/${db_name}.sql"
-  innobackupex --apply-log --export /var/sanitize/drupal_export/${subdir}/${db_name}
+  sudo chown -R bender:bender "/var/sanitize/drupal_export/${subdir}/${db_name}"
+  sudo innobackupex --apply-log --export "/var/sanitize/drupal_export/${subdir}/${db_name}"
   tar -czvf "/var/dumps/${subdir}/${JOB_NAME}${suffix}-${BUILD_NUMBER}-binary.tar.gz /var/sanitize/drupal_export/${subdir}/${db_name}"
   ln -sfv "${JOB_NAME}${suffix}-${BUILD_NUMBER}-binary.tar.gz" "/var/dumps/${subdir}/${JOB_NAME}${suffix}-binary-current.tar.gz"
 
@@ -49,6 +50,7 @@ function snapshot {
   if [ -n "${old_snapshots}" ]; then
     rm -v ${old_snapshots}
   fi
+  rm -rf /var/sanitize/drupal_export/${subdir}/${db_name}
 }
 
 function clear_tmp {
