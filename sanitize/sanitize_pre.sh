@@ -15,6 +15,7 @@ time innobackupex --parallel=4 --compress-threads=4 --decompress /var/sanitize/d
 time innobackupex --apply-log --use-memory=10G /var/sanitize/drupal_sanitize/
 sudo rm -rf /var/lib/mysql/
 time sudo innobackupex --parallel=8 --move-back /var/sanitize/drupal_sanitize/
+sudo rm -rf /var/sanitize/drupal_export/.lock
 sudo chown -R mysql:mysql /var/lib/mysql
 sudo systemctl start mysql
 sudo systemctl status mysql || true
