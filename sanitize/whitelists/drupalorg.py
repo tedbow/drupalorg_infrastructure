@@ -6271,6 +6271,14 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="pathauto_state",
+    columns=[
+        "entity_type",
+        "entity_id",
+        "pathauto",
+    ])
+
+whitelist.add(
     table="profile_value",
     columns=[
         "fid",
