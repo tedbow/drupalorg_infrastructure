@@ -2901,6 +2901,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_target_node",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_target_node_target_id",
+    ])
+
+whitelist.add(
     table="field_data_field_terms_of_service",
     columns=[
         "entity_type",
@@ -5249,6 +5262,19 @@ whitelist.add(
         "language",
         "delta",
         "field_target_comment_target_id",
+    ])
+
+whitelist.add(
+    table="field_revision_field_target_node",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_target_node_target_id",
     ])
 
 whitelist.add(
