@@ -672,6 +672,7 @@ whitelist.add(
         "status_code",
         "count",
         "access",
+        "status",
     ])
 
 whitelist.add(
