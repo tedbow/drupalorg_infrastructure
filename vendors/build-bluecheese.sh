@@ -22,7 +22,7 @@ git pull
 git merge 7.x-2.x
 
 # Compile CSS.
-bundle exec compass compile
+/opt/puppetlabs/puppet/bin/bundle exec compass compile
 if [ -n "$(git status --short css)" ]; then
   git add -A css
   git commit -m 'compass compile'
