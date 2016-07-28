@@ -2888,6 +2888,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_tags",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_tags_tid",
+    ])
+
+whitelist.add(
     table="field_data_field_target_comment",
     columns=[
         "entity_type",
@@ -4913,6 +4926,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_revision_field_related_content",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_related_content_target_id",
+    ])
+
+whitelist.add(
     table="field_revision_field_release_build_type",
     columns=[
         "entity_type",
@@ -5249,6 +5275,19 @@ whitelist.add(
         "delta",
         "field_supporting_organizations_value",
         "field_supporting_organizations_revision_id",
+    ])
+
+whitelist.add(
+    table="field_revision_field_tags",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_tags_tid",
     ])
 
 whitelist.add(
@@ -7377,6 +7416,19 @@ whitelist.add(
         "admin_description",
         "category",
         "settings",
+    ])
+
+whitelist.add(
+    table="field_data_field_related_content",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_related_content_target_id",
     ])
 
 whitelist.add(
