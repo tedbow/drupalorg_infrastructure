@@ -44,3 +44,6 @@ $conf['mail_system'] = array(
   'default-system' => 'DevelMailLog',
 );
 $conf['devel_debug_mail_directory'] = '../devel-mail';
+
+// Local image input filter.
+$conf['filter_html_image_secure_domains'][] = 'NAME-SITE.dev.devdrupal.org';
