@@ -1,3 +1,5 @@
+#!/bin/bash
+
 ###Call with sitename (which is also the git repo name, core version, and stg/prod
 set -uex
 export TERM=dumb
