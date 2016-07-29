@@ -43,7 +43,7 @@ echo ${LOG}
 
 # Build the site.
 echo "We have a copy of the master repo, we are starting the build now"
-/usr/bin/drush make -v --no-cache --concurrency=4 ${BUILDPATH}.make ${BUILDDIR}
+drush make -v --no-cache --concurrency=4 ${BUILDPATH}.make ${BUILDDIR}
 
 # Use good judgement.
 /bin/rm -r "${BUILDDIR}/modules/php"
