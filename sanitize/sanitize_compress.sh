@@ -7,9 +7,6 @@ set -uex
 # row_format.
 for db in $(sudo mysql -N -B -e 'SHOW DATABASES' | grep -v -e 'jira_assoc' -e 'information_schema' -e 'performance_schema' -e 'mysql' -e 'percona' -e 'temp' -e 'drupal_export'); do 
   echo "### Compressing ${db} ###"
-  for table in $(sudo mysql -N -B -e 'show tables' ${db}); do
-    echo ${db}.${table};
-    sudo mysql -e "ALTER TABLE ${table} ROW_FORMAT=compressed" ${db}
-  done;
+  ( sudo mysql "$db" -e "SHOW TABLES" --batch --skip-column-names | xargs -n 1 -P 6 -I{} sudo mysql -e 'ALTER TABLE `'{}'` ROW_FORMAT=COMPRESSED;' "$db")
   echo "### Completed compressing ${db} ###"
 done
