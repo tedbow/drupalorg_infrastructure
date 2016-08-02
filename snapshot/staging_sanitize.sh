@@ -5,8 +5,10 @@ source snapshot/common.sh
 # Exit immediately on uninitialized variable or error, and print each command.
 set -uex
 
+dblist=$(sudo mysql -N -B -e 'SHOW DATABASES' | grep -v -e 'jira_assoc' -e 'information_schema' -e 'performance_schema' -e 'mysql' -e 'percona' -e 'temp' -e 'drupal_export')
+
 # Generate a list of all databases to be sanitized
-for db in $(sudo mysql -N -B -e 'SHOW DATABASES' | grep -v -e 'jira_assoc' -e 'information_schema' -e 'performance_schema' -e 'mysql' -e 'percona' -e 'temp' -e 'drupal_export'); do 
+for db in ${dblist}; do 
   echo "### Sanitizing ${db} ###"
   # Sanitize using the DB name.
   sanitization=${db}
@@ -42,6 +44,6 @@ for db in $(sudo mysql -N -B -e 'SHOW DATABASES' | grep -v -e 'jira_assoc' -e 'i
   echo "### Completed compressing ${db} ###"
 done
 
-# Snapshot the staging level databases
+# Snapshot the staging stage databases
 suffix=.staging
 snapshot

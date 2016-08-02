@@ -27,3 +27,7 @@ for db in $(sudo mysql -N -B -e 'SHOW DATABASES' | grep -v -e 'jira_assoc' -e 'i
 
   echo "### Completed sanitizing ${db} ###"
 done
+
+# Snapshot the dev stage databases
+suffix=.dev
+snapshot
