@@ -12,27 +12,25 @@ function sanitize {
     [ -f "snapshot/common-force${suffix}.sql" ] && sudo mysql -f -o ${tmp_args} < "snapshot/common-force${suffix}.sql"
   fi
 
+  # Save a copy of the schema.
+  sudo mysqldump --no-data --single-transaction --quick --max-allowed-packet=256M ${tmp_args} > "/var/sanitize/drupal_export/${db}${suffix}-schema.sql"
+
   # Skip if this sanitization and phase does not exit.
   [ ! -f "snapshot/${sanitization}${suffix}.sql" ] && return
   # Execute SQL for this sanitization and phase.
   sudo mysql -o ${tmp_args} < "snapshot/${sanitization}${suffix}.sql"
-  # Save a copy of the schema.
-  sudo mysqldump --no-data --single-transaction --quick --max-allowed-packet=256M ${tmp_args} > "/var/sanitize/drupal_export/${db}${suffix}-schema.sql"
-
 }
 
 function snapshot {
   # Remove initial '.'
   subdir=$(echo "${suffix}" | sed -e 's/^\.//')
-  # Store reduce with dev, they are the same level of sanitization.
-  if [ "${subdir}" = 'reduce' ]; then
-    subdir='dev'
-  fi
+
   # Create and save a binary snapshot.
   sudo rm -rf /var/sanitize/drupal_export/${subdir}
   sudo innobackupex --no-timestamp /var/sanitize/drupal_export/${subdir}
   sudo innobackupex --apply-log --export "/var/sanitize/drupal_export/${subdir}"
   sudo chown -R bender:bender "/var/sanitize/drupal_export/${subdir}"
+
   # Create a tarball for each database
   for db in ${dblist}; do
     mv "/var/sanitize/drupal_export/${db}${suffix}-schema.sql" "/var/sanitize/drupal_export/${subdir}/${db}"
