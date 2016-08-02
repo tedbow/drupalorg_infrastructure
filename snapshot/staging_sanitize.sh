@@ -1,6 +1,6 @@
 #!/bin/bash
 
-source common.sh
+source snapshot/common.sh
 
 # Exit immediately on uninitialized variable or error, and print each command.
 set -uex
@@ -22,11 +22,11 @@ for db in $(sudo mysql -N -B -e 'SHOW DATABASES' | grep -v -e 'jira_assoc' -e 'i
   # Snapshot in stages.
   # Raw is nearly unsanitized, excpet for some keys. Git-dev uses this for emails.
   suffix=.raw
-  snapshot
+  sanitize
 
   # A snapshot suitable for staging. We remove emails to avoid emailing people.
   suffix=.staging
-  snapshot
+  sanitize
   echo "### Completed sanitizing ${db} ###"
 
   # Generate a list of all tables (except 'pift_ci_job_result' which is already
