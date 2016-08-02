@@ -8,8 +8,8 @@ set -uex
 # Generate a list of all databases to be sanitized
 for db in $(sudo mysql -N -B -e 'SHOW DATABASES' | grep -v -e 'jira_assoc' -e 'information_schema' -e 'performance_schema' -e 'mysql' -e 'percona' -e 'temp' -e 'drupal_export'); do 
   echo "### Sanitizing ${db} ###"
-  # If the sanitization is not set, use the DB name.
-  [ "${sanitization-}" ] || sanitization=${db}
+  # Sanitize using the DB name.
+  sanitization=${db}
 
   tmp_db=${db}
   tmp_args="${tmp_db}"
