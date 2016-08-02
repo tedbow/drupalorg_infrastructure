@@ -45,7 +45,7 @@ function snapshot {
     fi
     # Also create old mysqldump snapshots for dev databases that aren't using
     # the whitelist.
-    if [ "${subdir}" == 'dev' && "${db}" != 'drupal' ]; then
+    if [ "${subdir}" == 'dev' ] && [ "${db}" != 'drupal' ]; then
       sudo mysqldump --single-transaction --quick --max-allowed-packet=256M ${db} | pbzip2 -p6 > "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2"
       sudo chown -R bender:bender "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2"
       mv -v "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2" "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}.sql.bz2"
