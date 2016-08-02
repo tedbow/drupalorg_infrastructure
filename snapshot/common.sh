@@ -33,15 +33,19 @@ function snapshot {
 
   # Create a tarball for each database
   for db in ${dblist}; do
-    mv "/var/sanitize/drupal_export/${db}${suffix}-schema.sql" "/var/sanitize/drupal_export/${subdir}/${db}"
-    cd "/var/sanitize/drupal_export/${subdir}/${db}"
-    tar -czvf "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz" "./"
-    sudo chown -R bender:bender "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz"
-    ln -sfv "${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz" "/var/dumps/${subdir}/${db}${suffix}-binary-current.tar.gz"
-    # Remove old binary snapshots
-    old_snapshots=$(ls -t /var/dumps/${subdir}/${db}${suffix}-[0-9]*-binary.tar.gz | tail -n +2)
-    if [ -n "${old_snapshots}" ]; then
-      rm -v ${old_snapshots}
+    # Do not create tarballs for drupal dev databases here, that's part of the
+    # whitelist
+    if [ "${subdir}" != 'dev' ] || [ "${db}" != 'drupal' ]; then
+      mv "/var/sanitize/drupal_export/${db}${suffix}-schema.sql" "/var/sanitize/drupal_export/${subdir}/${db}"
+      cd "/var/sanitize/drupal_export/${subdir}/${db}"
+      tar -czvf "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz" "./"
+      sudo chown -R bender:bender "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz"
+      ln -sfv "${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz" "/var/dumps/${subdir}/${db}${suffix}-binary-current.tar.gz"
+      # Remove old binary snapshots
+      old_snapshots=$(ls -t /var/dumps/${subdir}/${db}${suffix}-[0-9]*-binary.tar.gz | tail -n +2)
+      if [ -n "${old_snapshots}" ]; then
+        rm -v ${old_snapshots}
+      fi
     fi
     # Also create old mysqldump snapshots for dev databases that aren't using
     # the whitelist.
