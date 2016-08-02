@@ -14,6 +14,12 @@ for db in $(sudo mysql -N -B -e 'SHOW DATABASES' | grep -v -e 'jira_assoc' -e 'i
   tmp_db=${db}
   tmp_args="${tmp_db}"
 
+  if [ ${db} == 'association_civicrm' ]; then
+    skip_common=1
+  else
+    skip_common=0
+  fi
+
   # Truncate all tables with cache in the name.
   echo "SHOW TABLES LIKE '%cache%';" | sudo mysql -o ${tmp_args} | tail -n +2 | sed -e "s/^\(.*\)$/TRUNCATE \1;/" | sudo mysql -o ${tmp_args}
   echo "SHOW TABLES LIKE 'civicrm_export_temp%';" | sudo mysql -o ${tmp_args} | tail -n +2 | sed -e "s/^\(.*\)$/TRUNCATE \1;/" | sudo mysql -o ${tmp_args}
