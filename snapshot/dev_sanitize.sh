@@ -5,7 +5,7 @@ source snapshot/common.sh
 # Exit immediately on uninitialized variable or error, and print each command.
 set -uex
 
-dblist=$(sudo mysql -N -B -e 'SHOW DATABASES' | grep -v -e 'jira_assoc' -e 'information_schema' -e 'performance_schema' -e 'mysql' -e 'percona' -e 'temp' -e 'drupal_export')
+dblist=$(sudo mysql -N -B -e 'SHOW DATABASES' | grep -v -e 'jira_assoc' -e 'information_schema' -e 'performance_schema' -e 'mysql' -e 'percona' -e 'temp' -e 'drupal_export' -e 'test')
 
 # Generate a list of all databases and tables (except 'pift_ci_job_result'
 # which is already compressed), and alter them to the compressed row_format.
