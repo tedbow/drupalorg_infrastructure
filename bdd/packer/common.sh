@@ -5,7 +5,7 @@ export EC2_URL=ec2.us-west-2.amazonaws.com
 export JAVA_HOME=/usr
 
 # Packer configuration
-export PACKER_HOME=/usr/local/bin/packer
+export PACKER_HOME=/usr/local/bin
 
 deregisterAMI() {
   for ami in $($EC2_HOME/bin/ec2-describe-images | awk "/$1/ "'{ print $2 }' | head -n-3); do

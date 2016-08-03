@@ -5,7 +5,7 @@ export EC2_URL=ec2.us-west-2.amazonaws.com
 export JAVA_HOME=/usr
 
 # Packer configuration
-export PACKER_HOME=/usr/local/bin/packer
+export PACKER_HOME=/usr/local/bin
 
 # Repository configuration
 base_repo=git@bitbucket.org:drupalorg-infrastructure/drupalci_base.git
