@@ -5,7 +5,7 @@ source snapshot/common.sh
 # Exit immediately on uninitialized variable or error, and print each command.
 set -uex
 
-dblist=$(sudo mysql -N -B -e 'SHOW DATABASES' | grep -v -e 'jira_assoc' -e 'information_schema' -e 'performance_schema' -e 'mysql' -e 'percona' -e 'temp' -e 'drupal_export' -e 'test')
+dblist="association_civicrm drupal drupal_api drupal_association drupal_groups drupal_jobs drupal_localize drupal_security events"
 
 # Generate a list of all databases to be sanitized
 for db in ${dblist}; do 

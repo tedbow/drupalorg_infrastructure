@@ -31,25 +31,22 @@ function snapshot {
   sudo innobackupex --apply-log --export "/var/sanitize/drupal_export/${subdir}"
   sudo chown -R bender:bender "/var/sanitize/drupal_export/${subdir}"
 
-  # Create a tarball for each database
+  # Create a tarball for each database.
   for db in ${dblist}; do
-    # Do not create tarballs for drupal dev databases here, that's part of the
-    # whitelist
-    if [ "${subdir}" != 'dev' ] || [ "${db}" != 'drupal' ]; then
-      mv "/var/sanitize/drupal_export/${db}${suffix}-schema.sql" "/var/sanitize/drupal_export/${subdir}/${db}"
-      cd "/var/sanitize/drupal_export/${subdir}/${db}"
-      tar -czvf "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz" "./"
-      sudo chown -R bender:bender "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz"
-      ln -sfv "${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz" "/var/dumps/${subdir}/${db}${suffix}-binary-current.tar.gz"
-      # Remove old binary snapshots
-      old_snapshots=$(ls -t /var/dumps/${subdir}/${db}${suffix}-[0-9]*-binary.tar.gz | tail -n +2)
-      if [ -n "${old_snapshots}" ]; then
-        rm -v ${old_snapshots}
-      fi
+    mv "/var/sanitize/drupal_export/${db}${suffix}-schema.sql" "/var/sanitize/drupal_export/${subdir}/${db}"
+    cd "/var/sanitize/drupal_export/${subdir}/${db}"
+    tar -czvf "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz" "./"
+    sudo chown -R bender:bender "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz"
+    ln -sfv "${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz" "/var/dumps/${subdir}/${db}${suffix}-binary-current.tar.gz"
+    # Remove old binary snapshots
+    old_snapshots=$(ls -t /var/dumps/${subdir}/${db}${suffix}-[0-9]*-binary.tar.gz | tail -n +2)
+    if [ -n "${old_snapshots}" ]; then
+      rm -v ${old_snapshots}
     fi
-    # Also create old mysqldump snapshots for dev databases that aren't using
-    # the whitelist.
-    if [ "${subdir}" == 'dev' ] && [ "${db}" != 'drupal' ]; then
+
+    # Create old mysqldump snapshots for dev databases. These are used for the
+    # docker images used for dev.
+    if [ "${subdir}" == 'dev' ]; then
       sudo mysqldump --single-transaction --quick --max-allowed-packet=256M ${db} | pbzip2 -p6 > "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2"
       sudo chown -R bender:bender "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2"
       mv -v "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2" "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}.sql.bz2"
