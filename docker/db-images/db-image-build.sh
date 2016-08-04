@@ -26,7 +26,7 @@ DOCKERREPOSITORY="${2}"
 FILENAME="${3}"
 
 ## Script conf
-CURRENTSTRINGSQL="_database_snapshot.${DOCKERREPOSITORY}-current.sql.bz2"
+CURRENTSTRINGSQL=".${DOCKERREPOSITORY}-current.sql.bz2"
 CURRENTSTRINGIMAGE="_database_snapshot.${DOCKERREPOSITORY}-current.image.tar.bz2"
 DATESTRINGIMAGE="_database_snapshot.${DOCKERREPOSITORY}-${DATE}.image.tar.bz2"
 DATESTRINGTAR="_database_snapshot.${DOCKERREPOSITORY}-${DATE}.image.tar"
@@ -36,7 +36,7 @@ DATESTRINGTAR="_database_snapshot.${DOCKERREPOSITORY}-${DATE}.image.tar"
 MAINDIR=${DUMPSDIR}/${DOCKERREPOSITORY}
 
 ### Parse DBNAME, DOCKERREPOSITORY and DBNAME short name
-DBNAME=$(echo ${FILENAME} | awk -F'_' '{print $1}')
+DBNAME=$(echo ${FILENAME} | awk -F'.' '{print $1}')
 DR=$(echo ${DOCKERREPOSITORY} | cut -c1 )
 DN=$(echo ${DBNAME} | cut -c1-2 )
 
