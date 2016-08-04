@@ -65,7 +65,7 @@ if [ $? -ne 0 ]; then
 fi
 
 ### Dump the sanitized data
-fvar1="${databae}.${stage}"
+fvar1="${database}.${stage}"
 suffix="${filetype}.${compression}"
 dumpinprogress="${fvar1}-${BUILD_NUMBER}-in-progress"
 dumpfile="${fvar1}-${BUILD_NUMBER}.${suffix}"
