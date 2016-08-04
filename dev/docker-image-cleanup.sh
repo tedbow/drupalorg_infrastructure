@@ -8,8 +8,10 @@
 
 # Get all dev images
 alldevimages=$(docker images -q | sort -u)
+# Get the latest tag
+latesttag=$(docker images | grep dev | head -1 | awk '{ print $2 }')
 # Get all latest dev images
-latestdevimages=$(docker images | grep dev | grep latest | awk '{print $3}' | sort -u)
+latestdevimages=$(docker images | grep dev | grep ${latesttag} | awk '{print $3}' | sort -u)
 # Get all dev images that are being used by containers
 containerimageid=$(docker ps -a | grep -v "CONTAINER ID" | awk '{print $2}' | sort -u)
 # List of images to keep: latest images and images in use, do not print empty line
