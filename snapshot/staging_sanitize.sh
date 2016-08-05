@@ -44,3 +44,4 @@ done
 # Snapshot the staging stage databases
 suffix=.staging
 snapshot
+sudo rm -rf /var/sanitize/drupal_export/${subdir}
