@@ -7,18 +7,18 @@ function sanitize {
   # non-Drupal.
   if [ ! "${skip_common-}" ]; then
     # Execute common SQL commands.
-    [ -f "snapshot/common${suffix}.sql" ] && sudo mysql -o ${tmp_args} < "snapshot/common${suffix}.sql"
+    [ -f "snapshot/common${suffix}.sql" ] && sudo mysql -o ${db} < "snapshot/common${suffix}.sql"
     # Execute common SQL commands, but don't exit if they fail.
-    [ -f "snapshot/common-force${suffix}.sql" ] && sudo mysql -f -o ${tmp_args} < "snapshot/common-force${suffix}.sql"
+    [ -f "snapshot/common-force${suffix}.sql" ] && sudo mysql -f -o ${db} < "snapshot/common-force${suffix}.sql"
   fi
 
   # Save a copy of the schema.
-  sudo mysqldump --no-data --single-transaction --quick --max-allowed-packet=256M ${tmp_args} > "/var/sanitize/drupal_export/${db}${suffix}-schema.sql"
+  sudo mysqldump --no-data --single-transaction --quick --max-allowed-packet=256M ${db} > "/var/sanitize/drupal_export/${db}${suffix}-schema.sql"
 
   # Skip if this sanitization and phase does not exit.
   [ ! -f "snapshot/${sanitization}${suffix}.sql" ] && return
   # Execute SQL for this sanitization and phase.
-  sudo mysql -o ${tmp_args} < "snapshot/${sanitization}${suffix}.sql"
+  sudo mysql -o ${db} < "snapshot/${sanitization}${suffix}.sql"
 }
 
 function snapshot {
@@ -62,5 +62,5 @@ function snapshot {
 }
 
 function clear_tmp {
-  echo "DROP DATABASE IF EXISTS ${tmp_db}; CREATE DATABASE ${tmp_db};" | sudo mysql ${tmp_args}
+  echo "DROP DATABASE IF EXISTS ${db}; CREATE DATABASE ${db};" | sudo mysql ${db}
 }

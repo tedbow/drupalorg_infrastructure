@@ -13,9 +13,6 @@ for db in ${dblist}; do
   # Sanitize using the DB name.
   sanitization=${db}
 
-  tmp_db=${db}
-  tmp_args="${tmp_db}"
-
   if [ ${db} == 'association_civicrm' ]; then
     skip_common=1
   else
@@ -23,9 +20,9 @@ for db in ${dblist}; do
   fi
 
   # Truncate all tables with cache in the name.
-  echo "SHOW TABLES LIKE '%cache%';" | sudo mysql -o ${tmp_args} | tail -n +2 | sed -e "s/^\(.*\)$/TRUNCATE \1;/" | sudo mysql -o ${tmp_args}
-  echo "SHOW TABLES LIKE 'civicrm_export_temp%';" | sudo mysql -o ${tmp_args} | tail -n +2 | sed -e "s/^\(.*\)$/TRUNCATE \1;/" | sudo mysql -o ${tmp_args}
-  echo "SHOW TABLES LIKE 'civicrm_import_job%';" | sudo mysql -o ${tmp_args} | tail -n +2 | sed -e "s/^\(.*\)$/TRUNCATE \1;/" | sudo mysql -o ${tmp_args}
+  echo "SHOW TABLES LIKE '%cache%';" | sudo mysql -o ${db} | tail -n +2 | sed -e "s/^\(.*\)$/TRUNCATE \1;/" | sudo mysql -o ${db}
+  echo "SHOW TABLES LIKE 'civicrm_export_temp%';" | sudo mysql -o ${db} | tail -n +2 | sed -e "s/^\(.*\)$/TRUNCATE \1;/" | sudo mysql -o ${db}
+  echo "SHOW TABLES LIKE 'civicrm_import_job%';" | sudo mysql -o ${db} | tail -n +2 | sed -e "s/^\(.*\)$/TRUNCATE \1;/" | sudo mysql -o ${db}
 
   # Snapshot in stages.
   # Raw is nearly unsanitized, excpet for some keys. Git-dev uses this for emails.
