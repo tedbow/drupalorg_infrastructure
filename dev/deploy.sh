@@ -5,7 +5,7 @@
 
 # Usage: write_template "template" "path/to/destination"
 function write_template {
-  sed -e "s/DB_NAME/${site}/g;s/NAME/${name}/g;s/DB_USER/${db_user}/g;s/SITE/${site}/g;s/DB_PASS/${db_pass}/g;s/DB_PORT/${CONTAINERPORT}/g" "dev/${1}" > "${2}"
+  sed -e "s/DB_NAME/${db_names[${site}]}/g;s/NAME/${name}/g;s/DB_USER/${db_user}/g;s/SITE/${site}/g;s/DB_PASS/${db_pass}/g;s/DB_PORT/${CONTAINERPORT}/g" "dev/${1}" > "${2}"
 }
 
 # Fail early if comment is omitted.
@@ -22,6 +22,7 @@ fi
 
 export TERM=dumb
 drush="drush6 -r ${web_path}/htdocs -y"
+declare -A db_names=( ["drupal"]="drupal" ["api"]="drupal_api" ["association"]="drupal_association" ["groups"]="drupal_groups" ["localize"]="drupal_localize" ["events"]="events" )
 db_user="root"
 db_pass="drupal"
 
