@@ -1,5 +1,7 @@
 #!/bin/bash
 
+source snapshot/common.sh
+
 # Exit immediately on uninitialized variable or error, and print each command.
 set -uex
 
@@ -16,11 +18,6 @@ function help {
 database=${1:=-h}
 profile=${2:=empty}
 export_db="${database}_export"
-dbopt="--single-transaction --quick --max-allowed-packet=256M"
-stage="dev"
-filetype="sql"
-compression="bz2"
-dumppath="/var/dumps/${stage}"
 
 # Variables exported by Jenkins
 JOB_NAME=${JOB_NAME:=db_backup}
@@ -64,24 +61,9 @@ if [ $? -ne 0 ]; then
   exit $?
 fi
 
-### Dump the sanitized data
-fvar1="${database}.${stage}"
-suffix="${filetype}.${compression}"
-dumpinprogress="${fvar1}-${BUILD_NUMBER}-in-progress"
-dumpfile="${fvar1}-${BUILD_NUMBER}.${suffix}"
-dumpcur="${dumppath}/${fvar1}-current.${suffix}"
-
-# Save the DB dump, strip ENGINE type from the output
-# Also add ROW_FORMAT=COMPRESSED for all tables to save space in preproduction
-echo "start the dump"
-mysqldump ${dbopt} ${tmp_args} ${export_db} | pbzip2 -p4 -fc > ${dumppath}/${dumpinprogress}.${suffix}
-
-# Move -in-progress to final location and symlink to current
-mv -v ${dumppath}/${dumpinprogress}.${suffix} ${dumppath}/${dumpfile}
-ln -sfv ${dumpfile} ${dumpcur}
-
-# Remove old snapshots.
-old_snapshots=$(ls -t ${dumppath}/${fvar1}-[0-9]*.${filetype}.{bz2,gz} | tail -n +2)
-if [ ! -z "${old_snapshots}" ]; then
-  rm -v ${old_snapshots}
-fi
+# Snapshot the dev stage database
+suffix=.dev
+dblist="drupal_export"
+whitelist=1
+snapshot
+sudo rm -rf /var/sanitize/drupal_export/${subdir}

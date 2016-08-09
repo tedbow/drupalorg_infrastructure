@@ -33,6 +33,9 @@ function snapshot {
 
   # Create a tarball for each database.
   for db in ${dblist}; do
+    if [ "${whitelist}" ]; then
+      db='drupal'
+    fi
     mv "/var/sanitize/drupal_export/${db}${suffix}-schema.sql" "/var/sanitize/drupal_export/${subdir}/${db}"
     cd "/var/sanitize/drupal_export/${subdir}/${db}"
     tar -czvf "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz" "./"
@@ -47,7 +50,11 @@ function snapshot {
     # Create old mysqldump snapshots for dev databases. These are used for the
     # docker images used for dev.
     if [ "${subdir}" == 'dev' ]; then
-      sudo mysqldump --single-transaction --quick --max-allowed-packet=256M ${db} | pbzip2 -p6 > "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2"
+      if [ "${whitelist}" ]; then
+        sudo mysqldump --single-transaction --quick --max-allowed-packet=256M drupal_export | pbzip2 -p6 > "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2"
+      else
+        sudo mysqldump --single-transaction --quick --max-allowed-packet=256M ${db} | pbzip2 -p6 > "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2"
+      fi
       sudo chown -R bender:bender "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2"
       mv -v "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2" "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}.sql.bz2"
       ln -sfv "${db}${suffix}-${BUILD_NUMBER}.sql.bz2" "/var/dumps/${subdir}/${db}${suffix}-current.sql.bz2"
