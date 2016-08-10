@@ -36,9 +36,9 @@ function snapshot {
     if [ "${whitelist}" ]; then
       db='drupal'
     fi
-    mv "/var/sanitize/drupal_export/${db}${suffix}-schema.sql" "/var/sanitize/drupal_export/${subdir}/${db}"
-    cd "/var/sanitize/drupal_export/${subdir}/${db}"
-    tar -czvf "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz" "./"
+    mv "/var/sanitize/drupal_export/${db}${suffix}-schema.sql" "/var/sanitize/drupal_export/${subdir}"
+    cd "/var/sanitize/drupal_export/${subdir}"
+    tar -czvf "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz" "./${db}${suffix}-schema.sql" "./${db}"
     sudo chown -R bender:bender "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz"
     ln -sfv "${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz" "/var/dumps/${subdir}/${db}${suffix}-binary-current.tar.gz"
     # Remove old binary snapshots
