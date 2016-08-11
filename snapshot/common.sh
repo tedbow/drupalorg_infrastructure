@@ -27,7 +27,7 @@ function snapshot {
 
   # Create and save a binary snapshot.
   sudo rm -rf /var/sanitize/drupal_export/${subdir}
-  sudo innobackupex --no-timestamp /var/sanitize/drupal_export/${subdir}
+  sudo innobackupex --no-timestamp --databases="${dblist}" /var/sanitize/drupal_export/${subdir}
   sudo innobackupex --apply-log --export "/var/sanitize/drupal_export/${subdir}"
   sudo chown -R bender:bender "/var/sanitize/drupal_export/${subdir}"
 
