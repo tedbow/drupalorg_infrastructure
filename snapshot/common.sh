@@ -13,7 +13,7 @@ function sanitize {
   fi
 
   # Save a copy of the schema, and enable compression.
-  sudo mysqldump --no-data --single-transaction --quick --max-allowed-packet=256M ${db} | sed -e 's/^) ENGINE=[^ ]*/) ROW_FORMAT=COMPRESSED/' > "/var/sanitize/drupal_export/${db}${suffix}-schema.sql"
+  sudo mysqldump --no-data --opt --single-transaction --quick --max-allowed-packet=256M ${db} > "/var/sanitize/drupal_export/${db}${suffix}-schema.sql"
 
   # Skip if this sanitization and phase does not exit.
   [ ! -f "snapshot/${sanitization}${suffix}.sql" ] && return
