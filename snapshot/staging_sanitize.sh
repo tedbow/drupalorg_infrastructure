@@ -6,6 +6,7 @@ source snapshot/common.sh
 set -uex
 
 dblist="association_civicrm drupal drupal_api drupal_association drupal_groups drupal_jobs drupal_localize drupal_security events"
+whitelist=0
 
 # Generate a list of all databases to be sanitized
 for db in ${dblist}; do 

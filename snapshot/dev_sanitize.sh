@@ -6,6 +6,7 @@ source snapshot/common.sh
 set -uex
 
 dblist="drupal_api drupal_association drupal_groups drupal_localize events"
+whitelist=0
 
 # Generate a list of all databases and tables (except 'pift_ci_job_result'
 # which is already compressed), and alter them to the compressed row_format.
