@@ -12,8 +12,8 @@ function sanitize {
     [ -f "snapshot/common-force${suffix}.sql" ] && sudo mysql -f -o ${db} < "snapshot/common-force${suffix}.sql"
   fi
 
-  # Save a copy of the schema.
-  sudo mysqldump --no-data --single-transaction --quick --max-allowed-packet=256M ${db} > "/var/sanitize/drupal_export/${db}${suffix}-schema.sql"
+  # Save a copy of the schema, and enable compression.
+  sudo mysqldump --no-data --single-transaction --quick --max-allowed-packet=256M ${db} | sed -e 's/^) ENGINE=[^ ]*/) ROW_FORMAT=COMPRESSED/' > "/var/sanitize/drupal_export/${db}${suffix}-schema.sql"
 
   # Skip if this sanitization and phase does not exit.
   [ ! -f "snapshot/${sanitization}${suffix}.sql" ] && return
@@ -38,7 +38,7 @@ function snapshot {
     fi
     mv "/var/sanitize/drupal_export/${db}${suffix}-schema.sql" "/var/sanitize/drupal_export/${subdir}"
     cd "/var/sanitize/drupal_export/${subdir}"
-    tar --use-compress-program=pigz  -cvf "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz" "./${db}${suffix}-schema.sql" "./${db}"
+    tar --use-compress-program=pigz  -cvf "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz" "./${db}${suffix}-schema.sql" "./${db}/{*.ibd,*.cfg,*.exp}"
     sudo chown -R bender:bender "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz"
     ln -sfv "${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz" "/var/dumps/${subdir}/${db}${suffix}-binary-current.tar.gz"
     # Remove old binary snapshots
