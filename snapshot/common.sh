@@ -40,8 +40,9 @@ function snapshot {
     cd "/var/sanitize/drupal_export/${subdir}"
     if [ "${whitelist-}" ]; then
       tar --use-compress-program=pigz  -cvf /var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz ./${db}${suffix}-schema.sql ./drupal_export/{*.ibd,*.cfg,*.exp}
+    else
+      tar --use-compress-program=pigz  -cvf /var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz ./${db}${suffix}-schema.sql ./${db}/{*.ibd,*.cfg,*.exp}
     fi
-    tar --use-compress-program=pigz  -cvf /var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz ./${db}${suffix}-schema.sql ./${db}/{*.ibd,*.cfg,*.exp}
     sudo chown -R bender:bender "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz"
     ln -sfv "${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz" "/var/dumps/${subdir}/${db}${suffix}-binary-current.tar.gz"
     # Remove old binary snapshots
