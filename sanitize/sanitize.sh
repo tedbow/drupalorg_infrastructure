@@ -65,5 +65,7 @@ fi
 suffix=.dev
 dblist="drupal_export"
 whitelist=1
+# Save a copy of the schema, and enable compression.
+sudo mysqldump --no-data --opt --single-transaction --quick --max-allowed-packet=256M ${dblist} > "/var/sanitize/drupal_export/${dblist}${suffix}-schema.sql"
 snapshot
 sudo rm -rf /var/sanitize/drupal_export/${subdir}
