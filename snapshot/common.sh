@@ -26,7 +26,7 @@ function snapshot {
   subdir=$(echo "${suffix}" | sed -e 's/^\.//')
 
   # Create and save a binary snapshot.
-  sudo rm -rf /var/sanitize/drupal_export/${subdir}
+  sudo rm -rf /var/sanitize/drupal_export/${subdir}/*
   sudo innobackupex --no-timestamp --databases="${dblist}" /var/sanitize/drupal_export/${subdir}
   sudo innobackupex --apply-log --export "/var/sanitize/drupal_export/${subdir}"
   sudo chown -R bender:bender "/var/sanitize/drupal_export/${subdir}"
@@ -50,7 +50,7 @@ function snapshot {
     # Create old mysqldump snapshots for dev databases. These are used for the
     # docker images used for dev.
     if [ "${subdir}" == 'dev' ]; then
-      if [ "${whitelist}" ]; then
+      if [ "${whitelist-}" ]; then
         sudo mysqldump --single-transaction --quick --max-allowed-packet=256M drupal_export | pbzip2 -p6 > "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2"
       else
         sudo mysqldump --single-transaction --quick --max-allowed-packet=256M ${db} | pbzip2 -p6 > "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2"
