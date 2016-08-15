@@ -4778,59 +4778,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:field_revision_field_project_phpcs_errors",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_phpcs_errors_value",
-    ])
-
-whitelist.add(
-    table="_nodata:field_revision_field_project_phpcs_full",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_phpcs_full_value",
-        "field_project_phpcs_full_format",
-    ])
-
-whitelist.add(
-    table="_nodata:field_revision_field_project_phpcs_ts",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_phpcs_ts_value",
-    ])
-
-whitelist.add(
-    table="_nodata:field_revision_field_project_phpcs_warnings",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_project_phpcs_warnings_value",
-    ])
-
-whitelist.add(
     table="field_revision_field_project_screenshots",
     columns=[
         "entity_type",
