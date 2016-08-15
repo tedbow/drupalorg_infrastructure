@@ -33,7 +33,7 @@ function snapshot {
 
   # Create a tarball for each database.
   for db in ${dblist}; do
-    if [ "${whitelist}" ]; then
+    if [ "${whitelist-}" ]; then
       db='drupal'
     fi
     cp "/var/sanitize/drupal_export/${db}${suffix}-schema.sql" "/var/sanitize/drupal_export/${subdir}"
