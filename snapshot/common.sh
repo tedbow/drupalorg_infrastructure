@@ -12,9 +12,6 @@ function sanitize {
     [ -f "snapshot/common-force${suffix}.sql" ] && sudo mysql -f -o ${db} < "snapshot/common-force${suffix}.sql"
   fi
 
-  # Save a copy of the schema, and enable compression.
-  sudo mysqldump --no-data --opt --single-transaction --quick --max-allowed-packet=256M ${db} > "/var/sanitize/drupal_export/${db}${suffix}-schema.sql"
-
   # Skip if this sanitization and phase does not exit.
   [ ! -f "snapshot/${sanitization}${suffix}.sql" ] && return
   # Execute SQL for this sanitization and phase.
@@ -36,11 +33,15 @@ function snapshot {
     if [ "${whitelist-}" ]; then
       db='drupal'
     fi
-    cp "/var/sanitize/drupal_export/${db}${suffix}-schema.sql" "/var/sanitize/drupal_export/${subdir}"
     cd "/var/sanitize/drupal_export/${subdir}"
     if [ "${whitelist-}" ]; then
+      # Save a copy of the schema after the tables have been compressed.
+      sudo mysqldump --no-data --opt --single-transaction --quick --max-allowed-packet=256M drupal_export > "/var/sanitize/drupal_export/${subdir}/${db}${suffix}-schema.sql"
       tar --use-compress-program=pigz  -cvf /var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz ./${db}${suffix}-schema.sql ./drupal_export/{*.ibd,*.cfg,*.exp}
+
     else
+      # Save a copy of the schema after the tables have been compressed.
+      sudo mysqldump --no-data --opt --single-transaction --quick --max-allowed-packet=256M ${db} > "/var/sanitize/drupal_export/${subdir}/${db}${suffix}-schema.sql"
       tar --use-compress-program=pigz  -cvf /var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz ./${db}${suffix}-schema.sql ./${db}/{*.ibd,*.cfg,*.exp}
     fi
     sudo chown -R bender:bender "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz"
@@ -55,9 +56,9 @@ function snapshot {
     # docker images used for dev.
     if [ "${subdir}" == 'dev' ]; then
       if [ "${whitelist-}" ]; then
-        sudo mysqldump --single-transaction --quick --max-allowed-packet=256M drupal_export | pbzip2 -p6 > "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2"
+        sudo mysqldump --opt --single-transaction --quick --max-allowed-packet=256M drupal_export | pbzip2 -p6 > "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2"
       else
-        sudo mysqldump --single-transaction --quick --max-allowed-packet=256M ${db} | pbzip2 -p6 > "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2"
+        sudo mysqldump --opt --single-transaction --quick --max-allowed-packet=256M ${db} | pbzip2 -p6 > "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2"
       fi
       sudo chown -R bender:bender "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2"
       mv -v "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-in-progress.sql.bz2" "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}.sql.bz2"
