@@ -36,7 +36,7 @@ function snapshot {
     if [ "${whitelist}" ]; then
       db='drupal'
     fi
-    mv "/var/sanitize/drupal_export/${db}${suffix}-schema.sql" "/var/sanitize/drupal_export/${subdir}"
+    cp "/var/sanitize/drupal_export/${db}${suffix}-schema.sql" "/var/sanitize/drupal_export/${subdir}"
     cd "/var/sanitize/drupal_export/${subdir}"
     tar --use-compress-program=pigz  -cvf /var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz ./${db}${suffix}-schema.sql ./${db}/{*.ibd,*.cfg,*.exp}
     sudo chown -R bender:bender "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz"
