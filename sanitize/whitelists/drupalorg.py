@@ -6059,6 +6059,8 @@ whitelist.add(
         "hide_title",
         "title_pane",
         "uuid",
+        "storage_type",
+        "storage_id",
     ])
 
 whitelist.add(
