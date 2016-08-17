@@ -14,7 +14,6 @@ $databases['default']['default'] = array(
 
 $base_url = 'https://NAME-SITE.dev.devdrupal.org';
 $cookie_domain = 'NAME-SITE.dev.devdrupal.org';
-$conf['bakery_domain'] = 'NAME-SITE.dev.devdrupal.org';
 
 // Memcache configuration.
 $conf['memcache_key_prefix'] = 'NAME_SITE';
