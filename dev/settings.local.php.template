@@ -1,14 +1,14 @@
 <?php
 // Drupal 6
-$db_url = 'mysql://DB_USER:DB_PASS@127.0.0.1:DB_PORT/DB_NAME';
+$db_url = 'mysql://DB_USER:DB_PASS@dbdev1.drupal.bak:3306/DB_NAME';
 // Drupal 7
 $databases['default']['default'] = array(
   'driver' => 'mysql',
   'database' => 'DB_NAME',
-  'username' => 'DB_USER',
+  'username' => 'DB_NAME',
   'password' => 'DB_PASS',
-  'host'     => '127.0.0.1',
-  'port'     => 'DB_PORT',
+  'host'     => 'dbdev1.drupal.bak',
+  'port'     => '3306',
   'collation' => 'utf8_general_ci',
 );
 

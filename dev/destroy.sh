@@ -1,3 +1,4 @@
+#!/bin/bash
 # Remove a development environment for a given "name" on devwww2
 
 # Include common dev script.
@@ -12,10 +13,13 @@ fi
 sudo rm -rf "${web_path}"
 
 # Delete the vhost
-rm -f "${vhost_path}"
+sudo rm -f "${vhost_path}"
 
-# Stop and remove docker container
-docker stop ${container_name}
-docker rm ${container_name}
+# Drop the database and user
+mysql <<end
+  DROP DATABASE ${db_name};
+  REVOKE ALL ON ${db_name}.* FROM '${db_name}'@'wwwdev1.drupal.bak';
+  DROP USER '${db_name}'@'wwwdev1.drupal.bak';
+end
 
 restart_apache

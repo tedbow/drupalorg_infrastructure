@@ -1,3 +1,4 @@
+#!/bin/bash
 # Collect general information about dev sites.
 
 # Exit immediately on uninitialized variable or error, and print each command.
@@ -12,8 +13,7 @@ export TERM=dumb
   echo
 
   echo "Database"
-  # @TODO: Don't use an ssh session for this
-  #ssh devdb.drupal.aws df -h /var/lib/mysql
+  ssh dbdev1.drupal.bak df -h /var/lib/mysql
   echo
 
   for domain in $(ls "/var/www/dev"); do

@@ -6,15 +6,27 @@
   AddOutputFilterByType DEFLATE text/css application/javascript application/x-javascript text/html
   Header add Vary "Accept-Encoding"
 
+  # Route php files to php-fpm
+  RewriteEngine On
+  ProxyPassMatch ^/(.*\.php(/.*)?)$ fcgi://127.0.0.1:9000/var/www/dev/NAME-SITE.dev.devdrupal.org/htdocs/$1
+  DirectoryIndex /index.php index.php
+
+  ## Logging
+  ErrorLog "syslog:local7"
+  ServerSignature Off
+  CustomLog "|/usr/bin/logger -t apache2-NAME-SITE.dev.devdrupal.org/ssl -p local6.info" combined 
+
   <Directory "/var/www/dev/NAME-SITE.dev.devdrupal.org/htdocs">
-    Include vhosts.d/development.inc
+    Options FollowSymlinks
+    AllowOverride None
+    Require all granted
+    Include '/etc/apache2/conf.d/drupal7-htaccess'
   </Directory>
   <Directory "/usr/share/xhprof">
-    Include vhosts.d/development.inc
+    AllowOverride None
+    Require all granted
   </Directory>
 
-  ErrorLog "|/usr/sbin/cronolog /var/www/dev/NAME-SITE.dev.devdrupal.org/logs/error/%Y%m%d.log"
-  CustomLog "|/usr/sbin/cronolog /var/www/dev/NAME-SITE.dev.devdrupal.org/logs/access/%Y%m%d.log" combined
 </VirtualHost>  
 <VirtualHost *:8080>
   ServerName xhprof-NAME-SITE.dev.devdrupal.org
@@ -24,8 +36,14 @@
   AddOutputFilterByType DEFLATE text/css application/javascript application/x-javascript text/html
   Header add Vary "Accept-Encoding"
 
+  # Route php files to php-fpm
+  RewriteEngine On
+  ProxyPassMatch ^/(.*\.php(/.*)?)$ fcgi://127.0.0.1:9000/var/www/dev/NAME-SITE.dev.devdrupal.org/xhprof/htdocs/$1
+  DirectoryIndex /index.php index.php
+
   <Directory "/var/www/dev/NAME-SITE.dev.devdrupal.org/xhprof/htdocs">
-    Include vhosts.d/development.inc
     DirectoryIndex index.php
+    AllowOverride None
+    Require all granted
   </Directory>
 </VirtualHost>

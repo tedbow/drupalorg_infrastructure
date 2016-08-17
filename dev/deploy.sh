@@ -1,11 +1,12 @@
-# Create a development environment for a given "name" on devwww2
+#!/bin/bash
+# Create a development environment for a given "name" on wwwdev1/dbdev1
 
 # Include common dev script.
 . dev/common.sh
 
 # Usage: write_template "template" "path/to/destination"
 function write_template {
-  sed -e "s/DB_NAME/${db_names[${site}]}/g;s/NAME/${name}/g;s/DB_USER/${db_user}/g;s/SITE/${site}/g;s/DB_PASS/${db_pass}/g;s/DB_PORT/${CONTAINERPORT}/g" "dev/${1}" > "${2}"
+  sed -e "s/DB_NAME/${db_name}/g;s/NAME/${name}/g;s/SITE/${site}/g;s/DB_PASS/${db_pass}/g" "dev/${1}" > "${2}"
 }
 
 # Fail early if comment is omitted.
@@ -21,24 +22,17 @@ else
 fi
 
 export TERM=dumb
-drush="drush6 -r ${web_path}/htdocs -y"
+drush="drush -r ${web_path}/htdocs -y"
 declare -A db_names=( ["drupal"]="drupal" ["api"]="drupal_api" ["association"]="drupal_association" ["groups"]="drupal_groups" ["localize"]="drupal_localize" ["events"]="events" )
-db_user="root"
-db_pass="drupal"
+db_pass=$(pwgen -s 16 1)
 
 [ -e "${web_path}" ] && echo "Project webroot already exists!" && exit 1
 
 # Create the webroot and add comment file
 mkdir "${web_path}"
 mkdir -p "${web_path}/xhprof/htdocs"
-chown -R bender:developers "${web_path}"
+sudo chown -R bender:developers "${web_path}"
 echo "${COMMENT}" > "${web_path}/comment"
-
-# Set port number
-CONTAINERPORT=$((3300 + ${BUILD_NUMBER}))
-
-# @TODO: Verify port is available
-#nc -z localhost ${CONTAINERPORT}
 
 # Create the vhost config
 write_template "vhost.conf.template" "${vhost_path}"
@@ -58,13 +52,13 @@ if [ "${site}" != "groups" -a "${site}" != "qa" ]; then
 fi
 
 # Run drush make.
-drush6 make --no-cache "${make_file}" "${web_path}/htdocs" --working-copy --no-gitinfofile --concurrency=4
+drush make --no-cache "${make_file}" "${web_path}/htdocs" --working-copy --no-gitinfofile --concurrency=4
 
 if [ -f "${web_path}/htdocs/sites/all/themes/bluecheese/Gemfile" ]; then
   # Compile bluecheese Sass.
   pushd "${web_path}/htdocs/sites/all/themes/bluecheese"
-  bundle install
-  bundle exec compass compile
+  /opt/puppetlabs/puppet/bin/bundle install
+  /opt/puppetlabs/puppet/bin/bundle exec compass compile
   popd
 fi
 
@@ -90,33 +84,24 @@ write_template "user.ini.template" "${web_path}/xhprof/htdocs/.user.ini"
 
 # Strongarm the permissions
 echo "Forcing proper permissions on ${web_path}"
-find "${web_path}" -type d -exec chmod g+rwx {} +
-find "${web_path}" -type f -exec chmod g+rw {} +
-chgrp -R developers "${web_path}"
+sudo find "${web_path}" -type d -exec chmod g+rwx {} +
+sudo find "${web_path}" -type f -exec chmod g+rw {} +
+sudo chgrp -R developers "${web_path}"
 
 # Add traces directory after global chown
 mkdir -p "${web_path}/xhprof/traces"
-sudo chown -R apache:apache "${web_path}/xhprof/traces"
+sudo chown -R drupal_site:www-data "${web_path}/xhprof/traces"
 
 # Add temporary files and devel mail directories after global chown.
 mkdir -p "${web_path}/files-tmp"
-sudo chown -R apache:developers "${web_path}/files-tmp"
+sudo chown -R drupal_site:developers "${web_path}/files-tmp"
 mkdir -p "${web_path}/devel-mail"
-sudo chown -R apache:developers "${web_path}/devel-mail"
+sudo chown -R drupal_site:developers "${web_path}/devel-mail"
 
-# Start docker container
-echo "  Starting new Mariadb container"
-# Get image ID of lateset image
-IMGID=$(docker images  | grep "dev/.*${site} " | head -1 | awk '{print $3}')
-# Get alternate tag name of image id
-IMGREPOTAG=$(docker images | grep ${IMGID} | awk '{print $1 ":" $2}')
-CONTAINERID=$(docker run --name=${container_name} -d -v /usr/local/drupal-infrastructure/dev/mysql.d:/etc/mysql/conf.d -p ${CONTAINERPORT}:3306 $IMGREPOTAG)
-# Give mysql some time to load
-echo "  Letting MYSQL spin up"
-sleep 60
-# Verfiy that the port is active
-nc -z localhost ${CONTAINERPORT} || sleep 10
-nc -z localhost ${CONTAINERPORT} || sleep 10
+# Configure the database and load the binary database snapshot
+mysql -e "CREATE DATABASE ${db_name};"
+mysql -e "GRANT ALL ON ${db_name}.* TO '${db_name}'@'wwwdev1.drupal.bak' IDENTIFIED BY '${db_pass}';"
+ssh dbdev1.drupal.bak sudo /usr/local/drupal-infrastructure/dev/snapshot_to_dev.sh ${db_names[${site}]} ${db_name}
 
 if [ "${site}" = "association" ]; then
   # CiviCRM is not on public dev sites.
@@ -136,7 +121,7 @@ drupal_files="${web_path}/htdocs/$(${drush} status | sed -ne 's/^ *File director
 ln -s /media/nfs/${fqdn} ${drupal_files}
 
 # Sync xhprof webapp directory
-rsync -av /usr/share/xhprof/ "${web_path}/xhprof/htdocs/"
+rsync -av /usr/share/doc/php5-xhprof/ "${web_path}/xhprof/htdocs/"
 
 # Reload apache with new vhost
 restart_apache
@@ -164,7 +149,7 @@ if [ "${site}" == "drupal" ]; then
 
   # Clean up solr and create a read-only core
   ${drush} vset apachesolr_default_environment solr_0
-  ${drush} solr-set-env-url --id="solr_0" http://devsolr1.drupal.aws:8114/solr/do-core1
+  ${drush} solr-set-env-url --id="solr_0" http://solrdev1.drupal.bak:8983/solr/do-core1
   ${drush} solr-vset --id="solr_0" --yes apachesolr_read_only 1
   ${drush} ev "apachesolr_environment_delete(solr_0_0)"
 
@@ -172,7 +157,7 @@ else
   if [ "${bakery_master-}" ]; then
     # Hook up to a Drupal.org
     ${drush} vset bakery_master "https://${bakery_master}-drupal.dev.devdrupal.org/"
-    drush_master="drush6 -r /var/www/dev/${bakery_master}-drupal.dev.devdrupal.org/htdocs -l ${bakery_master}-drupal.dev.devdrupal.org -y"
+    drush_master="drush -r /var/www/dev/${bakery_master}-drupal.dev.devdrupal.org/htdocs -l ${bakery_master}-drupal.dev.devdrupal.org -y"
     ${drush} vset bakery_key $(${drush_master} vget bakery_key --exact --format=string)
     ${drush_master} bakery-add-slave "https://${name}-${site}.dev.devdrupal.org/"
   else
