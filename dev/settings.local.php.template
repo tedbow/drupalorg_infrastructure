@@ -1,6 +1,6 @@
 <?php
 // Drupal 6
-$db_url = 'mysql://DB_USER:DB_PASS@dbdev1.drupal.bak:3306/DB_NAME';
+$db_url = 'mysql://DB_NAME:DB_PASS@dbdev1.drupal.bak:3306/DB_NAME';
 // Drupal 7
 $databases['default']['default'] = array(
   'driver' => 'mysql',
