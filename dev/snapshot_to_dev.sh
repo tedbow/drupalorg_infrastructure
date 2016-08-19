@@ -34,7 +34,7 @@ perl -p -i -e 's/^\) ENGINE=InnoDB.*$/\) ENGINE=InnoDB ROW_FORMAT=compressed DEF
 mysql ${target_db} < /data/dumps/${target_db}/${db}.${stage}-schema.sql 
 
 # Discard the data files for the newly created tables
-( mysql ${target_db} -e "SHOW TABLES" --batch --skip-column-names | xargs -n 1 -P 6 -I{} mysql -e 'ALTER TABLE `'{}'` DISCARD TABLESPACE;' ${target_db})
+( mysql ${target_db} -e "SHOW TABLES" --batch --skip-column-names | xargs -n 1 -P 20 -I{} mysql -e 'ALTER TABLE `'{}'` DISCARD TABLESPACE;' ${target_db})
 
 # Copy the snapshot data files in place
 if [ ${db} == 'drupal' ]; then
@@ -47,7 +47,7 @@ fi
 ( mysql ${target_db} -e "SHOW TABLES" --batch --skip-column-names | xargs -n 1 -P 6 -I{} mysql -e 'ALTER TABLE `'{}'` IMPORT TABLESPACE;' ${target_db})
 
 # Analyze tables to let mysql understand indexes
-( mysql ${target_db} -e "SHOW TABLES" --batch --skip-column-names | xargs -n 1 -P 6 -I{} mysql -e 'ANALYZE TABLE `'{}'`;' ${target_db})
+( mysql ${target_db} -e "SHOW TABLES" --batch --skip-column-names | xargs -n 1 -P 20 -I{} mysql -e 'ANALYZE TABLE `'{}'`;' ${target_db})
 
 # Cleanup the temporary $target_db directory
 rm -rf /data/dumps/${target_db}
