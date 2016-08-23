@@ -5,7 +5,7 @@
 function sanitize {
   # Allow skipping common sanitization. For CiviCRM and anything else
   # non-Drupal.
-  if [ ! "${skip_common-}" ]; then
+  if [ "${skip_common-}" == 0 ]; then
     # Execute common SQL commands.
     [ -f "snapshot/common${suffix}.sql" ] && sudo mysql -o ${db} < "snapshot/common${suffix}.sql"
     # Execute common SQL commands, but don't exit if they fail.
