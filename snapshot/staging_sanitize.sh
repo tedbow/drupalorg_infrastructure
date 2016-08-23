@@ -15,8 +15,6 @@ for db in ${dblist}; do
 
   if [ ${db} == 'association_civicrm' ]; then
     skip_common=1
-  else
-    skip_common=0
   fi
 
   # Truncate all tables with cache in the name.
