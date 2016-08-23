@@ -7,27 +7,21 @@
 db=$(${drush} ${sqlconf} | sed -ne 's/^\s*\[database\] => //p')
 if [ "${suffix-}" != "civicrm" ]; then
   # Use the inactive db for import
-  db=$([[ "${db}" == *1 ]] && echo "${db%?}" || echo "${db}1")
+  target_db=$([[ "${db}" == *1 ]] && echo "${db%?}" || echo "${db}1")
+else
+  target_db=${db}
 fi
 
-# If a snapshot has not been already set in $snapshot, get it from $uri,
-# everything before the first '.' or '-'.
-[ "${snapshot-}" ] || snapshot=$(echo ${uri} | sed -e 's/[.-].*$//')
-
-# If a snapshot type has been designated, use that. Otherwise, default to
-# the 'staging' snapshot.
-[ "${snaptype-}" ] || snaptype=staging
-
-# Copy snapshot.
-rsync -v --copy-links --password-file ~/util.rsync.pass "rsync://stagingmysql@dbutil.drupalsystems.org/mysql-${snaptype}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2" "${WORKSPACE}"
+# Set DB to the original DB name for snapshot imports
+db=$(echo ${db} | sed -e 's/1$//')
 
 # Clear out the DB and import a snapshot.
 (
-  echo "DROP DATABASE ${db};"
-  echo "CREATE DATABASE ${db};"
-  echo "USE ${db};"
-  pbzip2 -d < "${WORKSPACE}/${snapshot}_database_snapshot.${snaptype}-current.sql.bz2"
+  echo "DROP DATABASE ${target_db};"
+  echo "CREATE DATABASE ${target_db};"
 ) | ${drush} ${sqlcli}
+
+ssh dbstg1.drupal.bak sudo /usr/local/drupal-infrastructure/staging/snapshot_to_dbstg.sh ${db} ${target_db}
 
 if [ "${suffix-}" != "civicrm" ]; then
   # Promote the inactive database to active
