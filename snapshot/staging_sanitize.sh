@@ -24,6 +24,11 @@ for db in ${dblist}; do
   echo "SHOW TABLES LIKE 'civicrm_export_temp%';" | sudo mysql -o ${db} | tail -n +2 | sed -e "s/^\(.*\)$/TRUNCATE \1;/" | sudo mysql -o ${db}
   echo "SHOW TABLES LIKE 'civicrm_import_job%';" | sudo mysql -o ${db} | tail -n +2 | sed -e "s/^\(.*\)$/TRUNCATE \1;/" | sudo mysql -o ${db}
 
+  # Ensure all tables are InnoDB
+  for tbl in $(sudo mysql ${db} -B -N -e "SELECT TABLE_NAME FROM information_schema.TABLES WHERE TABLE_SCHEMA = \"${db}\" AND engine = 'MyISAM';"); do
+    sudo mysql -o ${db} -e "ALTER TABLE ${tbl} ENGINE=InnoDB;"
+  done
+
   # Snapshot in stages.
   # Raw is nearly unsanitized, excpet for some keys. Git-dev uses this for emails.
   suffix=.raw
