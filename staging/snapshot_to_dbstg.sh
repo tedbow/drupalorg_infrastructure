@@ -12,10 +12,17 @@ stage=staging
 cd /data/dumps/
 mkdir ${target_db} || true
 
-# Fix drupal db name
-if [ ${db} == 'drupal_staging' ]; then
-  db='drupal'
-fi
+# Fix db name's for non-conformists
+case ${db} in
+  'drupal_staging')
+    db='drupal'
+    ;;
+  'drupal_events')
+    db='events'
+    ;;
+  *)
+    ;;
+esac
 
 # Copy and extract the latest snapshot from dbutil
 rsync -v --copy-links --whole-file --progress -e 'ssh -i /home/bender/.ssh/id_rsa' bender@dbutil1.drupal.bak:/var/dumps/${stage}/${db}.${stage}-binary-current.tar.gz ./
