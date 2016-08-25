@@ -10,7 +10,7 @@ stage=dev
 
 # Working directory
 cd /data/dumps/
-mkdir ${target_db}
+mkdir ${target_db} || true
 
 # Copy and extract the latest snapshot from dbutil
 ## We're now using the rrsync script to limit access for rsync+ssh, this means
