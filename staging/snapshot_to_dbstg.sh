@@ -25,7 +25,10 @@ case ${db} in
 esac
 
 # Copy and extract the latest snapshot from dbutil
-rsync -v --copy-links --whole-file --progress -e 'ssh -i /home/bender/.ssh/id_rsa' bender@dbutil1.drupal.bak:/var/dumps/${stage}/${db}.${stage}-binary-current.tar.gz ./
+## We're now using the rrsync script to limit access for rsync+ssh, this means
+## the ssh is chroot'ed to the proper stage depending on the key in
+## authorized_keys
+rsync -v --copy-links --whole-file --progress -e 'ssh -i /home/bender/.ssh/id_rsa' bender@dbutil1.drupal.bak:/${db}.${stage}-binary-current.tar.gz ./
 tar -I pigz -xvf ${db}.${stage}-binary-current.tar.gz -C ${target_db}
 chown -R mysql:mysql ./${target_db}/${db}/*
 chown bender:bender ./${target_db}/{*.sql,$db}
