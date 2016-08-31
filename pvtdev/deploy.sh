@@ -104,8 +104,7 @@ mysql -e "GRANT ALL ON ${db_name}.* TO '${db_name}'@'wwwpvtdev1.drupal.bak' IDEN
 ssh dbpvtdev1.drupal.bak sudo /usr/local/drupal-infrastructure/dev/snapshot_to_dev.sh ${db_names[${site}]} ${db_name}
 
 if [ "${site}" = "association" ]; then
-  # CiviCRM is not on public dev sites.
-  ${drush} pm-disable civicrm
+  ssh dbpvtdev1.drupal.bak sudo /usr/local/drupal-infrastructure/dev/snapshot_to_dev.sh association_civicrm ${db_name}
 fi
 
 # Run any pending updates.
