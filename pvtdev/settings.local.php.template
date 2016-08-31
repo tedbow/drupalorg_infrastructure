@@ -1,0 +1,49 @@
+<?php
+// Drupal 6
+$db_url = 'mysql://DB_NAME:DB_PASS@dbpvtdev1.drupal.bak:3306/DB_NAME';
+// Drupal 7
+$databases['default']['default'] = array(
+  'driver' => 'mysql',
+  'database' => 'DB_NAME',
+  'username' => 'DB_NAME',
+  'password' => 'DB_PASS',
+  'host'     => 'dbpvtdev1.drupal.bak',
+  'port'     => '3306',
+  'collation' => 'utf8_general_ci',
+);
+
+$base_url = 'https://NAME-SITE.dev.devdrupal.org';
+$cookie_domain = 'NAME-SITE.dev.devdrupal.org';
+
+// Memcache configuration.
+$conf['memcache_key_prefix'] = 'NAME_SITE';
+
+// Do not use Beanstalk for Drupal.org queues.
+unset($conf['queue_class_versioncontrol_repomgr']);
+unset($conf['queue_class_versioncontrol_git_repo_parsing']);
+unset($conf['queue_class_versioncontrol_reposync']);
+unset($conf['queue_class_message_subscribe']);
+unset($conf['queue_class_versioncontrol_repository_event_processor']);
+
+// Do not require TFA for admins.
+$conf['tfa_basic_roles_require'] = array();
+
+$conf['drupalorg_site_status'] = 'This is a <a href="http://drupal.org/node/1018084">development site</a>.';
+
+$conf['simpletest_verbose'] = 1;
+$conf['simpletest_username'] = 'drupal';
+$conf['simpletest_password'] = 'drupal';
+
+$conf['site_name'] = 'NAME SITE dev';
+
+// Allow permissions changes.
+$conf['drupalorg_crosssite_lock_permissions'] = FALSE;
+
+// Devel mail
+$conf['mail_system'] = array(
+  'default-system' => 'DevelMailLog',
+);
+$conf['devel_debug_mail_directory'] = '../devel-mail';
+
+// Local image input filter.
+$conf['filter_html_image_secure_domains'][] = 'NAME-SITE.dev.devdrupal.org';
