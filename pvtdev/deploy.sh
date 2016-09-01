@@ -6,7 +6,7 @@
 
 # Usage: write_template "template" "path/to/destination"
 function write_template {
-  sed -e "s/DB_NAME/${db_name}/g;s/NAME/${name}/g;s/SITE/${site}/g;s/DB_PASS/${db_pass}/g" "dev/${1}" > "${2}"
+  sed -e "s/DB_NAME/${db_name}/g;s/NAME/${name}/g;s/SITE/${site}/g;s/DB_PASS/${db_pass}/g" "pvtdev/${1}" > "${2}"
 }
 
 # Fail early if comment is omitted.
