@@ -260,6 +260,16 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="cache_entity_fieldable_panels_pane",
+    columns=[
+        "cid",
+        "data",
+        "expire",
+        "created",
+        "serialized",
+    ])
+
+whitelist.add(
     table="_nodata:cache_entity_message",
     columns=[
         "cid",
@@ -1331,6 +1341,95 @@ whitelist.add(
         "field_cover_image_title",
         "field_cover_image_width",
         "field_cover_image_height",
+    ])
+
+whitelist.add(
+    table="field_data_field_cta_background",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_cta_background_fid",
+        "field_cta_background_alt",
+        "field_cta_background_title",
+        "field_cta_background_width",
+        "field_cta_background_height",
+    ])
+
+whitelist.add(
+    table="field_data_field_cta_body",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_cta_body_value",
+        "field_cta_body_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_cta_graphic",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_cta_graphic_fid",
+        "field_cta_graphic_alt",
+        "field_cta_graphic_title",
+        "field_cta_graphic_width",
+        "field_cta_graphic_height",
+    ])
+
+whitelist.add(
+    table="field_data_field_cta_link",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_cta_link_url",
+        "field_cta_link_title",
+        "field_cta_link_attributes",
+    ])
+
+whitelist.add(
+    table="field_data_field_cta_secondary_style",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_cta_secondary_style_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_cta_style",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_cta_style_value",
     ])
 
 whitelist.add(
@@ -3645,6 +3744,95 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_revision_field_cta_background",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_cta_background_fid",
+        "field_cta_background_alt",
+        "field_cta_background_title",
+        "field_cta_background_width",
+        "field_cta_background_height",
+    ])
+
+whitelist.add(
+    table="field_revision_field_cta_body",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_cta_body_value",
+        "field_cta_body_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_cta_graphic",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_cta_graphic_fid",
+        "field_cta_graphic_alt",
+        "field_cta_graphic_title",
+        "field_cta_graphic_width",
+        "field_cta_graphic_height",
+    ])
+
+whitelist.add(
+    table="field_revision_field_cta_link",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_cta_link_url",
+        "field_cta_link_title",
+        "field_cta_link_attributes",
+    ])
+
+whitelist.add(
+    table="field_revision_field_cta_secondary_style",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_cta_secondary_style_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_cta_style",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_cta_style_value",
+    ])
+
+whitelist.add(
     table="field_revision_field_current",
     columns=[
         "entity_type",
@@ -5621,6 +5809,47 @@ whitelist.add(
         "upload_fid",
         "upload_display",
         "upload_description",
+    ])
+
+whitelist.add(
+    table="fieldable_panels_pane_type",
+    columns=[
+        "name",
+        "title",
+        "description",
+    ])
+
+whitelist.add(
+    table="fieldable_panels_panes",
+    columns=[
+        "fpid",
+        "vid",
+        "bundle",
+        "title",
+        "link",
+        "path",
+        "reusable",
+        "admin_title",
+        "admin_description",
+        "category",
+        "view_access",
+        "edit_access",
+        "created",
+        "changed",
+        "uuid",
+        "language",
+    ])
+
+whitelist.add(
+    table="fieldable_panels_panes_revision",
+    columns=[
+        "fpid",
+        "vid",
+        "timestamp",
+        "uid",
+        "title",
+        "log",
+        "vuuid",
     ])
 
 whitelist.add(
