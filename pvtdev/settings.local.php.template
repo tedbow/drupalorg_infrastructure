@@ -12,8 +12,8 @@ $databases['default']['default'] = array(
   'collation' => 'utf8_general_ci',
 );
 
-$base_url = 'https://NAME-SITE.dev.devdrupal.org';
-$cookie_domain = 'NAME-SITE.dev.devdrupal.org';
+$base_url = 'https://NAME-SITE.private.devdrupal.org';
+$cookie_domain = 'NAME-SITE.private.devdrupal.org';
 
 // Memcache configuration.
 $conf['memcache_key_prefix'] = 'NAME_SITE';
@@ -46,4 +46,4 @@ $conf['mail_system'] = array(
 $conf['devel_debug_mail_directory'] = '../devel-mail';
 
 // Local image input filter.
-$conf['filter_html_image_secure_domains'][] = 'NAME-SITE.dev.devdrupal.org';
+$conf['filter_html_image_secure_domains'][] = 'NAME-SITE.private.devdrupal.org';

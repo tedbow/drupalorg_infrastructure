@@ -1,22 +1,22 @@
 <VirtualHost *:8080>
-  ServerName NAME-SITE.dev.devdrupal.org
+  ServerName NAME-SITE.private.devdrupal.org
 
-  DocumentRoot /var/www/dev/NAME-SITE.dev.devdrupal.org/htdocs
+  DocumentRoot /var/www/dev/NAME-SITE.private.devdrupal.org/htdocs
 
   AddOutputFilterByType DEFLATE text/css application/javascript application/x-javascript text/html
   Header add Vary "Accept-Encoding"
 
   # Route php files to php-fpm
   RewriteEngine On
-  ProxyPassMatch ^/(.*\.php(/.*)?)$ fcgi://127.0.0.1:9000/var/www/dev/NAME-SITE.dev.devdrupal.org/htdocs/$1
+  ProxyPassMatch ^/(.*\.php(/.*)?)$ fcgi://127.0.0.1:9000/var/www/dev/NAME-SITE.private.devdrupal.org/htdocs/$1
   DirectoryIndex /index.php index.php
 
   ## Logging
   ErrorLog "syslog:local7"
   ServerSignature Off
-  CustomLog "|/usr/bin/logger -t apache2-NAME-SITE.dev.devdrupal.org/ssl -p local6.info" combined 
+  CustomLog "|/usr/bin/logger -t apache2-NAME-SITE.private.devdrupal.org/ssl -p local6.info" combined 
 
-  <Directory "/var/www/dev/NAME-SITE.dev.devdrupal.org/htdocs">
+  <Directory "/var/www/dev/NAME-SITE.private.devdrupal.org/htdocs">
     Options FollowSymlinks
     AllowOverride None
     Require all granted
@@ -29,19 +29,19 @@
 
 </VirtualHost>  
 <VirtualHost *:8080>
-  ServerName xhprof-NAME-SITE.dev.devdrupal.org
+  ServerName xhprof-NAME-SITE.private.devdrupal.org
 
-  DocumentRoot /var/www/dev/NAME-SITE.dev.devdrupal.org/xhprof/htdocs
+  DocumentRoot /var/www/dev/NAME-SITE.private.devdrupal.org/xhprof/htdocs
 
   AddOutputFilterByType DEFLATE text/css application/javascript application/x-javascript text/html
   Header add Vary "Accept-Encoding"
 
   # Route php files to php-fpm
   RewriteEngine On
-  ProxyPassMatch ^/(.*\.php(/.*)?)$ fcgi://127.0.0.1:9000/var/www/dev/NAME-SITE.dev.devdrupal.org/xhprof/htdocs/$1
+  ProxyPassMatch ^/(.*\.php(/.*)?)$ fcgi://127.0.0.1:9000/var/www/dev/NAME-SITE.private.devdrupal.org/xhprof/htdocs/$1
   DirectoryIndex /index.php index.php
 
-  <Directory "/var/www/dev/NAME-SITE.dev.devdrupal.org/xhprof/htdocs">
+  <Directory "/var/www/dev/NAME-SITE.private.devdrupal.org/xhprof/htdocs">
     DirectoryIndex index.php
     AllowOverride None
     Require all granted

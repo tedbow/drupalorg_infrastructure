@@ -19,7 +19,7 @@ export TERM=dumb
   for domain in $(ls "/var/www/dev"); do
     echo ${domain}
     cd "/var/www/dev/${domain}/htdocs"
-    site=$(echo "${domain}" | sed -e 's/\.dev.devdrupal\.devdrupal\.org$//;s/^.*-//')
+    site=$(echo "${domain}" | sed -e 's/\.private.devdrupal\.devdrupal\.org$//;s/^.*-//')
     echo "SELECT from_unixtime(max(access)) AS 'Last access' FROM users;" | drush sql-cli | xargs echo
     echo
   done
