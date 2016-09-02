@@ -260,7 +260,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="cache_entity_fieldable_panels_pane",
+    table="_nodata:cache_entity_fieldable_panels_pane",
     columns=[
         "cid",
         "data",
