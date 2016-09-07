@@ -2,7 +2,7 @@
 # Create a development environment for a given "name" on wwwpvtdev1/dbpvtdev1
 
 # Include common dev script.
-. dev/common.sh
+. pvtdev/common.sh
 
 # Usage: write_template "template" "path/to/destination"
 function write_template {

@@ -2,7 +2,7 @@
 # Remove a development environment for a given "name" on devwww2
 
 # Include common dev script.
-. dev/common.sh
+. pvtdev/common.sh
 
 if [ ! -e "${web_path}" ] || [ ! -e "${vhost_path}" ]; then
   echo "Cannot find environment for ${name} in ${web_path} or ${vhost_path}"
