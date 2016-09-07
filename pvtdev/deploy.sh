@@ -110,14 +110,14 @@ fi
 # Run any pending updates.
 ${drush} -v updatedb --interactive
 
-# Disable modules that don't work well in development (yet)
-${drush} pm-disable paranoia
-${drush} pm-disable beanstalkd
-
 # Link up the files directory
 drupal_files="${web_path}/htdocs/$(${drush} status | sed -ne 's/^ *File directory path *: *\([^ ]*\).*$/\1/p')"
 [ -d ${drupal_files} ] && rm -rf ${drupal_files}
 ln -s /media/nfs/${fqdn} ${drupal_files}
+
+# Disable modules that don't work well in development (yet)
+${drush} pm-disable paranoia
+${drush} pm-disable beanstalkd
 
 # Sync xhprof webapp directory
 rsync -av /usr/share/doc/php5-xhprof/ "${web_path}/xhprof/htdocs/"
