@@ -141,6 +141,9 @@ ${drush} vset devel_xhprof_url "https://xhprof-${name}-${site}.private.devdrupal
 ${drush} vset mailchimp_api_key nope
 ${drush} vset mailchimp_api_classname MailChimpTest
 
+if [ "${site}" = "association" ]; then
+  sudo chown -R drupal_site:developers "${web_path}/civicrm-files"
+fi
 
 # Set up for potential bakery testing
 ${drush} vdel bakery_slaves
