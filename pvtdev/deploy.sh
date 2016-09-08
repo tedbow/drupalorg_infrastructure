@@ -110,10 +110,6 @@ mysql -e "CREATE DATABASE ${db_name};"
 mysql -e "GRANT ALL ON ${db_name}.* TO '${db_name}'@'wwwpvtdev1.drupal.bak' IDENTIFIED BY '${db_pass}';"
 ssh dbpvtdev1.drupal.bak sudo /usr/local/drupal-infrastructure/pvtdev/snapshot_to_pvtdev.sh ${db_names[${site}]} ${db_name}
 
-if [ "${site}" = "association" ]; then
-  ssh dbpvtdev1.drupal.bak sudo /usr/local/drupal-infrastructure/pvtdev/snapshot_to_pvtdev.sh association_civicrm ${db_name}
-fi
-
 # Run any pending updates.
 ${drush} -v updatedb --interactive
 
