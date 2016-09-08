@@ -1,7 +1,7 @@
 <?php
 global $civicrm_root;
 $db_url = 'mysql://DB_NAME:DB_PASS@dbpvtdev1.drupal.bak:3306/DB_NAME';
-$civicrm_root = '/var/www/NAME-SITE.private.devdrupal.org/htdocs/sites/all/modules/civicrm';
+$civicrm_root = '/var/www/dev/NAME-SITE.private.devdrupal.org/htdocs/sites/all/modules/civicrm';
 define('CIVICRM_TEMPLATE_COMPILEDIR', '/var/www/dev/NAME-SITE.private.devdrupal.org/civicrm-files/templates_c/');
 define('CIVICRM_UF_BASEURL', 'https://NAME-SITE.private.devdrupal.org/');
 
