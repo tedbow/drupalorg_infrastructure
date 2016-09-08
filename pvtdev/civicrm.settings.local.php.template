@@ -1,0 +1,19 @@
+<?php
+global $civicrm_root;
+$db_url = 'mysql://DB_NAME:DB_PASS@dbpvtdev1.drupal.bak:3306/DB_NAME';
+$civicrm_root = '/var/www/NAME-SITE.private.devdrupal.org/htdocs/sites/all/modules/civicrm';
+define('CIVICRM_TEMPLATE_COMPILEDIR', '/var/www/dev/NAME-SITE.private.devdrupal.org/civicrm-files/templates_c/');
+define('CIVICRM_UF_BASEURL', 'https://NAME-SITE.private.devdrupal.org/');
+
+
+# Drupal
+define('CIVICRM_UF_DSN', 'mysql://DB_NAME:DB_PASS@dbpvtdev1.drupal.bak/DB_NAME?new_link=true');
+
+# CiviCRM
+define('CIVICRM_DSN', 'mysql://DB_NAME:DB_PASS@dbpvtdev1.drupal.bak/DB_NAME?new_link=true');
+
+if (isset($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
+    $_SERVER['X_FORWARDED_PROTO'] = 'https';
+      $_SERVER['HTTPS'] = 'on';
+}
+

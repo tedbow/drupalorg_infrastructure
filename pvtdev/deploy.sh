@@ -78,6 +78,13 @@ fi
 # Add settings.local.php
 write_template "settings.local.php.template" "${web_path}/htdocs/sites/default/settings.local.php"
 
+# For private association site dev, add civicrm bits
+if [ "${site}" = "association" ]; then
+  write_template "civicrm.settings.local.php.template" "${web_path}/htdocs/sites/default/civicrm.settings.local.php"
+  mkdir -p "${web_path}/civicrm-files"
+  sudo chown -R drupal_site:developers "${web_path}/civicrm-files"
+fi
+
 # Add .user.ini PHP settings
 write_template "user.ini.template" "${web_path}/htdocs/.user.ini"
 write_template "user.ini.template" "${web_path}/xhprof/htdocs/.user.ini"
