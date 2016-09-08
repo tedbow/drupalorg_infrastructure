@@ -30,7 +30,7 @@ perl -p -i -e 's/^\) ENGINE=InnoDB.*$/\) ENGINE=InnoDB ROW_FORMAT=compressed DEF
 mysql ${target_db} < /data/dumps/${target_db}/${db}.${stage}-schema.sql 
 
 # Association sites also get the CiviCRM database in private environments
-if [ ${db} == 'drupal_assocation' ]; then
+if [ ${db} == 'drupal_association' ]; then
   rsync -v --copy-links --progress -e 'ssh -i /home/bender/.ssh/id_rsa' bender@dbutil1.drupal.bak:/association_civicrm.${stage}-binary-current.tar.gz ./
   tar -I pigz -xvf association_civicrm.${stage}-binary-current.tar.gz -C ${target_db}
   chown -R mysql:mysql ./${target_db}/association_civicrm/*
@@ -46,7 +46,7 @@ fi
 mv ${target_db}/${db}/{*.ibd,*.cfg} /var/lib/mysql/${target_db}/
 
 # Special copy for civicrm
-if [ ${db} == 'drupal_assocation' ]; then
+if [ ${db} == 'drupal_association' ]; then
   mv ${target_db}/association_civicrm/{*.ibd,*.cfg} /var/lib/mysql/${target_db}/
 fi
 
