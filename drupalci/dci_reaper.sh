@@ -16,7 +16,7 @@ instances=$(aws ec2 describe-instances --filters \
 if [ "x`printf '%s' "$instances" | tr -d "$IFS"`" != x ]; then
   echo "Unprovisioned instances detected"
   # Terminate instances
-  #aws ec2 terminate-instances --instance-ids ${instances}
+  aws ec2 terminate-instances --instance-ids ${instances}
 fi
 
 # Query for instances running for > 24 hours
@@ -30,6 +30,5 @@ instances=$(aws ec2 describe-instances --filters \
 if [ "x`printf '%s' "$instances" | tr -d "$IFS"`" != x ]; then
   echo "Long running (>24 hours) instances detected"
   aws ec2 describe-instances --instance-ids ${instances} | \
-    mail -s "Instances: ${instances} have been running for > 24 hours" rudy@association.drupal.org
+    mail -s "Instances: ${instances} have been running for > 24 hours" sitemaint@association.drupal.org
 fi
-
