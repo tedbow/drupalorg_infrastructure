@@ -112,8 +112,7 @@ fi
 ${drush} -v updatedb --interactive
 
 # Disable modules that don't work well in development (yet)
-${drush} pm-disable paranoia
-${drush} pm-disable beanstalkd
+${drush} pm-disable paranoia beanstalkd
 
 # Link up the files directory
 drupal_files="${web_path}/htdocs/$(${drush} status | sed -ne 's/^ *File directory path *: *\([^ ]*\).*$/\1/p')"
