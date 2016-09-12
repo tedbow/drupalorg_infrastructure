@@ -330,6 +330,16 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="_nodata:cache_feeds_http",
+    columns=[
+        "cid",
+        "data",
+        "expire",
+        "created",
+        "serialized",
+    ])
+
+whitelist.add(
     table="_nodata:cache_forum",
     columns=[
         "cid",
@@ -1008,6 +1018,65 @@ whitelist.add(
         "facet",
         "enabled",
         "settings",
+    ])
+
+whitelist.add(
+    table="feeds_importer",
+    columns=[
+        "id",
+        "config",
+    ])
+
+whitelist.add(
+    table="feeds_item",
+    columns=[
+        "entity_type",
+        "entity_id",
+        "id",
+        "feed_nid",
+        "imported",
+        "url",
+        "guid",
+        "hash",
+    ])
+
+whitelist.add(
+    table="feeds_log",
+    columns=[
+        "flid",
+        "id",
+        "feed_nid",
+        "log_time",
+        "request_time",
+        "type",
+        "message",
+        "variables",
+        "severity",
+    ])
+
+whitelist.add(
+    table="feeds_push_subscriptions",
+    columns=[
+        "domain",
+        "subscriber_id",
+        "timestamp",
+        "hub",
+        "topic",
+        "secret",
+        "status",
+        "post_fields",
+    ])
+
+whitelist.add(
+    table="feeds_source",
+    columns=[
+        "id",
+        "feed_nid",
+        "config",
+        "source",
+        "state",
+        "fetcher_result",
+        "imported",
     ])
 
 whitelist.add(
@@ -6011,6 +6080,24 @@ whitelist.add(
     columns=[
         "presetid",
         "presetname",
+    ])
+
+whitelist.add(
+    table="job_schedule",
+    columns=[
+        "item_id",
+        "name",
+        "type",
+        "id",
+        "period",
+        "crontab",
+        "data",
+        "expire",
+        "created",
+        "last",
+        "periodic",
+        "next",
+        "scheduled",
     ])
 
 whitelist.add(
