@@ -16,7 +16,10 @@ instances=$(aws ec2 describe-instances --filters \
 if [ "x`printf '%s' "$instances" | tr -d "$IFS"`" != x ]; then
   echo "Unprovisioned instances detected"
   # Terminate instances
-  aws ec2 terminate-instances --instance-ids ${instances}
+  #aws ec2 terminate-instances --instance-ids ${instances}
+  aws ec2 describe-instances --instance-ids ${instances} \
+    --query 'Reservations[].Instances[].{InstanceId: InstanceId, LaunchTime: LaunchTime, Name: Tags[?Key==`Name`].Value}' | \
+    jq '.' | mail -s "Instances: ${instances} are untagged" sitemaint@association.drupal.org
 fi
 
 # Query for instances running for > 24 hours
