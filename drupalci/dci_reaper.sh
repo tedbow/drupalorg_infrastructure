@@ -1,6 +1,9 @@
 #!/bin/bash
 # Terminate or notify of instances which may be wasting DA monies
 
+# Exit immediately on uninitialized variable or error, and print each command.
+set -uex
+
 minuteago=$(date --date '30 minutes ago' +%Y-%m-%d\T%H\:%m\:%S)
 dayago=$(date --date '1 day ago' +%Y-%m-%d\T%H\:%m\:%S)
 
