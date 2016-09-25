@@ -7506,12 +7506,6 @@ whitelist.update(
         "git_disabled",
     ])
 
-whitelist.update(
-    table="block",
-    columns=[
-        "css_class",
-    ])
-
 whitelist.add(
     table="_nodata:tfa_accepted_code",
     columns=[
