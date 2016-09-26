@@ -82,12 +82,6 @@ write_template "settings.local.php.template" "${web_path}/htdocs/sites/default/s
 write_template "user.ini.template" "${web_path}/htdocs/.user.ini"
 write_template "user.ini.template" "${web_path}/xhprof/htdocs/.user.ini"
 
-# Strongarm the permissions
-echo "Forcing proper permissions on ${web_path}"
-sudo find "${web_path}" -type d -exec chmod g+rwx {} +
-sudo find "${web_path}" -type f -exec chmod g+rw {} +
-sudo chgrp -R developers "${web_path}"
-
 # Add traces directory after global chown
 mkdir -p "${web_path}/xhprof/traces"
 sudo chown -R drupal_site:www-data "${web_path}/xhprof/traces"
@@ -97,6 +91,12 @@ mkdir -p "${web_path}/files-tmp"
 sudo chown -R drupal_site:developers "${web_path}/files-tmp"
 mkdir -p "${web_path}/devel-mail"
 sudo chown -R drupal_site:developers "${web_path}/devel-mail"
+
+# Strongarm the permissions
+echo "Forcing proper permissions on ${web_path}"
+sudo find "${web_path}" -type d -exec chmod 2775 {} +
+sudo find "${web_path}" -type f -exec chmod 0664 {} +
+sudo chgrp -R developers "${web_path}"
 
 # Configure the database and load the binary database snapshot
 mysql -e "CREATE DATABASE ${db_name};"
