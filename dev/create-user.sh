@@ -9,3 +9,4 @@ sudo /usr/sbin/useradd --create-home --gid users --groups developers --shell /bi
 sudo mkdir "/home/${username}/.ssh"
 sudo bash -c "echo \"${sshkey}\" >> /home/${username}/.ssh/authorized_keys"
 sudo chown -R "${username}:users" "/home/${username}/.ssh"
+sudo chmod 700 "/home/${username}"
