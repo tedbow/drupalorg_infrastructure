@@ -135,7 +135,6 @@ ${drush} vdel preprocess_css
 ${drush} vdel preprocess_js
 ${drush} pm-enable devel
 ${drush} pm-enable views_ui
-${drush} pm-enable imagecache_ui || true # May not exist on D6.
 ${drush} vset devel_xhprof_directory "/var/www/dev/${name}-${site}.private.devdrupal.org/xhprof/htdocs"
 ${drush} vset devel_xhprof_url "https://xhprof-${name}-${site}.private.devdrupal.org/xhprof_html"
 ${drush} vset mailchimp_api_key nope
