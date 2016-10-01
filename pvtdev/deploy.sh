@@ -130,7 +130,6 @@ restart_apache
 
 # Get ready for development
 ${drush} vset cache 0
-${drush} vset error_level 2
 ${drush} vdel preprocess_css
 ${drush} vdel preprocess_js
 ${drush} pm-enable devel
