@@ -15,9 +15,6 @@ $databases['default']['default'] = array(
 $base_url = 'https://NAME-SITE.private.devdrupal.org';
 $cookie_domain = 'NAME-SITE.private.devdrupal.org';
 
-// Memcache configuration.
-$conf['memcache_key_prefix'] = 'NAME_SITE';
-
 // Do not use Beanstalk for Drupal.org queues.
 unset($conf['queue_class_versioncontrol_repomgr']);
 unset($conf['queue_class_versioncontrol_git_repo_parsing']);
