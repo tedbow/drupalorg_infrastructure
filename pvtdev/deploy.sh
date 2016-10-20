@@ -3,6 +3,7 @@
 
 # Include common dev script.
 . pvtdev/common.sh
+umask 002
 
 # Usage: write_template "template" "path/to/destination"
 function write_template {
