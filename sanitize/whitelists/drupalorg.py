@@ -6581,6 +6581,7 @@ whitelist.add(
         "environment",
         "release_nid",
         "testing",
+        "core_branch",
     ])
 
 whitelist.add(
