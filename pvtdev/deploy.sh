@@ -142,6 +142,7 @@ ${drush} vset mailchimp_api_classname MailChimpTest
 
 if [ "${site}" = "association" ]; then
   sudo chown -R drupal_site:developers "${web_path}/civicrm-files"
+  ${drush} -v compile-templates
 fi
 
 # Set up for potential bakery testing
