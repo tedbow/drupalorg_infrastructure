@@ -12,8 +12,8 @@ define('CIVICRM_UF_DSN', 'mysql://DB_NAME:DB_PASS@dbpvtdev1.drupal.bak/DB_NAME?n
 # CiviCRM
 define('CIVICRM_DSN', 'mysql://DB_NAME:DB_PASS@dbpvtdev1.drupal.bak/DB_NAME?new_link=true');
 
-if (isset($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
-    $_SERVER['X_FORWARDED_PROTO'] = 'https';
-      $_SERVER['HTTPS'] = 'on';
+if (TRUE || isset($_SERVER['HTTP_X_FORWARDED_PROTO'])) {
+  $_SERVER['X_FORWARDED_PROTO'] = 'https';
+  $_SERVER['HTTPS'] = 'on';
 }
 
