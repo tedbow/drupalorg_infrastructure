@@ -24,6 +24,11 @@ case ${db} in
     ;;
 esac
 
+# Remove stale data, if it exists
+rm -rf /var/lib/mysql/${target_db}/{*.ibd,*.cfg,*.frm} || true
+mysql -e "DROP DATABASE ${target_db};"
+mysql -e "CREATE DATABASE ${target_db};"
+
 # Copy and extract the latest snapshot from dbutil
 ## We're now using the rrsync script to limit access for rsync+ssh, this means
 ## the ssh is chroot'ed to the proper stage depending on the key in
