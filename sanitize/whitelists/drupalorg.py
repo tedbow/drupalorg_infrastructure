@@ -927,6 +927,26 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="_nodata:drupalorg_comment_deleted",
+    columns=[
+        "cid",
+        "pid",
+        "nid",
+        "uid",
+        "subject",
+        "hostname",
+        "created",
+        "changed",
+        "status",
+        "thread",
+        "name",
+        "mail",
+        "homepage",
+        "language",
+        "comment_body",
+    ])
+
+whitelist.add(
     table="drupalorg_crosssite_ind_civimembership",
     columns=[
         "user_name",
