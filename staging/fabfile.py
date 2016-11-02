@@ -38,5 +38,6 @@ def deploy():
 @parallel
 def clone():
     run("mkdir -p %s" % clone_path)
+    run("chown bender:bender %s" % clone_path)
     run("git clone %s %s" % (repo_url,clone_path))
 
