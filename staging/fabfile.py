@@ -39,7 +39,7 @@ else:
 def deploy():
     with cd("%s" % clone_path):
         run("git pull")
-        sudo("service php5-fpm reload")
+        run("/usr/sbin/service php5-fpm reload")
 
 @parallel
 def clone():
@@ -48,7 +48,7 @@ def clone():
     run("git clone %s %s" % (repo_url,clone_path))
 
 def symlink():
-    sudo("ln -sfv /mnt/nfs/%s/files-tmp/ %s/../files-tmp" % (env.uri,clone_path))
-    sudorun("ln -sfv /mnt/nfs/%s/htdocs/%s %s/%s" % (env.uri,files_path,clone_path,files_path))
-    sudorun("ln -sfv /mnt/nfs/%s/htdocs/sites/default/settings.local.php %s/sites/default/settings.local.php" % (env.uri,clone_path))
+    run("sudo /bin/ln -sfv /mnt/nfs/%s/files-tmp/ %s/../files-tmp" % (env.uri,clone_path))
+    run("sudo /bin/ln -sfv /mnt/nfs/%s/htdocs/%s %s/%s" % (env.uri,files_path,clone_path,files_path))
+    run("sudo /bin/ln -sfv /mnt/nfs/%s/htdocs/sites/default/settings.local.php %s/sites/default/settings.local.php" % (env.uri,clone_path))
 
