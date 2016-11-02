@@ -1,13 +1,15 @@
 from fabric.api import *
 
 # Hosts for staging
-env.hosts = ["btchstg1", "wwwstg1", "wwwstg2", "gitstg1", "gitstg2"]
+env.hosts = ["btchstg1", "wwwstg1", "wwwstg2"]
 
 # Set clone path based on deploy.sh uri
 clone_path = ("/var/www/%s/htdocs" % env.uri)
 
 # Per site configurations
 if env.uri == "staging.devdrupal.org":
+    # www.staging also gets deployed to git servers
+    env.hosts.extend(["gitstg1", "gitstg2"])
     repo_url = "git@bitbucket.org:drupalorg-infrastructure/drupal.org-built.git"
     files_path = ("files")
 elif env.uri == "api.staging.devdrupal.org":
