@@ -1,7 +1,7 @@
 from fabric.api import *
 
 # Hosts for staging
-env.hosts = ["wwwstg1", "wwwstg2", "btchstg1"]
+env.hosts = ["btchstg1", "wwwstg1", "wwwstg2", "gitstg1", "gitstg2"]
 
 # Per site configurations
 if env.site == "drupal":
