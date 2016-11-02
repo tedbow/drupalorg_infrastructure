@@ -39,7 +39,7 @@ else:
 def deploy():
     with cd("%s" % clone_path):
         run("git pull")
-        run("/usr/sbin/service php5-fpm reload")
+        run("sudo /usr/sbin/service php5-fpm reload")
 
 @parallel
 def clone():
