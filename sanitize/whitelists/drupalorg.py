@@ -6565,6 +6565,7 @@ whitelist.add(
         "bypass_uid",
         "core_branch",
         "custom",
+        "issue_branch",
     ])
 
 whitelist.add(
