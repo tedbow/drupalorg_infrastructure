@@ -1,7 +1,7 @@
 from fabric.api import *
 
-# Hosts for staging
-env.hosts = ["jenkins1.drupal.bak"]
+# Hosts for production
+env.hosts = ["jenkins1.drupal.org"]
 
 # Set clone path based on deploy.sh uri
 clone_path = ("/var/www/%s/htdocs" % env.uri)
