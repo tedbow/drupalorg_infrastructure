@@ -59,7 +59,7 @@ def symlink():
         run("sudo /bin/ln -sfv /mnt/nfs/%s/htdocs/%s %s/%s" % (env.uri,files_path,clone_path,files_path))
         run("sudo /bin/ln -sfv /mnt/nfs/%s/htdocs/sites/default/settings.local.php %s/sites/default/settings.local.php" % (env.uri,clone_path))
         # CiviCRM on assoc also needs its files/settings symlinked
-        if env.uri == "assoc.drupal.org":
+        if env.uri == "association.drupal.org":
             run("sudo /bin/ln -sfv /mnt/nfs/%s/htdocs/sites/default/civicrm.settings.local.php %s/sites/default/civicrm.settings.local.php" % (env.uri,clone_path))
             run("sudo /bin/ln -sfv /mnt/nfs/%s/civicrm-files/ %s/../civicrm-files" % (env.uri,clone_path))
 
