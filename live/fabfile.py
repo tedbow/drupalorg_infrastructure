@@ -15,7 +15,7 @@ if env.uri == "drupal.org":
 elif env.uri == "api.drupal.org":
     repo_url = "git@bitbucket.org:drupalorg-infrastructure/api.drupal.org-built.git"
     files_path = ("sites/default/files")
-elif env.uri == "assoc.drupal.org":
+elif env.uri == "association.drupal.org":
     repo_url = "git@bitbucket.org:drupalorg-infrastructure/assoc.drupal.org-built.git"
     files_path = ("files")
 elif env.uri == "events.drupal.org":
