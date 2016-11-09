@@ -1,8 +1,9 @@
 # Include common live script.
 . live/common.sh 'deploy'
 
+# Update code.
+fab -f /usr/local/drupal-infrastructure/live/fabfile.py --set uri=${uri} deploy
 cd ${webroot}
-git pull
 
 if [ "${updatedb-}" = "true" ]; then
   ${drush} -v updatedb --interactive
