@@ -62,6 +62,10 @@ def symlink():
         if env.uri == "association.drupal.org":
             run("sudo /bin/ln -sfv /mnt/nfs/%s/htdocs/sites/default/civicrm.settings.local.php %s/sites/default/civicrm.settings.local.php" % (env.uri,clone_path))
             run("sudo /bin/ln -sfv /mnt/nfs/%s/civicrm-files/ %s/../civicrm-files" % (env.uri,clone_path))
+            run("sudo /bin/ln -sfv /mnt/nfs/%s/civicrm-sessions/ %s/../civicrm-sessions" % (env.uri,clone_path))
+        # private-files dirs
+        if env.uri == "jobs.drupal.org":
+            run("sudo /bin/ln -sfv /mnt/nfs/%s/files-private/ %s/../files-private" % (env.uri,clone_path))
 
 def symlinkstatic():
     run("sudo /bin/ln -sfv /mnt/nfs/amsterdam2014.drupal.org /var/www/amsterdam2014.drupal.org")

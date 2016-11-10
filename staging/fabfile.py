@@ -50,11 +50,16 @@ def clone():
     run("git clone %s %s" % (repo_url,clone_path))
 
 def symlink():
-    run("sudo /bin/ln -sfv /mnt/nfs/%s/files-tmp/ %s/../files-tmp" % (env.uri,clone_path))
-    run("sudo /bin/ln -sfv /mnt/nfs/%s/htdocs/%s %s/%s" % (env.uri,files_path,clone_path,files_path))
-    run("sudo /bin/ln -sfv /mnt/nfs/%s/htdocs/sites/default/settings.local.php %s/sites/default/settings.local.php" % (env.uri,clone_path))
-    # CiviCRM on assoc also needs its files/settings symlinked
-    if env.uri == "assoc.staging.devdrupal.org":
-        run("sudo /bin/ln -sfv /mnt/nfs/%s/htdocs/sites/default/civicrm.settings.local.php %s/sites/default/civicrm.settings.local.php" % (env.uri,clone_path))
-        run("sudo /bin/ln -sfv /mnt/nfs/%s/civicrm-files/ %s/../civicrm-files" % (env.uri,clone_path))
+    if files_path:
+        run("sudo /bin/ln -sfv /mnt/nfs/%s/files-tmp/ %s/../files-tmp" % (env.uri,clone_path))
+        run("sudo /bin/ln -sfv /mnt/nfs/%s/htdocs/%s %s/%s" % (env.uri,files_path,clone_path,files_path))
+        run("sudo /bin/ln -sfv /mnt/nfs/%s/htdocs/sites/default/settings.local.php %s/sites/default/settings.local.php" % (env.uri,clone_path))
+        # CiviCRM on assoc also needs its files/settings symlinked
+        if env.uri == "assoc.staging.devdrupal.org":
+            run("sudo /bin/ln -sfv /mnt/nfs/%s/htdocs/sites/default/civicrm.settings.local.php %s/sites/default/civicrm.settings.local.php" % (env.uri,clone_path))
+            run("sudo /bin/ln -sfv /mnt/nfs/%s/civicrm-files/ %s/../civicrm-files" % (env.uri,clone_path))
+            run("sudo /bin/ln -sfv /mnt/nfs/%s/civicrm-sessions/ %s/../civicrm-sessions" % (env.uri,clone_path))
+        # private-files dirs
+        if env.uri == "jobs.staging.devdrupal.org":
+            run("sudo /bin/ln -sfv /mnt/nfs/%s/files-private/ %s/../files-private" % (env.uri,clone_path))
 
