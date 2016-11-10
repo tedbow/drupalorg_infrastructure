@@ -75,6 +75,7 @@ def symlinkstatic():
     run("sudo /bin/ln -sfv /mnt/nfs/denver2012.drupal.org /var/www/denver2012.drupal.org")
     run("sudo /bin/ln -sfv /mnt/nfs/latinamerica2015.drupal.org /var/www/latinamerica2015.drupal.org")
     run("sudo /bin/ln -sfv /mnt/nfs/london2011.drupal.org /var/www/london2011.drupal.org")
+    run("sudo /bin/ln -sfv /mnt/nfs/munich2012.drupal.org /var/www/munich2012.drupal.org")
     run("sudo /bin/ln -sfv /mnt/nfs/paris2009.drupalcon.org /var/www/paris2009.drupalcon.org")
     run("sudo /bin/ln -sfv /mnt/nfs/portland2013.drupal.org /var/www/portland2013.drupal.org")
     run("sudo /bin/ln -sfv /mnt/nfs/prague2013.drupal.org /var/www/prague2013.drupal.org")
@@ -82,3 +83,4 @@ def symlinkstatic():
     run("sudo /bin/ln -sfv /mnt/nfs/saopaulo2012.drupal.org /var/www/saopaulo2012.drupal.org")
     run("sudo /bin/ln -sfv /mnt/nfs/sydney2013.drupal.org /var/www/sydney2013.drupal.org")
     run("sudo /bin/ln -sfv /mnt/nfs/szeged2008.drupalcon.org /var/www/szeged2008.drupalcon.org")
+    run("sudo /bin/ln -sfv /mnt/nfs/qa.drupal.org /var/www/qa.drupal.org")
