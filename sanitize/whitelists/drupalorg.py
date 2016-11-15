@@ -1647,6 +1647,20 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_earliest_applicable_versio",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_earliest_applicable_versio_value",
+        "field_earliest_applicable_versio_format",
+    ])
+
+whitelist.add(
     table="field_data_field_examples_recorded",
     columns=[
         "entity_type",
@@ -2042,6 +2056,20 @@ whitelist.add(
         "delta",
         "field_last_name_value",
         "field_last_name_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_latest_applicable_version",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_latest_applicable_version_value",
+        "field_latest_applicable_version_format",
     ])
 
 whitelist.add(
@@ -2554,6 +2582,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_project_doc_guide_name",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_doc_guide_name_target_id",
+    ])
+
+whitelist.add(
     table="field_data_field_project_documentation",
     columns=[
         "entity_type",
@@ -2566,6 +2607,20 @@ whitelist.add(
         "field_project_documentation_url",
         "field_project_documentation_title",
         "field_project_documentation_attributes",
+    ])
+
+whitelist.add(
+    table="field_data_field_project_docs",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_docs_value",
+        "field_project_docs_revision_id",
     ])
 
 whitelist.add(
@@ -4074,6 +4129,20 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_revision_field_earliest_applicable_versio",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_earliest_applicable_versio_value",
+        "field_earliest_applicable_versio_format",
+    ])
+
+whitelist.add(
     table="field_revision_field_events_attended",
     columns=[
         "entity_type",
@@ -4482,6 +4551,20 @@ whitelist.add(
         "delta",
         "field_last_name_value",
         "field_last_name_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_latest_applicable_version",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_latest_applicable_version_value",
+        "field_latest_applicable_version_format",
     ])
 
 whitelist.add(
@@ -4994,6 +5077,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_revision_field_project_doc_guide_name",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_doc_guide_name_target_id",
+    ])
+
+whitelist.add(
     table="field_revision_field_project_documentation",
     columns=[
         "entity_type",
@@ -5006,6 +5102,20 @@ whitelist.add(
         "field_project_documentation_url",
         "field_project_documentation_title",
         "field_project_documentation_attributes",
+    ])
+
+whitelist.add(
+    table="field_revision_field_project_docs",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_docs_value",
+        "field_project_docs_revision_id",
     ])
 
 whitelist.add(
