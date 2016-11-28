@@ -1,6 +1,5 @@
 #!/bin/bash
 
-###Call with sitename (which is also the git repo name, core version, and stg/prod
 set -uex
 export TERM=dumb
 BUILDBASE='/var/git/builds'
@@ -9,16 +8,7 @@ if [ -z "${site}" ]; then
   exit 1
 fi
 
-if [ "${GIT_BRANCH-}" ]; then
-  branch="$(echo "${GIT_BRANCH}" | sed -e 's#^origin/##')"
-elif [ "${version-}" ]; then
-  versions=(6 7 8)
-  if [[ ! ${versions[*]} =~ "${version}" ]]; then
-    echo "bad version"
-    exit 1
-  fi
-  branch="${version}.x-${branch}"
-fi
+branch="$(echo "${GIT_BRANCH}" | sed -e 's#^origin/##')"
 
 BUILDPATH="${site}"
 #Lets do some check_plain's for bash
