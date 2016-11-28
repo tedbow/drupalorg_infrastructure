@@ -1,4 +1,4 @@
-#!/bin/env bash
+#!/bin/bash
 
 # Drush commands for processing metrics collected and stored by Sampler API
 # Add them of the form:
@@ -11,7 +11,6 @@ set -uex
 umask g+w
 
 # For easily executing Drush.
-export TERM=dumb
 drush="drush -r /var/www/drupal.org/htdocs -v -l drupal.org -y"
 
 ${drush} sampler-sample project_release new_releases --save
