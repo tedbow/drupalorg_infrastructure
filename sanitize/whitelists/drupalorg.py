@@ -2406,6 +2406,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_org_contribution_rank",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_org_contribution_rank_value",
+    ])
+
+whitelist.add(
     table="field_data_field_org_issue_credit_count",
     columns=[
         "entity_type",
@@ -4898,6 +4911,19 @@ whitelist.add(
         "field_organization_training_url_url",
         "field_organization_training_url_title",
         "field_organization_training_url_attributes",
+    ])
+
+whitelist.add(
+    table="field_revision_field_org_contribution_rank",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_org_contribution_rank_value",
     ])
 
 whitelist.add(
