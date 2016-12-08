@@ -60,7 +60,7 @@ fi
 
 # If Composer Manager module is present, run Composer.
 if [ -d "${BUILDDIR}/sites/default/composer" ]; then
-  composer --working-dir="${BUILDDIR}/sites/default/composer" install
+  composer --working-dir="${BUILDDIR}/sites/default/composer" --no-dev install
 fi
 
 #now we force a git commit
