@@ -1022,14 +1022,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="entity_modified",
-    columns=[
-        "entity_type",
-        "entity_id",
-        "modified",
-    ])
-
-whitelist.add(
     table="facetapi",
     columns=[
         "name",
