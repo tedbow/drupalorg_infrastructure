@@ -38,7 +38,7 @@ function test_site {
 
 # Swap the active and inactive databases
 function swap_db {
-  altdbloc="/var/www/${uri}/altdb"
+  altdbloc="/var/www/${uri}/altdb-shared/altdb"
   if [ -f ${altdbloc} ]; then
     rm ${altdbloc}
   else
