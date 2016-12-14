@@ -6566,6 +6566,14 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="panels_allowed_types",
+    columns=[
+        "module",
+        "type",
+        "allowed",
+    ])
+
+whitelist.add(
     table="panels_display",
     columns=[
         "did",
