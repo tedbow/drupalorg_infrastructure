@@ -9,9 +9,7 @@ export PACKER_HOME=/usr/local/bin
 
 # Repository configuration
 base_repo=git@bitbucket.org:drupalorg-infrastructure/drupalci_base.git
-api_repo=http://git.drupal.org/project/drupalci_api.git
 dispatcher_repo=http://git.drupal.org/project/drupalci_jenkins.git
-results_repo=http://git.drupal.org/project/drupalci_results.git
 
 deregisterAMI() {
   for ami in $($EC2_HOME/bin/ec2-describe-images | awk "/$1/ "'{ print $2 }' | head -n-3); do
@@ -46,15 +44,6 @@ fetchGit() {
         cd drupalci_$1
       fi
       ;;
-    api)
-      if [ -d drupalci_$1 ]; then
-        cd drupalci_$1
-        git pull
-      else
-        git clone $api_repo
-        cd drupalci_$1
-      fi
-      ;;
     dispatcher*)
       if [ -d drupalci_jenkins ]; then
         cd drupalci_jenkins
@@ -62,15 +51,6 @@ fetchGit() {
       else
         git clone $dispatcher_repo
         cd drupalci_jenkins
-      fi
-      ;;
-    results)
-      if [ -d drupalci_$1 ]; then
-        cd drupalci_$1
-        git pull
-      else
-        git clone $results_repo
-        cd drupalci_$1
       fi
       ;;
     *)
