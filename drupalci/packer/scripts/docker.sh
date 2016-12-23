@@ -5,7 +5,7 @@
 # Description: Installs Docker.
 date
 apt-cache show docker-engine |grep Filename
-curl -sSL https://get.docker.com/ | sed 's/docker-engine/docker-engine_1.12.1-0~trusty/' |sudo sh
+curl -sSL https://get.docker.com/ | sed 's/docker-engine/docker-engine=1.12.1-0~trusty/' |sudo sh
 
 # We also need to add the "ubuntu" user to the docker group so it can run
 # containers.
