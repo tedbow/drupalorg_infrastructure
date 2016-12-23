@@ -17,4 +17,4 @@ git clone http://git.drupal.org/project/drupal.git ${DRUPAL_DIR}
 composer install --prefer-dist --no-progress --working-dir ${DRUPAL_DIR}
 chown -R ubuntu:ubuntu ${COMPOSER_CACHE_DIR}
 
-sed -i 's/; sys_temp_dir = "\/tmp"/sys_temp_dir = "\/var\/lib\/drupalci\/workspace\/"/g' /etc/php/7.1/cli/php.inig
+sed -i 's/; sys_temp_dir = "\/tmp"/sys_temp_dir = "\/var\/lib\/drupalci\/workspace\/"/g' /etc/php/7.1/cli/php.ini
