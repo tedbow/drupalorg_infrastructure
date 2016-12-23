@@ -96,7 +96,7 @@ chmod +x /usr/bin/userdata
 
 sed --in-place -e 's/exit 0//' /etc/rc.local
 (
-cat << EOF
+cat << "EOF"
 #Size the tmpfs volume based on the amount of available memory
 MEMSIZE=`cat /proc/meminfo |grep MemTotal |awk '{printf "%d", $2*.70;}'`
 mkdir -p /var/lib/drupalci
