@@ -83,12 +83,11 @@ EOF
 ) > /usr/bin/userdata
 chmod +x /usr/bin/userdata
 
-#Size the tmpfs volume based on the amount of available memory
-MEMSIZE=`cat /proc/meminfo |grep MemTotal |awk '{printf "%d", $2*.70;}'`
-
 sed --in-place -e 's/exit 0//' /etc/rc.local
 (
 cat << EOF
+#Size the tmpfs volume based on the amount of available memory
+MEMSIZE=`cat /proc/meminfo |grep MemTotal |awk '{printf "%d", $2*.70;}'`
 mkdir -p /var/lib/drupalci
 mount -t tmpfs -o size=${MEMSIZE}k tmpfs /var/lib/drupalci
 mkdir /var/lib/drupalci/workspace
@@ -98,6 +97,7 @@ mkdir /var/lib/drupalci/docker-tmp
 chown -R ubuntu:ubuntu /var/lib/drupalci /home/ubuntu
 chmod 777 /var/lib/drupalci/docker-tmp
 python /usr/bin/userdata
+
 exit 0
 EOF
 ) >> /etc/rc.local
