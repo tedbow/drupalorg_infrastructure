@@ -6,10 +6,10 @@
     "type":            "shell",
     "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
     "scripts": [
-      "packer/slave/scripts/base.sh",
-      "packer/slave/scripts/command.sh",
-      "packer/slave/scripts/docker.sh",
-      "packer/slave/scripts/containers.sh"
+      "packer/scripts/base.sh",
+      "packer/scripts/command.sh",
+      "packer/scripts/docker.sh",
+      "packer/scripts/containers.sh"
     ]
   }],
   "builders": [{
@@ -18,7 +18,7 @@
     "source_ami":    "ami-d24c5cb3",
     "instance_type": "m3.medium",
     "ssh_username":  "ubuntu",
-    "ami_name":      "DrupalCI slave {{timestamp}}",
+    "ami_name":      "DrupalCI testrunner {{timestamp}}",
     "ami_block_device_mappings": [
       {
         "device_name":  "/dev/sda1",
