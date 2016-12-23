@@ -6,10 +6,10 @@
     "type":            "shell",
     "execute_command": "echo 'ubuntu' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
     "scripts": [
-      "packer/scripts/base.sh",
-      "packer/scripts/command.sh",
-      "packer/scripts/docker.sh",
-      "packer/scripts/containers.sh"
+      "drupalci/packer/scripts/base.sh",
+      "drupalci/packer/scripts/command.sh",
+      "drupalci/packer/scripts/docker.sh",
+      "drupalci/packer/scripts/containers.sh"
     ]
   }],
   "builders": [{
