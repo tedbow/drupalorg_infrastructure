@@ -47,7 +47,7 @@ sed -i 's/variables_order = \"GPCS\"/variables_order = \"EGPCS\"/g' /etc/php/7.1
 
 # prep for core files
 echo "/tmp/cores/core.%e.%p.%t" > /proc/sys/kernel/core_pattern
-
+echo "enabled=0" > /etc/default/apport
 # Jenkins Slave configuration
 (
 cat << EOF
