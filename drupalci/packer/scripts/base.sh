@@ -46,8 +46,25 @@ chmod +x /usr/local/bin/composer && ln -s /usr/local/bin/composer /usr/bin/compo
 sed -i 's/variables_order = \"GPCS\"/variables_order = \"EGPCS\"/g' /etc/php/7.1/cli/php.ini
 
 # prep for core files
-echo "/tmp/cores/core.%e.%p.%t" > /proc/sys/kernel/core_pattern
+service apport stop || true
 echo "enabled=0" > /etc/default/apport
+
+(
+cat << EOF
+kernel.core_pattern = /var/lib/drupalci/coredumps/core.%e.%s.%t
+kernel.core_uses_pid = 1
+fs.suid_dumpable = 2
+
+EOF
+) >> /etc/sysctl.conf
+
+(
+cat << EOF
+*               soft    core            unlimited
+*               hard    core            unlimited
+EOF
+) >> /etc/security/limits.conf
+
 # Jenkins Slave configuration
 (
 cat << EOF
@@ -96,11 +113,11 @@ MEMSIZE=`cat /proc/meminfo |grep MemTotal |awk '{printf "%d", $2*.70;}'`
 mkdir -p /var/lib/drupalci
 mount -t tmpfs -o size=${MEMSIZE}k tmpfs /var/lib/drupalci
 mkdir /var/lib/drupalci/workspace
-# TODO: deprecate web, should be workspace.
-mkdir /var/lib/drupalci/web
+mkdir /var/lib/drupalci/coredumps
 mkdir /var/lib/drupalci/docker-tmp
 chown -R ubuntu:ubuntu /var/lib/drupalci /home/ubuntu
 chmod 777 /var/lib/drupalci/docker-tmp
+chmod 777 /var/lib/drupalci/coredumps
 python /usr/bin/userdata
 
 exit 0
