@@ -51,7 +51,7 @@ echo "enabled=0" > /etc/default/apport
 
 (
 cat << EOF
-kernel.core_pattern = /var/lib/drupalci/coredumps/core.%e.%s.%t
+kernel.core_pattern = /var/lib/drupalci/artifacts/core.%e.%s.%t
 kernel.core_uses_pid = 1
 fs.suid_dumpable = 2
 
@@ -113,11 +113,11 @@ MEMSIZE=`cat /proc/meminfo |grep MemTotal |awk '{printf "%d", $2*.70;}'`
 mkdir -p /var/lib/drupalci
 mount -t tmpfs -o size=${MEMSIZE}k tmpfs /var/lib/drupalci
 mkdir /var/lib/drupalci/workspace
-mkdir /var/lib/drupalci/coredumps
+mkdir /var/lib/drupalci/artifacts
 mkdir /var/lib/drupalci/docker-tmp
 chown -R ubuntu:ubuntu /var/lib/drupalci /home/ubuntu
 chmod 777 /var/lib/drupalci/docker-tmp
-chmod 777 /var/lib/drupalci/coredumps
+chmod 777 /var/lib/drupalci/artifacts
 python /usr/bin/userdata
 
 exit 0
