@@ -16,12 +16,12 @@
     "type":          "amazon-ebs",
     "region":        "us-west-2",
     "source_ami":    "ami-d24c5cb3",
-    "instance_type": "m3.medium",
+    "instance_type": "m3.large",
     "ssh_username":  "ubuntu",
     "ami_name":      "DrupalCI testrunner {{timestamp}}",
     "ami_block_device_mappings": [
       {
-        "device_name":  "/dev/xvda1",
+        "device_name":  "/dev/sda1",
         "volume_type":  "gp2",
         "volume_size":  "80",
         "delete_on_termination":  true
@@ -29,7 +29,7 @@
     ],
     "launch_block_device_mappings": [
       {
-        "device_name":  "/dev/xvda",
+        "device_name":  "/dev/sda1",
         "volume_type":  "gp2",
         "volume_size":  "80",
         "delete_on_termination":  true
