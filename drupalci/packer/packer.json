@@ -21,7 +21,7 @@
     "ami_name":      "DrupalCI testrunner {{timestamp}}",
     "ami_block_device_mappings": [
       {
-        "device_name":  "/dev/xvda",
+        "device_name":  "/dev/xvda1",
         "volume_type":  "gp2",
         "volume_size":  "80",
         "delete_on_termination":  true
