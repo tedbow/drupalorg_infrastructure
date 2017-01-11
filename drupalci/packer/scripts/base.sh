@@ -54,6 +54,7 @@ cat << EOF
 kernel.core_pattern = /var/lib/drupalci/coredumps/core.%e.%s.%t
 kernel.core_uses_pid = 1
 fs.suid_dumpable = 2
+fs.aio-max-nr = 1048576
 
 EOF
 ) >> /etc/sysctl.conf
