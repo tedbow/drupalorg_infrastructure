@@ -2701,6 +2701,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_project_issue_version_opts",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_issue_version_opts_value",
+    ])
+
+whitelist.add(
     table="field_data_field_project_license",
     columns=[
         "entity_type",
@@ -5206,6 +5219,19 @@ whitelist.add(
         "delta",
         "field_project_issue_guidelines_value",
         "field_project_issue_guidelines_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_project_issue_version_opts",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_project_issue_version_opts_value",
     ])
 
 whitelist.add(
