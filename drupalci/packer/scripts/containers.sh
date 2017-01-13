@@ -17,10 +17,10 @@ docker pull drupalci/db-mysql-5.5:production
 docker pull drupalci/db-pgsql-9.1:dev
 docker pull drupalci/db-pgsql-9.1:production
 #pull php containers
-#docker pull drupalci/php-5.3.29-apache:dev
-#docker pull drupalci/php-5.3.29-apache:production
-#docker pull drupalci/php-5.4.45-apache:dev
-#docker pull drupalci/php-5.4.45-apache:production
+docker pull drupalci/php-5.3.29-apache:dev
+docker pull drupalci/php-5.3.29-apache:production
+docker pull drupalci/php-5.4.45-apache:dev
+docker pull drupalci/php-5.4.45-apache:production
 #docker pull drupalci/php-5.5.9-apache:dev
 #docker pull drupalci/php-5.5.9-apache:production
 docker pull drupalci/php-5.5.38-apache:dev
