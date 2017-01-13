@@ -13,5 +13,5 @@ export JAVA_HOME=/usr
 # Packer configuration
 export PACKER_HOME=/usr/local/bin
 export PACKER_LOG=1
-cd /usr/local/drupal-infrastructure
-${PACKER_HOME}/packer build -debug drupalci/packer/packer.json
+cd /usr/local/drupal-infrastructure/drupalci/packer
+${PACKER_HOME}/packer build -debug template.json
