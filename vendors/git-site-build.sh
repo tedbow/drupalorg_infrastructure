@@ -70,5 +70,7 @@ git commit -a -m "${LOG}"
 git status
 git push --set-upstream origin ${branch}
 
-
-###TODO: Clean up the 3 build dirs---or not?
+# Clean up the build dirs.
+rm -rf ${MASTER}
+rm -rf ${BUILDDIR}
+rm -rf ${BUILDGIT}
