@@ -15,4 +15,4 @@ export JAVA_HOME=/usr
 export PACKER_HOME=/usr/local/bin
 export PACKER_LOG=1
 cd /usr/local/drupal-infrastructure/drupalci/packer
-${PACKER_HOME}/packer build -debug template.json
+${PACKER_HOME}/packer build template.json
