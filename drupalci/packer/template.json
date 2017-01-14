@@ -21,7 +21,7 @@
       "vm_name": "ubuntu-14-04",
       "boot_wait": "10s",
       "format": "ova",
-      "source_path": "https://cloud-images.ubuntu.com/releases/14.04/release-20151117/ubuntu-14.04-server-cloudimg-amd64.ova",
+      "source_path": "ubuntu-14.04-server-cloudimg-amd64.ova",
       "ssh_username": "vagrant",
       "ssh_password": "vagrant",
       "ssh_port": 22,
