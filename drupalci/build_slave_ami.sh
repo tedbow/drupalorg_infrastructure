@@ -3,6 +3,7 @@
 
 # EC2 configuration
 . ~/.ec2creds
+. ~/.atlascreds
 # Exit immediately on uninitialized variable or error, and print each command.
 # But do this after the .ec2creds so as to not display secrets everywhere
 set -uex
