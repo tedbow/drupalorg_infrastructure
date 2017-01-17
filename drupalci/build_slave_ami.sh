@@ -15,6 +15,4 @@ export JAVA_HOME=/usr
 export PACKER_HOME=/usr/local/bin
 export PACKER_LOG=1
 cd /usr/local/drupal-infrastructure/drupalci/packer
-wget -O ubuntu-14.04-server-cloudimg-amd64.ova https://cloud-images.ubuntu.com/releases/14.04/release-20151117/ubuntu-14.04-server-cloudimg-amd64.ova
 ${PACKER_HOME}/packer build template.json
-rm ubuntu-14.04-server-cloudimg-amd64.ova
