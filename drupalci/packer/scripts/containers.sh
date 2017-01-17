@@ -5,11 +5,6 @@
 
 docker pull drupalci/mysql-5.5
 docker pull drupalci/pgsql-9.1
-docker pull drupalci/web-7
-docker pull drupalci/web-5.6
-docker pull drupalci/web-5.5
-docker pull drupalci/web-5.4
-docker pull drupalci/web-5.3
 
 #pull new db containers
 docker pull drupalci/db-mysql-5.5:dev

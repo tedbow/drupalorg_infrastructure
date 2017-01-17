@@ -6,9 +6,9 @@
         "iso_url": "{{env `PACKER_DEBIAN_ISO_URL`}}",
         "iso_sha512": "{{env `PACKER_DEBIAN_ISO_SUM`}}",
         "cores": "2",
-        "memory": "4096",
+        "memory": "1024",
         "vram": "16",
-        "disk_size": "30720",
+        "disk_size": "5120",
         "ssh_user": "{{env `PACKER_SSH_USER`}}",
         "ssh_pass": "{{env `PACKER_SSH_PASS`}}",
         "ssh_port": "22",
@@ -30,13 +30,11 @@
         {
             "type": "virtualbox-iso",
             "name": "jessie-vboxiso",
-            "headless": "false",
+            "headless": "true",
             "virtualbox_version_file": ".vbox_version",
             "guest_os_type": "Debian_64",
             "guest_additions_mode": "upload",
             "guest_additions_path": "/var/tmp/VBoxGuestAdditions_{{.Version}}.iso",
-            "guest_additions_url": "{{user `vbox_url`}}",
-            "guest_additions_sha256": "{{user `vbox_sum`}}",
             "hard_drive_interface": "ide",
             "iso_interface": "ide",
             "vboxmanage": [
@@ -44,59 +42,6 @@
                 [ "modifyvm", "{{.Name}}", "--memory", "{{user `memory`}}" ],
                 [ "modifyvm", "{{.Name}}", "--vram", "{{user `vram`}}" ]
             ],
-
-            "boot_command": [
-                "<esc><wait>",
-                "install <wait>",
-                "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>",
-                "debian-installer={{user `locale`}} <wait>",
-                "auto <wait>",
-                "locale={{user `locale`}} <wait>",
-                "time/zone={{user `timezone`}} <wait>",
-                "kbd-chooser/method=us <wait>",
-                "netcfg/get_hostname={{user `hostname`}} <wait>",
-                "netcfg/get_domain={{user `domain`}} <wait>",
-                "fb=false <wait>",
-                "debconf/frontend=noninteractive <wait>",
-                "console-setup/ask_detect=false <wait>",
-                "console-keymaps-at/keymap={{user `kbd_lang`}} <wait>",
-                "keyboard-configuration/xkb-keymap={{user `kbd_lang`}} <wait>",
-                "keyboard-configuration/modelcode={{user `kbd_model`}} <wait>",
-                "passwd/root-login=false <wait>",
-                "passwd/user-fullname={{user `ssh_user`}} <wait>",
-                "passwd/username={{user `ssh_user`}} <wait>",
-                "passwd/user-password=\"{{user `ssh_pass`}}\" <wait>",
-                "passwd/user-password-again=\"{{user `ssh_pass`}}\" <wait>",
-                "<enter><wait>"
-            ],
-            "disk_size": "{{user `disk_size`}}",
-            "http_directory": "http",
-            "iso_checksum": "{{user `iso_sha512`}}",
-            "iso_checksum_type": "sha512",
-            "iso_url": "{{user `iso_url`}}",
-            "communicator": "ssh",
-            "ssh_username": "{{user `ssh_user`}}",
-            "ssh_password": "{{user `ssh_pass`}}",
-            "ssh_port": "{{user `ssh_port`}}",
-            "ssh_wait_timeout": "{{user `ssh_wait_timeout`}}",
-            "shutdown_command": "echo '{{user `ssh_pass`}}' | sudo -S shutdown -P now",
-            "output_directory": "{{user `outputs_dir`}}/{{user `vm_name`}}_{{build_name}}/"
-        },
-
-        {
-            "type": "vmware-iso",
-            "name": "jessie-vmwareiso",
-            "headless": "false",
-            "disk_type_id": "0",
-            "guest_os_type": "debian6-64",
-            "tools_upload_flavor": "linux",
-            "tools_upload_path": "/var/tmp/{{.Flavor}}.iso",
-            "version": "9",
-            "vmx_data": {
-                "cpuid.coresPerSocket": "1",
-                "numvcpus": "{{user `cores`}}",
-                "memsize": "{{user `memory`}}"
-            },
 
             "boot_command": [
                 "<esc><wait>",
@@ -152,17 +97,15 @@
     "provisioners": [
         {
             "type": "shell",
-            "only": ["jessie-qemu", "jessie-vboxiso", "jessie-vmwareiso"],
+            "only": ["jessie-awsebs","jessie-vboxiso"],
             "execute_command": "echo '{{user `ssh_pass`}}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
             "scripts": [
                 "scripts/base.sh",
                 "scripts/vagrant.sh",
-                "scripts/base.sh",
                 "scripts/command.sh",
                 "scripts/docker.sh",
                 "scripts/containers.sh",
                 "scripts/virtualbox.sh",
-                "scripts/vmware.sh",
                 "scripts/cleanup.sh"
 
             ]
@@ -184,11 +127,24 @@
     "post-processors": [
         {
             "type": "vagrant",
-            "only": ["jessie-vboxiso", "jessie-vmwareiso"],
+            "only": ["jessie-vboxiso"],
             "keep_input_artifact": true,
             "compression_level": 0,
             "output": "{{user `outputs_dir`}}/{{user `vm_name`}}_{{.BuildName}}.box"
+        },
+        {
+            "type": "atlas",
+            "token": "{{user `atlas_token`}}",
+            "only": ["jessie-vboxiso"],
+            "artifact": "drupalci/testbot",
+            "artifact_type": "vagrant.box",
+            "metadata": {
+                "created_at": "{{isotime}}",
+                "provider": "virtualbox"
+            }
         }
     ]
 }
+
+
 

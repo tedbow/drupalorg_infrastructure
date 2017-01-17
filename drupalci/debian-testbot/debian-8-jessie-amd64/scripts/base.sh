@@ -4,21 +4,30 @@
 # Author:      Nick Schuch (nick@myschuch.com)
 # Description: Install base packages and configuration.
 date
-apt-get update
-apt-get -y upgrade
-apt-get -y install curl
+
+#add the dotdeb repos.
+(
+cat << EOF
+deb http://packages.dotdeb.org jessie all
+deb-src http://packages.dotdeb.org jessie all
+EOF
+) >> /etc/apt/sources.list.d/dotdeb.list
+curl -s https://www.dotdeb.org/dotdeb.gpg | apt-key add -
 
 # Add sysdig sources to monitor the testbot workload
 curl -s https://s3.amazonaws.com/download.draios.com/DRAIOS-GPG-KEY.public | apt-key add -
 curl -s -o /etc/apt/sources.list.d/draios.list http://download.draios.com/stable/deb/draios.list
 LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
+
 apt-get update
+apt-get -y upgrade
+apt-get -y install curl
 
 # Packages.
 apt-get -y install bsdtar dstat gawk git grep htop iotop linux-headers-$(uname -r) \
                    make mc mysql-client nmon ntp \
-                   openjdk-7-jre php7.1 php7.1-mysql php7.1-mbstring php7.1-pgsql php7.1-sqlite3 php7.1-xml php7.1-bcmath php7.1-curl php7.1-cli php7.1-dev php-pear python sqlite3 ssh \
-                   sudo sysstat vim wget sysdig php-xdebug
+                   openjdk-7-jre php7.0 php7.0-mysql php7.0-mbstring php7.0-pgsql php7.0-sqlite3 php7.0-xml php7.0-bcmath php7.0-curl php7.0-cli php7.0-dev php-pear python sqlite3 ssh \
+                   sudo sysstat vim wget sysdig php7.0-xdebug
 apt-get clean
 apt-get -y autoremove
 # we want xdebug there, just disabled.
