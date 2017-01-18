@@ -90,6 +90,14 @@
             "ssh_username": "admin",
             "ami_name": "DrupalCI testrunner {{timestamp}}",
             "ami_description": "DrupalCI debian 8.7 jessie",
+            "launch_block_device_mappings": [
+                {
+                    "device_name": "/dev/xvda",
+                    "volume_type": "gp2",
+                    "volume_size": "80",
+                    "delete_on_termination": true
+                }
+            ],
             "ami_block_device_mappings": [
                 {
                     "device_name": "/dev/xvda",
