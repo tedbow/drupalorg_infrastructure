@@ -16,4 +16,4 @@ export PACKER_HOME=/usr/local/bin
 export PACKER_LOG=1
 cd /usr/local/drupal-infrastructure/drupalci/debian-testbot
 source packer_variables.sh
-${PACKER_HOME}/packer build debian-8-jessie-amd64.json
+${PACKER_HOME}/packer build -force debian-8-jessie-amd64.json
