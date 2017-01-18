@@ -8,7 +8,7 @@
         "cores": "2",
         "memory": "1024",
         "vram": "16",
-        "disk_size": "5120",
+        "disk_size": "20480",
         "ssh_user": "{{env `PACKER_SSH_USER`}}",
         "ssh_pass": "{{env `PACKER_SSH_PASS`}}",
         "ssh_port": "22",
