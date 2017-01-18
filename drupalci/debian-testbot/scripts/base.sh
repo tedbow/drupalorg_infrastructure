@@ -4,7 +4,9 @@
 # Author:      Nick Schuch (nick@myschuch.com)
 # Description: Install base packages and configuration.
 date
-
+apt-get update
+apt-get -y upgrade
+apt-get -y install curl
 #add the dotdeb repos.
 (
 cat << EOF
@@ -17,11 +19,9 @@ curl -s https://www.dotdeb.org/dotdeb.gpg | apt-key add -
 # Add sysdig sources to monitor the testbot workload
 curl -s https://s3.amazonaws.com/download.draios.com/DRAIOS-GPG-KEY.public | apt-key add -
 curl -s -o /etc/apt/sources.list.d/draios.list http://download.draios.com/stable/deb/draios.list
-LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
+# LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
 
 apt-get update
-apt-get -y upgrade
-apt-get -y install curl
 
 # Packages.
 apt-get -y install bsdtar dstat gawk git grep htop iotop linux-headers-$(uname -r) \
@@ -52,7 +52,7 @@ rm composer-setup.php
 
 chmod +x /usr/local/bin/composer && ln -s /usr/local/bin/composer /usr/bin/composer
 
-sed -i 's/variables_order = \"GPCS\"/variables_order = \"EGPCS\"/g' /etc/php/7.1/cli/php.ini
+sed -i 's/variables_order = \"GPCS\"/variables_order = \"EGPCS\"/g' /etc/php/7.0/cli/php.ini
 
 # prep for core files
 service apport stop || true
