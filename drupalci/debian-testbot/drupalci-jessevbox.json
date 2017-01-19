@@ -97,16 +97,6 @@
                 "scripts/cleanup.sh"
 
             ]
-        },
-
-        {
-            "type": "shell",
-            "only": ["jessie-awsebs"],
-            "execute_command": "{{.Vars}} sudo -E -S bash '{{.Path}}'",
-            "scripts": [
-                "scripts/cloud.sh",
-                "scripts/containers.sh"
-            ]
         }
     ],
 
