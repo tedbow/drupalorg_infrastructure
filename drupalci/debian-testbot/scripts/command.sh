@@ -15,6 +15,6 @@ ln -s ${DIR}/drupalci /usr/local/bin/drupalci
 # Lets prepopulate the composer cache
 git clone http://git.drupal.org/project/drupal.git ${DRUPAL_DIR}
 composer install --prefer-dist --no-progress --working-dir ${DRUPAL_DIR}
-chown -R vagrant:vagrant ${COMPOSER_CACHE_DIR}
+chown -R admin:admin ${COMPOSER_CACHE_DIR}
 
 sed -i 's/; sys_temp_dir = "\/tmp"/sys_temp_dir = "\/var\/lib\/drupalci\/workspace\/"/g' /etc/php/7.0/cli/php.ini

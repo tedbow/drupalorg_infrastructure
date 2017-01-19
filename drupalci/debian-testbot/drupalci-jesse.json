@@ -2,11 +2,11 @@
     "description": "Creates a Debian 8 (Jessie) amd64 machine image.",
     "variables": {
         "outputs_dir": "builds.ignore",
-        "vm_name": "debian-807-jessie-amd64",
+        "vm_name": "drupalci_testbot",
         "iso_url": "{{env `PACKER_DEBIAN_ISO_URL`}}",
         "iso_sha512": "{{env `PACKER_DEBIAN_ISO_SUM`}}",
         "cores": "2",
-        "memory": "1024",
+        "memory": "2048",
         "vram": "16",
         "disk_size": "20480",
         "ssh_user": "{{env `PACKER_SSH_USER`}}",
@@ -64,10 +64,6 @@
                 "keyboard-configuration/xkb-keymap={{user `kbd_lang`}} <wait>",
                 "keyboard-configuration/modelcode={{user `kbd_model`}} <wait>",
                 "passwd/root-login=false <wait>",
-                "passwd/user-fullname={{user `ssh_user`}} <wait>",
-                "passwd/username={{user `ssh_user`}} <wait>",
-                "passwd/user-password=\"{{user `ssh_pass`}}\" <wait>",
-                "passwd/user-password-again=\"{{user `ssh_pass`}}\" <wait>",
                 "<enter><wait>"
             ],
             "disk_size": "{{user `disk_size`}}",
@@ -125,6 +121,15 @@
                 "scripts/docker.sh",
                 "scripts/virtualbox.sh"
 
+            ]
+        },
+
+        {
+            "type": "shell",
+            "only": ["jessie-vboxiso"],
+            "execute_command": "{{.Vars}} sudo -E -S bash '{{.Path}}'",
+            "scripts": [
+                "scripts/jenkins.sh"
             ]
         },
 
