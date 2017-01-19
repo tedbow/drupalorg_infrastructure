@@ -123,8 +123,7 @@
                 "scripts/vagrant.sh",
                 "scripts/command.sh",
                 "scripts/docker.sh",
-                "scripts/virtualbox.sh",
-                "scripts/cleanup.sh"
+                "scripts/virtualbox.sh"
 
             ]
         },
@@ -164,6 +163,5 @@
         ]
     ]
 }
-
 
 
