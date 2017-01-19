@@ -120,7 +120,6 @@
                 "scripts/vagrant.sh",
                 "scripts/command.sh",
                 "scripts/docker.sh",
-                "scripts/containers.sh",
                 "scripts/virtualbox.sh",
                 "scripts/cleanup.sh"
 
@@ -132,7 +131,8 @@
             "only": ["jessie-awsebs"],
             "execute_command": "{{.Vars}} sudo -E -S bash '{{.Path}}'",
             "scripts": [
-                "scripts/cloud.sh"
+                "scripts/cloud.sh",
+                "scripts/containers.sh"
             ]
         }
     ],
