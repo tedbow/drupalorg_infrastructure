@@ -79,33 +79,6 @@
             "ssh_wait_timeout": "{{user `ssh_wait_timeout`}}",
             "shutdown_command": "echo '{{user `ssh_pass`}}' | sudo -S shutdown -P now",
             "output_directory": "{{user `outputs_dir`}}/{{user `vm_name`}}_{{build_name}}/"
-        },
-
-        {
-            "type": "amazon-ebs",
-            "name": "jessie-awsebs",
-            "region": "us-west-2",
-            "source_ami": "ami-221ea342",
-            "instance_type": "m3.large",
-            "ssh_username": "admin",
-            "ami_name": "DrupalCI testrunner {{timestamp}}",
-            "ami_description": "DrupalCI debian 8.7 jessie",
-            "launch_block_device_mappings": [
-                {
-                    "device_name": "/dev/xvda",
-                    "volume_type": "gp2",
-                    "volume_size": "80",
-                    "delete_on_termination": true
-                }
-            ],
-            "ami_block_device_mappings": [
-                {
-                    "device_name": "/dev/xvda",
-                    "volume_type": "gp2",
-                    "volume_size": "80",
-                    "delete_on_termination": true
-                }
-            ]
         }
     ],
 
@@ -113,7 +86,7 @@
     "provisioners": [
         {
             "type": "shell",
-            "only": ["jessie-awsebs","jessie-vboxiso"],
+            "only": ["jessie-vboxiso"],
             "execute_command": "echo '{{user `ssh_pass`}}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
             "scripts": [
                 "scripts/base.sh",
@@ -137,9 +110,6 @@
         }
     ],
 
-
-
-
     "post-processors": [
         {
             "type": "vagrant",
@@ -147,17 +117,6 @@
             "keep_input_artifact": true,
             "compression_level": 0,
             "output": "{{user `outputs_dir`}}/{{user `vm_name`}}_{{.BuildName}}.box"
-        },
-        {
-            "type": "atlas",
-            "token": "{{user `atlas_token`}}",
-            "only": ["jessie-vboxiso"],
-            "artifact": "drupalci/testbot",
-            "artifact_type": "vagrant.box",
-            "metadata": {
-                "created_at": "{{isotime}}",
-                "provider": "virtualbox"
-            }
         }
     ]
 }
