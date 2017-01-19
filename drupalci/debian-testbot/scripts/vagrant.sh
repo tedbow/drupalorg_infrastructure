@@ -33,11 +33,11 @@ echo -e '\nexport DEBIAN_FRONTEND=noninteractive' >> /home/vagrant/.profile
 # will generate one. Unless you would want to disable password login from the
 # start.
 #echo "Install the insecure vagrant SSH keys..."
-#mkdir /home/vagrant/.ssh
-#chmod 0700 /home/vagrant/.ssh
-#curl -Lo /home/vagrant/.ssh/authorized_keys 'https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub'
-#chmod 0600 /home/vagrant/.ssh/authorized_keys
-#chown -R vagrant:vagrant /home/vagrant/.ssh
+mkdir /home/vagrant/.ssh
+chmod 0700 /home/vagrant/.ssh
+curl -Lo /home/vagrant/.ssh/authorized_keys 'https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub'
+chmod 0600 /home/vagrant/.ssh/authorized_keys
+chown -R vagrant:vagrant /home/vagrant/.ssh
 
 
 echo "Install NFS..."

@@ -20,7 +20,10 @@
         "hostname": "drupalci.testbot",
         "domain": "",
         "vbox_url": "{{env `PACKER_VBOX_ISO_URL`}}",
-        "vbox_sum": "{{env `PACKER_VBOX_ISO_SUM`}}"
+        "vbox_sum": "{{env `PACKER_VBOX_ISO_SUM`}}",
+        "version":  "0.1.0",
+        "box_organization": "drupalci",
+        "box_name": "testrunner"
     },
 
 
@@ -88,8 +91,8 @@
             "source_ami": "ami-221ea342",
             "instance_type": "m3.large",
             "ssh_username": "admin",
-            "ami_name": "DrupalCI testrunner {{timestamp}}",
-            "ami_description": "DrupalCI debian 8.7 jessie",
+            "ami_name": "DrupalCI testrunner {{isotime \"20060102-150405\"}}",
+            "ami_description": "DrupalCI Testbot debian 8.7 jessie",
             "launch_block_device_mappings": [
                 {
                     "device_name": "/dev/xvda",
@@ -131,7 +134,6 @@
             "only": ["jessie-awsebs"],
             "execute_command": "{{.Vars}} sudo -E -S bash '{{.Path}}'",
             "scripts": [
-                "scripts/cloud.sh",
                 "scripts/containers.sh"
             ]
         }
@@ -149,15 +151,13 @@
             "output": "{{user `outputs_dir`}}/{{user `vm_name`}}_{{.BuildName}}.box"
         },
         {
-            "type": "atlas",
-            "token": "{{user `atlas_token`}}",
-            "only": ["jessie-vboxiso"],
-            "artifact": "drupalci/testbot",
-            "artifact_type": "vagrant.box",
-            "metadata": {
-                "created_at": "{{isotime}}",
-                "provider": "virtualbox"
-            }
+            "type": "vagrant-s3",
+            "region": "us-west-2",
+            "bucket": "drupalci-vagrant",
+            "manifest": "vagrant/json/{{ user `box_organization` }}/{{ user `box_name` }}.json",
+            "box_dir":  "vagrant/boxes/{{ user `box_organization` }}/{{ user `box_name` }}",
+            "box_name": "{{ user `box_organization` }}/{{ user `box_name` }}",
+            "version":  "{{ user `version` }}"
         }
     ]
 }
