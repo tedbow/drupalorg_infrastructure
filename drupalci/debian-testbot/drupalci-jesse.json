@@ -143,23 +143,25 @@
 
 
     "post-processors": [
-        {
-            "type": "vagrant",
-            "only": ["jessie-vboxiso"],
-            "keep_input_artifact": true,
-            "compression_level": 0,
-            "output": "{{user `outputs_dir`}}/{{user `vm_name`}}_{{.BuildName}}.box"
-        },
-        {
-            "type": "vagrant-s3",
-            "only": ["jessie-vboxiso"],
-            "region": "us-west-2",
-            "bucket": "drupalci-vagrant",
-            "manifest": "vagrant/json/{{ user `box_organization` }}/{{ user `box_name` }}.json",
-            "box_dir":  "vagrant/boxes/{{ user `box_organization` }}/{{ user `box_name` }}",
-            "box_name": "{{ user `box_organization` }}/{{ user `box_name` }}",
-            "version":  "{{ user `version` }}"
-        }
+        [
+            {
+                "type": "vagrant",
+                "only": [ "jessie-vboxiso" ],
+                "keep_input_artifact": true,
+                "compression_level": 0,
+                "output": "{{user `outputs_dir`}}/{{user `vm_name`}}_{{.BuildName}}.box"
+            },
+            {
+                "type": "vagrant-s3",
+                "only": [ "jessie-vboxiso" ],
+                "region": "us-west-2",
+                "bucket": "drupalci-vagrant",
+                "manifest": "vagrant/json/{{ user `box_organization` }}/{{ user `box_name` }}.json",
+                "box_dir": "vagrant/boxes/{{ user `box_organization` }}/{{ user `box_name` }}",
+                "box_name": "{{ user `box_organization` }}/{{ user `box_name` }}",
+                "version": "{{ user `version` }}"
+            }
+        ]
     ]
 }
 
