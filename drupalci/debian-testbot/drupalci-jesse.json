@@ -152,6 +152,7 @@
         },
         {
             "type": "vagrant-s3",
+            "only": ["jessie-vboxiso"],
             "region": "us-west-2",
             "bucket": "drupalci-vagrant",
             "manifest": "vagrant/json/{{ user `box_organization` }}/{{ user `box_name` }}.json",
