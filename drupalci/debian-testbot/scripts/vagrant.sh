@@ -15,9 +15,9 @@ echo -e '\nexport DEBIAN_FRONTEND=noninteractive' >> /home/admin/.profile
 
 
 echo "Install the insecure vagrant SSH keys..."
-mkdir /home/admin/.ssh
-chmod 0700 /home/admin/.ssh
-curl -Lo /home/admin/.ssh/authorized_keys 'https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub'
+
+curl -Lo /home/admin/.ssh/vagrant_key 'https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub'
+cat /home/admin/.ssh/vagrant_key >> /home/admin/.ssh/authorized_keys
 chmod 0600 /home/admin/.ssh/authorized_keys
 chown -R admin:admin /home/admin/.ssh
 
