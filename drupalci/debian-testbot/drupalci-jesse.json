@@ -21,7 +21,7 @@
         "domain": "",
         "vbox_url": "{{env `PACKER_VBOX_ISO_URL`}}",
         "vbox_sum": "{{env `PACKER_VBOX_ISO_SUM`}}",
-        "version":  "0.1.0",
+        "version":  "0.1.1",
         "box_organization": "drupalci",
         "box_name": "testrunner"
     },
