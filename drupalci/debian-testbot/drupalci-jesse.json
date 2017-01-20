@@ -64,6 +64,10 @@
                 "keyboard-configuration/xkb-keymap={{user `kbd_lang`}} <wait>",
                 "keyboard-configuration/modelcode={{user `kbd_model`}} <wait>",
                 "passwd/root-login=false <wait>",
+                "passwd/user-fullname={{user `ssh_user`}} <wait>",
+                "passwd/username={{user `ssh_user`}} <wait>",
+                "passwd/user-password=\"{{user `ssh_pass`}}\" <wait>",
+                "passwd/user-password-again=\"{{user `ssh_pass`}}\" <wait>",
                 "<enter><wait>"
             ],
             "disk_size": "{{user `disk_size`}}",
