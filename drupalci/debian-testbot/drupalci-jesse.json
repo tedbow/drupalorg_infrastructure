@@ -130,18 +130,10 @@
 
         {
             "type": "shell",
-            "only": ["jessie-vboxiso"],
-            "execute_command": "{{.Vars}} sudo -E -S bash '{{.Path}}'",
-            "scripts": [
-                "scripts/jenkins.sh"
-            ]
-        },
-
-        {
-            "type": "shell",
             "only": ["jessie-awsebs"],
             "execute_command": "{{.Vars}} sudo -E -S bash '{{.Path}}'",
             "scripts": [
+                "scripts/jenkins.sh",
                 "scripts/containers.sh"
             ]
         }
