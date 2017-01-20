@@ -6,7 +6,7 @@
         "iso_url": "{{env `PACKER_DEBIAN_ISO_URL`}}",
         "iso_sha512": "{{env `PACKER_DEBIAN_ISO_SUM`}}",
         "cores": "2",
-        "memory": "2048",
+        "memory": "1024",
         "vram": "16",
         "disk_size": "20480",
         "ssh_user": "{{env `PACKER_SSH_USER`}}",
