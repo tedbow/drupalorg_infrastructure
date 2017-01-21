@@ -43,6 +43,8 @@ mkdir /var/lib/drupalci/drupal-checkout
 rsync -a /opt/drupal_checkout/ /var/lib/drupalci/drupal-checkout
 chmod 777 /var/lib/drupalci/docker-tmp
 chmod 777 /var/lib/drupalci/coredumps
+chown -R admin:admin /var/lib/drupalci
+chown -R admin:admin /home/admin
 
 exit 0
 EOF
