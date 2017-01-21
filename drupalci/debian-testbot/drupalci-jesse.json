@@ -21,9 +21,8 @@
         "domain": "",
         "vbox_url": "{{env `PACKER_VBOX_ISO_URL`}}",
         "vbox_sum": "{{env `PACKER_VBOX_ISO_SUM`}}",
-        "version":  "0.1.2",
         "box_organization": "drupalci",
-        "box_name": "testrunner"
+        "box_name": "testbot"
     },
 
 
@@ -156,8 +155,7 @@
                 "bucket": "drupalci-vagrant",
                 "manifest": "vagrant/json/{{ user `box_organization` }}/{{ user `box_name` }}.json",
                 "box_dir": "vagrant/boxes/{{ user `box_organization` }}/{{ user `box_name` }}",
-                "box_name": "{{ user `box_organization` }}/{{ user `box_name` }}",
-                "version": "{{ user `version` }}"
+                "box_name": "{{ user `box_organization` }}/{{ user `box_name` }}"
             }
         ]
     ]
