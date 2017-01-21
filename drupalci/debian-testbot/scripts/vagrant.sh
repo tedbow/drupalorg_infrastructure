@@ -10,16 +10,16 @@ sed -i '/tty/!s/mesg n/tty -s \&\& mesg n/' /root/.profile
 
 echo "Fix 'dpkg-preconfigure: unable to re-open stdin: No such file or directory' non-fatal error message in apt..."
 echo -e '\nexport DEBIAN_FRONTEND=noninteractive' >> /root/.profile
-echo -e '\nexport DEBIAN_FRONTEND=noninteractive' >> /home/admin/.profile
+echo -e '\nexport DEBIAN_FRONTEND=noninteractive' >> /home/testbot/.profile
 
 
 
 echo "Install the insecure vagrant SSH keys..."
 
-curl -Lo /home/admin/.ssh/vagrant_key 'https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub'
-cat /home/admin/.ssh/vagrant_key >> /home/admin/.ssh/authorized_keys
-chmod 0600 /home/admin/.ssh/authorized_keys
-chown -R admin:admin /home/admin/.ssh
+curl -Lo /home/testbot/.ssh/vagrant_key 'https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub'
+cat /home/testbot/.ssh/vagrant_key >> /home/testbot/.ssh/authorized_keys
+chmod 0600 /home/testbot/.ssh/authorized_keys
+chown -R drupalci:drupalci /home/testbot/.ssh
 
 
 echo "Install NFS..."

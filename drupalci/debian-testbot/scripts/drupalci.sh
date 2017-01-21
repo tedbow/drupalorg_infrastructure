@@ -2,26 +2,38 @@
 
 date
 
+if [[ ! -d "/home/testbot" ]]; then
+    /usr/sbin/groupadd testbot
+    /usr/sbin/useradd -g testbot -p $(perl -e'print crypt("testbot", "testbot")') -m -s /bin/bash testbot
+fi
+
+usermod -a -G sudo testbot
+
+# (setting permissions before moving file to sudoers.d)
+echo '%drupalci ALL=NOPASSWD:ALL' > /tmp/drupalci
+chmod 0440 /tmp/testbot
+mv /tmp/testbot /etc/sudoers.d/
+
 DIR="/opt/drupalci_testbot"
 DRUPAL_DIR="/opt/drupal_checkout"
 COMPOSER_CACHE_DIR="/opt/composer_cache"
 mkdir ${COMPOSER_CACHE_DIR}
 git clone --branch production http://git.drupal.org/project/drupalci_testbot.git ${DIR}
 composer install --prefer-dist --no-progress --working-dir ${DIR}
-chown -R admin:admin ${DRUPAL_DIR}
+chown -R testbot:testbot ${DRUPAL_DIR}
 
 chmod 775 ${DIR}/drupalci
 ln -s ${DIR}/drupalci /usr/local/bin/drupalci
 
 if ! [ -h /opt/drupalci_testbot ];
   then
-    ln -s /home/admin/drupalci_testbot /opt/drupalci_testbot
+    ln -s /home/testbot/drupalci_testbot /opt/drupalci_testbot
 fi
 
 # Lets prepopulate the composer cache
 git clone http://git.drupal.org/project/drupal.git ${DRUPAL_DIR}
 composer install --prefer-dist --no-progress --working-dir ${DRUPAL_DIR}
-chown -R admin:admin ${COMPOSER_CACHE_DIR}
+chown -R testbot:testbot ${COMPOSER_CACHE_DIR}
 
 sed -i 's/; sys_temp_dir = "\/tmp"/sys_temp_dir = "\/var\/lib\/drupalci\/workspace\/"/g' /etc/php/7.0/cli/php.ini
 
@@ -43,8 +55,8 @@ mkdir /var/lib/drupalci/drupal-checkout
 rsync -a /opt/drupal_checkout/ /var/lib/drupalci/drupal-checkout
 chmod 777 /var/lib/drupalci/docker-tmp
 chmod 777 /var/lib/drupalci/coredumps
-chown -R admin:admin /var/lib/drupalci
-chown -R admin:admin /home/admin
+chown -R testbot:testbot /var/lib/drupalci
+chown -R testbot:testbot /home/testbot
 
 exit 0
 EOF
