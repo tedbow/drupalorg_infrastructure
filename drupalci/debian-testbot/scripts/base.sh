@@ -1,13 +1,12 @@
 #!/bin/bash -eux
 
-# Name:        base.sh
-# Author:      Nick Schuch (nick@myschuch.com)
-# Description: Install base packages and configuration.
 date
+# Install curl first, because we need it for everything else.
 apt-get update
 apt-get -y upgrade
 apt-get -y install curl
-#add the dotdeb repos.
+
+#add the dotdeb repos so we can install php7.0
 (
 cat << EOF
 deb http://packages.dotdeb.org jessie all
@@ -15,6 +14,7 @@ deb-src http://packages.dotdeb.org jessie all
 EOF
 ) >> /etc/apt/sources.list.d/dotdeb.list
 curl -s https://www.dotdeb.org/dotdeb.gpg | apt-key add -
+
 
 # Add sysdig sources to monitor the testbot workload
 curl -s https://s3.amazonaws.com/download.draios.com/DRAIOS-GPG-KEY.public | apt-key add -
@@ -24,10 +24,40 @@ curl -s -o /etc/apt/sources.list.d/draios.list http://download.draios.com/stable
 apt-get update
 
 # Packages.
-apt-get -y install bsdtar dstat gawk git grep htop iotop linux-headers-$(uname -r) \
-                   make mc mysql-client nmon ntp \
-                   openjdk-7-jre php7.0 php7.0-mysql php7.0-mbstring php7.0-pgsql php7.0-sqlite3 php7.0-xml php7.0-bcmath php7.0-curl php7.0-cli php7.0-dev php-pear python sqlite3 ssh \
-                   sudo sysstat vim wget sysdig php7.0-xdebug
+apt-get -y install bsdtar \
+                   dstat \
+                   gawk \
+                   git \
+                   grep \
+                   htop \
+                   iotop \
+                   linux-headers-$(uname -r) \
+                   make \
+                   mc \
+                   mysql-client \
+                   nmon \
+                   ntp \
+                   openjdk-7-jre \
+                   php7.0 \
+                   php7.0-bcmath \
+                   php7.0-cli \
+                   php7.0-curl \
+                   php7.0-dev \
+                   php7.0-mbstring \
+                   php7.0-mysql \
+                   php7.0-pgsql \
+                   php7.0-sqlite3 \
+                   php7.0-xdebug \
+                   php7.0-xml \
+                   php-pear \
+                   python \
+                   sqlite3 \
+                   ssh \
+                   sudo \
+                   sysstat \
+                   sysdig \
+                   vim \
+                   wget
 apt-get clean
 apt-get -y autoremove
 # we want xdebug there, just disabled.
@@ -71,24 +101,7 @@ cat << EOF
 EOF
 ) >> /etc/security/limits.conf
 
-sed --in-place -e 's/exit 0//' /etc/rc.local
-(
-cat << "EOF"
-#Size the tmpfs volume based on the amount of available memory
-MEMSIZE=`cat /proc/meminfo |grep MemTotal |awk '{printf "%d", $2*.70;}'`
-mkdir -p /var/lib/drupalci
-mount -t tmpfs -o size=${MEMSIZE}k tmpfs /var/lib/drupalci
-mkdir /var/lib/drupalci/workspace
-mkdir /var/lib/drupalci/coredumps
-mkdir /var/lib/drupalci/docker-tmp
-chown -R admin:admin /var/lib/drupalci /home/admin
-chmod 777 /var/lib/drupalci/docker-tmp
-chmod 777 /var/lib/drupalci/coredumps
-python /usr/bin/userdata
 
-exit 0
-EOF
-) >> /etc/rc.local
 
 
 # Tweak sshd to prevent DNS resolution (speed up logins)

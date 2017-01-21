@@ -39,3 +39,12 @@ os.system("java -jar slave.jar -jnlpCredentials drupaltestbotslave:j190U2l7HCYp7
 EOF
 ) > /usr/bin/userdata
 chmod +x /usr/bin/userdata
+
+sed --in-place -e 's/exit 0//' /etc/rc.local
+(
+cat << "EOF"
+python /usr/bin/userdata
+
+exit 0
+EOF
+) >> /etc/rc.local

@@ -120,7 +120,7 @@
             "scripts": [
                 "scripts/base.sh",
                 "scripts/vagrant.sh",
-                "scripts/command.sh",
+                "scripts/drupalci.sh",
                 "scripts/docker.sh",
                 "scripts/virtualbox.sh"
 
