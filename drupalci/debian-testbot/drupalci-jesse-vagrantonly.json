@@ -1,0 +1,128 @@
+{
+    "description": "Creates a Debian 8 (Jessie) amd64 machine image.",
+    "variables": {
+        "outputs_dir": "builds.ignore",
+        "vm_name": "drupalci_testbot",
+        "iso_url": "{{env `PACKER_DEBIAN_ISO_URL`}}",
+        "iso_sha512": "{{env `PACKER_DEBIAN_ISO_SUM`}}",
+        "cores": "2",
+        "memory": "1024",
+        "vram": "16",
+        "disk_size": "20480",
+        "ssh_user": "{{env `PACKER_SSH_USER`}}",
+        "ssh_pass": "{{env `PACKER_SSH_PASS`}}",
+        "ssh_port": "22",
+        "ssh_wait_timeout": "10000s",
+        "locale": "en_US",
+        "timezone": "UTC",
+        "kbd_lang": "us",
+        "kbd_model": "pc105",
+        "hostname": "drupalci.testbot",
+        "domain": "",
+        "vbox_url": "{{env `PACKER_VBOX_ISO_URL`}}",
+        "vbox_sum": "{{env `PACKER_VBOX_ISO_SUM`}}",
+        "box_organization": "drupalci",
+        "box_name": "testbot"
+    },
+
+
+
+    "builders": [
+
+        {
+            "type": "virtualbox-iso",
+            "name": "jessie-vboxiso",
+            "headless": "true",
+            "virtualbox_version_file": ".vbox_version",
+            "guest_os_type": "Debian_64",
+            "guest_additions_mode": "upload",
+            "guest_additions_path": "/var/tmp/VBoxGuestAdditions_{{.Version}}.iso",
+            "hard_drive_interface": "ide",
+            "iso_interface": "ide",
+            "vboxmanage": [
+                [ "modifyvm", "{{.Name}}", "--cpus", "{{user `cores`}}" ],
+                [ "modifyvm", "{{.Name}}", "--memory", "{{user `memory`}}" ],
+                [ "modifyvm", "{{.Name}}", "--vram", "{{user `vram`}}" ]
+            ],
+
+            "boot_command": [
+                "<esc><wait>",
+                "install <wait>",
+                "preseed/url=http://{{ .HTTPIP }}:{{ .HTTPPort }}/preseed.cfg <wait>",
+                "debian-installer={{user `locale`}} <wait>",
+                "auto <wait>",
+                "locale={{user `locale`}} <wait>",
+                "time/zone={{user `timezone`}} <wait>",
+                "kbd-chooser/method=us <wait>",
+                "netcfg/get_hostname={{user `hostname`}} <wait>",
+                "netcfg/get_domain={{user `domain`}} <wait>",
+                "fb=false <wait>",
+                "debconf/frontend=noninteractive <wait>",
+                "console-setup/ask_detect=false <wait>",
+                "console-keymaps-at/keymap={{user `kbd_lang`}} <wait>",
+                "keyboard-configuration/xkb-keymap={{user `kbd_lang`}} <wait>",
+                "keyboard-configuration/modelcode={{user `kbd_model`}} <wait>",
+                "passwd/root-login=false <wait>",
+                "passwd/user-fullname={{user `ssh_user`}} <wait>",
+                "passwd/username={{user `ssh_user`}} <wait>",
+                "passwd/user-password=\"{{user `ssh_pass`}}\" <wait>",
+                "passwd/user-password-again=\"{{user `ssh_pass`}}\" <wait>",
+                "<enter><wait>"
+            ],
+            "disk_size": "{{user `disk_size`}}",
+            "http_directory": "http",
+            "iso_checksum": "{{user `iso_sha512`}}",
+            "iso_checksum_type": "sha512",
+            "iso_url": "{{user `iso_url`}}",
+            "communicator": "ssh",
+            "ssh_username": "{{user `ssh_user`}}",
+            "ssh_password": "{{user `ssh_pass`}}",
+            "ssh_port": "{{user `ssh_port`}}",
+            "ssh_wait_timeout": "{{user `ssh_wait_timeout`}}",
+            "shutdown_command": "echo '{{user `ssh_pass`}}' | sudo -S shutdown -P now",
+            "output_directory": "{{user `outputs_dir`}}/{{user `vm_name`}}_{{build_name}}/"
+        }
+
+    ],
+
+
+    "provisioners": [
+        {
+            "type": "shell",
+            "only": ["jessie-vboxiso"],
+            "execute_command": "echo '{{user `ssh_pass`}}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
+            "scripts": [
+                "scripts/base.sh",
+                "scripts/vagrant.sh",
+                "scripts/drupalci.sh",
+                "scripts/docker.sh",
+                "scripts/virtualbox.sh"
+
+            ]
+        }
+    ],
+
+
+    "post-processors": [
+        [
+            {
+                "type": "vagrant",
+                "only": [ "jessie-vboxiso" ],
+                "keep_input_artifact": true,
+                "compression_level": 0,
+                "output": "{{user `outputs_dir`}}/{{user `vm_name`}}_{{.BuildName}}.box"
+            },
+            {
+                "type": "vagrant-s3",
+                "only": [ "jessie-vboxiso" ],
+                "region": "us-west-2",
+                "bucket": "drupalci-vagrant",
+                "manifest": "vagrant/json/{{ user `box_organization` }}/{{ user `box_name` }}.json",
+                "box_dir": "vagrant/boxes/{{ user `box_organization` }}/{{ user `box_name` }}",
+                "box_name": "{{ user `box_organization` }}/{{ user `box_name` }}"
+            }
+        ]
+    ]
+}
+
+
