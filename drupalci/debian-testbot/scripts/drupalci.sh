@@ -56,6 +56,7 @@ chmod 777 /var/lib/drupalci/coredumps
 chown -R testbot:testbot /var/lib/drupalci
 chown -R testbot:testbot /home/testbot/.*
 chown -R testbot:testbot /home/testbot
+touch /home/testbot/.jenkins_ready
 
 exit 0
 EOF
