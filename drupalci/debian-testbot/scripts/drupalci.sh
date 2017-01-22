@@ -10,7 +10,7 @@ fi
 usermod -a -G sudo testbot
 
 # (setting permissions before moving file to sudoers.d)
-echo '%drupalci ALL=NOPASSWD:ALL' > /tmp/drupalci
+echo '%testbot ALL=NOPASSWD:ALL' > /tmp/testbot
 chmod 0440 /tmp/testbot
 mv /tmp/testbot /etc/sudoers.d/
 
