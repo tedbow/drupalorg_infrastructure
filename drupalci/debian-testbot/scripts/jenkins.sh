@@ -49,6 +49,7 @@ exit 0
 EOF
 ) >> /etc/rc.local
 
+TESTRUNNER_DIR="/opt/drupalci/testrunner"
 # Create the script that jenkins will run:
 (
 cat << 'EOF'
@@ -57,6 +58,7 @@ find /var/lib/drupalci/workspace -mindepth 1 -maxdepth 1 -mtime +7 -exec sudo rm
 
 set -uex
 id
+export COMPOSER_CACHE_DIR="/opt/drupalci/composer-cache"
 echo https://www.drupal.org/pift-ci-job/${Drupal_JobID#https://www.drupal.org:}
 curl -w '\n' -s http://169.254.169.254/latest/meta-data/instance-type
 curl -w '\n' -s http://169.254.169.254/latest/meta-data/ami-id

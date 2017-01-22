@@ -78,7 +78,7 @@ rm composer-setup.php
 
 chmod +x /usr/local/bin/composer && ln -s /usr/local/bin/composer /usr/bin/composer
 
-sed -i 's/variables_order = \"GPCS\"/variables_order = \"EGPCS\"/g' /etc/php/7.0/cli/php.ini
+sed -i 's/variables_order = \"GPCS\"/variables_order = \"EGPCS\"/g' /etc/php/7.1/cli/php.ini
 
 (
 cat << EOF
