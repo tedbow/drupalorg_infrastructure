@@ -14,18 +14,19 @@ echo '%testbot ALL=NOPASSWD:ALL' > /tmp/testbot
 chmod 0440 /tmp/testbot
 mv /tmp/testbot /etc/sudoers.d/
 
-DIR="/opt/drupalci_testbot"
-DRUPAL_DIR="${DIR}/drupal_checkout"
-COMPOSER_CACHE_DIR="/opt/composer_cache"
+DIR="/opt/drupalci"
+TESTRUNNER_DIR="${DIR}/testrunner"
+DRUPAL_DIR="${DIR}/drupal-checkout"
+COMPOSER_CACHE_DIR="${DIR}/composer-cache"
 mkdir ${COMPOSER_CACHE_DIR}
 composer config -g cache-dir ${COMPOSER_CACHE_DIR}
-git clone --branch production http://git.drupal.org/project/drupalci_testbot.git ${DIR}
-composer install --prefer-dist --no-progress --working-dir ${DIR}
-chown -R testbot:testbot ${DRUPAL_DIR}
+git clone --branch production http://git.drupal.org/project/drupalci_testbot.git ${TESTRUNNER_DIR}
+composer install --prefer-dist --no-progress --working-dir ${TESTRUNNER_DIR}
+chown -R testbot:testbot ${TESTRUNNER_DIR}
 
-chmod 775 ${DIR}/drupalci
-ln -s ${DIR}/drupalci /usr/local/bin/drupalci
-mkdir -p /home/testbot/drupalci_testbot
+chmod 775 ${TESTRUNNER_DIR}/drupalci
+ln -s ${TESTRUNNER_DIR}/drupalci /usr/local/bin/drupalci
+mkdir -p /home/testbot/testrunner
 
 # Lets prepopulate the composer cache
 git clone http://git.drupal.org/project/drupal.git ${DRUPAL_DIR}
@@ -49,7 +50,7 @@ mkdir /var/lib/drupalci/coredumps
 mkdir /var/lib/drupalci/docker-tmp
 #Copy drupal core into tmpfs memory
 mkdir /var/lib/drupalci/drupal-checkout
-rsync -a /opt/drupal_checkout/ /var/lib/drupalci/drupal-checkout
+rsync -a /opt/drupalci/drupal-checkout/ /var/lib/drupalci/drupal-checkout
 chmod 777 /var/lib/drupalci/docker-tmp
 chmod 777 /var/lib/drupalci/coredumps
 chown -R testbot:testbot /var/lib/drupalci
