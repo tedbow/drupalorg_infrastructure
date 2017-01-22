@@ -97,7 +97,8 @@ cat << EOF
 EOF
 ) >> /etc/security/limits.conf
 
-
+# Change the default username from admin to testbot
+sed -i 's/name: admin/name: testbot/g' /etc/cloud/cloud.cfg
 
 
 # Tweak sshd to prevent DNS resolution (speed up logins)

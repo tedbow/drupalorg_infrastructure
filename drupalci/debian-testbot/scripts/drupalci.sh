@@ -5,14 +5,16 @@ date
 if [[ ! -d "/home/testbot" ]]; then
     /usr/sbin/groupadd testbot
     /usr/sbin/useradd -g testbot -p $(perl -e'print crypt("testbot", "testbot")') -m -s /bin/bash testbot
+
+    usermod -a -G sudo testbot
+
+    # (setting permissions before moving file to sudoers.d)
+    echo '%testbot ALL=NOPASSWD:ALL' > /tmp/testbot
+    chmod 0440 /tmp/testbot
+    mv /tmp/testbot /etc/sudoers.d/
 fi
 
-usermod -a -G sudo testbot
 
-# (setting permissions before moving file to sudoers.d)
-echo '%testbot ALL=NOPASSWD:ALL' > /tmp/testbot
-chmod 0440 /tmp/testbot
-mv /tmp/testbot /etc/sudoers.d/
 
 DIR="/opt/drupalci"
 TESTRUNNER_DIR="${DIR}/testrunner"
