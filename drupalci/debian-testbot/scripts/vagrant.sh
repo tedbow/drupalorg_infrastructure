@@ -16,10 +16,11 @@ echo -e '\nexport DEBIAN_FRONTEND=noninteractive' >> /home/testbot/.profile
 
 echo "Install the insecure vagrant SSH keys..."
 
-curl -Lo /home/testbot/.ssh/vagrant_key 'https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub'
-cat /home/testbot/.ssh/vagrant_key >> /home/testbot/.ssh/authorized_keys
+curl -Lo /tmp/vagrant_key 'https://raw.github.com/mitchellh/vagrant/master/keys/vagrant.pub'
+mkdir -p /home/testbot/.ssh
+cat /tmp/vagrant_key >> /home/testbot/.ssh/authorized_keys
 chmod 0600 /home/testbot/.ssh/authorized_keys
-chown -R drupalci:drupalci /home/testbot/.ssh
+chown -R testbot:testbot /home/testbot/.ssh
 
 
 echo "Install NFS..."
