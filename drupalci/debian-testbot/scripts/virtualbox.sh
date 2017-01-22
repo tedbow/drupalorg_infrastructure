@@ -17,8 +17,6 @@ if [ $PACKER_BUILDER_TYPE == 'virtualbox-iso' ]; then
     umount /mnt
     rm /var/tmp/VBoxGuestAdditions_${VBOX_VERSION}.iso
 
-    apt-get -y remove linux-headers-$(uname -r) build-essential perl
-    apt-get -y autoremove
 
 else
     echo "Nothing to do here. Not a VirtualBox builder."

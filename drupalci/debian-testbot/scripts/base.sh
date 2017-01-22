@@ -46,6 +46,7 @@ apt-get -y install bsdtar \
                    php-xdebug \
                    php-pear \
                    python \
+                   rsync \
                    sqlite3 \
                    ssh \
                    sudo \
