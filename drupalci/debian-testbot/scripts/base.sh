@@ -4,16 +4,11 @@ date
 # Install curl first, because we need it for everything else.
 apt-get update
 apt-get -y upgrade
-apt-get -y install curl
+apt-get -y install curl apt-transport-https lsb-release ca-certificates
 
-#add the dotdeb repos so we can install php7.0
-(
-cat << EOF
-deb http://packages.dotdeb.org jessie all
-deb-src http://packages.dotdeb.org jessie all
-EOF
-) >> /etc/apt/sources.list.d/dotdeb.list
-curl -s https://www.dotdeb.org/dotdeb.gpg | apt-key add -
+apt-get install apt-transport-https lsb-release ca-certificates
+curl -s -o /etc/apt/trusted.gpg.d/php.gpg https://packages.sury.org/php/apt.gpg
+echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sources.list.d/php.list
 
 
 # Add sysdig sources to monitor the testbot workload
@@ -38,17 +33,17 @@ apt-get -y install bsdtar \
                    nmon \
                    ntp \
                    openjdk-7-jre \
-                   php7.0 \
-                   php7.0-bcmath \
-                   php7.0-cli \
-                   php7.0-curl \
-                   php7.0-dev \
-                   php7.0-mbstring \
-                   php7.0-mysql \
-                   php7.0-pgsql \
-                   php7.0-sqlite3 \
-                   php7.0-xdebug \
-                   php7.0-xml \
+                   php7.1 \
+                   php7.1-bcmath \
+                   php7.1-cli \
+                   php7.1-curl \
+                   php7.1-dev \
+                   php7.1-mbstring \
+                   php7.1-mysql \
+                   php7.1-pgsql \
+                   php7.1-sqlite3 \
+                   php7.1-xml \
+                   php-xdebug \
                    php-pear \
                    python \
                    sqlite3 \
