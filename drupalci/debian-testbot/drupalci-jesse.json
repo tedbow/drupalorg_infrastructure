@@ -119,11 +119,10 @@
             "execute_command": "echo '{{user `ssh_pass`}}' | {{.Vars}} sudo -E -S bash '{{.Path}}'",
             "scripts": [
                 "scripts/base.sh",
-                "scripts/vagrant.sh",
                 "scripts/drupalci.sh",
                 "scripts/docker.sh",
-                "scripts/virtualbox.sh"
-
+                "scripts/virtualbox.sh",
+                "scripts/vagrant.sh"
             ]
         },
 
