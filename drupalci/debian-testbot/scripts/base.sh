@@ -19,7 +19,8 @@ curl -s -o /etc/apt/sources.list.d/draios.list http://download.draios.com/stable
 apt-get update
 
 # Packages.
-apt-get -y install bsdtar \
+apt-get -y install bash_completion \
+                   bsdtar \
                    dstat \
                    gawk \
                    git \
