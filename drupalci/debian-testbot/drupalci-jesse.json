@@ -92,7 +92,7 @@
             "ssh_username": "admin",
             "ami_name": "DrupalCI testrunner {{isotime \"20060102-150405\"}}",
             "ami_description": "DrupalCI Testbot debian 8.7 jessie",
-            "ami_block_device_mappings": [
+            "launch_block_device_mappings": [
                 {
                     "device_name": "/dev/xvda",
                     "volume_type": "gp2",
