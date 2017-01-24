@@ -48,7 +48,6 @@ apt-get -y install bash-completion \
                    php-pear \
                    python \
                    rsync \
-                   sar \
                    sqlite3 \
                    ssh \
                    sudo \
