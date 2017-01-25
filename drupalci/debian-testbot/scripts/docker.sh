@@ -12,7 +12,9 @@ curl -sSL https://get.docker.com/ | sed 's/docker-engine/docker-engine=1.12.1-0~
 usermod -a -G docker testbot
 
 service docker stop
-echo 'DOCKER_OPTS=" -s devicemapper"' >> /etc/default/docker
+echo '{
+    "storage-driver": "devicemapper"
+}' >> /etc/docker/daemon.json
 rm -rf /var/lib/docker/*
 service docker start
 
