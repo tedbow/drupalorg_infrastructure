@@ -3041,6 +3041,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_security_advisory_coverage",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_security_advisory_coverage_value",
+    ])
+
+whitelist.add(
     table="field_data_field_short_description",
     columns=[
         "entity_type",
@@ -5575,6 +5588,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_revision_field_security_advisory_coverage",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_security_advisory_coverage_value",
+    ])
+
+whitelist.add(
     table="field_revision_field_short_description",
     columns=[
         "entity_type",
@@ -6728,6 +6754,7 @@ whitelist.add(
         "core_branch",
         "custom",
         "issue_branch",
+        "build_details",
     ])
 
 whitelist.add(
