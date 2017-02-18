@@ -33,6 +33,11 @@ git clone http://git.drupal.org/project/drupal.git ${DRUPAL_DIR}
 composer install --prefer-dist --no-progress --working-dir ${DRUPAL_DIR}
 chown -R testbot:testbot ${COMPOSER_CACHE_DIR}
 
+# install csslint and eslint on the host system
+ln -s /usr/bin/nodejs /usr/bin/node
+npm -g install csslint
+npm -g install eslint
+
 sed -i 's/; sys_temp_dir = "\/tmp"/sys_temp_dir = "\/var\/lib\/drupalci\/workspace\/"/g' /etc/php/7.1/cli/php.ini
 
 # Everything we do to the tmpfs directory has to

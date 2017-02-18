@@ -14,7 +14,9 @@ echo "deb https://packages.sury.org/php/ $(lsb_release -sc) main" > /etc/apt/sou
 # Add sysdig sources to monitor the testbot workload
 curl -s https://s3.amazonaws.com/download.draios.com/DRAIOS-GPG-KEY.public | apt-key add -
 curl -s -o /etc/apt/sources.list.d/draios.list http://download.draios.com/stable/deb/draios.list
-# LC_ALL=C.UTF-8 add-apt-repository ppa:ondrej/php
+
+# prep for nodejs installation
+curl -sL https://deb.nodesource.com/setup_6.x | sudo -E bash -
 
 apt-get update
 
@@ -28,10 +30,13 @@ apt-get -y install bash-completion \
                    htop \
                    iotop \
                    linux-headers-$(uname -r) \
+                   lsof \
                    make \
                    mc \
                    mysql-client \
+                   nodejs \
                    nmon \
+                   npm \
                    ntp \
                    openjdk-7-jre \
                    php7.1 \
