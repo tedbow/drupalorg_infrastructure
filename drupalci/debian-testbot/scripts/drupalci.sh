@@ -34,7 +34,6 @@ composer install --prefer-dist --no-progress --working-dir ${DRUPAL_DIR}
 chown -R testbot:testbot ${COMPOSER_CACHE_DIR}
 
 # install csslint and eslint on the host system
-ln -s /usr/bin/nodejs /usr/bin/node
 npm -g install csslint
 npm -g install eslint
 

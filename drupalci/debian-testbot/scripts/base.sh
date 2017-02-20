@@ -36,7 +36,6 @@ apt-get -y install bash-completion \
                    mysql-client \
                    nodejs \
                    nmon \
-                   npm \
                    ntp \
                    openjdk-7-jre \
                    php7.1 \
