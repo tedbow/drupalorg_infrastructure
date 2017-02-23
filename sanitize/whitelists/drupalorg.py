@@ -6714,12 +6714,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="pift_project",
-    columns=[
-        "pid",
-    ])
-
-whitelist.add(
     table="pift_test",
     columns=[
         "test_id",
