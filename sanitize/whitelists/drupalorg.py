@@ -6749,6 +6749,16 @@ whitelist.add(
         "custom",
         "issue_branch",
         "build_details",
+        "checkstyle",
+    ])
+
+whitelist.add(
+    table="pift_ci_job_checkstyle",
+    columns=[
+        "job_id",
+        "file",
+        "line",
+        "message",
     ])
 
 whitelist.add(
