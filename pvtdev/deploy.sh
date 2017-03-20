@@ -145,32 +145,6 @@ if [ "${site}" = "association" ]; then
   ${drush} -v compile-templates
 fi
 
-# Set up for potential bakery testing
-${drush} vdel bakery_slaves
-if [ "${site}" == "drupal" ]; then
-  # Drupal.org sites are masters
-  ${drush} vset bakery_master "https://${name}-${site}.private.devdrupal.org/"
-  ${drush} vset bakery_key "$(pwgen -s 32 1)"
-
-  # Clean up solr and create a read-only core
-  ${drush} vset apachesolr_default_environment solr_0
-  ${drush} solr-set-env-url --id="solr_0" http://solrdev1.drupal.bak:8983/solr/do-core1
-  ${drush} solr-vset --id="solr_0" --yes apachesolr_read_only 1
-  ${drush} ev "apachesolr_environment_delete(solr_0_0)"
-
-else
-  if [ "${bakery_master-}" ]; then
-    # Hook up to a Drupal.org
-    ${drush} vset bakery_master "https://${bakery_master}-drupal.private.devdrupal.org/"
-    drush_master="drush -r /var/www/dev/${bakery_master}-drupal.private.devdrupal.org/htdocs -l ${bakery_master}-drupal.private.devdrupal.org -y"
-    ${drush} vset bakery_key $(${drush_master} vget bakery_key --exact --format=string)
-    ${drush_master} bakery-add-slave "https://${name}-${site}.private.devdrupal.org/"
-  else
-    # Don't bother with bakery
-    ${drush} pm-disable bakery
-  fi
-fi
-
 # Set up test user
 ${drush} upwd bacon --password=bacon || true
 
