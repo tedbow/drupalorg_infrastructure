@@ -157,6 +157,7 @@ else
     drush_master="drush -r /var/www/dev/${bakery_master}-drupal.dev.devdrupal.org/htdocs -l ${bakery_master}-drupal.dev.devdrupal.org -y"
     ${drush} vset bakery_key $(${drush_master} vget bakery_key --exact --format=string)
     ${drush_master} bakery-add-slave "https://${name}-${site}.dev.devdrupal.org/"
+    echo "UPDATE users SET init = concat('${bakery_master}-drupal.dev.devdrupal.org/', substring_index(init, '/', -3)) WHERE init LIKE '%/user/%/edit'" | ${drush} sql-cli
   else
     # Don't bother with bakery
     ${drush} pm-disable bakery
