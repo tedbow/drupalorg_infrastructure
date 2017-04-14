@@ -1301,6 +1301,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_case_organizations",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_case_organizations_target_id",
+    ])
+
+whitelist.add(
     table="field_data_field_change_record_status",
     columns=[
         "entity_type",
@@ -1566,19 +1579,6 @@ whitelist.add(
         "delta",
         "field_developed_value",
         "field_developed_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_developed_org",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_developed_org_nid",
     ])
 
 whitelist.add(
@@ -2127,19 +2127,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_data_field_module",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_module_nid",
-    ])
-
-whitelist.add(
     table="field_data_field_module_recorded",
     columns=[
         "entity_type",
@@ -2250,19 +2237,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_data_field_organization",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_organization_nid",
-    ])
-
-whitelist.add(
     table="field_data_field_organization_headquarters",
     columns=[
         "entity_type",
@@ -2274,19 +2248,6 @@ whitelist.add(
         "delta",
         "field_organization_headquarters_value",
         "field_organization_headquarters_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_organization_issue",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_organization_issue_nid",
     ])
 
 whitelist.add(
@@ -2437,7 +2398,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_data_field_org_training_issue",
+    table="field_data_field_org_services_issue",
     columns=[
         "entity_type",
         "bundle",
@@ -2446,7 +2407,20 @@ whitelist.add(
         "revision_id",
         "language",
         "delta",
-        "field_org_training_issue_nid",
+        "field_org_services_issue_target_id",
+    ])
+
+whitelist.add(
+    table="field_data_field_org_train_issue",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_org_train_issue_target_id",
     ])
 
 whitelist.add(
@@ -2501,19 +2475,6 @@ whitelist.add(
         "delta",
         "field_overview_value",
         "field_overview_format",
-    ])
-
-whitelist.add(
-    table="field_data_field_profiles",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_profiles_uid",
     ])
 
 whitelist.add(
@@ -2767,6 +2728,19 @@ whitelist.add(
         "language",
         "delta",
         "field_project_type_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_projects",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_projects_target_id",
     ])
 
 whitelist.add(
@@ -3122,6 +3096,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_supporting_organization",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_supporting_organization_target_id",
+    ])
+
+whitelist.add(
     table="field_data_field_supporting_organizations",
     columns=[
         "entity_type",
@@ -3172,6 +3159,19 @@ whitelist.add(
         "language",
         "delta",
         "field_target_node_target_id",
+    ])
+
+whitelist.add(
+    table="field_data_field_team_members",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_team_members_target_id",
     ])
 
 whitelist.add(
@@ -3822,6 +3822,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_revision_field_case_organizations",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_case_organizations_target_id",
+    ])
+
+whitelist.add(
     table="field_revision_field_change_record_status",
     columns=[
         "entity_type",
@@ -4087,19 +4100,6 @@ whitelist.add(
         "delta",
         "field_developed_value",
         "field_developed_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_developed_org",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_developed_org_nid",
     ])
 
 whitelist.add(
@@ -4661,19 +4661,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_revision_field_module",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_module_nid",
-    ])
-
-whitelist.add(
     table="field_revision_field_module_recorded",
     columns=[
         "entity_type",
@@ -4743,19 +4730,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_revision_field_organization",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_organization_nid",
-    ])
-
-whitelist.add(
     table="field_revision_field_organization_headquarters",
     columns=[
         "entity_type",
@@ -4767,19 +4741,6 @@ whitelist.add(
         "delta",
         "field_organization_headquarters_value",
         "field_organization_headquarters_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_organization_issue",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_organization_issue_nid",
     ])
 
 whitelist.add(
@@ -4971,7 +4932,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_revision_field_org_training_issue",
+    table="field_revision_field_org_services_issue",
     columns=[
         "entity_type",
         "bundle",
@@ -4980,7 +4941,20 @@ whitelist.add(
         "revision_id",
         "language",
         "delta",
-        "field_org_training_issue_nid",
+        "field_org_services_issue_target_id",
+    ])
+
+whitelist.add(
+    table="field_revision_field_org_train_issue",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_org_train_issue_target_id",
     ])
 
 whitelist.add(
@@ -5038,19 +5012,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_revision_field_profiles",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_profiles_uid",
-    ])
-
-whitelist.add(
     table="field_revision_field_project",
     columns=[
         "entity_type",
@@ -5061,6 +5022,19 @@ whitelist.add(
         "language",
         "delta",
         "field_project_target_id",
+    ])
+
+whitelist.add(
+    table="field_revision_field_projects",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_projects_target_id",
     ])
 
 whitelist.add(
@@ -5669,6 +5643,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_revision_field_supporting_organization",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_supporting_organization_target_id",
+    ])
+
+whitelist.add(
     table="field_revision_field_supporting_organizations",
     columns=[
         "entity_type",
@@ -5719,6 +5706,19 @@ whitelist.add(
         "language",
         "delta",
         "field_target_node_target_id",
+    ])
+
+whitelist.add(
+    table="field_revision_field_team_members",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_team_members_target_id",
     ])
 
 whitelist.add(
