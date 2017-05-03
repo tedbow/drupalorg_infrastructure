@@ -24,7 +24,7 @@ fi
 
 export TERM=dumb
 drush="drush -r ${web_path}/htdocs -y"
-declare -A db_names=( ["events"]="events" ["jobs"]="drupal_jobs" ["association"]="drupal_association" )
+declare -A db_names=( ["events"]="events" ["jobs"]="drupal_jobs" ["association"]="drupal_association" ["security"]="drupal_security")
 db_pass=$(pwgen -s 16 1)
 
 [ -e "${web_path}" ] && echo "Project webroot already exists!" && exit 1
