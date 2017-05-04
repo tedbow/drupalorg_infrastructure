@@ -456,14 +456,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:comment_alter_taxonomy",
-    columns=[
-        "nid",
-        "cid",
-        "tid",
-    ])
-
-whitelist.add(
     table="_nodata:comment_upload",
     columns=[
         "fid",
@@ -473,62 +465,6 @@ whitelist.add(
         "list",
         "weight",
         "legacy_fid",
-    ])
-
-whitelist.add(
-    table="_nodata:field_deleted_data_257",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_current_company_org_value",
-        "field_current_company_org_format",
-    ])
-
-whitelist.add(
-    table="_nodata:field_deleted_data_303",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_drupal_contributions_value",
-        "field_drupal_contributions_format",
-    ])
-
-whitelist.add(
-    table="_nodata:field_deleted_revision_257",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_current_company_org_value",
-        "field_current_company_org_format",
-    ])
-
-whitelist.add(
-    table="_nodata:field_deleted_revision_303",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_drupal_contributions_value",
-        "field_drupal_contributions_format",
     ])
 
 whitelist.add(
@@ -655,256 +591,6 @@ whitelist.add(
         "description",
         "widget_module",
         "widget_active",
-    ])
-
-whitelist.add(
-    table="content_type_book_listing",
-    columns=[
-        "vid",
-        "nid",
-        "field_book_description_value",
-        "field_book_description_format",
-        "field_book_isbn_10_value",
-        "field_book_isbn_13_value",
-        "field_book_listing_authors_value",
-        "field_book_listing_authors_format",
-        "field_book_listing_date_value",
-        "field_book_page_count_value",
-        "field_book_purchase_link_url",
-        "field_book_purchase_link_title",
-        "field_book_purchase_link_attributes",
-        "field_book_subtitle_value",
-        "field_cover_image_fid",
-        "field_cover_image_list",
-        "field_cover_image_data",
-        "field_official_website_url",
-        "field_official_website_title",
-        "field_official_website_attributes",
-        "field_publisher_value",
-    ])
-
-whitelist.add(
-    table="content_type_casestudy",
-    columns=[
-        "vid",
-        "nid",
-        "field_community_value",
-        "field_community_format",
-        "field_developed_value",
-        "field_developed_format",
-        "field_goals_value",
-        "field_mainimage_fid",
-        "field_mainimage_list",
-        "field_mainimage_data",
-        "field_module_selection_value",
-        "field_overview_value",
-        "field_goals_format",
-        "field_overview_format",
-        "field_status_value",
-        "field_module_selection_format",
-    ])
-
-whitelist.add(
-    table="content_type_changenotice",
-    columns=[
-        "vid",
-        "nid",
-        "field_change_to_value",
-        "field_change_to_branch_value",
-        "field_coder_recorded_value",
-        "field_coder_update_recorded_value",
-        "field_description_value",
-        "field_description_format",
-        "field_examples_recorded_value",
-        "field_module_recorded_value",
-        "field_online_recorded_value",
-        "field_other_details_value",
-        "field_other_details_format",
-        "field_other_recorded_value",
-        "field_project_nid",
-        "field_theme_recorded_value",
-        "field_update_progress_value",
-    ])
-
-whitelist.add(
-    table="content_type_organization",
-    columns=[
-        "vid",
-        "nid",
-        "field_budget_value",
-        "field_contributions_value",
-        "field_contributions_format",
-        "field_logo_fid",
-        "field_logo_list",
-        "field_logo_data",
-        "field_organization_headquarters_value",
-        "field_organization_list_rule_value",
-        "field_organization_marketplace_value",
-        "field_organization_hosting_categ_value",
-        "field_organization_hosting_level_value",
-        "field_organization_hosting_url_url",
-        "field_organization_hosting_url_title",
-        "field_organization_hosting_url_attributes",
-        "field_org_marketplace_request_value",
-        "field_organization_issue_nid",
-        "field_org_training_issue_nid",
-        "field_org_training_request_value",
-        "field_organization_training_desc_value",
-        "field_organization_training_desc_format",
-        "field_organization_training_list_value",
-        "field_organization_training_url_url",
-        "field_organization_training_url_title",
-        "field_organization_training_url_attributes",
-        "field_organization_security_value",
-    ])
-
-whitelist.add(
-    table="content_type_project_project",
-    columns=[
-        "vid",
-        "nid",
-    ])
-
-whitelist.add(
-    table="_nodata:cvs",
-    columns=[
-        "user",
-        "files",
-        "status",
-        "message",
-        "timestamp",
-    ])
-
-whitelist.add(
-    table="_nodata:cvs_accounts",
-    columns=[
-        "uid",
-        "cvs_user",
-        "status",
-        "pass",
-        "motivation",
-    ])
-
-whitelist.add(
-    table="_nodata:cvs_cache_block",
-    columns=[
-        "cid",
-        "data",
-    ])
-
-whitelist.add(
-    table="_nodata:cvs_files",
-    columns=[
-        "cid",
-        "rid",
-        "file",
-        "branch",
-        "revision",
-        "lines_added",
-        "lines_removed",
-        "nid",
-        "uid",
-    ])
-
-whitelist.add(
-    table="_nodata:cvs_files_attic",
-    columns=[
-        "cid",
-        "rid",
-        "uid",
-        "nid",
-        "file",
-        "branch",
-        "revision",
-        "lines_added",
-        "lines_removed",
-    ])
-
-whitelist.add(
-    table="_nodata:cvs_messages",
-    columns=[
-        "cid",
-        "rid",
-        "created",
-        "cvs_user",
-        "message",
-        "uid",
-    ])
-
-whitelist.add(
-    table="_nodata:cvs_messages_attic",
-    columns=[
-        "cid",
-        "rid",
-        "uid",
-        "created",
-        "cvs_user",
-        "message",
-    ])
-
-whitelist.add(
-    table="_nodata:cvs_migration",
-    columns=[
-        "uid",
-        "cvs_user",
-        "repomail",
-        "reponame",
-    ])
-
-whitelist.add(
-    table="_nodata:cvs_project_maintainers",
-    columns=[
-        "nid",
-        "uid",
-    ])
-
-whitelist.add(
-    table="_nodata:cvs_projects",
-    columns=[
-        "nid",
-        "rid",
-        "directory",
-    ])
-
-whitelist.add(
-    table="cvs_repositories",
-    columns=[
-        "rid",
-        "name",
-        "root",
-        "modules",
-        "diffurl",
-        "newurl",
-        "trackerurl",
-        "method",
-        "updated",
-    ])
-
-whitelist.add(
-    table="_nodata:cvs_tags",
-    columns=[
-        "nid",
-        "tag",
-        "branch",
-        "timestamp",
-    ])
-
-whitelist.add(
-    table="_nodata:cvs_tags_attic",
-    columns=[
-        "nid",
-        "tag",
-        "branch",
-    ])
-
-whitelist.add(
-    table="_nodata:d6_upgrade_filter",
-    columns=[
-        "module",
-        "weight",
-        "format",
-        "delta",
-        "fid",
     ])
 
 whitelist.add(
@@ -6237,18 +5923,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:forum2_index",
-    columns=[
-        "nid",
-        "title",
-        "tid",
-        "sticky",
-        "created",
-        "last_comment_timestamp",
-        "comment_count",
-    ])
-
-whitelist.add(
     table="forum_index",
     columns=[
         "nid",
@@ -6504,30 +6178,6 @@ whitelist.add(
         "confirm_code",
         "time_code_generated",
         "attempts",
-    ])
-
-whitelist.add(
-    table="_nodata:mv_drupalorg_node_by_term",
-    columns=[
-        "entity_type",
-        "entity_id",
-        "term_tid",
-        "node_sticky",
-        "last_node_activity",
-        "node_created",
-        "node_title",
-    ])
-
-whitelist.add(
-    table="_nodata:mv_drupalorg_node_by_vocabulary",
-    columns=[
-        "entity_type",
-        "entity_id",
-        "term_vid",
-        "node_nid",
-        "node_last_comment_timestamp",
-        "node_title",
-        "node_comment_count",
     ])
 
 whitelist.add(
@@ -6833,29 +6483,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="project",
-    columns=[
-        "nid",
-        "pid",
-        "pstatus",
-        "area",
-        "priority",
-        "version",
-        "assigned",
-        "file",
-        "ptype",
-    ])
-
-whitelist.add(
-    table="project_comments_conversion_errors",
-    columns=[
-        "cid",
-        "pid",
-        "old_rid",
-        "new_rid",
-    ])
-
-whitelist.add(
     table="project_dependency_component",
     columns=[
         "component_id",
@@ -6880,23 +6507,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:project_issue_comments",
-    columns=[
-        "nid",
-        "cid",
-        "rid",
-        "component",
-        "category",
-        "priority",
-        "assigned",
-        "sid",
-        "pid",
-        "title",
-        "timestamp",
-        "comment_number",
-    ])
-
-whitelist.add(
     table="project_issue_notification_project",
     columns=[
         "nid",
@@ -6915,61 +6525,11 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="project_issue_priority",
-    columns=[
-        "priority",
-        "name",
-        "weight",
-    ])
-
-whitelist.add(
     table="project_issue_project_maintainer",
     columns=[
         "nid",
         "uid",
         "maintain_issues",
-    ])
-
-whitelist.add(
-    table="_nodata:project_issue_projects",
-    columns=[
-        "nid",
-        "issues",
-        "components",
-        "help",
-        "mail_digest",
-        "mail_copy",
-        "mail_copy_filter",
-        "mail_copy_filter_state",
-        "mail_reminder",
-        "default_component",
-    ])
-
-whitelist.add(
-    table="_nodata:project_issues",
-    columns=[
-        "nid",
-        "pid",
-        "category",
-        "component",
-        "priority",
-        "rid",
-        "assigned",
-        "sid",
-        "original_issue_data",
-        "last_comment_id",
-        "db_lock",
-        "priority_weight",
-    ])
-
-whitelist.add(
-    table="project_issue_state",
-    columns=[
-        "sid",
-        "name",
-        "weight",
-        "author_has",
-        "default_query",
     ])
 
 whitelist.add(
@@ -7046,40 +6606,10 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="project_release_legacy",
-    columns=[
-        "rid",
-        "nid",
-        "pid",
-        "time",
-        "save_ms",
-        "update_ms",
-    ])
-
-whitelist.add(
     table="project_release_node_rebuild_metadata",
     columns=[
         "nid",
         "rebuild_version",
-    ])
-
-whitelist.add(
-    table="project_release_nodes",
-    columns=[
-        "nid",
-        "pid",
-        "version",
-        "tag",
-        "rebuild",
-        "version_major",
-        "version_minor",
-        "version_patch",
-        "version_extra",
-        "version_api_tid",
-        "security_update",
-        "update_status",
-        "version_extra_weight",
-        "version_extra_delta",
     ])
 
 whitelist.add(
@@ -7098,46 +6628,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="project_release_projects",
-    columns=[
-        "nid",
-        "releases",
-        "version_format",
-    ])
-
-whitelist.add(
-    table="project_releases",
-    columns=[
-        "rid",
-        "nid",
-        "fid",
-        "path",
-        "created",
-        "version",
-        "changes",
-        "weight",
-        "changed",
-        "status",
-        "hash",
-    ])
-
-whitelist.add(
-    table="project_releases_backup",
-    columns=[
-        "rid",
-        "nid",
-        "fid",
-        "path",
-        "created",
-        "version",
-        "changes",
-        "weight",
-        "changed",
-        "status",
-        "hash",
-    ])
-
-whitelist.add(
     table="project_release_supported_versions",
     columns=[
         "nid",
@@ -7149,18 +6639,6 @@ whitelist.add(
         "recommended_release",
         "latest_release",
         "latest_security_release",
-    ])
-
-whitelist.add(
-    table="_nodata:projects",
-    columns=[
-        "pid",
-        "name",
-        "versions",
-        "developers",
-        "areas",
-        "mail",
-        "version_default",
     ])
 
 whitelist.add(
@@ -7416,35 +6894,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:simplenews_newsletters",
-    columns=[
-        "nid",
-        "tid",
-        "s_status",
-        "s_format",
-        "priority",
-        "receipt",
-        "vid",
-    ])
-
-whitelist.add(
-    table="_nodata:simplenews_snid_tid",
-    columns=[
-        "snid",
-        "tid",
-    ])
-
-whitelist.add(
-    table="_nodata:simplenews_subscriptions",
-    columns=[
-        "snid",
-        "a_status",
-        "s_status",
-        "mail",
-        "uid",
-    ])
-
-whitelist.add(
     table="site",
     columns=[
         "sid",
@@ -7493,22 +6942,6 @@ whitelist.add(
         "tsid",
     ])
 
-whitelist.add(
-    table="_nodata:tracker2_node",
-    columns=[
-        "nid",
-        "published",
-        "changed",
-    ])
-
-whitelist.add(
-    table="_nodata:tracker2_user",
-    columns=[
-        "nid",
-        "published",
-        "uid",
-        "changed",
-    ])
 whitelist.add(
     table="_nodata:user_restrictions",
     columns=[
