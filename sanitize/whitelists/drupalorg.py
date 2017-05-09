@@ -456,18 +456,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:comment_upload",
-    columns=[
-        "fid",
-        "nid",
-        "cid",
-        "description",
-        "list",
-        "weight",
-        "legacy_fid",
-    ])
-
-whitelist.add(
     table="content_field_developed_org",
     columns=[
         "vid",
