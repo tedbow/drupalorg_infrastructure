@@ -6388,6 +6388,14 @@ whitelist.add(
         "issue_branch",
         "build_details",
         "checkstyle",
+        "result_diff_job_id",
+    ])
+
+whitelist.add(
+    table="pift_ci_job_result_diff",
+    columns=[
+        "job_id",
+        "job_result_id",
     ])
 
 whitelist.add(
