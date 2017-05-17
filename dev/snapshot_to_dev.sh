@@ -35,6 +35,7 @@ fi
 # @TODO verify row_format=compressed everywhere
 perl -p -i -e 's/^\) ENGINE=InnoDB.*$/\) ENGINE=InnoDB ROW_FORMAT=compressed DEFAULT CHARSET=utf8\;/' ${target_db}/${db}.${stage}-schema.sql
 mysql ${target_db} < /data/dumps/${target_db}/${db}.${stage}-schema.sql 
+mysql ${target_db} -e 'ALTER TABLE `pift_ci_job_result_diff` ROW_FORMAT=default;' # TODO remove in a day or two
 
 # Discard the data files for the newly created tables
 ( mysql ${target_db} -e "SHOW TABLES" --batch --skip-column-names | xargs -t -n 1 -P 20 -I{} mysql -e 'SET FOREIGN_KEY_CHECKS=0; ALTER TABLE `'{}'` DISCARD TABLESPACE;' ${target_db})
