@@ -42,7 +42,7 @@ for db in ${dblist}; do
   # Generate a list of all tables (except 'pift_ci_job_result' which is already
   # compressed), and alter them to the compressed row_format.
   echo "### Compressing ${db} ###"
-  ( sudo mysql "$db" -e "SHOW TABLES" --batch --skip-column-names | grep -v 'pift_ci_job_result' | xargs -n 1 -P 6 -I{} sudo mysql -e 'ALTER TABLE `'{}'` ROW_FORMAT=COMPRESSED;' "$db")
+  ( sudo mysql "$db" -e "SHOW TABLES" --batch --skip-column-names | grep -v --line-regexp 'pift_ci_job_result' | xargs -n 1 -P 6 -I{} sudo mysql -e 'ALTER TABLE `'{}'` ROW_FORMAT=COMPRESSED;' "$db")
   echo "### Completed compressing ${db} ###"
 done
 
