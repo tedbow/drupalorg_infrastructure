@@ -1,7 +1,7 @@
 from fabric.api import *
 
 # Hosts for production
-env.hosts = ["btch1.drupal.bak","www8.drupal.bak","www9.drupal.bak","www10.drupal.bak"]
+env.hosts = ["btch1.drupal.bak","www9.drupal.bak","www10.drupal.bak"]
 
 # Set clone path based on deploy.sh uri
 clone_path = ("/var/www/%s/htdocs" % env.uri)
