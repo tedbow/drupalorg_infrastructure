@@ -22,11 +22,6 @@ tar -I pigz -xvf ${db}.${stage}-binary-current.tar.gz -C ${target_db}
 chown -R mysql:mysql ./${target_db}/${db}/*
 chown bender:bender ./${target_db}/{*.sql,$db}
 
-# Just in case the tables aren't in the correct compressed format in the
-# schema, ensure they are created with compression. Note: the binary data and the
-# row format must match for tablespace import.
-# @TODO verify row_format=compressed everywhere
-perl -p -i -e 's/^\) ENGINE=InnoDB.*$/\) ENGINE=InnoDB ROW_FORMAT=compressed DEFAULT CHARSET=utf8\;/' ${target_db}/${db}.${stage}-schema.sql
 mysql ${target_db} < /data/dumps/${target_db}/${db}.${stage}-schema.sql 
 
 # Association sites also get the CiviCRM database in private environments
@@ -35,9 +30,12 @@ if [ ${db} == 'drupal_association' ]; then
   tar -I pigz -xvf association_civicrm.${stage}-binary-current.tar.gz -C ${target_db}
   chown -R mysql:mysql ./${target_db}/association_civicrm/*
   chown bender:bender ./${target_db}/{*.sql,association_civicrm}
-  perl -p -i -e 's/^\) ENGINE=InnoDB.*$/\) ENGINE=InnoDB ROW_FORMAT=compressed DEFAULT CHARSET=utf8\;/' ${target_db}/association_civicrm.${stage}-schema.sql
   mysql ${target_db} < /data/dumps/${target_db}/association_civicrm.${stage}-schema.sql 
 fi
+
+# Ensure tables have compression. The binary data and the row format must match
+# for tablespace import.
+( mysql "${target_db}" -e "SHOW TABLES" --batch --skip-column-names | xargs -t -n 1 -P 20 -I{} mysql -e 'ALTER TABLE `'{}'` ROW_FORMAT=COMPRESSED;' "${target_db}")
 
 # Discard the data files for the newly created tables
 ( mysql ${target_db} -e "SHOW TABLES" --batch --skip-column-names | xargs -t -n 1 -P 20 -I{} mysql -e 'SET FOREIGN_KEY_CHECKS=0; ALTER TABLE `'{}'` DISCARD TABLESPACE;' ${target_db})
