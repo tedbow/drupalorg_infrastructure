@@ -9,7 +9,8 @@ $databases['default']['default'] = array(
   'password' => 'DB_PASS',
   'host'     => 'dbdev1.drupal.bak',
   'port'     => '3306',
-  'collation' => 'utf8_general_ci',
+  'charset' => 'utf8mb4',
+  'collation' => 'utf8mb4_general_ci',
 );
 
 $base_url = 'https://NAME-SITE.dev.devdrupal.org';
