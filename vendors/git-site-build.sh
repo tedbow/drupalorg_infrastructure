@@ -40,9 +40,9 @@ drush make -v --no-cache --concurrency=6 ${BUILDPATH}.make ${BUILDDIR}
 find "${BUILDDIR}" -name 'ds_format' -print0 | xargs -0 -r  /bin/rm -rv
 
 # Clone built repo and make sure branch exists.
-/usr/bin/git clone -b ${branch} git@bitbucket.org:drupalorg-infrastructure/${BUILDPATH}-built.git ${BUILDGIT}
+/usr/bin/git clone git@bitbucket.org:drupalorg-infrastructure/${BUILDPATH}-built.git ${BUILDGIT}
 cd ${BUILDGIT}
-if [ "$(git rev-parse --abbrev-ref HEAD)" != "${branch}" ]; then
+if ! git checkout ${branch}; then
   git checkout -b "${branch}"
 fi
 cd ..
