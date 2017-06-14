@@ -44,4 +44,10 @@ function swap_db {
   else
     touch ${altdbloc}
   fi
+
+  # Restart supervisord workers.
+  if [ "${uri}" = "staging.devdrupal.org" ]; then
+    sudo /usr/local/bin/supervisorctl restart all
+    ssh gitstg-vip.drupal.bak sudo /usr/local/bin/supervisorctl restart all
+  fi
 }
