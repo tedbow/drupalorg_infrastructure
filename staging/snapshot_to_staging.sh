@@ -15,12 +15,6 @@ fi
 # Set DB to the original DB name for snapshot imports
 db=$(echo ${db} | sed -e 's/1$//')
 
-# Clear out the DB and import a snapshot.
-(
-  echo "DROP DATABASE ${target_db};"
-  echo "CREATE DATABASE ${target_db};"
-) | ${drush} ${sqlcli}
-
 ssh dbstg1.drupal.bak sudo /usr/local/drupal-infrastructure/staging/snapshot_to_dbstg.sh ${db} ${target_db}
 
 if [ "${suffix-}" != "civicrm" ]; then
