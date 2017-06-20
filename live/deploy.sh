@@ -8,9 +8,6 @@ cd ${webroot}
 if [ "${updatedb-}" = "true" ]; then
   ${drush} -v updatedb --interactive
 fi
-if [ "${civicrm_upgrade_db-}" = "true" ]; then
-  ${drush} -v civicrm-upgrade-db
-fi
 if [ "${cc_menu-}" = "true" ]; then
   ${drush} -v cc "menu"
 fi
@@ -29,7 +26,11 @@ fi
 if [ "${cc_all-}" = "true" ]; then
   ${drush} -v cc "all"
 fi
+
 if [ "${civicrm_cache_clear-}" = "true" ]; then
   ${drush} -v cc civicrm
   ${drush} -v compile-templates
+fi
+if [ "${civicrm_upgrade_db-}" = "true" ]; then
+  ${drush} -v civicrm-upgrade-db
 fi
