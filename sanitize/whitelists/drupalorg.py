@@ -1126,6 +1126,23 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_cover_photo",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_cover_photo_fid",
+        "field_cover_photo_alt",
+        "field_cover_photo_title",
+        "field_cover_photo_width",
+        "field_cover_photo_height",
+    ])
+
+whitelist.add(
     table="field_data_field_cta_background",
     columns=[
         "entity_type",
@@ -3644,6 +3661,23 @@ whitelist.add(
         "field_cover_image_title",
         "field_cover_image_width",
         "field_cover_image_height",
+    ])
+
+whitelist.add(
+    table="field_revision_field_cover_photo",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_cover_photo_fid",
+        "field_cover_photo_alt",
+        "field_cover_photo_title",
+        "field_cover_photo_width",
+        "field_cover_photo_height",
     ])
 
 whitelist.add(
