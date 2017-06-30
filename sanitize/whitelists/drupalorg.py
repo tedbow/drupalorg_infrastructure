@@ -618,6 +618,7 @@ whitelist.add(
         "homepage",
         "language",
         "comment_body",
+        "flag_count",
     ])
 
 whitelist.add(
@@ -985,6 +986,19 @@ whitelist.add(
         "language",
         "delta",
         "field_case_organizations_target_id",
+    ])
+
+whitelist.add(
+    table="field_data_field_case_study",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_case_study_target_id",
     ])
 
 whitelist.add(
@@ -3523,6 +3537,19 @@ whitelist.add(
         "language",
         "delta",
         "field_case_organizations_target_id",
+    ])
+
+whitelist.add(
+    table="field_revision_field_case_study",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_case_study_target_id",
     ])
 
 whitelist.add(
