@@ -687,6 +687,22 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="drupalorg_node_deleted",
+    columns=[
+        "nid",
+        "node_type",
+        "uid",
+        "title",
+        "created",
+        "changed",
+        "status",
+        "name",
+        "language",
+        "node_body",
+        "flag_count",
+    ])
+
+whitelist.add(
     table="drupalorg_org_civimembership",
     columns=[
         "org_name",
