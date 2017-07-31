@@ -687,7 +687,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="drupalorg_node_deleted",
+    table="_nodata:drupalorg_node_deleted",
     columns=[
         "nid",
         "node_type",
