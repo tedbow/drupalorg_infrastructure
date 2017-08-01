@@ -723,6 +723,7 @@ whitelist.add(
         "language",
         "node_body",
         "flag_count",
+        "deleted_by",
     ])
 
 whitelist.add(
