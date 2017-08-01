@@ -442,6 +442,29 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="captcha_points",
+    columns=[
+        "form_id",
+        "module",
+        "captcha_type",
+    ])
+
+whitelist.add(
+    table="_nodata:captcha_sessions",
+    columns=[
+        "csid",
+        "token",
+        "uid",
+        "sid",
+        "ip_address",
+        "timestamp",
+        "form_id",
+        "solution",
+        "status",
+        "attempts",
+    ])
+
+whitelist.add(
     table="ckeditor_input_format",
     columns=[
         "name",

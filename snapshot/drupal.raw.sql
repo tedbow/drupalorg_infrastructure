@@ -1,6 +1,8 @@
 -- Raw is not sanitized.
 UPDATE apachesolr_environment SET url = 'http://not.indexed.invalid';
 
+TRUNCATE captcha_sessions;
+
 -- Empty out scratch tables used during drupal7 migration.
 DROP TABLE project_issue_projects;
 DROP TABLE projects;
