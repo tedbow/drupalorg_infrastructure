@@ -25,8 +25,11 @@ case ${db} in
 esac
 
 # Remove stale data, if it exists
-mysql -e "DROP DATABASE IF EXISTS ${target_db};"
-rm -rf /var/lib/mysql/${target_db}/{*.ibd,*.cfg,*.frm} || true
+if ! mysql -e "DROP DATABASE IF EXISTS ${target_db};"; then
+  # Probably can’t be dropped because the directory is not empty.
+  rm -rfv /var/lib/mysql/${target_db}/{*.ibd,*.cfg,*.frm}
+  mysql -e "DROP DATABASE IF EXISTS ${target_db};"
+fi
 mysql -e "CREATE DATABASE ${target_db};"
 
 # Copy and extract the latest snapshot from dbutil
