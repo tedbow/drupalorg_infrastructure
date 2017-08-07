@@ -2760,6 +2760,148 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_sa_advisory_id",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_sa_advisory_id_value",
+        "field_sa_advisory_id_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_sa_changes",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_sa_changes_nid",
+        "field_sa_changes_vid",
+        "field_sa_changes_field_name",
+        "field_sa_changes_old_value",
+        "field_sa_changes_new_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_sa_coordinated_by",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_sa_coordinated_by_value",
+        "field_sa_coordinated_by_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_sa_criticality",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_sa_criticality_value",
+        "field_sa_criticality_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_sa_description",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_sa_description_value",
+        "field_sa_description_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_sa_fixed_by",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_sa_fixed_by_value",
+        "field_sa_fixed_by_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_sa_reported_by",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_sa_reported_by_value",
+        "field_sa_reported_by_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_sa_solution",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_sa_solution_value",
+        "field_sa_solution_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_sa_type",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_sa_type_value",
+        "field_sa_type_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_sa_version",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_sa_version_value",
+    ])
+
+whitelist.add(
     table="field_data_field_security_advisory_coverage",
     columns=[
         "entity_type",
@@ -5334,6 +5476,148 @@ whitelist.add(
         "language",
         "delta",
         "field_release_version_patch_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_sa_advisory_id",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_sa_advisory_id_value",
+        "field_sa_advisory_id_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_sa_changes",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_sa_changes_nid",
+        "field_sa_changes_vid",
+        "field_sa_changes_field_name",
+        "field_sa_changes_old_value",
+        "field_sa_changes_new_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_sa_coordinated_by",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_sa_coordinated_by_value",
+        "field_sa_coordinated_by_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_sa_criticality",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_sa_criticality_value",
+        "field_sa_criticality_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_sa_description",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_sa_description_value",
+        "field_sa_description_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_sa_fixed_by",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_sa_fixed_by_value",
+        "field_sa_fixed_by_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_sa_reported_by",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_sa_reported_by_value",
+        "field_sa_reported_by_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_sa_solution",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_sa_solution_value",
+        "field_sa_solution_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_sa_type",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_sa_type_value",
+        "field_sa_type_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_sa_version",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_sa_version_value",
     ])
 
 whitelist.add(
