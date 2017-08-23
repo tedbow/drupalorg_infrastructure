@@ -52,7 +52,7 @@ if [ "${site}" != "groups" -a "${site}" != "qa" ]; then
 fi
 
 # Run drush make.
-drush make --no-cache "${make_file}" "${web_path}/htdocs" --working-copy --no-gitinfofile --concurrency=4
+drush make --no-cache --cache-duration-releasexml=300 "${make_file}" "${web_path}/htdocs" --working-copy --no-gitinfofile --concurrency=4
 
 if [ -f "${web_path}/htdocs/sites/all/themes/bluecheese/Gemfile" ]; then
   # Compile bluecheese Sass.
