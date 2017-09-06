@@ -7164,6 +7164,7 @@ whitelist.add(
         "comment_count",
         "last_comment_timestamp",
         "field_project_title",
+        "project_issue_last_status_change",
     ])
 
 whitelist.add(
