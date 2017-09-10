@@ -1677,6 +1677,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_issue_last_status_change",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_issue_last_status_change_value",
+    ])
+
+whitelist.add(
     table="field_data_field_issue_parent",
     columns=[
         "entity_type",
@@ -4367,6 +4380,19 @@ whitelist.add(
         "field_issue_files_fid",
         "field_issue_files_display",
         "field_issue_files_description",
+    ])
+
+whitelist.add(
+    table="field_revision_field_issue_last_status_change",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_issue_last_status_change_value",
     ])
 
 whitelist.add(
