@@ -2156,6 +2156,20 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_org_membership_status",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_org_membership_status_value",
+        "field_org_membership_status_format",
+    ])
+
+whitelist.add(
     table="field_data_field_org_services_issue",
     columns=[
         "entity_type",
@@ -4872,6 +4886,20 @@ whitelist.add(
         "language",
         "delta",
         "field_org_marketplace_request_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_org_membership_status",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_org_membership_status_value",
+        "field_org_membership_status_format",
     ])
 
 whitelist.add(
