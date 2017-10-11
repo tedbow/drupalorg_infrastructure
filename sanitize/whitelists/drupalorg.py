@@ -651,6 +651,7 @@ whitelist.add(
         "membership_status",
         "expiration_date",
         "updated",
+        "join_date",
     ])
 
 whitelist.add(
@@ -7870,6 +7871,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_da_expiration_date",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_da_expiration_date_value",
+    ])
+
+whitelist.add(
     table="field_data_field_da_ind_membership",
     columns=[
         "entity_type",
@@ -7881,6 +7895,19 @@ whitelist.add(
         "delta",
         "field_da_ind_membership_value",
         "field_da_ind_membership_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_da_join_date",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_da_join_date_value",
     ])
 
 whitelist.add(
@@ -8022,6 +8049,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_revision_field_da_expiration_date",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_da_expiration_date_value",
+    ])
+
+whitelist.add(
     table="field_revision_field_da_ind_membership",
     columns=[
         "entity_type",
@@ -8033,6 +8073,19 @@ whitelist.add(
         "delta",
         "field_da_ind_membership_value",
         "field_da_ind_membership_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_da_join_date",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_da_join_date_value",
     ])
 
 whitelist.add(
