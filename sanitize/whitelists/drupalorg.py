@@ -645,6 +645,24 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="_nodata:drupalorg_crosssite_akismet_spam",
+    columns=[
+        "nid",
+        "uid",
+        "user_ip",
+        "user_agent",
+        "referrer",
+        "permalink",
+        "comment_type",
+        "comment_author",
+        "comment_author_email",
+        "comment_content",
+        "comment_date_gmt",
+        "comment_post_modified_gmt",
+        "akismet_spam_response",
+    ])
+
+whitelist.add(
     table="drupalorg_crosssite_ind_civimembership",
     columns=[
         "user_name",
