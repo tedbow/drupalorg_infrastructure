@@ -647,7 +647,8 @@ whitelist.add(
 whitelist.add(
     table="_nodata:drupalorg_crosssite_akismet_spam",
     columns=[
-        "nid",
+        "entity_id",
+        "entity_type",
         "uid",
         "user_ip",
         "user_agent",
