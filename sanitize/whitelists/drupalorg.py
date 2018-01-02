@@ -624,6 +624,27 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="_nodata:drupalorg_chargify_subscriptions",
+    columns=[
+        "uid",
+        "organization_nid",
+        "currency",
+        "subscription_id",
+        "state",
+        "current_billing_amount_in_cents",
+        "created_at",
+        "current_period_ends_at",
+        "expires_at",
+        "product_handle",
+        "product_name",
+        "customer_id",
+        "customer_first_name",
+        "customer_last_name",
+        "customer_organization",
+        "customer_email",
+    ])
+
+whitelist.add(
     table="_nodata:drupalorg_comment_deleted",
     columns=[
         "cid",
