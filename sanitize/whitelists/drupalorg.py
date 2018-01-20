@@ -1269,6 +1269,20 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_cta_body_2",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_cta_body_2_value",
+        "field_cta_body_2_format",
+    ])
+
+whitelist.add(
     table="field_data_field_cta_graphic",
     columns=[
         "entity_type",
@@ -3986,6 +4000,20 @@ whitelist.add(
         "delta",
         "field_cta_body_value",
         "field_cta_body_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_cta_body_2",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_cta_body_2_value",
+        "field_cta_body_2_format",
     ])
 
 whitelist.add(
