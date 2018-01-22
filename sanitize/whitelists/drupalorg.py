@@ -2090,20 +2090,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_data_field_organization_security",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_organization_security_value",
-        "field_organization_security_format",
-    ])
-
-whitelist.add(
     table="field_data_field_organization_support",
     columns=[
         "entity_type",
@@ -4834,20 +4820,6 @@ whitelist.add(
         "language",
         "delta",
         "field_organization_reference_target_id",
-    ])
-
-whitelist.add(
-    table="field_revision_field_organization_security",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_organization_security_value",
-        "field_organization_security_format",
     ])
 
 whitelist.add(
