@@ -1479,6 +1479,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_featured",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_featured_value",
+    ])
+
+whitelist.add(
     table="field_data_field_first_name",
     columns=[
         "entity_type",
@@ -1560,6 +1573,19 @@ whitelist.add(
         "language",
         "delta",
         "field_guide_status_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_host_features",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_host_features_tid",
     ])
 
 whitelist.add(
@@ -2983,6 +3009,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_server_location",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_server_location_tid",
+    ])
+
+whitelist.add(
     table="field_data_field_short_description",
     columns=[
         "entity_type",
@@ -4199,6 +4238,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_revision_field_featured",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_featured_value",
+    ])
+
+whitelist.add(
     table="field_revision_field_first_name",
     columns=[
         "entity_type",
@@ -4280,6 +4332,19 @@ whitelist.add(
         "delta",
         "field_goals_value",
         "field_goals_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_host_features",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_host_features_tid",
     ])
 
 whitelist.add(
@@ -5726,6 +5791,19 @@ whitelist.add(
         "language",
         "delta",
         "field_security_advisory_coverage_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_server_location",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_server_location_tid",
     ])
 
 whitelist.add(
