@@ -9,7 +9,7 @@ clone_path = ("/var/www/%s/htdocs" % env.uri)
 # Per site configurations
 if env.uri == "drupal.org":
     # www also gets deployed to git servers
-    env.hosts.extend(["git1.drupal.bak", "git2.drupal.bak"])
+    env.hosts.extend(["git1.drupal.bak", "git2.drupal.bak", "git3.drupal.bak", "git4.drupal.bak"])
     repo_url = "git@bitbucket.org:drupalorg-infrastructure/drupal.org-built.git"
     files_path = ("files")
 elif env.uri == "api.drupal.org":
