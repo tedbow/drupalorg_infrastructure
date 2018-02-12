@@ -4113,6 +4113,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="_nodata:field_revision_field_demographics",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_demographics_value",
+    ])
+
+whitelist.add(
     table="field_revision_field_description",
     columns=[
         "entity_type",
@@ -8026,6 +8039,19 @@ whitelist.add(
         "language",
         "delta",
         "field_da_join_date_value",
+    ])
+
+whitelist.add(
+    table="_nodata:field_data_field_demographics",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_demographics_value",
     ])
 
 whitelist.add(
