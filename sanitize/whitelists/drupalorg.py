@@ -1993,6 +1993,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_new_page_and_guide_review",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_new_page_and_guide_review_value",
+    ])
+
+whitelist.add(
     table="_nodata:field_data_field_notes",
     columns=[
         "entity_type",
@@ -4775,6 +4788,19 @@ whitelist.add(
         "delta",
         "field_module_selection_value",
         "field_module_selection_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_new_page_and_guide_review",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_new_page_and_guide_review_value",
     ])
 
 whitelist.add(
