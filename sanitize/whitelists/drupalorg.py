@@ -6634,6 +6634,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="mailchimp_signup",
+    columns=[
+        "mcs_id",
+        "name",
+        "mc_lists",
+        "mode",
+        "title",
+        "settings",
+        "status",
+        "module",
+    ])
+
+whitelist.add(
     table="materialized_view",
     columns=[
         "mvid",
