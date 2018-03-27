@@ -6973,6 +6973,20 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="pift_ci_config",
+    columns=[
+        "config_file_id",
+        "repo_id",
+        "repo_name",
+        "label_id",
+        "branch",
+        "file_type",
+        "file_path",
+        "updated",
+        "contents",
+    ])
+
+whitelist.add(
     table="pift_ci_job",
     columns=[
         "job_id",
