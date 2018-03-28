@@ -8,6 +8,12 @@ if [ -z "${site}" ]; then
   exit 1
 fi
 
+if echo ${GIT_BRANCH} | grep -v -q '^origin/'; then
+  # Upstream Jenkins jobs that poll multiple repos have “origin{1,2,…}”. Assume
+  # branch names are not synced up. (They are not for jobs.)
+  GIT_BRANCH="origin/7.x-prod"
+fi
+
 branch="$(echo "${GIT_BRANCH}" | sed -e 's#^origin/##')"
 
 BUILDPATH="${site}"
