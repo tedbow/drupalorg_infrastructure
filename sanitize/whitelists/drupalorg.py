@@ -2116,6 +2116,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_organization_loc_served",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organization_loc_served_tid",
+    ])
+
+whitelist.add(
     table="field_data_field_organization_reference",
     columns=[
         "entity_type",
@@ -4870,6 +4883,19 @@ whitelist.add(
         "language",
         "delta",
         "field_organization_list_rule_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_organization_loc_served",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organization_loc_served_tid",
     ])
 
 whitelist.add(
