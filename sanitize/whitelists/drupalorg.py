@@ -1492,6 +1492,23 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_featured_image",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_featured_image_fid",
+        "field_featured_image_alt",
+        "field_featured_image_title",
+        "field_featured_image_width",
+        "field_featured_image_height",
+    ])
+
+whitelist.add(
     table="field_data_field_first_name",
     columns=[
         "entity_type",
@@ -1657,6 +1674,20 @@ whitelist.add(
         "delta",
         "field_industries_worked_in_value",
         "field_industries_worked_in_format",
+    ])
+
+whitelist.add(
+    table="field_data_field_infographics",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_infographics_value",
+        "field_infographics_revision_id",
     ])
 
 whitelist.add(
@@ -1933,6 +1964,19 @@ whitelist.add(
         "field_logo_title",
         "field_logo_width",
         "field_logo_height",
+    ])
+
+whitelist.add(
+    table="field_data_field_logo_type",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_logo_type_value",
     ])
 
 whitelist.add(
@@ -3221,6 +3265,20 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_title",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_title_value",
+        "field_title_format",
+    ])
+
+whitelist.add(
     table="field_data_field_update_progress",
     columns=[
         "entity_type",
@@ -4290,6 +4348,23 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_revision_field_featured_image",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_featured_image_fid",
+        "field_featured_image_alt",
+        "field_featured_image_title",
+        "field_featured_image_width",
+        "field_featured_image_height",
+    ])
+
+whitelist.add(
     table="field_revision_field_first_name",
     columns=[
         "entity_type",
@@ -4455,6 +4530,20 @@ whitelist.add(
         "delta",
         "field_industries_worked_in_value",
         "field_industries_worked_in_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_infographics",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_infographics_value",
+        "field_infographics_revision_id",
     ])
 
 whitelist.add(
@@ -4744,6 +4833,19 @@ whitelist.add(
         "field_logo_title",
         "field_logo_width",
         "field_logo_height",
+    ])
+
+whitelist.add(
+    table="field_revision_field_logo_type",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_logo_type_value",
     ])
 
 whitelist.add(
@@ -6042,6 +6144,20 @@ whitelist.add(
         "language",
         "delta",
         "field_theme_recorded_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_title",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_title_value",
+        "field_title_format",
     ])
 
 whitelist.add(
