@@ -4,7 +4,6 @@
 UPDATE users_access SET access = 280299600;
 
 -- Get rid of irrelevant data.
-TRUNCATE modr8_log;
 TRUNCATE role_activity;
 
 -- We don't publicly share who has voted on what, if someone needs votes for theming they can do some votes.
