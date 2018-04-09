@@ -30,10 +30,8 @@ DELETE FROM comments WHERE uid NOT IN (SELECT uid FROM users);
 DELETE FROM node_comment_statistics WHERE nid NOT IN (SELECT nid FROM node);
 DELETE FROM node_revisions WHERE nid NOT IN (SELECT nid FROM node);
 DELETE FROM node_counter WHERE nid NOT IN (SELECT nid FROM node);
-DELETE FROM book WHERE nid NOT IN (SELECT nid FROM node);
 
 -- Remove orphaned related data from contribs
-DELETE FROM comment_upload WHERE cid NOT IN (SELECT cid FROM comments);
 DELETE FROM content_field_organizers WHERE vid NOT IN (SELECT vid FROM node);
 DELETE FROM content_field_type WHERE vid NOT IN (SELECT vid FROM node);
 DELETE FROM content_type_event WHERE vid NOT IN (SELECT vid FROM node);
