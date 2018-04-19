@@ -4,7 +4,6 @@ TRUNCATE accesslog;
 TRUNCATE batch;
 TRUNCATE devel_queries;
 TRUNCATE devel_times;
-TRUNCATE mollom;
 TRUNCATE semaphore;
 TRUNCATE votingapi_vote;
 TRUNCATE election_vote;

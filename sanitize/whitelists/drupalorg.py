@@ -6868,46 +6868,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:mollom",
-    columns=[
-        "entity",
-        "id",
-        "content_id",
-        "captcha_id",
-        "form_id",
-        "changed",
-        "moderate",
-        "spam_score",
-        "spam_classification",
-        "solved",
-        "quality_score",
-        "profanity_score",
-        "reason",
-        "languages",
-        "flags_spam",
-        "flags_ham",
-        "flags_profanity",
-        "flags_quality",
-        "flags_unwanted",
-    ])
-
-whitelist.add(
-    table="mollom_form",
-    columns=[
-        "form_id",
-        "entity",
-        "bundle",
-        "mode",
-        "checks",
-        "unsure",
-        "discard",
-        "moderation",
-        "enabled_fields",
-        "strictness",
-        "module",
-    ])
-
-whitelist.add(
     table="_nodata:multiple_email",
     columns=[
         "eid",
