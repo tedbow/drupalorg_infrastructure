@@ -77,7 +77,10 @@ git status
 git push --set-upstream origin ${branch}
 
 # If there is a deploy branch, merge to it.
-git branch --list --remotes | grep 'origin/deploy' && git checkout deploy
+if git branch --list --remotes | grep -q 'origin/deploy'; then
+  git checkout deploy
+  git merge "${branch}"
+fi
 
 # Clean up the build dirs.
 rm -rf ${MASTER}
