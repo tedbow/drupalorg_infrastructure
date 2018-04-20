@@ -76,6 +76,9 @@ git commit -a -m "${LOG}"
 git status
 git push --set-upstream origin ${branch}
 
+# If there is a deploy branch, merge to it.
+git branch --list --remotes | grep 'origin/deploy' && git checkout deploy
+
 # Clean up the build dirs.
 rm -rf ${MASTER}
 rm -rf ${BUILDDIR}
