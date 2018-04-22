@@ -80,6 +80,7 @@ git push --set-upstream origin ${branch}
 if git branch --list --remotes | grep -q 'origin/deploy'; then
   git checkout deploy
   git merge "${branch}"
+  git push origin deploy
 fi
 
 # Clean up the build dirs.
