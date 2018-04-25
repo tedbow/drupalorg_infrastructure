@@ -40,6 +40,7 @@ else:
 @parallel
 def deploy():
     with cd("%s" % clone_path):
+        run("git fetch --prune")
         run("git pull")
         run("sudo /usr/sbin/service php5-fpm reload")
 
