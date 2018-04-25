@@ -4,7 +4,7 @@
 . staging/common.sh 'deploy'
 
 # Update code.
-fab -f /usr/local/drupal-infrastructure/staging/fabfile.py --set uri=${uri} deploy
+fab -f /usr/local/drupal-infrastructure/staging/fabfile.py --set uri=${uri},branch=${branch:=} deploy
 cd ${webroot}
 
 # Update DB & clear caches.
