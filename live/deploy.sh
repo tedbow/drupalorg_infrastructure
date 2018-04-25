@@ -2,7 +2,7 @@
 . live/common.sh 'deploy'
 
 # Update code.
-fab -f /usr/local/drupal-infrastructure/live/fabfile.py --set uri=${uri} deploy
+fab -f /usr/local/drupal-infrastructure/live/fabfile.py --set uri=${uri},branch=${branch:=} deploy
 cd ${webroot}
 
 if [ "${updatedb-}" = "true" ]; then

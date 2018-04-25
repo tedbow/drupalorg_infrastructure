@@ -45,6 +45,8 @@ else:
 def deploy():
     with cd("%s" % clone_path):
         run("git fetch --prune")
+        if env.branch:
+            run("git checkout %s" % (env.branch))
         run("git pull")
         #run("sudo /usr/sbin/service php5-fpm reload")
 
