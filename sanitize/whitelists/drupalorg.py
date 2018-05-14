@@ -115,7 +115,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="akismet",
+    table="_nodata:akismet",
     columns=[
         "entity",
         "id",
