@@ -115,6 +115,32 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="akismet",
+    columns=[
+        "entity",
+        "id",
+        "form_id",
+        "guid",
+        "changed",
+        "moderate",
+        "classification",
+        "request",
+    ])
+
+whitelist.add(
+    table="akismet_form",
+    columns=[
+        "form_id",
+        "entity",
+        "bundle",
+        "mode",
+        "unsure",
+        "discard",
+        "enabled_fields",
+        "module",
+    ])
+
+whitelist.add(
     table="apachesolr_environment",
     columns=[
         "env_id",
