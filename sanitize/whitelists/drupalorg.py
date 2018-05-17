@@ -3118,6 +3118,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_shared_account_for_an_org",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_shared_account_for_an_org_value",
+    ])
+
+whitelist.add(
     table="field_data_field_short_description",
     columns=[
         "entity_type",
@@ -5997,6 +6010,19 @@ whitelist.add(
         "language",
         "delta",
         "field_server_location_tid",
+    ])
+
+whitelist.add(
+    table="field_revision_field_shared_account_for_an_org",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_shared_account_for_an_org_value",
     ])
 
 whitelist.add(
