@@ -103,6 +103,9 @@ mysql -e "CREATE DATABASE ${db_name};"
 mysql -e "GRANT ALL ON ${db_name}.* TO '${db_name}'@'wwwdev1.drupal.bak' IDENTIFIED BY '${db_pass}';"
 ssh dbdev1.drupal.bak sudo /usr/local/drupal-infrastructure/dev/snapshot_to_dev.sh ${db_names[${site}]} ${db_name}
 
+# Run extra SQL.
+echo "${extra_sql}" | ${drush} sql-cli
+
 if [ "${site}" = "association" ]; then
   # CiviCRM is not on public dev sites.
   ${drush} pm-disable civicrm
