@@ -3173,6 +3173,18 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="_nodata:field_data_field_subscribe_membership",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+    ])
+
+whitelist.add(
     table="_nodata:field_data_field_subscribe_to",
     columns=[
         "entity_type",
@@ -6065,6 +6077,18 @@ whitelist.add(
         "language",
         "delta",
         "field_status_value",
+    ])
+
+whitelist.add(
+    table="_nodata:field_revision_field_subscribe_membership",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
     ])
 
 whitelist.add(
