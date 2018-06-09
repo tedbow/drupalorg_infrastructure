@@ -668,6 +668,7 @@ whitelist.add(
         "customer_last_name",
         "customer_organization",
         "customer_email",
+        "has_cc",
     ])
 
 whitelist.add(
