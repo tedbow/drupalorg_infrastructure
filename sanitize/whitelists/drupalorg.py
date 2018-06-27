@@ -3010,6 +3010,20 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_sa_cve",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_sa_cve_value",
+        "field_sa_cve_format",
+    ])
+
+whitelist.add(
     table="field_data_field_sa_description",
     columns=[
         "entity_type",
@@ -5914,6 +5928,20 @@ whitelist.add(
         "delta",
         "field_sa_criticality_value",
         "field_sa_criticality_format",
+    ])
+
+whitelist.add(
+    table="field_revision_field_sa_cve",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_sa_cve_value",
+        "field_sa_cve_format",
     ])
 
 whitelist.add(
