@@ -3359,23 +3359,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_data_field_user_geolocation",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_user_geolocation_lat",
-        "field_user_geolocation_lng",
-        "field_user_geolocation_lat_sin",
-        "field_user_geolocation_lat_cos",
-        "field_user_geolocation_lng_rad",
-    ])
-
-whitelist.add(
     table="field_data_field_websites",
     columns=[
         "entity_type",
@@ -6277,23 +6260,6 @@ whitelist.add(
         "delta",
         "field_update_progress_value",
         "field_update_progress_format",
-    ])
-
-whitelist.add(
-    table="field_revision_field_user_geolocation",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_user_geolocation_lat",
-        "field_user_geolocation_lng",
-        "field_user_geolocation_lat_sin",
-        "field_user_geolocation_lat_cos",
-        "field_user_geolocation_lng_rad",
     ])
 
 whitelist.add(
