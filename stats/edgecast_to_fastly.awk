@@ -6,6 +6,8 @@ $7 ~ /updates.drupal.org/ {
 
   gsub(/http:\/\/updates.drupal.org\/80C301/,"",$7);
   gsub(/https:\/\/updates.drupal.org\/80C301/,"",$7);
+  gsub(/http:\/\/updates.drupal.org\/80C301\/updates.drupal.org/,"",$7);
+  gsub(/https:\/\/updates.drupal.org\/80C301\/updates.drupal.org/,"",$7);
   gsub(/"/,"",$6);
   gsub(/]/,"",$5);
   split($0, user_agent, "\"");
