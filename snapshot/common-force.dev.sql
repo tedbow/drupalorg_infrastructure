@@ -1,5 +1,5 @@
 -- Executed with mysql -f, every query will be executed, regardless of failure.
-TRUNCATE access;
+DROP TABLE access;
 TRUNCATE accesslog;
 TRUNCATE batch;
 TRUNCATE devel_queries;
