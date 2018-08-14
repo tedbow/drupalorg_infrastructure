@@ -7577,6 +7577,7 @@ whitelist.add(
         "last_comment_timestamp",
         "field_project_title",
         "field_issue_last_status_change",
+        "flag_tracker_follower_count",
     ])
 
 whitelist.add(
