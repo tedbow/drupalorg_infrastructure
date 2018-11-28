@@ -69,6 +69,9 @@ if [ -d "${BUILDDIR}/sites/default/composer" ]; then
   composer --working-dir="${BUILDDIR}/sites/default/composer" --no-dev install
 fi
 
+# Remove extra .git directories, so everything is checked in.
+find * -name '.git' -type d -print0 | xargs -0 rm -v -r
+
 #now we force a git commit
 cd ${BUILDDIR}
 git add -A
