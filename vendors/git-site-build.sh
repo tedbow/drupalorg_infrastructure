@@ -70,7 +70,7 @@ if [ -d "${BUILDDIR}/sites/default/composer" ]; then
 fi
 
 # Remove extra .git directories, so everything is checked in.
-find * -name '.git' -type d -print0 | xargs -0 rm -v -r
+find "${BUILDDIR}" -name '.git' -type d -mindepth 2 -print0 | xargs -0 rm -v -r
 
 #now we force a git commit
 cd ${BUILDDIR}
