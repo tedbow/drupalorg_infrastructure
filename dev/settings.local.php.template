@@ -20,11 +20,11 @@ $cookie_domain = 'NAME-SITE.dev.devdrupal.org';
 $conf['error_level'] = ERROR_REPORTING_DISPLAY_ALL;
 
 // Do not use Beanstalk for Drupal.org queues.
-unset($conf['queue_class_versioncontrol_repomgr']);
-unset($conf['queue_class_versioncontrol_git_repo_parsing']);
-unset($conf['queue_class_versioncontrol_reposync']);
-unset($conf['queue_class_message_subscribe']);
-unset($conf['queue_class_versioncontrol_repository_event_processor']);
+foreach (preg_grep('/^queue_class_/', array_keys($conf)) as $key) {
+  if ($conf[$key] === 'BeanstalkdQueue') {
+    unset($conf[$key]);
+  }
+}
 
 // Do not require TFA for admins.
 $conf['tfa_basic_roles_require'] = array();
