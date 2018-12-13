@@ -7907,6 +7907,14 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="versioncontrol_gitlab_repositories",
+    columns=[
+        "repo_id",
+        "gitlab_project_id",
+        "namespace",
+    ])
+
+whitelist.add(
     table="versioncontrol_item_revisions",
     columns=[
         "item_revision_id",
