@@ -769,6 +769,14 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="drupalorg_gitlab_project_backlog",
+    columns=[
+        "nid",
+        "sync",
+        "timestamp",
+    ])
+
+whitelist.add(
     table="drupalorg_ind_civimembership",
     columns=[
         "user_name",
