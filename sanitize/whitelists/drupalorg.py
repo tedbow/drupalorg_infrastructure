@@ -7923,6 +7923,14 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="versioncontrol_gitlab_users",
+    columns=[
+        "uid",
+        "gitlab_user_id",
+        "picture_timestamp",
+    ])
+
+whitelist.add(
     table="versioncontrol_item_revisions",
     columns=[
         "item_revision_id",
