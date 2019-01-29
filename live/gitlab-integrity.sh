@@ -20,6 +20,10 @@ echo "SELECT if(fdf_pt.field_project_type_value = 'sandbox', concat(substring_in
 # Maintainers.
 echo "SELECT if(fdf_pt.field_project_type_value = 'sandbox', concat(substring_index(substring_index(vr.root, '/', -2), '/', 1), '-', n.nid), vr.name) repository, u.git_username, 30 FROM versioncontrol_auth_account vaa INNER JOIN users u ON u.uid = vaa.uid AND git_consent = 1 AND git_username IS NOT NULL INNER JOIN versioncontrol_repositories vr ON vr.repo_id = vaa.repo_id INNER JOIN versioncontrol_project_projects vpp ON vpp.repo_id = vr.repo_id INNER JOIN field_data_field_project_type fdf_pt ON fdf_pt.entity_id = vpp.nid INNER JOIN node n ON n.nid = vpp.nid WHERE vaa.access != 0" | drush -r /var/www/drupal.org/htdocs sql-cli --extra='--skip-column-names' | sort > www/maintainers.tsv
 
+# GitLab.
+ssh gitlab1.drupal.bak /usr/local/drupal-infrastructure/live/gitlab-integrity-gitlab/manifest.sh
+scp gitlab1.drupal.bak:{users,emails,keys,projects,maintainers,checksums}.tsv gitlab/
+
 # Repository checksums.
 # todo remove after migration
 ssh git3.drupal.bak /usr/local/drupal-infrastructure/live/gitlab-integrity-git/checksums.sh > git/checksums.tsv
