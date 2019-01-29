@@ -17,5 +17,9 @@ echo "SELECT u.git_username, s.fingerprint FROM sshkey s INNER JOIN users u ON u
 # Projects.
 echo "SELECT if(fdf_pt.field_project_type_value = 'sandbox', concat(substring_index(substring_index(vr.root, '/', -2), '/', 1), '-', n.nid), vr.name) repository, vgr.gitlab_project_id, lower(if(fdf_pt.field_project_type_value = 'sandbox', concat(substring_index(substring_index(vr.root, '/', -2), '/', 1), '-', n.nid), vr.name)) name, concat('For more information about this repository, visit the project page at https://www.drupal.org/', ua.alias) description, concat('https://git.drupal.org/', if(fdf_pt.field_project_type_value = 'sandbox', substring_index(vr.root, '/', -3), substring_index(vr.root, '/', -2))) import_url, if(fdf_pt.field_project_type_value = 'sandbox', 'sandbox', 'project') namespace, 'finished' FROM versioncontrol_repositories vr INNER JOIN versioncontrol_project_projects vpp ON vpp.repo_id = vr.repo_id INNER JOIN field_data_field_project_type fdf_pt ON fdf_pt.entity_id = vpp.nid INNER JOIN node n ON n.nid = vpp.nid LEFT JOIN versioncontrol_gitlab_repositories vgr ON vgr.repo_id = vr.repo_id LEFT JOIN url_alias ua ON ua.source = concat('node/', n.nid)" | drush -r /var/www/drupal.org/htdocs sql-cli --extra='--skip-column-names' | sort > www/projects.tsv
 
-# Maintainers
+# Maintainers.
 echo "SELECT if(fdf_pt.field_project_type_value = 'sandbox', concat(substring_index(substring_index(vr.root, '/', -2), '/', 1), '-', n.nid), vr.name) repository, u.git_username, 30 FROM versioncontrol_auth_account vaa INNER JOIN users u ON u.uid = vaa.uid AND git_consent = 1 AND git_username IS NOT NULL INNER JOIN versioncontrol_repositories vr ON vr.repo_id = vaa.repo_id INNER JOIN versioncontrol_project_projects vpp ON vpp.repo_id = vr.repo_id INNER JOIN field_data_field_project_type fdf_pt ON fdf_pt.entity_id = vpp.nid INNER JOIN node n ON n.nid = vpp.nid WHERE vaa.access != 0" | drush -r /var/www/drupal.org/htdocs sql-cli --extra='--skip-column-names' | sort > www/maintainers.tsv
+
+# Repository checksums.
+# todo remove after migration
+ssh git3.drupal.bak /usr/local/drupal-infrastructure/live/gitlab-integrity-git/checksums.sh > git/checksums.tsv
