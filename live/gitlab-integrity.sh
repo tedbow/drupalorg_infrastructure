@@ -2,7 +2,6 @@
 set -uex
 
 mkdir -p www
-mkdir -p git
 mkdir -p gitlab
 
 # Users.
@@ -26,4 +25,8 @@ scp gitlab1.drupal.bak:{users,emails,keys,projects,maintainers,checksums}.tsv gi
 
 # Repository checksums.
 # todo remove after migration
-ssh git3.drupal.bak /usr/local/drupal-infrastructure/live/gitlab-integrity-git/checksums.sh > git/checksums.tsv
+ssh git3.drupal.bak /usr/local/drupal-infrastructure/live/gitlab-integrity-git/checksums.sh > www/checksums.tsv
+
+for f in {users,emails,keys,projects,maintainers,checksums}; do
+  diff -u "www/${f}.tsv" "gitlab/${f}.tsv" | grep '^[+-]' > "${f}.diff" || true
+done
