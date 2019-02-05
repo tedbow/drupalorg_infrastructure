@@ -2,12 +2,13 @@
 # This script is run after we restore a production snapshot to staging
 
 # Stop any running gitlab.
-gitlab-ctl stop unicorn
-gitlab-ctl stop sidekiq
+sudo gitlab-ctl stop unicorn
+sudo gitlab-ctl stop sidekiq
 
 # Restore the backup on gitlabstg1
 # XXX gitlab-rake gitlab:backup:restore BACKUP=$1
 echo $1
+echo $2
 
 # Reconfigure the geo settings for staging urls.
 # XXX gitlab-rails runner "eval(File.read '/usr/local/drupal-infrastructure/gitlab/geo-reconfigure.rb')"
