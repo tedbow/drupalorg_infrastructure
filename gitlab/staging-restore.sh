@@ -18,8 +18,8 @@ GITLAB_URL=gitlab.drupalcode.org
 # XXX curl -s -g --request PUT --header "PRIVATE-TOKEN: ${PRIVATE_TOKEN}" "https://${GITLAB_URL}/api/v4/application/settings?authorized_keys_enabled=false
 
 # Restart gitlab
-gitlab-ctl start unicorn
-gitlab-ctl start sidekiq
+sudo gitlab-ctl start unicorn
+sudo gitlab-ctl start sidekiq
 
 
 
