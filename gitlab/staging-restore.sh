@@ -16,6 +16,7 @@ GITLAB_URL=gitlab.drupalcode.org
 
 # Reset the authorized_keys setting to use the db
 # XXX curl -s -g --request PUT --header "PRIVATE-TOKEN: ${PRIVATE_TOKEN}" "https://${GITLAB_URL}/api/v4/application/settings?authorized_keys_enabled=false
+curl -k -s -v -g --request GET --header "PRIVATE-TOKEN: ${PRIVATE_TOKEN}" https://gitlab.drupalcode.org/api/v4/application/settings
 
 # Restart gitlab
 sudo gitlab-ctl start unicorn
