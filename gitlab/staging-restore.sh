@@ -6,10 +6,10 @@ sudo gitlab-ctl stop unicorn
 sudo gitlab-ctl stop sidekiq
 
 # Restore the backup on gitlabstg1
-gitlab-rake gitlab:backup:restore BACKUP=$1
+sudo gitlab-rake gitlab:backup:restore BACKUP=$1
 
 # Reconfigure the geo settings for staging urls.
-gitlab-rails runner "eval(File.read '/usr/local/drupal-infrastructure/gitlab/geo-reconfigure.rb')"
+sudo gitlab-rails runner "eval(File.read '/usr/local/drupal-infrastructure/gitlab/geo-reconfigure.rb')"
 GITLAB_URL=gitlab.drupalcode.org
 
 # Reset the authorized_keys setting to use the db
@@ -18,6 +18,3 @@ curl -s -g --request PUT --header "PRIVATE-TOKEN: ${PRIVATE_TOKEN}" "https://${G
 # Restart gitlab
 sudo gitlab-ctl start unicorn
 sudo gitlab-ctl start sidekiq
-
-
-
