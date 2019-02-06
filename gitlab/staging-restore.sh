@@ -6,7 +6,7 @@ sudo gitlab-ctl stop unicorn
 sudo gitlab-ctl stop sidekiq
 
 # Restore the backup on gitlabstg1
-sudo gitlab-rake gitlab:backup:restore BACKUP=$1
+sudo gitlab-rake force=yes BACKUP=$1 |tee -a backupoutput.txt
 
 # Reconfigure the geo settings for staging urls.
 sudo gitlab-rails runner "eval(File.read '/usr/local/drupal-infrastructure/gitlab/geo-reconfigure.rb')"
