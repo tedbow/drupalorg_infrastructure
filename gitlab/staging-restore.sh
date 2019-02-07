@@ -9,7 +9,7 @@ gitlab-ctl stop sidekiq
 gitlab-rake gitlab:backup:restore force=yes BACKUP=$1 |tee -a backupoutput.txt
 
 # Clean up messes that gitlab makes during the restore.
-
+rm -rf /var/opt/gitlab/backups/repositories /var/opt/gitlab/backups/tmp /var/opt/gitlab/git-data/repositories/+gitaly || true
 
 # Reconfigure the geo settings for staging urls.
 gitlab-rails runner "eval(File.read '/usr/local/drupal-infrastructure/gitlab/geo-reconfigure.rb')"
