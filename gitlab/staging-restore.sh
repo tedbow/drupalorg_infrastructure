@@ -9,7 +9,9 @@ gitlab-ctl stop sidekiq
 rm -rf /var/opt/gitlab/backups/repositories /var/opt/gitlab/backups/tmp /var/opt/gitlab/git-data/repositories/+gitaly || true
 
 # Restore the backup on gitlabstg1
-gitlab-rake gitlab:backup:restore force=yes BACKUP=$1 |tee -a backupoutput.txt
+gitlab-rake gitlab:backup:restore force=yes BACKUP=${1%_gitlab_backup.tar} |tee -a backupoutput.txt
+# Remove the backup file
+rm -rf /var/opt/gitlab/backups/$1
 
 # Reconfigure the geo settings for staging urls.
 gitlab-rails runner "eval(File.read '/usr/local/drupal-infrastructure/gitlab/geo-reconfigure.rb')"
