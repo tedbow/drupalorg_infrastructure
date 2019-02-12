@@ -1,7 +1,8 @@
 #!/bin/bash
 set -eux
 # This script is run after we restore a production snapshot to staging
-
+GITLAB_BACKUP_FILE=$1
+PRIVATE_TOKEN=$2
 # Stop any running gitlab.
 gitlab-ctl stop unicorn
 gitlab-ctl stop sidekiq
@@ -10,9 +11,9 @@ gitlab-ctl stop sidekiq
 rm -rf /var/opt/gitlab/backups/repositories /var/opt/gitlab/backups/tmp /var/opt/gitlab/git-data/repositories/+gitaly || true
 
 # Restore the backup on gitlabstg1
-gitlab-rake gitlab:backup:restore force=yes BACKUP=${1%_gitlab_backup.tar} |tee -a backupoutput.txt
+gitlab-rake gitlab:backup:restore force=yes BACKUP=${GITLAB_BACKUP_FILE%_gitlab_backup.tar} |tee -a backupoutput.txt
 # Remove the backup file
-rm -rf /var/opt/gitlab/backups/$1 || true
+rm -rf /var/opt/gitlab/backups/${GITLAB_BACKUP_FILE} || true
 
 # Reconfigure the geo settings for staging urls.
 gitlab-rails runner "eval(File.read '/usr/local/drupal-infrastructure/gitlab/geo-reconfigure.rb')"
