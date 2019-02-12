@@ -1,4 +1,5 @@
 #!/bin/bash
+set -eux
 # This script is run after we restore a production snapshot to staging
 
 # Stop any running gitlab.
