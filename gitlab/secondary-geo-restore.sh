@@ -10,11 +10,10 @@ echo ${STAGING_REPLICATION_PASSWORD} | gitlab-ctl replicate-geo-database --no-wa
 gitlab-ctl reconfigure
 gitlab-ctl stop sidekiq
 gitlab-ctl stop geo-logcursor
-gitlab-rake geo:db:reset
+# this blows out some errors.
+gitlab-rake geo:db:reset || true
 gitlab-ctl reconfigure
 gitlab-rake geo:db:refresh_foreign_tables
 gitlab-rake geo:db:migrate
-
-
 # turn on gitlab
-sudo gitlab-ctl start
+gitlab-ctl start
