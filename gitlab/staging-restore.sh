@@ -12,6 +12,7 @@ rm -rf /var/opt/gitlab/backups/repositories /var/opt/gitlab/backups/tmp /var/opt
 
 # Restore the backup on gitlabstg1
 gitlab-rake gitlab:backup:restore force=yes BACKUP=${GITLAB_BACKUP_FILE%_gitlab_backup.tar} |tee -a backupoutput.txt
+gitlab-ctl reconfigure
 # Remove the backup file
 rm -rf /var/opt/gitlab/backups/${GITLAB_BACKUP_FILE} || true
 
