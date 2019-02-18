@@ -17,3 +17,6 @@ gitlab-rake geo:db:refresh_foreign_tables
 gitlab-rake geo:db:migrate
 # turn on gitlab
 gitlab-ctl start
+# Blow away old gitlab database backups so they dont stack up forever
+# TODO: investigate if any of the above rake commands can take a --skip-backup like command.
+rm -rf /var/opt/gitlab/postgresql/data.*
