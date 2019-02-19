@@ -8,4 +8,4 @@ sudo /opt/gitlab/bin/gitlab-rake gitlab:backup:create | tee -a /tmp/backupoutput
 # Transfer the backup to staging.
 GITLAB_BACKUP=`grep 'Creating backup archive:' /tmp/backupoutput.log |awk '{print $4}'`
 
-sudo rsync -avPz /var/opt/gitlab/backups/${GITLAB_BACKUP} gitlabstg1.drupal.bak::backups
+#sudo rsync -avPz /var/opt/gitlab/backups/${GITLAB_BACKUP} gitlabstg1.drupal.bak::backups
