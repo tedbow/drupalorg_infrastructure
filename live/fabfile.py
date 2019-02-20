@@ -48,6 +48,7 @@ def deploy():
         if env.branch:
             run("git fetch origin %s:%s" % (env.branch, env.branch))
             run("git checkout %s" % (env.branch))
+            run("git branch --set-upstream-to=origin/%s %s" % (env.branch, env.branch))
         run("git pull")
         #run("sudo /usr/sbin/service php5-fpm reload")
 
