@@ -5,6 +5,7 @@ gitlab-ctl reconfigure
 # upgrade
 gitlab-ctl stop sidekiq
 gitlab-ctl stop geo-logcursor
+export DEBIAN_FRONTEND=noninteractive
 apt-get update && apt-get install gitlab-ee
 # post upgrade reconfigure
 SKIP_POST_DEPLOYMENT_MIGRATIONS=true gitlab-ctl reconfigure
