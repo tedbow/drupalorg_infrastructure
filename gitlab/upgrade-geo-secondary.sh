@@ -8,7 +8,6 @@ gitlab-ctl stop geo-logcursor
 apt-get update && apt-get install gitlab-ee
 # post upgrade reconfigure
 SKIP_POST_DEPLOYMENT_MIGRATIONS=true gitlab-ctl reconfigure
-gitlab-rake db:migrate
 gitlab-rake geo:db:migrate
 gitlab-ctl hup unicorn
 gitlab-ctl hup sidekiq
