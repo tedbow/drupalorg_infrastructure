@@ -33,10 +33,8 @@ DELETE FROM node_counter WHERE nid NOT IN (SELECT nid FROM node);
 
 -- Remove orphaned related data from contribs
 DELETE FROM content_field_organizers WHERE vid NOT IN (SELECT vid FROM node);
-DELETE FROM content_field_type WHERE vid NOT IN (SELECT vid FROM node);
 DELETE FROM content_type_event WHERE vid NOT IN (SELECT vid FROM node);
 DELETE FROM content_type_image WHERE vid NOT IN (SELECT vid FROM node);
-DELETE FROM content_type_job WHERE vid NOT IN (SELECT vid FROM node);
 DELETE FROM content_type_og WHERE vid NOT IN (SELECT vid FROM node);
 DELETE FROM content_type_page WHERE vid NOT IN (SELECT vid FROM node);
 DELETE FROM content_type_poll WHERE vid NOT IN (SELECT vid FROM node);
