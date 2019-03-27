@@ -5,7 +5,7 @@ mkdir -p www
 mkdir -p gitlab
 
 # todo remove after migration
-if [ -n "${checksums+set}" ]; then
+if [ "${checksums}" = 'true' ]; then
   # Repository checksums.
   ssh git3.drupal.bak /usr/local/drupal-infrastructure/live/gitlab-integrity-git/checksums.sh > www/checksums.tsv &
 fi
@@ -36,6 +36,6 @@ for f in {users,emails,keys,projects,maintainers}; do
 done
 
 # todo remove after migration
-if [ -n "${checksums+set}" ]; then
+if [ "${checksums}" = 'true' ]; then
   diff -u "www/checksums.tsv" "gitlab/checksums.tsv" | grep '^[+-]' > "checksums.diff" || true
 fi
