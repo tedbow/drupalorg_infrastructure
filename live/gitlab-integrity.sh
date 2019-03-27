@@ -4,9 +4,11 @@ set -uex
 mkdir -p www
 mkdir -p gitlab
 
-# Repository checksums.
 # todo remove after migration
-ssh git3.drupal.bak /usr/local/drupal-infrastructure/live/gitlab-integrity-git/checksums.sh > www/checksums.tsv &
+if [ -n "${checksums+set}" ]; then
+  # Repository checksums.
+  ssh git3.drupal.bak /usr/local/drupal-infrastructure/live/gitlab-integrity-git/checksums.sh > www/checksums.tsv &
+fi
 
 # Users.
 echo "SELECT u.git_username, vgu.gitlab_user_id, u.name, concat(lower(u.git_username), '@', u.uid, '.no-reply.drupal.org') mail, if(u.status AND ur.rid IS NOT NULL, 'active', 'blocked') status, 0, concat('https://www.drupal.org/', coalesce(ua.alias, concat('user/', u.uid))) website, coalesce(substring_index(fm.uri, '/', -1), '') avatar FROM users u INNER JOIN versioncontrol_gitlab_users vgu ON vgu.uid = u.uid LEFT JOIN users_roles ur ON ur.uid = u.uid AND ur.rid = 20 LEFT JOIN url_alias ua ON ua.source = concat('user/', u.uid) LEFT JOIN file_managed fm ON fm.fid = u.picture" | drush -r /var/www/drupal.org/htdocs sql-cli --extra='--skip-column-names' | sort > www/users.tsv
@@ -29,6 +31,11 @@ scp gitlab1.drupal.bak:{users,emails,keys,projects,maintainers,checksums}.tsv gi
 
 wait
 
-for f in {users,emails,keys,projects,maintainers,checksums}; do
+for f in {users,emails,keys,projects,maintainers}; do
   diff -u "www/${f}.tsv" "gitlab/${f}.tsv" | grep '^[+-]' > "${f}.diff" || true
 done
+
+# todo remove after migration
+if [ -n "${checksums+set}" ]; then
+  diff -u "www/checksums.tsv" "gitlab/checksums.tsv" | grep '^[+-]' > "checksums.diff" || true
+fi
