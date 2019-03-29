@@ -34,12 +34,12 @@ wait
 code=0
 
 for f in {users,emails,keys,projects,maintainers}; do
-  diff -u "www/${f}.tsv" "gitlab/${f}.tsv" | grep '^[+-]' > "${f}.diff" || code=1
+  diff -u "www/${f}.tsv" "gitlab/${f}.tsv" | grep '^[+-]' > "${f}.diff" && code=1 || true
 done
 
 # todo remove after migration
 if [ "${checksums}" = 'true' ]; then
-  diff -u "www/checksums.tsv" "gitlab/checksums.tsv" | grep '^[+-]' > "checksums.diff" || code=1
+  diff -u "www/checksums.tsv" "gitlab/checksums.tsv" | grep '^[+-]' > "checksums.diff" && code=1 || true
 fi
 
 # Alert if any are non-empty.
