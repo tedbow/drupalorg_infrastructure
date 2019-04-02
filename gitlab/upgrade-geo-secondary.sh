@@ -10,6 +10,8 @@ apt-get update && apt-get install gitlab-ee
 # post upgrade reconfigure
 SKIP_POST_DEPLOYMENT_MIGRATIONS=true gitlab-ctl reconfigure
 gitlab-rake geo:db:migrate
+gitlab-rake geo:db:refresh_foreign_tables
+gitlab-ctl start sidekiq
 gitlab-ctl hup unicorn
 gitlab-ctl hup sidekiq
 gitlab-ctl restart geo-logcursor
