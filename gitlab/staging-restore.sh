@@ -18,7 +18,7 @@ rm -rf /var/opt/gitlab/backups/${GITLAB_BACKUP_FILE} || true
 
 # Reconfigure the geo settings for staging urls.
 gitlab-rails runner "eval(File.read '/usr/local/drupal-infrastructure/gitlab/geo-reconfigure.rb')"
-GITLAB_HOST=gitlab.code-staging.devdrupal.org
+GITLAB_HOST=git.code-staging.devdrupal.org
 
 # Reset the authorized_keys setting to use the db
 curl -s -g --request PUT --header "PRIVATE-TOKEN: ${PRIVATE_TOKEN}" https://${GITLAB_HOST}/api/v4/application/settings?authorized_keys_enabled=false
