@@ -4,6 +4,9 @@ set -uex
 mkdir -p www
 mkdir -p gitlab
 
+# Start GitLab in the background.
+ssh gitlab1.drupal.bak /usr/local/drupal-infrastructure/live/gitlab-integrity-gitlab/manifest.sh &
+
 # Users.
 echo "SELECT u.git_username, vgu.gitlab_user_id, u.name, concat(lower(u.git_username), '@', u.uid, '.no-reply.drupal.org') mail, if(u.status AND ur.rid IS NOT NULL, 'active', 'blocked') status, 0, concat('https://www.drupal.org/', coalesce(ua.alias, concat('user/', u.uid))) website, coalesce(substring_index(fm.uri, '/', -1), '') avatar FROM users u INNER JOIN versioncontrol_gitlab_users vgu ON vgu.uid = u.uid LEFT JOIN users_roles ur ON ur.uid = u.uid AND ur.rid = 20 LEFT JOIN url_alias ua ON ua.source = concat('user/', u.uid) LEFT JOIN file_managed fm ON fm.fid = u.picture" | drush -r /var/www/drupal.org/htdocs sql-cli --extra='--skip-column-names' | sort > www/users.tsv
 
@@ -19,11 +22,9 @@ echo "SELECT if(fdf_pt.field_project_type_value = 'sandbox', concat(substring_in
 # Maintainers.
 echo "SELECT if(fdf_pt.field_project_type_value = 'sandbox', concat(substring_index(substring_index(vr.root, '/', -2), '/', 1), '-', n.nid), vr.name) repository, u.git_username, 30 FROM versioncontrol_auth_account vaa INNER JOIN users u ON u.uid = vaa.uid AND git_consent = 1 AND git_username IS NOT NULL INNER JOIN versioncontrol_repositories vr ON vr.repo_id = vaa.repo_id INNER JOIN versioncontrol_project_projects vpp ON vpp.repo_id = vr.repo_id INNER JOIN field_data_field_project_type fdf_pt ON fdf_pt.entity_id = vpp.nid INNER JOIN node n ON n.nid = vpp.nid WHERE vaa.access != 0" | drush -r /var/www/drupal.org/htdocs sql-cli --extra='--skip-column-names' | sort > www/maintainers.tsv
 
-# GitLab.
-ssh gitlab1.drupal.bak /usr/local/drupal-infrastructure/live/gitlab-integrity-gitlab/manifest.sh
-scp gitlab1.drupal.bak:{users,emails,keys,projects,maintainers}.tsv gitlab/
-
+# Get results from GitLab.
 wait
+scp gitlab1.drupal.bak:{users,emails,keys,projects,maintainers}.tsv gitlab/
 
 code=0
 
