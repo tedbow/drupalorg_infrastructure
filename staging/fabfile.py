@@ -44,7 +44,7 @@ def deploy():
             run("git checkout %s" % (env.branch))
             run("git branch --set-upstream-to=origin/%s %s" % (env.branch, env.branch))
         run("git pull")
-        if env.host = "wwwstg2.drupal.bak"
+        if env.host == "wwwstg2.drupal.bak"
             run("sudo /usr/sbin/service php5.6-fpm reload")
         else
             run("sudo /usr/sbin/service php5-fpm reload")
