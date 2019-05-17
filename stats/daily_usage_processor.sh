@@ -14,3 +14,5 @@ gunzip ${FILEDATE}.fastly.gz
 rm -f ${FILEDATE}T*
 # Run the awk script on them to create the daily count files.
 { time /usr/local/drupal-infrastructure/stats/fastlyusagestatparser.awk ${FILEDATE}.fastly ; } 2>&1
+
+rm ${FILEDATE}.fastly
