@@ -2077,6 +2077,20 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_next_major_version_info",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_next_major_version_info_value",
+        "field_next_major_version_info_format",
+    ])
+
+whitelist.add(
     table="_nodata:field_data_field_notes",
     columns=[
         "entity_type",
@@ -5032,6 +5046,20 @@ whitelist.add(
         "language",
         "delta",
         "field_new_page_and_guide_review_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_next_major_version_info",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_next_major_version_info_value",
+        "field_next_major_version_info_format",
     ])
 
 whitelist.add(
