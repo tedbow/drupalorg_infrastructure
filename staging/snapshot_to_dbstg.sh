@@ -53,11 +53,11 @@ mysql ${target_db} < /data/dumps/${target_db}/${db}.${stage}-schema.sql
 # Copy the snapshot data files in place
 mv ${target_db}/${db}/{*.ibd,*.cfg} /var/lib/mysql/${target_db}/
 
+# Cleanup the temporary $target_db directory
+rm -rf "/data/dumps/${target_db}"
+
 # Import the data from the copied data files
 ( mysql ${target_db} -e "SHOW TABLES" --batch --skip-column-names | xargs -t -n 1 -P 3 -I{} mysql -e 'SET FOREIGN_KEY_CHECKS=0; ALTER TABLE `'{}'` IMPORT TABLESPACE;' ${target_db})
 
 # Analyze tables to let mysql understand indexes
 ( mysql ${target_db} -e "SHOW TABLES" --batch --skip-column-names | xargs -t -n 1 -P 20 -I{} mysql -e 'ANALYZE TABLE `'{}'`;' ${target_db})
-
-# Cleanup the temporary $target_db directory
-rm -rf /data/dumps/${target_db}
