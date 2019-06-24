@@ -2978,6 +2978,34 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_replaced_by",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_replaced_by_value",
+        "field_replaced_by_revision_id",
+    ])
+
+whitelist.add(
+    table="field_data_field_replaced_by_description",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_replaced_by_description_value",
+        "field_replaced_by_description_format",
+    ])
+
+whitelist.add(
     table="field_data_field_sa_advisory_id",
     columns=[
         "entity_type",
@@ -5960,6 +5988,34 @@ whitelist.add(
         "language",
         "delta",
         "field_release_version_patch_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_replaced_by",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_replaced_by_value",
+        "field_replaced_by_revision_id",
+    ])
+
+whitelist.add(
+    table="field_revision_field_replaced_by_description",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_replaced_by_description_value",
+        "field_replaced_by_description_format",
     ])
 
 whitelist.add(
