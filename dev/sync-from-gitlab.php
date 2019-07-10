@@ -1,5 +1,9 @@
 <?php
 
+if (!drush_confirm('Are you sure you want to delete all the GitLab user and project IDs?')) {
+  exit;
+}
+
 // Delete GitLab user and project IDs that had been pulled down from the DB
 // dump and replace them with IDs matched up to the GitLab dev instance.
 
