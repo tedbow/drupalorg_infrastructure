@@ -7624,7 +7624,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:project_release_package_errors",
+    table="project_release_package_errors",
     columns=[
         "nid",
         "messages",
