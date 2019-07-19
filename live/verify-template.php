@@ -17,12 +17,6 @@ $projects_discouraged = array_intersect(array(
   'views_ui',
 ), $projects);
 
-$updates = array();
-$header = array('project', 'installed', 'available', 'type');
-foreach (explode("\n", getenv('updates')) as $line) {
-  $updates[] = array_combine($header, explode(' ', $line));
-}
-
 ?><!DOCTYPE html>
 <html lang="en">
   <head>
@@ -76,18 +70,6 @@ foreach (explode("\n", getenv('updates')) as $line) {
         <div class="alert alert-warning"><strong>Discouraged project enabled:</strong>
           <?php print implode(', ', $projects_discouraged); ?></div>
       <?php } ?>
-
-      <h3>Updates</h3>
-      <table class="table">
-        <tr><th>Project</th><th>Installed</th><th>Available</th></tr>
-        <?php foreach ($updates as $update) { ?>
-          <tr<?php if ($update['type'] === 'SECURITY-UPDATE-available') { print ' class="danger"'; } ?>>
-            <td><?php print $update['project']; ?></td>
-            <td><?php print $update['installed']; ?></td>
-            <td><?php print $update['available']; ?></td>
-          </tr>
-        <?php } ?>
-      </table>
 
       <h3>Logs</h3>
       <p>DB logs since <strong class="text-<?php print (getenv('log_earliest') < strtotime('-1 week')) ? 'info' : 'danger' ?>"><?php print gmdate('Y-m-d H:i:s', getenv('log_earliest')) ?></strong></p>
