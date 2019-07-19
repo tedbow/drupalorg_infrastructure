@@ -2,20 +2,20 @@
 
 // Check for required, forbidden, and discouraged projects.
 $projects = explode("\n", getenv('projects'));
-$projects_missing = array_diff(array(
+$projects_missing = array_diff([
   'security_review',
   'paranoia',
   'bakery',
   'drupalorg_crosssite',
-), $projects);
-$projects_forbidden = array_intersect(array(
+], $projects);
+$projects_forbidden = array_intersect([
   'devel',
   'php',
   'ds_format',
-), $projects);
-$projects_discouraged = array_intersect(array(
+], $projects);
+$projects_discouraged = array_intersect([
   'views_ui',
-), $projects);
+], $projects);
 
 ?><!DOCTYPE html>
 <html lang="en">
@@ -77,11 +77,11 @@ $projects_discouraged = array_intersect(array(
         <tr><th class="text-right">#</th><th>Earliest</th><th>Latest</th><th>Message</th></tr>
         <?php
         $first = TRUE;
-        $severities = array(
+        $severities = [
           3 => 'danger',
           4 => 'warning',
           5 => '',
-        );
+        ];
         foreach (file('log_php_summary.tsv', FILE_IGNORE_NEW_LINES) as $line) {
           if ($first) { // Skip header row.
             $first = FALSE;
@@ -97,7 +97,7 @@ $projects_discouraged = array_intersect(array(
           else {
             $latest_class = '';
           }
-          $variables = unserialize(str_replace(array('\n', '\\\\'), array("\n", '\\'), $variables)); ?>
+          $variables = unserialize(str_replace(['\n', '\\\\'], ["\n", '\\'], $variables)); ?>
             <tr class="<?php print $severities[$severity]; ?>">
               <td class="text-right"><?php print number_format($c); ?></td>
               <td class="text-nowrap"><?php if ($earliest != $latest) { ?>
