@@ -18,7 +18,7 @@ export updates=$(${drush_no} --simulate --pipe pm-updatecode)
 # Set up report area.
 [ ! -d 'html' ] && git clone 'https://bitbucket.org/drupalorg-infrastructure/site-status-assets.git' 'html'
 # Generate HTML report.
-php /usr/local/drupal-infrastructure/live/verify-template.php > 'html/index.html'
+php -d display_errors=1 /usr/local/drupal-infrastructure/live/verify-template.php > 'html/index.html'
 
 # Exit with error if there are changes.
 [ ! -n "${repo_status}" ]
