@@ -123,7 +123,8 @@ drupal_files="${web_path}/htdocs/$(${drush} status | sed -ne 's/^ *File director
 ln -s /media/nfs/${fqdn} ${drupal_files}
 
 # Sync xhprof webapp directory
-rsync -av /usr/share/doc/php5-xhprof/ "${web_path}/xhprof/htdocs/"
+# TODO uncomment if we get this working again.
+# rsync -av /usr/share/doc/php5-xhprof/ "${web_path}/xhprof/htdocs/"
 
 # Reload apache with new vhost
 restart_apache

@@ -124,7 +124,8 @@ ${drush} pm-disable paranoia
 ${drush} pm-disable beanstalkd
 
 # Sync xhprof webapp directory
-rsync -av /usr/share/doc/php5-xhprof/ "${web_path}/xhprof/htdocs/"
+# TODO uncomment if we get this working again.
+# rsync -av /usr/share/doc/php5-xhprof/ "${web_path}/xhprof/htdocs/"
 
 # Reload apache with new vhost
 restart_apache
