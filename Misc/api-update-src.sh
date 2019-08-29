@@ -1,3 +1,4 @@
+#!/usr/bin/env bash
 set -uex
 
 cd /usr/local/api.drupal.org-src
