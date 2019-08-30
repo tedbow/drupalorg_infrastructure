@@ -778,6 +778,15 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="drupalorg_issue_forks",
+    columns=[
+        "nid",
+        "project_nid",
+        "gitlab_project_id",
+        "name",
+    ])
+
+whitelist.add(
     table="_nodata:drupalorg_node_deleted",
     columns=[
         "nid",
