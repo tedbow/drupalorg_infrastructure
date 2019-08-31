@@ -40,9 +40,10 @@ for db in ${dblist}; do
   echo "### Completed sanitizing ${db} ###"
 
   # Generate a list of all tables (except 'pift_ci_job_result' which is already
-  # compressed), and alter them to the compressed row_format.
+  # compressed, and civicrm_domain_view which is a view), and alter them to the
+  # compressed row_format.
   echo "### Compressing ${db} ###"
-  ( sudo mysql "$db" -e "SHOW TABLES" --batch --skip-column-names | grep -v --line-regexp 'pift_ci_job_result' | xargs -n 1 -I{} sudo mysql -e 'ALTER TABLE `'{}'` ROW_FORMAT=COMPRESSED;' "$db")
+  ( sudo mysql "$db" -e "SHOW TABLES" --batch --skip-column-names | grep -v --line-regexp 'pift_ci_job_result\|civicrm_domain_view' | xargs -n 1 -I{} sudo mysql -e 'ALTER TABLE `'{}'` ROW_FORMAT=COMPRESSED;' "$db")
   echo "### Completed compressing ${db} ###"
 done
 
