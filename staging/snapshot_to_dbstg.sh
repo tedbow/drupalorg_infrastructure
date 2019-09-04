@@ -48,7 +48,7 @@ mysql ${target_db} < /data/dumps/${target_db}/${db}.${stage}-schema.sql
 ( mysql "${target_db}" -e "SHOW TABLES" --batch --skip-column-names | grep -v --line-regexp 'civicrm_domain_view' | xargs -t -n 1 -P 20 -I{} mysql -e 'ALTER TABLE `'{}'` ROW_FORMAT=COMPRESSED;' "${target_db}")
 
 # Discard the data files for the newly created tables
-( mysql ${target_db} -e "SHOW TABLES" --batch --skip-column-names | xargs -t -n 1 -P 20 -I{} mysql -e 'SET FOREIGN_KEY_CHECKS=0; ALTER TABLE `'{}'` DISCARD TABLESPACE;' ${target_db})
+( mysql ${target_db} -e "SHOW TABLES" --batch --skip-column-names | grep -v --line-regexp 'civicrm_domain_view' | xargs -t -n 1 -P 20 -I{} mysql -e 'SET FOREIGN_KEY_CHECKS=0; ALTER TABLE `'{}'` DISCARD TABLESPACE;' ${target_db})
 
 # Copy the snapshot data files in place
 mv ${target_db}/${db}/{*.ibd,*.cfg} /var/lib/mysql/${target_db}/
@@ -57,7 +57,7 @@ mv ${target_db}/${db}/{*.ibd,*.cfg} /var/lib/mysql/${target_db}/
 rm -rf "/data/dumps/${target_db}"
 
 # Import the data from the copied data files
-( mysql ${target_db} -e "SHOW TABLES" --batch --skip-column-names | xargs -t -n 1 -P 3 -I{} mysql -e 'SET FOREIGN_KEY_CHECKS=0; ALTER TABLE `'{}'` IMPORT TABLESPACE;' ${target_db})
+( mysql ${target_db} -e "SHOW TABLES" --batch --skip-column-names | grep -v --line-regexp 'civicrm_domain_view' | xargs -t -n 1 -P 3 -I{} mysql -e 'SET FOREIGN_KEY_CHECKS=0; ALTER TABLE `'{}'` IMPORT TABLESPACE;' ${target_db})
 
 # Analyze tables to let mysql understand indexes
-( mysql ${target_db} -e "SHOW TABLES" --batch --skip-column-names | xargs -t -n 1 -P 20 -I{} mysql -e 'ANALYZE TABLE `'{}'`;' ${target_db})
+( mysql ${target_db} -e "SHOW TABLES" --batch --skip-column-names | grep -v --line-regexp 'civicrm_domain_view' | xargs -t -n 1 -P 20 -I{} mysql -e 'ANALYZE TABLE `'{}'`;' ${target_db})
