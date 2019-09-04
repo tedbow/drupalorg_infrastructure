@@ -45,7 +45,7 @@ chown bender:bender ./${target_db}/{*.sql,$db}
 mysql ${target_db} < /data/dumps/${target_db}/${db}.${stage}-schema.sql 
 # Ensure tables have compression. The binary data and the row format must match
 # for tablespace import.
-( mysql "${target_db}" -e "SHOW TABLES" --batch --skip-column-names | xargs -t -n 1 -P 20 -I{} mysql -e 'ALTER TABLE `'{}'` ROW_FORMAT=COMPRESSED;' "${target_db}")
+( mysql "${target_db}" -e "SHOW TABLES" --batch --skip-column-names | grep -v --line-regexp 'civicrm_domain_view' | xargs -t -n 1 -P 20 -I{} mysql -e 'ALTER TABLE `'{}'` ROW_FORMAT=COMPRESSED;' "${target_db}")
 
 # Discard the data files for the newly created tables
 ( mysql ${target_db} -e "SHOW TABLES" --batch --skip-column-names | xargs -t -n 1 -P 20 -I{} mysql -e 'SET FOREIGN_KEY_CHECKS=0; ALTER TABLE `'{}'` DISCARD TABLESPACE;' ${target_db})
