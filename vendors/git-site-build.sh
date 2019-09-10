@@ -60,7 +60,7 @@ mv ${BUILDGIT}/.git ${BUILDDIR}
 [ -f "${MASTER}/.gitignore" ] && cp "${MASTER}/.gitignore" "${BUILDDIR}/"  # Replace core's file
 if [ -d "${MASTER}/static-files" ]; then
   pushd "${MASTER}/static-files"
-  find . -type f | cpio -pdmuv "${BUILDDIR}"
+  find . -type f -print0 | cpio -pdmuv -0 "${BUILDDIR}"
   popd
 fi
 
