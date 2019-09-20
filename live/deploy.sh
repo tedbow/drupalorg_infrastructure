@@ -6,7 +6,7 @@ fab -f /usr/local/drupal-infrastructure/live/fabfile.py --set uri=${uri},branch=
 cd ${webroot}
 
 if [ "${updatedb-}" = "true" ]; then
-  ${drush} -v updatedb --interactive
+  ${drush} -v updatedb --interactive --cache-clear=0
 fi
 if [ "${cc_menu-}" = "true" ]; then
   ${drush} -v cc "menu"
