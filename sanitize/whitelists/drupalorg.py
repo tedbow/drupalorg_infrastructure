@@ -769,6 +769,17 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="drupalorg_in_place_updates",
+    columns=[
+        "from_release_nid",
+        "to_release_nid",
+        "requested",
+        "generated",
+        "expiration",
+        "error",
+    ])
+
+whitelist.add(
     table="drupalorg_ind_civimembership",
     columns=[
         "user_name",
