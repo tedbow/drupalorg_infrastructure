@@ -7549,6 +7549,8 @@ whitelist.add(
         "description",
         "package",
         "composer",
+        "core_api",
+        "core_version_requirement",
     ])
 
 whitelist.add(
