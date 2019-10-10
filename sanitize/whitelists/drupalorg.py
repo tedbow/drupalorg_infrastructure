@@ -7694,7 +7694,6 @@ whitelist.add(
         "major",
         "supported",
         "recommended",
-        "snapshot",
         "recommended_release",
         "latest_release",
         "latest_security_release",
