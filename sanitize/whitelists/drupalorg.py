@@ -5806,6 +5806,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_revision_field_release_category",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_category_value",
+    ])
+
+whitelist.add(
     table="field_revision_field_release_file",
     columns=[
         "entity_type",
