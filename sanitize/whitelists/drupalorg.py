@@ -2767,6 +2767,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_release_category",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_release_category_value",
+    ])
+
+whitelist.add(
     table="field_data_field_release_file",
     columns=[
         "entity_type",
@@ -7479,6 +7492,17 @@ whitelist.add(
         "result",
         "error",
         "output",
+    ])
+
+whitelist.add(
+    table="pift_ci_label_map",
+    columns=[
+        "label_id",
+        "versioncontrol_label_id",
+        "machine_label",
+        "label",
+        "label_description",
+        "reference",
     ])
 
 whitelist.add(
