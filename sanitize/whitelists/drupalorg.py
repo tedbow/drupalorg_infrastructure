@@ -7728,12 +7728,12 @@ whitelist.add(
     columns=[
         "nid",
         "tid",
-        "major",
         "supported",
         "recommended",
         "recommended_release",
         "latest_release",
         "latest_security_release",
+        "branch",
     ])
 
 whitelist.add(
