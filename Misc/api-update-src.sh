@@ -12,7 +12,7 @@ for d in $(ls); do
     popd
   fi
   if echo $d | grep -q '^drupal-8' && [ -f 'composer.json' ]; then
-    composer install --prefer-dist --no-interaction --ignore-platform-reqs
+    php7.3 /usr/local/bin/composer install --prefer-dist --no-interaction --ignore-platform-reqs
   fi
   cd ..
 done
