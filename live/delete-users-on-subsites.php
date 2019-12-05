@@ -10,8 +10,8 @@ foreach (variable_get('bakery_slaves', []) as $slave) {
   ];
 
   // Find Drupal.org UIDs present on the site.
-  $output = drush_invoke_process($site, 'sql-query', ["SELECT init AS '' FROM users WHERE init LIKE 'www.drupal.org/user/%/edit'"]);
-  $site_uids = array_filter(preg_replace('#www.drupal.org/user/(\d+)/edit#', '\1', explode("\n", $output['output'])), 'is_numeric');
+  $output = drush_invoke_process($site, 'sql-query', ["SELECT regexp_replace(init, '^www\.drupal\.org/user/(\\\d+)/edit$', '\\\\1') AS '' FROM users WHERE init LIKE 'www.drupal.org/user/%/edit'"]);
+  $site_uids = array_filter(explode("\n", $output['output']), 'is_numeric');
   drush_log(dt('@site has @count total Drupal.org users', ['@site' => $url['host'], '@count' => count($site_uids)]));
 
   // Find the UIDs not present on Drupal.org.
