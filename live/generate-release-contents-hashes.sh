@@ -23,7 +23,7 @@ diff -u releases.txt packaged.txt | sed -n -e 's/^-//p' | tail -n +2 > missing-p
 cat missing-cloned.txt missing-packaged.txt | sort | uniq > missing.txt
 
 # Statistics.
-wc -l *
+wc -l * | tee counts.txt
 
 # Generate the missing hashes.
 xargs --verbose -L 1 --max-procs="${processes}" -I % sh -c 'drush -r /var/www/drupal.org/htdocs drupalorg-release-hashes -v %' < missing.txt
