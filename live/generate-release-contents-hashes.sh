@@ -26,4 +26,5 @@ cat missing-cloned.txt missing-packaged.txt | sort | uniq > missing.txt
 wc -l * | tee counts.txt
 
 # Generate the missing hashes.
+[ "${processes}" = "0" ] && exit
 xargs --verbose -L 1 --max-procs="${processes}" -I % sh -c 'drush -r /var/www/drupal.org/htdocs drupalorg-release-hashes -v %' < missing.txt
