@@ -5,6 +5,11 @@ STAGING_REPLICATION_PASSWORD=$1
 gitlab-ctl start
 gitlab-ctl stop sidekiq
 gitlab-ctl stop geo-logcursor
+
+# alertmanager & geo-postgresql are stopped by replicate-geo-database, but
+# sometimes timeout. Give them a head start.
+gitlab-ctl stop alertmanager
+gitlab-ctl stop geo-postgresql
 # refresh geo db
 echo ${STAGING_REPLICATION_PASSWORD} | gitlab-ctl replicate-geo-database --no-wait --force --skip-backup --slot-name=staging_secondary --host=10.1.0.42
 gitlab-ctl reconfigure
