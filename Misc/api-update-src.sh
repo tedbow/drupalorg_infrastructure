@@ -4,7 +4,7 @@ set -uex
 cd /usr/local/api.drupal.org-src
 for d in $(ls); do
   cd $d
-  if [ '${shallow-}' = 'true' ]; then
+  if [ "${shallow-}" = 'true' ]; then
     git pull --depth 1 && git gc --prune=all
   else
     git pull
