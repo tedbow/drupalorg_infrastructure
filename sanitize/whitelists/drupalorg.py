@@ -650,6 +650,17 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="_nodata:drupalorg_chargify_price_points",
+    columns=[
+        "id",
+        "product_id",
+        "name",
+        "price_in_cents",
+        "interval_count",
+        "interval_unit",
+    ])
+
+whitelist.add(
     table="_nodata:drupalorg_chargify_subscriptions",
     columns=[
         "uid",
@@ -669,6 +680,9 @@ whitelist.add(
         "customer_organization",
         "customer_email",
         "has_cc",
+        "product_price_point_id",
+        "product_id",
+        "using_price_point",
     ])
 
 whitelist.add(
@@ -7577,21 +7591,21 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="project_dependency_component",
+    table="project_composer_component",
     columns=[
         "component_id",
         "release_nid",
         "name",
         "title",
         "description",
-        "package",
-        "composer",
         "core_api",
         "core_version_requirement",
+        "package",
+        "composer",
     ])
 
 whitelist.add(
-    table="project_dependency_dependency",
+    table="project_composer_dependency",
     columns=[
         "dependency_id",
         "component_id",
