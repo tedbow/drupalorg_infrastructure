@@ -11,6 +11,8 @@ import multiprocessing
 #from multiprocessing import Pool
 #from multiprocessing.dummy import Pool as ThreadPool 
 import random
+import sys
+import atexit
 
 
 parser = OptionParser()
@@ -85,6 +87,11 @@ def generate_base_whitelist(table):
         "{1}",
     ])
 """.format(table, columns2)
+    atexit.register(exit_warn)
+
+def exit_warn():
+    print "Exiting with warnings!"
+    sys.exit(127);
 
 def check_schema():
     c.execute('SHOW TABLES IN `{0}`'.format(sourcedb))
@@ -264,4 +271,3 @@ if __name__ == "__main__":
     multiprocessing.freeze_support()
     run()
     c.close()
-

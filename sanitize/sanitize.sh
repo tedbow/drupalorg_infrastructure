@@ -56,9 +56,10 @@ source $cwd/password.py
 tmp_args="${dbhost} ${dbuser:= } ${dbpassword:= }"
 
 # Sanitize into the export database.
-python $cwd/sanitize_db.py -s ${database} -d ${export_db} -p ${profile}
-if [ $? -ne 0 ]; then
-  exit $?
+exit_status=0
+python $cwd/sanitize_db.py -s ${database} -d ${export_db} -p ${profile} || exit_status=$?
+if [ $exit_status != 0 -a $exit_status != 127 ]; then
+  exit $exit_status
 fi
 
 # Snapshot the dev stage database
@@ -67,3 +68,5 @@ dblist="${export_db}"
 whitelist=1
 snapshot
 sudo rm -rf /var/sanitize/drupal_export/${subdir}/*
+
+exit $exit_status
