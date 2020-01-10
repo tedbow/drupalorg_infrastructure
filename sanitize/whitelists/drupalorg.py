@@ -658,6 +658,8 @@ whitelist.add(
         "price_in_cents",
         "interval_count",
         "interval_unit",
+        "currency",
+        "product_handle",
     ])
 
 whitelist.add(
