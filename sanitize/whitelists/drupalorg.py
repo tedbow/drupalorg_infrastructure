@@ -814,6 +814,25 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="drupalorg_packaging_job",
+    columns=[
+        "job_id",
+        "release_nid",
+        "jenkins_job_url",
+        "status",
+        "updated",
+        "created",
+        "is_security",
+        "project_nid",
+        "project_machine_name",
+        "project_git_url",
+        "reference",
+        "release_build_type",
+        "commit_id",
+        "versioncontrol_label_id",
+    ])
+
+whitelist.add(
     table="_nodata:drupalorg_node_deleted",
     columns=[
         "nid",
