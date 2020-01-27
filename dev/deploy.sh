@@ -152,7 +152,7 @@ if [ "${site}" == "drupal" ]; then
   ${drush} vset apachesolr_default_environment solr_0
   ${drush} solr-set-env-url --id="solr_0" http://solrdev1.drupal.bak:8983/solr/do-core1
   ${drush} solr-vset --id="solr_0" --yes apachesolr_read_only 1
-  ${drush} ev "apachesolr_environment_delete(solr_0_0)"
+  ${drush} ev "apachesolr_environment_delete('solr_0_0')"
 
 else
   if [ "${bakery_master-}" ]; then
