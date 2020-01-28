@@ -830,6 +830,7 @@ whitelist.add(
         "release_build_type",
         "commit_id",
         "versioncontrol_label_id",
+        "message",
     ])
 
 whitelist.add(
