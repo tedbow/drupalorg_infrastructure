@@ -831,6 +831,7 @@ whitelist.add(
         "commit_id",
         "versioncontrol_label_id",
         "message",
+        "last_commit_id",
     ])
 
 whitelist.add(
