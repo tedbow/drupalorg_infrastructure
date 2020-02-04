@@ -9034,6 +9034,7 @@ whitelist.add(
         "component_name",
         "package_namespace",
         "api_tid",
+        "category",
     ])
 
 whitelist.add(
