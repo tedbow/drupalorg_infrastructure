@@ -37,11 +37,12 @@ function snapshot {
     if [ "${whitelist-}" ]; then
       # Save a copy of the schema after the tables have been compressed.
       sudo mysqldump --no-data --opt --single-transaction --quick --max-allowed-packet=256M drupal_export > "/var/sanitize/drupal_export/${subdir}/${db}${suffix}-schema.sql"
+      sudo mysqldump --no-data --opt --single-transaction --quick --max-allowed-packet=256M drupal_export > "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-schema.sql"
       tar --use-compress-program=pigz  -cvf /var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz ./${db}${suffix}-schema.sql ./drupal_export/{*.ibd,*.cfg}
-
     else
       # Save a copy of the schema after the tables have been compressed.
       sudo mysqldump --no-data --opt --single-transaction --quick --max-allowed-packet=256M ${db} > "/var/sanitize/drupal_export/${subdir}/${db}${suffix}-schema.sql"
+      sudo mysqldump --no-data --opt --single-transaction --quick --max-allowed-packet=256M ${db} > "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-schema.sql"
       tar --use-compress-program=pigz  -cvf /var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz ./${db}${suffix}-schema.sql ./${db}/{*.ibd,*.cfg}
     fi
     sudo chown -R bender:bender "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz"
