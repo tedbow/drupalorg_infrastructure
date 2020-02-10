@@ -46,7 +46,14 @@ function snapshot {
       tar --use-compress-program=pigz  -cvf /var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz ./${db}${suffix}-schema.sql ./${db}/{*.ibd,*.cfg}
     fi
     sudo chown -R bender:bender "/var/dumps/${subdir}/${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz"
+    ln -sfv "${db}${suffix}-${BUILD_NUMBER}-schema.sql" "/var/dumps/${subdir}/${db}${suffix}-schema-current.sql"
     ln -sfv "${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz" "/var/dumps/${subdir}/${db}${suffix}-binary-current.tar.gz"
+
+    # Remove old schema snapshots.
+    old_snapshots=$(ls -t /var/dumps/${subdir}/${db}${suffix}-[0-9]*-schema.tar.gz | tail -n +2)
+    if [ -n "${old_snapshots}" ]; then
+      rm -v ${old_snapshots}
+    fi
     # Remove old binary snapshots
     old_snapshots=$(ls -t /var/dumps/${subdir}/${db}${suffix}-[0-9]*-binary.tar.gz | tail -n +2)
     if [ -n "${old_snapshots}" ]; then
