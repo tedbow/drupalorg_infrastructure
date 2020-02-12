@@ -12,6 +12,10 @@ stage=dev
 cd /data/dumps/
 mkdir ${target_db} || true
 
+# Copy and import the latest snapshot’s schema from dbutil.
+rsync -v --copy-links --progress -e 'ssh -i /home/bender/.ssh/id_rsa' "bender@dbutil1.drupal.bak:/${db}.${stage}-schema-current.sql" /data/dumps
+mysql ${target_db} < "/data/dumps/${db}.${stage}-schema-current.sql"
+
 # Copy and extract the latest snapshot from dbutil
 ## We're now using the rrsync script to limit access for rsync+ssh, this means
 ## the ssh is chroot'ed to the proper stage depending on the key in
@@ -28,8 +32,6 @@ else
   chown -R mysql:mysql ./${target_db}/${db}/*
   chown bender:bender ./${target_db}/{*.sql,$db}
 fi
-
-mysql ${target_db} < /data/dumps/${target_db}/${db}.${stage}-schema.sql 
 
 # Ensure tables have compression. The binary data and the row format must match
 # for tablespace import.
