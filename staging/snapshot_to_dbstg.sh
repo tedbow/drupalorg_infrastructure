@@ -32,6 +32,10 @@ if ! mysql -e "DROP DATABASE IF EXISTS ${target_db};"; then
 fi
 mysql -e "CREATE DATABASE ${target_db};"
 
+# Copy and import the latest snapshot’s schema from dbutil.
+rsync -v --copy-links --whole-file --progress -e 'ssh -i /home/bender/.ssh/id_rsa' "bender@dbutil1.drupal.bak:/${db}.${stage}-schema-current.sql" /data/dumps
+mysql ${target_db} < "/data/dumps/${db}.${stage}-schema-current.sql"
+
 # Copy and extract the latest snapshot from dbutil
 ## We're now using the rrsync script to limit access for rsync+ssh, this means
 ## the ssh is chroot'ed to the proper stage depending on the key in
@@ -42,7 +46,6 @@ rm "${db}.${stage}-binary-current.tar.gz"
 chown -R mysql:mysql ./${target_db}/${db}/*
 chown bender:bender ./${target_db}/{*.sql,$db}
 
-mysql ${target_db} < /data/dumps/${target_db}/${db}.${stage}-schema.sql 
 # Ensure tables have compression. The binary data and the row format must match
 # for tablespace import.
 ( mysql "${target_db}" -e "SHOW TABLES" --batch --skip-column-names | grep -v --line-regexp 'civicrm_domain_view' | xargs -t -n 1 -P 20 -I{} mysql -e 'ALTER TABLE `'{}'` ROW_FORMAT=COMPRESSED;' "${target_db}")
