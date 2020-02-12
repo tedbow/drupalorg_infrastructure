@@ -29,7 +29,7 @@ chown bender:bender ./${target_db}/{*.sql,$db}
 # Association sites also get the CiviCRM database in private environments
 if [ ${db} == 'drupal_association' ]; then
   rsync -v --copy-links --progress -e 'ssh -i /home/bender/.ssh/id_rsa' "bender@dbutil1.drupal.bak:/association_civicrm.${stage}-schema-current.sql" /data/dumps
-  mysql ${target_db} < "/data/dumps/association_civicrm.${stage}-schema.sql"
+  mysql ${target_db} < "/data/dumps/association_civicrm.${stage}-schema-current.sql"
   rsync -v --copy-links --progress -e 'ssh -i /home/bender/.ssh/id_rsa' bender@dbutil1.drupal.bak:/association_civicrm.${stage}-binary-current.tar.gz ./
   tar -I pigz -xvf association_civicrm.${stage}-binary-current.tar.gz -C ${target_db}
   chown -R mysql:mysql ./${target_db}/association_civicrm/*
