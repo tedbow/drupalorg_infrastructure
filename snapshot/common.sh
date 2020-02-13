@@ -48,7 +48,7 @@ function snapshot {
     ln -sfv "${db}${suffix}-${BUILD_NUMBER}-binary.tar.gz" "/var/dumps/${subdir}/${db}${suffix}-binary-current.tar.gz"
 
     # Remove old schema snapshots.
-    old_snapshots=$(ls -t /var/dumps/${subdir}/${db}${suffix}-[0-9]*-schema.tar.gz | tail -n +2)
+    old_snapshots=$(ls -t /var/dumps/${subdir}/${db}${suffix}-[0-9]*-schema.sql | tail -n +2)
     if [ -n "${old_snapshots}" ]; then
       rm -v ${old_snapshots}
     fi
