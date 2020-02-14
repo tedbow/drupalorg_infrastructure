@@ -36,15 +36,6 @@ mysql -e "CREATE DATABASE ${target_db};"
 rsync -v --copy-links --whole-file --progress -e 'ssh -i /home/bender/.ssh/id_rsa' "bender@dbutil1.drupal.bak:/${db}.${stage}-schema-current.sql" /data/dumps
 mysql ${target_db} < "/data/dumps/${db}.${stage}-schema-current.sql"
 
-# Copy and extract the latest snapshot from dbutil
-## We're now using the rrsync script to limit access for rsync+ssh, this means
-## the ssh is chroot'ed to the proper stage depending on the key in
-## authorized_keys
-rsync -v --copy-links --whole-file --progress -e 'ssh -i /home/bender/.ssh/id_rsa' bender@dbutil1.drupal.bak:/${db}.${stage}-binary-current.tar.gz ./
-tar -I pigz -xvf ${db}.${stage}-binary-current.tar.gz -C ${target_db}
-rm "${db}.${stage}-binary-current.tar.gz"
-chown -R mysql:mysql ./${target_db}/${db}/*
-
 # Ensure tables have compression. The binary data and the row format must match
 # for tablespace import.
 ( mysql "${target_db}" -e "SHOW TABLES" --batch --skip-column-names | grep -v --line-regexp 'civicrm_domain_view' | xargs -t -n 1 -P 20 -I{} mysql -e 'ALTER TABLE `'{}'` ROW_FORMAT=COMPRESSED;' "${target_db}")
@@ -52,11 +43,14 @@ chown -R mysql:mysql ./${target_db}/${db}/*
 # Discard the data files for the newly created tables
 ( mysql ${target_db} -e "SHOW TABLES" --batch --skip-column-names | grep -v --line-regexp 'civicrm_domain_view' | xargs -t -n 1 -P 20 -I{} mysql -e 'SET FOREIGN_KEY_CHECKS=0; ALTER TABLE `'{}'` DISCARD TABLESPACE;' ${target_db})
 
-# Copy the snapshot data files in place
-mv ${target_db}/${db}/{*.ibd,*.cfg} /var/lib/mysql/${target_db}/
-
-# Cleanup the temporary $target_db directory
-rm -rf "/data/dumps/${target_db}"
+# Copy and extract the latest snapshot from dbutil
+## We're now using the rrsync script to limit access for rsync+ssh, this means
+## the ssh is chroot'ed to the proper stage depending on the key in
+## authorized_keys
+rsync -v --copy-links --whole-file --progress -e 'ssh -i /home/bender/.ssh/id_rsa' "bender@dbutil1.drupal.bak:/${db}.${stage}-binary-current.tar.gz" ./
+tar -I pigz --strip-components=1 -xvf "${db}.${stage}-binary-current.tar.gz" -C "/var/lib/mysql/${target_db}/"
+rm "${db}.${stage}-binary-current.tar.gz"
+chown -R mysql:mysql "/var/lib/mysql/${target_db}/*"
 
 # Import the data from the copied data files
 ( mysql ${target_db} -e "SHOW TABLES" --batch --skip-column-names | grep -v --line-regexp 'civicrm_domain_view' | xargs -t -n 1 -P 3 -I{} mysql -e 'SET FOREIGN_KEY_CHECKS=0; ALTER TABLE `'{}'` IMPORT TABLESPACE;' ${target_db})
