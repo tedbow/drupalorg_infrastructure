@@ -44,7 +44,6 @@ rsync -v --copy-links --whole-file --progress -e 'ssh -i /home/bender/.ssh/id_rs
 tar -I pigz -xvf ${db}.${stage}-binary-current.tar.gz -C ${target_db}
 rm "${db}.${stage}-binary-current.tar.gz"
 chown -R mysql:mysql ./${target_db}/${db}/*
-chown bender:bender ./${target_db}/{*.sql,$db}
 
 # Ensure tables have compression. The binary data and the row format must match
 # for tablespace import.
