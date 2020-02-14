@@ -48,7 +48,7 @@ mysql ${target_db} < "/data/dumps/${db}.${stage}-schema-current.sql"
 ## the ssh is chroot'ed to the proper stage depending on the key in
 ## authorized_keys
 rsync -v --copy-links --whole-file --progress -e 'ssh -i /home/bender/.ssh/id_rsa' "bender@dbutil1.drupal.bak:/${db}.${stage}-binary-current.tar.gz" ./
-tar -I pigz --strip-components=1 -xvf "${db}.${stage}-binary-current.tar.gz" -C "/var/lib/mysql/${target_db}/"
+tar -I pigz --strip-components=2 -xvf "${db}.${stage}-binary-current.tar.gz" -C "/var/lib/mysql/${target_db}/"
 rm "${db}.${stage}-binary-current.tar.gz"
 chown -Rv mysql:mysql "/var/lib/mysql/${target_db}/"
 
