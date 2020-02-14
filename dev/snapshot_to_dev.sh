@@ -27,10 +27,8 @@ tar -I pigz -xvf ${db}.${stage}-binary-current.tar.gz -C ${target_db}
 # drupal directory (instead of drupal_export)
 if [ ${db} == 'drupal' ]; then
   chown -R mysql:mysql ./${target_db}/drupal_export/*
-  chown bender:bender ./${target_db}/{*.sql,drupal_export}
 else
   chown -R mysql:mysql ./${target_db}/${db}/*
-  chown bender:bender ./${target_db}/{*.sql,$db}
 fi
 
 # Ensure tables have compression. The binary data and the row format must match
@@ -56,4 +54,3 @@ fi
 
 # Cleanup the temporary $target_db directory
 rm -rf /data/dumps/${target_db}
-

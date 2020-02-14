@@ -24,7 +24,6 @@ rsync -v --copy-links --progress -e 'ssh -i /home/bender/.ssh/id_rsa' bender@dbu
 tar -I pigz -xvf ${db}.${stage}-binary-current.tar.gz -C ${target_db}
 
 chown -R mysql:mysql ./${target_db}/${db}/*
-chown bender:bender ./${target_db}/{*.sql,$db}
 
 # Association sites also get the CiviCRM database in private environments
 if [ ${db} == 'drupal_association' ]; then
@@ -33,7 +32,6 @@ if [ ${db} == 'drupal_association' ]; then
   rsync -v --copy-links --progress -e 'ssh -i /home/bender/.ssh/id_rsa' bender@dbutil1.drupal.bak:/association_civicrm.${stage}-binary-current.tar.gz ./
   tar -I pigz -xvf association_civicrm.${stage}-binary-current.tar.gz -C ${target_db}
   chown -R mysql:mysql ./${target_db}/association_civicrm/*
-  chown bender:bender ./${target_db}/{*.sql,association_civicrm}
 fi
 
 # Ensure tables have compression. The binary data and the row format must match
@@ -59,4 +57,3 @@ fi
 
 # Cleanup the temporary $target_db directory
 rm -rf /data/dumps/${target_db}
-
