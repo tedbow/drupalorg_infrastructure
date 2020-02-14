@@ -50,7 +50,7 @@ mysql ${target_db} < "/data/dumps/${db}.${stage}-schema-current.sql"
 rsync -v --copy-links --whole-file --progress -e 'ssh -i /home/bender/.ssh/id_rsa' "bender@dbutil1.drupal.bak:/${db}.${stage}-binary-current.tar.gz" ./
 tar -I pigz --strip-components=1 -xvf "${db}.${stage}-binary-current.tar.gz" -C "/var/lib/mysql/${target_db}/"
 rm "${db}.${stage}-binary-current.tar.gz"
-chown -R mysql:mysql "/var/lib/mysql/${target_db}/*"
+chown -Rv mysql:mysql "/var/lib/mysql/${target_db}/"
 
 # Import the data from the copied data files
 ( mysql ${target_db} -e "SHOW TABLES" --batch --skip-column-names | grep -v --line-regexp 'civicrm_domain_view' | xargs -t -n 1 -P 3 -I{} mysql -e 'SET FOREIGN_KEY_CHECKS=0; ALTER TABLE `'{}'` IMPORT TABLESPACE;' ${target_db})
