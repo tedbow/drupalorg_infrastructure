@@ -8,9 +8,6 @@ db=${1}
 target_db=${2}
 stage=staging
 
-# Working directory
-cd /data/dumps/
-
 # Fix db name's for non-conformists
 case ${db} in
   'drupal_staging')
@@ -32,7 +29,7 @@ fi
 mysql -e "CREATE DATABASE ${target_db};"
 
 # Copy and import the latest snapshot’s schema from dbutil.
-rsync -v --copy-links --whole-file --progress -e 'ssh -i /home/bender/.ssh/id_rsa' "bender@dbutil1.drupal.bak:/${db}.${stage}-schema-current.sql" /data/dumps
+rsync -v --copy-links --whole-file --progress -e 'ssh -i /home/bender/.ssh/id_rsa' "bender@dbutil1.drupal.bak:/${db}.${stage}-schema-current.sql" '/data/dumps'
 mysql ${target_db} < "/data/dumps/${db}.${stage}-schema-current.sql"
 
 # Ensure tables have compression. The binary data and the row format must match
@@ -46,7 +43,7 @@ mysql ${target_db} < "/data/dumps/${db}.${stage}-schema-current.sql"
 ## We're now using the rrsync script to limit access for rsync+ssh, this means
 ## the ssh is chroot'ed to the proper stage depending on the key in
 ## authorized_keys
-rsync -v --copy-links --whole-file --progress -e 'ssh -i /home/bender/.ssh/id_rsa' "bender@dbutil1.drupal.bak:/${db}.${stage}-binary-current.tar.gz" ./
+rsync -v --copy-links --whole-file --progress -e 'ssh -i /home/bender/.ssh/id_rsa' "bender@dbutil1.drupal.bak:/${db}.${stage}-binary-current.tar.gz" '/data/dumps'
 tar -I pigz --strip-components=2 -xvf "${db}.${stage}-binary-current.tar.gz" -C "/var/lib/mysql/${target_db}/"
 rm "${db}.${stage}-binary-current.tar.gz"
 chown -Rv mysql:mysql "/var/lib/mysql/${target_db}/"
