@@ -10,7 +10,6 @@ stage=staging
 
 # Working directory
 cd /data/dumps/
-mkdir ${target_db} || true
 
 # Fix db name's for non-conformists
 case ${db} in
