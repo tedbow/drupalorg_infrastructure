@@ -9045,6 +9045,7 @@ whitelist.add(
         "api_tid",
         "filename",
         "sha256",
+        "release_category",
     ])
 
 whitelist.add(
@@ -9058,4 +9059,5 @@ whitelist.add(
         "filename",
         "sha256",
         "provider_include_grouping",
+        "release_category",
     ])
