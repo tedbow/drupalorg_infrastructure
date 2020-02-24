@@ -766,25 +766,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="drupalorg_git_push_log",
-    columns=[
-        "push_id",
-        "uid",
-        "timestamp",
-        "repo_id",
-    ])
-
-whitelist.add(
-    table="drupalorg_git_push_log_refs",
-    columns=[
-        "push_id",
-        "refname",
-        "reftype",
-        "old_obj",
-        "new_obj",
-    ])
-
-whitelist.add(
     table="drupalorg_in_place_updates",
     columns=[
         "from_release_nid",
