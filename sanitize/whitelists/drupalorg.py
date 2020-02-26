@@ -685,6 +685,8 @@ whitelist.add(
         "product_price_point_id",
         "product_id",
         "using_price_point",
+        "balance_in_cents",
+        "current_period_started_at",
     ])
 
 whitelist.add(
