@@ -663,7 +663,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="_nodata:drupalorg_chargify_subscriptions",
+    table="drupalorg_chargify_subscriptions",
     columns=[
         "uid",
         "organization_nid",
@@ -687,6 +687,10 @@ whitelist.add(
         "using_price_point",
         "balance_in_cents",
         "current_period_started_at",
+        "how_heard",
+        "acknowledgement",
+        "referrer",
+        "vat",
     ])
 
 whitelist.add(
