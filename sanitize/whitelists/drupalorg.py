@@ -377,6 +377,16 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="_nodata:cache_geocoder",
+    columns=[
+        "cid",
+        "data",
+        "expire",
+        "created",
+        "serialized",
+    ])
+
+whitelist.add(
     table="_nodata:cache_libraries",
     columns=[
         "cid",
