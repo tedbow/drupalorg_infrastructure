@@ -670,6 +670,7 @@ whitelist.add(
         "interval_unit",
         "currency",
         "product_handle",
+        "is_default",
     ])
 
 whitelist.add(
