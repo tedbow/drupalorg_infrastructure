@@ -1548,6 +1548,171 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_event_address",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_event_address_country",
+        "field_event_address_administrative_area",
+        "field_event_address_sub_administrative_area",
+        "field_event_address_locality",
+        "field_event_address_dependent_locality",
+        "field_event_address_postal_code",
+        "field_event_address_thoroughfare",
+        "field_event_address_premise",
+        "field_event_address_sub_premise",
+        "field_event_address_organisation_name",
+        "field_event_address_name_line",
+        "field_event_address_first_name",
+        "field_event_address_last_name",
+        "field_event_address_data",
+    ])
+
+whitelist.add(
+    table="field_data_field_event_links",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_event_links_value",
+        "field_event_links_title",
+        "field_event_links_attributes",
+    ])
+
+whitelist.add(
+    table="field_data_field_event_logo",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_event_logo_fid",
+        "field_event_logo_alt",
+        "field_event_logo_title",
+        "field_event_logo_width",
+        "field_event_logo_height",
+    ])
+
+whitelist.add(
+    table="field_data_field_event_map",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_event_map_geom",
+        "field_event_map_geo_type",
+        "field_event_map_lat",
+        "field_event_map_lon",
+        "field_event_map_left",
+        "field_event_map_top",
+        "field_event_map_right",
+        "field_event_map_bottom",
+        "field_event_map_geohash",
+    ])
+
+whitelist.add(
+    table="field_data_field_event_map_data",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_event_map_data_geom",
+        "field_event_map_data_geo_type",
+        "field_event_map_data_lat",
+        "field_event_map_data_lon",
+        "field_event_map_data_left",
+        "field_event_map_data_top",
+        "field_event_map_data_right",
+        "field_event_map_data_bottom",
+        "field_event_map_data_geohash",
+    ])
+
+whitelist.add(
+    table="field_data_field_event_speakers",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_event_speakers_target_id",
+    ])
+
+whitelist.add(
+    table="field_data_field_event_sponsors",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_event_sponsors_target_id",
+    ])
+
+whitelist.add(
+    table="field_data_field_event_status",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_event_status_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_event_type",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_event_type_value",
+    ])
+
+whitelist.add(
+    table="field_data_field_event_volunteers",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_event_volunteers_target_id",
+    ])
+
+whitelist.add(
     table="field_data_field_events_attended",
     columns=[
         "entity_type",
@@ -2360,6 +2525,19 @@ whitelist.add(
         "field_organization_training_url_url",
         "field_organization_training_url_title",
         "field_organization_training_url_attributes",
+    ])
+
+whitelist.add(
+    table="field_data_field_organizers",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organizers_target_id",
     ])
 
 whitelist.add(
@@ -4548,6 +4726,171 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_revision_field_event_address",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_event_address_country",
+        "field_event_address_administrative_area",
+        "field_event_address_sub_administrative_area",
+        "field_event_address_locality",
+        "field_event_address_dependent_locality",
+        "field_event_address_postal_code",
+        "field_event_address_thoroughfare",
+        "field_event_address_premise",
+        "field_event_address_sub_premise",
+        "field_event_address_organisation_name",
+        "field_event_address_name_line",
+        "field_event_address_first_name",
+        "field_event_address_last_name",
+        "field_event_address_data",
+    ])
+
+whitelist.add(
+    table="field_revision_field_event_links",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_event_links_value",
+        "field_event_links_title",
+        "field_event_links_attributes",
+    ])
+
+whitelist.add(
+    table="field_revision_field_event_logo",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_event_logo_fid",
+        "field_event_logo_alt",
+        "field_event_logo_title",
+        "field_event_logo_width",
+        "field_event_logo_height",
+    ])
+
+whitelist.add(
+    table="field_revision_field_event_map",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_event_map_geom",
+        "field_event_map_geo_type",
+        "field_event_map_lat",
+        "field_event_map_lon",
+        "field_event_map_left",
+        "field_event_map_top",
+        "field_event_map_right",
+        "field_event_map_bottom",
+        "field_event_map_geohash",
+    ])
+
+whitelist.add(
+    table="field_revision_field_event_map_data",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_event_map_data_geom",
+        "field_event_map_data_geo_type",
+        "field_event_map_data_lat",
+        "field_event_map_data_lon",
+        "field_event_map_data_left",
+        "field_event_map_data_top",
+        "field_event_map_data_right",
+        "field_event_map_data_bottom",
+        "field_event_map_data_geohash",
+    ])
+
+whitelist.add(
+    table="field_revision_field_event_speakers",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_event_speakers_target_id",
+    ])
+
+whitelist.add(
+    table="field_revision_field_event_sponsors",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_event_sponsors_target_id",
+    ])
+
+whitelist.add(
+    table="field_revision_field_event_status",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_event_status_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_event_type",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_event_type_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_event_volunteers",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_event_volunteers_target_id",
+    ])
+
+whitelist.add(
     table="field_revision_field_events_attended",
     columns=[
         "entity_type",
@@ -5386,6 +5729,19 @@ whitelist.add(
         "field_organization_training_url_url",
         "field_organization_training_url_title",
         "field_organization_training_url_attributes",
+    ])
+
+whitelist.add(
+    table="field_revision_field_organizers",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_organizers_target_id",
     ])
 
 whitelist.add(
@@ -8635,6 +8991,57 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_date_of_call_for_papers",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_date_of_call_for_papers_value",
+        "field_date_of_call_for_papers_value2",
+        "field_date_of_call_for_papers_timezone",
+        "field_date_of_call_for_papers_offset",
+        "field_date_of_call_for_papers_offset2",
+    ])
+
+whitelist.add(
+    table="field_data_field_date_of_event",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_date_of_event_value",
+        "field_date_of_event_value2",
+        "field_date_of_event_timezone",
+        "field_date_of_event_offset",
+        "field_date_of_event_offset2",
+    ])
+
+whitelist.add(
+    table="field_data_field_date_of_ticket_purchase_op",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_date_of_ticket_purchase_op_value",
+        "field_date_of_ticket_purchase_op_value2",
+        "field_date_of_ticket_purchase_op_timezone",
+        "field_date_of_ticket_purchase_op_offset",
+        "field_date_of_ticket_purchase_op_offset2",
+    ])
+
+whitelist.add(
     table="_nodata:field_data_field_demographics",
     columns=[
         "entity_type",
@@ -8836,6 +9243,57 @@ whitelist.add(
         "language",
         "delta",
         "field_da_listing_opt_out_value",
+    ])
+
+whitelist.add(
+    table="field_revision_field_date_of_call_for_papers",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_date_of_call_for_papers_value",
+        "field_date_of_call_for_papers_value2",
+        "field_date_of_call_for_papers_timezone",
+        "field_date_of_call_for_papers_offset",
+        "field_date_of_call_for_papers_offset2",
+    ])
+
+whitelist.add(
+    table="field_revision_field_date_of_event",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_date_of_event_value",
+        "field_date_of_event_value2",
+        "field_date_of_event_timezone",
+        "field_date_of_event_offset",
+        "field_date_of_event_offset2",
+    ])
+
+whitelist.add(
+    table="field_revision_field_date_of_ticket_purchase_op",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_date_of_ticket_purchase_op_value",
+        "field_date_of_ticket_purchase_op_value2",
+        "field_date_of_ticket_purchase_op_timezone",
+        "field_date_of_ticket_purchase_op_offset",
+        "field_date_of_ticket_purchase_op_offset2",
     ])
 
 whitelist.add(
