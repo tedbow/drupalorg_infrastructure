@@ -1,4 +1,4 @@
-#!/usr/bin/env mawk -f
+#!/usr/bin/env -S mawk -f
 
 # Takes in fastly syslog entries and creates daily aggregate counts for download statistics
 # A sample line looks like the following:
