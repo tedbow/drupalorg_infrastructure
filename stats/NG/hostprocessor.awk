@@ -1,4 +1,4 @@
-#!/usr/bin/mawk -f
+#!/usr/bin/env mawk -f
 
 # to process all the split files, execute this from the filename dir in splits:
 # /data/stats/updatestats/splits/sample.log

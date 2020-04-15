@@ -1,4 +1,4 @@
-#!/usr/bin/mawk -f
+#!/usr/bin/env mawk -f
 
  # Takes in fastly syslog entries and splits the files by IP address and site key to be able to parallelize and
  # handle memory better.

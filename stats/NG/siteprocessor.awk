@@ -1,4 +1,4 @@
-#!/usr/bin/mawk -f
+#!/usr/bin/env mawk -f
 
 #1543622448,LefTa9Yuz_0C5o_PPrsbUWrz9n9fYLsabPN-Nhd2TnE,8.x,acquia_lift,8.x-3.6,acquia_lift|acquia_lift_inspector ,8.5.3,6.3.3,7.47.0,7.1.22,
 function basename(file, a, n) {

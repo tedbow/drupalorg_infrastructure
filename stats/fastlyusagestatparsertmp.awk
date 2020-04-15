@@ -1,4 +1,4 @@
-#!/usr/bin/mawk -f
+#!/usr/bin/env mawk -f
 
 # Takes in fastly syslog entries and creates daily aggregate counts for download statistics
 # A sample line looks like the following:
@@ -31,7 +31,7 @@ BEGIN {FS="|";
         system("mkdir -p /data/stats/updatestats/reformatted/" week_timestamp "/keyless");
         lastdate = $4;
    }
- 
+
 
    split($1,metadata," ");
    ipaddress = metadata[4];
