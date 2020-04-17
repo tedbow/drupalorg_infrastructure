@@ -702,6 +702,8 @@ whitelist.add(
         "acknowledgement",
         "referrer",
         "vat",
+        "email_opt_in",
+        "on_behalf",
     ])
 
 whitelist.add(
