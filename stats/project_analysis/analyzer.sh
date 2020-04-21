@@ -9,6 +9,7 @@ php -d memory_limit=2G -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checko
 
 # Only run rector if we have some file messages in the XML.
 if grep -q '<file name' /var/lib/drupalci/workspace/phpstan-results/$1.$3.phpstan_results.xml; then
+  # Create a git commit for the current state of the project
   cd ${4#project_}s/contrib/$2
   git init
   git add .;git commit -q -m "git project before rector"
