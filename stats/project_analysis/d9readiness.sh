@@ -8,7 +8,6 @@ sudo composer selfupdate
 # This must happen after updating composer or composer must be removed and reinstalled.
 sudo /var/lib/drupalci/workspace/infrastructure/stats/project_analysis/upgrade_php.sh
 
-
 rm -rf /var/lib/drupalci/workspace/phpstan-results || true
 
 PROC_COUNT=`grep processor /proc/cpuinfo |wc -l`
