@@ -2,7 +2,10 @@
 set -eux
 
 #This file is intended to be executed on the testbots.
-sudo composer selfupdate
+# sudo composer selfupdate
+sudo rm -f /usr/local/bin/composer
+sudo curl -s https://getcomposer.org/installer | php
+sudo mv composer.phar /usr/local/bin/composer
 
 rm -rf /var/lib/drupalci/workspace/phpstan-results || true
 
@@ -38,11 +41,13 @@ includes:
   - ./vendor/phpstan/phpstan-deprecation-rules/rules.neon
 EOF
 composer require mglaman/phpstan-drupal phpstan/phpstan-deprecation-rules:~0.11 phpstan/phpstan:~0.11 --dev
+composer require palantirnet/drupal-rector --dev
 #composer config repositories.patch vcs https://github.com/greg-1-anderson/drupal-finder
 #composer require "webflo/drupal-finder:dev-find-drupal-drupal-root as 1.1"
 #composer config --unset repositories.patch
 find vendor -name .git -exec rm -rf {} \; || true
-git add .;git commit -q -m "adds phpstan"
+cp /var/lib/drupalci/workspace/infrastructure/stats/project_analysis/rector.yml rector.yml
+git add .;git commit -q -m "adds phpstan and drupal-rector"
 
 #Setup the drupal dirs
 rm -rf /var/lib/drupalci/workspace/drupal-checkouts
