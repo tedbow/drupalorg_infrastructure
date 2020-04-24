@@ -674,7 +674,7 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="drupalorg_chargify_subscriptions",
+    table="_nodata:drupalorg_chargify_subscriptions",
     columns=[
         "uid",
         "organization_nid",
@@ -704,6 +704,7 @@ whitelist.add(
         "vat",
         "email_opt_in",
         "on_behalf",
+        "last_payment",
     ])
 
 whitelist.add(
