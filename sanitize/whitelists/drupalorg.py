@@ -1630,27 +1630,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_data_field_event_map_data",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_event_map_data_geom",
-        "field_event_map_data_geo_type",
-        "field_event_map_data_lat",
-        "field_event_map_data_lon",
-        "field_event_map_data_left",
-        "field_event_map_data_top",
-        "field_event_map_data_right",
-        "field_event_map_data_bottom",
-        "field_event_map_data_geohash",
-    ])
-
-whitelist.add(
     table="field_data_field_event_speakers",
     columns=[
         "entity_type",
@@ -4805,27 +4784,6 @@ whitelist.add(
         "field_event_map_right",
         "field_event_map_bottom",
         "field_event_map_geohash",
-    ])
-
-whitelist.add(
-    table="field_revision_field_event_map_data",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_event_map_data_geom",
-        "field_event_map_data_geo_type",
-        "field_event_map_data_lat",
-        "field_event_map_data_lon",
-        "field_event_map_data_left",
-        "field_event_map_data_top",
-        "field_event_map_data_right",
-        "field_event_map_data_bottom",
-        "field_event_map_data_geohash",
     ])
 
 whitelist.add(
