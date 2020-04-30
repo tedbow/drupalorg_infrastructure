@@ -38,9 +38,10 @@ parameters:
   excludes_analyse:
     - */tests/fixtures/*.php
 includes:
+  - ./vendor/mglaman/phpstan-drupal/extension.neon
   - ./vendor/phpstan/phpstan-deprecation-rules/rules.neon
 EOF
-composer require phpstan/phpstan-deprecation-rules:~0.11 phpstan/phpstan:~0.11 --dev
+composer require mglaman/phpstan-drupal phpstan/phpstan-deprecation-rules:~0.11 phpstan/phpstan:~0.11 --dev
 composer require palantirnet/drupal-rector:0.5.0 --dev
 #composer config repositories.patch vcs https://github.com/greg-1-anderson/drupal-finder
 #composer require "webflo/drupal-finder:dev-find-drupal-drupal-root as 1.1"
