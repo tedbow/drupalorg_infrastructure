@@ -705,6 +705,7 @@ whitelist.add(
         "email_opt_in",
         "on_behalf",
         "last_payment",
+        "cancel_at_end_of_period",
     ])
 
 whitelist.add(
