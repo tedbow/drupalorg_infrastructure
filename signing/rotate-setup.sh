@@ -2,7 +2,7 @@
 # Exit immediately on uninitialized variable or error, and print each command.
 set -uex -o noglob
 
-VALID_DAYS=45
+VALID_DAYS=90
 
 # Root Authority: Generate the new expiration date. The date command takes different offset arguments on Linux/MacOS.
 (date -u --date=+${VALID_DAYS}days +%Y-%m-%d 2> /dev/null || date -u -v +${VALID_DAYS}d +%Y-%m-%d) > expiration.tmp
