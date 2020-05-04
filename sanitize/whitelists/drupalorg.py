@@ -1498,19 +1498,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_data_field_download_count",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_download_count_value",
-    ])
-
-whitelist.add(
     table="field_data_field_drupal_contributions",
     columns=[
         "entity_type",
@@ -2988,19 +2975,6 @@ whitelist.add(
         "field_release_file_fid",
         "field_release_file_display",
         "field_release_file_description",
-    ])
-
-whitelist.add(
-    table="field_data_field_release_file_downloads",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_file_downloads_value",
     ])
 
 whitelist.add(
@@ -4668,19 +4642,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="field_revision_field_download_count",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_download_count_value",
-    ])
-
-whitelist.add(
     table="field_revision_field_drupal_contributions",
     columns=[
         "entity_type",
@@ -6184,19 +6145,6 @@ whitelist.add(
         "field_release_file_fid",
         "field_release_file_display",
         "field_release_file_description",
-    ])
-
-whitelist.add(
-    table="field_revision_field_release_file_downloads",
-    columns=[
-        "entity_type",
-        "bundle",
-        "deleted",
-        "entity_id",
-        "revision_id",
-        "language",
-        "delta",
-        "field_release_file_downloads_value",
     ])
 
 whitelist.add(
