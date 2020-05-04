@@ -8090,20 +8090,12 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="project_usage_week_project",
-    columns=[
-        "nid",
-        "timestamp",
-        "tid",
-        "count",
-    ])
-
-whitelist.add(
     table="project_usage_week_release",
     columns=[
         "nid",
         "timestamp",
         "count",
+        "project_nid",
     ])
 
 whitelist.add(
