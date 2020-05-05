@@ -7897,7 +7897,6 @@ whitelist.add(
         "dependency_id",
         "component_id",
         "dependency",
-        "core_api",
         "external",
         "external_release_nid",
         "dependency_type",
@@ -9405,7 +9404,6 @@ whitelist.add(
         "provider_count_id",
         "provider_name",
         "release_nid",
-        "api_tid",
         "download_count",
     ])
 
@@ -9417,7 +9415,6 @@ whitelist.add(
         "project_name",
         "component_name",
         "package_namespace",
-        "api_tid",
         "category",
     ])
 
@@ -9426,7 +9423,6 @@ whitelist.add(
     columns=[
         "provider_include_id",
         "provider_include_grouping",
-        "api_tid",
         "filename",
         "sha256",
         "release_category",
@@ -9438,7 +9434,6 @@ whitelist.add(
         "provider_id",
         "project_nid",
         "provider_name",
-        "api_tid",
         "provider_type",
         "filename",
         "sha256",
