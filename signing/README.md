@@ -94,7 +94,7 @@ Drupal.org and the automatic_updates module will validate the signed packages re
 
 1. Request a new in place update to verify, `https://www.drupal.org/in-place-updates/drupal/drupal-{version}-to-{version}.zip.csig` with a version combination which has not been requested before. For example, `https://www.drupal.org/in-place-updates/drupal/drupal-8.7.1-to-8.7.11.zip.csig`. See what has been generated to find a novel combination and track progress:
    ```
-   mysql> SELECT n_from.title from_release, n_to.title to_release, from_unixtime(dipu.requested) requested, from_unixtime(dipu.generated) generated, from_unixtime(dipu.expiration) expiration, dipu.generated - dipu.requested delta, dipu.error FROM drupalorg_in_place_updates dipu LEFT JOIN node n_from ON n_from.nid = dipu.from_release_nid LEFT JOIN node n_to aaON n_to.nid = dipu.to_release_nid ORDER BY dipu.requested;
+   mysql> SELECT n_from.title from_release, n_to.title to_release, from_unixtime(dipu.requested) requested, from_unixtime(dipu.generated) generated, from_unixtime(dipu.expiration) expiration, dipu.generated - dipu.requested delta, dipu.error FROM drupalorg_in_place_updates dipu LEFT JOIN node n_from ON n_from.nid = dipu.from_release_nid LEFT JOIN node n_to ON n_to.nid = dipu.to_release_nid ORDER BY dipu.requested;
    ```
 2. If it has not been requested before, you will see a Drupal.org page with “This update is being generated and is not available yet.” wait up to a minute for it to generate.
 3. Request again, downloading the .csig file. Look at the contents and see the new expiration date.
