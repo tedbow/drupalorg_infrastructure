@@ -6,10 +6,16 @@
   read -r -p 'Branches and/or tags to check, such as "8.9.x 8.9.0-beta2": ' -a labels
 
   diffarg='--brief'
-  while getopts ":v" opt; do
+  ftpdrupal='ftp.drupal.org'
+  drupalcode='git.drupalcode.org'
+  while getopts ":vs" opt; do
     case ${opt} in
       v )
         diffarg='-u'
+        ;;
+      s )
+        ftpdrupal='drupal:drupal@www.staging.devdrupal.org'
+        drupalcode='git.code-staging.devdrupal.org'
         ;;
       \? )
         echo "Usage: ${0} [-v]"
@@ -29,10 +35,9 @@
 
     # Get the tarball & repository.
     (
-      curl --silent -O "https://ftp.drupal.org/files/projects/drupal-${release}.tar.gz"
-      tar xf "drupal-${release}.tar.gz" --directory 'tar' --strip-components 1
+      curl --silent "https://${ftpdrupal}/files/projects/drupal-${release}.tar.gz" | tar x --directory 'tar' --strip-components 1
     ) &
-    git -c 'advice.detachedHead=false' clone --quiet --branch "${label}" --depth 1 https://git.drupalcode.org/project/drupal.git 'git'
+    git -c 'advice.detachedHead=false' clone --quiet --branch "${label}" --depth 1 "https://${drupalcode}/project/drupal.git" 'git'
     wait
 
     # Compare them.
