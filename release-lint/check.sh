@@ -12,7 +12,7 @@
         diffarg='-u'
         ;;
       \? )
-        echo "Usage: ${0} [-v] [-t]"
+        echo "Usage: ${0} [-v]"
         exit 1
         ;;
     esac
