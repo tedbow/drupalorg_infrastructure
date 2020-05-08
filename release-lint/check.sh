@@ -3,31 +3,32 @@
   # Exit immediately on uninitialized variable or error, and print each command.
   set -uex -o noglob
 
-  read -r -p 'Branches and/or tags to check, such as "8.9.x 8.9.0-beta2": ' -a labels
-
   diffarg='--brief'
   ftpdrupal='ftp.drupal.org'
   drupalcode='git.drupalcode.org'
   while getopts ":vs" opt; do
     case ${opt} in
       v )
+        # -v for full diff.
         diffarg='-u'
         ;;
       s )
+        # -s to use staging.
         ftpdrupal='drupal:drupal@www.staging.devdrupal.org'
         drupalcode='git.code-staging.devdrupal.org'
         ;;
       \? )
-        echo "Usage: ${0} [-v]"
+        echo "Usage: ${0} [-v] [-s]"
         exit 1
         ;;
     esac
   done
+  shift $((OPTIND-1))
 
   tmpdir="$(mktemp -d)"
   cd "${tmpdir}"
 
-  for label in "${labels[@]}"
+  for label in "${@}"
   do
     mkdir "${label}" && pushd "${label}"
     mkdir 'git' 'tar'
@@ -35,7 +36,7 @@
 
     # Get the tarball & repository.
     (
-      curl --silent "https://${ftpdrupal}/files/projects/drupal-${release}.tar.gz" | tar x --directory 'tar' --strip-components 1
+      curl --silent "https://${ftpdrupal}/files/projects/drupal-${release}.tar.gz?$(date +%s)" | tar x --directory 'tar' --strip-components 1
     ) &
     git -c 'advice.detachedHead=false' clone --quiet --branch "${label}" --depth 1 "https://${drupalcode}/project/drupal.git" 'git'
     wait
