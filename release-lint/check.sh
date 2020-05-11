@@ -42,7 +42,12 @@
     wait
 
     # Compare them.
-    diff -r "${diffarg}" --exclude='*.info.yml' 'git' 'tar' || true
+    if [[ "${label}" =~ ^7\..* ]]; then
+      exclude='*.info'
+    else
+      exclude='*.info.yml'
+    fi
+    diff -r "${diffarg}" --exclude="${exclude}" 'git' 'tar' || true
 
     # Clean up.
     rm -rf 'git' 'tar'
