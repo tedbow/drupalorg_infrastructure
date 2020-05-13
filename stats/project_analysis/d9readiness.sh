@@ -2,16 +2,18 @@
 set -eux
 
 #This file is intended to be executed on the testbots.
-sudo composer selfupdate
+#sudo composer selfupdate
 
 # Upgrade to php7.2.
 # This must happen after updating composer or composer must be removed and reinstalled.
-sudo /var/lib/drupalci/workspace/infrastructure/stats/project_analysis/upgrade_php.sh
+#sudo /var/lib/drupalci/workspace/infrastructure/stats/project_analysis/upgrade_php.sh
 
 rm -rf /var/lib/drupalci/workspace/phpstan-results || true
 
 PROC_COUNT=`grep processor /proc/cpuinfo |wc -l`
 sudo dpkg -i /var/lib/drupalci/workspace/infrastructure/stats/project_analysis/parallel_20190622_all.deb
+
+#composer global require drush/drush:9.7.2
 
 #Ensure we've got the latest drupal.
 cd /var/lib/drupalci/drupal-checkout
@@ -43,12 +45,17 @@ includes:
 EOF
 composer require mglaman/phpstan-drupal phpstan/phpstan-deprecation-rules:~0.11 phpstan/phpstan:~0.11 --dev
 composer require palantirnet/drupal-rector:0.5.2 --dev
+composer require drupal/upgrade_status:2.6
 #composer config repositories.patch vcs https://github.com/greg-1-anderson/drupal-finder
 #composer require "webflo/drupal-finder:dev-find-drupal-drupal-root as 1.1"
 #composer config --unset repositories.patch
 find vendor -name .git -exec rm -rf {} \; || true
 cp /var/lib/drupalci/workspace/infrastructure/stats/project_analysis/rector.yml rector.yml
-git add .;git commit -q -m "adds phpstan and drupal-rector"
+
+sudo ~/.composer/vendor/bin/drush si --db-url=sqlite://sites/default/files/.ht.sqlite -y
+sudo ~/.composer/vendor/bin/drush en upgrade_status -y
+git add sites/default/files/.ht.sqlite
+git add .;git commit -q -m "adds phpstan and drupal-rector and sqlite"
 
 #Setup the drupal dirs
 rm -rf /var/lib/drupalci/workspace/drupal-checkouts

@@ -25,6 +25,9 @@ if grep -q '<file name' /var/lib/drupalci/workspace/phpstan-results/$1.$3.phpsta
   cd /var/lib/drupalci/workspace/drupal-checkouts/drupal$5
   mv phpstan.neon.hide phpstan.neon
 fi
+sudo ~/.composer/vendor/bin/drush st &>  /var/lib/drupalci/workspace/phpstan-results/$1.$3.drush_out.txt
 
+sudo ~/.composer/vendor/bin/drush en $2 -y
+sudo ~/.composer/vendor/bin/drush upgrade_status:checkstyle  $2 > /var/lib/drupalci/workspace/phpstan-results/$1.$3.upgrade_status.xml 2>> /var/lib/drupalci/workspace/phpstan-results/$1.$3.upgrade_status_stderr
 git reset --hard HEAD
 git clean -ffd
