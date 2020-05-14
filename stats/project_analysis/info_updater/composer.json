@@ -3,7 +3,8 @@
     "description": "Internal library for updating info files",
     "type": "library",
     "require": {
-        "symfony/yaml": "*"
+        "symfony/yaml": "*",
+        "composer/semver": "*"
     },
     "bin": ["rector_needed", "info_updatable", "update_info"],
     "autoload": {
