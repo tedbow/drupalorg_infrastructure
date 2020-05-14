@@ -51,6 +51,15 @@ class UpdateStatusXmlChecker {
     return FALSE;
   }
 
+  public function isInfoUpdatable() {
+    $error_messages = $this->getErrorMessages();
+    if (count($error_messages) > 1) {
+      return FALSE;
+    }
+    $error_message = array_pop($error_messages);
+    return strpos($error_message, '.info.yml to designate that the module is compatible with Drupal 9. See https://drupal.org/node/3070687') !== FALSE;
+  }
+
   private function isPhpfile(\SimpleXMLElement $file) {
     $parts = explode('.', (string) $file->attributes()->name);
     //print_r($parts);

@@ -5,7 +5,7 @@
     "require": {
         "symfony/yaml": "*"
     },
-    "bin": ["rector_needed"],
+    "bin": ["rector_needed", "info_updatable", "update_info"],
     "autoload": {
         "psr-4": {
             "InfoUpdater\\": "src/"
