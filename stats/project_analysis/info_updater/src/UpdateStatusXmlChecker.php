@@ -29,26 +29,23 @@ class UpdateStatusXmlChecker {
    */
   public function __construct($file) {
     $this->file = $file;
+    $contents = file_get_contents($this->file);
+    if (strpos($contents, '<checkstyle>') === FALSE) {
+      return;
+    }
+    try {
+      $this->xml = new \SimpleXMLElement($contents);
+    }
+    catch (\Exception $exception) {
+      return;
+    }
   }
 
   public function runRector() {
-    try {
-      $contents = file_get_contents($this->file);
-      if (strpos($contents, '<checkstyle>') === FALSE) {
-        return  FALSE;
-      }
-      $this->files = (new \SimpleXMLElement(file_get_contents($this->file)))->file;
-    }
-    catch (\Exception $exception) {
-      return FALSE;
-    }
     $rector_covered_messages = $this->getRectorCoveredMessages();
-    foreach ($this->files as $file) {
-      foreach ($file->error as $error) {
-        $message = (string) $error->attributes()['message'];
-        if (in_array($message, $rector_covered_messages)) {
-          return TRUE;
-        }
+    foreach ($this->getErrorMessages() as $errorMessage) {
+      if (in_array($errorMessage, $rector_covered_messages)) {
+        return TRUE;
       }
     }
     return FALSE;
@@ -73,5 +70,21 @@ class UpdateStatusXmlChecker {
       }
     }
     return $phpstan_messages;
+  }
+
+  private function getErrorMessages() {
+    $messages = [];
+    if (!isset($this->xml)) {
+      return $messages;
+    }
+    foreach ($this->xml->file as $file) {
+      foreach ($file->error as $error) {
+        $message = (string) $error->attributes()['message'];
+        if (!empty($message)) {
+          $messages[] = $message;
+        }
+      }
+    }
+    return $messages;
   }
 }
