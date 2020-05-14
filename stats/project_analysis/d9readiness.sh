@@ -46,6 +46,10 @@ EOF
 composer require mglaman/phpstan-drupal phpstan/phpstan-deprecation-rules:~0.11 phpstan/phpstan:~0.11 --dev
 composer require palantirnet/drupal-rector:0.5.2 --dev
 composer require drupal/upgrade_status:2.6
+
+composer config repositories.local path /var/lib/drupalci/workspace/infrastructure/stats/project_analysis/info_updater
+composer require drupalorg_infrastructure/info_updater
+
 #composer config repositories.patch vcs https://github.com/greg-1-anderson/drupal-finder
 #composer require "webflo/drupal-finder:dev-find-drupal-drupal-root as 1.1"
 #composer config --unset repositories.patch

@@ -8,10 +8,4 @@ if (!isset($argv[1])) {
   throw new Exception("Provide file");
 }
 $checker = new UpdateStatusXmlChecker($argv[1]);
-return $checker->runRector();
-if ($checker->runRector()) {
-  echo "yes";
-}
-else {
-  echo "no";
-}
+$checker->runRector() ? exit(0) : exit(1);

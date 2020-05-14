@@ -6,6 +6,8 @@ use Symfony\Component\Yaml\Yaml;
 
 class UpdateStatusXmlChecker {
 
+  protected const DEPRECATIONS_FILE = '/var/lib/drupalci/workspace/infrastructure/stats/project_analysis/deprecation-index.yml';
+
   /**
    * @var string
    */
@@ -27,24 +29,27 @@ class UpdateStatusXmlChecker {
    */
   public function __construct($file) {
     $this->file = $file;
-    $this->files = (new \SimpleXMLElement(file_get_contents($file)))->file;
   }
 
   public function runRector() {
+    try {
+      $contents = file_get_contents($this->file);
+      if (strpos($contents, '<checkstyle>') === FALSE) {
+        return  FALSE;
+      }
+      $this->files = (new \SimpleXMLElement(file_get_contents($this->file)))->file;
+    }
+    catch (\Exception $exception) {
+      return FALSE;
+    }
     $rector_covered_messages = $this->getRectorCoveredMessages();
     foreach ($this->files as $file) {
-      return (string) $file->name;
       foreach ($file->error as $error) {
-        //throw new \Exception("Dfasd");
-        $message = $file->attributes()['message'];
-        return $message;
-        print_r($message);
+        $message = (string) $error->attributes()['message'];
         if (in_array($message, $rector_covered_messages)) {
           return TRUE;
         }
       }
-
-
     }
     return FALSE;
   }
@@ -58,12 +63,13 @@ class UpdateStatusXmlChecker {
 
   private function getRectorCoveredMessages() {
     static $phpstan_messages = [];
-    //$deprecations_file = '/var/lib/drupalci/drupal-checkout/vendor/palantirnet/drupal-rector/deprecation-index.yml';
-    $deprecations_file = '/var/lib/drupalci/workspace/infrastructure/stats/project_analysis/deprecation-index.yml';
-    $deps = Yaml::parseFile($deprecations_file);
-    foreach ($deps as $dep) {
-      if (!empty($dep['PHPStan'])) {
-        $phpstan_messages[] = $dep['PHPStan'];
+    if (empty($phpstan_messages)) {
+      $deprecations_file = static::DEPRECATIONS_FILE;
+      $deps = Yaml::parseFile($deprecations_file);
+      foreach ($deps as $dep) {
+        if (!empty($dep['PHPStan'])) {
+          $phpstan_messages[] = $dep['PHPStan'];
+        }
       }
     }
     return $phpstan_messages;

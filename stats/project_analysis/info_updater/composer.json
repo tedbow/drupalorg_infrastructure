@@ -5,7 +5,7 @@
     "require": {
         "symfony/yaml": "*"
     },
-    "bin": ["tester.php", "updateStatusChecker.php"],
+    "bin": ["rector_needed"],
     "autoload": {
         "psr-4": {
             "InfoUpdater\\": "src/"
