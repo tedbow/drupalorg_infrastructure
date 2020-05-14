@@ -10,8 +10,7 @@ class InfoUpdater {
     if (!isset($info['core_version_requirement'])) {
       $info['core_version_requirement'] = '^8 || ^9';
       $yml = Yaml::dump($info);
-      file_put_contents($file, $yml);
-      return TRUE;
+      return file_put_contents($file, $yml) !== FALSE;
     }
     return FALSE;
 

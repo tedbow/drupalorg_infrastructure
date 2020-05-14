@@ -42,9 +42,14 @@ class UpdateStatusXmlChecker {
   }
 
   public function runRector() {
-    $rector_covered_messages = $this->getRectorCoveredMessages();
-    foreach ($this->getErrorMessages() as $errorMessage) {
-      if (in_array($errorMessage, $rector_covered_messages)) {
+    $messages = [];
+    if (!isset($this->xml)) {
+      // If we couldn't get XML from upgrade_status still run rector.
+      // phpstan may have failed but rector still might suceed.
+      return TRUE;
+    }
+    foreach ($this->xml->file as $file) {
+      if ($this->isPhpfile($file)) {
         return TRUE;
       }
     }
@@ -62,8 +67,8 @@ class UpdateStatusXmlChecker {
 
   private function isPhpfile(\SimpleXMLElement $file) {
     $parts = explode('.', (string) $file->attributes()->name);
-    //print_r($parts);
     $ext = array_pop($parts);
+    // Assume all non-yml or twig files are php.
     return !in_array($ext, ['yml', 'twig']);
   }
 
