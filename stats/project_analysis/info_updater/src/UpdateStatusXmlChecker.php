@@ -59,9 +59,14 @@ class UpdateStatusXmlChecker {
   public function isInfoUpdatable() {
     $error_messages = $this->getErrorMessages();
     if (count($error_messages) > 1) {
+      throw new \Exception("more messages");
       return FALSE;
     }
     $error_message = array_pop($error_messages);
+    $r = strpos($error_message, '.info.yml to designate that the module is compatible with Drupal 9. See https://drupal.org/node/3070687') !== FALSE;
+    if (!$r) {
+      throw new \Exception("r true $error_message");
+    }
     return strpos($error_message, '.info.yml to designate that the module is compatible with Drupal 9. See https://drupal.org/node/3070687') !== FALSE;
   }
 
