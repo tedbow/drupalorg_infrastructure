@@ -1,0 +1,15 @@
+{
+    "name": "drupalorg_infrastructure/info_updater",
+    "description": "Internal library for updating info files",
+    "type": "library",
+    "require": {
+        "symfony/yaml": "*"
+    },
+    "bin": ["tester.php", "updateStatusChecker.php"],
+    "autoload": {
+        "psr-4": {
+            "InfoUpdater\\": "src/"
+        }
+    }
+
+}

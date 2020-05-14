@@ -1,6 +1,12 @@
 #!/bin/bash
 set -ux
-
+function getTotalMessages() {
+ return `grep -o '<file name=' $1 | wc -l`
+}
+function hasOnlyInfoFileMessages() {
+ i = `grep -o '<file name="modules/contrib/.*.info.yml' phpstan-results/memcache.2.x-dev.upgrade_status.xml | wc -l`
+ c = `getTotalMessages $1`
+}
 cd /var/lib/drupalci/workspace/drupal-checkouts/drupal$5
 #COMPOSER_CACHE_DIR=/tmp/cache$5 composer config repositories.patch vcs https://github.com/greg-1-anderson/core-relaxed
 #COMPOSER_CACHE_DIR=/tmp/cache$5 composer --no-interaction --no-progress require drupal/core-relaxed 8.8.x 2> /var/lib/drupalci/workspace/phpstan-results/$1.$3.phpstan_stderr
@@ -9,7 +15,7 @@ COMPOSER_CACHE_DIR=/tmp/cache$5 composer --no-interaction --no-progress require 
 sudo ~/.composer/vendor/bin/drush en $2 -y
 sudo ~/.composer/vendor/bin/drush upgrade_status:checkstyle  $2 > /var/lib/drupalci/workspace/phpstan-results/$1.$3.upgrade_status.xml 2>> /var/lib/drupalci/workspace/phpstan-results/$1.$3.upgrade_status_stderr
 # Only run rector if we have some file messages in the XML.
-if grep -q '<file name' /var/lib/drupalci/workspace/phpstan-results/$1.$3.upgrade_status.xml; then
+if [ /var/lib/drupalci/workspace/phpstan-results/$1.$3.upgrade_status.xml]; then
   # Rename phpstan.neon because it is not needed for rector and causes some modules to fail.
   mv phpstan.neon phpstan.neon.hide
   # Create a git commit for the current state of the project
@@ -26,6 +32,7 @@ if grep -q '<file name' /var/lib/drupalci/workspace/phpstan-results/$1.$3.upgrad
   cd /var/lib/drupalci/workspace/drupal-checkouts/drupal$5
   mv phpstan.neon.hide phpstan.neon
 fi
+sudo ~/.composer/vendor/bin/drush upgrade_status:checkstyle  $2 > /var/lib/drupalci/workspace/phpstan-results/$1.$3.upgrade_status2.xml 2>> /var/lib/drupalci/workspace/phpstan-results/$1.$3.upgrade_status_stderr
 
 git reset --hard HEAD
 git clean -ffd
