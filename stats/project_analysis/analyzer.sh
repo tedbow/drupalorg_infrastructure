@@ -58,4 +58,4 @@ fi
 
 
 git reset --hard HEAD
-git clean -ffd
+sudo git clean -ffd

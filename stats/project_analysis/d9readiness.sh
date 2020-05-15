@@ -47,7 +47,7 @@ composer require mglaman/phpstan-drupal phpstan/phpstan-deprecation-rules:~0.11 
 composer require palantirnet/drupal-rector:0.5.2 --dev
 composer require drupal/upgrade_status:2.6
 
-composer config repositories.local path /var/lib/drupalci/workspace/infrastructure/stats/project_analysis/info_updater
+composer config repositories.local '{"type": "path", "url": "/var/lib/drupalci/workspace/infrastructure/stats/project_analysis/info_updater", "options": { "symlink": false}}'
 composer require drupalorg_infrastructure/info_updater
 
 #composer config repositories.patch vcs https://github.com/greg-1-anderson/drupal-finder
