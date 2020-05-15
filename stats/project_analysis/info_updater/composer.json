@@ -6,7 +6,7 @@
         "symfony/yaml": "*",
         "composer/semver": "*"
     },
-    "bin": ["rector_needed", "info_updatable", "update_info"],
+    "bin": ["bin/rector_needed", "bin/info_updatable", "bin/update_info"],
     "autoload": {
         "psr-4": {
             "InfoUpdater\\": "src/"
