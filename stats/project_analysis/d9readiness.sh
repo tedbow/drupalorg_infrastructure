@@ -13,7 +13,7 @@ rm -rf /var/lib/drupalci/workspace/phpstan-results || true
 PROC_COUNT=`grep processor /proc/cpuinfo |wc -l`
 sudo dpkg -i /var/lib/drupalci/workspace/infrastructure/stats/project_analysis/parallel_20190622_all.deb
 
-#composer global require drush/drush:9.7.2
+composer global require drush/drush:9.7.2
 
 #Ensure we've got the latest drupal.
 cd /var/lib/drupalci/drupal-checkout
@@ -63,6 +63,7 @@ git add sites/default/files/.ht.sqlite
 git add .;git commit -q -m "adds phpstan and drupal-rector and sqlite"
 
 # Save the composer.lock file so that the versions of drupal-rector and upgrade_status are available in the results.
+mkdir /var/lib/drupalci/workspace/phpstan-results
 cp /var/lib/drupalci/drupal-checkout/composer.lock /var/lib/drupalci/workspace/phpstan-results/drupal-composer.lock.json
 
 #Setup the drupal dirs
