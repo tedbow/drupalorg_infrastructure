@@ -47,6 +47,7 @@ composer require mglaman/phpstan-drupal phpstan/phpstan-deprecation-rules:~0.11 
 composer require palantirnet/drupal-rector:0.5.2 --dev
 composer require drupal/upgrade_status:2.6
 
+# Use the local package for updating info.yml files.
 composer config repositories.local '{"type": "path", "url": "/var/lib/drupalci/workspace/infrastructure/stats/project_analysis/info_updater", "options": { "symlink": false}}'
 composer require drupalorg_infrastructure/info_updater
 
@@ -60,6 +61,9 @@ sudo ~/.composer/vendor/bin/drush si --db-url=sqlite://sites/default/files/.ht.s
 sudo ~/.composer/vendor/bin/drush en upgrade_status -y
 git add sites/default/files/.ht.sqlite
 git add .;git commit -q -m "adds phpstan and drupal-rector and sqlite"
+
+# Save the composer.lock file so that the versions of drupal-rector and upgrade_status are available in the results.
+cp /var/lib/drupalci/drupal-checkout/composer.lock /var/lib/drupalci/workspace/phpstan-results/drupal-composer.lock.json
 
 #Setup the drupal dirs
 rm -rf /var/lib/drupalci/workspace/drupal-checkouts
