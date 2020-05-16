@@ -4,6 +4,9 @@ namespace InfoUpdater;
 
 use Symfony\Component\Yaml\Yaml;
 
+/**
+ * Utility Class to check XML files produced by Upgrade Status.
+ */
 class UpdateStatusXmlChecker {
 
   protected const DEPRECATIONS_FILE = '/var/lib/drupalci/workspace/infrastructure/stats/project_analysis/deprecation-index.yml';
@@ -41,6 +44,11 @@ class UpdateStatusXmlChecker {
     }
   }
 
+  /**
+   * Determines if rector should be run no the projects.
+   *
+   * @return bool
+   */
   public function runRector() {
     $messages = [];
     if (!isset($this->xml)) {
@@ -56,12 +64,19 @@ class UpdateStatusXmlChecker {
     return FALSE;
   }
 
+  /**
+   * Determines if the info.yml file can be updated.
+   *
+   * @return bool
+   */
   public function isInfoUpdatable() {
     $error_messages = $this->getErrorMessages();
+    // If there are more than one errors we can't update the info.yml file.
     if (count($error_messages) > 1) {
       return FALSE;
     }
     $error_message = array_pop($error_messages);
+    // If the only message if is for the info.yml file we can update it.
     return strpos($error_message, '.info.yml to designate that the module is compatible with Drupal 9. See https://drupal.org/node/3070687') !== FALSE;
   }
 
@@ -72,6 +87,13 @@ class UpdateStatusXmlChecker {
     return !in_array($ext, ['yml', 'twig']);
   }
 
+  /**
+   * Attempts to get the rector covered messages
+   *
+   * Currently this will not work.
+   *
+   * @return array
+   */
   private function getRectorCoveredMessages() {
     static $phpstan_messages = [];
     if (empty($phpstan_messages)) {
@@ -86,6 +108,11 @@ class UpdateStatusXmlChecker {
     return $phpstan_messages;
   }
 
+  /**
+   * Gets all the error messages.
+   *
+   * @return array
+   */
   private function getErrorMessages() {
     $messages = [];
     if (!isset($this->xml)) {
