@@ -32,7 +32,9 @@ class GitHelper {
    * @throws \Exception
    */
   public function restoreNonRectorChanges($dir) {
-    chdir($dir);
+    if (!chdir($dir)) {
+      return;
+    }
     $files = $this->shellExecSplit('git diff --name-only');
     foreach ($files as $file) {
       $diff = $this->shellExecSplit("git diff $file");
