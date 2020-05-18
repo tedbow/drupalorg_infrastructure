@@ -13,7 +13,7 @@ rm -rf /var/lib/drupalci/workspace/phpstan-results || true
 PROC_COUNT=`grep processor /proc/cpuinfo |wc -l`
 sudo dpkg -i /var/lib/drupalci/workspace/infrastructure/stats/project_analysis/parallel_20190622_all.deb
 
-composer global require drush/drush:9.7.2
+#composer global require drush/drush:9.7.2
 
 #Ensure we've got the latest drupal.
 cd /var/lib/drupalci/drupal-checkout
@@ -47,7 +47,7 @@ composer require mglaman/phpstan-drupal phpstan/phpstan-deprecation-rules:~0.11 
 composer require palantirnet/drupal-rector:0.5.2 --dev
 composer require drupal/upgrade_status:2.6
 
-# Use the local package for updating info.yml files.
+# Use the local package for updating info.yml files. This repo can not be symlink because of autoloaders.
 composer config repositories.local '{"type": "path", "url": "/var/lib/drupalci/workspace/infrastructure/stats/project_analysis/info_updater", "options": { "symlink": false}}'
 composer require drupalorg_infrastructure/info_updater
 

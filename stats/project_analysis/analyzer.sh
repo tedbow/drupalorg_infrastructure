@@ -47,6 +47,8 @@ fi
 
 if [ $create_patch -eq 1 ]; then
   cd ${4#project_}s/contrib/$2
+  php -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 /var/lib/drupalci/workspace/drupal-checkouts/drupal$5/vendor/bin/restore_nonreal_changes /var/lib/drupalci/workspace/drupal-checkouts/drupal$5/${4#project_}s/contrib/$2
+
   # git log > /var/lib/drupalci/workspace/phpstan-results/$1.$3.git_log.txt
   # git status > /var/lib/drupalci/workspace/phpstan-results/$1.$3.git_status.txt
   git diff > /var/lib/drupalci/workspace/phpstan-results/$1.$3.rector.patch
