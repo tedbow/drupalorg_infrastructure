@@ -2,18 +2,18 @@
 set -eux
 
 #This file is intended to be executed on the testbots.
-#sudo composer selfupdate
+sudo composer selfupdate
 
 # Upgrade to php7.2.
 # This must happen after updating composer or composer must be removed and reinstalled.
-#sudo /var/lib/drupalci/workspace/infrastructure/stats/project_analysis/upgrade_php.sh
+sudo /var/lib/drupalci/workspace/infrastructure/stats/project_analysis/upgrade_php.sh
 
 rm -rf /var/lib/drupalci/workspace/phpstan-results || true
 
 PROC_COUNT=`grep processor /proc/cpuinfo |wc -l`
 sudo dpkg -i /var/lib/drupalci/workspace/infrastructure/stats/project_analysis/parallel_20190622_all.deb
 
-#composer global require drush/drush:9.7.2
+composer global require drush/drush:9.7.2
 
 #Ensure we've got the latest drupal.
 cd /var/lib/drupalci/drupal-checkout
