@@ -48,8 +48,8 @@ composer require palantirnet/drupal-rector:0.5.2 --dev
 composer require drupal/upgrade_status:2.6
 
 # Use the local package for updating info.yml files. This repo can not be symlink because of autoloaders.
-composer config repositories.local '{"type": "path", "url": "/var/lib/drupalci/workspace/infrastructure/stats/project_analysis/info_updater", "options": { "symlink": false}}'
-composer require drupalorg_infrastructure/info_updater
+composer config repositories.local '{"type": "path", "url": "/var/lib/drupalci/workspace/infrastructure/stats/project_analysis/project_analysis_utils", "options": { "symlink": false}}'
+composer require drupalorg_infrastructure/project_analysis_utils
 
 #composer config repositories.patch vcs https://github.com/greg-1-anderson/drupal-finder
 #composer require "webflo/drupal-finder:dev-find-drupal-drupal-root as 1.1"
