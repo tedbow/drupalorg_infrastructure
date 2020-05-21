@@ -48,7 +48,7 @@ composer require drupal/upgrade_status:2.6
 
 # @todo remove when next drupal-rector is release with higher than v0.7.26
 composer config repositories.rector vcs https://github.com/rectorphp/rector-prefixed.git
-composer require rector/rector-prefixed:"dev-master#60bb958 as 0.7.18"
+composer require rector/rector-prefixed:"dev-master#cd10d7f as 0.7.18"
 
 # Use the local package for updating info.yml files. This repo can not be symlink because of autoloaders.
 composer config repositories.local '{"type": "path", "url": "/var/lib/drupalci/workspace/infrastructure/stats/project_analysis/project_analysis_utils", "options": { "symlink": false}}'
