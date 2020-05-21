@@ -50,4 +50,4 @@ done
 # Snapshot the staging stage databases
 suffix=.staging
 snapshot
-sudo rm -rf /var/sanitize/drupal_export/${subdir}
+sudo find "/var/sanitize/drupal_export/${subdir}/" -mindepth 1 -maxdepth 1 -print0 | xargs -0 sudo rm -rfv
