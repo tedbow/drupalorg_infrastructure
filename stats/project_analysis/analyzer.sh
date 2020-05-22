@@ -30,7 +30,7 @@ if [[ -d "/var/lib/drupalci/workspace/drupal-checkouts/drupal$5/${4#project_}s/c
     # Create a git commit for the current state of the project
     gitCommit ${4#project_}s/contrib/$2
     create_patch=1
-    php -d memory_limit=2G -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 ./vendor/bin/rector process --verbose ${4#project_}s/contrib/$2 &>  /var/lib/drupalci/workspace/phpstan-results/$1.$3.rector_out
+    php -d memory_limit=2G -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 ./vendor/bin/rector process --verbose ${4#project_}s/contrib/$2 &>  /var/lib/drupalci/workspace/phpstan-results/$1.$3.rector_out 2>> /var/lib/drupalci/workspace/phpstan-results/$1.$3.rector_stderr
     # Restore phpstan.neon
     mv phpstan.neon.hide phpstan.neon
 
@@ -39,6 +39,17 @@ if [[ -d "/var/lib/drupalci/workspace/drupal-checkouts/drupal$5/${4#project_}s/c
       cd /var/lib/drupalci/workspace/drupal-checkouts/drupal$5
       # Working directory clean, rector didn't make any changes
       create_patch=0
+      php -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 ./vendor/bin/test_error $1.$3
+      test_error_result=$?
+      if [ $test_error_result -eq 0 ]; then
+        # Run rector again but without tests.
+        php -d memory_limit=2G -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 ./vendor/bin/rector process --config rector-no-tests.yml --verbose ${4#project_}s/contrib/$2 &>  /var/lib/drupalci/workspace/phpstan-results/$1.$3.rector-no-tests_out 2>> /var/lib/drupalci/workspace/phpstan-results/$1.$3.rector-no-tests_stderr
+      fi
+    fi
+
+    cd ${4#project_}s/contrib/$2
+    if [ -z "$(git status --porcelain)" ]; then
+      cd /var/lib/drupalci/workspace/drupal-checkouts/drupal$5
     else
       cd /var/lib/drupalci/workspace/drupal-checkouts/drupal$5
       # Uncommitted changes
@@ -50,7 +61,7 @@ if [[ -d "/var/lib/drupalci/workspace/drupal-checkouts/drupal$5/${4#project_}s/c
     fi
 
   else
-    php -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 /vendor/bin/info_updatable /var/lib/drupalci/workspace/phpstan-results/$1.$3.upgrade_status.pre_rector.xml
+    php -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 ./vendor/bin/info_updatable /var/lib/drupalci/workspace/phpstan-results/$1.$3.upgrade_status.pre_rector.xml
     info_updatable_result=$?
     if [ $info_updatable_result -eq 0 ]; then
       gitCommit ${4#project_}s/contrib/$2
