@@ -13,9 +13,15 @@ class RectorResults {
    * @return bool
    */
   public static function errorInTest($project_version) {
-    if (!file_exists("/var/lib/drupalci/workspace/phpstan-results/$project_version.rector_stderr")) {
+    $err_file = "/var/lib/drupalci/workspace/phpstan-results/$project_version.rector_stderr";
+    if (!file_exists($err_file)) {
       return FALSE;
     }
+    $err_contents = file_get_contents($err_file);
+    if (empty(trim($err_contents))) {
+      return FALSE;
+    }
+
     $lines = file("/var/lib/drupalci/workspace/phpstan-results/$project_version.rector_out");
     $line = $lines[count($lines)-1];
     return stripos($line, '/tests/') !== FALSE;
