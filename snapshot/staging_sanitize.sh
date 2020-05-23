@@ -50,4 +50,4 @@ done
 # Snapshot the staging stage databases
 suffix=.staging
 snapshot
-sudo find "/var/sanitize/drupal_export/${subdir}/" -mindepth 1 -maxdepth 1 -exec rm -rfv {} \+
+clean_export

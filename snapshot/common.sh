@@ -23,7 +23,7 @@ function snapshot {
   subdir=$(echo "${suffix}" | sed -e 's/^\.//')
 
   # Create and save a binary snapshot.
-  sudo find "/var/sanitize/drupal_export/${subdir}/" -mindepth 1 -maxdepth 1 -exec rm -rfv {} \+
+  clean_export
   sudo innobackupex --no-timestamp --databases="${dblist}" /var/sanitize/drupal_export/${subdir}
   sudo innobackupex --apply-log --export "/var/sanitize/drupal_export/${subdir}"
   sudo chown -R bender:bender "/var/sanitize/drupal_export/${subdir}"
@@ -77,6 +77,11 @@ function snapshot {
     fi
     cd "/usr/local/drupal-infrastructure"
   done
+}
+
+function clean_export {
+  sudo chown -R bender:bender "/var/sanitize/drupal_export/${subdir}"
+  find "/var/sanitize/drupal_export/${subdir}" -mindepth 1 -maxdepth 1 -exec rm -rfv {} \+
 }
 
 function clear_tmp {
