@@ -1565,6 +1565,19 @@ whitelist.add(
     ])
 
 whitelist.add(
+    table="field_data_field_event_format",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_event_format_value",
+    ])
+
+whitelist.add(
     table="field_data_field_event_links",
     columns=[
         "entity_type",
@@ -4693,6 +4706,19 @@ whitelist.add(
         "field_event_address_first_name",
         "field_event_address_last_name",
         "field_event_address_data",
+    ])
+
+whitelist.add(
+    table="field_revision_field_event_format",
+    columns=[
+        "entity_type",
+        "bundle",
+        "deleted",
+        "entity_id",
+        "revision_id",
+        "language",
+        "delta",
+        "field_event_format_value",
     ])
 
 whitelist.add(
