@@ -11,8 +11,6 @@ composer_home=$(composer global config home)
 
 cd /var/lib/drupalci/workspace/drupal-checkouts/drupal$5
 composer dump-autoload
-COMPOSER_CACHE_DIR=/tmp/cache$5 php -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 ./vendor/bin/drush si --db-url=sqlite://sites/default/files/.ht.sqlite -y
-COMPOSER_CACHE_DIR=/tmp/cache$5 php -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 ./vendor/bin/drush en upgrade_status -y
 #COMPOSER_CACHE_DIR=/tmp/cache$5 composer config repositories.patch vcs https://github.com/greg-1-anderson/core-relaxed
 #COMPOSER_CACHE_DIR=/tmp/cache$5 composer --no-interaction --no-progress require drupal/core-relaxed 8.8.x 2> /var/lib/drupalci/workspace/phpstan-results/$1.$3.phpstan_stderr
 COMPOSER_CACHE_DIR=/tmp/cache$5 composer --no-interaction --no-progress require drupal/$2 $3 2>> /var/lib/drupalci/workspace/phpstan-results/$1.$3.phpstan_stderr
