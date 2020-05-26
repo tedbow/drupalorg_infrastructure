@@ -13,8 +13,6 @@ rm -rf /var/lib/drupalci/workspace/phpstan-results || true
 PROC_COUNT=`grep processor /proc/cpuinfo |wc -l`
 sudo dpkg -i /var/lib/drupalci/workspace/infrastructure/stats/project_analysis/parallel_20190622_all.deb
 
-composer global require drush/drush:9.7.2
-
 #Ensure we've got the latest drupal.
 cd /var/lib/drupalci/drupal-checkout
 git config --global user.email "git@drupal.org"
@@ -49,6 +47,7 @@ composer require drupal/upgrade_status:2.6
 # Use the local package for updating info.yml files. This repo can not be symlink because of autoloaders.
 composer config repositories.local '{"type": "path", "url": "/var/lib/drupalci/workspace/infrastructure/stats/project_analysis/project_analysis_utils", "options": { "symlink": false}}'
 composer require drupalorg_infrastructure/project_analysis_utils
+composer require drush/drush:9.7.2
 
 #composer config repositories.patch vcs https://github.com/greg-1-anderson/drupal-finder
 #composer require "webflo/drupal-finder:dev-find-drupal-drupal-root as 1.1"
@@ -57,8 +56,8 @@ find vendor -name .git -exec rm -rf {} \; || true
 cp /var/lib/drupalci/workspace/infrastructure/stats/project_analysis/rector.yml rector.yml
 cp /var/lib/drupalci/workspace/infrastructure/stats/project_analysis/rector-no-tests.yml rector-no-tests.yml
 composer_home=$(composer global config home)
-sudo $composer_home/vendor/bin/drush si --db-url=sqlite://sites/default/files/.ht.sqlite -y
-sudo $composer_home/vendor/bin/drush en upgrade_status -y
+sudo ./vendor/bin/drush si --db-url=sqlite://sites/default/files/.ht.sqlite -y
+sudo ./vendor/bin/drush en upgrade_status -y
 git add sites/default/files/.ht.sqlite
 git add .;git commit -q -m "adds phpstan and drupal-rector and sqlite"
 
