@@ -8053,7 +8053,6 @@ whitelist.add(
     table="project_release_supported_versions",
     columns=[
         "nid",
-        "tid",
         "supported",
         "recommended",
         "recommended_release",
