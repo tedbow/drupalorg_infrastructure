@@ -55,7 +55,11 @@ composer require drush/drush:9.7.2
 find vendor -name .git -exec rm -rf {} \; || true
 cp /var/lib/drupalci/workspace/infrastructure/stats/project_analysis/rector.yml rector.yml
 cp /var/lib/drupalci/workspace/infrastructure/stats/project_analysis/rector-no-tests.yml rector-no-tests.yml
-git add .;git commit -q -m "adds phpstan and drupal-rector"
+composer_home=$(composer global config home)
+sudo $composer_home/vendor/bin/drush si --db-url=sqlite://sites/default/files/.ht.sqlite -y
+sudo $composer_home/vendor/bin/drush en upgrade_status -y
+git add sites/default/files/.ht.sqlite
+git add .;git commit -q -m "adds phpstan and drupal-rector and sqlite"
 
 # Save the composer.lock file so that the versions of drupal-rector and upgrade_status are available in the results.
 mkdir /var/lib/drupalci/workspace/phpstan-results
