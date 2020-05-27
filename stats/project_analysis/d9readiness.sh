@@ -1,7 +1,6 @@
 #!/bin/bash
 set -eux
-mkdir -p foo/bar/baz
-sudo chmod 777 /tmp/upgrade_status
+
 
 #This file is intended to be executed on the testbots.
 #sudo composer selfupdate
@@ -11,6 +10,7 @@ sudo chmod 777 /tmp/upgrade_status
 #sudo /var/lib/drupalci/workspace/infrastructure/stats/project_analysis/upgrade_php.sh
 
 rm -rf /var/lib/drupalci/workspace/phpstan-results || true
+rm -rf /tmp/upgrade_status || true
 
 PROC_COUNT=`grep processor /proc/cpuinfo |wc -l`
 sudo dpkg -i /var/lib/drupalci/workspace/infrastructure/stats/project_analysis/parallel_20190622_all.deb
