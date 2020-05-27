@@ -55,7 +55,6 @@ composer require drush/drush:9.7.2
 find vendor -name .git -exec rm -rf {} \; || true
 cp /var/lib/drupalci/workspace/infrastructure/stats/project_analysis/rector.yml rector.yml
 cp /var/lib/drupalci/workspace/infrastructure/stats/project_analysis/rector-no-tests.yml rector-no-tests.yml
-composer_home=$(composer global config home)
 git add .;git commit -q -m "adds phpstan and drupal-rector"
 
 # Save the composer.lock file so that the versions of drupal-rector and upgrade_status are available in the results.
