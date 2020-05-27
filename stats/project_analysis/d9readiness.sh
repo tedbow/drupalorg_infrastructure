@@ -2,11 +2,11 @@
 set -eux
 
 #This file is intended to be executed on the testbots.
-sudo composer selfupdate
+#sudo composer selfupdate
 
 # Upgrade to php7.2.
 # This must happen after updating composer or composer must be removed and reinstalled.
-sudo /var/lib/drupalci/workspace/infrastructure/stats/project_analysis/upgrade_php.sh
+#sudo /var/lib/drupalci/workspace/infrastructure/stats/project_analysis/upgrade_php.sh
 
 rm -rf /var/lib/drupalci/workspace/phpstan-results || true
 
@@ -55,8 +55,9 @@ composer require drush/drush:9.7.2
 find vendor -name .git -exec rm -rf {} \; || true
 cp /var/lib/drupalci/workspace/infrastructure/stats/project_analysis/rector.yml rector.yml
 cp /var/lib/drupalci/workspace/infrastructure/stats/project_analysis/rector-no-tests.yml rector-no-tests.yml
-sudo ./vendor/bin/drush si --db-url=sqlite://sites/default/files/.ht.sqlite -y
-sudo ./vendor/bin/drush en upgrade_status -y
+sudo chmod 777 sites/default
+./vendor/bin/drush si --db-url=sqlite://sites/default/files/.ht.sqlite -y
+./vendor/bin/drush en upgrade_status -y
 git add sites/default/files/.ht.sqlite
 git add .;git commit -q -m "adds phpstan and drupal-rector and sqlite"
 
