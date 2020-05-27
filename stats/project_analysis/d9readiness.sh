@@ -1,5 +1,7 @@
 #!/bin/bash
 set -eux
+mkdir -p foo/bar/baz
+sudo chmod 777 /tmp/upgrade_status
 
 #This file is intended to be executed on the testbots.
 #sudo composer selfupdate
@@ -43,6 +45,7 @@ includes:
 EOF
 composer require palantirnet/drupal-rector:0.5.4 --dev
 composer require drupal/upgrade_status:2.6
+
 
 # Use the local package for updating info.yml files. This repo can not be symlink because of autoloaders.
 composer config repositories.local '{"type": "path", "url": "/var/lib/drupalci/workspace/infrastructure/stats/project_analysis/project_analysis_utils", "options": { "symlink": false}}'
