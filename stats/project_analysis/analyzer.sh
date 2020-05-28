@@ -16,11 +16,12 @@ COMPOSER_CACHE_DIR=/tmp/cache$5 composer --no-interaction --no-progress require 
 # Ensure the directory was created where we thought it should be.
 if [[ -d "/var/lib/drupalci/workspace/drupal-checkouts/drupal$5/${4#project_}s/contrib/$2" ]]; then
 
-   php -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 ./vendor/bin/drush --root=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 config-set system.file path.temporary /var/lib/drupalci/workspace/drupal-checkouts/drupal$5/sites/default/files/temp
-   php -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 ./vendor/bin/drush --root=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 cr
-   php -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 ./vendor/bin/drush --root=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 cc drush
-  php -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 ./vendor/bin/drush --root=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 en $2 -y
-  php -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 ./vendor/bin/drush --root=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 upgrade_status:checkstyle  $2 > /var/lib/drupalci/workspace/phpstan-results/$1.$3.upgrade_status.pre_rector.xml 2>> /var/lib/drupalci/workspace/phpstan-results/$1.$3.upgrade_status_stderr1
+  php -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 ./vendor/bin/drush --root=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 config-set system.file path.temporary /var/lib/drupalci/workspace/drupal-checkouts/drupal$5/sites/default/files/temp
+  # Some projects have a different machine name than there composer project name.
+  module_name=$(php -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 ./vendor/bin/find_machinename)
+
+  php -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 ./vendor/bin/drush --root=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 en $module_name -y
+  php -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 ./vendor/bin/drush --root=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 upgrade_status:checkstyle  $module_name > /var/lib/drupalci/workspace/phpstan-results/$1.$3.upgrade_status.pre_rector.xml 2>> /var/lib/drupalci/workspace/phpstan-results/$1.$3.upgrade_status_stderr1
 
   # Only run rector if we have some file messages in the XML.
   php -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 ./vendor/bin/rector_needed /var/lib/drupalci/workspace/phpstan-results/$1.$3.upgrade_status.pre_rector.xml
@@ -57,7 +58,7 @@ if [[ -d "/var/lib/drupalci/workspace/drupal-checkouts/drupal$5/${4#project_}s/c
       # Uncommitted changes
       create_patch=1
       # Check to see we can update the info file now.
-      php -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 ./vendor/bin/drush --root=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 upgrade_status:checkstyle  $2 > /var/lib/drupalci/workspace/phpstan-results/$1.$3.upgrade_status.post_rector.xml 2>> /var/lib/drupalci/workspace/phpstan-results/$1.$3.upgrade_status_stderr2
+      php -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 ./vendor/bin/drush --root=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 upgrade_status:checkstyle  $module_name > /var/lib/drupalci/workspace/phpstan-results/$1.$3.upgrade_status.post_rector.xml 2>> /var/lib/drupalci/workspace/phpstan-results/$1.$3.upgrade_status_stderr2
       php -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 ./vendor/bin/info_updatable /var/lib/drupalci/workspace/phpstan-results/$1.$3.upgrade_status.post_rector.xml
       info_updatable_result=$?
     fi
@@ -70,7 +71,7 @@ if [[ -d "/var/lib/drupalci/workspace/drupal-checkouts/drupal$5/${4#project_}s/c
     fi
   fi
   if [ $info_updatable_result -eq 0 ]; then
-      php -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 ./vendor/bin/update_info /var/lib/drupalci/workspace/drupal-checkouts/drupal$5/${4#project_}s/contrib/$2/$2.info.yml
+      php -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 ./vendor/bin/update_info /var/lib/drupalci/workspace/drupal-checkouts/drupal$5/${4#project_}s/contrib/$2/$module_name.info.yml
       create_patch=1
   fi
 
