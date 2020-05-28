@@ -17,6 +17,7 @@ COMPOSER_CACHE_DIR=/tmp/cache$5 composer --no-interaction --no-progress require 
 # Ensure the directory was created where we thought it should be.
 if [[ -d "/var/lib/drupalci/workspace/drupal-checkouts/drupal$5/${4#project_}s/contrib/$2" ]]; then
 
+   php -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 ./vendor/bin/drush --root=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 config-set system.file path.temporary /var/lib/drupalci/workspace/drupal-checkouts/drupal$5/sites/default/files/temp
    php -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 ./vendor/bin/drush --root=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 cr
    php -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 ./vendor/bin/drush --root=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 cc drush
   php -d sys_temp_dir=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 ./vendor/bin/drush --root=/var/lib/drupalci/workspace/drupal-checkouts/drupal$5 en $2 -y
