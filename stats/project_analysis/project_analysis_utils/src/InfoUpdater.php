@@ -8,9 +8,12 @@ use Symfony\Component\Yaml\Yaml;
 
 class InfoUpdater {
 
+  protected const RESULTS_DIR = '';
+
   private const DEFAULT_VALUE = '^8 || ^9';
   private const KEY = 'core_version_requirement';
-  public static function updateInfo($file) {
+  public static function updateInfo($file, string $project_version) {
+    static::getMinimumCoreVersion($project_version);
     $contents = file_get_contents($file);
     $info = Yaml::parse($contents);
     $has_core_version_requirement = FALSE;
@@ -62,5 +65,8 @@ class InfoUpdater {
     }
     return FALSE;
 
+  }
+
+  private static function getMinimumCoreVersion(string $project_version) {
   }
 }
