@@ -66,7 +66,7 @@ class InfoUpdater extends ResultProcessorBase {
   }
 
   private static function getMinimumCoreVersion(string $project_version) {
-    $pre = new UpdateStatusXmlChecker(static::RESULT_DIR . "/$project_version.upgrade_status.pre_rector.xml");
+    $pre = new UpdateStatusXmlChecker(static::getResultsDir() . "/$project_version.upgrade_status.pre_rector.xml");
     $pre_messages = $pre->getMessages('error') + $pre->getMessages('warning');
   }
 }
