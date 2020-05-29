@@ -6,14 +6,12 @@ use Composer\Semver\Semver;
 use Symfony\Component\Yaml\Exception\ParseException;
 use Symfony\Component\Yaml\Yaml;
 
-class InfoUpdater {
-
-  protected const RESULTS_DIR = '';
+class InfoUpdater extends ResultProcessorBase {
 
   private const DEFAULT_VALUE = '^8 || ^9';
   private const KEY = 'core_version_requirement';
   public static function updateInfo($file, string $project_version) {
-    static::getMinimumCoreVersion($project_version);
+    $minimum_core_version = static::getMinimumCoreVersion($project_version);
     $contents = file_get_contents($file);
     $info = Yaml::parse($contents);
     $has_core_version_requirement = FALSE;
@@ -68,5 +66,7 @@ class InfoUpdater {
   }
 
   private static function getMinimumCoreVersion(string $project_version) {
+    $pre = new UpdateStatusXmlChecker(static::RESULT_DIR . "/$project_version.upgrade_status.pre_rector.xml");
+    $pre_messages = $pre->getMessages('error') + $pre->getMessages('warning');
   }
 }

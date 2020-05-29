@@ -5,7 +5,7 @@ namespace InfoUpdater;
 /**
  * Utility Class to check XML files produced by rector.
  */
-class RectorResults {
+class RectorResults extends ResultProcessorBase {
 
   /**
    * Gets the results directory.
@@ -20,7 +20,6 @@ class RectorResults {
     }
     return $dir;
   }
-
 
   /**
    * @param $project_version

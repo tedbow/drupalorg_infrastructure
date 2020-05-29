@@ -19,7 +19,7 @@ class InfoUpdaterTest extends TestBase {
     $temp_file = $this->createTempFixtureFile("no_core_version_requirement.info.yml");
     $pre_yml = Yaml::parseFile($temp_file);
     $this->assertFalse(isset($pre_yml['core_version_requirement']));
-    InfoUpdater::updateInfo($temp_file);
+    InfoUpdater::updateInfo($temp_file, 'yoast_seo.2.x-dev');
     $post_yml = Yaml::parseFile($temp_file);
     $this->assertSame('^8 || ^9', $post_yml['core_version_requirement']);
     unlink($temp_file);
@@ -53,4 +53,7 @@ class InfoUpdaterTest extends TestBase {
     return $temp_file;
   }
 
+}
+class TestInfoUpdater extends InfoUpdater {
+  //protected static RESULT_DIR
 }
