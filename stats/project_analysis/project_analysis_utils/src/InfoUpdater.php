@@ -8,23 +8,46 @@ use Symfony\Component\Yaml\Yaml;
 
 class InfoUpdater extends ResultProcessorBase {
 
-  private const DEFAULT_VALUE = '^8 || ^9';
   private const KEY = 'core_version_requirement';
   public static function updateInfo($file, string $project_version) {
-    $minimum_core_version = static::getMinimumCoreVersion($project_version);
+    $minimum_core_minor = NULL;
+    if (file_exists(self::getUpgradeStatusXML($project_version, 'post'))) {
+      $minimum_core_minor = static::getMinimumCore8Minoe($project_version);
+    }
+
     $contents = file_get_contents($file);
     $info = Yaml::parse($contents);
     $has_core_version_requirement = FALSE;
     $update_info = FALSE;
     if (!isset($info[static::KEY])) {
-      $info[static::KEY] = static::DEFAULT_VALUE;
+      if ($minimum_core_minor === 8) {
+        $value = '^8.8 || ^9';
+      }
+      elseif ($minimum_core_minor === 7) {
+        $value = '^8.7.7 || ^9';
+      }
+      else {
+        $value = '^8 || ^9';
+      }
       $update_info = TRUE;
     }
     else {
-      if (!Semver::satisfies('9.0.0', $info[static::KEY])) {
-        $info[static::KEY] .= ' || ^9';
-        $update_info = TRUE;
-        $has_core_version_requirement = TRUE;
+      if ($minimum_core_minor === 8) {
+        if (strpos($info[static::KEY], '8.8') === FALSE) {
+          // If 8.8 is not in core_version_requirement it is likely specifying
+          // lower compatibility
+          $info[static::KEY] = '^8.8 || ^9';
+        }
+      }
+      elseif ($minimum_core_minor === 7) {
+        if (strpos($info[static::KEY], '8.8') === FALSE && strpos($info[static::KEY], '8.7') === FALSE) {
+          // If no version 8.8 or 8.7 then we need to set a version
+          $info[static::KEY] = '^8.7.7 || ^9';
+        }
+      }
+      else {
+        // It is not possible to specify minor compatibility below 8.7.7
+        $info[static::KEY] = '^8 || ^9';
       }
     }
     if ($update_info) {
@@ -65,8 +88,41 @@ class InfoUpdater extends ResultProcessorBase {
 
   }
 
-  private static function getMinimumCoreVersion(string $project_version) {
-    $pre = new UpdateStatusXmlChecker(static::getResultsDir() . "/$project_version.upgrade_status.pre_rector.xml");
-    $pre_messages = $pre->getMessages('error') + $pre->getMessages('warning');
+  private static function getMinimumCore8Minoe(string $project_version) {
+    $pre_messages = self::getMessages($project_version, 'pre');
+    $post_messages = self::getMessages($project_version, 'post');
+    $minors = range(8, 0);
+    foreach ($minors as $minor) {
+      $deprecation_version = "drupal:8.$minor.0";
+      if (strpos($pre_messages, $deprecation_version) !== FALSE && strpos($post_messages, $deprecation_version) === FALSE) {
+        return $minor;
+      }
+    }
+    return $minor;
   }
+
+  /**
+   * @param string $project_version
+   *
+   * @return string[]
+   *
+   * @throws \Exception
+   */
+  private static function getMessages(string $project_version, $pre_or_post): string {
+    $pre = new UpdateStatusXmlChecker(self::getUpgradeStatusXML($project_version, $pre_or_post));
+    return implode(' -- ', $pre->getMessages('error'))
+      . ' -- '
+      . implode(' -- ', $pre->getMessages('warning'));
+  }
+
+  /**
+   * @param string $project_version
+   * @param $pre_or_post
+   *
+   * @return string
+   * @throws \Exception
+   */
+  private static function getUpgradeStatusXML(string $project_version, $pre_or_post): string {
+    return static::getResultsDir() . "/$project_version.upgrade_status.{$pre_or_post}_rector.xml";
+}
 }
