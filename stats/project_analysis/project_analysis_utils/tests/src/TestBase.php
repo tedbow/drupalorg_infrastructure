@@ -15,4 +15,9 @@ class TestBase extends TestCase {
     putenv("PHPSTAN_RESULT_DIR=" . __DIR__ . '/../fixtures');
   }
 
+  protected function tearDown() {
+    parent::tearDown();
+    putenv('PHPSTAN_RESULT_DIR');
+  }
+
 }

@@ -1,0 +1,60 @@
+Rector 0.8.x-dev@585dede
+Config file: rector.yml
+
+[parsing] modules/contrib/texbar/src/Commands/TexbarCommands.php
+[parsing] modules/contrib/texbar/src/Form/TexbarSettingsForm.php
+[parsing] modules/contrib/texbar/src/LibraryBuilder.php
+[parsing] modules/contrib/texbar/src/LibraryBuilderInterface.php
+[parsing] modules/contrib/texbar/src/MarkitupLibraryBuilder.php
+[parsing] modules/contrib/texbar/texbar.install
+[parsing] modules/contrib/texbar/texbar.module
+[refactoring] modules/contrib/texbar/src/Commands/TexbarCommands.php
+[refactoring] modules/contrib/texbar/src/Form/TexbarSettingsForm.php
+[refactoring] modules/contrib/texbar/src/LibraryBuilder.php
+[refactoring] modules/contrib/texbar/src/LibraryBuilderInterface.php
+[refactoring] modules/contrib/texbar/src/MarkitupLibraryBuilder.php
+[refactoring] modules/contrib/texbar/texbar.install
+[refactoring] modules/contrib/texbar/texbar.module
+[printing] modules/contrib/texbar/src/Commands/TexbarCommands.php
+[printing] modules/contrib/texbar/src/Form/TexbarSettingsForm.php
+[printing] modules/contrib/texbar/src/LibraryBuilder.php
+[printing] modules/contrib/texbar/src/LibraryBuilderInterface.php
+[printing] modules/contrib/texbar/src/MarkitupLibraryBuilder.php
+[printing] modules/contrib/texbar/texbar.install
+[printing] modules/contrib/texbar/texbar.module
+
+1 file with changes
+===================
+
+1) modules/contrib/texbar/src/Commands/TexbarCommands.php
+
+    ---------- begin diff ----------
+--- Original
++++ New
+@@ -2,6 +2,7 @@
+
+ namespace Drupal\texbar\Commands;
+
++use Drupal\Core\File\FileSystemInterface;
+ use Drupal\texbar\LibraryBuilderInterface;
+ use Drupal\Component\Datetime\TimeInterface;
+ use Drupal\Core\Asset\AssetCollectionOptimizerInterface;
+@@ -84,7 +85,7 @@
+
+     $destination = DRUPAL_ROOT . LibraryBuilderInterface::LIBRARY_PATH;
+
+-    file_prepare_directory($destination, FILE_CREATE_DIRECTORY);
++    \Drupal::service('file_system')->prepareDirectory($destination, FileSystemInterface::CREATE_DIRECTORY);
+
+     $this->httpClient->get($source, ['sink' => $destination .= '/jquery.markitup.js']);
+    ----------- end diff -----------
+
+
+Applied rules:
+
+ * DrupalRector\Rector\Deprecation\FileCreateDirectoryRector
+ * DrupalRector\Rector\Deprecation\FilePrepareDirectoryRector
+
+
+ [OK] Rector is done! 1 file have been changed.                                 
+

@@ -1,0 +1,38 @@
+diff --git a/environment_indicator.info.yml b/environment_indicator.info.yml
+index 1f33922..2c31033 100644
+--- a/environment_indicator.info.yml
++++ b/environment_indicator.info.yml
+@@ -3,6 +3,7 @@ type: module
+ description: Adds a color indicator for the different environments.
+ package: Development
+ core: 8.x
++core_version_requirement: ^8 || ^9
+ dependencies:
+   - drupal:color
+ 
+diff --git a/src/EnvironmentIndicatorForm.php b/src/EnvironmentIndicatorForm.php
+index fcba077..f6f86fe 100644
+--- a/src/EnvironmentIndicatorForm.php
++++ b/src/EnvironmentIndicatorForm.php
+@@ -62,7 +62,7 @@ class EnvironmentIndicatorForm extends EntityForm {
+   public function save(array $form, FormStateInterface $form_state) {
+     $environment = $this->getEntity();
+     $environment->save();
+-    drupal_set_message($this->t('Saved the %label environment.', [
++    $this->messenger()->addStatus($this->t('Saved the %label environment.', [
+       '%label' => $environment->label(),
+     ]));
+ 
+diff --git a/src/Form/EnvironmentIndicatorDeleteForm.php b/src/Form/EnvironmentIndicatorDeleteForm.php
+index 5d4b09b..16170c8 100644
+--- a/src/Form/EnvironmentIndicatorDeleteForm.php
++++ b/src/Form/EnvironmentIndicatorDeleteForm.php
+@@ -55,7 +55,7 @@ class EnvironmentIndicatorDeleteForm extends EntityConfirmFormBase {
+    */
+   public function submitForm(array &$form, FormStateInterface $form_state) {
+     $this->entity->delete();
+-    drupal_set_message($this->t('Deleted environment %name.', ['%name' => $this->entity->label()]));
++    $this->messenger()->addStatus($this->t('Deleted environment %name.', ['%name' => $this->entity->label()]));
+     // TODO: Figure out how to log stuff to the watchdog.
+     $form_state['redirect'] = 'admin/config/development/environment-indicator';
+     Cache::invalidateTags(['content' => TRUE]);

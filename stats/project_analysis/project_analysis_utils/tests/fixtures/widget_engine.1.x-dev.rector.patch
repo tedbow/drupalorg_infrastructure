@@ -1,0 +1,200 @@
+diff --git a/modules/widget_engine_domain_access/widget_engine_domain_access.module b/modules/widget_engine_domain_access/widget_engine_domain_access.module
+index 2488a37..c8129e1 100755
+--- a/modules/widget_engine_domain_access/widget_engine_domain_access.module
++++ b/modules/widget_engine_domain_access/widget_engine_domain_access.module
+@@ -268,7 +268,7 @@ function widget_engine_domain_access_confirm_fields($entity_type, $bundle, $text
+     // Tell the form system how to behave. Default to radio buttons.
+     // @TODO: This function is deprecated, but using the OO syntax is causing
+     // test fails.
+-    entity_get_form_display($entity_type, $bundle, 'default')
++    \Drupal::service('entity_display.repository')->getFormDisplay($entity_type, $bundle, 'default')
+       ->setComponent(DOMAIN_ACCESS_FIELD, array(
+         'type' => 'options_buttons',
+         'weight' => 40,
+diff --git a/src/Controller/WidgetPreviewController.php b/src/Controller/WidgetPreviewController.php
+index ca915a4..6bba319 100644
+--- a/src/Controller/WidgetPreviewController.php
++++ b/src/Controller/WidgetPreviewController.php
+@@ -2,6 +2,7 @@
+ 
+ namespace Drupal\widget_engine\Controller;
+ 
++use Drupal\Core\File\FileSystemInterface;
+ use Drupal\Core\Controller\ControllerBase;
+ use Drupal\widget_engine\Entity\Widget;
+ use Drupal\widget_engine\Entity\WidgetInterface;
+@@ -51,8 +52,8 @@ class WidgetPreviewController extends ControllerBase {
+       if (is_object($widget)) {
+         // Prepare directory.
+         $directory = "public://widget_engine_preview/{$widget->getType()}/";
+-        file_prepare_directory($directory, FILE_CREATE_DIRECTORY | FILE_MODIFY_PERMISSIONS);
+-        $file = file_save_data($data, $directory . $file_name, FILE_EXISTS_REPLACE);
++        \Drupal::service('file_system')->prepareDirectory($directory, FileSystemInterface::CREATE_DIRECTORY | FileSystemInterface::MODIFY_PERMISSIONS);
++        $file = file_save_data($data, $directory . $file_name, FileSystemInterface::EXISTS_REPLACE);
+ 
+         try {
+           $widget->set('widget_preview', ['target_id' => $file->id()]);
+@@ -73,7 +74,7 @@ class WidgetPreviewController extends ControllerBase {
+         $image_preview = widget_engine_build_preview_image($data);
+ 
+         return new JsonResponse([
+-          'img' => drupal_render($image_preview),
++          'img' => \Drupal::service('renderer')->render($image_preview),
+           'wid' => $widget_id,
+         ]);
+       }
+diff --git a/src/Form/WidgetForm.php b/src/Form/WidgetForm.php
+index 6ed0edd..e785bd2 100644
+--- a/src/Form/WidgetForm.php
++++ b/src/Form/WidgetForm.php
+@@ -32,13 +32,13 @@ class WidgetForm extends ContentEntityForm {
+ 
+     switch ($status) {
+       case SAVED_NEW:
+-        drupal_set_message($this->t('Created the %label Widget.', [
++        $this->messenger()->addStatus($this->t('Created the %label Widget.', [
+           '%label' => $entity->label(),
+         ]));
+         break;
+ 
+       default:
+-        drupal_set_message($this->t('Saved the %label Widget.', [
++        $this->messenger()->addStatus($this->t('Saved the %label Widget.', [
+           '%label' => $entity->label(),
+         ]));
+     }
+diff --git a/src/Form/WidgetTypeDeleteForm.php b/src/Form/WidgetTypeDeleteForm.php
+index 0ef63c3..8402f42 100644
+--- a/src/Form/WidgetTypeDeleteForm.php
++++ b/src/Form/WidgetTypeDeleteForm.php
+@@ -38,14 +38,12 @@ class WidgetTypeDeleteForm extends EntityConfirmFormBase {
+   public function submitForm(array &$form, FormStateInterface $form_state) {
+     $this->entity->delete();
+ 
+-    drupal_set_message(
+-      $this->t('content @type: deleted @label.',
+-        [
+-          '@type' => $this->entity->bundle(),
+-          '@label' => $this->entity->label(),
+-        ]
+-        )
+-    );
++    $this->messenger()->addStatus($this->t('content @type: deleted @label.',
++      [
++        '@type' => $this->entity->bundle(),
++        '@label' => $this->entity->label(),
++      ]
++      ));
+ 
+     $form_state->setRedirectUrl($this->getCancelUrl());
+   }
+diff --git a/src/Form/WidgetTypeForm.php b/src/Form/WidgetTypeForm.php
+index 6a5dc12..680711c 100644
+--- a/src/Form/WidgetTypeForm.php
++++ b/src/Form/WidgetTypeForm.php
+@@ -51,13 +51,13 @@ class WidgetTypeForm extends EntityForm {
+ 
+     switch ($status) {
+       case SAVED_NEW:
+-        drupal_set_message($this->t('Created the %label Widget type.', [
++        $this->messenger()->addStatus($this->t('Created the %label Widget type.', [
+           '%label' => $widget_type->label(),
+         ]));
+         break;
+ 
+       default:
+-        drupal_set_message($this->t('Saved the %label Widget type.', [
++        $this->messenger()->addStatus($this->t('Saved the %label Widget type.', [
+           '%label' => $widget_type->label(),
+         ]));
+     }
+diff --git a/src/WidgetListBuilder.php b/src/WidgetListBuilder.php
+index b6b9915..48b49dc 100644
+--- a/src/WidgetListBuilder.php
++++ b/src/WidgetListBuilder.php
+@@ -2,6 +2,7 @@
+ 
+ namespace Drupal\widget_engine;
+ 
++use Drupal\Core\Link;
+ use Drupal\Core\Entity\EntityInterface;
+ use Drupal\Core\Entity\EntityListBuilder;
+ use Drupal\Core\Routing\LinkGeneratorTrait;
+@@ -32,14 +33,11 @@ class WidgetListBuilder extends EntityListBuilder {
+   public function buildRow(EntityInterface $entity) {
+     /* @var $entity \Drupal\widget_engine\Entity\Widget */
+     $row['id'] = $entity->id();
+-    $row['name'] = $this->l(
+-      $entity->label(),
+-      new Url(
+-        'entity.widget.edit_form', array(
+-          'widget' => $entity->id(),
+-        )
++    $row['name'] = Link::fromTextAndUrl($entity->label(), new Url(
++      'entity.widget.edit_form', array(
++        'widget' => $entity->id(),
+       )
+-    );
++    ));
+     $row['bundle'] = $entity->type->entity->label();
+ 
+     return $row + parent::buildRow($entity);
+diff --git a/tests/src/Traits/EntityAddWidgetFieldTrait.php b/tests/src/Traits/EntityAddWidgetFieldTrait.php
+index f9f00ee..36c1c47 100644
+--- a/tests/src/Traits/EntityAddWidgetFieldTrait.php
++++ b/tests/src/Traits/EntityAddWidgetFieldTrait.php
+@@ -67,7 +67,7 @@ trait EntityAddWidgetFieldTrait {
+ 
+       // The teaser view mode is created by the Standard profile and therefore
+       // might not exist.
+-      $view_modes = \Drupal::entityManager()->getViewModes($entity_type);
++      $view_modes = \Drupal::service('entity_display.repository')->getViewModes($entity_type);
+       if (isset($view_modes['teaser'])) {
+         \Drupal::entityTypeManager()->getStorage('entity_view_display')->load($entity_type . '.' . $bundle . '.teaser')
+           ->setComponent(
+diff --git a/tests/src/Traits/WidgetTypeCreationTrait.php b/tests/src/Traits/WidgetTypeCreationTrait.php
+index 5bf6379..4d3b6a6 100644
+--- a/tests/src/Traits/WidgetTypeCreationTrait.php
++++ b/tests/src/Traits/WidgetTypeCreationTrait.php
+@@ -88,14 +88,14 @@ trait WidgetTypeCreationTrait {
+       $field->save();
+ 
+       // Assign widget settings for the 'default' form mode.
+-      entity_get_form_display('widget', $type->id(), 'default')
++      \Drupal::service('entity_display.repository')->getFormDisplay('widget', $type->id(), 'default')
+         ->setComponent('body', [
+           'type' => 'text_textarea_with_summary',
+         ])
+         ->save();
+ 
+       // Assign display settings for the 'default' and 'teaser' view modes.
+-      entity_get_display('widget', $type->id(), 'default')
++      \Drupal::service('entity_display.repository')->getViewDisplay('widget', $type->id(), 'default')
+         ->setComponent('body', [
+           'label' => 'hidden',
+           'type' => 'entity_reference_entity_view',
+@@ -104,9 +104,9 @@ trait WidgetTypeCreationTrait {
+ 
+       // The teaser view mode is created by the Standard profile and therefore
+       // might not exist.
+-      $view_modes = \Drupal::entityManager()->getViewModes('widget');
++      $view_modes = \Drupal::service('entity_display.repository')->getViewModes('widget');
+       if (isset($view_modes['teaser'])) {
+-        entity_get_display('widget', $type->id(), 'teaser')
++        \Drupal::service('entity_display.repository')->getViewDisplay('widget', $type->id(), 'teaser')
+           ->setComponent('body', [
+             'label' => 'hidden',
+             'type' => 'text_summary_or_trimmed',
+diff --git a/widget_engine.module b/widget_engine.module
+index 2d5ec61..dad114d 100644
+--- a/widget_engine.module
++++ b/widget_engine.module
+@@ -44,7 +44,7 @@ function widget_engine_help($route_name, RouteMatchInterface $route_match) {
+ function widget_engine_type_get_names() {
+   return array_map(function ($bundle_info) {
+     return $bundle_info['label'];
+-  }, \Drupal::entityManager()->getBundleInfo('widget'));
++  }, \Drupal::service('entity_type.bundle.info')->getBundleInfo('widget'));
+ }
+ 
+ /**

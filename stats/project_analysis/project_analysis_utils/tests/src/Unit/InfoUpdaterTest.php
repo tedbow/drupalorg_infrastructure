@@ -12,30 +12,60 @@ use Symfony\Component\Yaml\Yaml;
  */
 class InfoUpdaterTest extends TestBase {
 
-  /**
-   * @covers ::updateInfo
-   */
-  public function testNoCoreVersionRequirement() {
-    $temp_file = $this->createTempFixtureFile("no_core_version_requirement.info.yml");
-    $pre_yml = Yaml::parseFile($temp_file);
-    $this->assertFalse(isset($pre_yml['core_version_requirement']));
-    InfoUpdater::updateInfo($temp_file, 'yoast_seo.2.x-dev');
-    $post_yml = Yaml::parseFile($temp_file);
-    $this->assertSame('^8 || ^9', $post_yml['core_version_requirement']);
-    unlink($temp_file);
-  }
 
   /**
    * @covers ::updateInfo
+   *
+   * @dataProvider providerUpdateInfoNew
    */
-  public function testCoreVersionRequirement() {
-    $temp_file = $this->createTempFixtureFile("core_version_requirement.info.yml");
+  public function testUpdateInfoNew($file, $project_version, $expected) {
+    $temp_file = $this->createTempFixtureFile($file);
     $pre_yml = Yaml::parseFile($temp_file);
-    $this->assertSame('^8.8', $pre_yml['core_version_requirement']);
-    InfoUpdater::updateInfo($temp_file);
+    if ($file === 'no_core_version_requirement.info.yml') {
+      $this->assertFalse(isset($pre_yml['core_version_requirement']));
+    }
+    InfoUpdater::updateInfo($temp_file, $project_version);
     $post_yml = Yaml::parseFile($temp_file);
-    $this->assertSame('^8.8 || ^9', $post_yml['core_version_requirement']);
+    $this->assertSame($expected, $post_yml['core_version_requirement']);
+    // The yml should be the same except for 'core_version_requirement'.
+    unset($post_yml['core_version_requirement']);
+    if ($file === 'no_core_version_requirement.info.yml') {
+      $this->assertSame($pre_yml, $post_yml);
+    }
     unlink($temp_file);
+  }
+
+  public function providerUpdateInfoNew() {
+    return [
+      '^8' => [
+        'no_core_version_requirement.info.yml',
+        'environment_indicator.3.x-dev',
+        '^8 || ^9',
+      ],
+      '^8 existing 8.7' => [
+        'set_87.info.yml',
+        'environment_indicator.3.x-dev',
+        '^8.7 || ^9',
+      ],
+      // @todo Add duplicates of all cases for existing
+      // Remove 8.8 but not 8.7
+      '^8.8' => [
+        'no_core_version_requirement.info.yml',
+        'twitter_embed_field.1.x-dev',
+        '^8.8 || ^9',
+      ],
+      // Remove 8.8 but not 8.7
+      '8.8 and 8.7' => [
+        'no_core_version_requirement.info.yml',
+        'widget_engine.1.x-dev',
+        '^8.8 || ^9',
+      ],
+      '8.7.7' => [
+        'no_core_version_requirement.info.yml',
+        'texbar.1.x-dev',
+        '^8.7.7 || ^9',
+      ],
+    ];
   }
 
   /**
@@ -52,6 +82,8 @@ class InfoUpdaterTest extends TestBase {
     copy($fixture_file, $temp_file);
     return $temp_file;
   }
+
+
 
 }
 class TestInfoUpdater extends InfoUpdater {

@@ -9,6 +9,14 @@ use Symfony\Component\Yaml\Yaml;
 class InfoUpdater extends ResultProcessorBase {
 
   private const KEY = 'core_version_requirement';
+
+  /**
+   * @param $file
+   * @param string $project_version
+   *
+   * @return bool
+   * @throws \Exception
+   */
   public static function updateInfo($file, string $project_version) {
     $minimum_core_minor = NULL;
     if (file_exists(self::getUpgradeStatusXML($project_version, 'post'))) {
@@ -18,41 +26,42 @@ class InfoUpdater extends ResultProcessorBase {
     $contents = file_get_contents($file);
     $info = Yaml::parse($contents);
     $has_core_version_requirement = FALSE;
-    $update_info = FALSE;
+    $new_core_version_requirement = NULL;
     if (!isset($info[static::KEY])) {
       if ($minimum_core_minor === 8) {
-        $value = '^8.8 || ^9';
+        $new_core_version_requirement = '^8.8 || ^9';
       }
       elseif ($minimum_core_minor === 7) {
-        $value = '^8.7.7 || ^9';
+        $new_core_version_requirement = '^8.7.7 || ^9';
       }
       else {
-        $value = '^8 || ^9';
+        $new_core_version_requirement = '^8 || ^9';
       }
-      $update_info = TRUE;
     }
     else {
+      $has_core_version_requirement = TRUE;
       if ($minimum_core_minor === 8) {
         if (strpos($info[static::KEY], '8.8') === FALSE) {
           // If 8.8 is not in core_version_requirement it is likely specifying
           // lower compatibility
-          $info[static::KEY] = '^8.8 || ^9';
+          $new_core_version_requirement = '^8.8 || ^9';
         }
       }
       elseif ($minimum_core_minor === 7) {
         if (strpos($info[static::KEY], '8.8') === FALSE && strpos($info[static::KEY], '8.7') === FALSE) {
           // If no version 8.8 or 8.7 then we need to set a version
-          $info[static::KEY] = '^8.7.7 || ^9';
+          $new_core_version_requirement = '^8.7.7 || ^9';
         }
       }
-      else {
-        // It is not possible to specify minor compatibility below 8.7.7
-        $info[static::KEY] = '^8 || ^9';
+      // Only update if we it doesn't already satisfy 9.0.0
+      elseif (!Semver::satisfies('9.0.0', $info[static::KEY])) {
+        $new_core_version_requirement = $info[static::KEY] . ' || ^9';
       }
     }
-    if ($update_info) {
+    if (!empty($new_core_version_requirement)) {
       // First try to update by string to avoid unrelated changes
       $new_lines = [];
+      $info[static::KEY] = $new_core_version_requirement;
       $added_line = FALSE;
       foreach(preg_split("/((\r?\n)|(\r\n?))/", $contents) as $line){
         $key = explode(':', $line)[0];

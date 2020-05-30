@@ -1,0 +1,82 @@
+Rector 0.8.x-dev@585dede
+Config file: rector.yml
+
+[parsing] modules/contrib/environment_indicator/environment_indicator.module
+[parsing] modules/contrib/environment_indicator/modules/environment_indicator_ui/src/Form/EnvironmentIndicatorUISettingsForm.php
+[parsing] modules/contrib/environment_indicator/src/Element/EnvironmentIndicator.php
+[parsing] modules/contrib/environment_indicator/src/Entity/EnvironmentIndicator.php
+[parsing] modules/contrib/environment_indicator/src/EnvironmentIndicatorAccessControlHandler.php
+[parsing] modules/contrib/environment_indicator/src/EnvironmentIndicatorForm.php
+[parsing] modules/contrib/environment_indicator/src/EnvironmentIndicatorListBuilder.php
+[parsing] modules/contrib/environment_indicator/src/EnvironmentIndicatorPermissions.php
+[parsing] modules/contrib/environment_indicator/src/Form/EnvironmentIndicatorDeleteForm.php
+[parsing] modules/contrib/environment_indicator/src/Form/EnvironmentIndicatorSettingsForm.php
+[refactoring] modules/contrib/environment_indicator/environment_indicator.module
+[refactoring] modules/contrib/environment_indicator/modules/environment_indicator_ui/src/Form/EnvironmentIndicatorUISettingsForm.php
+[refactoring] modules/contrib/environment_indicator/src/Element/EnvironmentIndicator.php
+[refactoring] modules/contrib/environment_indicator/src/Entity/EnvironmentIndicator.php
+[refactoring] modules/contrib/environment_indicator/src/EnvironmentIndicatorAccessControlHandler.php
+[refactoring] modules/contrib/environment_indicator/src/EnvironmentIndicatorForm.php
+[refactoring] modules/contrib/environment_indicator/src/EnvironmentIndicatorListBuilder.php
+[refactoring] modules/contrib/environment_indicator/src/EnvironmentIndicatorPermissions.php
+[refactoring] modules/contrib/environment_indicator/src/Form/EnvironmentIndicatorDeleteForm.php
+[refactoring] modules/contrib/environment_indicator/src/Form/EnvironmentIndicatorSettingsForm.php
+[printing] modules/contrib/environment_indicator/environment_indicator.module
+[printing] modules/contrib/environment_indicator/modules/environment_indicator_ui/src/Form/EnvironmentIndicatorUISettingsForm.php
+[printing] modules/contrib/environment_indicator/src/Element/EnvironmentIndicator.php
+[printing] modules/contrib/environment_indicator/src/Entity/EnvironmentIndicator.php
+[printing] modules/contrib/environment_indicator/src/EnvironmentIndicatorAccessControlHandler.php
+[printing] modules/contrib/environment_indicator/src/EnvironmentIndicatorForm.php
+[printing] modules/contrib/environment_indicator/src/EnvironmentIndicatorListBuilder.php
+[printing] modules/contrib/environment_indicator/src/EnvironmentIndicatorPermissions.php
+[printing] modules/contrib/environment_indicator/src/Form/EnvironmentIndicatorDeleteForm.php
+[printing] modules/contrib/environment_indicator/src/Form/EnvironmentIndicatorSettingsForm.php
+
+2 files with changes
+====================
+
+1) modules/contrib/environment_indicator/src/EnvironmentIndicatorForm.php
+
+    ---------- begin diff ----------
+--- Original
++++ New
+@@ -62,7 +62,7 @@
+   public function save(array $form, FormStateInterface $form_state) {
+     $environment = $this->getEntity();
+     $environment->save();
+-    drupal_set_message($this->t('Saved the %label environment.', [
++    $this->messenger()->addStatus($this->t('Saved the %label environment.', [
+       '%label' => $environment->label(),
+     ]));
+    ----------- end diff -----------
+
+
+Applied rules:
+
+ * DrupalRector\Rector\Deprecation\DrupalSetMessageRector
+
+
+2) modules/contrib/environment_indicator/src/Form/EnvironmentIndicatorDeleteForm.php
+
+    ---------- begin diff ----------
+--- Original
++++ New
+@@ -55,7 +55,7 @@
+    */
+   public function submitForm(array &$form, FormStateInterface $form_state) {
+     $this->entity->delete();
+-    drupal_set_message($this->t('Deleted environment %name.', ['%name' => $this->entity->label()]));
++    $this->messenger()->addStatus($this->t('Deleted environment %name.', ['%name' => $this->entity->label()]));
+     // TODO: Figure out how to log stuff to the watchdog.
+     $form_state['redirect'] = 'admin/config/development/environment-indicator';
+     Cache::invalidateTags(['content' => TRUE]);
+    ----------- end diff -----------
+
+
+Applied rules:
+
+ * DrupalRector\Rector\Deprecation\DrupalSetMessageRector
+
+
+ [OK] Rector is done! 2 files have been changed.                                
+

@@ -1,0 +1,32 @@
+diff --git a/src/Commands/TexbarCommands.php b/src/Commands/TexbarCommands.php
+index 6d01f64..fb4ef68 100644
+--- a/src/Commands/TexbarCommands.php
++++ b/src/Commands/TexbarCommands.php
+@@ -2,6 +2,7 @@
+ 
+ namespace Drupal\texbar\Commands;
+ 
++use Drupal\Core\File\FileSystemInterface;
+ use Drupal\texbar\LibraryBuilderInterface;
+ use Drupal\Component\Datetime\TimeInterface;
+ use Drupal\Core\Asset\AssetCollectionOptimizerInterface;
+@@ -84,7 +85,7 @@ class TexbarCommands extends DrushCommands {
+ 
+     $destination = DRUPAL_ROOT . LibraryBuilderInterface::LIBRARY_PATH;
+ 
+-    file_prepare_directory($destination, FILE_CREATE_DIRECTORY);
++    \Drupal::service('file_system')->prepareDirectory($destination, FileSystemInterface::CREATE_DIRECTORY);
+ 
+     $this->httpClient->get($source, ['sink' => $destination .= '/jquery.markitup.js']);
+ 
+diff --git a/texbar.info.yml b/texbar.info.yml
+index 7634608..5efe9b1 100644
+--- a/texbar.info.yml
++++ b/texbar.info.yml
+@@ -1,5 +1,6 @@
+ name: LaTeX Toolbar
+ description: Creates a toolbar to add LaTeX code to textareas
+ core: 8.x
++core_version_requirement: ^8 || ^9
+ type: module
+ configure: texbar.settings

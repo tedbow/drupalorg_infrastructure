@@ -1,0 +1,40 @@
+diff --git a/src/Tests/TwitterEmbedTest.php b/src/Tests/TwitterEmbedTest.php
+index 605d0a9..a81fafd 100644
+--- a/src/Tests/TwitterEmbedTest.php
++++ b/src/Tests/TwitterEmbedTest.php
+@@ -95,14 +95,14 @@ class TwitterEmbedTest extends BrowserTestBase {
+   public function testTwitterField() {
+ 
+     // Create a form display for the default form mode.
+-    entity_get_form_display('node', 'page', 'default')
++    \Drupal::service('entity_display.repository')->getFormDisplay('node', 'page', 'default')
+       ->setComponent($this->fieldName, [
+         'type' => 'twitter_embed_field',
+       ])
+       ->save();
+ 
+     // Create a display for the full view mode with the default settings.
+-    entity_get_display('node', 'page', 'full')
++    \Drupal::service('entity_display.repository')->getViewDisplay('node', 'page', 'full')
+       ->setComponent($this->fieldName, [
+         'type' => 'twitter_embed_field',
+       ])
+@@ -133,7 +133,7 @@ class TwitterEmbedTest extends BrowserTestBase {
+ 
+     // Change the default display settings and check if the correct
+     // markup is created.
+-    entity_get_display('node', 'page', 'full')
++    \Drupal::service('entity_display.repository')->getViewDisplay('node', 'page', 'full')
+       ->setComponent($this->fieldName, [
+         'type' => 'twitter_embed_field',
+         'settings' => [
+diff --git a/twitter_embed_field.info.yml b/twitter_embed_field.info.yml
+index bbfb1d7..654e062 100644
+--- a/twitter_embed_field.info.yml
++++ b/twitter_embed_field.info.yml
+@@ -1,3 +1,4 @@
+ name: Twitter embed field
+ core: 8.x
++core_version_requirement: ^8 || ^9
+ type: module
+\ No newline at end of file
