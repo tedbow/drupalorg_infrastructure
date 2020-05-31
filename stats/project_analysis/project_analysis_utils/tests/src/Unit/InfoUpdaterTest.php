@@ -34,15 +34,14 @@ class InfoUpdaterTest extends TestBase {
     $core_info = $core_parser->parse($temp_file);
     $this->assertSame($post_yml, $core_info);
 
-    // The yml should be the same except for 'core_version_requirement' and
-    // core removed sometimes.
-    unset($post_yml['core_version_requirement']);
+
     if ($expected_remove_core) {
       unset($pre_yml['core']);
     }
-    if ($file === 'no_core_version_requirement.info.yml') {
-      $this->assertSame($pre_yml, $post_yml);
-    }
+    $pre_yml['core_version_requirement'] = $expected;
+    $pre_yml = asort($pre_yml);
+    $post_yml = asort($post_yml);
+    $this->assertSame($post_yml, $post_yml);
 
     unlink($temp_file);
   }
@@ -55,10 +54,22 @@ class InfoUpdaterTest extends TestBase {
         '^8 || ^9',
         FALSE,
       ],
+      '^8 existing' => [
+        'core_version_requirement.info.yml',
+        'environment_indicator.3.x-dev',
+        '^8 || ^9',
+        FALSE,
+      ],
       '^8 existing 8.7' => [
-        'set_87.info.yml',
+        'set_879.info.yml',
         'environment_indicator.3.x-dev',
         '^8.7.9 || ^9',
+        FALSE,
+      ],
+      '^8 existing 8.8.3' => [
+        'set_883.info.yml',
+        'environment_indicator.3.x-dev',
+        '^8.8.3 || ^9',
         FALSE,
       ],
       // @todo Add duplicates of all cases for existing
@@ -68,6 +79,24 @@ class InfoUpdaterTest extends TestBase {
         'twitter_embed_field.1.x-dev',
         '^8.8 || ^9',
         TRUE,
+      ],
+      '^8.8 existing ^8' => [
+        'core_version_requirement.info.yml',
+        'twitter_embed_field.1.x-dev',
+        '^8.8 || ^9',
+        TRUE,
+      ],
+      '^8.8 existing 8.7' => [
+        'set_879.info.yml',
+        'twitter_embed_field.1.x-dev',
+        '^8.8 || ^9',
+        FALSE,
+      ],
+      '^8.8 existing 8.8.3' => [
+        'set_883.info.yml',
+        'twitter_embed_field.1.x-dev',
+        '^8.8.3 || ^9',
+        FALSE,
       ],
       // Remove 8.8 but not 8.7
       '8.8 and 8.7' => [
@@ -99,5 +128,5 @@ class InfoUpdaterTest extends TestBase {
     copy($fixture_file, $temp_file);
     return $temp_file;
   }
-  
+
 }

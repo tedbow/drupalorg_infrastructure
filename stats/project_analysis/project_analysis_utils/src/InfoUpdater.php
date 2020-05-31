@@ -42,6 +42,7 @@ class InfoUpdater extends ResultProcessorBase {
     }
     else {
       $has_core_version_requirement = TRUE;
+      $constraint_8 = NULL;
       if ($minimum_core_minor === 8) {
         if (strpos($info[static::KEY], '8.8') === FALSE) {
           // If 8.8 is not in core_version_requirement it is likely specifying
@@ -55,6 +56,11 @@ class InfoUpdater extends ResultProcessorBase {
           // If no version 8.8 or 8.7 then we need to set a version
           $new_core_version_requirement = '^8.7.7 || ^9';
           unset($info['core']);
+        }
+      }
+      if ($new_core_version_requirement) {
+        if (!Semver::satisfies('9.0.0', $new_core_version_requirement)) {
+          $new_core_version_requirement = "$new_core_version_requirement || ^9";
         }
       }
       // Only update if we it doesn't already satisfy 9.0.0
