@@ -71,6 +71,12 @@ class InfoUpdaterTest extends TestBase {
         '^8.7.9 || ^9',
         FALSE,
       ],
+      '^8 existing 8.8.3' => [
+        'core_version_requirement_883.info.yml',
+        'environment_indicator.3.x-dev',
+        '^8.8.3 || ^9',
+        FALSE,
+      ],
       // Remove texbar.1.x-dev 8.7 not 8.8
       '8.7.7' => [
         'core_version_requirement_empty.info.yml',
@@ -93,12 +99,6 @@ class InfoUpdaterTest extends TestBase {
       '8.7.7 existing ^8.8.3' => [
         'core_version_requirement_883.info.yml',
         'texbar.1.x-dev',
-        '^8.8.3 || ^9',
-        FALSE,
-      ],
-      '^8 existing 8.8.3' => [
-        'core_version_requirement_883.info.yml',
-        'environment_indicator.3.x-dev',
         '^8.8.3 || ^9',
         FALSE,
       ],
