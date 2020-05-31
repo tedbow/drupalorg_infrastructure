@@ -3,6 +3,7 @@
 namespace InfoUpdater\Tests\Unit;
 
 use InfoUpdater\InfoUpdater;
+use InfoUpdater\Tests\Core\InfoParserDynamic;
 use InfoUpdater\Tests\TestBase;
 use PHPUnit\Framework\TestCase;
 use Symfony\Component\Yaml\Yaml;
@@ -18,7 +19,7 @@ class InfoUpdaterTest extends TestBase {
    *
    * @dataProvider providerUpdateInfoNew
    */
-  public function testUpdateInfoNew($file, $project_version, $expected) {
+  public function testUpdateInfoNew($file, $project_version, $expected, $expected_remove_core) {
     $temp_file = $this->createTempFixtureFile($file);
     $pre_yml = Yaml::parseFile($temp_file);
     if ($file === 'no_core_version_requirement.info.yml') {
@@ -27,11 +28,22 @@ class InfoUpdaterTest extends TestBase {
     InfoUpdater::updateInfo($temp_file, $project_version);
     $post_yml = Yaml::parseFile($temp_file);
     $this->assertSame($expected, $post_yml['core_version_requirement']);
-    // The yml should be the same except for 'core_version_requirement'.
+
+    // The created info file should be able to be parsed by the core parser.
+    $core_parser = new InfoParserDynamic();
+    $core_info = $core_parser->parse($temp_file);
+    $this->assertSame($post_yml, $core_info);
+
+    // The yml should be the same except for 'core_version_requirement' and
+    // core removed sometimes.
     unset($post_yml['core_version_requirement']);
+    if ($expected_remove_core) {
+      unset($pre_yml['core']);
+    }
     if ($file === 'no_core_version_requirement.info.yml') {
       $this->assertSame($pre_yml, $post_yml);
     }
+
     unlink($temp_file);
   }
 
@@ -41,11 +53,13 @@ class InfoUpdaterTest extends TestBase {
         'no_core_version_requirement.info.yml',
         'environment_indicator.3.x-dev',
         '^8 || ^9',
+        FALSE,
       ],
       '^8 existing 8.7' => [
         'set_87.info.yml',
         'environment_indicator.3.x-dev',
-        '^8.7 || ^9',
+        '^8.7.9 || ^9',
+        FALSE,
       ],
       // @todo Add duplicates of all cases for existing
       // Remove 8.8 but not 8.7
@@ -53,17 +67,20 @@ class InfoUpdaterTest extends TestBase {
         'no_core_version_requirement.info.yml',
         'twitter_embed_field.1.x-dev',
         '^8.8 || ^9',
+        TRUE,
       ],
       // Remove 8.8 but not 8.7
       '8.8 and 8.7' => [
         'no_core_version_requirement.info.yml',
         'widget_engine.1.x-dev',
         '^8.8 || ^9',
+        TRUE,
       ],
       '8.7.7' => [
         'no_core_version_requirement.info.yml',
         'texbar.1.x-dev',
         '^8.7.7 || ^9',
+        TRUE,
       ],
     ];
   }
@@ -82,10 +99,5 @@ class InfoUpdaterTest extends TestBase {
     copy($fixture_file, $temp_file);
     return $temp_file;
   }
-
-
-
-}
-class TestInfoUpdater extends InfoUpdater {
-  //protected static RESULT_DIR
+  
 }

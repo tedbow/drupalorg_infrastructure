@@ -30,9 +30,11 @@ class InfoUpdater extends ResultProcessorBase {
     if (!isset($info[static::KEY])) {
       if ($minimum_core_minor === 8) {
         $new_core_version_requirement = '^8.8 || ^9';
+        unset($info['core']);
       }
       elseif ($minimum_core_minor === 7) {
         $new_core_version_requirement = '^8.7.7 || ^9';
+        unset($info['core']);
       }
       else {
         $new_core_version_requirement = '^8 || ^9';
@@ -45,12 +47,14 @@ class InfoUpdater extends ResultProcessorBase {
           // If 8.8 is not in core_version_requirement it is likely specifying
           // lower compatibility
           $new_core_version_requirement = '^8.8 || ^9';
+          unset($info['core']);
         }
       }
       elseif ($minimum_core_minor === 7) {
         if (strpos($info[static::KEY], '8.8') === FALSE && strpos($info[static::KEY], '8.7') === FALSE) {
           // If no version 8.8 or 8.7 then we need to set a version
           $new_core_version_requirement = '^8.7.7 || ^9';
+          unset($info['core']);
         }
       }
       // Only update if we it doesn't already satisfy 9.0.0
@@ -66,16 +70,21 @@ class InfoUpdater extends ResultProcessorBase {
       foreach(preg_split("/((\r?\n)|(\r\n?))/", $contents) as $line){
         $key = explode(':', $line)[0];
         $trimmed_key = trim($key);
-        if ($trimmed_key !== static::KEY) {
+        if ($trimmed_key !== static::KEY && $trimmed_key !== 'core') {
           $new_lines[] = $line;
         }
         elseif ($has_core_version_requirement) {
           // Update the existing line.
           $new_lines[] = static::KEY . ': ' . $info[static::KEY];
         }
-        if ($trimmed_key === 'core' && !$has_core_version_requirement) {
-          $added_line = TRUE;
-          $new_lines[] = static::KEY . ': ' . $info[static::KEY];
+        if ($trimmed_key === 'core') {
+          if (isset($info['core'])) {
+            $new_lines[] = $line;
+          }
+          if (!$has_core_version_requirement) {
+            $added_line = TRUE;
+            $new_lines[] = static::KEY . ': ' . $info[static::KEY];
+          }
         }
       }
       if (!$added_line && !$has_core_version_requirement) {
