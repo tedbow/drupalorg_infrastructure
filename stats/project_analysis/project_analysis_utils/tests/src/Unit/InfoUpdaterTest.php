@@ -36,7 +36,12 @@ class InfoUpdaterTest extends TestBase {
 
 
     if ($expected_remove_core) {
+      $this->assertArrayHasKey('core', $pre_yml);
       unset($pre_yml['core']);
+      $this->assertArrayNotHasKey('core', $post_yml);
+    }
+    else {
+      $this->assertFalse(!empty($pre_yml['core']) && empty($post_yml['core']));
     }
     $pre_yml['core_version_requirement'] = $expected;
     $pre_yml = asort($pre_yml);
@@ -98,18 +103,57 @@ class InfoUpdaterTest extends TestBase {
         '^8.8.3 || ^9',
         FALSE,
       ],
-      // Remove 8.8 but not 8.7
-      '8.8 and 8.7' => [
+      // Remove 8.8 and 8.7
+      '8.8 + 8.7' => [
         'no_core_version_requirement.info.yml',
         'widget_engine.1.x-dev',
         '^8.8 || ^9',
         TRUE,
       ],
+      // Remove 8.8 and 8.7
+      '8.8 + 8.7 existing ^8' => [
+        'core_version_requirement.info.yml',
+        'widget_engine.1.x-dev',
+        '^8.8 || ^9',
+        TRUE,
+      ],
+      // Remove 8.8 and 8.7
+      '8.8 + 8.7 existing ^8.7.9' => [
+        'set_879.info.yml',
+        'widget_engine.1.x-dev',
+        '^8.8 || ^9',
+        FALSE,
+      ],
+      '8.8 + 8.7 existing ^8.8.3' => [
+        'set_883.info.yml',
+        'widget_engine.1.x-dev',
+        '^8.8.3 || ^9',
+        FALSE,
+      ],
+      // Remove 8.7
       '8.7.7' => [
         'no_core_version_requirement.info.yml',
         'texbar.1.x-dev',
         '^8.7.7 || ^9',
         TRUE,
+      ],
+      '8.7.7 existing ^8' => [
+        'core_version_requirement.info.yml',
+        'texbar.1.x-dev',
+        '^8.7.7 || ^9',
+        TRUE,
+      ],
+      '8.7.7 existing ^8.7.9' => [
+        'set_879.info.yml',
+        'texbar.1.x-dev',
+        '^8.7.9 || ^9',
+        FALSE,
+      ],
+      '8.7.7 existing ^8.8.3' => [
+        'set_883.info.yml',
+        'texbar.1.x-dev',
+        '^8.8.3 || ^9',
+        FALSE,
       ],
     ];
   }

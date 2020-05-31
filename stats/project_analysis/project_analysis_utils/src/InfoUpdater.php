@@ -58,13 +58,8 @@ class InfoUpdater extends ResultProcessorBase {
           unset($info['core']);
         }
       }
-      if ($new_core_version_requirement) {
-        if (!Semver::satisfies('9.0.0', $new_core_version_requirement)) {
-          $new_core_version_requirement = "$new_core_version_requirement || ^9";
-        }
-      }
       // Only update if we it doesn't already satisfy 9.0.0
-      elseif (!Semver::satisfies('9.0.0', $info[static::KEY])) {
+      if (empty($new_core_version_requirement) && !Semver::satisfies('9.0.0', $info[static::KEY])) {
         $new_core_version_requirement = $info[static::KEY] . ' || ^9';
       }
     }
