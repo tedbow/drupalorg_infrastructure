@@ -5,15 +5,13 @@ namespace InfoUpdater\Tests\Unit;
 use InfoUpdater\InfoUpdater;
 use InfoUpdater\Tests\Core\InfoParserDynamic;
 use InfoUpdater\Tests\TestBase;
-use PHPUnit\Framework\TestCase;
 use Symfony\Component\Yaml\Yaml;
 
 /**
  * @coversDefaultClass \InfoUpdater\InfoUpdater
  */
 class InfoUpdaterTest extends TestBase {
-
-
+  
   /**
    * @covers ::updateInfo
    *
@@ -22,7 +20,7 @@ class InfoUpdaterTest extends TestBase {
   public function testUpdateInfoNew($file, $project_version, $expected, $expected_remove_core) {
     $temp_file = $this->createTempFixtureFile($file);
     $pre_yml = Yaml::parseFile($temp_file);
-    if ($file === 'no_core_version_requirement.info.yml') {
+    if ($file === 'core_version_requirement_empty.info.yml') {
       $this->assertFalse(isset($pre_yml['core_version_requirement']));
     }
     InfoUpdater::updateInfo($temp_file, $project_version);
@@ -53,8 +51,10 @@ class InfoUpdaterTest extends TestBase {
 
   public function providerUpdateInfoNew() {
     return [
+      // Test environment_indicator.3.x-dev no deprecations removed for 8.8
+      // or 8.7.
       '^8' => [
-        'no_core_version_requirement.info.yml',
+        'core_version_requirement_empty.info.yml',
         'environment_indicator.3.x-dev',
         '^8 || ^9',
         FALSE,
@@ -66,73 +66,14 @@ class InfoUpdaterTest extends TestBase {
         FALSE,
       ],
       '^8 existing 8.7' => [
-        'set_879.info.yml',
+        'core_version_requirement_879.info.yml',
         'environment_indicator.3.x-dev',
         '^8.7.9 || ^9',
         FALSE,
       ],
-      '^8 existing 8.8.3' => [
-        'set_883.info.yml',
-        'environment_indicator.3.x-dev',
-        '^8.8.3 || ^9',
-        FALSE,
-      ],
-      // @todo Add duplicates of all cases for existing
-      // Remove 8.8 but not 8.7
-      '^8.8' => [
-        'no_core_version_requirement.info.yml',
-        'twitter_embed_field.1.x-dev',
-        '^8.8 || ^9',
-        TRUE,
-      ],
-      '^8.8 existing ^8' => [
-        'core_version_requirement.info.yml',
-        'twitter_embed_field.1.x-dev',
-        '^8.8 || ^9',
-        TRUE,
-      ],
-      '^8.8 existing 8.7' => [
-        'set_879.info.yml',
-        'twitter_embed_field.1.x-dev',
-        '^8.8 || ^9',
-        FALSE,
-      ],
-      '^8.8 existing 8.8.3' => [
-        'set_883.info.yml',
-        'twitter_embed_field.1.x-dev',
-        '^8.8.3 || ^9',
-        FALSE,
-      ],
-      // Remove 8.8 and 8.7
-      '8.8 + 8.7' => [
-        'no_core_version_requirement.info.yml',
-        'widget_engine.1.x-dev',
-        '^8.8 || ^9',
-        TRUE,
-      ],
-      // Remove 8.8 and 8.7
-      '8.8 + 8.7 existing ^8' => [
-        'core_version_requirement.info.yml',
-        'widget_engine.1.x-dev',
-        '^8.8 || ^9',
-        TRUE,
-      ],
-      // Remove 8.8 and 8.7
-      '8.8 + 8.7 existing ^8.7.9' => [
-        'set_879.info.yml',
-        'widget_engine.1.x-dev',
-        '^8.8 || ^9',
-        FALSE,
-      ],
-      '8.8 + 8.7 existing ^8.8.3' => [
-        'set_883.info.yml',
-        'widget_engine.1.x-dev',
-        '^8.8.3 || ^9',
-        FALSE,
-      ],
-      // Remove 8.7
+      // Remove texbar.1.x-dev 8.7 not 8.8
       '8.7.7' => [
-        'no_core_version_requirement.info.yml',
+        'core_version_requirement_empty.info.yml',
         'texbar.1.x-dev',
         '^8.7.7 || ^9',
         TRUE,
@@ -144,14 +85,70 @@ class InfoUpdaterTest extends TestBase {
         TRUE,
       ],
       '8.7.7 existing ^8.7.9' => [
-        'set_879.info.yml',
+        'core_version_requirement_879.info.yml',
         'texbar.1.x-dev',
         '^8.7.9 || ^9',
         FALSE,
       ],
       '8.7.7 existing ^8.8.3' => [
-        'set_883.info.yml',
+        'core_version_requirement_883.info.yml',
         'texbar.1.x-dev',
+        '^8.8.3 || ^9',
+        FALSE,
+      ],
+      '^8 existing 8.8.3' => [
+        'core_version_requirement_883.info.yml',
+        'environment_indicator.3.x-dev',
+        '^8.8.3 || ^9',
+        FALSE,
+      ],
+      // Test twitter_embed_field.1.x-dev removed 8.8 but not 8.7
+      '^8.8' => [
+        'core_version_requirement_empty.info.yml',
+        'twitter_embed_field.1.x-dev',
+        '^8.8 || ^9',
+        TRUE,
+      ],
+      '^8.8 existing ^8' => [
+        'core_version_requirement.info.yml',
+        'twitter_embed_field.1.x-dev',
+        '^8.8 || ^9',
+        TRUE,
+      ],
+      '^8.8 existing 8.7' => [
+        'core_version_requirement_879.info.yml',
+        'twitter_embed_field.1.x-dev',
+        '^8.8 || ^9',
+        FALSE,
+      ],
+      '^8.8 existing 8.8.3' => [
+        'core_version_requirement_883.info.yml',
+        'twitter_embed_field.1.x-dev',
+        '^8.8.3 || ^9',
+        FALSE,
+      ],
+      // Test twitter_embed_field.1.x-dev removed 8.8 and 8.7
+      '8.8 + 8.7' => [
+        'core_version_requirement_empty.info.yml',
+        'widget_engine.1.x-dev',
+        '^8.8 || ^9',
+        TRUE,
+      ],
+      '8.8 + 8.7 existing ^8' => [
+        'core_version_requirement.info.yml',
+        'widget_engine.1.x-dev',
+        '^8.8 || ^9',
+        TRUE,
+      ],
+      '8.8 + 8.7 existing ^8.7.9' => [
+        'core_version_requirement_879.info.yml',
+        'widget_engine.1.x-dev',
+        '^8.8 || ^9',
+        FALSE,
+      ],
+      '8.8 + 8.7 existing ^8.8.3' => [
+        'core_version_requirement_883.info.yml',
+        'widget_engine.1.x-dev',
         '^8.8.3 || ^9',
         FALSE,
       ],
