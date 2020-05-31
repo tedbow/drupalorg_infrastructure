@@ -20,7 +20,7 @@ class InfoUpdater extends ResultProcessorBase {
   public static function updateInfo($file, string $project_version) {
     $minimum_core_minor = NULL;
     if (file_exists(self::getUpgradeStatusXML($project_version, 'post'))) {
-      $minimum_core_minor = static::getMinimumCore8Minoe($project_version);
+      $minimum_core_minor = static::getMinimumCore8Minor($project_version);
     }
 
     $contents = file_get_contents($file);
@@ -107,23 +107,41 @@ class InfoUpdater extends ResultProcessorBase {
 
   }
 
-  private static function getMinimumCore8Minoe(string $project_version) {
+  /**
+   * Gets the minimum core minor for project version.
+   *
+   * Only checks 8.8 and 8.7 otherwise returns 0. Currently updater will only
+   * support these updates. To denote compatibility with 8.5 etc would have to
+   * use dependencies and since this minors are not supported it is not worth
+   * for the possible bugs introduced.
+   *
+   * @param string $project_version
+   *
+   * @return int
+   *   The minor version either 8,7,or 0.
+   * @throws \Exception
+   */
+  private static function getMinimumCore8Minor(string $project_version) {
     $pre_messages = self::getMessages($project_version, 'pre');
     $post_messages = self::getMessages($project_version, 'post');
-    $minors = range(8, 0);
-    foreach ($minors as $minor) {
+
+    foreach ([8, 7] as $minor) {
       $deprecation_version = "drupal:8.$minor.0";
       if (strpos($pre_messages, $deprecation_version) !== FALSE && strpos($post_messages, $deprecation_version) === FALSE) {
         return $minor;
       }
     }
-    return $minor;
+    return 0;
   }
 
   /**
+   * Gets the error and warning messages for a upgrade_status xml file.
+   *
    * @param string $project_version
    *
-   * @return string[]
+   * @param $pre_or_post
+   *
+   * @return string
    *
    * @throws \Exception
    */
@@ -135,6 +153,7 @@ class InfoUpdater extends ResultProcessorBase {
   }
 
   /**
+   * Get the file location of an upgrade_status xml file.
    * @param string $project_version
    * @param $pre_or_post
    *

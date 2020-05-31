@@ -11,7 +11,7 @@ use Symfony\Component\Yaml\Yaml;
  * @coversDefaultClass \InfoUpdater\InfoUpdater
  */
 class InfoUpdaterTest extends TestBase {
-  
+
   /**
    * @covers ::updateInfo
    *
