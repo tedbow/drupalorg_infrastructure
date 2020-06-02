@@ -8824,20 +8824,6 @@ whitelist.add(
     ])
 
 whitelist.add(
-    table="panels_mini",
-    columns=[
-        "pid",
-        "name",
-        "category",
-        "did",
-        "admin_title",
-        "admin_description",
-        "requiredcontexts",
-        "contexts",
-        "relationships",
-    ])
-
-whitelist.add(
     table="field_data_field_da_expiration_date",
     columns=[
         "entity_type",
